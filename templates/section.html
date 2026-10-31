@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% from "macros.html" import indicator_table %}
+
+{% block title %}{{ page.title }} · EconPulse Spain{% endblock %}
+
+{% block content %}
+  <h1>{{ page.title }}</h1>
+  <p class="lede">{{ page.intro }}</p>
+  <p class="notice">Charts and detailed tables for this page arrive in Batch {{ page.batch }} of the build plan.
+    For now, here is every {{ page.title | lower }} indicator tracked, with its latest reading.</p>
+  {% if items %}
+    {{ indicator_table(items) }}
+  {% else %}
+    <p class="note">No indicators in this section yet.</p>
+  {% endif %}
+{% endblock %}

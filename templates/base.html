@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}EconPulse Spain{% endblock %}</title>
+  <meta name="description" content="{% block description %}A running read on the health of the Spanish economy.{% endblock %}">
+  <script>
+    // Apply a saved light/dark choice before the page paints.
+    try { var t = localStorage.getItem("ep-theme"); if (t) document.documentElement.setAttribute("data-theme", t); } catch (e) {}
+  </script>
+  <link rel="stylesheet" href="assets/style.css?v={{ build_id }}">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap header-top">
+      <a class="brand" href="index.html">EconPulse <span>Spain</span></a>
+      <div class="header-meta">
+        <span class="asof">Data as of {{ as_of }}</span>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch between light and dark theme">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z" fill="currentColor"/></svg>
+        </button>
+      </div>
+    </div>
+    <nav class="wrap site-nav" aria-label="Sections">
+      {% for href, label in nav %}
+      <a href="{{ href }}"{% if href == active %} aria-current="page"{% endif %}>{{ label }}</a>
+      {% endfor %}
+    </nav>
+  </header>
+
+  <main id="content" class="wrap">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>Data from {{ sources | join(", ") }}. Figures are as published by each source unless marked
+        <abbr title="seasonally adjusted by EconPulse">SA</abbr> or labelled as an EconPulse calculation.</p>
+      <p>EconPulse Spain v{{ version }} · built {{ built }}</p>
+    </div>
+  </footer>
+
+  {% block scripts %}{% endblock %}
+  <script src="assets/app.js?v={{ build_id }}"></script>
+</body>
+</html>

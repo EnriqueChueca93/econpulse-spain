@@ -163,7 +163,8 @@ Each batch is sized for one working session, ends with something you can open or
 - Retries, caching, per-source failure isolation, a "stale data" flag, a freshness report
 - **Done when:** about 60 indicators update in one command, and a broken source doesn't stop the rest.
 
-### Batch 3 — Site v1: home page
+### Batch 3 — Site v1: home page ✅ done 30 Oct 2026
+*Result: 12 server-rendered pages (home, 10 section pages, data page) with a shared header, navigation, light/dark theme with a toggle, and a mobile layout. The home page has 16 tiles in four themed rows (activity, prices, rates, markets), the Four Questions and three Plotly charts (HICP vs core; Spain vs Germany 10y; SA registrations), each with a hover readout, PNG download and data table. The chart palette was checked with the dataviz validator, and all pairs pass in both modes. Seasonal adjustment (STL) moved forward from Batch 4, because the Four Questions need it. 69 offline tests.*
 - Jinja2 templates, CSS in an econvitals-like clean style (light and dark), navigation
 - Key indicators strip and the Four Questions block, with live data
 - Vendored Plotly and a chart helper with PNG download
@@ -171,7 +172,8 @@ Each batch is sized for one working session, ends with something you can open or
 
 ### Batch 4 — Sections I: GDP, Labour, Wages, Inflation
 - Charts plus the econvitals-style tables (1-month, 3-month and 12-month columns; latest, one month ago, one year ago)
-- Seasonal adjustment (statsmodels) for CPI 3-month annualised rates and for monthly changes in registrations. Then switch the registrations tile to the SA monthly change, as econvitals does for payrolls
+- Seasonal adjustment exists since Batch 3 (`sa_*` transforms). Use it in the tables, and decide whether the registrations tile switches from the official y/y change to the SA monthly change, as econvitals does for payrolls
+- Fill the section pages using the chart helper from Batch 3 (`charts.py` specs + `app.js`)
 
 ### Batch 5 — Sections II: Financial and ECB
 - Yield curve, prima de riesgo, Euribor, markets table (1-day, 1-week, YTD), ECB rate history and expected path
@@ -198,7 +200,7 @@ Each batch is sized for one working session, ends with something you can open or
 
 ## 6. Open decisions
 
-1. **Language:** English UI with Spanish official names (default), Spanish only, or bilingual EN/ES. Needed by Batch 3.
+1. ~~**Language**~~ **Decided 30 Oct 2026:** English UI, with Spanish official names alongside (e.g. "Social Security registrations · *Afiliados medios*").
 2. **Name and domain:** "EconPulse Spain" for now. Needed by Batch 9.
 3. **Hosting account:** the GitHub account to use. Needed by Batch 9.
 4. **Update frequency once online:** daily or twice daily (markets want more often than macro data).

@@ -32,8 +32,8 @@ indicators:
     freq: Q
     unit: index
     transforms: [pop, yoy]
-    tile: 1
 
+    tile: 1
   - id: domestic_demand
     label: Domestic demand
     label_es: Demanda nacional
@@ -188,8 +188,8 @@ indicators:
     freq: M
     unit: "%"
     change_unit: pp
-    tile: 4
 
+    tile: 5
   - id: core_cpi
     label: Core CPI inflation
     label_es: IPC subyacente, variación anual
@@ -199,7 +199,7 @@ indicators:
     freq: M
     unit: "%"
     change_unit: pp
-    tile: 5
+    tile: 6
     notes: Excludes unprocessed food and energy (INE definition).
 
   - id: cpi_index
@@ -234,7 +234,7 @@ indicators:
     freq: M
     unit: "%"
     change_unit: pp
-    tile: 6
+    tile: 7
     notes: Harmonised index, the measure the ECB targets.
 
   - id: hicp_core
@@ -258,7 +258,7 @@ indicators:
     unit: "€/MWh"
     decimals: 0
     change_unit: "%"
-    tile: 12
+    tile: 15
     notes: Daily average of the Iberian day-ahead market price for Spain.
 
   # ---------------------------------------------------------------- Activity
@@ -354,10 +354,11 @@ indicators:
     source: ine
     key: FREG287
     freq: M
-    unit: thousands
-    scale: 0.001
+    unit: mn
+    scale: 0.000001
     transforms: [yoy, level]
 
+    tile: 4
   - id: tourist_spending
     label: International tourist spending
     label_es: Gasto de los turistas internacionales (EGATUR)
@@ -423,6 +424,7 @@ indicators:
     unit: index
     transforms: [yoy, pop]
 
+    tile: 8
   - id: home_sales
     label: Home sales
     label_es: Compraventa de viviendas (ETDP)
@@ -469,8 +471,8 @@ indicators:
     unit: "%"
     decimals: 2
     change_unit: bp
-    tile: 7
 
+    tile: 9
   - id: ecb_mro_rate
     label: ECB main refinancing rate
     label_es: Operaciones principales de financiación del BCE
@@ -515,6 +517,7 @@ indicators:
     unit: "%"
     decimals: 3
     change_unit: bp
+    tile: 10
     notes: The reference rate for most Spanish variable-rate mortgages.
 
   - id: es_12m_bill
@@ -560,7 +563,7 @@ indicators:
     unit: "%"
     decimals: 2
     change_unit: bp
-    tile: 8
+    tile: 11
     notes: Secondary-market yield, all trades in non-stripped bonds with about 10 years to maturity.
 
   - id: es_30y
@@ -596,7 +599,7 @@ indicators:
     scale: 100
     decimals: 0
     change_unit: bp
-    tile: 9
+    tile: 12
     notes: Banco de España's 10-year spread over the German Bund.
 
   - id: ibex35
@@ -609,8 +612,8 @@ indicators:
     unit: index
     decimals: 0
     change_unit: "%"
-    tile: 10
 
+    tile: 13
   - id: eurusd
     label: EUR/USD
     label_es: Tipo de cambio dólar/euro
@@ -621,7 +624,7 @@ indicators:
     unit: rate
     decimals: 4
     change_unit: "%"
-    tile: 13
+    tile: 16
     notes: US dollars per euro, ECB reference rate.
 
   - id: brent_usd
@@ -633,7 +636,7 @@ indicators:
     freq: D
     unit: "$/bbl"
     change_unit: "%"
-    tile: 11
+    tile: 14
     notes: Europe Brent spot price (US EIA, via FRED); published with a few days' lag.
 
   - id: brent_eur

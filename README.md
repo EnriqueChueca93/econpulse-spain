@@ -17,6 +17,15 @@ python -m venv .venv
 .venv/Scripts/python -m econpulse update
 ```
 
+## The site
+
+- **Home** (`site/index.html`): 16 key-indicator tiles, "The economy in four questions" and three charts.
+- **Section pages** (GDP, Labour market, Inflation, …): every indicator in that area. Charts and detailed tables come in Batches 4–6.
+- **Data** (`site/data.html`): every series, its source and whether it is up to date.
+
+Pages are plain HTML and work offline: Plotly is copied from the Python package, with no CDN. Light/dark
+follows the system setting, and the moon button switches it.
+
 ## Commands
 
 | Command | What it does |
@@ -41,9 +50,13 @@ econpulse/            Python package
   transforms.py       y/y, m/m, q/q, 3-month annualised, changes
   store.py            data/series/<id>.csv + data/catalog.json
   fetch.py            fetches everything; one failing source never stops the rest
+  seasonal.py         EconPulse seasonal adjustment (STL), used by the sa_* transforms
   snapshot.py         latest values, changes and display strings
-  build.py            writes site/ (data goes in site/data/snapshot.js)
-templates/, static/   HTML template, CSS and JavaScript for the site
+  questions.py        "The economy in four questions" on the home page
+  charts.py           chart specifications (data and wording; colours come from the CSS theme)
+  build.py            renders every page into site/ (chart data goes in site/data/*.js)
+templates/            Jinja2 pages: base layout, home, section pages, data page
+static/               style.css (light/dark tokens), app.js (theme toggle, Plotly charts)
 data/                 fetched history (tracked in git)
 site/                 build output, open site/index.html (not tracked)
 tests/                pytest suite

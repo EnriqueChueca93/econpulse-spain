@@ -105,7 +105,7 @@ def summarize_transform(ind: Indicator, series: pd.Series, name: str) -> dict | 
             return (value / float(ref) - 1) * 100
         return (value - float(ref)) * scale
 
-    is_diff = name in ("diff", "diff_yoy")
+    is_diff = name in transforms.DIFF_TRANSFORMS
     out = {
         "transform": name,
         "label": transforms.label(name, ind.freq),

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% from "macros.html" import indicator_table %}
+
+{% block title %}Data and sources · EconPulse Spain{% endblock %}
+
+{% block content %}
+  <h1>Data and sources</h1>
+  <p class="lede">Every series on the site, where it comes from, and whether it is up to date.</p>
+
+  <section aria-labelledby="by-source">
+    <h2 id="by-source">By source</h2>
+    <div class="table-scroll">
+      <table class="data-table">
+        <thead>
+          <tr><th scope="col">Source</th><th scope="col" class="num">Indicators</th><th scope="col" class="num">Up to date</th><th scope="col" class="num">Need attention</th></tr>
+        </thead>
+        <tbody>
+          {% for row in source_summary %}
+          <tr>
+            <td class="ind-name">{{ row.source }}</td>
+            <td class="num">{{ row.total }}</td>
+            <td class="num">{{ row.ok }}</td>
+            <td class="num">{% if row.problems %}<span class="badge badge-warn">{{ row.problems }}</span>{% else %}0{% endif %}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <p class="note">"Need attention" counts series whose last update failed or that have stopped updating at the source.
+      Run <code>python -m econpulse status</code> for details.</p>
+  </section>
+
+  {% for group in groups %}
+  <section aria-labelledby="sec-{{ group.id }}">
+    <h2 id="sec-{{ group.id }}">{{ group.title }}</h2>
+    {{ indicator_table(group["items"], with_status=true) }}
+  </section>
+  {% endfor %}
+{% endblock %}

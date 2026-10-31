@@ -1,7 +1,7 @@
 {
  "afiliados": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:10+00:00",
+  "fetched_at": "2026-10-31T01:05:13+00:00",
   "first_date": "2001-01-01",
   "last_date": "2026-09-01",
   "n_obs": 309,
@@ -10,7 +10,7 @@
  },
  "brent_eur": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:15+00:00",
+  "fetched_at": "2026-10-31T01:05:20+00:00",
   "first_date": "1999-01-04",
   "last_date": "2026-10-27",
   "n_obs": 6669,
@@ -18,7 +18,7 @@
  },
  "brent_usd": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:15+00:00",
+  "fetched_at": "2026-10-31T01:05:20+00:00",
   "first_date": "1987-05-20",
   "last_date": "2026-10-27",
   "n_obs": 9117,
@@ -26,7 +26,7 @@
  },
  "car_sales": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:12+00:00",
+  "fetched_at": "2026-10-31T01:05:16+00:00",
   "first_date": "1988-05-01",
   "last_date": "2026-09-01",
   "n_obs": 461,
@@ -35,7 +35,7 @@
  },
  "construction_confidence": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:12+00:00",
+  "fetched_at": "2026-10-31T01:05:16+00:00",
   "first_date": "1989-01-01",
   "last_date": "2026-10-01",
   "n_obs": 454,
@@ -45,7 +45,7 @@
  },
  "consumer_confidence": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:12+00:00",
+  "fetched_at": "2026-10-31T01:05:16+00:00",
   "first_date": "1986-06-01",
   "last_date": "2026-10-01",
   "n_obs": 485,
@@ -55,7 +55,7 @@
  },
  "consumption_government": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:09+00:00",
+  "fetched_at": "2026-10-31T01:05:12+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
@@ -65,7 +65,7 @@
  },
  "consumption_households": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:09+00:00",
+  "fetched_at": "2026-10-31T01:05:12+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
@@ -75,7 +75,7 @@
  },
  "core_cpi": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:10+00:00",
+  "fetched_at": "2026-10-31T01:05:14+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-10-01",
   "n_obs": 298,
@@ -85,7 +85,7 @@
  },
  "core_cpi_index": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:10+00:00",
+  "fetched_at": "2026-10-31T01:05:14+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-09-01",
   "n_obs": 297,
@@ -95,7 +95,7 @@
  },
  "cpi": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:10+00:00",
+  "fetched_at": "2026-10-31T01:05:14+00:00",
   "first_date": "1962-01-01",
   "last_date": "2026-10-01",
   "n_obs": 778,
@@ -105,7 +105,7 @@
  },
  "cpi_index": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:10+00:00",
+  "fetched_at": "2026-10-31T01:05:14+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-09-01",
   "n_obs": 297,
@@ -115,7 +115,7 @@
  },
  "current_account": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:12+00:00",
+  "fetched_at": "2026-10-31T01:05:17+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-04-01",
   "n_obs": 126,
@@ -125,7 +125,7 @@
  },
  "current_account_monthly": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:12+00:00",
+  "fetched_at": "2026-10-31T01:05:16+00:00",
   "first_date": "1993-01-01",
   "last_date": "2026-08-01",
   "n_obs": 404,
@@ -134,7 +134,7 @@
  },
  "de_10y": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:15+00:00",
+  "fetched_at": "2026-10-31T01:05:19+00:00",
   "first_date": "2000-01-03",
   "last_date": "2026-10-29",
   "n_obs": 6582,
@@ -143,7 +143,7 @@
  },
  "de_10y_monthly": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:15+00:00",
+  "fetched_at": "2026-10-31T01:05:20+00:00",
   "first_date": "1990-01-01",
   "last_date": "2026-09-01",
   "n_obs": 441,
@@ -151,7 +151,7 @@
  },
  "domestic_demand": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:08+00:00",
+  "fetched_at": "2026-10-31T01:05:12+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
@@ -161,7 +161,7 @@
  },
  "ecb_deposit_rate": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:14+00:00",
+  "fetched_at": "2026-10-31T01:05:18+00:00",
   "first_date": "1999-01-01",
   "last_date": "2026-10-31",
   "n_obs": 10166,
@@ -169,7 +169,7 @@
  },
  "ecb_mro_rate": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:14+00:00",
+  "fetched_at": "2026-10-31T01:05:18+00:00",
   "first_date": "1999-01-01",
   "last_date": "2026-10-31",
   "n_obs": 7135,
@@ -177,7 +177,7 @@
  },
  "economic_sentiment": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:12+00:00",
+  "fetched_at": "2026-10-31T01:05:16+00:00",
   "first_date": "1987-04-01",
   "last_date": "2026-10-01",
   "n_obs": 475,
@@ -187,7 +187,7 @@
  },
  "electricity_demand": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:12+00:00",
+  "fetched_at": "2026-10-31T01:05:16+00:00",
   "first_date": "2015-01-01",
   "last_date": "2026-10-30",
   "n_obs": 4321,
@@ -195,7 +195,7 @@
  },
  "electricity_price": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:12+00:00",
+  "fetched_at": "2026-10-31T01:05:16+00:00",
   "first_date": "2025-01-01",
   "last_date": "2026-10-31",
   "n_obs": 669,
@@ -203,7 +203,7 @@
  },
  "employment_epa": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:10+00:00",
+  "fetched_at": "2026-10-31T01:05:13+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-07-01",
   "n_obs": 99,
@@ -213,7 +213,7 @@
  },
  "es_10y": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:15+00:00",
+  "fetched_at": "2026-10-31T01:05:19+00:00",
   "first_date": "2000-01-03",
   "last_date": "2026-10-28",
   "n_obs": 6827,
@@ -222,7 +222,7 @@
  },
  "es_10y_monthly": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:15+00:00",
+  "fetched_at": "2026-10-31T01:05:20+00:00",
   "first_date": "1991-11-01",
   "last_date": "2026-09-01",
   "n_obs": 419,
@@ -230,7 +230,7 @@
  },
  "es_12m_bill": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:14+00:00",
+  "fetched_at": "2026-10-31T01:05:19+00:00",
   "first_date": "2000-01-03",
   "last_date": "2026-10-28",
   "n_obs": 4287,
@@ -239,7 +239,7 @@
  },
  "es_30y": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:15+00:00",
+  "fetched_at": "2026-10-31T01:05:19+00:00",
   "first_date": "2000-01-03",
   "last_date": "2026-10-28",
   "n_obs": 6082,
@@ -248,7 +248,7 @@
  },
  "es_3y": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:14+00:00",
+  "fetched_at": "2026-10-31T01:05:19+00:00",
   "first_date": "2000-01-03",
   "last_date": "2026-10-28",
   "n_obs": 6736,
@@ -257,7 +257,7 @@
  },
  "es_5y": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:15+00:00",
+  "fetched_at": "2026-10-31T01:05:19+00:00",
   "first_date": "2000-01-03",
   "last_date": "2026-10-28",
   "n_obs": 6719,
@@ -266,7 +266,7 @@
  },
  "estr": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:14+00:00",
+  "fetched_at": "2026-10-31T01:05:18+00:00",
   "first_date": "2019-10-01",
   "last_date": "2026-10-29",
   "n_obs": 1814,
@@ -274,7 +274,7 @@
  },
  "euribor_12m": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:14+00:00",
+  "fetched_at": "2026-10-31T01:05:19+00:00",
   "first_date": "2000-01-03",
   "last_date": "2026-10-29",
   "n_obs": 6861,
@@ -283,7 +283,7 @@
  },
  "euribor_3m": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:14+00:00",
+  "fetched_at": "2026-10-31T01:05:19+00:00",
   "first_date": "2000-01-03",
   "last_date": "2026-10-29",
   "n_obs": 6860,
@@ -292,7 +292,7 @@
  },
  "eurusd": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:15+00:00",
+  "fetched_at": "2026-10-31T01:05:20+00:00",
   "first_date": "1999-01-04",
   "last_date": "2026-10-30",
   "n_obs": 7126,
@@ -300,7 +300,7 @@
  },
  "exports": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:09+00:00",
+  "fetched_at": "2026-10-31T01:05:12+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
@@ -310,7 +310,7 @@
  },
  "gas_eu": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:15+00:00",
+  "fetched_at": "2026-10-31T01:05:20+00:00",
   "first_date": "1992-01-01",
   "last_date": "2026-09-01",
   "n_obs": 417,
@@ -318,7 +318,7 @@
  },
  "gdp": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:08+00:00",
+  "fetched_at": "2026-10-31T01:05:12+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
@@ -328,7 +328,7 @@
  },
  "government_balance": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:13+00:00",
+  "fetched_at": "2026-10-31T01:05:17+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-04-01",
   "n_obs": 126,
@@ -338,7 +338,7 @@
  },
  "government_debt": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:13+00:00",
+  "fetched_at": "2026-10-31T01:05:17+00:00",
   "first_date": "1995-10-01",
   "last_date": "2026-04-01",
   "n_obs": 123,
@@ -348,7 +348,7 @@
  },
  "hicp": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:10+00:00",
+  "fetched_at": "2026-10-31T01:05:14+00:00",
   "first_date": "1997-01-01",
   "last_date": "2026-09-01",
   "n_obs": 357,
@@ -358,7 +358,7 @@
  },
  "hicp_core": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:11+00:00",
+  "fetched_at": "2026-10-31T01:05:14+00:00",
   "first_date": "2001-12-01",
   "last_date": "2026-09-01",
   "n_obs": 298,
@@ -368,7 +368,7 @@
  },
  "hicp_euro_area": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:15+00:00",
+  "fetched_at": "2026-10-31T01:05:20+00:00",
   "first_date": "1997-01-01",
   "last_date": "2026-09-01",
   "n_obs": 357,
@@ -378,7 +378,7 @@
  },
  "home_sales": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:12+00:00",
+  "fetched_at": "2026-10-31T01:05:17+00:00",
   "first_date": "2007-01-01",
   "last_date": "2026-08-01",
   "n_obs": 236,
@@ -388,7 +388,7 @@
  },
  "hotel_nights_foreign": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:12+00:00",
+  "fetched_at": "2026-10-31T01:05:16+00:00",
   "first_date": "2003-01-01",
   "last_date": "2026-09-01",
   "n_obs": 283,
@@ -397,7 +397,7 @@
  },
  "house_prices": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:12+00:00",
+  "fetched_at": "2026-10-31T01:05:17+00:00",
   "first_date": "2007-01-01",
   "last_date": "2026-04-01",
   "n_obs": 78,
@@ -407,7 +407,7 @@
  },
  "ibex35": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:15+00:00",
+  "fetched_at": "2026-10-31T01:05:19+00:00",
   "first_date": "2000-01-03",
   "last_date": "2026-10-29",
   "n_obs": 6827,
@@ -416,7 +416,7 @@
  },
  "imports": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:09+00:00",
+  "fetched_at": "2026-10-31T01:05:12+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
@@ -426,7 +426,7 @@
  },
  "industrial_production": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:12+00:00",
+  "fetched_at": "2026-10-31T01:05:16+00:00",
   "first_date": "1992-01-01",
   "last_date": "2026-08-01",
   "n_obs": 416,
@@ -436,7 +436,7 @@
  },
  "industry_confidence": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:12+00:00",
+  "fetched_at": "2026-10-31T01:05:16+00:00",
   "first_date": "1987-04-01",
   "last_date": "2026-10-01",
   "n_obs": 475,
@@ -446,7 +446,7 @@
  },
  "investment": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:09+00:00",
+  "fetched_at": "2026-10-31T01:05:12+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
@@ -456,7 +456,7 @@
  },
  "mortgage_rate": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:15+00:00",
+  "fetched_at": "2026-10-31T01:05:20+00:00",
   "first_date": "2000-01-01",
   "last_date": "2026-08-01",
   "n_obs": 320,
@@ -464,7 +464,7 @@
  },
  "paro_registrado": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:10+00:00",
+  "fetched_at": "2026-10-31T01:05:14+00:00",
   "first_date": "1962-01-01",
   "last_date": "2026-09-01",
   "n_obs": 777,
@@ -473,7 +473,7 @@
  },
  "retail_sales": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:12+00:00",
+  "fetched_at": "2026-10-31T01:05:16+00:00",
   "first_date": "2000-01-01",
   "last_date": "2026-09-01",
   "n_obs": 321,
@@ -483,7 +483,7 @@
  },
  "risk_premium": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:15+00:00",
+  "fetched_at": "2026-10-31T01:05:19+00:00",
   "first_date": "2000-01-03",
   "last_date": "2026-10-29",
   "n_obs": 6571,
@@ -492,7 +492,7 @@
  },
  "risk_premium_monthly": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:15+00:00",
+  "fetched_at": "2026-10-31T01:05:20+00:00",
   "first_date": "1991-11-01",
   "last_date": "2026-09-01",
   "n_obs": 419,
@@ -500,7 +500,7 @@
  },
  "tourism_receipts": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:12+00:00",
+  "fetched_at": "2026-10-31T01:05:16+00:00",
   "first_date": "1993-01-01",
   "last_date": "2026-08-01",
   "n_obs": 404,
@@ -509,17 +509,17 @@
  },
  "tourist_arrivals": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:12+00:00",
+  "fetched_at": "2026-10-31T01:05:16+00:00",
   "first_date": "2015-10-01",
   "last_date": "2026-08-01",
   "n_obs": 131,
-  "signature": "[\"ine\", \"FREG287\", {}, 0.001]",
+  "signature": "[\"ine\", \"FREG287\", {}, 1e-06]",
   "flash": false,
   "source_name": "Total. Total Nacional. Dato base."
  },
  "tourist_spending": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:12+00:00",
+  "fetched_at": "2026-10-31T01:05:16+00:00",
   "first_date": "2015-10-01",
   "last_date": "2026-08-01",
   "n_obs": 131,
@@ -529,7 +529,7 @@
  },
  "unemployment_epa": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:10+00:00",
+  "fetched_at": "2026-10-31T01:05:13+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-07-01",
   "n_obs": 99,
@@ -539,7 +539,7 @@
  },
  "unemployment_monthly": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:10+00:00",
+  "fetched_at": "2026-10-31T01:05:13+00:00",
   "first_date": "1986-04-01",
   "last_date": "2026-09-01",
   "n_obs": 486,
@@ -549,7 +549,7 @@
  },
  "wage_cost": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:10+00:00",
+  "fetched_at": "2026-10-31T01:05:14+00:00",
   "first_date": "2008-01-01",
   "last_date": "2026-04-01",
   "n_obs": 74,
@@ -559,7 +559,7 @@
  },
  "youth_unemployment": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:52:10+00:00",
+  "fetched_at": "2026-10-31T01:05:13+00:00",
   "first_date": "1986-04-01",
   "last_date": "2026-09-01",
   "n_obs": 486,

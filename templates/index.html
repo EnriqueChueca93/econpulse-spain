@@ -1,51 +1,64 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>EconPulse Spain</title>
-  <meta name="description" content="A running read on the health of the Spanish economy.">
-  <link rel="stylesheet" href="assets/style.css?v={{ build_id }}">
-</head>
-<body>
-  <header class="site-header">
-    <div class="wrap">
-      <a class="brand" href="index.html">EconPulse <span>Spain</span></a>
-      <span class="asof" id="asof"></span>
+{% extends "base.html" %}
+{% from "macros.html" import tile %}
+
+{% block content %}
+  <p class="lede">A running read on the health of the Spanish economy.</p>
+
+  <section aria-labelledby="key-indicators">
+    <h2 id="key-indicators">Key indicators</h2>
+    <div class="tiles">
+      {% for item in tiles %}{{ tile(item) }}{% endfor %}
     </div>
-  </header>
+    <p class="note">Each tile links to its source. Hover for the official Spanish name.</p>
+  </section>
 
-  <main class="wrap">
-    <p class="lede">A running read on the health of the Spanish economy.</p>
-
-    <section>
-      <h2>Key indicators</h2>
-      <div class="tiles" id="tiles"></div>
-    </section>
-
-    <section>
-      <h2>All indicators</h2>
-      <p class="note">Every series currently tracked, with its latest reading and source. This table becomes the data-freshness page later on.</p>
-      <div class="table-scroll">
-        <table class="data-table" id="all-indicators">
-          <thead>
-            <tr><th>Indicator</th><th>Latest</th><th>Change</th><th>Period</th><th>Source</th></tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </div>
-    </section>
-
-    <noscript><p class="note">This page needs JavaScript to show the data.</p></noscript>
-  </main>
-
-  <footer class="site-footer">
-    <div class="wrap">
-      Data from {{ sources | join(", ") }}. EconPulse Spain v{{ version }} · built {{ generated_at }}.
+  <section aria-labelledby="four-questions">
+    <h2 id="four-questions">The economy in four questions</h2>
+    <div class="questions">
+      {% for q in questions %}
+      <article class="card question">
+        <h3>{{ q.title }}</h3>
+        <dl class="readings">
+          {% for row in q.rows %}
+          <div class="reading">
+            <dt>{{ row.label }}{% if row.note %}<span class="reading-note">{{ row.note }}</span>{% endif %}</dt>
+            <dd>{{ row.value }}</dd>
+          </div>
+          {% endfor %}
+        </dl>
+        <p class="question-text">{{ q.text }}</p>
+        <a class="more" href="{{ q.link }}">{{ q.link_label }} <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      {% endfor %}
     </div>
-  </footer>
+  </section>
 
-  <script src="data/snapshot.js?v={{ build_id }}"></script>
-  <script src="assets/app.js?v={{ build_id }}"></script>
-</body>
-</html>
+  {% if charts %}
+  <section aria-labelledby="charts">
+    <h2 id="charts">Charts</h2>
+    <div class="charts">
+      {% for c in charts %}
+      <figure class="card chart-card">
+        <figcaption>
+          <span class="chart-title">{{ c.title }}</span>
+          <span class="chart-subtitle">{{ c.subtitle }}</span>
+        </figcaption>
+        <div class="chart" id="chart-{{ c.id }}" role="img" aria-label="{{ c.title }}: {{ c.subtitle }}"></div>
+        <div class="chart-foot">
+          <span class="secondary">Source: {{ c.source }}</span>
+          <a class="more" href="{{ c.link }}">More <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        <details class="chart-data" data-chart="{{ c.id }}"><summary>Show data</summary></details>
+      </figure>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+{% endblock %}
+
+{% block scripts %}
+  {% if charts %}
+  <script src="assets/plotly.min.js?v={{ build_id }}"></script>
+  <script src="data/charts.js?v={{ build_id }}"></script>
+  {% endif %}
+{% endblock %}

@@ -101,8 +101,8 @@ def test_build_writes_loadable_js(setup, tmp_path):
     payload = js.split("window.EP.snapshot = ", 1)[1].rstrip().rstrip(";")
     assert json.loads(payload)["tiles"] == ["es", "spread"]
     html = index.read_text(encoding="utf-8")
-    assert 'src="data/snapshot.js?v=' in html and 'src="assets/app.js?v=' in html
-    assert (tmp_path / "site" / "assets" / "style.css").exists()
+    assert 'src="assets/app.js?v=' in html and 'href="assets/style.css?v=' in html
+    assert "4.20%" in html  # tiles are rendered into the HTML, no JavaScript needed
 
 
 def test_merge_keeps_old_history_and_takes_revisions():

@@ -1,0 +1,64 @@
+{# Shared building blocks for the page templates. #}
+
+{% macro badges(item) -%}
+  {%- if item.flash %}<span class="badge badge-info">flash estimate</span>{% endif -%}
+  {%- if item.status == "stale" %}<span class="badge badge-warn">stale: last update failed</span>{% endif -%}
+  {%- if item.status in ("error", "missing") %}<span class="badge badge-warn">no data</span>{% endif -%}
+  {%- if item.status == "ok" and item.out_of_date %}<span class="badge badge-warn">not updating</span>{% endif -%}
+{%- endmacro %}
+
+{# "209 €/MWh" -> large "209", small "€/MWh", so long units don't crowd the tile. #}
+{% macro split_value(head) -%}
+  {%- set parts = head.display.split(" ", 1) -%}
+  {%- set suffix = ((parts[1] if parts | length > 1 else "") ~ " " ~ head.label) | trim -%}
+  {{ parts[0] }}{% if suffix %}<span class="tile-unit"> {{ suffix }}</span>{% endif %}
+{%- endmacro %}
+
+{% macro tile(item) -%}
+  {%- set head = item.headline -%}
+  <a class="tile"{% if item.source_url %} href="{{ item.source_url }}" target="_blank" rel="noopener"{% endif %}
+     title="{{ item.label_es }}{% if item.notes %}. {{ item.notes }}{% endif %}">
+    <span class="tile-label">{{ item.label }}</span>
+    <span class="tile-value">{% if head %}{{ split_value(head) }}{% else %}&ndash;{% endif %}</span>
+    <span class="tile-meta">
+      <span>{{ head.period if head else "" }}</span>
+      {% if item.subline %}<span class="tile-sub">{{ item.subline }}</span>{% endif %}
+    </span>
+    {% set b = badges(item) %}{% if b | trim %}<span class="tile-badges">{{ b }}</span>{% endif %}
+  </a>
+{%- endmacro %}
+
+{% macro indicator_table(items, with_status=false) -%}
+  <div class="table-scroll">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th scope="col">Indicator</th><th scope="col" class="num">Latest</th><th scope="col" class="num">Change</th>
+          <th scope="col">Period</th><th scope="col">Source</th>{% if with_status %}<th scope="col">Status</th>{% endif %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in items %}
+        {% set head = item.headline %}
+        <tr>
+          <td>
+            <div class="ind-name">{{ item.label }}</div>
+            <div class="ind-es">{{ item.label_es }}</div>
+            {% if not with_status %}{{ badges(item) }}{% endif %}
+          </td>
+          <td class="num">{{ (head.display ~ " " ~ head.label) | trim if head else "–" }}</td>
+          <td class="num secondary">{{ item.subline }}</td>
+          <td class="secondary nowrap">{{ head.period if head else "" }}</td>
+          <td>{% if item.source_url %}<a href="{{ item.source_url }}" target="_blank" rel="noopener">{{ item.source }}</a>{% else %}{{ item.source }}{% endif %}</td>
+          {% if with_status %}
+          <td class="nowrap">
+            {% set b = badges(item) %}{% if b | trim %}{{ b }}{% else %}<span class="secondary">ok</span>{% endif %}
+            {% if item.error %}<div class="error-text">{{ item.error }}</div>{% endif %}
+          </td>
+          {% endif %}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{%- endmacro %}

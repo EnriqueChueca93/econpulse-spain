@@ -10,16 +10,25 @@ missing period gives a missing result instead of silently comparing the wrong da
     saar      q/q % change, annualised (quarterly series)
     diff      change on the previous period, in the series' own units
     diff_yoy  change on a year earlier, in the series' own units
+
+Prefix sa_ (sa_level, sa_pop, sa_ann3m, sa_saar, sa_diff) applies EconPulse's own
+seasonal adjustment first (see seasonal.py), for series published unadjusted.
 """
 
 import pandas as pd
+
+from . import seasonal
 
 FREQS = ("D", "M", "Q", "A")
 PERIODS_PER_YEAR = {"M": 12, "Q": 4, "A": 1}
 _CALENDAR = {"M": "MS", "Q": "QS", "A": "YS"}
 
-TRANSFORMS = ("level", "pop", "yoy", "ann3m", "saar", "diff", "diff_yoy")
-PERCENT_TRANSFORMS = {"pop", "yoy", "ann3m", "saar"}
+SA_PREFIX = "sa_"
+_BASE_TRANSFORMS = ("level", "pop", "yoy", "ann3m", "saar", "diff", "diff_yoy")
+_SA_TRANSFORMS = tuple(SA_PREFIX + t for t in ("level", "pop", "ann3m", "saar", "diff"))
+TRANSFORMS = _BASE_TRANSFORMS + _SA_TRANSFORMS
+PERCENT_TRANSFORMS = {"pop", "yoy", "ann3m", "saar", "sa_pop", "sa_ann3m", "sa_saar"}
+DIFF_TRANSFORMS = {"diff", "diff_yoy", "sa_diff"}
 
 
 def regular(s: pd.Series, freq: str) -> pd.Series:
@@ -42,6 +51,8 @@ def apply(name: str, s: pd.Series, freq: str) -> pd.Series:
         raise ValueError(f"Unknown transform {name!r}; choose from {TRANSFORMS}")
     if freq not in FREQS:
         raise ValueError(f"Unknown frequency {freq!r}; choose from {FREQS}")
+    if name.startswith(SA_PREFIX):
+        s, name = seasonal.adjust(s, freq), name[len(SA_PREFIX):]
     r = regular(s.sort_index(), freq)
     if name == "level":
         out = r
@@ -70,6 +81,8 @@ def label(name: str, freq: str) -> str:
     Changes (diff, diff_yoy) share the labels of the % changes; their display
     carries an explicit sign and unit instead ('+465.5k y/y').
     """
+    if name.startswith(SA_PREFIX):
+        return f"{label(name[len(SA_PREFIX):], freq)} SA".strip()
     if name in ("pop", "diff"):
         return {"D": "d/d", "M": "m/m", "Q": "q/q", "A": "y/y"}[freq]
     return {"level": "", "yoy": "y/y", "diff_yoy": "y/y", "ann3m": "3m ann.", "saar": "q/q ann."}[name]
