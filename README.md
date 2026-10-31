@@ -19,7 +19,8 @@ python -m venv .venv
 
 ## The site
 
-- **Home** (`site/index.html`): 16 key-indicator tiles, "The economy in four questions" and three charts.
+- **Home** (`site/index.html`): 16 key-indicator tiles, EconPulse readings (activity and inflation against their
+  history, the GDP nowcast, the ECB rate against a Taylor rule), "The economy in four questions" and three charts.
 - **GDP, Labour market, Wages, Inflation**: econvitals-style tables (1-, 3-, 6- and 12-month changes; latest,
   a month ago, a year ago; contributions to growth) and 25 charts, each with a data table and PNG download.
 - **Financial, ECB**: a markets table (1-day, 1-week, YTD, 1-year moves), the Spanish yield curve against the
@@ -27,6 +28,9 @@ python -m venv .venv
   ECB meeting and a market-implied rate path.
 - **Fiscal, Activity, Housing, International, Regions**: the public finances, activity and tourism, the housing
   market and household debt, Spain against its peers, and the 17 autonomous communities.
+- **Analysis**: EconPulse's own calculations, each explained on the page: activity and inflation composites,
+  a GDP nowcast with its track record, the 10-year yield split into Bund and prima de riesgo, and Taylor rules
+  for the euro area and Spain.
 - **Data** (`site/data.html`): every series, its source and whether it is up to date.
 
 Pages are plain HTML and work offline: Plotly is copied from the Python package, with no CDN. Light/dark
@@ -64,6 +68,7 @@ econpulse/            Python package
                       year to date) and panels (one row per country or region)
   pages.py            what each section page shows: blocks of tables and charts
   policy.py           ECB meeting calendar, rate decisions, the mortgage check
+  analytics.py        composites, GDP nowcast, 10-year decomposition, Taylor rules
   build.py            renders every page into site/ (chart data goes in site/data/*.js)
 templates/            Jinja2 pages: base layout, home, section pages, data page
 static/               style.css (light/dark tokens), app.js (theme toggle, Plotly charts)

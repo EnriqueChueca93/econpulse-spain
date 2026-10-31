@@ -20,7 +20,7 @@ econvitals.org today has:
 | Composite vs. its own history (z-scores) | **Keep** (Batch 7) |
 | Composite vs. forecasts (surprise index) | **Stretch goal**: needs consensus forecasts for each release, which aren't freely available for Spain |
 | Fed section, CME FedWatch | **Becomes the ECB section.** Spain has no monetary policy of its own. The market-implied rate path is approximated, because no free €STR OIS feed exists |
-| GDP nowcasts (GDPNow, Goldman, Kalshi) | **Replace** with AIReF MIPred, Banco de España projections and the FUNCAS Panel; our own simple nowcast comes later |
+| GDP nowcasts (GDPNow, Goldman, Kalshi) | **Replaced** by our own bridge-equation nowcast with a published track record (Batch 7). AIReF, Banco de España and FUNCAS publish as web pages and PDFs, not data feeds, so their panel is left out for now |
 | Sell-side commentary | **Drop** (paid and copyrighted) |
 | ISM / PMI | **Replace** with the European Commission sentiment surveys, which are free. HCOB PMI is proprietary |
 | Email briefings, AI blogs | **After launch** (Batch 9+) |
@@ -83,7 +83,7 @@ Status after Batch 6 (31 Oct 2026): 242 indicators. All sources are official or 
 | **FRED** | public CSV, no key | ✅ in use (8) | Brent spot (US EIA), European gas (IMF); US GDP, CPI, core CPI, unemployment, 10-year yield, Fed funds target |
 | **EconPulse calculations** | from the series above | ✅ in use (12) | Brent in euros, 10-year spreads over Germany, GDP deflator, real wages, real house prices, average mortgage, primary balance, monthly electricity demand |
 | ~~Yahoo Finance~~ | unofficial API | ❌ dropped | IBEX 35 now comes from Banco de España and Brent from FRED |
-| **AIReF · FUNCAS · BdE projections** | web pages / Excel | 🔲 Batch 7 | GDP nowcast, forecaster consensus, official projections |
+| **AIReF · FUNCAS · BdE projections** | web pages / PDF | ⏸ not automated | GDP nowcast, forecaster consensus, official projections: no stable data feed (AIReF's MIPred page has moved); a hand-updated file is an option |
 
 **Gotchas found already:**
 - INE's CPI table 50902 stops at Dec 2025, because CPI moved to new tables in 2026. The registry pins INE *series* codes rather than table IDs, and a freshness check flags any series that stops updating.
@@ -196,7 +196,8 @@ Each batch is sized for one working session, ends with something you can open or
 *Result: every section page is now filled, and a new Regions page joins the navigation. Activity: industry, retail, car sales and monthly electricity demand; EC surveys; tourism with year-to-date totals; the current account. Housing: house prices (new, second-hand, after inflation since the 2007 peak), sales, mortgages, the average mortgage, new lending, building permits, household debt and housing-loan growth. Fiscal: the annual balance, primary balance, interest, revenue, spending and debt, plus the latest four quarters. International: a peer table (Spain, euro area, Germany, France, Italy, Portugal, the Netherlands, the US) with GDP growth, inflation, core, unemployment, 10-year yields and policy rates; rankings; spreads over Germany since 2008. Regions: a table of the 17 autonomous communities (unemployment and its change, house prices, inflation, GDP per head) and four ranking charts. 123 new indicators (242 in all). New building blocks: `for_each` in the registry, panel tables, ranking charts, year-to-date columns, rolling 12-month totals and 4-quarter averages, `average` and `add` calculations, rebased and rescaled chart series, and chart sources that credit a calculation's inputs. Fixed on the way: the tourism series counted all visitors. 105 offline and 8 live tests.*
 - Tourism, electricity, sentiment, housing, fiscal and the comparison table across countries and regions
 
-### Batch 7 — EconPulse originals (analytics)
+### Batch 7 — EconPulse originals (analytics) ✅ done 31 Oct 2026
+*Result: a new Analysis page and an "EconPulse readings" strip on the home page, all computed in `econpulse/analytics.py`. Composites: 10 activity and 7 inflation indicators scored against their own record since 2013 (robust z-scores using the median and MAD, Covid years left out, clipped at ±3), averaged with weights that fall by a quarter for each month a reading ages. Activity is +0.2 (close to normal) and inflation +1.7 (hotter than normal). Nowcast: a bridge equation for this quarter's GDP from SA registrations, industrial production and last quarter's growth, with missing months projected by AR(1). Q4 2026 is +0.7% q/q. Its record since 2023 is a 0.23 pp typical error, against 0.27 for repeating the previous quarter and 0.26 for the long-run average; inputs that made the record worse (retail sales, sentiment) were dropped, and the page warns that this flatters it. Decomposition: changes in Spain's 10-year yield split into Bund and prima de riesgo, and the yield since 2010 in two stacked parts. Taylor rules: 0.5% neutral real rate + HICP + 0.5 × inflation gap − unemployment gap (trend by HP filter), for the euro area (4.8%) and Spain (6.5%) against the ECB's 2.50%. Not done: the AIReF, Banco de España and FUNCAS forecast panel, which has no data feed. 113 offline and 8 live tests.*
 - Activity and inflation composites: z-scores against history since 2013, weighted towards the newest prints
 - 10-year decomposition (Bund plus prima de riesgo)
 - Nowcast panel (AIReF, BdE, FUNCAS) plus a simple bridge-equation nowcast of our own

@@ -37,10 +37,12 @@
       {% endif %}
     </section>
     {% endfor %}
+    {% if items %}
     <details class="all-series">
       <summary>All {{ items | length }} series in this section, with their sources</summary>
       {{ indicator_table(items) }}
     </details>
+    {% endif %}
   {% else %}
     <p class="notice">Charts and detailed tables for this page arrive in Batch {{ page.batch }} of the build plan.
       For now, here is every {{ page.title | lower }} indicator tracked, with its latest reading.</p>

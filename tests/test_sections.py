@@ -171,7 +171,7 @@ def test_pages_reference_real_indicators():
 def test_page_ids_are_unique():
     for section, blocks in pages.PAGES.items():
         block_ids = [b["id"] for b in blocks]
-        chart_ids = [c["id"] for b in blocks for c in b.get("charts", [])]
+        chart_ids = [c["id"] for b in blocks for c in b.get("charts", []) if not callable(c)]
         assert len(set(block_ids)) == len(block_ids), section
         assert len(set(chart_ids)) == len(chart_ids), section
 

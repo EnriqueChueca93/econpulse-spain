@@ -13,7 +13,7 @@ from pathlib import Path
 
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
-from . import __version__
+from . import __version__, analytics
 from .charts import build_home_charts
 from .config import SITE_DIR, STATIC_DIR, TEMPLATES_DIR
 from .pages import build_page
@@ -23,6 +23,7 @@ from .snapshot import build_snapshot
 from .sources import SOURCE_NAMES
 from .sources.base import MADRID
 from .store import Store
+from .tables import Data
 
 # Section pages: title, one-line intro, and the batch that fills them in (see PLAN.md).
 # What a filled page shows is defined in pages.py.
@@ -38,6 +39,7 @@ SECTION_PAGES = {
     "housing": ("Housing", "House prices, home sales and mortgage rates.", 6),
     "international": ("International", "Spain next to the euro area and its peers.", 6),
     "regions": ("Regions", "The 17 autonomous communities: unemployment, house prices, inflation and income per head.", 6),
+    "analysis": ("Analysis", "EconPulse's own readings: the economy against its history, a GDP nowcast, the 10-year yield split in two, and Taylor rules.", 7),
 }
 
 NAV = [("index.html", "Home")] + [(f"{s}.html", t) for s, (t, _, _) in SECTION_PAGES.items()] + [("data.html", "Data")]
@@ -84,6 +86,7 @@ def build_site(indicators: list[Indicator], store: Store | None = None, site_dir
     by_id = {i["id"]: i for i in items}
     charts = build_home_charts(indicators, store)
     snapshot["questions"] = four_questions(indicators, store)
+    snapshot["readings"] = analytics.home_facts(Data(indicators, store))
 
     data_dir = site_dir / "data"
     data_dir.mkdir(parents=True, exist_ok=True)
@@ -112,7 +115,7 @@ def build_site(indicators: list[Indicator], store: Store | None = None, site_dir
         return path
 
     index = render("index.html", "index.html", tiles=[by_id[t] for t in snapshot["tiles"]],
-                   questions=snapshot["questions"], charts=charts)
+                   questions=snapshot["questions"], charts=charts, readings=snapshot["readings"])
     for section, (title, intro, batch) in SECTION_PAGES.items():
         page = build_page(section, indicators, store)
         charts_file = None

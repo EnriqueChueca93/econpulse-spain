@@ -134,6 +134,7 @@ class Data:
         self.store = store
         self._raw: dict[str, pd.Series | None] = {}
         self._sa: dict[str, pd.Series | None] = {}
+        self.cache: dict = {}  # results shared by several blocks (econpulse/analytics.py)
 
     def raw(self, ind_id: str) -> pd.Series | None:
         if ind_id not in self._raw:

@@ -203,7 +203,7 @@ code { font-size: 13px; background: var(--hover); padding: 1px 5px; border-radiu
 .stat-table .highlight-row th, .stat-table .highlight-row td { font-weight: 600; background: var(--hover); }
 .flash-note, .callout { margin: 0 0 20px; }
 .facts {
-  display: grid; grid-template-columns: repeat(4, 1fr); margin: 0 0 20px;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); margin: 0 0 20px;
   background: var(--surface); border: 1px solid var(--border); border-radius: 8px; overflow: hidden;
 }
 .fact { display: flex; flex-direction: column; gap: 2px; padding: 12px 14px; border-right: 1px solid var(--grid); min-width: 0; }

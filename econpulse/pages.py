@@ -2,13 +2,13 @@
 
 A block is a sub-heading with an intro, one or more tables (econpulse/tables.py) and
 a grid of charts (econpulse/charts.py specs). Optional extras, computed from the data:
-"facts" (a strip of key figures), "callout" (a sentence below the tables) and tables
-given as functions (e.g. the ECB's recent decisions); "uses" lists the indicators
-those functions read. Sections without blocks yet show their indicator list only
+"facts" (a strip of key figures), "callout" (a sentence below the tables), and tables
+or charts given as functions (the ECB's recent decisions, the analytics); "uses"
+lists the indicators those functions read. Sections without blocks yet show their indicator list only
 (see build.SECTION_PAGES for the batch that fills them).
 """
 
-from . import policy
+from . import analytics, policy
 from .charts import build_chart, build_curve, build_ranking
 from .registry import Indicator
 from .snapshot import fmt_value, period_label
@@ -923,6 +923,59 @@ PAGES: dict[str, list[dict]] = {
             ],
         },
     ],
+    # ------------------------------------------------------------------ Analysis (EconPulse originals)
+    "analysis": [
+        {
+            "id": "composites",
+            "title": "The economy against its history",
+            "intro": ("Two summary readings. Each indicator is compared with its own record since 2013 (a z-score: "
+                      "0 is normal, +1 is one typical deviation above), then the scores are averaged, giving the "
+                      "newest data the most weight. EconPulse calculation, not an official statistic."),
+            "facts": analytics.composite_facts,
+            "uses": [c.id for c in analytics.ACTIVITY + analytics.INFLATION],
+            "tables": [lambda data: analytics.composite_table(data, "activity"),
+                       lambda data: analytics.composite_table(data, "inflation")],
+            "charts": [analytics.composite_chart],
+        },
+        {
+            "id": "nowcast",
+            "title": "GDP nowcast",
+            "intro": ("An estimate of this quarter's GDP growth before INE publishes it, from Social Security "
+                      "registrations, industrial production and last quarter's growth (a bridge equation fitted "
+                      "on 2013 onwards, leaving out 2020-21)."),
+            "facts": analytics.nowcast_facts,
+            "uses": ["gdp"] + [i.id for i in analytics.NOWCAST_INPUTS],
+            "tables": [analytics.nowcast_inputs_table, analytics.nowcast_record_table],
+            "charts": [analytics.nowcast_chart],
+        },
+        {
+            "id": "yields",
+            "title": "What moves the 10-year yield",
+            "intro": ("Spain's 10-year yield is the German yield plus the prima de riesgo. Splitting a move into the "
+                      "two shows whether it is about euro-area rates or about Spain."),
+            "uses": ["es_10y", "de_10y"],
+            "tables": [analytics.yield_decomposition_table],
+            "charts": [
+                {"id": "yield-parts", "title": "Spain's 10-year yield, in two parts",
+                 "subtitle": "%, monthly averages: the German yield plus the prima de riesgo",
+                 "kind": "bar", "stack": True, "unit": "%", "decimals": 2, "start": "2010-01-01",
+                 "series": [("de_10y_monthly", "level", "German yield"),
+                            ("risk_premium_monthly", "level", "Prima de riesgo", {"scale": 0.01}),
+                            ("es_10y_monthly", "level", "Spain", {"kind": "line", "color": "ink"})]},
+            ],
+        },
+        {
+            "id": "taylor",
+            "title": "Taylor rules: the euro area and Spain",
+            "intro": ("A Taylor rule turns inflation and slack into a suggested policy rate. Run on euro-area data it "
+                      "is a yardstick for the ECB; run on Spanish data it shows the rate Spain would get if it set its "
+                      "own, the cost of one rate for all."),
+            "facts": analytics.taylor_facts,
+            "uses": ["hicp_euro_area", "unemployment_ea", "hicp", "unemployment_monthly", "ecb_deposit_rate"],
+            "tables": [analytics.taylor_table],
+            "charts": [analytics.taylor_chart],
+        },
+    ],
 }
 
 
@@ -934,6 +987,8 @@ def page_indicator_ids(section: str) -> set[str]:
             if isinstance(t, (Table, Panel)):
                 ids |= t.indicator_ids()
         for c in block.get("charts", []):
+            if callable(c):
+                continue  # a computed chart: its inputs are listed in the block's "uses"
             ids |= {i for i, *_ in c.get("ref_from", [])}
             if c.get("curve"):
                 ids |= {i for line in c["lines"] for i, _ in line["points"]}
@@ -986,7 +1041,8 @@ def build_page(section: str, indicators: list[Indicator], store: Store) -> dict:
     blocks, charts = [], []
     for block in PAGES.get(section, []):
         tables = [t for t in (_build_any_table(t, data) for t in block["tables"]) if t]
-        specs = [c for c in (_chart_builder(c)(c, data.by_id, store) for c in block.get("charts", [])) if c]
+        specs = [c for c in ((c(data) if callable(c) else _chart_builder(c)(c, data.by_id, store))
+                             for c in block.get("charts", [])) if c]
         flash = _flash_note(block, tables, data)
         facts = block["facts"](data) if "facts" in block else []
         callout = block["callout"](data) if "callout" in block else None

@@ -109,6 +109,8 @@
     var endLabels = multi && el.clientWidth >= 480;
     var valueFormat = ":" + (spec.signed ? "+" : "") + "." + spec.decimals + "f}" + suffix(spec);
 
+    // Dense bar charts (monthly bars over many years) drop the gaps and rounding, which would read as stripes.
+    var dense = spec.series[0].x.length > 60;
     var traces = [];
     var annotations = [];
     var slot = 0;
@@ -122,7 +124,7 @@
         traces.push({
           type: "bar", x: s.x, y: s.y, name: s.name, hovertemplate: template,
           // Stacked segments are separated by a thin gap in the surface colour.
-          marker: { color: color, line: { color: surface, width: spec.stack ? 1.5 : 0 } }
+          marker: { color: color, line: { color: surface, width: spec.stack && !dense ? 1.5 : 0 } }
         });
         return;
       }
@@ -185,7 +187,7 @@
         fixedrange: true, tickfont: { color: muted }, ticksuffix: suffix(spec), automargin: true
       },
       barmode: spec.stack ? "relative" : "group",
-      bargap: 0.3, barcornerradius: 4,
+      bargap: dense ? 0 : 0.3, barcornerradius: dense ? 0 : 4,
       annotations: annotations, shapes: shapes
     };
     var config = Object.assign({ toImageButtonOptions: { filename: "econpulse-" + spec.id, scale: 2 } }, CONFIG_BASE);

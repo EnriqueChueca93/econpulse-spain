@@ -12,6 +12,22 @@
     <p class="note">Each tile links to its source. Hover for the official Spanish name.</p>
   </section>
 
+  {% if readings %}
+  <section aria-labelledby="readings">
+    <h2 id="readings">EconPulse readings</h2>
+    <div class="facts">
+      {% for f in readings %}
+      <div class="fact">
+        <span class="fact-label">{{ f.label }}</span>
+        <span class="fact-value">{{ f.value }}</span>
+        {% if f.sub %}<span class="fact-sub">{{ f.sub }}</span>{% endif %}
+      </div>
+      {% endfor %}
+    </div>
+    <p class="note">Our own calculations from the official data. <a class="more" href="analysis.html">How they are made <span aria-hidden="true">&rarr;</span></a></p>
+  </section>
+  {% endif %}
+
   <section aria-labelledby="four-questions">
     <h2 id="four-questions">The economy in four questions</h2>
     <div class="questions">
