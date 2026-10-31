@@ -70,14 +70,14 @@ One Python codebase. Its output is a plain static website that opens by double-c
 
 ## 3. Data sources
 
-Status after Batch 4 (31 Oct 2026): 102 indicators. All sources are official or public and are accessed with an honest `EconPulseSpain` User-Agent:
+Status after Batch 5 (31 Oct 2026): 119 indicators. All sources are official or public and are accessed with an honest `EconPulseSpain` User-Agent:
 
 | Provider | Access | Status | Covers |
 |---|---|---|---|
 | **INE** | JSON API `servicios.ine.es/wstempus` | ✅ in use (52 indicators) | GDP (CNTR): spending and output components, contributions to growth, jobs, productivity, unit labour costs; CPI with core and special groups, rents; producer prices (IPRI); EPA rates; industrial production, retail, house prices, labour costs (ETCL), tourism (FRONTUR, EGATUR), home sales |
 | **Eurostat** | JSON-stat API | ✅ in use (18) | monthly and long-term unemployment, HICP (rates and index, Spain and euro area), labour cost index, EC sentiment surveys and price expectations, government debt and balance, current account |
-| **ECB Data Portal** | SDMX REST, CSV | ✅ in use (7) | policy rates, €STR, EUR/USD, mortgage rates (MIR), convergence yields |
-| **Banco de España** | REST API `app.bde.es/bierest` | ✅ in use (16) | daily Spanish yield curve, German 10y, prima de riesgo, Euribor, IBEX 35; registered unemployment, pay rises agreed in collective agreements, car sales, hotel nights, balance of payments |
+| **ECB Data Portal** | SDMX REST, CSV | ✅ in use (23) | policy rates, €STR, euro reference rates (USD, GBP, CHF, JPY), AAA euro-area yield curve (spot and forward rates), mortgage rates (MIR), convergence yields |
+| **Banco de España** | REST API `app.bde.es/bierest` | ✅ in use (17) | daily Spanish yield curve (12-month bill, 3, 5, 10, 15 and 30 years), German 10y, prima de riesgo, Euribor, IBEX 35; registered unemployment, pay rises agreed in collective agreements, car sales, hotel nights, balance of payments |
 | **Seguridad Social** | spreadsheet linked from its statistics page | ✅ in use (1) | average registrations (*afiliados*), total system, since 2001 |
 | **Red Eléctrica (REE)** | REData API `apidatos.ree.es` | ✅ in use (2) | day-ahead electricity price (daily average of 15-minute prices), daily demand |
 | **FRED** | public CSV, no key | ✅ in use (2) | Brent spot (US EIA), European gas (IMF) |
@@ -96,6 +96,10 @@ Status after Batch 4 (31 Oct 2026): 102 indicators. All sources are official or 
 - STL's default seasonal smoothing (a local line) extrapolates recent swings at the end of a series: the 2026 energy surge was being read as seasonality, which put CPI and HICP monthly rates far apart (−1.7% vs +8.6% annualised for the same month). The seasonal factors now use a local constant (`seasonal_deg=0`), and CPI and HICP agree.
 - The labour cost survey (ETCL) is unadjusted, and bonuses move between quarters, so seasonally adjusted quarterly rates flip sign depending on the method. Wages are compared with a year earlier; Eurostat's labour cost index is the adjusted measure.
 - Banco de España table CSVs (`www.bde.es/webbe/es/estadisticas/compartido/datos/csv/be24NN.csv`) are a good way to find series codes: the level of registered unemployment (`D_1JA0D000`) and agreed pay rises came from tables 24.15 and 24.22.
+- Banco de España has no daily Spanish 2-year yield or 3- and 6-month bills in its API; the curve uses the 12-month bill and the 3, 5, 10, 15 and 30-year bonds.
+- No free feed of €STR swap rates exists, so "what markets expect" uses the ECB's AAA euro-area forward rates. They include a term premium; the page says so.
+- Euro high-yield credit spreads are on FRED, but they are ICE's proprietary data and FRED only keeps three years, so they are left out. Euro Stoxx 50 and gold still have no clean free source.
+- The ECB meeting calendar is a list in `econpulse/policy.py`, taken from the ECB's published schedule and running to December 2028. After the last date, the page links to the ECB calendar.
 
 ---
 
@@ -180,7 +184,8 @@ Each batch is sized for one working session, ends with something you can open or
 - Seasonal adjustment exists since Batch 3 (`sa_*` transforms). Use it in the tables, and decide whether the registrations tile switches from the official y/y change to the SA monthly change, as econvitals does for payrolls
 - Fill the section pages using the chart helper from Batch 3 (`charts.py` specs + `app.js`)
 
-### Batch 5 — Sections II: Financial and ECB
+### Batch 5 — Sections II: Financial and ECB ✅ done 31 Oct 2026
+*Result: both pages are filled, with 6 tables, 14 charts and two computed extras. Financial: a markets table (latest, 1-day, 1-week, YTD, 1-year; rates in bp, prices in %) covering yields, the prima de riesgo, Euribor, the IBEX 35, four euro exchange rates and energy; the Spanish yield curve (latest, a month earlier, end of last year) and its spread over the AAA euro-area curve at each maturity; the prima de riesgo since 2008; and Euribor and mortgage rates. A mortgage check shows what a typical variable-rate mortgage (€150,000, 25 years, Euribor + 0.9 pp) costs at this month's Euribor against a year earlier. ECB: a key-facts strip (deposit rate, last change, next decision with a countdown, €STR), policy rates, recent decisions read from the deposit rate, rates against euro-area inflation, the deposit rate since 1999, and a market-implied path from AAA forward rates. 17 new indicators (119 in all). New building blocks: market-move and spread columns, curve charts (category axis), step lines, a facts strip and callouts. 94 offline and 8 live tests.*
 - Yield curve, prima de riesgo, Euribor, markets table (1-day, 1-week, YTD), ECB rate history and expected path
 
 ### Batch 6 — Sections III: Other, Housing, Fiscal, International, Regions

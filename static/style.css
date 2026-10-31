@@ -199,7 +199,17 @@ code { font-size: 13px; background: var(--hover); padding: 1px 5px; border-radiu
   padding-top: 14px; font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-2);
 }
 .period-note { color: var(--text-2); font-size: 12px; white-space: nowrap; }
-.flash-note { margin: 0 0 20px; }
+.flash-note, .callout { margin: 0 0 20px; }
+.facts {
+  display: grid; grid-template-columns: repeat(4, 1fr); margin: 0 0 20px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 8px; overflow: hidden;
+}
+.fact { display: flex; flex-direction: column; gap: 2px; padding: 12px 14px; border-right: 1px solid var(--grid); min-width: 0; }
+.fact:last-child { border-right: 0; }
+.fact-label { font-size: 13px; color: var(--text-2); }
+.fact-value { font: 600 22px/1.2 var(--sans); letter-spacing: -0.01em; }
+.fact-value a { text-decoration: none; }
+.fact-sub { font-size: 12px; color: var(--text-2); }
 .block .charts { margin-top: 4px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr)); }
 .all-series { margin-top: 40px; }
 .all-series summary { cursor: pointer; font-size: 14px; color: var(--text-2); margin-bottom: 10px; }
@@ -210,6 +220,9 @@ code { font-size: 13px; background: var(--hover); padding: 1px 5px; border-radiu
 
 @media (max-width: 880px) {
   .tiles { grid-template-columns: repeat(2, 1fr); }
+  .facts { grid-template-columns: repeat(2, 1fr); }
+  .fact { border-bottom: 1px solid var(--grid); }
+  .fact:nth-child(2n) { border-right: 0; }
   .questions { grid-template-columns: 1fr; }
   .tile-value { font-size: 22px; }
   h1 { font-size: 26px; }

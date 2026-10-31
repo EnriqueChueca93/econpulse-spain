@@ -62,6 +62,8 @@
     var surface = token("--surface"), ink = token("--text"), ink2 = token("--text-2");
     var muted = token("--muted"), grid = token("--grid"), axis = token("--axis");
     var multi = spec.series.length > 1;
+    // Curves (yields by maturity, rates by horizon) have a category axis instead of dates.
+    var category = spec.x_kind === "category";
     // On narrow (phone-width) charts the legend names the lines; end labels would squeeze the plot.
     var endLabels = multi && el.clientWidth >= 480;
     var valueFormat = ":" + (spec.signed ? "+" : "") + "." + spec.decimals + "f}" + suffix(spec);
@@ -84,8 +86,10 @@
         return;
       }
       traces.push({
-        type: "scatter", mode: "lines", x: s.x, y: s.y, name: s.name,
-        line: { color: color, width: 2, shape: "linear" }, hovertemplate: template
+        type: "scatter", mode: category ? "lines+markers" : "lines", x: s.x, y: s.y, name: s.name,
+        line: { color: color, width: 2, shape: s.shape || "linear" }, hovertemplate: template,
+        // A curve has few points: mark each one (with a surface ring), as on a line with sparse data.
+        marker: { size: 7, color: color, line: { width: 1.5, color: surface } }
       });
       // End dot with a surface ring, and a direct label in text ink.
       var lastX = s.x[s.x.length - 1], lastY = s.y[s.y.length - 1];
@@ -110,6 +114,11 @@
       });
       return { type: "line", xref: "paper", x0: 0, x1: 1, y0: r.y, y1: r.y, line: { color: axis, width: 1 } };
     });
+    // Shapes don't count towards the axis range: an invisible point keeps each reference line in view.
+    (spec.ref_lines || []).forEach(function (r) {
+      traces.push({ type: "scatter", mode: "markers", x: [spec.series[0].x[0]], y: [r.y], marker: { opacity: 0 },
+        hoverinfo: "skip", showlegend: false });
+    });
 
     var layout = {
       paper_bgcolor: surface, plot_bgcolor: surface,
@@ -119,7 +128,11 @@
       legend: { orientation: "h", x: 0, xanchor: "left", y: 1.02, yanchor: "bottom", font: { size: 12, color: ink2 } },
       hovermode: "x unified",
       hoverlabel: { bgcolor: surface, bordercolor: grid, font: { color: ink, size: 12 } },
-      xaxis: {
+      xaxis: category ? {
+        type: "category", showgrid: false, showline: true, linecolor: axis, ticks: "", fixedrange: true,
+        tickfont: { color: muted }, showspikes: true, spikemode: "across", spikethickness: 1,
+        spikecolor: axis, spikedash: "solid"
+      } : {
         type: "date", showgrid: false, showline: true, linecolor: axis, ticks: "", fixedrange: true,
         hoverformat: hoverDate(spec),
         tickfont: { color: muted }, showspikes: true, spikemode: "across", spikethickness: 1,
@@ -177,18 +190,22 @@
     var holder = document.querySelector('.chart-data[data-chart="' + spec.id + '"]');
     if (!holder || holder.querySelector("table")) return;
     var table = document.createElement("table");
+    var category = spec.x_kind === "category";
     var head = table.createTHead().insertRow();
-    ["Date"].concat(spec.series.map(function (s) { return s.name; })).forEach(function (h) {
+    [spec.x_title || "Date"].concat(spec.series.map(function (s) { return s.name; })).forEach(function (h) {
       var th = document.createElement("th"); th.scope = "col"; th.textContent = h; head.appendChild(th);
     });
-    // Every date any series has (series can differ in frequency), newest first.
-    var seen = {};
-    spec.series.forEach(function (s) { s.x.forEach(function (d) { seen[d] = true; }); });
-    var dates = Object.keys(seen).sort().reverse().slice(0, 12);
+    // Curves: every point in order. Time series: every date any series has (they can
+    // differ in frequency), newest first.
+    var seen = {}, dates = [];
+    spec.series.forEach(function (s) {
+      s.x.forEach(function (d) { if (!seen[d]) { seen[d] = true; dates.push(d); } });
+    });
+    if (!category) dates = dates.sort().reverse().slice(0, 12);
     var body = table.createTBody();
     dates.forEach(function (d) {
       var row = body.insertRow();
-      row.insertCell().textContent = dateLabel(d, spec.freq);
+      row.insertCell().textContent = category ? d : dateLabel(d, spec.freq);
       spec.series.forEach(function (s) {
         var j = s.x.indexOf(d);
         row.insertCell().textContent = j >= 0 ? fmt(s.y[j], spec, spec.signed) : "–";
@@ -196,7 +213,7 @@
     });
     var caption = document.createElement("p");
     caption.className = "note";
-    caption.textContent = "Latest " + dates.length + " dates.";
+    caption.textContent = category ? "All points." : "Latest " + dates.length + " dates.";
     holder.appendChild(table);
     holder.appendChild(caption);
   }

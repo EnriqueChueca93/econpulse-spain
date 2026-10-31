@@ -1,16 +1,22 @@
 """Chart specifications: what each chart shows, built from the store in Python.
 
-The browser (static/charts.js) turns a spec into a Plotly chart using the page's
+The browser (static/app.js) turns a spec into a Plotly chart using the page's
 theme colors, so a spec carries data and wording only, never colors.
 
 Spec fields: id, title, subtitle, kind ("line" | "bar"), unit, decimals,
-date_format (d3 format for the hover date), series [{name, x, y, kind?, color?}],
+date_format (d3 format for the hover date), series [{name, x, y, kind?, color?, shape?}],
 ref_lines [{y, label}], stack (stacked bars), signed (show + on rises), freq
-(the finest frequency among the series), source, link.
+(the finest frequency among the series), x_kind ("category" for curves), x_title,
+source, link.
 
 In a definition each series is (indicator id, transform, name) with an optional
 fourth item of options: {"kind": "line"} to draw one series differently from the
-chart, {"color": "ink"} for a total drawn in text colour rather than a palette slot.
+chart, {"color": "ink"} for a total drawn in text colour rather than a palette slot,
+{"shape": "hv"} for a step line (policy rates change in steps).
+
+A curve definition ("curve": True) draws one line per date across maturities
+instead: "lines" [{"at", "name", "points"}], where points are (indicator id, label)
+and "at" is latest, month (a month earlier), yearend or year (a year earlier).
 """
 
 import pandas as pd
@@ -85,3 +91,55 @@ def build_home_charts(indicators: list[Indicator], store: Store) -> list[dict]:
     by_id = {i.id: i for i in indicators}
     charts = (build_chart(c, by_id, store) for c in HOME_CHARTS)
     return [c for c in charts if c]
+
+
+def _day(d: pd.Timestamp) -> str:
+    return f"{d.day} {d:%b %Y}"
+
+
+def build_curve(definition: dict, by_id: dict[str, Indicator], store: Store) -> dict | None:
+    """A curve chart (x = maturity or horizon), or None without enough data.
+
+    Every line is read at the same dates, set by the latest date all its points share.
+    """
+    loaded = {}
+    for line in definition["lines"]:
+        for ind_id, _ in line["points"]:
+            s = store.load_series(ind_id)
+            if s is not None and not s.dropna().empty:
+                loaded[ind_id] = s.dropna().sort_index()
+    if len(loaded) < 2:
+        return None
+    latest = min(s.index[-1] for s in loaded.values())
+    dates = {
+        "latest": latest,
+        "month": latest - pd.DateOffset(months=1),
+        "yearend": pd.Timestamp(latest.year, 1, 1) - pd.Timedelta(days=1),
+        "year": latest - pd.DateOffset(years=1),
+    }
+    series = []
+    for line in definition["lines"]:
+        date = dates[line["at"]]
+        x, y = [], []
+        for ind_id, label in line["points"]:
+            v = loaded[ind_id].asof(date) if ind_id in loaded else None
+            if v is not None and not pd.isna(v):
+                x.append(label)
+                y.append(round(float(v), 4))
+        if len(y) >= 2:
+            name = line["name"].format(date=_day(date), prev_year=latest.year - 1)
+            series.append({"name": name, "x": x, "y": y})
+    if not series:
+        return None
+    ref_lines = list(definition.get("ref_lines", []))
+    for ind_id, label in definition.get("ref_from", []):
+        s = store.load_series(ind_id)
+        if s is not None and not s.dropna().empty:
+            v = float(s.dropna().asof(latest))
+            ref_lines.append({"y": round(v, 4), "label": f"{label} {v:.{definition['decimals']}f}%"})
+    ids = {i for line in definition["lines"] for i, _ in line["points"] if i in loaded}
+    sources = [SOURCE_NAMES.get(by_id[i].source, by_id[i].source) for i in sorted(ids)]
+    spec = {k: v for k, v in definition.items() if k not in ("lines", "curve", "ref_from")}
+    spec.update(kind="line", x_kind="category", x_title=definition.get("x_title", "Maturity"),
+                series=series, ref_lines=ref_lines, freq=None, source="; ".join(dict.fromkeys(sources)))
+    return spec

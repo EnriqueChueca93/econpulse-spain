@@ -16,7 +16,19 @@
     <section class="block" aria-labelledby="{{ b.id }}">
       <h2 id="{{ b.id }}">{{ b.title }}</h2>
       <p class="block-intro">{{ b.intro }}</p>
+      {% if b.facts %}
+      <div class="facts">
+        {% for f in b.facts %}
+        <div class="fact">
+          <span class="fact-label">{{ f.label }}</span>
+          <span class="fact-value">{% if f.url %}<a href="{{ f.url }}" target="_blank" rel="noopener">{{ f.value }}</a>{% else %}{{ f.value }}{% endif %}</span>
+          {% if f.sub %}<span class="fact-sub">{{ f.sub }}</span>{% endif %}
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
       {% for t in b.tables %}{{ stat_table(t) }}{% endfor %}
+      {% if b.callout %}<p class="notice callout">{{ b.callout }}</p>{% endif %}
       {% if b.flash %}<p class="notice flash-note">{{ b.flash }}</p>{% endif %}
       {% if b.charts %}
       <div class="charts">

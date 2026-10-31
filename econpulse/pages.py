@@ -1,21 +1,32 @@
 """What each section page shows: blocks of econvitals-style tables and charts.
 
 A block is a sub-heading with an intro, one or more tables (econpulse/tables.py) and
-a grid of charts (econpulse/charts.py specs). Sections without blocks yet show their
-indicator list only (see build.SECTION_PAGES for the batch that fills them).
+a grid of charts (econpulse/charts.py specs). Optional extras, computed from the data:
+"facts" (a strip of key figures), "callout" (a sentence below the tables) and tables
+given as functions (e.g. the ECB's recent decisions); "uses" lists the indicators
+those functions read. Sections without blocks yet show their indicator list only
+(see build.SECTION_PAGES for the batch that fills them).
 """
 
-from .charts import build_chart
+from . import policy
+from .charts import build_chart, build_curve
 from .registry import Indicator
 from .snapshot import fmt_value, period_label
 from .store import Store
-from .tables import AvgChange, Change, Contribution, Data, Heading, Level, Row, Table, build_table
+from .tables import (AvgChange, Change, Contribution, Data, Heading, Level, Move, Row, Spread, Table,
+                     build_table)
 
 LEVELS = [Level("latest"), Level("prev"), Level("year")]
 HORIZONS = [Change("1-mo ann.", 1, True), Change("3-mo ann.", 3, True), Change("6-mo ann.", 6, True), Change("12-mo", 12)]
 SA_NOTE = ("Horizons under 12 months are annualised and use EconPulse seasonal adjustment, because INE publishes "
            "these indices unadjusted. The 12-month column matches the published annual rates.")
 TARGET = [{"y": 2, "label": "2% target"}]
+MOVES = [Level("latest"), Move("1-day", "day"), Move("1-week", "week"), Move("YTD", "ytd"), Move("1-yr", "year")]
+SPAIN_CURVE = [("es_12m_bill", "1y"), ("es_3y", "3y"), ("es_5y", "5y"), ("es_10y", "10y"), ("es_15y", "15y"), ("es_30y", "30y")]
+AAA_CURVE = [("aaa_1y", "1y"), ("aaa_3y", "3y"), ("aaa_5y", "5y"), ("aaa_10y", "10y"), ("aaa_15y", "15y"), ("aaa_30y", "30y")]
+FORWARDS = [("aaa_fwd_3m", "3m"), ("aaa_fwd_6m", "6m"), ("aaa_fwd_9m", "9m"), ("aaa_fwd_1y", "1y"),
+            ("aaa_fwd_2y", "2y"), ("aaa_fwd_3y", "3y")]
+DAILY = "%-d %b %Y"
 
 PAGES: dict[str, list[dict]] = {
     # ------------------------------------------------------------------ GDP
@@ -338,18 +349,218 @@ PAGES: dict[str, list[dict]] = {
             ],
         },
     ],
+    # ------------------------------------------------------------------ Financial
+    "financial": [
+        {
+            "id": "markets",
+            "title": "Markets",
+            "intro": ("The latest close and how far each market has moved. Yields come from Banco de España, exchange "
+                      "rates are the ECB's daily reference rates and Brent is the US EIA spot price (via FRED)."),
+            "tables": [Table(
+                title="Market",
+                caption="Latest close; rates move in basis points (bp), prices in %",
+                columns=MOVES,
+                rows=[
+                    Heading("Bonds and rates"),
+                    Row("es_10y", "Spain 10-year yield"),
+                    Row("de_10y", "Germany 10-year yield"),
+                    Row("risk_premium", "Prima de riesgo"),
+                    Row("euribor_12m", "12-month Euribor"),
+                    Heading("Shares"),
+                    Row("ibex35", "IBEX 35"),
+                    Heading("The euro, per euro"),
+                    Row("eurusd", "US dollars"),
+                    Row("eurgbp", "British pounds"),
+                    Row("eurchf", "Swiss francs"),
+                    Row("eurjpy", "Japanese yen"),
+                    Heading("Energy"),
+                    Row("brent_usd", "Brent crude, dollars"),
+                    Row("brent_eur", "Brent crude, euros"),
+                    Row("gas_eu", "European natural gas (monthly)"),
+                    Row("electricity_price", "Electricity, day-ahead"),
+                ],
+                note=("Each row is the latest close its source has published; a date next to a row means it differs "
+                      "from the rest. For the euro, a rise means a stronger euro."),
+            )],
+            "charts": [
+                {"id": "ibex", "title": "IBEX 35", "subtitle": "Index, daily close",
+                 "kind": "line", "unit": "", "decimals": 0, "start": "2024-01-01", "date_format": DAILY,
+                 "series": [("ibex35", "level", "IBEX 35")]},
+                {"id": "eurusd", "title": "The euro against the dollar", "subtitle": "US dollars per euro, daily",
+                 "kind": "line", "unit": "", "decimals": 4, "start": "2024-01-01", "date_format": DAILY,
+                 "series": [("eurusd", "level", "EUR/USD")]},
+                {"id": "brent", "title": "Brent crude", "subtitle": "Price per barrel, in dollars and in euros, daily",
+                 "kind": "line", "unit": "", "decimals": 1, "start": "2024-01-01", "date_format": DAILY,
+                 "series": [("brent_usd", "level", "Dollars"), ("brent_eur", "level", "Euros")]},
+            ],
+        },
+        {
+            "id": "bonds",
+            "title": "Bond yields and the prima de riesgo",
+            "intro": ("What the Spanish state pays to borrow at each maturity, and the extra it pays over the safest "
+                      "euro-area governments. The prima de riesgo is the gap with Germany at 10 years."),
+            "tables": [Table(
+                title="Spanish government bonds",
+                caption="Yield, %; changes and the spread over AAA euro-area bonds in basis points",
+                columns=[Level("latest"), Move("1-week", "week"), Move("1-month", "month"), Move("YTD", "ytd"),
+                         Spread("Over AAA")],
+                rows=[
+                    Row("es_12m_bill", "12-month bill", vs="aaa_1y"),
+                    Row("es_3y", "3-year", vs="aaa_3y"),
+                    Row("es_5y", "5-year", vs="aaa_5y"),
+                    Row("es_10y", "10-year", vs="aaa_10y"),
+                    Row("es_15y", "15-year", vs="aaa_15y"),
+                    Row("es_30y", "30-year", vs="aaa_30y"),
+                    Heading("Over Germany"),
+                    Row("risk_premium", "Prima de riesgo, 10-year"),
+                ],
+                note=("AAA yields are the ECB's estimate of the curve for AAA-rated euro-area governments, the closest "
+                      "thing to a risk-free euro rate. Banco de España's prima de riesgo uses benchmark bonds, so it "
+                      "differs a little from Spain's 10-year yield minus Germany's."),
+            )],
+            "charts": [
+                {"id": "curve", "curve": True, "title": "Spanish yield curve", "subtitle": "Yield by maturity, %",
+                 "unit": "%", "decimals": 2,
+                 "lines": [{"at": "latest", "name": "{date}", "points": SPAIN_CURVE},
+                           {"at": "month", "name": "A month earlier", "points": SPAIN_CURVE},
+                           {"at": "yearend", "name": "End-{prev_year}", "points": SPAIN_CURVE}]},
+                {"id": "curve-aaa", "curve": True, "title": "Spain and the safest euro-area bonds",
+                 "subtitle": "Yield by maturity, %: Spain against the AAA euro-area curve",
+                 "unit": "%", "decimals": 2,
+                 "lines": [{"at": "latest", "name": "Spain", "points": SPAIN_CURVE},
+                           {"at": "latest", "name": "Euro area AAA", "points": AAA_CURVE}]},
+                {"id": "risk-premium", "title": "Prima de riesgo since 2008",
+                 "subtitle": "Spain's 10-year yield over Germany's, basis points, daily; it peaked at 636 bp in July 2012",
+                 "kind": "line", "unit": "bp", "decimals": 0, "start": "2008-01-01", "date_format": DAILY,
+                 "series": [("risk_premium", "level", "Prima de riesgo")]},
+                {"id": "yields-10y", "title": "10-year yields: Spain and Germany",
+                 "subtitle": "%, daily; the gap between the lines is the prima de riesgo",
+                 "kind": "line", "unit": "%", "decimals": 2, "start": "2022-01-01", "date_format": DAILY,
+                 "series": [("es_10y", "level", "Spain"), ("de_10y", "level", "Germany")]},
+            ],
+        },
+        {
+            "id": "euribor",
+            "title": "Euribor and mortgages",
+            "intro": ("Most Spanish mortgages are variable-rate: once or twice a year the payment resets to the "
+                      "12-month Euribor plus a fixed margin, so ECB decisions reach households quickly."),
+            "tables": [Table(
+                title="Rate",
+                caption="%",
+                columns=LEVELS,
+                rows=[
+                    Row("euribor_3m", "3-month Euribor"),
+                    Row("euribor_12m", "12-month Euribor"),
+                    Row("es_12m_bill", "12-month Treasury bill"),
+                    Row("mortgage_rate", "New mortgages, average rate"),
+                ],
+                note="The mortgage rate is the ECB's average for new house-purchase loans to Spanish households.",
+            )],
+            "callout": policy.mortgage_check,
+            "uses": ["euribor_12m"],
+            "charts": [
+                {"id": "euribor-mortgages", "title": "Euribor and mortgage rates",
+                 "subtitle": "%: 12-month Euribor (daily) and the average rate on new mortgages (monthly)",
+                 "kind": "line", "unit": "%", "decimals": 2, "start": "2019-01-01",
+                 "series": [("euribor_12m", "level", "12-month Euribor"), ("mortgage_rate", "level", "New mortgages")]},
+                {"id": "euribor-ecb", "title": "Euribor and the ECB",
+                 "subtitle": "%: Euribor follows the ECB's deposit rate and where markets expect it to go",
+                 "kind": "line", "unit": "%", "decimals": 2, "start": "2019-01-01", "date_format": DAILY,
+                 "series": [("ecb_deposit_rate", "level", "ECB deposit rate", {"shape": "hv"}),
+                            ("euribor_3m", "level", "3-month Euribor"), ("euribor_12m", "level", "12-month Euribor")]},
+            ],
+        },
+    ],
+    # ------------------------------------------------------------------ ECB
+    "ecb": [
+        {
+            "id": "rates",
+            "title": "Policy rates",
+            "intro": ("The ECB sets three rates. The one that steers the economy is the deposit facility rate, what banks "
+                      "earn on money left at the central bank: it puts a floor under market rates, and €STR, the "
+                      "overnight rate banks charge each other, trades just below it."),
+            "facts": policy.ecb_facts,
+            "uses": ["ecb_deposit_rate", "estr"],
+            "tables": [
+                Table(
+                    title="Rate",
+                    caption="%; changes in basis points",
+                    columns=[Level("latest"), Move("1-month", "month"), Move("YTD", "ytd"), Move("1-yr", "year")],
+                    rows=[
+                        Row("ecb_deposit_rate", "Deposit facility"),
+                        Row("ecb_mro_rate", "Main refinancing operations"),
+                        Row("ecb_mlf_rate", "Marginal lending facility"),
+                        Row("estr", "€STR, overnight market rate"),
+                    ],
+                ),
+                policy.decisions_table,
+            ],
+            "charts": [
+                {"id": "policy-rates", "title": "ECB rates since 2019", "subtitle": "%, daily",
+                 "kind": "line", "unit": "%", "decimals": 2, "start": "2019-01-01", "date_format": DAILY,
+                 "series": [("ecb_deposit_rate", "level", "Deposit rate", {"shape": "hv"}),
+                            ("ecb_mro_rate", "level", "Main refinancing", {"shape": "hv"}),
+                            ("estr", "level", "€STR")]},
+                {"id": "rates-inflation", "title": "Rates and inflation",
+                 "subtitle": "%: the ECB deposit rate and euro-area inflation (HICP, headline and core)",
+                 "kind": "line", "unit": "%", "decimals": 1, "start": "2019-01-01", "ref_lines": TARGET,
+                 "series": [("ecb_deposit_rate", "level", "Deposit rate", {"shape": "hv"}),
+                            ("hicp_euro_area", "level", "Inflation"), ("hicp_core_euro_area", "level", "Core")]},
+                {"id": "deposit-history", "title": "The deposit rate since 1999", "subtitle": "%",
+                 "kind": "line", "unit": "%", "decimals": 2, "start": "1999-01-01", "date_format": DAILY,
+                 "series": [("ecb_deposit_rate", "level", "Deposit rate", {"shape": "hv"})]},
+            ],
+        },
+        {
+            "id": "expectations",
+            "title": "What markets expect",
+            "intro": ("There is no free feed of the swap rates traders use to price ECB decisions. As a rough stand-in, "
+                      "these are forward rates on AAA euro-area government bonds: the short-term rate the bond market "
+                      "implies for each future date. They include a term premium, so they tend to overstate the "
+                      "expected path, more so further out."),
+            "tables": [Table(
+                title="Forward rate",
+                caption="%; the gap with today's deposit rate in basis points",
+                columns=[Level("latest"), Level("prev"), Spread("Over deposit rate")],
+                rows=[
+                    Row("aaa_fwd_3m", "3 months ahead", vs="ecb_deposit_rate"),
+                    Row("aaa_fwd_6m", "6 months ahead", vs="ecb_deposit_rate"),
+                    Row("aaa_fwd_9m", "9 months ahead", vs="ecb_deposit_rate"),
+                    Row("aaa_fwd_1y", "1 year ahead", vs="ecb_deposit_rate"),
+                    Row("aaa_fwd_2y", "2 years ahead", vs="ecb_deposit_rate"),
+                    Row("aaa_fwd_3y", "3 years ahead", vs="ecb_deposit_rate"),
+                ],
+            )],
+            "charts": [
+                {"id": "path", "curve": True, "title": "Market-implied path",
+                 "subtitle": "Euro-area AAA forward rates by horizon, %", "x_title": "Horizon",
+                 "unit": "%", "decimals": 2, "ref_from": [("ecb_deposit_rate", "Deposit rate")],
+                 "lines": [{"at": "latest", "name": "{date}", "points": FORWARDS},
+                           {"at": "month", "name": "A month earlier", "points": FORWARDS}]},
+                {"id": "forward-1y", "title": "The rate expected a year ahead",
+                 "subtitle": "%: AAA forward rate one year ahead and the deposit rate",
+                 "kind": "line", "unit": "%", "decimals": 2, "start": "2022-01-01", "date_format": DAILY,
+                 "series": [("aaa_fwd_1y", "level", "1 year ahead"),
+                            ("ecb_deposit_rate", "level", "Deposit rate", {"shape": "hv"})]},
+            ],
+        },
+    ],
 }
 
 
 def page_indicator_ids(section: str) -> set[str]:
-    """Every indicator a section page reads (tables, charts, flash notes)."""
+    """Every indicator a section page reads (tables, charts, flash notes, extras)."""
     ids = set()
     for block in PAGES.get(section, []):
         for t in block["tables"]:
-            ids |= t.indicator_ids()
+            if isinstance(t, Table):
+                ids |= t.indicator_ids()
         for c in block.get("charts", []):
-            ids |= {s[0] for s in c["series"]}
-        ids |= {i for i, _ in block.get("flash", [])}
+            if c.get("curve"):
+                ids |= {i for line in c["lines"] for i, _ in line["points"]} | {i for i, _ in c.get("ref_from", [])}
+            else:
+                ids |= {s[0] for s in c["series"]}
+        ids |= {i for i, _ in block.get("flash", [])} | set(block.get("uses", []))
     return ids
 
 
@@ -377,12 +588,15 @@ def build_page(section: str, indicators: list[Indicator], store: Store) -> dict:
     data = Data(indicators, store)
     blocks, charts = [], []
     for block in PAGES.get(section, []):
-        tables = [t for t in (build_table(t, data) for t in block["tables"]) if t]
-        specs = [c for c in (build_chart(c, data.by_id, store) for c in block.get("charts", [])) if c]
+        tables = [t for t in ((build_table(t, data) if isinstance(t, Table) else t(data)) for t in block["tables"]) if t]
+        specs = [c for c in ((build_curve if c.get("curve") else build_chart)(c, data.by_id, store)
+                             for c in block.get("charts", [])) if c]
         flash = _flash_note(block, tables, data)
+        facts = block["facts"](data) if "facts" in block else []
+        callout = block["callout"](data) if "callout" in block else None
         if not tables and not specs:
             continue
-        blocks.append({"id": block["id"], "title": block["title"], "intro": block["intro"],
-                       "tables": tables, "charts": specs, "flash": flash})
+        blocks.append({"id": block["id"], "title": block["title"], "intro": block["intro"], "facts": facts,
+                       "tables": tables, "callout": callout, "charts": specs, "flash": flash})
         charts += specs
     return {"blocks": blocks, "charts": charts}

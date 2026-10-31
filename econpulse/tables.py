@@ -1,9 +1,10 @@
 """Section-page tables in the econvitals style.
 
-One row per indicator and a few columns comparing horizons (1, 3 and 12 months) or
-points in time (latest, a month ago, a year ago). Values are computed and formatted
-here; the template only lays the strings out. A cell that can't be computed (too
-little history, or a horizon the series isn't published at) shows a dash.
+One row per indicator and a few columns comparing horizons (1, 3 and 12 months),
+points in time (latest, a month ago, a year ago) or market moves (1 day, 1 week,
+year to date). Values are computed and formatted here; the template only lays the
+strings out. A cell that can't be computed (too little history, or a horizon the
+series isn't published at) shows a dash.
 
 Each row says how to treat seasonality (`season`):
     adjusted  published seasonally adjusted: every horizon uses the series as it is
@@ -17,7 +18,7 @@ import pandas as pd
 
 from . import seasonal, transforms
 from .registry import Indicator
-from .snapshot import MINUS, fmt_value, period_label
+from .snapshot import MINUS, fmt_change, fmt_value, period_label
 from .store import Store
 
 DASH = "–"
@@ -37,7 +38,8 @@ class Change:
 
 @dataclass(frozen=True)
 class Level:
-    """The row's value at a point: "latest", "prev" (a period earlier) or "year" (a year earlier).
+    """The row's value at a point: "latest", "prev" (a period earlier), "year" (a year
+    earlier) or "yearend" (the last value of the previous year).
 
     With no header, one is chosen from the rows' frequency ("1-mo ago", "1-qtr ago").
     """
@@ -50,6 +52,22 @@ class AvgChange:
     """Average change per month over the last `months` months, in the series' own units."""
     header: str
     months: int
+
+
+@dataclass(frozen=True)
+class Move:
+    """Market move since `ref`: "day" (previous close), "week", "month", "ytd" or "year".
+
+    Rates move in basis points, prices in % (the indicator's change_unit decides).
+    """
+    header: str
+    ref: str
+
+
+@dataclass(frozen=True)
+class Spread:
+    """The row's latest value minus its `vs` series on the same date, in basis points."""
+    header: str
 
 
 @dataclass(frozen=True)
@@ -68,6 +86,7 @@ class Row:
     transform: str = "level"          # what Level and AvgChange columns read, e.g. "yoy"
     is_rate: bool = False             # the series already is a % change on a year earlier
     contrib: dict = field(default_factory=dict)   # {"q": indicator id, "y": indicator id}
+    vs: str | None = None             # what a Spread column compares against
     label_es: str | None = None
 
 
@@ -88,7 +107,7 @@ class Table:
         ids = set()
         for row in self.rows:
             if isinstance(row, Row):
-                ids.update(([row.id] if row.id else []) + list(row.contrib.values()))
+                ids.update(([row.id] if row.id else []) + list(row.contrib.values()) + ([row.vs] if row.vs else []))
         return ids
 
 
@@ -133,6 +152,43 @@ def _back(s: pd.Series, date: pd.Timestamp, freq: str, months: int) -> float | N
     return None if v is None or pd.isna(v) else float(v)
 
 
+def _year_end(s: pd.Series, date: pd.Timestamp) -> float | None:
+    """The last value before 1 January of `date`'s year."""
+    before = s[s.index < pd.Timestamp(date.year, 1, 1)]
+    return None if before.empty else float(before.iloc[-1])
+
+
+def _move_ref(s: pd.Series, freq: str, ref: str) -> float | None:
+    date = s.index[-1]
+    if ref == "day":
+        return float(s.iloc[-2]) if freq == "D" and len(s) > 1 else None
+    if ref == "week":
+        if freq != "D":
+            return None
+        v = s.asof(date - pd.Timedelta(days=7))
+        return None if pd.isna(v) else float(v)
+    if ref == "month":
+        return _back(s, date, freq, 1) if freq in ("D", "M") else None
+    if ref == "ytd":
+        return _year_end(s, date)
+    if ref == "year":
+        return _back(s, date, freq, 12)
+    raise ValueError(f"Unknown move {ref!r}")
+
+
+def fmt_move(ind: Indicator, value: float, ref: float | None) -> str:
+    """A change in the indicator's own convention: bp for rates, % for prices."""
+    if ref is None or pd.isna(ref):
+        return DASH
+    pct_unit = ind.unit in ("%", "% of GDP")
+    change_unit = ind.change_unit or ("pp" if pct_unit else ind.unit)
+    if change_unit == "%":
+        return DASH if ref == 0 else fmt_change((value / ref - 1) * 100, "%", 1)
+    if change_unit == "bp":
+        return fmt_change((value - ref) * (100 if pct_unit else 1), "bp", 0)
+    return fmt_change(value - ref, change_unit, ind.decimals)
+
+
 class _RowCalc:
     def __init__(self, row: Row, data: Data):
         self.row, self.data = row, data
@@ -170,6 +226,10 @@ class _RowCalc:
                 return _fmt_num(self.avg_change(col))
             if isinstance(col, Contribution):
                 return _fmt_num(self.contribution(col))
+            if isinstance(col, Move):
+                return self.move(col)
+            if isinstance(col, Spread):
+                return self.spread()
         except (ValueError, KeyError, IndexError):
             return DASH
         raise TypeError(f"Unknown column type {col!r}")
@@ -218,6 +278,8 @@ class _RowCalc:
         elif col.at == "prev":
             months = 1 if self.ind.freq == "D" else PERIOD_MONTHS.get(self.ind.freq, 12)
             v = _back(s, date, self.ind.freq, months)
+        elif col.at == "yearend":
+            v = _year_end(s, date)
         else:
             v = _back(s, date, self.ind.freq, 12)
         return DASH if v is None else fmt_value(v, unit, decimals)
@@ -236,6 +298,22 @@ class _RowCalc:
         base = _back(s, self.date, ind.freq, col.months)
         return None if base is None else (float(s.loc[self.date]) - base) / col.months
 
+    def move(self, col: Move) -> str:
+        s = self.series
+        if s is None:
+            return DASH
+        return fmt_move(self.ind, float(s.iloc[-1]), _move_ref(s, self.ind.freq, col.ref))
+
+    def spread(self) -> str:
+        other = self.data.raw(self.row.vs) if self.row.vs else None
+        if self.series is None or other is None:
+            return DASH
+        other = other.dropna()
+        v = other.asof(self.date) if self.data.by_id[self.row.vs].freq == "D" else other.get(self.date)
+        if v is None or pd.isna(v):
+            return DASH
+        return fmt_change((float(self.series.iloc[-1]) - float(v)) * 100, "bp", 0)
+
     def contribution(self, col: Contribution) -> float | None:
         cid = self.row.contrib.get(col.key)
         s = self.data.raw(cid) if cid else None
@@ -245,13 +323,15 @@ class _RowCalc:
         return None if v is None or pd.isna(v) else float(v)
 
 
-def _level_header(col: Level, freqs: set[str]) -> str:
+def _level_header(col: Level, freqs: set[str], through: pd.Timestamp) -> str:
     if col.header:
         return col.header
     if col.at == "latest":
         return "Latest"
     if col.at == "year":
         return "1-yr ago"
+    if col.at == "yearend":
+        return f"End-{through.year - 1}"
     if freqs == {"Q"}:
         return "1-qtr ago"
     if freqs <= {"M", "D"}:
@@ -292,7 +372,7 @@ def build_table(table: Table, data: Data) -> dict | None:
             "url": source.source_url() if source else None,
             "cells": [c.value(col) for col in table.columns],
         })
-    headers = [_level_header(col, freqs) if isinstance(col, Level) else col.header for col in table.columns]
+    headers = [_level_header(col, freqs, through) if isinstance(col, Level) else col.header for col in table.columns]
     through_label = period_label(through, main_freq)
     return {
         "title": table.title,

@@ -919,6 +919,17 @@ indicators:
     decimals: 2
     change_unit: bp
 
+  - id: ecb_mlf_rate
+    label: ECB marginal lending rate
+    label_es: Facilidad marginal de crédito del BCE
+    section: ecb
+    source: ecb
+    key: FM/D.U2.EUR.4F.KR.MLFR.LEV
+    freq: D
+    unit: "%"
+    decimals: 2
+    change_unit: bp
+
   - id: estr
     label: €STR
     label_es: Tipo a corto plazo del euro (€STR)
@@ -928,6 +939,73 @@ indicators:
     freq: D
     unit: "%"
     decimals: 3
+    change_unit: bp
+
+  - id: aaa_fwd_3m
+    label: Euro area AAA forward rate, 3 months ahead
+    label_es: Tipo forward instantáneo AAA zona euro a 3 meses
+    section: ecb
+    source: ecb
+    key: YC/B.U2.EUR.4F.G_N_A.SV_C_YM.IF_3M
+    freq: D
+    unit: "%"
+    decimals: 2
+    change_unit: bp
+    notes: Instantaneous forward rate on AAA-rated euro-area government bonds (ECB yield curve); a rough guide to the short-term rate markets expect, including a term premium.
+
+  - id: aaa_fwd_6m
+    label: Euro area AAA forward rate, 6 months ahead
+    label_es: Tipo forward instantáneo AAA zona euro a 6 meses
+    section: ecb
+    source: ecb
+    key: YC/B.U2.EUR.4F.G_N_A.SV_C_YM.IF_6M
+    freq: D
+    unit: "%"
+    decimals: 2
+    change_unit: bp
+
+  - id: aaa_fwd_9m
+    label: Euro area AAA forward rate, 9 months ahead
+    label_es: Tipo forward instantáneo AAA zona euro a 9 meses
+    section: ecb
+    source: ecb
+    key: YC/B.U2.EUR.4F.G_N_A.SV_C_YM.IF_9M
+    freq: D
+    unit: "%"
+    decimals: 2
+    change_unit: bp
+
+  - id: aaa_fwd_1y
+    label: Euro area AAA forward rate, 1 year ahead
+    label_es: Tipo forward instantáneo AAA zona euro a 1 año
+    section: ecb
+    source: ecb
+    key: YC/B.U2.EUR.4F.G_N_A.SV_C_YM.IF_1Y
+    freq: D
+    unit: "%"
+    decimals: 2
+    change_unit: bp
+
+  - id: aaa_fwd_2y
+    label: Euro area AAA forward rate, 2 years ahead
+    label_es: Tipo forward instantáneo AAA zona euro a 2 años
+    section: ecb
+    source: ecb
+    key: YC/B.U2.EUR.4F.G_N_A.SV_C_YM.IF_2Y
+    freq: D
+    unit: "%"
+    decimals: 2
+    change_unit: bp
+
+  - id: aaa_fwd_3y
+    label: Euro area AAA forward rate, 3 years ahead
+    label_es: Tipo forward instantáneo AAA zona euro a 3 años
+    section: ecb
+    source: ecb
+    key: YC/B.U2.EUR.4F.G_N_A.SV_C_YM.IF_3Y
+    freq: D
+    unit: "%"
+    decimals: 2
     change_unit: bp
 
   # ---------------------------------------------------------------- Financial (Banco de España, daily)
@@ -1001,6 +1079,17 @@ indicators:
     tile: 11
     notes: Secondary-market yield, all trades in non-stripped bonds with about 10 years to maturity.
 
+  - id: es_15y
+    label: Spain 15-year yield
+    label_es: Obligaciones a 15 años
+    section: financial
+    source: bde
+    key: DPUG0B1F0ZQ
+    freq: D
+    unit: "%"
+    decimals: 2
+    change_unit: bp
+
   - id: es_30y
     label: Spain 30-year yield
     label_es: Obligaciones a 30 años
@@ -1018,6 +1107,73 @@ indicators:
     section: financial
     source: bde
     key: DPUDNBBN308
+    freq: D
+    unit: "%"
+    decimals: 2
+    change_unit: bp
+
+  - id: aaa_1y
+    label: Euro area AAA 1-year yield
+    label_es: Rendimiento AAA zona euro a 1 año
+    section: financial
+    source: ecb
+    key: YC/B.U2.EUR.4F.G_N_A.SV_C_YM.SR_1Y
+    freq: D
+    unit: "%"
+    decimals: 2
+    change_unit: bp
+    notes: Spot yield on AAA-rated euro-area government bonds (ECB yield curve estimate).
+
+  - id: aaa_3y
+    label: Euro area AAA 3-year yield
+    label_es: Rendimiento AAA zona euro a 3 años
+    section: financial
+    source: ecb
+    key: YC/B.U2.EUR.4F.G_N_A.SV_C_YM.SR_3Y
+    freq: D
+    unit: "%"
+    decimals: 2
+    change_unit: bp
+
+  - id: aaa_5y
+    label: Euro area AAA 5-year yield
+    label_es: Rendimiento AAA zona euro a 5 años
+    section: financial
+    source: ecb
+    key: YC/B.U2.EUR.4F.G_N_A.SV_C_YM.SR_5Y
+    freq: D
+    unit: "%"
+    decimals: 2
+    change_unit: bp
+
+  - id: aaa_10y
+    label: Euro area AAA 10-year yield
+    label_es: Rendimiento AAA zona euro a 10 años
+    section: financial
+    source: ecb
+    key: YC/B.U2.EUR.4F.G_N_A.SV_C_YM.SR_10Y
+    freq: D
+    unit: "%"
+    decimals: 2
+    change_unit: bp
+
+  - id: aaa_15y
+    label: Euro area AAA 15-year yield
+    label_es: Rendimiento AAA zona euro a 15 años
+    section: financial
+    source: ecb
+    key: YC/B.U2.EUR.4F.G_N_A.SV_C_YM.SR_15Y
+    freq: D
+    unit: "%"
+    decimals: 2
+    change_unit: bp
+
+  - id: aaa_30y
+    label: Euro area AAA 30-year yield
+    label_es: Rendimiento AAA zona euro a 30 años
+    section: financial
+    source: ecb
+    key: YC/B.U2.EUR.4F.G_N_A.SV_C_YM.SR_30Y
     freq: D
     unit: "%"
     decimals: 2
@@ -1061,6 +1217,42 @@ indicators:
     change_unit: "%"
     tile: 16
     notes: US dollars per euro, ECB reference rate.
+
+  - id: eurgbp
+    label: EUR/GBP
+    label_es: Tipo de cambio libra esterlina/euro
+    section: financial
+    source: ecb
+    key: EXR/D.GBP.EUR.SP00.A
+    freq: D
+    unit: rate
+    decimals: 4
+    change_unit: "%"
+    notes: British pounds per euro, ECB reference rate.
+
+  - id: eurchf
+    label: EUR/CHF
+    label_es: Tipo de cambio franco suizo/euro
+    section: financial
+    source: ecb
+    key: EXR/D.CHF.EUR.SP00.A
+    freq: D
+    unit: rate
+    decimals: 4
+    change_unit: "%"
+    notes: Swiss francs per euro, ECB reference rate.
+
+  - id: eurjpy
+    label: EUR/JPY
+    label_es: Tipo de cambio yen japonés/euro
+    section: financial
+    source: ecb
+    key: EXR/D.JPY.EUR.SP00.A
+    freq: D
+    unit: rate
+    decimals: 2
+    change_unit: "%"
+    notes: Japanese yen per euro, ECB reference rate.
 
   - id: brent_usd
     label: Brent crude

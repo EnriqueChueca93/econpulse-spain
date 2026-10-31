@@ -22,7 +22,10 @@ python -m venv .venv
 - **Home** (`site/index.html`): 16 key-indicator tiles, "The economy in four questions" and three charts.
 - **GDP, Labour market, Wages, Inflation**: econvitals-style tables (1-, 3-, 6- and 12-month changes; latest,
   a month ago, a year ago; contributions to growth) and 25 charts, each with a data table and PNG download.
-- **Other section pages** (Financial, ECB, Fiscal, …): every indicator in that area, until Batches 5–6 fill them.
+- **Financial, ECB**: a markets table (1-day, 1-week, YTD, 1-year moves), the Spanish yield curve against the
+  AAA euro-area curve, the prima de riesgo, Euribor with a mortgage check, ECB rates and decisions, the next
+  ECB meeting and a market-implied rate path.
+- **Other section pages** (Fiscal, Activity, Housing, International): every indicator in that area, until Batch 6.
 - **Data** (`site/data.html`): every series, its source and whether it is up to date.
 
 Pages are plain HTML and work offline: Plotly is copied from the Python package, with no CDN. Light/dark
@@ -56,8 +59,9 @@ econpulse/            Python package
   snapshot.py         latest values, changes and display strings
   questions.py        "The economy in four questions" on the home page
   charts.py           chart specifications (data and wording; colours come from the CSS theme)
-  tables.py           econvitals-style section tables (horizons, levels, contributions)
+  tables.py           econvitals-style section tables (horizons, levels, market moves, contributions)
   pages.py            what each section page shows: blocks of tables and charts
+  policy.py           ECB meeting calendar, rate decisions, the mortgage check
   build.py            renders every page into site/ (chart data goes in site/data/*.js)
 templates/            Jinja2 pages: base layout, home, section pages, data page
 static/               style.css (light/dark tokens), app.js (theme toggle, Plotly charts)
