@@ -25,7 +25,8 @@ python -m venv .venv
 - **Financial, ECB**: a markets table (1-day, 1-week, YTD, 1-year moves), the Spanish yield curve against the
   AAA euro-area curve, the prima de riesgo, Euribor with a mortgage check, ECB rates and decisions, the next
   ECB meeting and a market-implied rate path.
-- **Other section pages** (Fiscal, Activity, Housing, International): every indicator in that area, until Batch 6.
+- **Fiscal, Activity, Housing, International, Regions**: the public finances, activity and tourism, the housing
+  market and household debt, Spain against its peers, and the 17 autonomous communities.
 - **Data** (`site/data.html`): every series, its source and whether it is up to date.
 
 Pages are plain HTML and work offline: Plotly is copied from the Python package, with no CDN. Light/dark
@@ -59,7 +60,8 @@ econpulse/            Python package
   snapshot.py         latest values, changes and display strings
   questions.py        "The economy in four questions" on the home page
   charts.py           chart specifications (data and wording; colours come from the CSS theme)
-  tables.py           econvitals-style section tables (horizons, levels, market moves, contributions)
+  tables.py           econvitals-style section tables (horizons, levels, market moves, contributions,
+                      year to date) and panels (one row per country or region)
   pages.py            what each section page shows: blocks of tables and charts
   policy.py           ECB meeting calendar, rate decisions, the mortgage check
   build.py            renders every page into site/ (chart data goes in site/data/*.js)
@@ -74,6 +76,8 @@ tests/                pytest suite
 
 Add an entry to `econpulse/indicators.yaml` (the header comment explains each field), then run
 `python -m econpulse fetch --only <id>`. No code changes are needed for series from a supported source.
+For the same measure across countries or regions, write one entry with `for_each` over a list
+(see `countries` and `regions` at the top of the file).
 To show it in a section table or chart, add a `Row` or a chart series to that page in `econpulse/pages.py`.
 
 - **INE:** use the *series* code (e.g. `IPC290750`), found on any INE table via the series' info link.
@@ -81,7 +85,8 @@ To show it in a section table or chart, add a `Row` or a chart series to that pa
 - **ECB:** `FLOW/SERIES_KEY`, as shown on data.ecb.europa.eu.
 - **Banco de España:** the series code from the first row of any table's CSV download (e.g. `DPUG0B1F0ZP`).
 - **FRED:** the series id (e.g. `DCOILBRENTEU`).
-- **Derived:** `subtract` or `divide` two indicators defined earlier in the file, or `deflate` one by a price index.
+- **Derived:** `subtract`, `add` or `divide` two indicators defined earlier in the file, `deflate` one by a
+  price index, or `average` a daily series over complete months.
 
 ## Tests
 

@@ -7,9 +7,14 @@ strings out. A cell that can't be computed (too little history, or a horizon the
 series isn't published at) shows a dash.
 
 Each row says how to treat seasonality (`season`):
-    adjusted  published seasonally adjusted: every horizon uses the series as it is
-    ours      published unadjusted: horizons under 12 months use EconPulse's adjustment
-    raw       published unadjusted and left so: only 12-month horizons are shown
+    adjusted   published seasonally adjusted: every horizon uses the series as it is
+    published  unadjusted, but short-term changes shown as the source reports them
+               (house prices q/q, as INE does)
+    ours       published unadjusted: horizons under 12 months use EconPulse's adjustment
+    raw        published unadjusted and left so: only 12-month horizons are shown
+
+A Panel is the other way round: one row per country or region, one column per
+measure (inflation, unemployment…), each column dated by its own latest period.
 """
 
 from dataclasses import dataclass, field
@@ -23,7 +28,7 @@ from .store import Store
 
 DASH = "–"
 PERIOD_MONTHS = {"M": 1, "Q": 3}
-SEASONS = ("adjusted", "ours", "raw")
+SEASONS = ("adjusted", "published", "ours", "raw")
 
 
 # ---------------------------------------------------------------- definitions
@@ -71,6 +76,13 @@ class Spread:
 
 
 @dataclass(frozen=True)
+class YearToDate:
+    """Total of a monthly flow since January, or with `change` its % change on the same months a year earlier."""
+    header: str
+    change: bool = False
+
+
+@dataclass(frozen=True)
 class Contribution:
     """Contribution to GDP growth, read from the row's `contrib` series ("q" or "y")."""
     header: str
@@ -87,6 +99,7 @@ class Row:
     is_rate: bool = False             # the series already is a % change on a year earlier
     contrib: dict = field(default_factory=dict)   # {"q": indicator id, "y": indicator id}
     vs: str | None = None             # what a Spread column compares against
+    flow: bool = True                 # a flow that can be summed (YearToDate); False for averages
     label_es: str | None = None
 
 
@@ -230,6 +243,8 @@ class _RowCalc:
                 return self.move(col)
             if isinstance(col, Spread):
                 return self.spread()
+            if isinstance(col, YearToDate):
+                return self.year_to_date(col)
         except (ValueError, KeyError, IndexError):
             return DASH
         raise TypeError(f"Unknown column type {col!r}")
@@ -303,6 +318,21 @@ class _RowCalc:
         if s is None:
             return DASH
         return fmt_move(self.ind, float(s.iloc[-1]), _move_ref(s, self.ind.freq, col.ref))
+
+    def year_to_date(self, col: YearToDate) -> str:
+        s, ind = self.series, self.ind
+        if s is None or ind.freq != "M" or not self.row.flow or ind.unit in ("%", "% of GDP"):
+            return DASH
+        d = self.date
+        this = s[(s.index >= pd.Timestamp(d.year, 1, 1)) & (s.index <= d)]
+        if len(this) != d.month:
+            return DASH
+        if not col.change:
+            return fmt_value(float(this.sum()), ind.unit, ind.decimals)
+        before = s[(s.index >= pd.Timestamp(d.year - 1, 1, 1)) & (s.index <= d - pd.DateOffset(years=1))]
+        if len(before) != d.month or before.sum() == 0:
+            return DASH
+        return _fmt_num((float(this.sum()) / float(before.sum()) - 1) * 100)
 
     def spread(self) -> str:
         other = self.data.raw(self.row.vs) if self.row.vs else None
@@ -381,4 +411,86 @@ def build_table(table: Table, data: Data) -> dict | None:
         "columns": headers,
         "rows": rows,
         "note": table.note,
+    }
+
+
+# ---------------------------------------------------------------- panels (countries, regions)
+
+@dataclass(frozen=True)
+class PanelColumn:
+    """One measure across every row: `key` picks the row's indicator, `col` says how to show it."""
+    key: str
+    header: str
+    col: object = Level("latest")
+    transform: str = "level"
+
+
+@dataclass
+class PanelRow:
+    label: str
+    ids: dict                         # column key -> indicator id, or (indicator id, transform)
+    highlight: bool = False           # e.g. Spain among its peers
+
+
+@dataclass
+class Panel:
+    title: str
+    caption: str
+    columns: list
+    rows: list
+    note: str = ""
+
+    def indicator_ids(self) -> set[str]:
+        return {(v[0] if isinstance(v, tuple) else v) for row in self.rows for v in row.ids.values()}
+
+
+def build_panel(panel: Panel, data: Data) -> dict | None:
+    """The panel as display strings. Each column is labelled with the period most of its
+    rows share; a cell from another period carries its own."""
+    grid = []
+    for row in panel.rows:
+        cells = []
+        for col in panel.columns:
+            ref = row.ids.get(col.key)
+            if ref is None:
+                cells.append(None)
+                continue
+            ind_id, transform = ref if isinstance(ref, tuple) else (ref, col.transform)
+            cells.append(_RowCalc(Row(ind_id, transform=transform), data))
+        grid.append(cells)
+    if not any(c is not None and c.date is not None for cells in grid for c in cells):
+        return None
+
+    periods = []
+    for j in range(len(panel.columns)):
+        dated = [cells[j] for cells in grid if cells[j] is not None and cells[j].date is not None]
+        if not dated:
+            periods.append(None)
+            continue
+        counts = pd.Series([c.date for c in dated]).value_counts()
+        common = max(counts[counts == counts.max()].index)
+        periods.append((common, next(c.freq for c in dated if c.date == common)))
+
+    rows = []
+    for row, cells in zip(panel.rows, grid):
+        out = []
+        for col, calc, period in zip(panel.columns, cells, periods):
+            if calc is None or calc.date is None:
+                out.append(DASH)
+                continue
+            value = calc.value(col.col)
+            if period and (calc.date, calc.freq) != period and value != DASH:
+                out.append({"value": value, "note": period_label(calc.date, calc.freq)})
+            else:
+                out.append(value)
+        rows.append({"heading": False, "label": row.label, "label_es": "", "indent": 0, "period_note": "",
+                     "url": None, "cells": out, "highlight": row.highlight})
+    return {
+        "title": panel.title,
+        "caption": panel.caption,
+        "through": None,
+        "columns": [col.header for col in panel.columns],
+        "column_notes": [period_label(*p) if p else "" for p in periods],
+        "rows": rows,
+        "note": panel.note,
     }

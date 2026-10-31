@@ -37,6 +37,7 @@ SECTION_PAGES = {
     "activity": ("Activity", "Industry, retail, sentiment surveys, tourism, electricity demand and the external accounts.", 6),
     "housing": ("Housing", "House prices, home sales and mortgage rates.", 6),
     "international": ("International", "Spain next to the euro area and its peers.", 6),
+    "regions": ("Regions", "The 17 autonomous communities: unemployment, house prices, inflation and income per head.", 6),
 }
 
 NAV = [("index.html", "Home")] + [(f"{s}.html", t) for s, (t, _, _) in SECTION_PAGES.items()] + [("data.html", "Data")]

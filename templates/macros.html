@@ -70,19 +70,21 @@
     <div class="table-scroll">
       <table class="data-table stat-table">
         <thead>
-          <tr><th scope="col">{{ t.title }}</th>{% for c in t.columns %}<th scope="col" class="num">{{ c }}</th>{% endfor %}</tr>
+          <tr><th scope="col">{{ t.title }}</th>
+            {%- for c in t.columns %}<th scope="col" class="num">{{ c }}{% if t.column_notes and t.column_notes[loop.index0] %}<span class="col-note">{{ t.column_notes[loop.index0] }}</span>{% endif %}</th>{% endfor -%}
+          </tr>
         </thead>
         <tbody>
           {% for r in t.rows %}
           {% if r.heading %}
           <tr class="group-row"><td colspan="{{ t.columns | length + 1 }}">{{ r.label }}</td></tr>
           {% else %}
-          <tr>
+          <tr{% if r.highlight %} class="highlight-row"{% endif %}>
             <th scope="row" class="indent-{{ r.indent }}"{% if r.label_es %} title="{{ r.label_es }}"{% endif %}>
               {%- if r.url %}<a href="{{ r.url }}" target="_blank" rel="noopener">{{ r.label }}</a>{% else %}{{ r.label }}{% endif -%}
               {%- if r.period_note %}<span class="period-note"> · {{ r.period_note }}</span>{% endif -%}
             </th>
-            {% for cell in r.cells %}<td class="num">{{ cell }}</td>{% endfor %}
+            {% for cell in r.cells %}<td class="num">{% if cell is mapping %}{{ cell.value }}<span class="period-note"> · {{ cell.note }}</span>{% else %}{{ cell }}{% endif %}</td>{% endfor %}
           </tr>
           {% endif %}
           {% endfor %}

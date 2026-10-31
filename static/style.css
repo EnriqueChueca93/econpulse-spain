@@ -199,6 +199,8 @@ code { font-size: 13px; background: var(--hover); padding: 1px 5px; border-radiu
   padding-top: 14px; font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-2);
 }
 .period-note { color: var(--text-2); font-size: 12px; white-space: nowrap; }
+.col-note { display: block; font-weight: 400; font-size: 11px; color: var(--text-2); }
+.stat-table .highlight-row th, .stat-table .highlight-row td { font-weight: 600; background: var(--hover); }
 .flash-note, .callout { margin: 0 0 20px; }
 .facts {
   display: grid; grid-template-columns: repeat(4, 1fr); margin: 0 0 20px;

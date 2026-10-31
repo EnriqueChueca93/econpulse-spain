@@ -70,18 +70,18 @@ One Python codebase. Its output is a plain static website that opens by double-c
 
 ## 3. Data sources
 
-Status after Batch 5 (31 Oct 2026): 119 indicators. All sources are official or public and are accessed with an honest `EconPulseSpain` User-Agent:
+Status after Batch 6 (31 Oct 2026): 242 indicators. All sources are official or public and are accessed with an honest `EconPulseSpain` User-Agent:
 
 | Provider | Access | Status | Covers |
 |---|---|---|---|
-| **INE** | JSON API `servicios.ine.es/wstempus` | ✅ in use (52 indicators) | GDP (CNTR): spending and output components, contributions to growth, jobs, productivity, unit labour costs; CPI with core and special groups, rents; producer prices (IPRI); EPA rates; industrial production, retail, house prices, labour costs (ETCL), tourism (FRONTUR, EGATUR), home sales |
-| **Eurostat** | JSON-stat API | ✅ in use (18) | monthly and long-term unemployment, HICP (rates and index, Spain and euro area), labour cost index, EC sentiment surveys and price expectations, government debt and balance, current account |
-| **ECB Data Portal** | SDMX REST, CSV | ✅ in use (23) | policy rates, €STR, euro reference rates (USD, GBP, CHF, JPY), AAA euro-area yield curve (spot and forward rates), mortgage rates (MIR), convergence yields |
-| **Banco de España** | REST API `app.bde.es/bierest` | ✅ in use (17) | daily Spanish yield curve (12-month bill, 3, 5, 10, 15 and 30 years), German 10y, prima de riesgo, Euribor, IBEX 35; registered unemployment, pay rises agreed in collective agreements, car sales, hotel nights, balance of payments |
+| **INE** | JSON API `servicios.ine.es/wstempus` | ✅ in use (125 indicators) | GDP (CNTR): spending and output components, contributions to growth, jobs, productivity, unit labour costs; CPI with core and special groups, rents; producer prices (IPRI); EPA rates; industrial production, retail, house prices, labour costs (ETCL), tourism (FRONTUR, EGATUR), home sales, mortgages (HPT), house prices new and second-hand; by region: unemployment, house prices, CPI, GDP per head |
+| **Eurostat** | JSON-stat API | ✅ in use (45) | GDP growth, HICP, core and unemployment for the euro area and peers (DE, FR, IT, PT, NL); annual deficit, debt, interest, revenue and spending; monthly and long-term unemployment, HICP (rates and index, Spain and euro area), labour cost index, EC sentiment surveys and price expectations, government debt and balance, current account |
+| **ECB Data Portal** | SDMX REST, CSV | ✅ in use (31) | policy rates, €STR, peers' 10-year yields, household debt (financial accounts), housing-loan growth, new mortgage lending, euro reference rates (USD, GBP, CHF, JPY), AAA euro-area yield curve (spot and forward rates), mortgage rates (MIR), convergence yields |
+| **Banco de España** | REST API `app.bde.es/bierest` | ✅ in use (18) | building permits; daily Spanish yield curve (12-month bill, 3, 5, 10, 15 and 30 years), German 10y, prima de riesgo, Euribor, IBEX 35; registered unemployment, pay rises agreed in collective agreements, car sales, hotel nights, balance of payments |
 | **Seguridad Social** | spreadsheet linked from its statistics page | ✅ in use (1) | average registrations (*afiliados*), total system, since 2001 |
 | **Red Eléctrica (REE)** | REData API `apidatos.ree.es` | ✅ in use (2) | day-ahead electricity price (daily average of 15-minute prices), daily demand |
-| **FRED** | public CSV, no key | ✅ in use (2) | Brent spot (US EIA), European gas (IMF) |
-| **EconPulse calculations** | from the series above | ✅ in use (4) | Brent in euros, monthly ES–DE spread, GDP deflator, real wages |
+| **FRED** | public CSV, no key | ✅ in use (8) | Brent spot (US EIA), European gas (IMF); US GDP, CPI, core CPI, unemployment, 10-year yield, Fed funds target |
+| **EconPulse calculations** | from the series above | ✅ in use (12) | Brent in euros, 10-year spreads over Germany, GDP deflator, real wages, real house prices, average mortgage, primary balance, monthly electricity demand |
 | ~~Yahoo Finance~~ | unofficial API | ❌ dropped | IBEX 35 now comes from Banco de España and Brent from FRED |
 | **AIReF · FUNCAS · BdE projections** | web pages / Excel | 🔲 Batch 7 | GDP nowcast, forecaster consensus, official projections |
 
@@ -100,6 +100,10 @@ Status after Batch 5 (31 Oct 2026): 119 indicators. All sources are official or 
 - No free feed of €STR swap rates exists, so "what markets expect" uses the ECB's AAA euro-area forward rates. They include a term premium; the page says so.
 - Euro high-yield credit spreads are on FRED, but they are ICE's proprietary data and FRED only keeps three years, so they are left out. Euro Stoxx 50 and gold still have no clean free source.
 - The ECB meeting calendar is a list in `econpulse/policy.py`, taken from the ECB's published schedule and running to December 2028. After the last date, the page links to the ECB calendar.
+- The tourism series picked in Batch 2 (`FREG287`) was all visitors, including same-day visitors (144 million in 2025), not tourists. It now uses `FREG286`, tourists only (96.8 million in 2025); the home tile changed from 18.5 to 12.3 million for August.
+- Eurostat's euro area is `EA21` from 2026 for unemployment (Bulgaria joined); GDP growth still uses `EA20`.
+- Building permits reach Banco de España several months late, so that series is allowed 240 days before it counts as "not updating". Annual series are dated 1 January and published 4–12 months after the year ends, so their default allowance is now 850 days.
+- Regional and country series are written once in `indicators.yaml` with `for_each` over a list (17 regions, 5 peer countries), not 100 near-identical entries.
 
 ---
 
@@ -165,7 +169,7 @@ Each batch is sized for one working session, ends with something you can open or
 - **Done when:** `python -m econpulse fetch` fills `data/` and prints a table of latest values.
 
 ### Batch 2 — Remaining sources and robustness ✅ done 30 Oct 2026
-*Result: 61 indicators from 7 sources, plus 2 derived (Brent in €, monthly ES–DE spread). The first fetch backfills history in about 3 minutes; later updates take about 10 seconds. There is a `status` freshness report, and 62 offline plus 8 live tests. The home page has 13 tiles in econvitals order. Deferred: household debt and the level of registered unemployment (Batch 6; the level landed in Batch 4), and Euro Stoxx 50 and gold (no clean free source yet).*
+*Result: 61 indicators from 7 sources, plus 2 derived (Brent in €, monthly ES–DE spread). The first fetch backfills history in about 3 minutes; later updates take about 10 seconds. There is a `status` freshness report, and 62 offline plus 8 live tests. The home page has 13 tiles in econvitals order. Deferred: household debt and the level of registered unemployment (both landed later, in Batches 6 and 4), and Euro Stoxx 50 and gold (no clean free source yet).*
 - Banco de España (yields, Euribor, mortgage rates, household debt, balance of payments), Bundesbank 10y, Yahoo markets
 - Seguridad Social and SEPE downloads (Excel parsing), REE or OMIE electricity price
 - Retries, caching, per-source failure isolation, a "stale data" flag, a freshness report
@@ -188,7 +192,8 @@ Each batch is sized for one working session, ends with something you can open or
 *Result: both pages are filled, with 6 tables, 14 charts and two computed extras. Financial: a markets table (latest, 1-day, 1-week, YTD, 1-year; rates in bp, prices in %) covering yields, the prima de riesgo, Euribor, the IBEX 35, four euro exchange rates and energy; the Spanish yield curve (latest, a month earlier, end of last year) and its spread over the AAA euro-area curve at each maturity; the prima de riesgo since 2008; and Euribor and mortgage rates. A mortgage check shows what a typical variable-rate mortgage (€150,000, 25 years, Euribor + 0.9 pp) costs at this month's Euribor against a year earlier. ECB: a key-facts strip (deposit rate, last change, next decision with a countdown, €STR), policy rates, recent decisions read from the deposit rate, rates against euro-area inflation, the deposit rate since 1999, and a market-implied path from AAA forward rates. 17 new indicators (119 in all). New building blocks: market-move and spread columns, curve charts (category axis), step lines, a facts strip and callouts. 94 offline and 8 live tests.*
 - Yield curve, prima de riesgo, Euribor, markets table (1-day, 1-week, YTD), ECB rate history and expected path
 
-### Batch 6 — Sections III: Other, Housing, Fiscal, International, Regions
+### Batch 6 — Sections III: Other, Housing, Fiscal, International, Regions ✅ done 31 Oct 2026
+*Result: every section page is now filled, and a new Regions page joins the navigation. Activity: industry, retail, car sales and monthly electricity demand; EC surveys; tourism with year-to-date totals; the current account. Housing: house prices (new, second-hand, after inflation since the 2007 peak), sales, mortgages, the average mortgage, new lending, building permits, household debt and housing-loan growth. Fiscal: the annual balance, primary balance, interest, revenue, spending and debt, plus the latest four quarters. International: a peer table (Spain, euro area, Germany, France, Italy, Portugal, the Netherlands, the US) with GDP growth, inflation, core, unemployment, 10-year yields and policy rates; rankings; spreads over Germany since 2008. Regions: a table of the 17 autonomous communities (unemployment and its change, house prices, inflation, GDP per head) and four ranking charts. 123 new indicators (242 in all). New building blocks: `for_each` in the registry, panel tables, ranking charts, year-to-date columns, rolling 12-month totals and 4-quarter averages, `average` and `add` calculations, rebased and rescaled chart series, and chart sources that credit a calculation's inputs. Fixed on the way: the tourism series counted all visitors. 105 offline and 8 live tests.*
 - Tourism, electricity, sentiment, housing, fiscal and the comparison table across countries and regions
 
 ### Batch 7 — EconPulse originals (analytics)

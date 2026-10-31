@@ -9,12 +9,12 @@ those functions read. Sections without blocks yet show their indicator list only
 """
 
 from . import policy
-from .charts import build_chart, build_curve
+from .charts import build_chart, build_curve, build_ranking
 from .registry import Indicator
 from .snapshot import fmt_value, period_label
 from .store import Store
-from .tables import (AvgChange, Change, Contribution, Data, Heading, Level, Move, Row, Spread, Table,
-                     build_table)
+from .tables import (AvgChange, Change, Contribution, Data, Heading, Level, Move, Panel, PanelColumn, PanelRow,
+                     Row, Spread, Table, YearToDate, build_panel, build_table)
 
 LEVELS = [Level("latest"), Level("prev"), Level("year")]
 HORIZONS = [Change("1-mo ann.", 1, True), Change("3-mo ann.", 3, True), Change("6-mo ann.", 6, True), Change("12-mo", 12)]
@@ -27,6 +27,45 @@ AAA_CURVE = [("aaa_1y", "1y"), ("aaa_3y", "3y"), ("aaa_5y", "5y"), ("aaa_10y", "
 FORWARDS = [("aaa_fwd_3m", "3m"), ("aaa_fwd_6m", "6m"), ("aaa_fwd_9m", "9m"), ("aaa_fwd_1y", "1y"),
             ("aaa_fwd_2y", "2y"), ("aaa_fwd_3y", "3y")]
 DAILY = "%-d %b %Y"
+FLOWS = [Level("latest"), Change("y/y", 12), YearToDate("Year to date"), YearToDate("YTD y/y", change=True)]
+
+# Autonomous communities (slugs match the `regions` list in indicators.yaml).
+REGIONS = [
+    ("andalucia", "Andalucía"), ("aragon", "Aragón"), ("asturias", "Asturias"), ("baleares", "Illes Balears"),
+    ("canarias", "Canarias"), ("cantabria", "Cantabria"), ("castilla_leon", "Castilla y León"),
+    ("castilla_mancha", "Castilla-La Mancha"), ("cataluna", "Cataluña"), ("valenciana", "Comunitat Valenciana"),
+    ("extremadura", "Extremadura"), ("galicia", "Galicia"), ("madrid", "Madrid"), ("murcia", "Murcia"),
+    ("navarra", "Navarra"), ("pais_vasco", "País Vasco"), ("rioja", "La Rioja"),
+]
+
+
+def _peer(label, gdp, hicp, core, unemp, y10, policy, highlight=False) -> PanelRow:
+    ids = {"gdp": gdp, "hicp": hicp, "core": core, "unemp": unemp, "y10": y10, "policy": policy}
+    return PanelRow(label, {k: v for k, v in ids.items() if v}, highlight)
+
+
+PEERS = [
+    _peer("Spain", ("gdp", "yoy"), "hicp", "hicp_core", "unemployment_monthly", "es_10y_monthly", "ecb_deposit_rate", True),
+    _peer("Euro area", "gdp_growth_ea", "hicp_euro_area", "hicp_core_euro_area", "unemployment_ea", None, "ecb_deposit_rate"),
+    _peer("Germany", "gdp_growth_de", "hicp_de", "hicp_core_de", "unemployment_de", "de_10y_monthly", "ecb_deposit_rate"),
+    _peer("France", "gdp_growth_fr", "hicp_fr", "hicp_core_fr", "unemployment_fr", "bond10_fr", "ecb_deposit_rate"),
+    _peer("Italy", "gdp_growth_it", "hicp_it", "hicp_core_it", "unemployment_it", "bond10_it", "ecb_deposit_rate"),
+    _peer("Portugal", "gdp_growth_pt", "hicp_pt", "hicp_core_pt", "unemployment_pt", "bond10_pt", "ecb_deposit_rate"),
+    _peer("Netherlands", "gdp_growth_nl", "hicp_nl", "hicp_core_nl", "unemployment_nl", "bond10_nl", "ecb_deposit_rate"),
+    _peer("United States", "us_gdp_growth", ("us_cpi_index", "yoy"), ("us_core_cpi_index", "yoy"), "us_unemployment",
+          "us_10y", "us_fed_funds"),
+]
+
+
+def _ranking(measure: str) -> list[tuple]:
+    """Ranking items (indicator id, label, transform) for one measure of PEERS."""
+    items = []
+    for row in PEERS:
+        ref = row.ids.get(measure)
+        if ref is not None:
+            ind_id, transform = ref if isinstance(ref, tuple) else (ref, "level")
+            items.append((ind_id, row.label, transform))
+    return items
 
 PAGES: dict[str, list[dict]] = {
     # ------------------------------------------------------------------ GDP
@@ -545,6 +584,345 @@ PAGES: dict[str, list[dict]] = {
             ],
         },
     ],
+    # ------------------------------------------------------------------ Activity
+    "activity": [
+        {
+            "id": "output",
+            "title": "Industry, shops and electricity",
+            "intro": ("Monthly signs of how much the economy is producing and selling. Electricity demand arrives "
+                      "daily, ahead of everything else, but moves with the weather."),
+            "tables": [Table(
+                title="Activity",
+                caption="% change",
+                columns=[Change("1-mo", 1), Change("3-mo ann.", 3, True), Change("12-mo", 12)],
+                rows=[
+                    Row("industrial_production", "Industrial production"),
+                    Row("retail_sales", "Retail sales, real"),
+                    Row("car_sales", "Car sales", season="raw"),
+                    Row("electricity_demand_monthly", "Electricity demand", season="raw"),
+                ],
+                note=("Industrial production and retail sales are seasonally and calendar adjusted by INE. Car sales "
+                      "and electricity demand are not, so only the 12-month change is shown."),
+            )],
+            "charts": [
+                {"id": "industry-retail", "title": "Industry and retail", "subtitle": "% change on a year earlier",
+                 "kind": "line", "unit": "%", "decimals": 1, "start": "2022-01-01",
+                 "series": [("industrial_production", "yoy", "Industrial production"), ("retail_sales", "yoy", "Retail sales")]},
+                {"id": "electricity-demand", "title": "Electricity demand",
+                 "subtitle": "Average daily demand, % change on a year earlier",
+                 "kind": "bar", "signed": True, "unit": "%", "decimals": 1, "start": "2023-01-01",
+                 "series": [("electricity_demand_monthly", "yoy", "Demand")]},
+                {"id": "car-sales", "title": "Car sales", "subtitle": "Past 12 months, thousands of cars",
+                 "kind": "line", "unit": "k", "decimals": 0, "start": "2015-01-01",
+                 "series": [("car_sales", "sum_1y", "Car sales", {"scale": 0.001})]},
+            ],
+        },
+        {
+            "id": "surveys",
+            "title": "Business and consumer surveys",
+            "intro": ("The European Commission asks firms and households every month how things are going. "
+                      "Surveys come out before the hard data they foreshadow."),
+            "tables": [Table(
+                title="Survey",
+                caption="Index or balance",
+                columns=LEVELS,
+                rows=[
+                    Row("economic_sentiment", "Economic sentiment (average = 100)"),
+                    Row("consumer_confidence", "Consumer confidence"),
+                    Row("industry_confidence", "Industry confidence"),
+                    Row("construction_confidence", "Construction confidence"),
+                ],
+                note=("Confidence indicators are balances: the share of positive answers minus negative ones, so zero "
+                      "means as many optimists as pessimists. Spanish services and retail confidence stopped in 2024."),
+            )],
+            "charts": [
+                {"id": "sentiment", "title": "Economic sentiment", "subtitle": "Index, long-run average = 100",
+                 "kind": "line", "unit": "", "decimals": 1, "start": "2015-01-01",
+                 "ref_lines": [{"y": 100, "label": "Average"}],
+                 "series": [("economic_sentiment", "level", "Sentiment")]},
+                {"id": "confidence", "title": "Confidence", "subtitle": "Balance of positive minus negative answers",
+                 "kind": "line", "unit": "", "decimals": 1, "start": "2019-01-01",
+                 "series": [("consumer_confidence", "level", "Consumers"), ("industry_confidence", "level", "Industry"),
+                            ("construction_confidence", "level", "Construction")]},
+            ],
+        },
+        {
+            "id": "tourism",
+            "title": "Tourism",
+            "intro": ("Spain is one of the world's most visited countries. Arrivals and spending come from INE's "
+                      "border surveys (FRONTUR, EGATUR), receipts from the balance of payments."),
+            "tables": [Table(
+                title="Tourism",
+                caption="Latest month, not seasonally adjusted; changes in %",
+                columns=FLOWS,
+                rows=[
+                    Row("tourist_arrivals", "International tourists"),
+                    Row("tourist_spending", "Their spending"),
+                    Row("tourism_receipts", "Tourism receipts (balance of payments)"),
+                ],
+                note="Year to date sums the months since January and compares them with the same months a year earlier.",
+            )],
+            "charts": [
+                {"id": "arrivals", "title": "International tourists", "subtitle": "Past 12 months, millions",
+                 "kind": "line", "unit": "mn", "decimals": 1, "start": "2015-01-01",
+                 "series": [("tourist_arrivals", "sum_1y", "Tourists")]},
+                {"id": "tourist-spending", "title": "Tourist spending", "subtitle": "Past 12 months, € billion",
+                 "kind": "line", "unit": "€ bn", "decimals": 1, "start": "2015-01-01",
+                 "series": [("tourist_spending", "sum_1y", "Spending", {"scale": 0.001})]},
+            ],
+        },
+        {
+            "id": "external",
+            "title": "External accounts",
+            "intro": ("What Spain earns from the rest of the world against what it pays: trade, tourism, income "
+                      "and transfers. A surplus means Spain lends to the rest of the world."),
+            "tables": [Table(
+                title="Balance",
+                caption="% of GDP or € million",
+                columns=LEVELS,
+                rows=[
+                    Row("current_account", "Current account, % of GDP (quarter)"),
+                    Row("current_account", "Current account, % of GDP (past 4 quarters)", transform="avg_1y"),
+                    Row("current_account_monthly", "Current account, past 12 months", transform="sum_1y"),
+                    Row("tourism_receipts", "Tourism receipts, past 12 months", transform="sum_1y"),
+                ],
+            )],
+            "charts": [
+                {"id": "current-account", "title": "Current account balance",
+                 "subtitle": "% of GDP, average of the past four quarters",
+                 "kind": "line", "signed": True, "unit": "%", "decimals": 1, "start": "2000-01-01",
+                 "series": [("current_account", "avg_1y", "Current account")]},
+            ],
+        },
+    ],
+    # ------------------------------------------------------------------ Housing
+    "housing": [
+        {
+            "id": "prices",
+            "title": "House prices",
+            "intro": "INE's house price index, built from notarised sales, for new and second-hand homes.",
+            "tables": [Table(
+                title="Prices",
+                caption="% change",
+                columns=[Change("q/q", 3), Change("y/y", 12)],
+                rows=[
+                    Row("house_prices", "All homes", season="published"),
+                    Row("house_prices_new", "New homes", season="published", indent=1),
+                    Row("house_prices_used", "Second-hand homes", season="published", indent=1),
+                    Row("real_house_prices", "After inflation", season="published"),
+                    Row("cpi_rent_index", "Rents (CPI)", season="ours"),
+                ],
+                note=("House prices are not seasonally adjusted; the quarterly change is as INE reports it. The rents "
+                      "quarterly change uses EconPulse seasonal adjustment."),
+            )],
+            "charts": [
+                {"id": "house-prices", "title": "House prices", "subtitle": "% change on a year earlier",
+                 "kind": "line", "unit": "%", "decimals": 1, "start": "2015-01-01",
+                 "series": [("house_prices_new", "yoy", "New homes"), ("house_prices_used", "yoy", "Second-hand")]},
+                {"id": "real-house-prices", "title": "Real house prices since the boom",
+                 "subtitle": "House prices deflated by the CPI, Q1 2007 = 100",
+                 "kind": "line", "unit": "", "decimals": 1, "start": "2007-01-01",
+                 "ref_lines": [{"y": 100, "label": "Q1 2007"}],
+                 "series": [("real_house_prices", "level", "Real house prices", {"rebase": "2007-01-01"})]},
+            ],
+        },
+        {
+            "id": "sales",
+            "title": "Sales, mortgages and permits",
+            "intro": ("How many homes change hands, how many are bought with a mortgage, and how many new ones "
+                      "are in the pipeline."),
+            "tables": [Table(
+                title="Housing market",
+                caption="Latest month, not seasonally adjusted; changes in %",
+                columns=FLOWS,
+                rows=[
+                    Row("home_sales", "Home sales"),
+                    Row("mortgages_homes", "Mortgages on homes"),
+                    Row("mortgage_lending_homes", "Amount lent on them"),
+                    Row("average_mortgage", "Average mortgage", flow=False),
+                    Row("new_mortgage_lending", "New mortgage lending by banks"),
+                    Row("home_permits", "New homes in building permits"),
+                ],
+                note=("Sales and mortgages come from the property registers (INE), new lending from banks' reports "
+                      "to the ECB, which include renegotiated loans."),
+            )],
+            "charts": [
+                {"id": "home-sales", "title": "Home sales", "subtitle": "Past 12 months, thousands",
+                 "kind": "line", "unit": "k", "decimals": 0, "start": "2008-01-01",
+                 "series": [("home_sales", "sum_1y", "Home sales", {"scale": 0.001})]},
+                {"id": "mortgages", "title": "Mortgages on homes", "subtitle": "Past 12 months, thousands",
+                 "kind": "line", "unit": "k", "decimals": 0, "start": "2008-01-01",
+                 "series": [("mortgages_homes", "sum_1y", "Mortgages", {"scale": 0.001})]},
+                {"id": "permits", "title": "Building permits", "subtitle": "New homes in permits, past 12 months, thousands",
+                 "kind": "line", "unit": "k", "decimals": 0, "start": "2008-01-01",
+                 "series": [("home_permits", "sum_1y", "Permits", {"scale": 0.001})]},
+            ],
+        },
+        {
+            "id": "debt",
+            "title": "Household debt and mortgage rates",
+            "intro": ("Spanish households have paid down much of the debt they took on in the boom; most mortgages "
+                      "are variable-rate, so rates matter quickly."),
+            "tables": [Table(
+                title="Indicator",
+                caption="%",
+                columns=LEVELS,
+                rows=[
+                    Row("household_debt_gdp", "Household debt, % of GDP"),
+                    Row("household_debt_income", "Household debt, % of disposable income"),
+                    Row("housing_loans_growth", "Housing loans, growth on a year earlier"),
+                    Row("mortgage_rate", "New mortgages, average rate"),
+                ],
+            )],
+            "charts": [
+                {"id": "household-debt", "title": "Household debt", "subtitle": "% of GDP",
+                 "kind": "line", "unit": "%", "decimals": 1, "start": "2003-01-01",
+                 "series": [("household_debt_gdp", "level", "Household debt")]},
+                {"id": "housing-loans", "title": "Housing loans and mortgage rates",
+                 "subtitle": "%: growth of housing loans on a year earlier, and the rate on new mortgages",
+                 "kind": "line", "unit": "%", "decimals": 1, "start": "2010-01-01",
+                 "series": [("housing_loans_growth", "level", "Loan growth"), ("mortgage_rate", "level", "Mortgage rate")]},
+            ],
+        },
+    ],
+    # ------------------------------------------------------------------ Fiscal
+    "fiscal": [
+        {
+            "id": "balance",
+            "title": "Deficit and debt",
+            "intro": ("The general government (state, regions, local councils and social security) as reported to "
+                      "the European Commission. EU rules set reference values of a 3% deficit and 60% debt."),
+            "tables": [
+                Table(
+                    title="Public finances",
+                    caption="% of GDP, calendar year",
+                    columns=[Level("latest"), Level("prev", header="Year before")],
+                    rows=[
+                        Row("deficit_annual", "Budget balance"),
+                        Row("primary_balance", "Before interest (primary balance)", indent=1),
+                        Row("interest_annual", "Interest paid", indent=1),
+                        Row("revenue_annual", "Revenue"),
+                        Row("spending_annual", "Spending"),
+                        Row("debt_annual", "Debt at year end"),
+                    ],
+                    note="A negative balance is a deficit.",
+                ),
+                Table(
+                    title="Latest quarters",
+                    caption="% of GDP",
+                    columns=LEVELS,
+                    rows=[
+                        Row("government_balance", "Budget balance, past four quarters", transform="avg_1y"),
+                        Row("government_debt", "Debt"),
+                    ],
+                    note="The quarterly balance is not seasonally adjusted, so it is averaged over four quarters.",
+                ),
+            ],
+            "charts": [
+                {"id": "deficit", "title": "Budget balance", "subtitle": "% of GDP, calendar years",
+                 "kind": "bar", "signed": True, "unit": "%", "decimals": 1, "start": "1995-01-01",
+                 "ref_lines": [{"y": -3, "label": "EU limit"}],
+                 "series": [("deficit_annual", "level", "Balance")]},
+                {"id": "debt", "title": "Government debt", "subtitle": "% of GDP, quarterly",
+                 "kind": "line", "unit": "%", "decimals": 1, "start": "2000-01-01",
+                 "ref_lines": [{"y": 60, "label": "EU reference"}],
+                 "series": [("government_debt", "level", "Debt")]},
+                {"id": "revenue-spending", "title": "Revenue and spending", "subtitle": "% of GDP, calendar years",
+                 "kind": "line", "unit": "%", "decimals": 1, "start": "1995-01-01",
+                 "series": [("spending_annual", "level", "Spending"), ("revenue_annual", "level", "Revenue")]},
+                {"id": "interest", "title": "Interest on the debt", "subtitle": "% of GDP, calendar years",
+                 "kind": "line", "unit": "%", "decimals": 1, "start": "1995-01-01",
+                 "series": [("interest_annual", "level", "Interest")]},
+            ],
+        },
+    ],
+    # ------------------------------------------------------------------ International
+    "international": [
+        {
+            "id": "peers",
+            "title": "Spain and its peers",
+            "intro": "Spain next to the euro area, the other large euro economies, Portugal and the United States.",
+            "tables": [Panel(
+                title="Country",
+                caption="%",
+                columns=[PanelColumn("gdp", "GDP growth, y/y"), PanelColumn("hicp", "Inflation"),
+                         PanelColumn("core", "Core inflation"), PanelColumn("unemp", "Unemployment"),
+                         PanelColumn("y10", "10-year yield"), PanelColumn("policy", "Policy rate")],
+                rows=PEERS,
+                note=("Inflation is the harmonised index (HICP) in Europe and the CPI in the United States. "
+                      "European 10-year yields are monthly averages; the US one is the latest day. Euro-area "
+                      "countries share the ECB's deposit rate; the US rate is the top of the Fed's target range."),
+            )],
+            "charts": [
+                {"id": "inflation-ranking", "kind": "hbar", "title": "Inflation", "subtitle": "% change on a year earlier",
+                 "unit": "%", "decimals": 1, "x_title": "Country", "highlight": "Spain", "items": _ranking("hicp")},
+                {"id": "unemployment-ranking", "kind": "hbar", "title": "Unemployment", "subtitle": "% of the labour force",
+                 "unit": "%", "decimals": 1, "x_title": "Country", "highlight": "Spain", "items": _ranking("unemp")},
+                {"id": "gdp-peers", "title": "GDP growth", "subtitle": "Real GDP, % change on a year earlier",
+                 "kind": "line", "unit": "%", "decimals": 1, "start": "2022-01-01",
+                 "series": [("gdp", "yoy", "Spain"), ("gdp_growth_ea", "level", "Euro area"),
+                            ("gdp_growth_de", "level", "Germany")]},
+                {"id": "inflation-peers", "title": "Inflation", "subtitle": "% change on a year earlier (US: CPI)",
+                 "kind": "line", "unit": "%", "decimals": 1, "start": "2019-01-01", "ref_lines": TARGET,
+                 "series": [("hicp", "level", "Spain"), ("hicp_euro_area", "level", "Euro area"),
+                            ("us_cpi_index", "yoy", "United States")]},
+                {"id": "unemployment-peers", "title": "Unemployment", "subtitle": "% of the labour force, seasonally adjusted",
+                 "kind": "line", "unit": "%", "decimals": 1, "start": "2008-01-01",
+                 "series": [("unemployment_monthly", "level", "Spain"), ("unemployment_ea", "level", "Euro area"),
+                            ("unemployment_de", "level", "Germany")]},
+                {"id": "spreads", "title": "Borrowing costs over Germany",
+                 "subtitle": "10-year yield minus Germany's, basis points, monthly averages",
+                 "kind": "line", "unit": "bp", "decimals": 0, "start": "2008-01-01",
+                 "series": [("risk_premium_monthly", "level", "Spain"), ("spread10_it", "level", "Italy"),
+                            ("spread10_fr", "level", "France")]},
+            ],
+        },
+    ],
+    # ------------------------------------------------------------------ Regions
+    "regions": [
+        {
+            "id": "snapshot",
+            "title": "The autonomous communities",
+            "intro": ("Spain's 17 autonomous communities differ widely in unemployment, house prices and income per "
+                      "head. Regional figures come from INE's labour force survey, house price index, CPI and "
+                      "regional accounts."),
+            "tables": [Panel(
+                title="Region",
+                caption="%, unless stated",
+                columns=[PanelColumn("unemp", "Unemployment rate"),
+                         PanelColumn("unemp_chg", "Change on a year", col=Move("1-yr", "year")),
+                         PanelColumn("prices", "House prices, y/y", transform="yoy"),
+                         PanelColumn("cpi", "Inflation"),
+                         PanelColumn("gdppc", "GDP per head, Spain = 100")],
+                rows=[PanelRow("Spain", {"unemp": "unemployment_epa", "unemp_chg": "unemployment_epa",
+                                         "prices": "house_prices", "cpi": ("cpi_index", "yoy"),
+                                         "gdppc": "gdp_per_head_spain"}, True)]
+                     + [PanelRow(name, {"unemp": f"unemployment_{slug}", "unemp_chg": f"unemployment_{slug}",
+                                        "prices": f"house_prices_{slug}", "cpi": f"cpi_{slug}",
+                                        "gdppc": f"gdp_per_head_{slug}"}) for slug, name in REGIONS],
+                note=("Unemployment comes from the labour force survey (EPA), not seasonally adjusted. Ceuta and "
+                      "Melilla are left out: their survey samples are small."),
+            )],
+            "charts": [
+                {"id": "unemployment-regions", "kind": "hbar", "title": "Unemployment by region",
+                 "subtitle": "% of the labour force (EPA)", "unit": "%", "decimals": 1,
+                 "items": [(f"unemployment_{slug}", name) for slug, name in REGIONS],
+                 "ref_from": [("unemployment_epa", "Spain")]},
+                {"id": "gdppc-regions", "kind": "hbar", "title": "GDP per head by region",
+                 "subtitle": "Spain = 100, current prices", "unit": "", "decimals": 0,
+                 "items": [(f"gdp_per_head_{slug}", name) for slug, name in REGIONS],
+                 "ref_from": [("gdp_per_head_spain", "Spain")]},
+                {"id": "house-prices-regions", "kind": "hbar", "title": "House prices by region",
+                 "subtitle": "% change on a year earlier", "unit": "%", "decimals": 1, "transform": "yoy",
+                 "items": [(f"house_prices_{slug}", name) for slug, name in REGIONS],
+                 "ref_from": [("house_prices", "Spain")]},
+                {"id": "inflation-regions", "kind": "hbar", "title": "Inflation by region",
+                 "subtitle": "CPI, % change on a year earlier", "unit": "%", "decimals": 1,
+                 "items": [(f"cpi_{slug}", name) for slug, name in REGIONS],
+                 "ref_from": [("cpi_index", "Spain", "yoy")]},
+            ],
+        },
+    ],
 }
 
 
@@ -553,11 +931,14 @@ def page_indicator_ids(section: str) -> set[str]:
     ids = set()
     for block in PAGES.get(section, []):
         for t in block["tables"]:
-            if isinstance(t, Table):
+            if isinstance(t, (Table, Panel)):
                 ids |= t.indicator_ids()
         for c in block.get("charts", []):
+            ids |= {i for i, *_ in c.get("ref_from", [])}
             if c.get("curve"):
-                ids |= {i for line in c["lines"] for i, _ in line["points"]} | {i for i, _ in c.get("ref_from", [])}
+                ids |= {i for line in c["lines"] for i, _ in line["points"]}
+            elif c.get("kind") == "hbar":
+                ids |= {item[0] for item in c["items"]}
             else:
                 ids |= {s[0] for s in c["series"]}
         ids |= {i for i, _ in block.get("flash", [])} | set(block.get("uses", []))
@@ -583,14 +964,29 @@ def _flash_note(block: dict, tables: list[dict], data: Data) -> str:
             "The table follows when INE publishes the full index.")
 
 
+def _build_any_table(t, data: Data) -> dict | None:
+    if isinstance(t, Table):
+        return build_table(t, data)
+    if isinstance(t, Panel):
+        return build_panel(t, data)
+    return t(data)  # a function, e.g. the ECB's recent decisions
+
+
+def _chart_builder(definition: dict):
+    if definition.get("curve"):
+        return build_curve
+    if definition.get("kind") == "hbar":
+        return build_ranking
+    return build_chart
+
+
 def build_page(section: str, indicators: list[Indicator], store: Store) -> dict:
     """Blocks for one section page, plus the chart specs its script draws."""
     data = Data(indicators, store)
     blocks, charts = [], []
     for block in PAGES.get(section, []):
-        tables = [t for t in ((build_table(t, data) if isinstance(t, Table) else t(data)) for t in block["tables"]) if t]
-        specs = [c for c in ((build_curve if c.get("curve") else build_chart)(c, data.by_id, store)
-                             for c in block.get("charts", [])) if c]
+        tables = [t for t in (_build_any_table(t, data) for t in block["tables"]) if t]
+        specs = [c for c in (_chart_builder(c)(c, data.by_id, store) for c in block.get("charts", [])) if c]
         flash = _flash_note(block, tables, data)
         facts = block["facts"](data) if "facts" in block else []
         callout = block["callout"](data) if "callout" in block else None

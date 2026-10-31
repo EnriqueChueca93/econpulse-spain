@@ -12,18 +12,28 @@ source, link.
 In a definition each series is (indicator id, transform, name) with an optional
 fourth item of options: {"kind": "line"} to draw one series differently from the
 chart, {"color": "ink"} for a total drawn in text colour rather than a palette slot,
-{"shape": "hv"} for a step line (policy rates change in steps).
+{"shape": "hv"} for a step line (policy rates change in steps), {"scale": 0.001} to
+change units (thousands to millions), {"rebase": "2007-01-01"} for an index = 100 then.
 
 A curve definition ("curve": True) draws one line per date across maturities
 instead: "lines" [{"at", "name", "points"}], where points are (indicator id, label)
 and "at" is latest, month (a month earlier), yearend or year (a year earlier).
+
+A ranking definition ("kind": "hbar") draws horizontal bars, one per item (region,
+country), sorted by the latest value: "items" [(indicator id, label[, transform])], a
+default "transform", "ref_from" [(indicator id, label[, transform])] for a reference
+line (the Spanish average) and
+"highlight" (a label drawn in text colour).
 """
+
+from collections import Counter
 
 import pandas as pd
 
 from . import transforms
 from .registry import Indicator
-from .sources import SOURCE_NAMES
+from .snapshot import period_label
+from .sources import SOURCE_NAMES, derived
 from .store import Store
 
 HOME_CHARTS = [
@@ -58,6 +68,21 @@ HOME_CHARTS = [
 FREQ_ORDER = "DMQA"
 
 
+def source_names(ind: Indicator, by_id: dict[str, Indicator]) -> list[str]:
+    """Who publishes the data behind an indicator; a calculation credits its inputs' sources too."""
+    if not ind.is_derived:
+        return [SOURCE_NAMES.get(ind.source, ind.source)]
+    names = [n for dep in derived.inputs_of(ind.params) if dep in by_id for n in source_names(by_id[dep], by_id)]
+    return list(dict.fromkeys(names + [SOURCE_NAMES.get(ind.source, ind.source)]))
+
+
+def _sources(inds: list[Indicator], by_id: dict[str, Indicator]) -> str:
+    names = [n for ind in inds for n in source_names(ind, by_id)]
+    calc = SOURCE_NAMES.get("derived", "derived")
+    # The calculation credit goes last, once.
+    return "; ".join([n for n in dict.fromkeys(names) if n != calc] + ([calc] if calc in names else []))
+
+
 def build_chart(definition: dict, by_id: dict[str, Indicator], store: Store) -> dict | None:
     """One chart spec, or None if none of its series has data."""
     start = pd.Timestamp(definition["start"])
@@ -71,19 +96,25 @@ def build_chart(definition: dict, by_id: dict[str, Indicator], store: Store) -> 
             s = transforms.apply(transform, raw, ind.freq)
         except ValueError:  # e.g. too little history to seasonally adjust
             continue
+        opts = dict(options[0]) if options else {}
+        if "rebase" in opts:
+            base = s.asof(pd.Timestamp(opts.pop("rebase")))
+            if pd.isna(base) or base == 0:
+                continue
+            s = s / base * 100
+        s = s * opts.pop("scale", 1)
         s = s[s.index >= start].round(4)
         if s.empty:
             continue
-        series.append({"name": name, "x": [d.strftime("%Y-%m-%d") for d in s.index], "y": s.tolist(),
-                       **(options[0] if options else {})})
-        sources.append(SOURCE_NAMES.get(ind.source, ind.source))
+        series.append({"name": name, "x": [d.strftime("%Y-%m-%d") for d in s.index], "y": s.tolist(), **opts})
+        sources.append(ind)
         freqs.append(ind.freq)
     if not series:
         return None
     spec = {k: v for k, v in definition.items() if k not in ("series", "start")}
     spec["series"] = series
     spec["freq"] = min(freqs, key=FREQ_ORDER.index)
-    spec["source"] = "; ".join(dict.fromkeys(sources))
+    spec["source"] = _sources(sources, by_id)
     return spec
 
 
@@ -138,8 +169,42 @@ def build_curve(definition: dict, by_id: dict[str, Indicator], store: Store) -> 
             v = float(s.dropna().asof(latest))
             ref_lines.append({"y": round(v, 4), "label": f"{label} {v:.{definition['decimals']}f}%"})
     ids = {i for line in definition["lines"] for i, _ in line["points"] if i in loaded}
-    sources = [SOURCE_NAMES.get(by_id[i].source, by_id[i].source) for i in sorted(ids)]
     spec = {k: v for k, v in definition.items() if k not in ("lines", "curve", "ref_from")}
     spec.update(kind="line", x_kind="category", x_title=definition.get("x_title", "Maturity"),
-                series=series, ref_lines=ref_lines, freq=None, source="; ".join(dict.fromkeys(sources)))
+                series=series, ref_lines=ref_lines, freq=None, source=_sources([by_id[i] for i in sorted(ids)], by_id))
+    return spec
+
+
+def build_ranking(definition: dict, by_id: dict[str, Indicator], store: Store) -> dict | None:
+    """A horizontal bar chart ranking items on their latest value, or None with fewer than two."""
+    default = definition.get("transform", "level")
+
+    def latest(ind_id, transform=default):
+        raw = store.load_series(ind_id)
+        if raw is None:
+            return None
+        try:
+            s = transforms.apply(transform, raw, by_id[ind_id].freq).dropna()
+        except ValueError:
+            return None
+        return None if s.empty else (round(float(s.iloc[-1]), 4), s.index[-1])
+
+    rows = [(label, *point, by_id[i]) for i, label, *transform in definition["items"] if (point := latest(i, *transform))]
+    if len(rows) < 2:
+        return None
+    rows.sort(key=lambda r: r[1], reverse=True)
+    # Items can lag (a region's data a quarter behind): the subtitle names the most common period.
+    (date, freq), _ = Counter((r[2], r[3].freq) for r in rows).most_common(1)[0]
+    ref_lines = []
+    for ind_id, label, *transform in definition.get("ref_from", []):
+        point = latest(ind_id, *transform) if ind_id in by_id else None
+        if point:
+            ref_lines.append({"y": point[0], "label": label})
+    sources = _sources([r[3] for r in rows], by_id)
+    spec = {k: v for k, v in definition.items() if k not in ("items", "transform", "ref_from", "start")}
+    spec.update(kind="hbar", x_kind="category", x_title=definition.get("x_title", "Region"),
+                subtitle=f"{definition['subtitle']} · {period_label(date, freq)}",
+                series=[{"name": definition.get("name", definition["title"]),
+                         "x": [r[0] for r in rows], "y": [r[1] for r in rows]}],
+                ref_lines=ref_lines, freq=None, source=sources)
     return spec

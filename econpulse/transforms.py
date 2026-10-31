@@ -10,6 +10,8 @@ missing period gives a missing result instead of silently comparing the wrong da
     saar      q/q % change, annualised (quarterly series)
     diff      change on the previous period, in the series' own units
     diff_yoy  change on a year earlier, in the series' own units
+    sum_1y    total over the past year (12 months, 4 quarters), for flows like tourist arrivals
+    avg_1y    average over the past year, e.g. a quarterly deficit as a share of GDP
 
 Prefix sa_ (sa_level, sa_pop, sa_ann3m, sa_saar, sa_diff) applies EconPulse's own
 seasonal adjustment first (see seasonal.py), for series published unadjusted.
@@ -24,7 +26,7 @@ PERIODS_PER_YEAR = {"M": 12, "Q": 4, "A": 1}
 _CALENDAR = {"M": "MS", "Q": "QS", "A": "YS"}
 
 SA_PREFIX = "sa_"
-_BASE_TRANSFORMS = ("level", "pop", "yoy", "ann3m", "saar", "diff", "diff_yoy")
+_BASE_TRANSFORMS = ("level", "pop", "yoy", "ann3m", "saar", "diff", "diff_yoy", "sum_1y", "avg_1y")
 _SA_TRANSFORMS = tuple(SA_PREFIX + t for t in ("level", "pop", "ann3m", "saar", "diff"))
 TRANSFORMS = _BASE_TRANSFORMS + _SA_TRANSFORMS
 PERCENT_TRANSFORMS = {"pop", "yoy", "ann3m", "saar", "sa_pop", "sa_ann3m", "sa_saar"}
@@ -70,6 +72,11 @@ def apply(name: str, s: pd.Series, freq: str) -> pd.Series:
         out = ((r / r.shift(1)) ** 4 - 1) * 100
     elif name == "diff":
         out = r.diff(1)
+    elif name in ("sum_1y", "avg_1y"):
+        if freq not in ("M", "Q"):
+            raise ValueError(f"{name} needs a monthly or quarterly series")
+        window = r.rolling(PERIODS_PER_YEAR[freq], min_periods=PERIODS_PER_YEAR[freq])
+        out = window.sum() if name == "sum_1y" else window.mean()
     else:  # diff_yoy
         out = r - year_ago(r, freq)
     return out.dropna()
@@ -85,4 +92,7 @@ def label(name: str, freq: str) -> str:
         return f"{label(name[len(SA_PREFIX):], freq)} SA".strip()
     if name in ("pop", "diff"):
         return {"D": "d/d", "M": "m/m", "Q": "q/q", "A": "y/y"}[freq]
+    if name in ("sum_1y", "avg_1y"):
+        span = "12-mo" if freq == "M" else "4-qtr"
+        return f"{span} {'total' if name == 'sum_1y' else 'avg.'}"
     return {"level": "", "yoy": "y/y", "diff_yoy": "y/y", "ann3m": "3m ann.", "saar": "q/q ann."}[name]

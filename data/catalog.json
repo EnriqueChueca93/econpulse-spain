@@ -1,7 +1,7 @@
 {
  "aaa_10y": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:21+00:00",
+  "fetched_at": "2026-10-31T21:44:28+00:00",
   "first_date": "2004-09-06",
   "last_date": "2026-10-29",
   "n_obs": 5663,
@@ -9,7 +9,7 @@
  },
  "aaa_15y": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:21+00:00",
+  "fetched_at": "2026-10-31T21:44:28+00:00",
   "first_date": "2004-09-06",
   "last_date": "2026-10-29",
   "n_obs": 5663,
@@ -17,7 +17,7 @@
  },
  "aaa_1y": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:20+00:00",
+  "fetched_at": "2026-10-31T21:44:28+00:00",
   "first_date": "2004-09-06",
   "last_date": "2026-10-29",
   "n_obs": 5663,
@@ -25,7 +25,7 @@
  },
  "aaa_30y": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:21+00:00",
+  "fetched_at": "2026-10-31T21:44:28+00:00",
   "first_date": "2004-09-06",
   "last_date": "2026-10-29",
   "n_obs": 5663,
@@ -33,7 +33,7 @@
  },
  "aaa_3y": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:21+00:00",
+  "fetched_at": "2026-10-31T21:44:28+00:00",
   "first_date": "2004-09-06",
   "last_date": "2026-10-29",
   "n_obs": 5663,
@@ -41,7 +41,7 @@
  },
  "aaa_5y": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:21+00:00",
+  "fetched_at": "2026-10-31T21:44:28+00:00",
   "first_date": "2004-09-06",
   "last_date": "2026-10-29",
   "n_obs": 5663,
@@ -49,7 +49,7 @@
  },
  "aaa_fwd_1y": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:19+00:00",
+  "fetched_at": "2026-10-31T21:44:27+00:00",
   "first_date": "2004-09-06",
   "last_date": "2026-10-29",
   "n_obs": 5663,
@@ -57,7 +57,7 @@
  },
  "aaa_fwd_2y": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:19+00:00",
+  "fetched_at": "2026-10-31T21:44:27+00:00",
   "first_date": "2004-09-06",
   "last_date": "2026-10-29",
   "n_obs": 5663,
@@ -65,7 +65,7 @@
  },
  "aaa_fwd_3m": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:19+00:00",
+  "fetched_at": "2026-10-31T21:44:27+00:00",
   "first_date": "2004-09-06",
   "last_date": "2026-10-29",
   "n_obs": 5663,
@@ -73,7 +73,7 @@
  },
  "aaa_fwd_3y": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:19+00:00",
+  "fetched_at": "2026-10-31T21:44:27+00:00",
   "first_date": "2004-09-06",
   "last_date": "2026-10-29",
   "n_obs": 5663,
@@ -81,7 +81,7 @@
  },
  "aaa_fwd_6m": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:19+00:00",
+  "fetched_at": "2026-10-31T21:44:27+00:00",
   "first_date": "2004-09-06",
   "last_date": "2026-10-29",
   "n_obs": 5663,
@@ -89,7 +89,7 @@
  },
  "aaa_fwd_9m": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:19+00:00",
+  "fetched_at": "2026-10-31T21:44:27+00:00",
   "first_date": "2004-09-06",
   "last_date": "2026-10-29",
   "n_obs": 5663,
@@ -97,7 +97,7 @@
  },
  "activity_rate": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:13+00:00",
+  "fetched_at": "2026-10-31T21:44:16+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-07-01",
   "n_obs": 99,
@@ -107,16 +107,56 @@
  },
  "afiliados": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:13+00:00",
+  "fetched_at": "2026-10-31T21:44:16+00:00",
   "first_date": "2001-01-01",
   "last_date": "2026-09-01",
   "n_obs": 309,
   "signature": "[\"segsocial\", \"TOTAL SISTEMA\", {}, 0.001]",
   "source_file": "https://www.seg-social.es/wps/wcm/connect/wss/5ccf558a-868f-48b3-b832-04fe9f524960/19_Serie+afiliaci%C3%B3n+media+por+reg%C3%ADmenes+%28Total+Sistema%29.xlsx"
  },
+ "average_mortgage": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:31+00:00",
+  "first_date": "2003-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 284,
+  "signature": "[\"derived\", \"divide\", {\"a\": \"mortgage_lending_homes\", \"b\": \"mortgages_homes\", \"scale\": 1000000}, 1.0]"
+ },
+ "bond10_fr": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:28+00:00",
+  "first_date": "1986-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 489,
+  "signature": "[\"ecb\", \"IRS/M.FR.L.L40.CI.0000.EUR.N.Z\", {}, 1.0]"
+ },
+ "bond10_it": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:28+00:00",
+  "first_date": "1991-03-01",
+  "last_date": "2026-09-01",
+  "n_obs": 427,
+  "signature": "[\"ecb\", \"IRS/M.IT.L.L40.CI.0000.EUR.N.Z\", {}, 1.0]"
+ },
+ "bond10_nl": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:28+00:00",
+  "first_date": "1986-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 486,
+  "signature": "[\"ecb\", \"IRS/M.NL.L.L40.CI.0000.EUR.N.Z\", {}, 1.0]"
+ },
+ "bond10_pt": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:28+00:00",
+  "first_date": "1993-07-01",
+  "last_date": "2026-09-01",
+  "n_obs": 399,
+  "signature": "[\"ecb\", \"IRS/M.PT.L.L40.CI.0000.EUR.N.Z\", {}, 1.0]"
+ },
  "brent_eur": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:21+00:00",
+  "fetched_at": "2026-10-31T21:44:31+00:00",
   "first_date": "1999-01-04",
   "last_date": "2026-10-27",
   "n_obs": 6669,
@@ -124,7 +164,7 @@
  },
  "brent_usd": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:21+00:00",
+  "fetched_at": "2026-10-31T21:44:28+00:00",
   "first_date": "1987-05-20",
   "last_date": "2026-10-27",
   "n_obs": 9117,
@@ -132,7 +172,7 @@
  },
  "car_sales": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:17+00:00",
+  "fetched_at": "2026-10-31T21:44:19+00:00",
   "first_date": "1988-05-01",
   "last_date": "2026-09-01",
   "n_obs": 461,
@@ -141,7 +181,7 @@
  },
  "compensation_per_employee": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:13+00:00",
+  "fetched_at": "2026-10-31T21:44:16+00:00",
   "first_date": "1996-01-01",
   "last_date": "2026-07-01",
   "n_obs": 123,
@@ -151,7 +191,7 @@
  },
  "construction_confidence": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:17+00:00",
+  "fetched_at": "2026-10-31T21:44:19+00:00",
   "first_date": "1989-01-01",
   "last_date": "2026-10-01",
   "n_obs": 454,
@@ -161,7 +201,7 @@
  },
  "consumer_confidence": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:17+00:00",
+  "fetched_at": "2026-10-31T21:44:19+00:00",
   "first_date": "1986-06-01",
   "last_date": "2026-10-01",
   "n_obs": 485,
@@ -171,7 +211,7 @@
  },
  "consumption_government": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:11+00:00",
+  "fetched_at": "2026-10-31T21:44:13+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
@@ -181,7 +221,7 @@
  },
  "consumption_households": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:11+00:00",
+  "fetched_at": "2026-10-31T21:44:13+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
@@ -191,7 +231,7 @@
  },
  "contrib_domestic_qq": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:11+00:00",
+  "fetched_at": "2026-10-31T21:44:13+00:00",
   "first_date": "1997-01-01",
   "last_date": "2026-07-01",
   "n_obs": 119,
@@ -201,7 +241,7 @@
  },
  "contrib_domestic_yy": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:11+00:00",
+  "fetched_at": "2026-10-31T21:44:14+00:00",
   "first_date": "1997-01-01",
   "last_date": "2026-07-01",
   "n_obs": 119,
@@ -211,7 +251,7 @@
  },
  "contrib_external_qq": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:11+00:00",
+  "fetched_at": "2026-10-31T21:44:14+00:00",
   "first_date": "1997-01-01",
   "last_date": "2026-07-01",
   "n_obs": 119,
@@ -221,7 +261,7 @@
  },
  "contrib_external_yy": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:11+00:00",
+  "fetched_at": "2026-10-31T21:44:14+00:00",
   "first_date": "1997-01-01",
   "last_date": "2026-07-01",
   "n_obs": 119,
@@ -231,7 +271,7 @@
  },
  "core_cpi": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:14+00:00",
+  "fetched_at": "2026-10-31T21:44:16+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-10-01",
   "n_obs": 298,
@@ -241,7 +281,7 @@
  },
  "core_cpi_index": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:14+00:00",
+  "fetched_at": "2026-10-31T21:44:16+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-09-01",
   "n_obs": 297,
@@ -251,7 +291,7 @@
  },
  "cpi": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:14+00:00",
+  "fetched_at": "2026-10-31T21:44:16+00:00",
   "first_date": "1962-01-01",
   "last_date": "2026-10-01",
   "n_obs": 778,
@@ -259,9 +299,99 @@
   "flash": true,
   "source_name": "Nacional. Índice general. Variación anual."
  },
+ "cpi_andalucia": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:29+00:00",
+  "first_date": "1979-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 573,
+  "signature": "[\"ine\", \"IPC293659\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Andalucía. Índice general. Variación anual."
+ },
+ "cpi_aragon": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:29+00:00",
+  "first_date": "1979-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 573,
+  "signature": "[\"ine\", \"IPC293715\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Aragón. Índice general. Variación anual."
+ },
+ "cpi_asturias": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:29+00:00",
+  "first_date": "1979-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 573,
+  "signature": "[\"ine\", \"IPC293771\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Asturias, Principado de. Índice general. Variación anual."
+ },
+ "cpi_baleares": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:30+00:00",
+  "first_date": "1979-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 573,
+  "signature": "[\"ine\", \"IPC293827\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Balears, Illes. Índice general. Variación anual."
+ },
+ "cpi_canarias": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:30+00:00",
+  "first_date": "1979-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 573,
+  "signature": "[\"ine\", \"IPC293883\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Canarias. Índice general. Variación anual."
+ },
+ "cpi_cantabria": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:30+00:00",
+  "first_date": "1979-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 573,
+  "signature": "[\"ine\", \"IPC293939\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Cantabria. Índice general. Variación anual."
+ },
+ "cpi_castilla_leon": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:30+00:00",
+  "first_date": "1979-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 573,
+  "signature": "[\"ine\", \"IPC293995\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Castilla y León. Índice general. Variación anual."
+ },
+ "cpi_castilla_mancha": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:30+00:00",
+  "first_date": "1979-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 573,
+  "signature": "[\"ine\", \"IPC294051\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Castilla - La Mancha. Índice general. Variación anual."
+ },
+ "cpi_cataluna": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:30+00:00",
+  "first_date": "1979-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 573,
+  "signature": "[\"ine\", \"IPC294107\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Cataluña. Índice general. Variación anual."
+ },
  "cpi_energy_index": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:14+00:00",
+  "fetched_at": "2026-10-31T21:44:16+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-09-01",
   "n_obs": 297,
@@ -269,9 +399,29 @@
   "flash": false,
   "source_name": "Nacional. Productos energéticos. Índice."
  },
+ "cpi_extremadura": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:30+00:00",
+  "first_date": "1979-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 573,
+  "signature": "[\"ine\", \"IPC294219\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Extremadura. Índice general. Variación anual."
+ },
+ "cpi_galicia": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:30+00:00",
+  "first_date": "1979-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 573,
+  "signature": "[\"ine\", \"IPC294275\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Galicia. Índice general. Variación anual."
+ },
  "cpi_goods_index": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:14+00:00",
+  "fetched_at": "2026-10-31T21:44:16+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-09-01",
   "n_obs": 297,
@@ -281,7 +431,7 @@
  },
  "cpi_index": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:14+00:00",
+  "fetched_at": "2026-10-31T21:44:16+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-09-01",
   "n_obs": 297,
@@ -289,9 +439,49 @@
   "flash": false,
   "source_name": "Nacional. Índice general. Índice."
  },
+ "cpi_madrid": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:30+00:00",
+  "first_date": "1979-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 573,
+  "signature": "[\"ine\", \"IPC294331\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Madrid, Comunidad de. Índice general. Variación anual."
+ },
+ "cpi_murcia": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:30+00:00",
+  "first_date": "1979-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 573,
+  "signature": "[\"ine\", \"IPC294387\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Murcia, Región de. Índice general. Variación anual."
+ },
+ "cpi_navarra": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:30+00:00",
+  "first_date": "1979-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 573,
+  "signature": "[\"ine\", \"IPC294443\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Navarra, Comunidad Foral de. Índice general. Variación anual."
+ },
+ "cpi_pais_vasco": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:30+00:00",
+  "first_date": "1979-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 573,
+  "signature": "[\"ine\", \"IPC294499\", {}, 1.0]",
+  "flash": false,
+  "source_name": "País Vasco. Índice general. Variación anual."
+ },
  "cpi_processed_food_index": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:14+00:00",
+  "fetched_at": "2026-10-31T21:44:16+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-09-01",
   "n_obs": 297,
@@ -301,7 +491,7 @@
  },
  "cpi_rent_index": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:14+00:00",
+  "fetched_at": "2026-10-31T21:44:17+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-09-01",
   "n_obs": 297,
@@ -309,9 +499,19 @@
   "flash": false,
   "source_name": "Nacional. Vivienda en alquiler. Índice."
  },
+ "cpi_rioja": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:30+00:00",
+  "first_date": "1979-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 573,
+  "signature": "[\"ine\", \"IPC294555\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Rioja, La. Índice general. Variación anual."
+ },
  "cpi_services_index": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:14+00:00",
+  "fetched_at": "2026-10-31T21:44:16+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-09-01",
   "n_obs": 297,
@@ -321,7 +521,7 @@
  },
  "cpi_unprocessed_food_index": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:14+00:00",
+  "fetched_at": "2026-10-31T21:44:16+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-09-01",
   "n_obs": 297,
@@ -329,9 +529,19 @@
   "flash": false,
   "source_name": "Nacional. Alimentos sin elaboración. Índice."
  },
+ "cpi_valenciana": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:30+00:00",
+  "first_date": "1979-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 573,
+  "signature": "[\"ine\", \"IPC294163\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Comunitat Valenciana. Índice general. Variación anual."
+ },
  "current_account": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:17+00:00",
+  "fetched_at": "2026-10-31T21:44:19+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-04-01",
   "n_obs": 126,
@@ -341,7 +551,7 @@
  },
  "current_account_monthly": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:17+00:00",
+  "fetched_at": "2026-10-31T21:44:19+00:00",
   "first_date": "1993-01-01",
   "last_date": "2026-08-01",
   "n_obs": 404,
@@ -350,7 +560,7 @@
  },
  "de_10y": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:20+00:00",
+  "fetched_at": "2026-10-31T21:44:28+00:00",
   "first_date": "2000-01-03",
   "last_date": "2026-10-29",
   "n_obs": 6582,
@@ -359,15 +569,35 @@
  },
  "de_10y_monthly": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:21+00:00",
+  "fetched_at": "2026-10-31T21:44:28+00:00",
   "first_date": "1990-01-01",
   "last_date": "2026-09-01",
   "n_obs": 441,
   "signature": "[\"ecb\", \"IRS/M.DE.L.L40.CI.0000.EUR.N.Z\", {}, 1.0]"
  },
+ "debt_annual": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:20+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 31,
+  "signature": "[\"eurostat\", \"gov_10dd_edpt1\", {\"geo\": \"ES\", \"na_item\": \"GD\", \"sector\": \"S13\", \"unit\": \"PC_GDP\"}, 1.0]",
+  "source_name": "Government deficit/surplus, debt and associated data",
+  "source_updated": "2026-10-21T11:00:00+0200"
+ },
+ "deficit_annual": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:20+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 31,
+  "signature": "[\"eurostat\", \"gov_10dd_edpt1\", {\"geo\": \"ES\", \"na_item\": \"B9\", \"sector\": \"S13\", \"unit\": \"PC_GDP\"}, 1.0]",
+  "source_name": "Government deficit/surplus, debt and associated data",
+  "source_updated": "2026-10-21T11:00:00+0200"
+ },
  "domestic_demand": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:11+00:00",
+  "fetched_at": "2026-10-31T21:44:13+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
@@ -377,7 +607,7 @@
  },
  "ecb_deposit_rate": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:19+00:00",
+  "fetched_at": "2026-10-31T21:44:26+00:00",
   "first_date": "1999-01-01",
   "last_date": "2026-10-31",
   "n_obs": 10166,
@@ -385,7 +615,7 @@
  },
  "ecb_mlf_rate": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:19+00:00",
+  "fetched_at": "2026-10-31T21:44:27+00:00",
   "first_date": "1999-01-01",
   "last_date": "2026-10-31",
   "n_obs": 10166,
@@ -393,7 +623,7 @@
  },
  "ecb_mro_rate": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:19+00:00",
+  "fetched_at": "2026-10-31T21:44:27+00:00",
   "first_date": "1999-01-01",
   "last_date": "2026-10-31",
   "n_obs": 7135,
@@ -401,7 +631,7 @@
  },
  "economic_sentiment": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:17+00:00",
+  "fetched_at": "2026-10-31T21:44:19+00:00",
   "first_date": "1987-04-01",
   "last_date": "2026-10-01",
   "n_obs": 475,
@@ -411,15 +641,23 @@
  },
  "electricity_demand": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:17+00:00",
+  "fetched_at": "2026-10-31T21:44:19+00:00",
   "first_date": "2015-01-01",
   "last_date": "2026-10-30",
   "n_obs": 4321,
   "signature": "[\"ree\", \"demand\", {}, 0.001]"
  },
+ "electricity_demand_monthly": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:31+00:00",
+  "first_date": "2015-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 141,
+  "signature": "[\"derived\", \"average\", {\"a\": \"electricity_demand\", \"period\": \"M\"}, 1.0]"
+ },
  "electricity_price": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:17+00:00",
+  "fetched_at": "2026-10-31T21:44:19+00:00",
   "first_date": "2025-01-01",
   "last_date": "2026-10-31",
   "n_obs": 669,
@@ -427,7 +665,7 @@
  },
  "employment_epa": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:13+00:00",
+  "fetched_at": "2026-10-31T21:44:16+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-07-01",
   "n_obs": 99,
@@ -437,7 +675,7 @@
  },
  "employment_rate": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:13+00:00",
+  "fetched_at": "2026-10-31T21:44:16+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-07-01",
   "n_obs": 99,
@@ -447,7 +685,7 @@
  },
  "es_10y": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:20+00:00",
+  "fetched_at": "2026-10-31T21:44:27+00:00",
   "first_date": "2000-01-03",
   "last_date": "2026-10-28",
   "n_obs": 6827,
@@ -456,7 +694,7 @@
  },
  "es_10y_monthly": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:21+00:00",
+  "fetched_at": "2026-10-31T21:44:28+00:00",
   "first_date": "1991-11-01",
   "last_date": "2026-09-01",
   "n_obs": 419,
@@ -464,7 +702,7 @@
  },
  "es_12m_bill": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:19+00:00",
+  "fetched_at": "2026-10-31T21:44:27+00:00",
   "first_date": "2000-01-03",
   "last_date": "2026-10-28",
   "n_obs": 4287,
@@ -473,7 +711,7 @@
  },
  "es_15y": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:20+00:00",
+  "fetched_at": "2026-10-31T21:44:27+00:00",
   "first_date": "2000-01-03",
   "last_date": "2026-10-28",
   "n_obs": 5529,
@@ -482,7 +720,7 @@
  },
  "es_30y": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:20+00:00",
+  "fetched_at": "2026-10-31T21:44:27+00:00",
   "first_date": "2000-01-03",
   "last_date": "2026-10-28",
   "n_obs": 6082,
@@ -491,7 +729,7 @@
  },
  "es_3y": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:19+00:00",
+  "fetched_at": "2026-10-31T21:44:27+00:00",
   "first_date": "2000-01-03",
   "last_date": "2026-10-28",
   "n_obs": 6736,
@@ -500,7 +738,7 @@
  },
  "es_5y": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:20+00:00",
+  "fetched_at": "2026-10-31T21:44:27+00:00",
   "first_date": "2000-01-03",
   "last_date": "2026-10-28",
   "n_obs": 6719,
@@ -509,7 +747,7 @@
  },
  "estr": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:19+00:00",
+  "fetched_at": "2026-10-31T21:44:27+00:00",
   "first_date": "2019-10-01",
   "last_date": "2026-10-29",
   "n_obs": 1814,
@@ -517,7 +755,7 @@
  },
  "eurchf": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:21+00:00",
+  "fetched_at": "2026-10-31T21:44:28+00:00",
   "first_date": "1999-01-04",
   "last_date": "2026-10-30",
   "n_obs": 7126,
@@ -525,7 +763,7 @@
  },
  "eurgbp": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:21+00:00",
+  "fetched_at": "2026-10-31T21:44:28+00:00",
   "first_date": "1999-01-04",
   "last_date": "2026-10-30",
   "n_obs": 7126,
@@ -533,7 +771,7 @@
  },
  "euribor_12m": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:19+00:00",
+  "fetched_at": "2026-10-31T21:44:27+00:00",
   "first_date": "2000-01-03",
   "last_date": "2026-10-29",
   "n_obs": 6861,
@@ -542,7 +780,7 @@
  },
  "euribor_3m": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:19+00:00",
+  "fetched_at": "2026-10-31T21:44:27+00:00",
   "first_date": "2000-01-03",
   "last_date": "2026-10-29",
   "n_obs": 6860,
@@ -551,7 +789,7 @@
  },
  "eurjpy": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:21+00:00",
+  "fetched_at": "2026-10-31T21:44:28+00:00",
   "first_date": "1999-01-04",
   "last_date": "2026-10-30",
   "n_obs": 7126,
@@ -559,7 +797,7 @@
  },
  "eurusd": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:21+00:00",
+  "fetched_at": "2026-10-31T21:44:28+00:00",
   "first_date": "1999-01-04",
   "last_date": "2026-10-30",
   "n_obs": 7126,
@@ -567,7 +805,7 @@
  },
  "exports": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:11+00:00",
+  "fetched_at": "2026-10-31T21:44:13+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
@@ -577,7 +815,7 @@
  },
  "exports_goods": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:11+00:00",
+  "fetched_at": "2026-10-31T21:44:13+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
@@ -587,7 +825,7 @@
  },
  "exports_services": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:11+00:00",
+  "fetched_at": "2026-10-31T21:44:13+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
@@ -597,7 +835,7 @@
  },
  "gas_eu": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:21+00:00",
+  "fetched_at": "2026-10-31T21:44:28+00:00",
   "first_date": "1992-01-01",
   "last_date": "2026-09-01",
   "n_obs": 417,
@@ -605,7 +843,7 @@
  },
  "gdp": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:11+00:00",
+  "fetched_at": "2026-10-31T21:44:13+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
@@ -615,15 +853,75 @@
  },
  "gdp_deflator": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:21+00:00",
+  "fetched_at": "2026-10-31T21:44:31+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
   "signature": "[\"derived\", \"divide\", {\"a\": \"gdp_nominal\", \"b\": \"gdp\"}, 1.0]"
  },
+ "gdp_growth_de": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:28+00:00",
+  "first_date": "1992-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 139,
+  "signature": "[\"eurostat\", \"namq_10_gdp\", {\"geo\": \"DE\", \"na_item\": \"B1GQ\", \"s_adj\": \"SCA\", \"unit\": \"CLV_PCH_SM\"}, 1.0]",
+  "source_name": "Gross domestic product (GDP) and main components (output, expenditure and income) - quarterly data",
+  "source_updated": "2026-10-30T23:00:00+0100"
+ },
+ "gdp_growth_ea": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:28+00:00",
+  "first_date": "1996-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 123,
+  "signature": "[\"eurostat\", \"namq_10_gdp\", {\"geo\": \"EA20\", \"na_item\": \"B1GQ\", \"s_adj\": \"SCA\", \"unit\": \"CLV_PCH_SM\"}, 1.0]",
+  "source_name": "Gross domestic product (GDP) and main components (output, expenditure and income) - quarterly data",
+  "source_updated": "2026-10-30T23:00:00+0100"
+ },
+ "gdp_growth_fr": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:28+00:00",
+  "first_date": "1981-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 183,
+  "signature": "[\"eurostat\", \"namq_10_gdp\", {\"geo\": \"FR\", \"na_item\": \"B1GQ\", \"s_adj\": \"SCA\", \"unit\": \"CLV_PCH_SM\"}, 1.0]",
+  "source_name": "Gross domestic product (GDP) and main components (output, expenditure and income) - quarterly data",
+  "source_updated": "2026-10-30T23:00:00+0100"
+ },
+ "gdp_growth_it": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:28+00:00",
+  "first_date": "1997-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 119,
+  "signature": "[\"eurostat\", \"namq_10_gdp\", {\"geo\": \"IT\", \"na_item\": \"B1GQ\", \"s_adj\": \"SCA\", \"unit\": \"CLV_PCH_SM\"}, 1.0]",
+  "source_name": "Gross domestic product (GDP) and main components (output, expenditure and income) - quarterly data",
+  "source_updated": "2026-10-30T23:00:00+0100"
+ },
+ "gdp_growth_nl": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:28+00:00",
+  "first_date": "1997-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 119,
+  "signature": "[\"eurostat\", \"namq_10_gdp\", {\"geo\": \"NL\", \"na_item\": \"B1GQ\", \"s_adj\": \"SCA\", \"unit\": \"CLV_PCH_SM\"}, 1.0]",
+  "source_name": "Gross domestic product (GDP) and main components (output, expenditure and income) - quarterly data",
+  "source_updated": "2026-10-30T23:00:00+0100"
+ },
+ "gdp_growth_pt": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:28+00:00",
+  "first_date": "1996-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 123,
+  "signature": "[\"eurostat\", \"namq_10_gdp\", {\"geo\": \"PT\", \"na_item\": \"B1GQ\", \"s_adj\": \"SCA\", \"unit\": \"CLV_PCH_SM\"}, 1.0]",
+  "source_name": "Gross domestic product (GDP) and main components (output, expenditure and income) - quarterly data",
+  "source_updated": "2026-10-30T23:00:00+0100"
+ },
  "gdp_nominal": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:11+00:00",
+  "fetched_at": "2026-10-31T21:44:14+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
@@ -631,9 +929,189 @@
   "flash": false,
   "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. Producto interior bruto a precios de mercado. Dato base. Precios corrientes."
  },
+ "gdp_per_head_andalucia": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:31+00:00",
+  "first_date": "2000-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 26,
+  "signature": "[\"ine\", \"CRE47440\", {}, 1.0]",
+  "flash": true,
+  "source_name": "Andalucía. Índice. Producto interior bruto a precios de mercado per capita. Precios corrientes."
+ },
+ "gdp_per_head_aragon": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:31+00:00",
+  "first_date": "2000-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 26,
+  "signature": "[\"ine\", \"CRE47439\", {}, 1.0]",
+  "flash": true,
+  "source_name": "Aragón. Índice. Producto interior bruto a precios de mercado per capita. Precios corrientes."
+ },
+ "gdp_per_head_asturias": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:31+00:00",
+  "first_date": "2000-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 26,
+  "signature": "[\"ine\", \"CRE47438\", {}, 1.0]",
+  "flash": true,
+  "source_name": "Asturias, Principado de. Índice. Producto interior bruto a precios de mercado per capita. Precios corrientes."
+ },
+ "gdp_per_head_baleares": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:31+00:00",
+  "first_date": "2000-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 26,
+  "signature": "[\"ine\", \"CRE47437\", {}, 1.0]",
+  "flash": true,
+  "source_name": "Balears, Illes. Índice. Producto interior bruto a precios de mercado per capita. Precios corrientes."
+ },
+ "gdp_per_head_canarias": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:31+00:00",
+  "first_date": "2000-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 26,
+  "signature": "[\"ine\", \"CRE47436\", {}, 1.0]",
+  "flash": true,
+  "source_name": "Canarias. Índice. Producto interior bruto a precios de mercado per capita. Precios corrientes."
+ },
+ "gdp_per_head_cantabria": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:31+00:00",
+  "first_date": "2000-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 26,
+  "signature": "[\"ine\", \"CRE47435\", {}, 1.0]",
+  "flash": true,
+  "source_name": "Cantabria. Índice. Producto interior bruto a precios de mercado per capita. Precios corrientes."
+ },
+ "gdp_per_head_castilla_leon": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:31+00:00",
+  "first_date": "2000-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 26,
+  "signature": "[\"ine\", \"CRE47434\", {}, 1.0]",
+  "flash": true,
+  "source_name": "Castilla y León. Índice. Producto interior bruto a precios de mercado per capita. Precios corrientes."
+ },
+ "gdp_per_head_castilla_mancha": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:31+00:00",
+  "first_date": "2000-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 26,
+  "signature": "[\"ine\", \"CRE47433\", {}, 1.0]",
+  "flash": true,
+  "source_name": "Castilla - La Mancha. Índice. Producto interior bruto a precios de mercado per capita. Precios corrientes."
+ },
+ "gdp_per_head_cataluna": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:31+00:00",
+  "first_date": "2000-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 26,
+  "signature": "[\"ine\", \"CRE47432\", {}, 1.0]",
+  "flash": true,
+  "source_name": "Cataluña. Índice. Producto interior bruto a precios de mercado per capita. Precios corrientes."
+ },
+ "gdp_per_head_extremadura": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:31+00:00",
+  "first_date": "2000-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 26,
+  "signature": "[\"ine\", \"CRE47430\", {}, 1.0]",
+  "flash": true,
+  "source_name": "Extremadura. Índice. Producto interior bruto a precios de mercado per capita. Precios corrientes."
+ },
+ "gdp_per_head_galicia": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:31+00:00",
+  "first_date": "2000-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 26,
+  "signature": "[\"ine\", \"CRE47429\", {}, 1.0]",
+  "flash": true,
+  "source_name": "Galicia. Índice. Producto interior bruto a precios de mercado per capita. Precios corrientes."
+ },
+ "gdp_per_head_madrid": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:31+00:00",
+  "first_date": "2000-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 26,
+  "signature": "[\"ine\", \"CRE47428\", {}, 1.0]",
+  "flash": true,
+  "source_name": "Madrid, Comunidad de. Índice. Producto interior bruto a precios de mercado per capita. Precios corrientes."
+ },
+ "gdp_per_head_murcia": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:31+00:00",
+  "first_date": "2000-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 26,
+  "signature": "[\"ine\", \"CRE47427\", {}, 1.0]",
+  "flash": true,
+  "source_name": "Murcia, Región de. Índice. Producto interior bruto a precios de mercado per capita. Precios corrientes."
+ },
+ "gdp_per_head_navarra": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:31+00:00",
+  "first_date": "2000-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 26,
+  "signature": "[\"ine\", \"CRE47426\", {}, 1.0]",
+  "flash": true,
+  "source_name": "Navarra, Comunidad Foral de. Índice. Producto interior bruto a precios de mercado per capita. Precios corrientes."
+ },
+ "gdp_per_head_pais_vasco": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:31+00:00",
+  "first_date": "2000-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 26,
+  "signature": "[\"ine\", \"CRE47425\", {}, 1.0]",
+  "flash": true,
+  "source_name": "País Vasco. Índice. Producto interior bruto a precios de mercado per capita. Precios corrientes."
+ },
+ "gdp_per_head_rioja": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:31+00:00",
+  "first_date": "2000-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 26,
+  "signature": "[\"ine\", \"CRE47424\", {}, 1.0]",
+  "flash": true,
+  "source_name": "Rioja, La. Índice. Producto interior bruto a precios de mercado per capita. Precios corrientes."
+ },
+ "gdp_per_head_spain": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:30+00:00",
+  "first_date": "2000-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 26,
+  "signature": "[\"ine\", \"CRE47441\", {}, 1.0]",
+  "flash": true,
+  "source_name": "Total Nacional. Índice. Producto interior bruto a precios de mercado per capita. Precios corrientes."
+ },
+ "gdp_per_head_valenciana": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:31+00:00",
+  "first_date": "2000-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 26,
+  "signature": "[\"ine\", \"CRE47431\", {}, 1.0]",
+  "flash": true,
+  "source_name": "Comunitat Valenciana. Índice. Producto interior bruto a precios de mercado per capita. Precios corrientes."
+ },
  "government_balance": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:17+00:00",
+  "fetched_at": "2026-10-31T21:44:20+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-04-01",
   "n_obs": 126,
@@ -643,7 +1121,7 @@
  },
  "government_debt": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:17+00:00",
+  "fetched_at": "2026-10-31T21:44:20+00:00",
   "first_date": "1995-10-01",
   "last_date": "2026-04-01",
   "n_obs": 123,
@@ -653,7 +1131,7 @@
  },
  "gva_agriculture": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:11+00:00",
+  "fetched_at": "2026-10-31T21:44:14+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
@@ -663,7 +1141,7 @@
  },
  "gva_construction": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:11+00:00",
+  "fetched_at": "2026-10-31T21:44:14+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
@@ -673,7 +1151,7 @@
  },
  "gva_industry": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:11+00:00",
+  "fetched_at": "2026-10-31T21:44:14+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
@@ -683,7 +1161,7 @@
  },
  "gva_services": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:11+00:00",
+  "fetched_at": "2026-10-31T21:44:14+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
@@ -693,7 +1171,7 @@
  },
  "hicp": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:14+00:00",
+  "fetched_at": "2026-10-31T21:44:18+00:00",
   "first_date": "1997-01-01",
   "last_date": "2026-09-01",
   "n_obs": 357,
@@ -703,7 +1181,7 @@
  },
  "hicp_core": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:15+00:00",
+  "fetched_at": "2026-10-31T21:44:18+00:00",
   "first_date": "2001-12-01",
   "last_date": "2026-09-01",
   "n_obs": 298,
@@ -711,9 +1189,19 @@
   "source_name": "Harmonised index of consumer prices (HICP) - ECOICOP ver.2 - indices and rates of change, monthly data",
   "source_updated": "2026-10-16T23:00:00+0200"
  },
+ "hicp_core_de": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:28+00:00",
+  "first_date": "1997-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 357,
+  "signature": "[\"eurostat\", \"prc_hicp_minr\", {\"coicop18\": \"TOT_X_NRG_FOOD\", \"geo\": \"DE\", \"unit\": \"RCH_A\"}, 1.0]",
+  "source_name": "Harmonised index of consumer prices (HICP) - ECOICOP ver.2 - indices and rates of change, monthly data",
+  "source_updated": "2026-10-16T23:00:00+0200"
+ },
  "hicp_core_euro_area": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:21+00:00",
+  "fetched_at": "2026-10-31T21:44:28+00:00",
   "first_date": "2000-12-01",
   "last_date": "2026-09-01",
   "n_obs": 310,
@@ -721,9 +1209,19 @@
   "source_name": "Harmonised index of consumer prices (HICP) - ECOICOP ver.2 - indices and rates of change, monthly data",
   "source_updated": "2026-10-16T23:00:00+0200"
  },
+ "hicp_core_fr": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:28+00:00",
+  "first_date": "1997-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 357,
+  "signature": "[\"eurostat\", \"prc_hicp_minr\", {\"coicop18\": \"TOT_X_NRG_FOOD\", \"geo\": \"FR\", \"unit\": \"RCH_A\"}, 1.0]",
+  "source_name": "Harmonised index of consumer prices (HICP) - ECOICOP ver.2 - indices and rates of change, monthly data",
+  "source_updated": "2026-10-16T23:00:00+0200"
+ },
  "hicp_core_index": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:15+00:00",
+  "fetched_at": "2026-10-31T21:44:18+00:00",
   "first_date": "2000-12-01",
   "last_date": "2026-09-01",
   "n_obs": 310,
@@ -731,9 +1229,49 @@
   "source_name": "Harmonised index of consumer prices (HICP) - ECOICOP ver.2 - indices and rates of change, monthly data",
   "source_updated": "2026-10-16T23:00:00+0200"
  },
+ "hicp_core_it": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:28+00:00",
+  "first_date": "2000-12-01",
+  "last_date": "2026-09-01",
+  "n_obs": 310,
+  "signature": "[\"eurostat\", \"prc_hicp_minr\", {\"coicop18\": \"TOT_X_NRG_FOOD\", \"geo\": \"IT\", \"unit\": \"RCH_A\"}, 1.0]",
+  "source_name": "Harmonised index of consumer prices (HICP) - ECOICOP ver.2 - indices and rates of change, monthly data",
+  "source_updated": "2026-10-16T23:00:00+0200"
+ },
+ "hicp_core_nl": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:28+00:00",
+  "first_date": "2000-12-01",
+  "last_date": "2026-09-01",
+  "n_obs": 310,
+  "signature": "[\"eurostat\", \"prc_hicp_minr\", {\"coicop18\": \"TOT_X_NRG_FOOD\", \"geo\": \"NL\", \"unit\": \"RCH_A\"}, 1.0]",
+  "source_name": "Harmonised index of consumer prices (HICP) - ECOICOP ver.2 - indices and rates of change, monthly data",
+  "source_updated": "2026-10-16T23:00:00+0200"
+ },
+ "hicp_core_pt": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:28+00:00",
+  "first_date": "2000-12-01",
+  "last_date": "2026-09-01",
+  "n_obs": 310,
+  "signature": "[\"eurostat\", \"prc_hicp_minr\", {\"coicop18\": \"TOT_X_NRG_FOOD\", \"geo\": \"PT\", \"unit\": \"RCH_A\"}, 1.0]",
+  "source_name": "Harmonised index of consumer prices (HICP) - ECOICOP ver.2 - indices and rates of change, monthly data",
+  "source_updated": "2026-10-16T23:00:00+0200"
+ },
+ "hicp_de": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:28+00:00",
+  "first_date": "1997-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 357,
+  "signature": "[\"eurostat\", \"prc_hicp_minr\", {\"coicop18\": \"TOTAL\", \"geo\": \"DE\", \"unit\": \"RCH_A\"}, 1.0]",
+  "source_name": "Harmonised index of consumer prices (HICP) - ECOICOP ver.2 - indices and rates of change, monthly data",
+  "source_updated": "2026-10-16T23:00:00+0200"
+ },
  "hicp_euro_area": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:21+00:00",
+  "fetched_at": "2026-10-31T21:44:28+00:00",
   "first_date": "1997-01-01",
   "last_date": "2026-09-01",
   "n_obs": 357,
@@ -741,9 +1279,19 @@
   "source_name": "Harmonised index of consumer prices (HICP) - ECOICOP ver.2 - indices and rates of change, monthly data",
   "source_updated": "2026-10-16T23:00:00+0200"
  },
+ "hicp_fr": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:28+00:00",
+  "first_date": "1997-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 357,
+  "signature": "[\"eurostat\", \"prc_hicp_minr\", {\"coicop18\": \"TOTAL\", \"geo\": \"FR\", \"unit\": \"RCH_A\"}, 1.0]",
+  "source_name": "Harmonised index of consumer prices (HICP) - ECOICOP ver.2 - indices and rates of change, monthly data",
+  "source_updated": "2026-10-16T23:00:00+0200"
+ },
  "hicp_index": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:15+00:00",
+  "fetched_at": "2026-10-31T21:44:18+00:00",
   "first_date": "1996-01-01",
   "last_date": "2026-09-01",
   "n_obs": 369,
@@ -751,9 +1299,48 @@
   "source_name": "Harmonised index of consumer prices (HICP) - ECOICOP ver.2 - indices and rates of change, monthly data",
   "source_updated": "2026-10-16T23:00:00+0200"
  },
+ "hicp_it": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:28+00:00",
+  "first_date": "1997-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 357,
+  "signature": "[\"eurostat\", \"prc_hicp_minr\", {\"coicop18\": \"TOTAL\", \"geo\": \"IT\", \"unit\": \"RCH_A\"}, 1.0]",
+  "source_name": "Harmonised index of consumer prices (HICP) - ECOICOP ver.2 - indices and rates of change, monthly data",
+  "source_updated": "2026-10-16T23:00:00+0200"
+ },
+ "hicp_nl": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:28+00:00",
+  "first_date": "1997-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 357,
+  "signature": "[\"eurostat\", \"prc_hicp_minr\", {\"coicop18\": \"TOTAL\", \"geo\": \"NL\", \"unit\": \"RCH_A\"}, 1.0]",
+  "source_name": "Harmonised index of consumer prices (HICP) - ECOICOP ver.2 - indices and rates of change, monthly data",
+  "source_updated": "2026-10-16T23:00:00+0200"
+ },
+ "hicp_pt": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:28+00:00",
+  "first_date": "1997-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 357,
+  "signature": "[\"eurostat\", \"prc_hicp_minr\", {\"coicop18\": \"TOTAL\", \"geo\": \"PT\", \"unit\": \"RCH_A\"}, 1.0]",
+  "source_name": "Harmonised index of consumer prices (HICP) - ECOICOP ver.2 - indices and rates of change, monthly data",
+  "source_updated": "2026-10-16T23:00:00+0200"
+ },
+ "home_permits": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:20+00:00",
+  "first_date": "1991-11-01",
+  "last_date": "2026-05-01",
+  "n_obs": 415,
+  "signature": "[\"bde\", \"D_1KB52212\", {}, 1.0]",
+  "source_name": "Estadísticas Generales. Edificación y vivienda. Visados obra nueva. Viviendas"
+ },
  "home_sales": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:17+00:00",
+  "fetched_at": "2026-10-31T21:44:19+00:00",
   "first_date": "2007-01-01",
   "last_date": "2026-08-01",
   "n_obs": 236,
@@ -763,7 +1350,7 @@
  },
  "hotel_nights_foreign": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:17+00:00",
+  "fetched_at": "2026-10-31T21:44:19+00:00",
   "first_date": "2003-01-01",
   "last_date": "2026-09-01",
   "n_obs": 283,
@@ -772,7 +1359,7 @@
  },
  "house_prices": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:17+00:00",
+  "fetched_at": "2026-10-31T21:44:19+00:00",
   "first_date": "2007-01-01",
   "last_date": "2026-04-01",
   "n_obs": 78,
@@ -780,9 +1367,223 @@
   "flash": false,
   "source_name": "Nacional. General. Índice."
  },
+ "house_prices_andalucia": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:29+00:00",
+  "first_date": "2007-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 78,
+  "signature": "[\"ine\", \"IPV1623\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Andalucía. General. Índice."
+ },
+ "house_prices_aragon": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:29+00:00",
+  "first_date": "2007-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 78,
+  "signature": "[\"ine\", \"IPV1638\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Aragón. General. Índice."
+ },
+ "house_prices_asturias": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:29+00:00",
+  "first_date": "2007-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 78,
+  "signature": "[\"ine\", \"IPV1653\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Asturias, Principado de. General. Índice."
+ },
+ "house_prices_baleares": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:29+00:00",
+  "first_date": "2007-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 78,
+  "signature": "[\"ine\", \"IPV1668\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Balears, Illes. General. Índice."
+ },
+ "house_prices_canarias": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:29+00:00",
+  "first_date": "2007-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 78,
+  "signature": "[\"ine\", \"IPV1534\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Canarias. General. Índice."
+ },
+ "house_prices_cantabria": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:29+00:00",
+  "first_date": "2007-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 78,
+  "signature": "[\"ine\", \"IPV1549\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Cantabria. General. Índice."
+ },
+ "house_prices_castilla_leon": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:29+00:00",
+  "first_date": "2007-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 78,
+  "signature": "[\"ine\", \"IPV1564\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Castilla y León. General. Índice."
+ },
+ "house_prices_castilla_mancha": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:29+00:00",
+  "first_date": "2007-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 78,
+  "signature": "[\"ine\", \"IPV1579\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Castilla - La Mancha. General. Índice."
+ },
+ "house_prices_cataluna": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:29+00:00",
+  "first_date": "2007-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 78,
+  "signature": "[\"ine\", \"IPV1594\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Cataluña. General. Índice."
+ },
+ "house_prices_extremadura": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:29+00:00",
+  "first_date": "2007-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 78,
+  "signature": "[\"ine\", \"IPV1407\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Extremadura. General. Índice."
+ },
+ "house_prices_galicia": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:29+00:00",
+  "first_date": "2007-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 78,
+  "signature": "[\"ine\", \"IPV1422\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Galicia. General. Índice."
+ },
+ "house_prices_madrid": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:29+00:00",
+  "first_date": "2007-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 78,
+  "signature": "[\"ine\", \"IPV1437\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Madrid, Comunidad de. General. Índice."
+ },
+ "house_prices_murcia": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:29+00:00",
+  "first_date": "2007-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 78,
+  "signature": "[\"ine\", \"IPV1452\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Murcia, Región de. General. Índice."
+ },
+ "house_prices_navarra": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:29+00:00",
+  "first_date": "2007-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 78,
+  "signature": "[\"ine\", \"IPV1467\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Navarra, Comunidad Foral de. General. Índice."
+ },
+ "house_prices_new": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:19+00:00",
+  "first_date": "2007-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 78,
+  "signature": "[\"ine\", \"IPV1613\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Nacional. Vivienda nueva. Índice."
+ },
+ "house_prices_pais_vasco": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:29+00:00",
+  "first_date": "2007-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 78,
+  "signature": "[\"ine\", \"IPV1482\", {}, 1.0]",
+  "flash": false,
+  "source_name": "País Vasco. General. Índice."
+ },
+ "house_prices_rioja": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:29+00:00",
+  "first_date": "2007-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 78,
+  "signature": "[\"ine\", \"IPV1497\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Rioja, La. General. Índice."
+ },
+ "house_prices_used": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:19+00:00",
+  "first_date": "2007-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 78,
+  "signature": "[\"ine\", \"IPV1618\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Nacional. Vivienda segunda mano. Índice."
+ },
+ "house_prices_valenciana": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:29+00:00",
+  "first_date": "2007-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 78,
+  "signature": "[\"ine\", \"IPV1392\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Comunitat Valenciana. General. Índice."
+ },
+ "household_debt_gdp": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:28+00:00",
+  "first_date": "1999-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 110,
+  "signature": "[\"ecb\", \"QSA/Q.N.ES.W0.S1M.S1.N.L.LE.F4.T._Z.XDC_R_B1GQ_CY._T.S.V.N._T\", {}, 1.0]"
+ },
+ "household_debt_income": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:28+00:00",
+  "first_date": "1999-10-01",
+  "last_date": "2026-04-01",
+  "n_obs": 107,
+  "signature": "[\"ecb\", \"QSA/Q.N.ES.W0.S1M.S1.N.L.LE.F4.T._Z.XDC_R_B6GA_CY._T.S.V.N._T\", {}, 1.0]"
+ },
+ "housing_loans_growth": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:28+00:00",
+  "first_date": "2004-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 273,
+  "signature": "[\"ecb\", \"BSI/M.ES.N.A.A22.A.I.U2.2250.Z01.A\", {}, 1.0]"
+ },
  "ibex35": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:21+00:00",
+  "fetched_at": "2026-10-31T21:44:28+00:00",
   "first_date": "2000-01-03",
   "last_date": "2026-10-29",
   "n_obs": 6827,
@@ -791,7 +1592,7 @@
  },
  "imports": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:11+00:00",
+  "fetched_at": "2026-10-31T21:44:13+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
@@ -801,7 +1602,7 @@
  },
  "industrial_production": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:17+00:00",
+  "fetched_at": "2026-10-31T21:44:19+00:00",
   "first_date": "1992-01-01",
   "last_date": "2026-08-01",
   "n_obs": 416,
@@ -811,7 +1612,7 @@
  },
  "industry_confidence": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:17+00:00",
+  "fetched_at": "2026-10-31T21:44:19+00:00",
   "first_date": "1987-04-01",
   "last_date": "2026-10-01",
   "n_obs": 475,
@@ -819,9 +1620,19 @@
   "source_name": "Economic sentiment and confidence indicators by sector - monthly data",
   "source_updated": "2026-10-29T11:00:00+0100"
  },
+ "interest_annual": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:20+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 31,
+  "signature": "[\"eurostat\", \"gov_10a_main\", {\"geo\": \"ES\", \"na_item\": \"D41PAY\", \"sector\": \"S13\", \"unit\": \"PC_GDP\"}, 1.0]",
+  "source_name": "Government revenue, expenditure and main aggregates",
+  "source_updated": "2026-10-21T11:00:00+0200"
+ },
  "investment": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:11+00:00",
+  "fetched_at": "2026-10-31T21:44:13+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
@@ -831,7 +1642,7 @@
  },
  "investment_construction": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:11+00:00",
+  "fetched_at": "2026-10-31T21:44:13+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
@@ -841,7 +1652,7 @@
  },
  "investment_equipment": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:11+00:00",
+  "fetched_at": "2026-10-31T21:44:13+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
@@ -851,7 +1662,7 @@
  },
  "investment_housing": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:11+00:00",
+  "fetched_at": "2026-10-31T21:44:13+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
@@ -861,7 +1672,7 @@
  },
  "jobs_fte": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:11+00:00",
+  "fetched_at": "2026-10-31T21:44:14+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
@@ -871,7 +1682,7 @@
  },
  "labour_cost": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:13+00:00",
+  "fetched_at": "2026-10-31T21:44:16+00:00",
   "first_date": "2008-01-01",
   "last_date": "2026-04-01",
   "n_obs": 74,
@@ -881,7 +1692,7 @@
  },
  "lci_wages": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:13+00:00",
+  "fetched_at": "2026-10-31T21:44:16+00:00",
   "first_date": "2000-01-01",
   "last_date": "2026-04-01",
   "n_obs": 106,
@@ -891,7 +1702,7 @@
  },
  "long_term_unemployment": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:13+00:00",
+  "fetched_at": "2026-10-31T21:44:16+00:00",
   "first_date": "2009-01-01",
   "last_date": "2026-04-01",
   "n_obs": 70,
@@ -899,17 +1710,45 @@
   "source_name": "Long-term unemployment by sex - quarterly data",
   "source_updated": "2026-10-26T23:00:00+0100"
  },
+ "mortgage_lending_homes": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:20+00:00",
+  "first_date": "2003-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 284,
+  "signature": "[\"ine\", \"HPT34565\", {}, 0.001]",
+  "flash": false,
+  "source_name": "Viviendas. Importe de hipotecas. Total Nacional. Base nueva. Mensual."
+ },
  "mortgage_rate": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:21+00:00",
+  "fetched_at": "2026-10-31T21:44:28+00:00",
   "first_date": "2000-01-01",
   "last_date": "2026-08-01",
   "n_obs": 320,
   "signature": "[\"ecb\", \"MIR/M.ES.B.A2C.A.R.A.2250.EUR.N\", {}, 1.0]"
  },
+ "mortgages_homes": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:20+00:00",
+  "first_date": "2003-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 284,
+  "signature": "[\"ine\", \"HPT34618\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Viviendas. Número de hipotecas. Total Nacional. Base nueva. Mensual."
+ },
+ "new_mortgage_lending": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:28+00:00",
+  "first_date": "2003-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 284,
+  "signature": "[\"ecb\", \"MIR/M.ES.B.A2C.A.B.A.2250.EUR.N\", {}, 1.0]"
+ },
  "paro_registrado": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:13+00:00",
+  "fetched_at": "2026-10-31T21:44:16+00:00",
   "first_date": "1943-06-01",
   "last_date": "2026-09-01",
   "n_obs": 1000,
@@ -918,7 +1757,7 @@
  },
  "ppi": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:14+00:00",
+  "fetched_at": "2026-10-31T21:44:18+00:00",
   "first_date": "1975-01-01",
   "last_date": "2026-09-01",
   "n_obs": 621,
@@ -928,7 +1767,7 @@
  },
  "price_expectations": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:15+00:00",
+  "fetched_at": "2026-10-31T21:44:18+00:00",
   "first_date": "1986-06-01",
   "last_date": "2026-10-01",
   "n_obs": 485,
@@ -936,9 +1775,17 @@
   "source_name": "Consumers confidence indicator and survey results - monthly data",
   "source_updated": "2026-10-29T11:00:00+0100"
  },
+ "primary_balance": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:31+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 31,
+  "signature": "[\"derived\", \"add\", {\"a\": \"deficit_annual\", \"b\": \"interest_annual\"}, 1.0]"
+ },
  "productivity_fte": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:11+00:00",
+  "fetched_at": "2026-10-31T21:44:14+00:00",
   "first_date": "1996-01-01",
   "last_date": "2026-07-01",
   "n_obs": 123,
@@ -948,7 +1795,7 @@
  },
  "productivity_hour": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:12+00:00",
+  "fetched_at": "2026-10-31T21:44:14+00:00",
   "first_date": "1996-01-01",
   "last_date": "2026-07-01",
   "n_obs": 123,
@@ -956,9 +1803,17 @@
   "flash": false,
   "source_name": "Productividad por hora efectivamente trabajada. Datos ajustados de estacionalidad y calendario. Variación anual. Total Nacional."
  },
+ "real_house_prices": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:31+00:00",
+  "first_date": "2007-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 78,
+  "signature": "[\"derived\", \"deflate\", {\"a\": \"house_prices\", \"b\": \"cpi_index\", \"period\": \"Q\"}, 1.0]"
+ },
  "real_wage": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:21+00:00",
+  "fetched_at": "2026-10-31T21:44:31+00:00",
   "first_date": "2008-01-01",
   "last_date": "2026-04-01",
   "n_obs": 74,
@@ -966,7 +1821,7 @@
  },
  "retail_sales": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:17+00:00",
+  "fetched_at": "2026-10-31T21:44:19+00:00",
   "first_date": "2000-01-01",
   "last_date": "2026-09-01",
   "n_obs": 321,
@@ -974,9 +1829,19 @@
   "flash": false,
   "source_name": "Total Nacional. Cifra de negocio a precios constantes. General. Comercio al por menor, excepto de vehículos de motor y motocicletas. Índice. Datos ajustados de estacionalidad y calendario."
  },
+ "revenue_annual": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:20+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 31,
+  "signature": "[\"eurostat\", \"gov_10a_main\", {\"geo\": \"ES\", \"na_item\": \"TR\", \"sector\": \"S13\", \"unit\": \"PC_GDP\"}, 1.0]",
+  "source_name": "Government revenue, expenditure and main aggregates",
+  "source_updated": "2026-10-21T11:00:00+0200"
+ },
  "risk_premium": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:21+00:00",
+  "fetched_at": "2026-10-31T21:44:28+00:00",
   "first_date": "2000-01-03",
   "last_date": "2026-10-29",
   "n_obs": 6571,
@@ -985,15 +1850,57 @@
  },
  "risk_premium_monthly": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:21+00:00",
+  "fetched_at": "2026-10-31T21:44:31+00:00",
   "first_date": "1991-11-01",
   "last_date": "2026-09-01",
   "n_obs": 419,
   "signature": "[\"derived\", \"subtract\", {\"a\": \"es_10y_monthly\", \"b\": \"de_10y_monthly\", \"scale\": 100}, 1.0]"
  },
+ "spending_annual": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:20+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 31,
+  "signature": "[\"eurostat\", \"gov_10a_main\", {\"geo\": \"ES\", \"na_item\": \"TE\", \"sector\": \"S13\", \"unit\": \"PC_GDP\"}, 1.0]",
+  "source_name": "Government revenue, expenditure and main aggregates",
+  "source_updated": "2026-10-21T11:00:00+0200"
+ },
+ "spread10_fr": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:31+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 441,
+  "signature": "[\"derived\", \"subtract\", {\"a\": \"bond10_fr\", \"b\": \"de_10y_monthly\", \"scale\": 100}, 1.0]"
+ },
+ "spread10_it": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:31+00:00",
+  "first_date": "1991-03-01",
+  "last_date": "2026-09-01",
+  "n_obs": 427,
+  "signature": "[\"derived\", \"subtract\", {\"a\": \"bond10_it\", \"b\": \"de_10y_monthly\", \"scale\": 100}, 1.0]"
+ },
+ "spread10_nl": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:31+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 441,
+  "signature": "[\"derived\", \"subtract\", {\"a\": \"bond10_nl\", \"b\": \"de_10y_monthly\", \"scale\": 100}, 1.0]"
+ },
+ "spread10_pt": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:31+00:00",
+  "first_date": "1993-07-01",
+  "last_date": "2026-09-01",
+  "n_obs": 399,
+  "signature": "[\"derived\", \"subtract\", {\"a\": \"bond10_pt\", \"b\": \"de_10y_monthly\", \"scale\": 100}, 1.0]"
+ },
  "temporary_rate": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:13+00:00",
+  "fetched_at": "2026-10-31T21:44:16+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-07-01",
   "n_obs": 99,
@@ -1003,7 +1910,7 @@
  },
  "tourism_receipts": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:17+00:00",
+  "fetched_at": "2026-10-31T21:44:19+00:00",
   "first_date": "1993-01-01",
   "last_date": "2026-08-01",
   "n_obs": 404,
@@ -1012,17 +1919,17 @@
  },
  "tourist_arrivals": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:17+00:00",
+  "fetched_at": "2026-10-31T21:44:19+00:00",
   "first_date": "2015-10-01",
   "last_date": "2026-08-01",
   "n_obs": 131,
-  "signature": "[\"ine\", \"FREG287\", {}, 1e-06]",
+  "signature": "[\"ine\", \"FREG286\", {}, 1e-06]",
   "flash": false,
-  "source_name": "Total. Total Nacional. Dato base."
+  "source_name": "Turista. Total Nacional. Dato base."
  },
  "tourist_spending": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:17+00:00",
+  "fetched_at": "2026-10-31T21:44:19+00:00",
   "first_date": "2015-10-01",
   "last_date": "2026-08-01",
   "n_obs": 131,
@@ -1030,9 +1937,119 @@
   "flash": false,
   "source_name": "Gasto total. Total Nacional. Turista. Dato base."
  },
+ "unemployment_andalucia": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:29+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 99,
+  "signature": "[\"ine\", \"EPA452440\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Tasa de paro de la población. Ambos sexos. Andalucía. Total."
+ },
+ "unemployment_aragon": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:29+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 99,
+  "signature": "[\"ine\", \"EPA452448\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Tasa de paro de la población. Ambos sexos. Aragón. Total."
+ },
+ "unemployment_asturias": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:29+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 99,
+  "signature": "[\"ine\", \"EPA452456\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Tasa de paro de la población. Ambos sexos. Asturias, Principado de. Total."
+ },
+ "unemployment_baleares": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:29+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 99,
+  "signature": "[\"ine\", \"EPA452464\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Tasa de paro de la población. Ambos sexos. Balears, Illes. Total."
+ },
+ "unemployment_canarias": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:29+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 99,
+  "signature": "[\"ine\", \"EPA452472\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Tasa de paro de la población. Ambos sexos. Canarias. Total."
+ },
+ "unemployment_cantabria": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:29+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 99,
+  "signature": "[\"ine\", \"EPA452480\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Tasa de paro de la población. Ambos sexos. Cantabria. Total."
+ },
+ "unemployment_castilla_leon": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:29+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 99,
+  "signature": "[\"ine\", \"EPA452488\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Tasa de paro de la población. Ambos sexos. Castilla y León. Total."
+ },
+ "unemployment_castilla_mancha": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:29+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 99,
+  "signature": "[\"ine\", \"EPA452496\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Tasa de paro de la población. Ambos sexos. Castilla - La Mancha. Total."
+ },
+ "unemployment_cataluna": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:29+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 99,
+  "signature": "[\"ine\", \"EPA452504\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Tasa de paro de la población. Ambos sexos. Cataluña. Total."
+ },
+ "unemployment_de": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:28+00:00",
+  "first_date": "1991-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 429,
+  "signature": "[\"eurostat\", \"une_rt_m\", {\"age\": \"TOTAL\", \"geo\": \"DE\", \"s_adj\": \"SA\", \"sex\": \"T\", \"unit\": \"PC_ACT\"}, 1.0]",
+  "source_name": "Unemployment by sex and age - monthly data",
+  "source_updated": "2026-10-30T11:00:00+0100"
+ },
+ "unemployment_ea": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:28+00:00",
+  "first_date": "2000-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 321,
+  "signature": "[\"eurostat\", \"une_rt_m\", {\"age\": \"TOTAL\", \"geo\": \"EA21\", \"s_adj\": \"SA\", \"sex\": \"T\", \"unit\": \"PC_ACT\"}, 1.0]",
+  "source_name": "Unemployment by sex and age - monthly data",
+  "source_updated": "2026-10-30T11:00:00+0100"
+ },
  "unemployment_epa": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:13+00:00",
+  "fetched_at": "2026-10-31T21:44:16+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-07-01",
   "n_obs": 99,
@@ -1040,9 +2057,59 @@
   "flash": false,
   "source_name": "Total Nacional. Tasa de paro de la población. Ambos sexos. Total."
  },
+ "unemployment_extremadura": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:29+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 99,
+  "signature": "[\"ine\", \"EPA452520\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Tasa de paro de la población. Ambos sexos. Extremadura. Total."
+ },
+ "unemployment_fr": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:28+00:00",
+  "first_date": "1983-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 525,
+  "signature": "[\"eurostat\", \"une_rt_m\", {\"age\": \"TOTAL\", \"geo\": \"FR\", \"s_adj\": \"SA\", \"sex\": \"T\", \"unit\": \"PC_ACT\"}, 1.0]",
+  "source_name": "Unemployment by sex and age - monthly data",
+  "source_updated": "2026-10-30T11:00:00+0100"
+ },
+ "unemployment_galicia": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:29+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 99,
+  "signature": "[\"ine\", \"EPA452528\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Tasa de paro de la población. Ambos sexos. Galicia. Total."
+ },
+ "unemployment_it": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:28+00:00",
+  "first_date": "1983-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 525,
+  "signature": "[\"eurostat\", \"une_rt_m\", {\"age\": \"TOTAL\", \"geo\": \"IT\", \"s_adj\": \"SA\", \"sex\": \"T\", \"unit\": \"PC_ACT\"}, 1.0]",
+  "source_name": "Unemployment by sex and age - monthly data",
+  "source_updated": "2026-10-30T11:00:00+0100"
+ },
+ "unemployment_madrid": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:29+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 99,
+  "signature": "[\"ine\", \"EPA452536\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Tasa de paro de la población. Ambos sexos. Madrid, Comunidad de. Total."
+ },
  "unemployment_monthly": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:13+00:00",
+  "fetched_at": "2026-10-31T21:44:16+00:00",
   "first_date": "1986-04-01",
   "last_date": "2026-09-01",
   "n_obs": 486,
@@ -1050,9 +2117,79 @@
   "source_name": "Unemployment by sex and age - monthly data",
   "source_updated": "2026-10-30T11:00:00+0100"
  },
+ "unemployment_murcia": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:29+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 99,
+  "signature": "[\"ine\", \"EPA452544\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Tasa de paro de la población. Ambos sexos. Murcia, Región de. Total."
+ },
+ "unemployment_navarra": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:29+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 99,
+  "signature": "[\"ine\", \"EPA452552\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Tasa de paro de la población. Ambos sexos. Navarra, Comunidad Foral de. Total."
+ },
+ "unemployment_nl": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:28+00:00",
+  "first_date": "1983-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 525,
+  "signature": "[\"eurostat\", \"une_rt_m\", {\"age\": \"TOTAL\", \"geo\": \"NL\", \"s_adj\": \"SA\", \"sex\": \"T\", \"unit\": \"PC_ACT\"}, 1.0]",
+  "source_name": "Unemployment by sex and age - monthly data",
+  "source_updated": "2026-10-30T11:00:00+0100"
+ },
+ "unemployment_pais_vasco": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:29+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 99,
+  "signature": "[\"ine\", \"EPA452560\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Tasa de paro de la población. Ambos sexos. País Vasco. Total."
+ },
+ "unemployment_pt": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:28+00:00",
+  "first_date": "1983-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 525,
+  "signature": "[\"eurostat\", \"une_rt_m\", {\"age\": \"TOTAL\", \"geo\": \"PT\", \"s_adj\": \"SA\", \"sex\": \"T\", \"unit\": \"PC_ACT\"}, 1.0]",
+  "source_name": "Unemployment by sex and age - monthly data",
+  "source_updated": "2026-10-30T11:00:00+0100"
+ },
+ "unemployment_rioja": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:29+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 99,
+  "signature": "[\"ine\", \"EPA452568\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Tasa de paro de la población. Ambos sexos. Rioja, La. Total."
+ },
+ "unemployment_valenciana": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:29+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 99,
+  "signature": "[\"ine\", \"EPA452512\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Tasa de paro de la población. Ambos sexos. Comunitat Valenciana. Total."
+ },
  "unit_labour_cost": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:12+00:00",
+  "fetched_at": "2026-10-31T21:44:14+00:00",
   "first_date": "1996-01-01",
   "last_date": "2026-07-01",
   "n_obs": 123,
@@ -1060,9 +2197,57 @@
   "flash": false,
   "source_name": "Coste laboral unitario. Datos ajustados de estacionalidad y calendario. Variación anual. Total Nacional."
  },
+ "us_10y": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:29+00:00",
+  "first_date": "1962-01-02",
+  "last_date": "2026-10-29",
+  "n_obs": 16192,
+  "signature": "[\"fred\", \"DGS10\", {}, 1.0]"
+ },
+ "us_core_cpi_index": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:28+00:00",
+  "first_date": "1957-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 836,
+  "signature": "[\"fred\", \"CPILFESL\", {}, 1.0]"
+ },
+ "us_cpi_index": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:28+00:00",
+  "first_date": "1947-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 956,
+  "signature": "[\"fred\", \"CPIAUCSL\", {}, 1.0]"
+ },
+ "us_fed_funds": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:29+00:00",
+  "first_date": "2008-12-16",
+  "last_date": "2026-10-31",
+  "n_obs": 6529,
+  "signature": "[\"fred\", \"DFEDTARU\", {}, 1.0]"
+ },
+ "us_gdp_growth": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:28+00:00",
+  "first_date": "1948-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 315,
+  "signature": "[\"fred\", \"A191RO1Q156NBEA\", {}, 1.0]"
+ },
+ "us_unemployment": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T21:44:28+00:00",
+  "first_date": "1948-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 944,
+  "signature": "[\"fred\", \"UNRATE\", {}, 1.0]"
+ },
  "wage_agreements": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:14+00:00",
+  "fetched_at": "2026-10-31T21:44:16+00:00",
   "first_date": "1983-02-01",
   "last_date": "2026-09-01",
   "n_obs": 524,
@@ -1071,7 +2256,7 @@
  },
  "wage_cost": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:13+00:00",
+  "fetched_at": "2026-10-31T21:44:16+00:00",
   "first_date": "2008-01-01",
   "last_date": "2026-04-01",
   "n_obs": 74,
@@ -1081,7 +2266,7 @@
  },
  "wage_cost_hour": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:13+00:00",
+  "fetched_at": "2026-10-31T21:44:16+00:00",
   "first_date": "2008-01-01",
   "last_date": "2026-04-01",
   "n_obs": 74,
@@ -1091,7 +2276,7 @@
  },
  "wage_cost_ordinary": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:13+00:00",
+  "fetched_at": "2026-10-31T21:44:16+00:00",
   "first_date": "2008-01-01",
   "last_date": "2026-04-01",
   "n_obs": 74,
@@ -1101,7 +2286,7 @@
  },
  "youth_unemployment": {
   "status": "ok",
-  "fetched_at": "2026-10-31T21:11:13+00:00",
+  "fetched_at": "2026-10-31T21:44:16+00:00",
   "first_date": "1986-04-01",
   "last_date": "2026-09-01",
   "n_obs": 486,

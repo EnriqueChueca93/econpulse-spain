@@ -12,11 +12,13 @@ from .sources import derived
 
 SECTIONS = (
     "gdp", "labour", "wages", "inflation", "financial", "ecb",
-    "fiscal", "activity", "housing", "international",
+    "fiscal", "activity", "housing", "international", "regions",
 )
 
 # How old the latest observation may get before we flag the series as not updating.
-DEFAULT_MAX_AGE_DAYS = {"D": 10, "M": 120, "Q": 260, "A": 560}
+# Dates are period starts, so a year's figure published the following spring or
+# December is already 15-23 months "old" when the next one is due.
+DEFAULT_MAX_AGE_DAYS = {"D": 10, "M": 120, "Q": 260, "A": 850}
 
 
 @dataclass
@@ -59,11 +61,28 @@ class Indicator:
         return json.dumps([self.source, self.key, self.params, self.scale], sort_keys=True, ensure_ascii=False)
 
 
+def _fill(value, item: dict):
+    """Fill {placeholders} in every string of an entry from one for_each item."""
+    if isinstance(value, str):
+        return value.format(**item)
+    if isinstance(value, dict):
+        return {k: _fill(v, item) for k, v in value.items()}
+    if isinstance(value, list):
+        return [_fill(v, item) for v in value]
+    return value
+
+
+def expand(entry: dict) -> list[dict]:
+    """One entry, or one per item of its `for_each` list (a country or region, say)."""
+    entry = dict(entry)
+    items = entry.pop("for_each", None)
+    return [entry] if items is None else [_fill(entry, item) for item in items]
+
+
 def load_registry(path: Path = REGISTRY_FILE) -> list[Indicator]:
     raw = yaml.safe_load(Path(path).read_text(encoding="utf-8"))
     indicators = []
-    for entry in raw["indicators"]:
-        entry = dict(entry)
+    for entry in (e for template in raw["indicators"] for e in expand(template)):
         entry["transforms"] = tuple(entry.get("transforms", ("level",)))
         entry["params"] = entry.get("params") or {}
         indicators.append(Indicator(**entry))

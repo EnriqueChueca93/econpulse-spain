@@ -54,9 +54,50 @@
     return spec.freq === "Q" ? "Q%q %Y" : spec.freq === "D" ? "%-d %b %Y" : "%b %Y";
   }
 
+  var CONFIG_BASE = {
+    displaylogo: false, responsive: true,
+    modeBarButtonsToRemove: ["zoom2d", "pan2d", "select2d", "lasso2d", "zoomIn2d", "zoomOut2d", "autoScale2d",
+      "resetScale2d", "toggleSpikelines", "hoverClosestCartesian", "hoverCompareCartesian"]
+  };
+
+  // Horizontal bars ranking regions or countries on one measure, largest first. One
+  // colour (Spain, when listed among its peers, in text ink); a dotted reference line.
+  function drawRanking(el, spec) {
+    var s = spec.series[0];
+    var surface = token("--surface"), ink = token("--text"), ink2 = token("--text-2");
+    var muted = token("--muted"), grid = token("--grid"), axis = token("--axis");
+    el.style.height = Math.max(220, s.x.length * 22 + 56) + "px";
+    var format = ":." + spec.decimals + "f}" + suffix(spec);
+    var traces = [{
+      type: "bar", orientation: "h", x: s.y, y: s.x, showlegend: false,
+      marker: { color: s.x.map(function (label) { return label === spec.highlight ? ink : token("--series-1"); }) },
+      hovertemplate: "<b>%{x" + format + "</b>  %{y}<extra></extra>"
+    }];
+    var shapes = [], annotations = [];
+    (spec.ref_lines || []).forEach(function (r) {
+      shapes.push({ type: "line", yref: "paper", y0: 0, y1: 1, x0: r.y, x1: r.y, line: { color: ink2, width: 1, dash: "dot" } });
+      annotations.push({ x: r.y, xref: "x", y: 1, yref: "paper", yanchor: "bottom", showarrow: false,
+        text: r.label + " " + fmt(r.y, spec), font: { size: 11, color: ink2 } });
+    });
+    var layout = {
+      paper_bgcolor: surface, plot_bgcolor: surface,
+      font: { family: token("--sans") || "system-ui, sans-serif", size: 12, color: ink2 },
+      margin: { l: 10, r: 18, t: annotations.length ? 24 : 8, b: 30 },
+      hovermode: "closest", hoverlabel: { bgcolor: surface, bordercolor: grid, font: { color: ink, size: 12 } },
+      yaxis: { type: "category", autorange: "reversed", automargin: true, fixedrange: true, ticks: "",
+        tickfont: { color: ink2, size: 12 } },
+      xaxis: { gridcolor: grid, zeroline: true, zerolinecolor: axis, fixedrange: true, tickfont: { color: muted },
+        ticksuffix: suffix(spec), automargin: true },
+      bargap: 0.3, barcornerradius: 3, shapes: shapes, annotations: annotations
+    };
+    var config = Object.assign({ toImageButtonOptions: { filename: "econpulse-" + spec.id, scale: 2 } }, CONFIG_BASE);
+    window.Plotly.react(el, traces, layout, config);
+  }
+
   function draw(spec) {
     var el = document.getElementById("chart-" + spec.id);
     if (!el || !window.Plotly) return;
+    if (spec.kind === "hbar") return drawRanking(el, spec);
     // Fixed slot order, never cycled: a spec has at most three palette series.
     var colors = [token("--series-1"), token("--series-2"), token("--series-3")];
     var surface = token("--surface"), ink = token("--text"), ink2 = token("--text-2");
@@ -147,12 +188,7 @@
       bargap: 0.3, barcornerradius: 4,
       annotations: annotations, shapes: shapes
     };
-    var config = {
-      displaylogo: false, responsive: true,
-      modeBarButtonsToRemove: ["zoom2d", "pan2d", "select2d", "lasso2d", "zoomIn2d", "zoomOut2d", "autoScale2d",
-        "resetScale2d", "toggleSpikelines", "hoverClosestCartesian", "hoverCompareCartesian"],
-      toImageButtonOptions: { filename: "econpulse-" + spec.id, scale: 2 }
-    };
+    var config = Object.assign({ toImageButtonOptions: { filename: "econpulse-" + spec.id, scale: 2 } }, CONFIG_BASE);
     window.Plotly.react(el, traces, layout, config).then(function () { spreadLabels(el); });
   }
 

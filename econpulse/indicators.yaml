@@ -16,10 +16,41 @@
 #   change_unit  pp | bp for rates; % for relative change (prices, indices, exchange rates)
 #   tile         position in the home-page key-indicators strip (omit if not a tile)
 #   max_age_days flag the series as "not updating" past this age (defaults by freq)
+#   for_each     a list of items (countries, regions): the entry is repeated for each one,
+#                with {placeholders} in its strings filled from the item's fields
 #
 # INE codes are series codes (not table ids): INE moves series to new tables when
 # it rebases, so check `python -m econpulse status` if a series stops updating.
 # What the section pages show (tables, charts) is defined in econpulse/pages.py.
+
+# Lists used by for_each entries (YAML anchors: &name here, *name below).
+countries: &countries
+  - {slug: de, geo: DE, name: Germany, name_es: Alemania}
+  - {slug: fr, geo: FR, name: France, name_es: Francia}
+  - {slug: it, geo: IT, name: Italy, name_es: Italia}
+  - {slug: pt, geo: PT, name: Portugal, name_es: Portugal}
+  - {slug: nl, geo: NL, name: Netherlands, name_es: Países Bajos}
+
+# The 17 autonomous communities with their INE series codes: unemployment rate (EPA),
+# house price index (IPV), CPI annual rate (IPC) and GDP per head, Spain = 100 (CRE).
+regions: &regions
+  - {slug: andalucia, name: Andalucía, epa: EPA452440, ipv: IPV1623, ipc: IPC293659, cre: CRE47440}
+  - {slug: aragon, name: Aragón, epa: EPA452448, ipv: IPV1638, ipc: IPC293715, cre: CRE47439}
+  - {slug: asturias, name: Asturias, epa: EPA452456, ipv: IPV1653, ipc: IPC293771, cre: CRE47438}
+  - {slug: baleares, name: Illes Balears, epa: EPA452464, ipv: IPV1668, ipc: IPC293827, cre: CRE47437}
+  - {slug: canarias, name: Canarias, epa: EPA452472, ipv: IPV1534, ipc: IPC293883, cre: CRE47436}
+  - {slug: cantabria, name: Cantabria, epa: EPA452480, ipv: IPV1549, ipc: IPC293939, cre: CRE47435}
+  - {slug: castilla_leon, name: Castilla y León, epa: EPA452488, ipv: IPV1564, ipc: IPC293995, cre: CRE47434}
+  - {slug: castilla_mancha, name: Castilla-La Mancha, epa: EPA452496, ipv: IPV1579, ipc: IPC294051, cre: CRE47433}
+  - {slug: cataluna, name: Cataluña, epa: EPA452504, ipv: IPV1594, ipc: IPC294107, cre: CRE47432}
+  - {slug: valenciana, name: Comunitat Valenciana, epa: EPA452512, ipv: IPV1392, ipc: IPC294163, cre: CRE47431}
+  - {slug: extremadura, name: Extremadura, epa: EPA452520, ipv: IPV1407, ipc: IPC294219, cre: CRE47430}
+  - {slug: galicia, name: Galicia, epa: EPA452528, ipv: IPV1422, ipc: IPC294275, cre: CRE47429}
+  - {slug: madrid, name: Madrid, epa: EPA452536, ipv: IPV1437, ipc: IPC294331, cre: CRE47428}
+  - {slug: murcia, name: Murcia, epa: EPA452544, ipv: IPV1452, ipc: IPC294387, cre: CRE47427}
+  - {slug: navarra, name: Navarra, epa: EPA452552, ipv: IPV1467, ipc: IPC294443, cre: CRE47426}
+  - {slug: pais_vasco, name: País Vasco, epa: EPA452560, ipv: IPV1482, ipc: IPC294499, cre: CRE47425}
+  - {slug: rioja, name: La Rioja, epa: EPA452568, ipv: IPV1497, ipc: IPC294555, cre: CRE47424}
 
 indicators:
 
@@ -740,6 +771,18 @@ indicators:
     change_unit: "%"
     notes: Daily national demand; a real-time activity signal, sensitive to weather and weekdays.
 
+  - id: electricity_demand_monthly
+    label: Electricity demand, monthly average
+    label_es: Demanda eléctrica nacional, media mensual
+    section: activity
+    source: derived
+    key: average
+    params: {a: electricity_demand, period: M}
+    freq: M
+    unit: GWh
+    transforms: [yoy, level]
+    notes: Average daily demand over each complete month; not adjusted for temperature or working days.
+
   - id: economic_sentiment
     label: Economic sentiment indicator
     label_es: Indicador de sentimiento económico (CE)
@@ -787,11 +830,12 @@ indicators:
     label_es: Llegada de turistas internacionales (FRONTUR)
     section: activity
     source: ine
-    key: FREG287
+    key: FREG286
     freq: M
     unit: mn
     scale: 0.000001
     transforms: [yoy, level]
+    notes: Overnight visitors only (FRONTUR "turistas"); same-day visitors are left out.
 
     tile: 4
   - id: tourist_spending
@@ -871,6 +915,87 @@ indicators:
     decimals: 0
     transforms: [yoy, level]
 
+  - id: house_prices_new
+    label: House prices, new homes
+    label_es: Índice de precios de vivienda nueva (IPV)
+    section: housing
+    source: ine
+    key: IPV1613
+    freq: Q
+    unit: index
+    transforms: [yoy, pop]
+
+  - id: house_prices_used
+    label: House prices, second-hand homes
+    label_es: Índice de precios de vivienda de segunda mano (IPV)
+    section: housing
+    source: ine
+    key: IPV1618
+    freq: Q
+    unit: index
+    transforms: [yoy, pop]
+
+  - id: real_house_prices
+    label: Real house prices
+    label_es: Índice de precios de vivienda deflactado por el IPC
+    section: housing
+    source: derived
+    key: deflate
+    params: {a: house_prices, b: cpi_index, period: Q}
+    freq: Q
+    unit: index
+    transforms: [yoy, level]
+    notes: House price index (IPV) divided by the CPI averaged over the quarter.
+
+  - id: mortgages_homes
+    label: Mortgages on homes
+    label_es: Hipotecas sobre viviendas, número
+    section: housing
+    source: ine
+    key: HPT34618
+    freq: M
+    unit: mortgages
+    decimals: 0
+    transforms: [yoy, level]
+    notes: Mortgages registered in the month (property registers), not seasonally adjusted.
+
+  - id: mortgage_lending_homes
+    label: Mortgage lending on homes
+    label_es: Hipotecas sobre viviendas, importe
+    section: housing
+    source: ine
+    key: HPT34565
+    freq: M
+    unit: "€ mn"
+    scale: 0.001
+    decimals: 0
+    transforms: [yoy, level]
+
+  - id: average_mortgage
+    label: Average mortgage on a home
+    label_es: Importe medio de las hipotecas sobre viviendas
+    section: housing
+    source: derived
+    key: divide
+    params: {a: mortgage_lending_homes, b: mortgages_homes, scale: 1000000}
+    freq: M
+    unit: "€"
+    decimals: 0
+    transforms: [level, yoy]
+
+  - id: home_permits
+    label: Building permits, new homes
+    label_es: Visados de dirección de obra nueva, viviendas
+    section: housing
+    source: bde
+    key: D_1KB52212
+    freq: M
+    unit: homes
+    decimals: 0
+    transforms: [yoy, level]
+    max_age_days: 240
+    notes: Homes in new-build permits approved by the architects' associations; a lead indicator for construction. Published several months after the month it covers.
+
   # ---------------------------------------------------------------- Fiscal
   - id: government_debt
     label: Government debt
@@ -894,6 +1019,74 @@ indicators:
     unit: "% of GDP"
     change_unit: pp
     notes: Quarterly, not seasonally adjusted; negative = deficit.
+
+  - id: deficit_annual
+    label: Government balance
+    label_es: Capacidad/necesidad de financiación de las AAPP (PDE)
+    section: fiscal
+    source: eurostat
+    key: gov_10dd_edpt1
+    params: {geo: ES, unit: PC_GDP, sector: S13, na_item: B9}
+    freq: A
+    unit: "% of GDP"
+    change_unit: pp
+    notes: Annual, as notified under the excessive deficit procedure; negative = deficit.
+
+  - id: debt_annual
+    label: Government debt, year end
+    label_es: Deuda de las AAPP (PDE, % PIB)
+    section: fiscal
+    source: eurostat
+    key: gov_10dd_edpt1
+    params: {geo: ES, unit: PC_GDP, sector: S13, na_item: GD}
+    freq: A
+    unit: "% of GDP"
+    change_unit: pp
+
+  - id: interest_annual
+    label: Interest paid on government debt
+    label_es: Intereses de la deuda de las AAPP (% PIB)
+    section: fiscal
+    source: eurostat
+    key: gov_10a_main
+    params: {geo: ES, unit: PC_GDP, sector: S13, na_item: D41PAY}
+    freq: A
+    unit: "% of GDP"
+    change_unit: pp
+
+  - id: primary_balance
+    label: Primary balance
+    label_es: Saldo primario de las AAPP (% PIB)
+    section: fiscal
+    source: derived
+    key: add
+    params: {a: deficit_annual, b: interest_annual}
+    freq: A
+    unit: "% of GDP"
+    change_unit: pp
+    notes: The balance before interest payments.
+
+  - id: revenue_annual
+    label: Government revenue
+    label_es: Ingresos de las AAPP (% PIB)
+    section: fiscal
+    source: eurostat
+    key: gov_10a_main
+    params: {geo: ES, unit: PC_GDP, sector: S13, na_item: TR}
+    freq: A
+    unit: "% of GDP"
+    change_unit: pp
+
+  - id: spending_annual
+    label: Government spending
+    label_es: Gastos de las AAPP (% PIB)
+    section: fiscal
+    source: eurostat
+    key: gov_10a_main
+    params: {geo: ES, unit: PC_GDP, sector: S13, na_item: TE}
+    freq: A
+    unit: "% of GDP"
+    change_unit: pp
 
   # ---------------------------------------------------------------- ECB
   - id: ecb_deposit_rate
@@ -1299,6 +1492,50 @@ indicators:
     decimals: 2
     change_unit: bp
 
+  - id: new_mortgage_lending
+    label: New mortgage lending (banks)
+    label_es: Nuevas operaciones de préstamos para vivienda
+    section: housing
+    source: ecb
+    key: MIR/M.ES.B.A2C.A.B.A.2250.EUR.N
+    freq: M
+    unit: "€ mn"
+    decimals: 0
+    transforms: [yoy, level]
+    notes: New house-purchase loans to households in the month, including renegotiations (ECB interest rate statistics).
+
+  - id: housing_loans_growth
+    label: Housing loans to households, y/y
+    label_es: Préstamos a hogares para vivienda, tasa interanual
+    section: housing
+    source: ecb
+    key: BSI/M.ES.N.A.A22.A.I.U2.2250.Z01.A
+    freq: M
+    unit: "%"
+    change_unit: pp
+    notes: Annual growth of the stock of bank loans to households for house purchase, adjusted for sales and write-offs.
+
+  - id: household_debt_gdp
+    label: Household debt
+    label_es: Deuda de los hogares (% PIB)
+    section: housing
+    source: ecb
+    key: QSA/Q.N.ES.W0.S1M.S1.N.L.LE.F4.T._Z.XDC_R_B1GQ_CY._T.S.V.N._T
+    freq: Q
+    unit: "% of GDP"
+    change_unit: pp
+    notes: Loans to households and non-profit institutions, % of GDP over the past four quarters (financial accounts).
+
+  - id: household_debt_income
+    label: Household debt, % of disposable income
+    label_es: Deuda de los hogares (% renta disponible)
+    section: housing
+    source: ecb
+    key: QSA/Q.N.ES.W0.S1M.S1.N.L.LE.F4.T._Z.XDC_R_B6GA_CY._T.S.V.N._T
+    freq: Q
+    unit: "%"
+    change_unit: pp
+
   # ---------------------------------------------------------------- International comparisons
   - id: hicp_euro_area
     label: Euro area HICP inflation
@@ -1356,3 +1593,228 @@ indicators:
     unit: bp
     decimals: 0
     change_unit: bp
+
+  # Peer countries: one entry per country in the `countries` list at the top.
+  - id: gdp_growth_{slug}
+    for_each: *countries
+    label: Real GDP growth, {name}
+    label_es: PIB real, tasa interanual, {name_es}
+    section: international
+    source: eurostat
+    key: namq_10_gdp
+    params: {geo: "{geo}", unit: CLV_PCH_SM, s_adj: SCA, na_item: B1GQ}
+    freq: Q
+    unit: "%"
+    change_unit: pp
+
+  - id: hicp_{slug}
+    for_each: *countries
+    label: HICP inflation, {name}
+    label_es: IPCA, {name_es}
+    section: international
+    source: eurostat
+    key: prc_hicp_minr
+    params: {geo: "{geo}", unit: RCH_A, coicop18: TOTAL}
+    freq: M
+    unit: "%"
+    change_unit: pp
+
+  - id: hicp_core_{slug}
+    for_each: *countries
+    label: Core HICP inflation, {name}
+    label_es: IPCA subyacente, {name_es}
+    section: international
+    source: eurostat
+    key: prc_hicp_minr
+    params: {geo: "{geo}", unit: RCH_A, coicop18: TOT_X_NRG_FOOD}
+    freq: M
+    unit: "%"
+    change_unit: pp
+
+  - id: unemployment_{slug}
+    for_each: *countries
+    label: Unemployment rate, {name}
+    label_es: Tasa de paro, {name_es}
+    section: international
+    source: eurostat
+    key: une_rt_m
+    params: {geo: "{geo}", s_adj: SA, age: TOTAL, sex: T, unit: PC_ACT}
+    freq: M
+    unit: "%"
+    change_unit: pp
+
+  - id: bond10_{slug}
+    for_each:
+      - {slug: fr, geo: FR, name: France, name_es: Francia}
+      - {slug: it, geo: IT, name: Italy, name_es: Italia}
+      - {slug: pt, geo: PT, name: Portugal, name_es: Portugal}
+      - {slug: nl, geo: NL, name: Netherlands, name_es: Países Bajos}
+    label: 10-year yield, {name} (monthly avg.)
+    label_es: Rendimiento a largo plazo, {name_es} (convergencia)
+    section: international
+    source: ecb
+    key: IRS/M.{geo}.L.L40.CI.0000.EUR.N.Z
+    freq: M
+    unit: "%"
+    decimals: 2
+    change_unit: bp
+
+  - id: spread10_{slug}
+    for_each:
+      - {slug: fr, name: France}
+      - {slug: it, name: Italy}
+      - {slug: pt, name: Portugal}
+      - {slug: nl, name: Netherlands}
+    label: 10-year spread over Germany, {name}
+    label_es: Diferencial con el bund, {name}
+    section: international
+    source: derived
+    key: subtract
+    params: {a: "bond10_{slug}", b: de_10y_monthly, scale: 100}
+    freq: M
+    unit: bp
+    decimals: 0
+    change_unit: bp
+
+  - id: gdp_growth_ea
+    label: Real GDP growth, euro area
+    label_es: PIB real, tasa interanual, zona euro
+    section: international
+    source: eurostat
+    key: namq_10_gdp
+    params: {geo: EA20, unit: CLV_PCH_SM, s_adj: SCA, na_item: B1GQ}
+    freq: Q
+    unit: "%"
+    change_unit: pp
+
+  - id: unemployment_ea
+    label: Unemployment rate, euro area
+    label_es: Tasa de paro, zona euro
+    section: international
+    source: eurostat
+    key: une_rt_m
+    params: {geo: EA21, s_adj: SA, age: TOTAL, sex: T, unit: PC_ACT}
+    freq: M
+    unit: "%"
+    change_unit: pp
+    notes: Euro area of 21 countries (Bulgaria joined in 2026).
+
+  # United States, from FRED.
+  - id: us_gdp_growth
+    label: Real GDP growth, United States
+    label_es: PIB real, tasa interanual, Estados Unidos
+    section: international
+    source: fred
+    key: A191RO1Q156NBEA
+    freq: Q
+    unit: "%"
+    change_unit: pp
+
+  - id: us_cpi_index
+    label: CPI, United States
+    label_es: IPC, Estados Unidos
+    section: international
+    source: fred
+    key: CPIAUCSL
+    freq: M
+    unit: index
+    transforms: [yoy]
+
+  - id: us_core_cpi_index
+    label: Core CPI, United States
+    label_es: IPC subyacente, Estados Unidos
+    section: international
+    source: fred
+    key: CPILFESL
+    freq: M
+    unit: index
+    transforms: [yoy]
+
+  - id: us_unemployment
+    label: Unemployment rate, United States
+    label_es: Tasa de paro, Estados Unidos
+    section: international
+    source: fred
+    key: UNRATE
+    freq: M
+    unit: "%"
+    change_unit: pp
+
+  - id: us_10y
+    label: 10-year yield, United States
+    label_es: Rendimiento del bono a 10 años, Estados Unidos
+    section: international
+    source: fred
+    key: DGS10
+    freq: D
+    unit: "%"
+    decimals: 2
+    change_unit: bp
+
+  - id: us_fed_funds
+    label: Federal funds target (upper bound)
+    label_es: Tipo objetivo de la Reserva Federal (límite superior)
+    section: international
+    source: fred
+    key: DFEDTARU
+    freq: D
+    unit: "%"
+    decimals: 2
+    change_unit: bp
+
+  # ---------------------------------------------------------------- Regions (one entry per autonomous community)
+  - id: unemployment_{slug}
+    for_each: *regions
+    label: Unemployment rate, {name}
+    label_es: Tasa de paro (EPA), {name}
+    section: regions
+    source: ine
+    key: "{epa}"
+    freq: Q
+    unit: "%"
+    decimals: 2
+    change_unit: pp
+
+  - id: house_prices_{slug}
+    for_each: *regions
+    label: House prices, {name}
+    label_es: Índice de precios de vivienda, {name}
+    section: regions
+    source: ine
+    key: "{ipv}"
+    freq: Q
+    unit: index
+    transforms: [yoy, pop]
+
+  - id: cpi_{slug}
+    for_each: *regions
+    label: CPI inflation, {name}
+    label_es: IPC, variación anual, {name}
+    section: regions
+    source: ine
+    key: "{ipc}"
+    freq: M
+    unit: "%"
+    change_unit: pp
+
+  - id: gdp_per_head_spain
+    label: GDP per head, Spain
+    label_es: PIB per cápita, España (= 100)
+    section: regions
+    source: ine
+    key: CRE47441
+    freq: A
+    unit: index
+    decimals: 0
+
+  - id: gdp_per_head_{slug}
+    for_each: *regions
+    label: GDP per head, {name}
+    label_es: PIB per cápita, {name} (España = 100)
+    section: regions
+    source: ine
+    key: "{cre}"
+    freq: A
+    unit: index
+    decimals: 0
+    notes: GDP per head at current prices, Spain = 100 (INE regional accounts).
