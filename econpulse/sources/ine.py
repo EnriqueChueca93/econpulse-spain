@@ -41,6 +41,6 @@ def parse(payload: dict) -> FetchResult:
     return FetchResult(series, meta)
 
 
-def fetch(key: str, params: dict | None = None) -> FetchResult:
+def fetch(key: str, params: dict | None = None, **_) -> FetchResult:
     payload = http.get(f"{BASE}/DATOS_SERIE/{key}", params={"nult": 5000}).json()
     return parse(payload)

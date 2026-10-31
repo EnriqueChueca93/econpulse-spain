@@ -15,6 +15,7 @@ from . import __version__
 from .config import SITE_DIR, STATIC_DIR, TEMPLATES_DIR
 from .registry import Indicator
 from .snapshot import build_snapshot
+from .sources import SOURCE_NAMES
 from .store import Store
 
 
@@ -33,8 +34,12 @@ def build_site(indicators: list[Indicator], store: Store | None = None, site_dir
 
     shutil.copytree(STATIC_DIR, site_dir / "assets", dirs_exist_ok=True)
 
+    # The build stamp goes on every asset URL so browsers never show a cached, older snapshot.
+    build_id = "".join(ch for ch in snapshot["generated_at"] if ch.isdigit())[:14]
     env = Environment(loader=FileSystemLoader(TEMPLATES_DIR), autoescape=select_autoescape(["html"]))
-    html = env.get_template("index.html").render(version=__version__, generated_at=snapshot["generated_at"])
+    source_names = list(dict.fromkeys(SOURCE_NAMES.get(i.source, i.source) for i in indicators if not i.is_derived))
+    html = env.get_template("index.html").render(
+        version=__version__, generated_at=snapshot["generated_at"], build_id=build_id, sources=source_names)
     index = site_dir / "index.html"
     index.write_text(html, encoding="utf-8")
     return index

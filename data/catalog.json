@@ -1,287 +1,569 @@
 {
+ "afiliados": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:52:10+00:00",
+  "first_date": "2001-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 309,
+  "signature": "[\"segsocial\", \"TOTAL SISTEMA\", {}, 0.001]",
+  "source_file": "https://www.seg-social.es/wps/wcm/connect/wss/5ccf558a-868f-48b3-b832-04fe9f524960/19_Serie+afiliaci%C3%B3n+media+por+reg%C3%ADmenes+%28Total+Sistema%29.xlsx"
+ },
+ "brent_eur": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:52:15+00:00",
+  "first_date": "1999-01-04",
+  "last_date": "2026-10-27",
+  "n_obs": 6669,
+  "signature": "[\"derived\", \"divide\", {\"a\": \"brent_usd\", \"b\": \"eurusd\", \"fill\": 5}, 1.0]"
+ },
+ "brent_usd": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:52:15+00:00",
+  "first_date": "1987-05-20",
+  "last_date": "2026-10-27",
+  "n_obs": 9117,
+  "signature": "[\"fred\", \"DCOILBRENTEU\", {}, 1.0]"
+ },
+ "car_sales": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:52:12+00:00",
+  "first_date": "1988-05-01",
+  "last_date": "2026-09-01",
+  "n_obs": 461,
+  "signature": "[\"bde\", \"D_1KN31000\", {}, 1.0]",
+  "source_name": "Estadísticas Generales. Ventas de automóviles"
+ },
+ "construction_confidence": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:52:12+00:00",
+  "first_date": "1989-01-01",
+  "last_date": "2026-10-01",
+  "n_obs": 454,
+  "signature": "[\"eurostat\", \"ei_bssi_m_r2\", {\"geo\": \"ES\", \"indic\": \"BS-CCI-BAL\", \"s_adj\": \"SA\"}, 1.0]",
+  "source_name": "Economic sentiment and confidence indicators by sector - monthly data",
+  "source_updated": "2026-10-29T11:00:00+0100"
+ },
  "consumer_confidence": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:25:25+00:00",
+  "fetched_at": "2026-10-31T00:52:12+00:00",
   "first_date": "1986-06-01",
   "last_date": "2026-10-01",
   "n_obs": 485,
+  "signature": "[\"eurostat\", \"ei_bssi_m_r2\", {\"geo\": \"ES\", \"indic\": \"BS-CSMCI-BAL\", \"s_adj\": \"SA\"}, 1.0]",
   "source_name": "Economic sentiment and confidence indicators by sector - monthly data",
   "source_updated": "2026-10-29T11:00:00+0100"
  },
  "consumption_government": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:25:20+00:00",
+  "fetched_at": "2026-10-31T00:52:09+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
+  "signature": "[\"ine\", \"CNTR7186\", {}, 1.0]",
   "flash": false,
   "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. Gasto en consumo final de las AAPP. Dato base. Índices de volumen encadenados."
  },
  "consumption_households": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:25:20+00:00",
+  "fetched_at": "2026-10-31T00:52:09+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
+  "signature": "[\"ine\", \"CNTR7161\", {}, 1.0]",
   "flash": false,
   "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. Gasto en consumo final de los hogares. Dato base. Índices de volumen encadenados."
  },
  "core_cpi": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:25:22+00:00",
+  "fetched_at": "2026-10-31T00:52:10+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-10-01",
   "n_obs": 298,
+  "signature": "[\"ine\", \"IPC292510\", {}, 1.0]",
   "flash": true,
   "source_name": "Nacional. Subyacente: General sin alimentos no elaborados ni productos energéticos. Variación anual."
  },
  "core_cpi_index": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:25:22+00:00",
+  "fetched_at": "2026-10-31T00:52:10+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-09-01",
   "n_obs": 297,
+  "signature": "[\"ine\", \"IPC292511\", {}, 1.0]",
   "flash": false,
   "source_name": "Nacional. Subyacente: General sin alimentos no elaborados ni productos energéticos. Índice."
  },
  "cpi": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:25:22+00:00",
+  "fetched_at": "2026-10-31T00:52:10+00:00",
   "first_date": "1962-01-01",
   "last_date": "2026-10-01",
   "n_obs": 778,
+  "signature": "[\"ine\", \"IPC290750\", {}, 1.0]",
   "flash": true,
   "source_name": "Nacional. Índice general. Variación anual."
  },
  "cpi_index": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:25:22+00:00",
+  "fetched_at": "2026-10-31T00:52:10+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-09-01",
   "n_obs": 297,
+  "signature": "[\"ine\", \"IPC290751\", {}, 1.0]",
   "flash": false,
   "source_name": "Nacional. Índice general. Índice."
  },
+ "current_account": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:52:12+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 126,
+  "signature": "[\"eurostat\", \"bop_gdp6_q\", {\"bop_item\": \"CA\", \"freq\": \"Q\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"s_adj\": \"NSA\", \"stk_flow\": \"BAL\", \"unit\": \"PC_GDP\"}, 1.0]",
+  "source_name": "Main Balance of Payments and International Investment Position items as share of GDP (BPM6)",
+  "source_updated": "2026-10-29T11:00:00+0100"
+ },
+ "current_account_monthly": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:52:12+00:00",
+  "first_date": "1993-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 404,
+  "signature": "[\"bde\", \"DEEM.N.ES.W1.S1.S1.T.B.CA._Z._Z._Z.EUR._T._X.N.ALL\", {}, 1.0]",
+  "source_name": "BP. Cuenta corriente. Total cuenta corriente. Saldo"
+ },
  "de_10y": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:25:25+00:00",
+  "fetched_at": "2026-10-31T00:52:15+00:00",
+  "first_date": "2000-01-03",
+  "last_date": "2026-10-29",
+  "n_obs": 6582,
+  "signature": "[\"bde\", \"DPUDNBBN308\", {}, 1.0]",
+  "source_name": "Tipos de interés. Alemania. Mercados de deuda pública. Bono alemán. A 10 años"
+ },
+ "de_10y_monthly": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:52:15+00:00",
   "first_date": "1990-01-01",
   "last_date": "2026-09-01",
-  "n_obs": 441
+  "n_obs": 441,
+  "signature": "[\"ecb\", \"IRS/M.DE.L.L40.CI.0000.EUR.N.Z\", {}, 1.0]"
  },
  "domestic_demand": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:25:20+00:00",
+  "fetched_at": "2026-10-31T00:52:08+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
+  "signature": "[\"ine\", \"CNTR7146\", {}, 1.0]",
   "flash": false,
   "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. Demanda nacional. Dato base. Índices de volumen encadenados."
  },
  "ecb_deposit_rate": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:25:25+00:00",
+  "fetched_at": "2026-10-31T00:52:14+00:00",
   "first_date": "1999-01-01",
-  "last_date": "2026-10-30",
-  "n_obs": 10165
+  "last_date": "2026-10-31",
+  "n_obs": 10166,
+  "signature": "[\"ecb\", \"FM/D.U2.EUR.4F.KR.DFR.LEV\", {}, 1.0]"
  },
  "ecb_mro_rate": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:25:25+00:00",
+  "fetched_at": "2026-10-31T00:52:14+00:00",
   "first_date": "1999-01-01",
-  "last_date": "2026-10-30",
-  "n_obs": 7134
+  "last_date": "2026-10-31",
+  "n_obs": 7135,
+  "signature": "[\"ecb\", \"FM/D.U2.EUR.4F.KR.MRR_FR.LEV\", {}, 1.0]"
  },
  "economic_sentiment": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:25:25+00:00",
+  "fetched_at": "2026-10-31T00:52:12+00:00",
   "first_date": "1987-04-01",
   "last_date": "2026-10-01",
   "n_obs": 475,
+  "signature": "[\"eurostat\", \"ei_bssi_m_r2\", {\"geo\": \"ES\", \"indic\": \"BS-ESI-I\", \"s_adj\": \"SA\"}, 1.0]",
   "source_name": "Economic sentiment and confidence indicators by sector - monthly data",
   "source_updated": "2026-10-29T11:00:00+0100"
  },
+ "electricity_demand": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:52:12+00:00",
+  "first_date": "2015-01-01",
+  "last_date": "2026-10-30",
+  "n_obs": 4321,
+  "signature": "[\"ree\", \"demand\", {}, 0.001]"
+ },
+ "electricity_price": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:52:12+00:00",
+  "first_date": "2025-01-01",
+  "last_date": "2026-10-31",
+  "n_obs": 669,
+  "signature": "[\"ree\", \"spot_price\", {}, 1.0]"
+ },
  "employment_epa": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:25:22+00:00",
+  "fetched_at": "2026-10-31T00:52:10+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-07-01",
   "n_obs": 99,
+  "signature": "[\"ine\", \"EPA387796\", {}, 1.0]",
   "flash": false,
   "source_name": "Total Nacional. Ambos sexos. Total. Ocupados. Valor absoluto."
  },
  "es_10y": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:25:25+00:00",
+  "fetched_at": "2026-10-31T00:52:15+00:00",
+  "first_date": "2000-01-03",
+  "last_date": "2026-10-28",
+  "n_obs": 6827,
+  "signature": "[\"bde\", \"DPUG0B1F0ZP\", {}, 1.0]",
+  "source_name": "Tipos de interés. Mercados de deuda pública. Bonos y obligaciones del Estado no segregados. Conjunto del mercado. Operaciones simples al contado. A 10 años"
+ },
+ "es_10y_monthly": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:52:15+00:00",
   "first_date": "1991-11-01",
   "last_date": "2026-09-01",
-  "n_obs": 419
+  "n_obs": 419,
+  "signature": "[\"ecb\", \"IRS/M.ES.L.L40.CI.0000.EUR.N.Z\", {}, 1.0]"
+ },
+ "es_12m_bill": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:52:14+00:00",
+  "first_date": "2000-01-03",
+  "last_date": "2026-10-28",
+  "n_obs": 4287,
+  "signature": "[\"bde\", \"DPUDTES00U7\", {}, 1.0]",
+  "source_name": "Tipos de interés. Mercados de deuda pública. Letras del tesoro. Conjunto del mercado. Operaciones simples al contado. A 12 meses"
+ },
+ "es_30y": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:52:15+00:00",
+  "first_date": "2000-01-03",
+  "last_date": "2026-10-28",
+  "n_obs": 6082,
+  "signature": "[\"bde\", \"DPUG0B1F0ZR\", {}, 1.0]",
+  "source_name": "Tipos de interés. Mercados de deuda pública. Bonos y obligaciones del Estado no segregados. Conjunto del mercado. Operaciones simples al contado. A 30 años"
+ },
+ "es_3y": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:52:14+00:00",
+  "first_date": "2000-01-03",
+  "last_date": "2026-10-28",
+  "n_obs": 6736,
+  "signature": "[\"bde\", \"DPUG0B1F0ZN\", {}, 1.0]",
+  "source_name": "Tipos de interés. Mercados de deuda pública. Bonos y obligaciones del Estado no segregados. Conjunto del mercado. Operaciones simples al contado. A 3 años"
+ },
+ "es_5y": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:52:15+00:00",
+  "first_date": "2000-01-03",
+  "last_date": "2026-10-28",
+  "n_obs": 6719,
+  "signature": "[\"bde\", \"DPUG0B1F0ZO\", {}, 1.0]",
+  "source_name": "Tipos de interés. Mercados de deuda pública. Bonos y obligaciones del Estado no segregados. Conjunto del mercado. Operaciones simples al contado. A 5 años"
  },
  "estr": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:25:25+00:00",
+  "fetched_at": "2026-10-31T00:52:14+00:00",
   "first_date": "2019-10-01",
   "last_date": "2026-10-29",
-  "n_obs": 1814
+  "n_obs": 1814,
+  "signature": "[\"ecb\", \"EST/B.EU000A2X2A25.WT\", {}, 1.0]"
  },
  "euribor_12m": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:25:25+00:00",
-  "first_date": "1994-01-01",
-  "last_date": "2026-09-01",
-  "n_obs": 393
+  "fetched_at": "2026-10-31T00:52:14+00:00",
+  "first_date": "2000-01-03",
+  "last_date": "2026-10-29",
+  "n_obs": 6861,
+  "signature": "[\"bde\", \"D_DNBAF172\", {}, 1.0]",
+  "source_name": "Euribor a 12 meses"
  },
  "euribor_3m": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:25:25+00:00",
-  "first_date": "1994-01-01",
-  "last_date": "2026-09-01",
-  "n_obs": 393
+  "fetched_at": "2026-10-31T00:52:14+00:00",
+  "first_date": "2000-01-03",
+  "last_date": "2026-10-29",
+  "n_obs": 6860,
+  "signature": "[\"bde\", \"D_DNBAD172\", {}, 1.0]",
+  "source_name": "Euribor a 3 meses"
  },
  "eurusd": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:25:25+00:00",
+  "fetched_at": "2026-10-31T00:52:15+00:00",
   "first_date": "1999-01-04",
   "last_date": "2026-10-30",
-  "n_obs": 7126
+  "n_obs": 7126,
+  "signature": "[\"ecb\", \"EXR/D.USD.EUR.SP00.A\", {}, 1.0]"
  },
  "exports": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:25:20+00:00",
+  "fetched_at": "2026-10-31T00:52:09+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
+  "signature": "[\"ine\", \"CNTR7265\", {}, 1.0]",
   "flash": false,
   "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. Exportaciones de bienes y servicios. Dato base. Índices de volumen encadenados."
  },
+ "gas_eu": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:52:15+00:00",
+  "first_date": "1992-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 417,
+  "signature": "[\"fred\", \"PNGASEUUSDM\", {}, 1.0]"
+ },
  "gdp": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:25:20+00:00",
+  "fetched_at": "2026-10-31T00:52:08+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
+  "signature": "[\"ine\", \"CNTR6652\", {}, 1.0]",
   "flash": false,
   "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. Producto interior bruto a precios de mercado. Dato base. Índices de volumen encadenados."
  },
+ "government_balance": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:52:13+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 126,
+  "signature": "[\"eurostat\", \"gov_10q_ggnfa\", {\"geo\": \"ES\", \"na_item\": \"B9\", \"s_adj\": \"NSA\", \"sector\": \"S13\", \"unit\": \"PC_GDP\"}, 1.0]",
+  "source_name": "Quarterly non-financial accounts for general government",
+  "source_updated": "2026-10-21T11:00:00+0200"
+ },
  "government_debt": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:25:25+00:00",
+  "fetched_at": "2026-10-31T00:52:13+00:00",
   "first_date": "1995-10-01",
   "last_date": "2026-04-01",
   "n_obs": 123,
+  "signature": "[\"eurostat\", \"gov_10q_ggdebt\", {\"geo\": \"ES\", \"na_item\": \"GD\", \"sector\": \"S13\", \"unit\": \"PC_GDP\"}, 1.0]",
   "source_name": "Quarterly government debt",
   "source_updated": "2026-10-21T11:00:00+0200"
  },
  "hicp": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:25:22+00:00",
+  "fetched_at": "2026-10-31T00:52:10+00:00",
   "first_date": "1997-01-01",
   "last_date": "2026-09-01",
   "n_obs": 357,
+  "signature": "[\"eurostat\", \"prc_hicp_minr\", {\"coicop18\": \"TOTAL\", \"geo\": \"ES\", \"unit\": \"RCH_A\"}, 1.0]",
   "source_name": "Harmonised index of consumer prices (HICP) - ECOICOP ver.2 - indices and rates of change, monthly data",
   "source_updated": "2026-10-16T23:00:00+0200"
  },
  "hicp_core": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:25:22+00:00",
+  "fetched_at": "2026-10-31T00:52:11+00:00",
   "first_date": "2001-12-01",
   "last_date": "2026-09-01",
   "n_obs": 298,
+  "signature": "[\"eurostat\", \"prc_hicp_minr\", {\"coicop18\": \"TOT_X_NRG_FOOD\", \"geo\": \"ES\", \"unit\": \"RCH_A\"}, 1.0]",
   "source_name": "Harmonised index of consumer prices (HICP) - ECOICOP ver.2 - indices and rates of change, monthly data",
   "source_updated": "2026-10-16T23:00:00+0200"
  },
  "hicp_euro_area": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:25:22+00:00",
+  "fetched_at": "2026-10-31T00:52:15+00:00",
   "first_date": "1997-01-01",
   "last_date": "2026-09-01",
   "n_obs": 357,
+  "signature": "[\"eurostat\", \"prc_hicp_minr\", {\"coicop18\": \"TOTAL\", \"geo\": \"EA\", \"unit\": \"RCH_A\"}, 1.0]",
   "source_name": "Harmonised index of consumer prices (HICP) - ECOICOP ver.2 - indices and rates of change, monthly data",
   "source_updated": "2026-10-16T23:00:00+0200"
  },
+ "home_sales": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:52:12+00:00",
+  "first_date": "2007-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 236,
+  "signature": "[\"ine\", \"ETDP1510\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Total Nacional. Compraventa. Total viviendas. Número."
+ },
+ "hotel_nights_foreign": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:52:12+00:00",
+  "first_date": "2003-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 283,
+  "signature": "[\"bde\", \"D_1PM2120T\", {}, 1.0]",
+  "source_name": "Estadísticas Generales. Encuesta de ocupación hotelera. Pernoctaciones. Residentes en el extranjero. Tasa interanual"
+ },
  "house_prices": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:25:25+00:00",
+  "fetched_at": "2026-10-31T00:52:12+00:00",
   "first_date": "2007-01-01",
   "last_date": "2026-04-01",
   "n_obs": 78,
+  "signature": "[\"ine\", \"IPV1209\", {}, 1.0]",
   "flash": false,
   "source_name": "Nacional. General. Índice."
  },
+ "ibex35": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:52:15+00:00",
+  "first_date": "2000-01-03",
+  "last_date": "2026-10-29",
+  "n_obs": 6827,
+  "signature": "[\"bde\", \"DBLEESI100000000IBDI.B\", {}, 1.0]",
+  "source_name": "IBEX-35"
+ },
  "imports": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:25:22+00:00",
+  "fetched_at": "2026-10-31T00:52:09+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
+  "signature": "[\"ine\", \"CNTR7285\", {}, 1.0]",
   "flash": false,
   "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. Importaciones de bienes y servicios. Dato base. Índices de volumen encadenados."
  },
  "industrial_production": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:25:25+00:00",
+  "fetched_at": "2026-10-31T00:52:12+00:00",
   "first_date": "1992-01-01",
   "last_date": "2026-08-01",
   "n_obs": 416,
+  "signature": "[\"ine\", \"IPI15360\", {}, 1.0]",
   "flash": false,
   "source_name": "Total Nacional. Índice. Datos ajustados de estacionalidad y calendario. Total industria."
  },
+ "industry_confidence": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:52:12+00:00",
+  "first_date": "1987-04-01",
+  "last_date": "2026-10-01",
+  "n_obs": 475,
+  "signature": "[\"eurostat\", \"ei_bssi_m_r2\", {\"geo\": \"ES\", \"indic\": \"BS-ICI-BAL\", \"s_adj\": \"SA\"}, 1.0]",
+  "source_name": "Economic sentiment and confidence indicators by sector - monthly data",
+  "source_updated": "2026-10-29T11:00:00+0100"
+ },
  "investment": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:25:20+00:00",
+  "fetched_at": "2026-10-31T00:52:09+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
+  "signature": "[\"ine\", \"CNTR7211\", {}, 1.0]",
   "flash": false,
   "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. Formación bruta de capital fijo (FBCF). Dato base. Índices de volumen encadenados."
  },
  "mortgage_rate": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:25:25+00:00",
+  "fetched_at": "2026-10-31T00:52:15+00:00",
   "first_date": "2000-01-01",
   "last_date": "2026-08-01",
-  "n_obs": 320
+  "n_obs": 320,
+  "signature": "[\"ecb\", \"MIR/M.ES.B.A2C.A.R.A.2250.EUR.N\", {}, 1.0]"
+ },
+ "paro_registrado": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:52:10+00:00",
+  "first_date": "1962-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 777,
+  "signature": "[\"bde\", \"DPU1JA0D000_TVA\", {}, 1.0]",
+  "source_name": "Paro registrado. TVA"
  },
  "retail_sales": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:25:25+00:00",
+  "fetched_at": "2026-10-31T00:52:12+00:00",
   "first_date": "2000-01-01",
   "last_date": "2026-09-01",
   "n_obs": 321,
+  "signature": "[\"ine\", \"ICM4093\", {}, 1.0]",
   "flash": false,
   "source_name": "Total Nacional. Cifra de negocio a precios constantes. General. Comercio al por menor, excepto de vehículos de motor y motocicletas. Índice. Datos ajustados de estacionalidad y calendario."
  },
  "risk_premium": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:25:25+00:00",
+  "fetched_at": "2026-10-31T00:52:15+00:00",
+  "first_date": "2000-01-03",
+  "last_date": "2026-10-29",
+  "n_obs": 6571,
+  "signature": "[\"bde\", \"DPUG0B1F0ZPD\", {}, 100]",
+  "source_name": "Mercados de deuda pública. Diferencial a 10 años con el bono alemán. España"
+ },
+ "risk_premium_monthly": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:52:15+00:00",
   "first_date": "1991-11-01",
   "last_date": "2026-09-01",
-  "n_obs": 419
+  "n_obs": 419,
+  "signature": "[\"derived\", \"subtract\", {\"a\": \"es_10y_monthly\", \"b\": \"de_10y_monthly\", \"scale\": 100}, 1.0]"
+ },
+ "tourism_receipts": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:52:12+00:00",
+  "first_date": "1993-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 404,
+  "signature": "[\"bde\", \"DEEM.N.ES.W1.S1.S1.T.C.SD._Z._Z._Z.EUR._T._X.N.ALL\", {}, 1.0]",
+  "source_name": "BP. Cuenta corriente. Servicios. Turismo. Ingresos"
+ },
+ "tourist_arrivals": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:52:12+00:00",
+  "first_date": "2015-10-01",
+  "last_date": "2026-08-01",
+  "n_obs": 131,
+  "signature": "[\"ine\", \"FREG287\", {}, 0.001]",
+  "flash": false,
+  "source_name": "Total. Total Nacional. Dato base."
+ },
+ "tourist_spending": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:52:12+00:00",
+  "first_date": "2015-10-01",
+  "last_date": "2026-08-01",
+  "n_obs": 131,
+  "signature": "[\"ine\", \"FREG375\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Gasto total. Total Nacional. Turista. Dato base."
  },
  "unemployment_epa": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:25:22+00:00",
+  "fetched_at": "2026-10-31T00:52:10+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-07-01",
   "n_obs": 99,
+  "signature": "[\"ine\", \"EPA423474\", {}, 1.0]",
   "flash": false,
   "source_name": "Total Nacional. Tasa de paro de la población. Ambos sexos. Total."
  },
  "unemployment_monthly": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:25:22+00:00",
+  "fetched_at": "2026-10-31T00:52:10+00:00",
   "first_date": "1986-04-01",
   "last_date": "2026-09-01",
   "n_obs": 486,
+  "signature": "[\"eurostat\", \"une_rt_m\", {\"age\": \"TOTAL\", \"geo\": \"ES\", \"s_adj\": \"SA\", \"sex\": \"T\", \"unit\": \"PC_ACT\"}, 1.0]",
   "source_name": "Unemployment by sex and age - monthly data",
   "source_updated": "2026-10-30T11:00:00+0100"
  },
+ "wage_cost": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:52:10+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL67\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Industria, construcción y servicios (excepto actividades de los hogares como empleadores y de organizaciones y organismos extraterritoriales). Coste salarial total. Total. Total Nacional. Costes laborales. Euros."
+ },
  "youth_unemployment": {
   "status": "ok",
-  "fetched_at": "2026-10-31T00:25:22+00:00",
+  "fetched_at": "2026-10-31T00:52:10+00:00",
   "first_date": "1986-04-01",
   "last_date": "2026-09-01",
   "n_obs": 486,
+  "signature": "[\"eurostat\", \"une_rt_m\", {\"age\": \"Y_LT25\", \"geo\": \"ES\", \"s_adj\": \"SA\", \"sex\": \"T\", \"unit\": \"PC_ACT\"}, 1.0]",
   "source_name": "Unemployment by sex and age - monthly data",
   "source_updated": "2026-10-30T11:00:00+0100"
  }

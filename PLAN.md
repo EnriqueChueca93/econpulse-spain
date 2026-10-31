@@ -70,24 +70,28 @@ One Python codebase. Its output is a plain static website that opens by double-c
 
 ## 3. Data sources
 
-These sources were test-called on 30 Oct 2026:
+Status after Batch 2 (30 Oct 2026). All sources are official or public and are accessed with an honest `EconPulseSpain` User-Agent:
 
 | Provider | Access | Status | Covers |
 |---|---|---|---|
-| **INE** | JSON API `servicios.ine.es/wstempus` | ✅ works | GDP (CNTR), CPI, core, HICP, EPA, industrial production, retail, house prices, labour cost (ETCL), vacancies, tourism, mortgages, home sales |
-| **Eurostat** | JSON-stat API | ✅ works (Spain unemployment SA 10.2% in Aug → 10.3% in Sep; ESI 105.1) | monthly unemployment, HICP, EC sentiment surveys, government debt and deficit, international comparisons |
-| **ECB Data Portal** | SDMX REST, CSV | ✅ works (deposit rate 2.50%) | policy rates, €STR, euro-area yield curve, FX reference rates, bank lending rates (MIR), SPF expectations |
-| **Banco de España** | REST API `app.bde.es/bierest` | ✅ online; series codes still need mapping | Spanish yields and curve, Euribor, mortgage rates, household debt, credit, balance of payments, government debt (PDE) |
-| **Yahoo Finance** | chart API (unofficial) | ✅ works (IBEX 35: 18,652.9) | IBEX 35, Euro Stoxx 50, Brent, TTF gas, gold, FX. Needs a fallback |
-| **REE** | `apidatos.ree.es` | ⚠️ returned an error today; retest, fallback is OMIE daily files | daily electricity pool price, electricity demand |
-| **Seguridad Social / SEPE** | Excel/CSV downloads | 🔲 to build (download and parse) | registrations (total, SA, by sector), registered unemployment (*paro registrado*) |
-| **AIReF · FUNCAS · BdE projections** | web pages / Excel | 🔲 to build | GDP nowcast, forecaster consensus, official projections |
-| **Bundesbank / ECB** | SDMX | 🔲 to build | German 10y yield, for the prima de riesgo |
-| **FRED** (free key) | REST | 🔲 optional | ICE BofA euro credit spreads, US comparison series |
+| **INE** | JSON API `servicios.ine.es/wstempus` | ✅ in use (20 indicators) | GDP (CNTR), CPI, core, EPA, industrial production, retail, house prices, wage cost (ETCL), tourism (FRONTUR, EGATUR), home sales |
+| **Eurostat** | JSON-stat API | ✅ in use (12) | monthly unemployment, HICP, EC sentiment surveys, government debt and balance, current account |
+| **ECB Data Portal** | SDMX REST, CSV | ✅ in use (7) | policy rates, €STR, EUR/USD, mortgage rates (MIR), convergence yields |
+| **Banco de España** | REST API `app.bde.es/bierest` | ✅ in use (15) | daily Spanish yield curve, German 10y, prima de riesgo, Euribor, IBEX 35; registered unemployment, car sales, hotel nights, balance of payments |
+| **Seguridad Social** | spreadsheet linked from its statistics page | ✅ in use (1) | average registrations (*afiliados*), total system, since 2001 |
+| **Red Eléctrica (REE)** | REData API `apidatos.ree.es` | ✅ in use (2) | day-ahead electricity price (daily average of 15-minute prices), daily demand |
+| **FRED** | public CSV, no key | ✅ in use (2) | Brent spot (US EIA), European gas (IMF) |
+| ~~Yahoo Finance~~ | unofficial API | ❌ dropped | IBEX 35 now comes from Banco de España and Brent from FRED |
+| **AIReF · FUNCAS · BdE projections** | web pages / Excel | 🔲 Batch 7 | GDP nowcast, forecaster consensus, official projections |
 
 **Gotchas found already:**
 - INE's CPI table 50902 stops at Dec 2025, because CPI moved to new tables in 2026. The registry pins INE *series* codes rather than table IDs, and a freshness check flags any series that stops updating.
 - Eurostat's HICP dataset `prc_hicp_manr` also stops at Dec 2025. The replacement is `prc_hicp_minr` (ECOICOP ver. 2), and its item dimension is now `coicop18`.
+- Eurostat has no Spanish **services or retail confidence** after Sep 2024 (France's continues). The freshness check caught it, and both were dropped.
+- Banco de España's own *afiliados* series (`D_1JCCTETT`) stops at Dec 2025, probably because of the switch to the CNAE-2025 industry classification. Registrations come straight from the Seguridad Social instead. Its PX-Web server has no API, so we read the "19_Serie afiliación media" spreadsheet.
+- Banco de España serves at most 36 months of a daily series per request, so the first fetch walks back year by year to 2000 (about 3 minutes). After that, `fetch` downloads only recent observations and merges them into the stored history (about 10 seconds).
+- REE serves prices only at hourly resolution, in windows of about a week. They're fetched in 7-day chunks and averaged to a daily price.
+- The machine clock may not be on Spanish time. "Today" for freshness checks and request windows is Madrid time.
 
 ---
 
@@ -152,7 +156,8 @@ Each batch is sized for one working session, ends with something you can open or
 - Tests on the transforms, plus one smoke test per client
 - **Done when:** `python -m econpulse fetch` fills `data/` and prints a table of latest values.
 
-### Batch 2 — Remaining sources and robustness
+### Batch 2 — Remaining sources and robustness ✅ done 30 Oct 2026
+*Result: 61 indicators from 7 sources, plus 2 derived (Brent in €, monthly ES–DE spread). The first fetch backfills history in about 3 minutes; later updates take about 10 seconds. There is a `status` freshness report, and 62 offline plus 8 live tests. The home page has 13 tiles in econvitals order. Deferred: household debt and the level of registered unemployment (Batch 6), and Euro Stoxx 50 and gold (no clean free source yet).*
 - Banco de España (yields, Euribor, mortgage rates, household debt, balance of payments), Bundesbank 10y, Yahoo markets
 - Seguridad Social and SEPE downloads (Excel parsing), REE or OMIE electricity price
 - Retries, caching, per-source failure isolation, a "stale data" flag, a freshness report
@@ -166,7 +171,7 @@ Each batch is sized for one working session, ends with something you can open or
 
 ### Batch 4 — Sections I: GDP, Labour, Wages, Inflation
 - Charts plus the econvitals-style tables (1-month, 3-month and 12-month columns; latest, one month ago, one year ago)
-- Seasonal adjustment for CPI 3-month annualised (statsmodels)
+- Seasonal adjustment (statsmodels) for CPI 3-month annualised rates and for monthly changes in registrations. Then switch the registrations tile to the SA monthly change, as econvitals does for payrolls
 
 ### Batch 5 — Sections II: Financial and ECB
 - Yield curve, prima de riesgo, Euribor, markets table (1-day, 1-week, YTD), ECB rate history and expected path

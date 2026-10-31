@@ -23,7 +23,7 @@ class FakeClient:
     def __init__(self, data, failing=()):
         self.data, self.failing = data, set(failing)
 
-    def fetch(self, key, params=None):
+    def fetch(self, key, params=None, **_):
         if key in self.failing:
             raise ConnectionError("source down")
         return FetchResult(self.data[key], {"flash": key == "es"})
@@ -101,8 +101,62 @@ def test_build_writes_loadable_js(setup, tmp_path):
     payload = js.split("window.EP.snapshot = ", 1)[1].rstrip().rstrip(";")
     assert json.loads(payload)["tiles"] == ["es", "spread"]
     html = index.read_text(encoding="utf-8")
-    assert 'src="data/snapshot.js"' in html and 'src="assets/app.js"' in html
+    assert 'src="data/snapshot.js?v=' in html and 'src="assets/app.js?v=' in html
     assert (tmp_path / "site" / "assets" / "style.css").exists()
+
+
+def test_merge_keeps_old_history_and_takes_revisions():
+    stored = pd.Series([1.0, 2.0, 3.0], index=pd.date_range("2026-01-01", periods=3, freq="MS"))
+    new = pd.Series([2.5, 4.0], index=pd.date_range("2026-02-01", periods=2, freq="MS"))
+    merged = fetch_mod.merge(stored, new)
+    assert merged.tolist() == [1.0, 2.5, 4.0]
+    assert fetch_mod.merge(None, new).equals(new)
+
+
+class IncrementalClient(FakeClient):
+    INCREMENTAL = True
+
+    def __init__(self, data):
+        super().__init__(data)
+        self.calls = []
+
+    def fetch(self, key, params=None, since=None, freq=None):
+        self.calls.append(since)
+        s = self.data[key]
+        return FetchResult(s if since is None else s[s.index >= since])
+
+
+def test_incremental_fetch_asks_for_recent_data_and_merges(tmp_path, monkeypatch):
+    idx = pd.date_range("2026-01-01", periods=60, freq="D")
+    client = IncrementalClient({"x": pd.Series(range(60), index=idx, dtype="float64")})
+    monkeypatch.setitem(sources.CLIENTS, "inc", client)
+    store = Store(tmp_path / "data")
+    indicators = [ind(id="x", source="inc", freq="D")]
+
+    fetch_mod.fetch_all(indicators, store)
+    assert client.calls == [None]  # first run: full history
+
+    fetch_mod.fetch_all(indicators, store)
+    assert client.calls[1] == idx[-1] - pd.Timedelta(days=fetch_mod.REFETCH_DAYS["D"])
+    assert len(store.load_series("x")) == 60  # merged, nothing lost
+
+
+def test_changed_definition_discards_old_history(tmp_path, monkeypatch):
+    idx = pd.date_range("2026-01-01", periods=10, freq="D")
+    client = IncrementalClient({"a": pd.Series(1.0, index=idx), "b": pd.Series(2.0, index=idx[5:])})
+    monkeypatch.setitem(sources.CLIENTS, "inc", client)
+    store = Store(tmp_path / "data")
+    fetch_mod.fetch_all([ind(id="x", source="inc", key="a", freq="D")], store)
+    fetch_mod.fetch_all([ind(id="x", source="inc", key="b", freq="D")], store)
+    assert client.calls == [None, None]  # new key: not incremental
+    assert store.load_series("x").tolist() == [2.0] * 5  # old series not mixed in
+
+
+def test_scale_applied_to_fetched_values(setup):
+    store, indicators, _ = setup
+    indicators[0].scale = 100
+    fetch_mod.fetch_all(indicators[:1], store)
+    assert store.load_series("es").iloc[-1] == pytest.approx(420.0)
 
 
 def test_out_of_date_detection():
@@ -120,6 +174,11 @@ def test_out_of_date_detection():
     (22852.6, "thousands", 1, "22,852.6k"),
     (1.11724, "rate", 4, "1.1172"),
     (101.4, "% of GDP", 1, "101.4% of GDP"),
+    (123.1, "$/bbl", 1, "$123.1"),
+    (-5054.2, "€ mn", 0, "−€5,054 mn"),
+    (2512.68, "€", 0, "€2,513"),
+    (224.88, "€/MWh", 1, "224.9 €/MWh"),
+    (93858, "vehicles", 0, "93,858 vehicles"),
 ])
 def test_fmt_value(value, unit, decimals, expected):
     assert fmt_value(value, unit, decimals) == expected

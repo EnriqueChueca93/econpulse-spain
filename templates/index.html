@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>EconPulse Spain</title>
   <meta name="description" content="A running read on the health of the Spanish economy.">
-  <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" href="assets/style.css?v={{ build_id }}">
 </head>
 <body>
   <header class="site-header">
@@ -41,11 +41,11 @@
 
   <footer class="site-footer">
     <div class="wrap">
-      Data from INE, Eurostat and the European Central Bank. EconPulse Spain v{{ version }} · built {{ generated_at }}.
+      Data from {{ sources | join(", ") }}. EconPulse Spain v{{ version }} · built {{ generated_at }}.
     </div>
   </footer>
 
-  <script src="data/snapshot.js"></script>
-  <script src="assets/app.js"></script>
+  <script src="data/snapshot.js?v={{ build_id }}"></script>
+  <script src="assets/app.js?v={{ build_id }}"></script>
 </body>
 </html>

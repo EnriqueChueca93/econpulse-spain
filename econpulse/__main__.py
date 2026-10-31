@@ -4,6 +4,7 @@
     build   build the static site into site/ from the data already saved
     update  fetch, then build
     list    print the latest values from the data already saved (no download)
+    status  freshness report: what failed, what has stopped updating, per source
 """
 
 import argparse
@@ -47,12 +48,48 @@ def print_table(snapshot: dict) -> None:
         print(f"\n! Not updating recently (check the source still publishes them): {', '.join(old)}")
 
 
+def print_status(snapshot: dict, catalog: dict, store: Store, known_ids: set[str]) -> int:
+    """Per-source summary, then every indicator that needs attention. Returns the number of problems."""
+    by_source: dict[str, list[dict]] = {}
+    for item in snapshot["indicators"]:
+        by_source.setdefault(item["source"], []).append(item)
+
+    headers = ("source", "indicators", "ok", "stale", "error", "not updating")
+    rows = []
+    for source, items in sorted(by_source.items()):
+        count = lambda s: sum(1 for i in items if i["status"] == s)  # noqa: E731
+        old = sum(1 for i in items if i["status"] == "ok" and i["out_of_date"])
+        rows.append((source, len(items), count("ok") - old, count("stale"), count("error") + count("missing"), old))
+    widths = [max(len(str(r[i])) for r in [headers, *rows]) for i in range(len(headers))]
+    print("  ".join(h.ljust(w) for h, w in zip(headers, widths)))
+    for r in rows:
+        print("  ".join(str(c).ljust(w) for c, w in zip(r, widths)))
+
+    problems = [i for i in snapshot["indicators"] if i["status"] != "ok" or i["out_of_date"]]
+    if problems:
+        print("\nNeeds attention:")
+    for item in problems:
+        entry = catalog.get(item["id"], {})
+        what = "not updating" if item["status"] == "ok" else item["status"]
+        print(f"  {item['id']} ({item['source']}): {what}; latest observation {entry.get('last_date', '-')}, "
+              f"last successful fetch {entry.get('fetched_at', 'never')}")
+        if item.get("error"):
+            print(f"      {item['error']}")
+
+    orphans = sorted(p.stem for p in store.series_dir.glob("*.csv") if p.stem not in known_ids)
+    if orphans:
+        print(f"\nData files with no registry entry (safe to delete): {', '.join(orphans)}")
+    if not problems:
+        print("\nAll indicators fetched and up to date.")
+    return len(problems)
+
+
 def main(argv: list[str] | None = None) -> int:
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
     parser = argparse.ArgumentParser(prog="econpulse", description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("command", choices=["fetch", "build", "update", "list"])
+    parser.add_argument("command", choices=["fetch", "build", "update", "list", "status"])
     parser.add_argument("--only", help="comma-separated indicator ids to fetch (default: all)")
     args = parser.parse_args(argv)
 
@@ -71,6 +108,9 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.command in ("fetch", "list"):
         print_table(build_snapshot(indicators, store))
+
+    if args.command == "status":
+        print_status(build_snapshot(indicators, store), store.load_catalog(), store, {i.id for i in indicators})
 
     if args.command in ("build", "update"):
         index = build_site(indicators, store)

@@ -30,6 +30,6 @@ def parse(payload: dict) -> FetchResult:
     return FetchResult(series, {"source_name": payload.get("label", ""), "source_updated": payload.get("updated")})
 
 
-def fetch(key: str, params: dict | None = None) -> FetchResult:
+def fetch(key: str, params: dict | None = None, **_) -> FetchResult:
     payload = http.get(f"{BASE}/{key}", params={**(params or {}), "format": "JSON", "lang": "EN"}).json()
     return parse(payload)

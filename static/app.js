@@ -51,8 +51,12 @@
     if (item.source_url) { tile.href = item.source_url; tile.target = "_blank"; tile.rel = "noopener"; }
     tile.title = item.label_es + (item.notes ? " — " + item.notes : "");
     tile.appendChild(el("div", "tile-label", item.label));
-    var value = el("div", "tile-value", head ? head.display : "–");
-    if (head && head.label) value.appendChild(el("span", "tile-unit", " " + head.label));
+    // "209 €/MWh" -> big "209", small "€/MWh", so long units don't wrap the tile.
+    var display = head ? head.display : "–";
+    var cut = display.indexOf(" ");
+    var value = el("div", "tile-value", cut > 0 ? display.slice(0, cut) : display);
+    var suffix = [cut > 0 ? display.slice(cut + 1) : "", head ? head.label : ""].filter(Boolean).join(" ");
+    if (suffix) value.appendChild(el("span", "tile-unit", " " + suffix));
     tile.appendChild(value);
     var meta = el("div", "tile-meta");
     meta.appendChild(el("span", "tile-period", head ? head.period : ""));

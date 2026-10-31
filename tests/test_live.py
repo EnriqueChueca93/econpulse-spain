@@ -3,7 +3,7 @@
 import pandas as pd
 import pytest
 
-from econpulse.sources import ecb, eurostat, ine
+from econpulse.sources import bde, ecb, eurostat, fred, ine, ree, segsocial
 
 pytestmark = pytest.mark.live
 
@@ -25,3 +25,28 @@ def test_eurostat_unemployment():
 def test_ecb_deposit_rate():
     s = ecb.fetch("FM/D.U2.EUR.4F.KR.DFR.LEV").series
     assert -1 < s.iloc[-1] < 10 and recent(s, 10)
+
+
+def test_bde_10y_recent_window():
+    s = bde.fetch("DPUG0B1F0ZP", freq="D", since=pd.Timestamp.today() - pd.Timedelta(days=30)).series
+    assert 0 < s.iloc[-1] < 15 and recent(s, 10)
+
+
+def test_bde_monthly():
+    s = bde.fetch("DPU1JA0D000_TVA", freq="M").series
+    assert len(s) > 100 and recent(s, 120)
+
+
+def test_segsocial_registrations():
+    s = segsocial.fetch("TOTAL SISTEMA").series
+    assert 15e6 < s.iloc[-1] < 30e6 and recent(s, 100)
+
+
+def test_fred_brent():
+    s = fred.fetch("DCOILBRENTEU").series
+    assert 10 < s.iloc[-1] < 400 and recent(s, 14)
+
+
+def test_ree_price_recent_window():
+    s = ree.fetch("spot_price", since=pd.Timestamp.today() - pd.Timedelta(days=5)).series
+    assert len(s) >= 3 and recent(s, 3)

@@ -1,13 +1,23 @@
 """Shared types and helpers for source clients.
 
-Every client exposes ``fetch(key, params) -> FetchResult``. Dates are stored as
-the first day of the period: September 2026 -> 2026-09-01, Q3 2026 -> 2026-07-01.
+Every client exposes ``fetch(key, params, *, since=None, freq=None) -> FetchResult``.
+Dates are stored as the first day of the period: September 2026 -> 2026-09-01,
+Q3 2026 -> 2026-07-01.
 """
 
 import re
 from dataclasses import dataclass, field
+from datetime import date, datetime
+from zoneinfo import ZoneInfo
 
 import pandas as pd
+
+MADRID = ZoneInfo("Europe/Madrid")
+
+
+def madrid_today() -> date:
+    """Today's date in Spain, whatever the machine's own time zone."""
+    return datetime.now(MADRID).date()
 
 
 @dataclass

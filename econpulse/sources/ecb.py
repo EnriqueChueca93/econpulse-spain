@@ -24,6 +24,6 @@ def parse(text: str) -> FetchResult:
     return FetchResult(series)
 
 
-def fetch(key: str, params: dict | None = None) -> FetchResult:
+def fetch(key: str, params: dict | None = None, **_) -> FetchResult:
     text = http.get(f"{BASE}/{key}", params={"format": "csvdata", "detail": "dataonly", **(params or {})}).text
     return parse(text)

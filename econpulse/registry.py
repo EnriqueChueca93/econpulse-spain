@@ -1,5 +1,6 @@
 """The indicator registry: every series the site tracks, defined in indicators.yaml."""
 
+import json
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -29,6 +30,7 @@ class Indicator:
     freq: str
     unit: str
     params: dict = field(default_factory=dict)
+    scale: float = 1.0              # multiply fetched values, e.g. 0.001 for persons -> thousands
     transforms: tuple[str, ...] = ("level",)
     decimals: int = 1
     change_unit: str | None = None  # "pp" or "bp" for rates, "%" for relative change
@@ -51,6 +53,10 @@ class Indicator:
     def source_url(self) -> str | None:
         client = sources.CLIENTS.get(self.source)
         return client.source_url(self.key, self.params) if client else None
+
+    def signature(self) -> str:
+        """Identifies what is fetched; stored history is only reused while this stays the same."""
+        return json.dumps([self.source, self.key, self.params, self.scale], sort_keys=True, ensure_ascii=False)
 
 
 def load_registry(path: Path = REGISTRY_FILE) -> list[Indicator]:

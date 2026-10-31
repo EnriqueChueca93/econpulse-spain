@@ -36,6 +36,8 @@ def _num(v: float, decimals: int, thousands: bool = False) -> str:
 
 
 def fmt_value(v: float, unit: str, decimals: int) -> str:
+    n = _num(v, decimals, thousands=True)
+    sign, digits = (MINUS, n[1:]) if n.startswith(MINUS) else ("", n)
     if unit == "%":
         return f"{_num(v, decimals)}%"
     if unit == "% of GDP":
@@ -43,10 +45,16 @@ def fmt_value(v: float, unit: str, decimals: int) -> str:
     if unit == "bp":
         return f"{_num(v, 0)} bp"
     if unit == "thousands":
-        return f"{_num(v, decimals, thousands=True)}k"
+        return f"{n}k"
     if unit in ("index", "balance", "rate"):
-        return _num(v, decimals, thousands=True)
-    return f"{_num(v, decimals)} {unit}"
+        return n
+    if unit == "$/bbl":
+        return f"{sign}${digits}"
+    if unit == "€ mn":
+        return f"{sign}€{digits} mn"
+    if unit == "€":
+        return f"{sign}€{digits}"
+    return f"{n} {unit}"  # e.g. "224.9 €/MWh", "93,858 vehicles"
 
 
 def fmt_change(c: float, unit: str, decimals: int) -> str:
@@ -121,7 +129,8 @@ def summarize_transform(ind: Indicator, series: pd.Series, name: str) -> dict | 
 def subline(ind: Indicator, values: list[dict]) -> str:
     """The second line of a key-indicator tile."""
     head = values[0]
-    if head["transform"] in transforms.PERCENT_TRANSFORMS and len(values) > 1:
+    # A headline that is already a change (q/q, y/y, +k) is followed by the next measure, not a change of a change.
+    if head["transform"] != "level" and len(values) > 1:
         return f"{values[1]['display']} {values[1]['label']}".strip()
     if ind.freq == "D" and head["change_ytd_display"]:
         return f"{head['change_ytd_display']} YTD"

@@ -15,6 +15,6 @@ TEMPLATES_DIR = ROOT / "templates"
 STATIC_DIR = ROOT / "static"
 SITE_DIR = ROOT / "site"
 
-USER_AGENT = "EconPulseSpain/0.1 (economic dashboard; github.com/econpulse-spain)"
+USER_AGENT = "EconPulseSpain/0.1 (economic dashboard; personal project)"
 HTTP_TIMEOUT = 60  # seconds
 FETCH_WORKERS = 6
