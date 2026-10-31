@@ -46,4 +46,4 @@ class Store:
     def save_catalog(self, catalog: dict) -> None:
         self.data_dir.mkdir(parents=True, exist_ok=True)
         text = json.dumps(dict(sorted(catalog.items())), indent=1, ensure_ascii=False)
-        self.catalog_file.write_text(text + "\n", encoding="utf-8")
+        self.catalog_file.write_text(text + "\n", encoding="utf-8", newline="\n")
