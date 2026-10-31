@@ -1,0 +1,11 @@
+[project]
+name = "econpulse-spain"
+version = "0.1.0"
+description = "A running read on the health of the Spanish economy"
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+markers = ["live: calls the real data APIs (run with: pytest -m live)"]
+addopts = "-m 'not live'"

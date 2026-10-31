@@ -1,0 +1,406 @@
+# EconPulse Spain indicator registry.
+#
+# One entry per series. Fields:
+#   id           unique name, also the CSV file name in data/series/
+#   label        English name;  label_es: official Spanish name
+#   section      gdp | labour | wages | inflation | financial | ecb | fiscal | activity | housing | international
+#   source       ine | eurostat | ecb | derived
+#   key, params  what to ask the source for (see econpulse/sources/<source>.py)
+#   freq         D | M | Q | A
+#   unit         unit of the stored series: "%", "% of GDP", "bp", "thousands", or a plain
+#                number shown without suffix: "index", "balance", "rate"
+#   transforms   how to show it; the first one is the headline (level, pop, yoy, ann3m, saar, diff, diff_yoy)
+#   decimals     decimals to display (default 1)
+#   change_unit  pp | bp for rates; % for relative change (e.g. exchange rates)
+#   tile         position in the home-page key-indicators strip (omit if not a tile)
+#   max_age_days flag the series as "not updating" past this age (defaults by freq)
+#
+# INE codes are series codes (not table ids): INE moves series to new tables when
+# it rebases, so check the freshness report if a series stops updating.
+
+indicators:
+
+  # ---------------------------------------------------------------- GDP (INE CNTR)
+  # Chain-linked volume indices, seasonally and calendar adjusted.
+  - id: gdp
+    label: Real GDP
+    label_es: Producto interior bruto (volumen)
+    section: gdp
+    source: ine
+    key: CNTR6652
+    freq: Q
+    unit: index
+    transforms: [pop, yoy]
+    tile: 1
+
+  - id: domestic_demand
+    label: Domestic demand
+    label_es: Demanda nacional
+    section: gdp
+    source: ine
+    key: CNTR7146
+    freq: Q
+    unit: index
+    transforms: [pop, yoy]
+
+  - id: consumption_households
+    label: Household consumption
+    label_es: Gasto en consumo final de los hogares
+    section: gdp
+    source: ine
+    key: CNTR7161
+    freq: Q
+    unit: index
+    transforms: [pop, yoy]
+
+  - id: consumption_government
+    label: Government consumption
+    label_es: Gasto en consumo final de las AAPP
+    section: gdp
+    source: ine
+    key: CNTR7186
+    freq: Q
+    unit: index
+    transforms: [pop, yoy]
+
+  - id: investment
+    label: Fixed investment
+    label_es: Formación bruta de capital fijo
+    section: gdp
+    source: ine
+    key: CNTR7211
+    freq: Q
+    unit: index
+    transforms: [pop, yoy]
+
+  - id: exports
+    label: Exports
+    label_es: Exportaciones de bienes y servicios
+    section: gdp
+    source: ine
+    key: CNTR7265
+    freq: Q
+    unit: index
+    transforms: [pop, yoy]
+
+  - id: imports
+    label: Imports
+    label_es: Importaciones de bienes y servicios
+    section: gdp
+    source: ine
+    key: CNTR7285
+    freq: Q
+    unit: index
+    transforms: [pop, yoy]
+
+  # ---------------------------------------------------------------- Labour
+  - id: unemployment_epa
+    label: Unemployment rate (EPA)
+    label_es: Tasa de paro (EPA)
+    section: labour
+    source: ine
+    key: EPA423474
+    freq: Q
+    unit: "%"
+    decimals: 2
+    change_unit: pp
+    tile: 2
+    notes: Labour force survey, not seasonally adjusted. The official measure.
+
+  - id: employment_epa
+    label: Employment (EPA)
+    label_es: Ocupados (EPA)
+    section: labour
+    source: ine
+    key: EPA387796
+    freq: Q
+    unit: thousands
+    transforms: [yoy, diff_yoy, level]
+
+  - id: unemployment_monthly
+    label: Unemployment rate, monthly (SA)
+    label_es: Tasa de paro mensual (desestacionalizada)
+    section: labour
+    source: eurostat
+    key: une_rt_m
+    params: {geo: ES, s_adj: SA, age: TOTAL, sex: T, unit: PC_ACT}
+    freq: M
+    unit: "%"
+    change_unit: pp
+    tile: 3
+    notes: Eurostat's monthly estimate, benchmarked to the EPA.
+
+  - id: youth_unemployment
+    label: Youth unemployment rate (<25, SA)
+    label_es: Tasa de paro juvenil (<25)
+    section: labour
+    source: eurostat
+    key: une_rt_m
+    params: {geo: ES, s_adj: SA, age: Y_LT25, sex: T, unit: PC_ACT}
+    freq: M
+    unit: "%"
+    change_unit: pp
+
+  # ---------------------------------------------------------------- Inflation
+  - id: cpi
+    label: CPI inflation
+    label_es: IPC general, variación anual
+    section: inflation
+    source: ine
+    key: IPC290750
+    freq: M
+    unit: "%"
+    change_unit: pp
+    tile: 4
+
+  - id: core_cpi
+    label: Core CPI inflation
+    label_es: IPC subyacente, variación anual
+    section: inflation
+    source: ine
+    key: IPC292510
+    freq: M
+    unit: "%"
+    change_unit: pp
+    tile: 5
+    notes: Excludes unprocessed food and energy (INE definition).
+
+  - id: cpi_index
+    label: CPI index
+    label_es: IPC general, índice
+    section: inflation
+    source: ine
+    key: IPC290751
+    freq: M
+    unit: index
+    transforms: [pop, yoy]
+    decimals: 2
+
+  - id: core_cpi_index
+    label: Core CPI index
+    label_es: IPC subyacente, índice
+    section: inflation
+    source: ine
+    key: IPC292511
+    freq: M
+    unit: index
+    transforms: [pop, yoy]
+    decimals: 2
+
+  - id: hicp
+    label: HICP inflation
+    label_es: IPCA, variación anual
+    section: inflation
+    source: eurostat
+    key: prc_hicp_minr
+    params: {geo: ES, unit: RCH_A, coicop18: TOTAL}
+    freq: M
+    unit: "%"
+    change_unit: pp
+    tile: 6
+    notes: Harmonised index, the measure the ECB targets.
+
+  - id: hicp_core
+    label: Core HICP inflation
+    label_es: IPCA sin energía, alimentos, alcohol y tabaco
+    section: inflation
+    source: eurostat
+    key: prc_hicp_minr
+    params: {geo: ES, unit: RCH_A, coicop18: TOT_X_NRG_FOOD}
+    freq: M
+    unit: "%"
+    change_unit: pp
+
+  - id: hicp_euro_area
+    label: Euro area HICP inflation
+    label_es: IPCA zona euro
+    section: international
+    source: eurostat
+    key: prc_hicp_minr
+    params: {geo: EA, unit: RCH_A, coicop18: TOTAL}
+    freq: M
+    unit: "%"
+    change_unit: pp
+
+  # ---------------------------------------------------------------- Activity & housing
+  - id: industrial_production
+    label: Industrial production (SA)
+    label_es: Índice de producción industrial
+    section: activity
+    source: ine
+    key: IPI15360
+    freq: M
+    unit: index
+    transforms: [pop, yoy]
+
+  - id: retail_sales
+    label: Real retail sales (SA)
+    label_es: Comercio al por menor, precios constantes
+    section: activity
+    source: ine
+    key: ICM4093
+    freq: M
+    unit: index
+    transforms: [pop, yoy]
+
+  - id: economic_sentiment
+    label: Economic sentiment indicator
+    label_es: Indicador de sentimiento económico (CE)
+    section: activity
+    source: eurostat
+    key: ei_bssi_m_r2
+    params: {geo: ES, indic: BS-ESI-I, s_adj: SA}
+    freq: M
+    unit: index
+    notes: European Commission survey; long-run average = 100.
+
+  - id: consumer_confidence
+    label: Consumer confidence
+    label_es: Confianza del consumidor (CE)
+    section: activity
+    source: eurostat
+    key: ei_bssi_m_r2
+    params: {geo: ES, indic: BS-CSMCI-BAL, s_adj: SA}
+    freq: M
+    unit: balance
+
+  - id: house_prices
+    label: House prices
+    label_es: Índice de precios de vivienda (IPV)
+    section: housing
+    source: ine
+    key: IPV1209
+    freq: Q
+    unit: index
+    transforms: [yoy, pop]
+
+  # ---------------------------------------------------------------- Fiscal
+  - id: government_debt
+    label: Government debt
+    label_es: Deuda de las AAPP (% PIB)
+    section: fiscal
+    source: eurostat
+    key: gov_10q_ggdebt
+    params: {geo: ES, unit: PC_GDP, sector: S13, na_item: GD}
+    freq: Q
+    unit: "% of GDP"
+    change_unit: pp
+
+  # ---------------------------------------------------------------- ECB & rates
+  - id: ecb_deposit_rate
+    label: ECB deposit rate
+    label_es: Facilidad de depósito del BCE
+    section: ecb
+    source: ecb
+    key: FM/D.U2.EUR.4F.KR.DFR.LEV
+    freq: D
+    unit: "%"
+    decimals: 2
+    change_unit: bp
+    tile: 7
+
+  - id: ecb_mro_rate
+    label: ECB main refinancing rate
+    label_es: Operaciones principales de financiación del BCE
+    section: ecb
+    source: ecb
+    key: FM/D.U2.EUR.4F.KR.MRR_FR.LEV
+    freq: D
+    unit: "%"
+    decimals: 2
+    change_unit: bp
+
+  - id: estr
+    label: €STR
+    label_es: Tipo a corto plazo del euro (€STR)
+    section: ecb
+    source: ecb
+    key: EST/B.EU000A2X2A25.WT
+    freq: D
+    unit: "%"
+    decimals: 3
+    change_unit: bp
+
+  - id: euribor_3m
+    label: 3-month Euribor (monthly avg.)
+    label_es: Euríbor a 3 meses
+    section: financial
+    source: ecb
+    key: FM/M.U2.EUR.RT.MM.EURIBOR3MD_.HSTA
+    freq: M
+    unit: "%"
+    decimals: 2
+    change_unit: bp
+
+  - id: euribor_12m
+    label: 12-month Euribor (monthly avg.)
+    label_es: Euríbor a 12 meses
+    section: financial
+    source: ecb
+    key: FM/M.U2.EUR.RT.MM.EURIBOR1YD_.HSTA
+    freq: M
+    unit: "%"
+    decimals: 2
+    change_unit: bp
+    notes: The reference rate for most Spanish variable-rate mortgages.
+
+  - id: es_10y
+    label: Spain 10-year yield (monthly avg.)
+    label_es: Rentabilidad del bono a 10 años
+    section: financial
+    source: ecb
+    key: IRS/M.ES.L.L40.CI.0000.EUR.N.Z
+    freq: M
+    unit: "%"
+    decimals: 2
+    change_unit: bp
+    tile: 8
+    notes: Monthly convergence yield. Daily data from Banco de España arrives in Batch 2.
+
+  - id: de_10y
+    label: Germany 10-year yield (monthly avg.)
+    label_es: Rentabilidad del bund a 10 años
+    section: financial
+    source: ecb
+    key: IRS/M.DE.L.L40.CI.0000.EUR.N.Z
+    freq: M
+    unit: "%"
+    decimals: 2
+    change_unit: bp
+
+  - id: risk_premium
+    label: Prima de riesgo (ES−DE 10y)
+    label_es: Prima de riesgo
+    section: financial
+    source: derived
+    key: subtract
+    params: {a: es_10y, b: de_10y, scale: 100}
+    freq: M
+    unit: bp
+    decimals: 0
+    change_unit: bp
+    tile: 9
+
+  - id: mortgage_rate
+    label: New mortgage rate
+    label_es: Tipo de interés de nuevas hipotecas
+    section: housing
+    source: ecb
+    key: MIR/M.ES.B.A2C.A.R.A.2250.EUR.N
+    freq: M
+    unit: "%"
+    decimals: 2
+    change_unit: bp
+
+  - id: eurusd
+    label: EUR/USD
+    label_es: Tipo de cambio dólar/euro
+    section: financial
+    source: ecb
+    key: EXR/D.USD.EUR.SP00.A
+    freq: D
+    unit: rate
+    decimals: 4
+    change_unit: "%"
+    tile: 10
+    notes: US dollars per euro, ECB reference rate.

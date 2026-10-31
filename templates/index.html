@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EconPulse Spain</title>
+  <meta name="description" content="A running read on the health of the Spanish economy.">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html">EconPulse <span>Spain</span></a>
+      <span class="asof" id="asof"></span>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <p class="lede">A running read on the health of the Spanish economy.</p>
+
+    <section>
+      <h2>Key indicators</h2>
+      <div class="tiles" id="tiles"></div>
+    </section>
+
+    <section>
+      <h2>All indicators</h2>
+      <p class="note">Every series currently tracked, with its latest reading and source. This table becomes the data-freshness page later on.</p>
+      <div class="table-scroll">
+        <table class="data-table" id="all-indicators">
+          <thead>
+            <tr><th>Indicator</th><th>Latest</th><th>Change</th><th>Period</th><th>Source</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <noscript><p class="note">This page needs JavaScript to show the data.</p></noscript>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      Data from INE, Eurostat and the European Central Bank. EconPulse Spain v{{ version }} · built {{ generated_at }}.
+    </div>
+  </footer>
+
+  <script src="data/snapshot.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>

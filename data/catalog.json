@@ -1,0 +1,288 @@
+{
+ "consumer_confidence": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:25:25+00:00",
+  "first_date": "1986-06-01",
+  "last_date": "2026-10-01",
+  "n_obs": 485,
+  "source_name": "Economic sentiment and confidence indicators by sector - monthly data",
+  "source_updated": "2026-10-29T11:00:00+0100"
+ },
+ "consumption_government": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:25:20+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "flash": false,
+  "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. Gasto en consumo final de las AAPP. Dato base. Índices de volumen encadenados."
+ },
+ "consumption_households": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:25:20+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "flash": false,
+  "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. Gasto en consumo final de los hogares. Dato base. Índices de volumen encadenados."
+ },
+ "core_cpi": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:25:22+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-10-01",
+  "n_obs": 298,
+  "flash": true,
+  "source_name": "Nacional. Subyacente: General sin alimentos no elaborados ni productos energéticos. Variación anual."
+ },
+ "core_cpi_index": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:25:22+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 297,
+  "flash": false,
+  "source_name": "Nacional. Subyacente: General sin alimentos no elaborados ni productos energéticos. Índice."
+ },
+ "cpi": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:25:22+00:00",
+  "first_date": "1962-01-01",
+  "last_date": "2026-10-01",
+  "n_obs": 778,
+  "flash": true,
+  "source_name": "Nacional. Índice general. Variación anual."
+ },
+ "cpi_index": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:25:22+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 297,
+  "flash": false,
+  "source_name": "Nacional. Índice general. Índice."
+ },
+ "de_10y": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:25:25+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 441
+ },
+ "domestic_demand": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:25:20+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "flash": false,
+  "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. Demanda nacional. Dato base. Índices de volumen encadenados."
+ },
+ "ecb_deposit_rate": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:25:25+00:00",
+  "first_date": "1999-01-01",
+  "last_date": "2026-10-30",
+  "n_obs": 10165
+ },
+ "ecb_mro_rate": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:25:25+00:00",
+  "first_date": "1999-01-01",
+  "last_date": "2026-10-30",
+  "n_obs": 7134
+ },
+ "economic_sentiment": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:25:25+00:00",
+  "first_date": "1987-04-01",
+  "last_date": "2026-10-01",
+  "n_obs": 475,
+  "source_name": "Economic sentiment and confidence indicators by sector - monthly data",
+  "source_updated": "2026-10-29T11:00:00+0100"
+ },
+ "employment_epa": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:25:22+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 99,
+  "flash": false,
+  "source_name": "Total Nacional. Ambos sexos. Total. Ocupados. Valor absoluto."
+ },
+ "es_10y": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:25:25+00:00",
+  "first_date": "1991-11-01",
+  "last_date": "2026-09-01",
+  "n_obs": 419
+ },
+ "estr": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:25:25+00:00",
+  "first_date": "2019-10-01",
+  "last_date": "2026-10-29",
+  "n_obs": 1814
+ },
+ "euribor_12m": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:25:25+00:00",
+  "first_date": "1994-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 393
+ },
+ "euribor_3m": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:25:25+00:00",
+  "first_date": "1994-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 393
+ },
+ "eurusd": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:25:25+00:00",
+  "first_date": "1999-01-04",
+  "last_date": "2026-10-30",
+  "n_obs": 7126
+ },
+ "exports": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:25:20+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "flash": false,
+  "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. Exportaciones de bienes y servicios. Dato base. Índices de volumen encadenados."
+ },
+ "gdp": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:25:20+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "flash": false,
+  "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. Producto interior bruto a precios de mercado. Dato base. Índices de volumen encadenados."
+ },
+ "government_debt": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:25:25+00:00",
+  "first_date": "1995-10-01",
+  "last_date": "2026-04-01",
+  "n_obs": 123,
+  "source_name": "Quarterly government debt",
+  "source_updated": "2026-10-21T11:00:00+0200"
+ },
+ "hicp": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:25:22+00:00",
+  "first_date": "1997-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 357,
+  "source_name": "Harmonised index of consumer prices (HICP) - ECOICOP ver.2 - indices and rates of change, monthly data",
+  "source_updated": "2026-10-16T23:00:00+0200"
+ },
+ "hicp_core": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:25:22+00:00",
+  "first_date": "2001-12-01",
+  "last_date": "2026-09-01",
+  "n_obs": 298,
+  "source_name": "Harmonised index of consumer prices (HICP) - ECOICOP ver.2 - indices and rates of change, monthly data",
+  "source_updated": "2026-10-16T23:00:00+0200"
+ },
+ "hicp_euro_area": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:25:22+00:00",
+  "first_date": "1997-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 357,
+  "source_name": "Harmonised index of consumer prices (HICP) - ECOICOP ver.2 - indices and rates of change, monthly data",
+  "source_updated": "2026-10-16T23:00:00+0200"
+ },
+ "house_prices": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:25:25+00:00",
+  "first_date": "2007-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 78,
+  "flash": false,
+  "source_name": "Nacional. General. Índice."
+ },
+ "imports": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:25:22+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "flash": false,
+  "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. Importaciones de bienes y servicios. Dato base. Índices de volumen encadenados."
+ },
+ "industrial_production": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:25:25+00:00",
+  "first_date": "1992-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 416,
+  "flash": false,
+  "source_name": "Total Nacional. Índice. Datos ajustados de estacionalidad y calendario. Total industria."
+ },
+ "investment": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:25:20+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "flash": false,
+  "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. Formación bruta de capital fijo (FBCF). Dato base. Índices de volumen encadenados."
+ },
+ "mortgage_rate": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:25:25+00:00",
+  "first_date": "2000-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 320
+ },
+ "retail_sales": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:25:25+00:00",
+  "first_date": "2000-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 321,
+  "flash": false,
+  "source_name": "Total Nacional. Cifra de negocio a precios constantes. General. Comercio al por menor, excepto de vehículos de motor y motocicletas. Índice. Datos ajustados de estacionalidad y calendario."
+ },
+ "risk_premium": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:25:25+00:00",
+  "first_date": "1991-11-01",
+  "last_date": "2026-09-01",
+  "n_obs": 419
+ },
+ "unemployment_epa": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:25:22+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 99,
+  "flash": false,
+  "source_name": "Total Nacional. Tasa de paro de la población. Ambos sexos. Total."
+ },
+ "unemployment_monthly": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:25:22+00:00",
+  "first_date": "1986-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 486,
+  "source_name": "Unemployment by sex and age - monthly data",
+  "source_updated": "2026-10-30T11:00:00+0100"
+ },
+ "youth_unemployment": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T00:25:22+00:00",
+  "first_date": "1986-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 486,
+  "source_name": "Unemployment by sex and age - monthly data",
+  "source_updated": "2026-10-30T11:00:00+0100"
+ }
+}
