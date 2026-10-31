@@ -2,6 +2,7 @@
 
 data/series/<id>.csv   date,value  (full history, period-start dates)
 data/catalog.json      {id: {status, fetched_at, last_date, n_obs, error, ...}}
+data/<name>.json       other saved state: the release calendar, the log of new releases
 """
 
 import json
@@ -47,3 +48,12 @@ class Store:
         self.data_dir.mkdir(parents=True, exist_ok=True)
         text = json.dumps(dict(sorted(catalog.items())), indent=1, ensure_ascii=False)
         self.catalog_file.write_text(text + "\n", encoding="utf-8", newline="\n")
+
+    def load_json(self, name: str, default=None):
+        path = self.data_dir / f"{name}.json"
+        return json.loads(path.read_text(encoding="utf-8")) if path.exists() else default
+
+    def save_json(self, name: str, obj) -> None:
+        self.data_dir.mkdir(parents=True, exist_ok=True)
+        text = json.dumps(obj, indent=1, ensure_ascii=False)
+        (self.data_dir / f"{name}.json").write_text(text + "\n", encoding="utf-8", newline="\n")

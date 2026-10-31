@@ -11,9 +11,10 @@ import shutil
 from datetime import datetime
 from pathlib import Path
 
+import pandas as pd
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
-from . import __version__, analytics
+from . import __version__, analytics, changes, schedule
 from .charts import build_home_charts
 from .config import SITE_DIR, STATIC_DIR, TEMPLATES_DIR
 from .pages import build_page
@@ -21,7 +22,7 @@ from .questions import four_questions
 from .registry import Indicator
 from .snapshot import build_snapshot
 from .sources import SOURCE_NAMES
-from .sources.base import MADRID
+from .sources.base import MADRID, madrid_today
 from .store import Store
 from .tables import Data
 
@@ -42,7 +43,8 @@ SECTION_PAGES = {
     "analysis": ("Analysis", "EconPulse's own readings: the economy against its history, a GDP nowcast, the 10-year yield split in two, and Taylor rules.", 7),
 }
 
-NAV = [("index.html", "Home")] + [(f"{s}.html", t) for s, (t, _, _) in SECTION_PAGES.items()] + [("data.html", "Data")]
+NAV = ([("index.html", "Home")] + [(f"{s}.html", t) for s, (t, _, _) in SECTION_PAGES.items()]
+       + [("calendar.html", "Calendar"), ("data.html", "Data")])
 
 
 def write_data_js(path: Path, name: str, data) -> None:
@@ -60,12 +62,17 @@ def _madrid_time(iso: str | None) -> str:
 def _source_summary(items: list[dict]) -> list[dict]:
     rows: dict[str, dict] = {}
     for item in items:
-        row = rows.setdefault(item["source"], {"source": item["source"], "total": 0, "ok": 0, "problems": 0})
+        row = rows.setdefault(item["source"], {"source": item["source"], "total": 0, "ok": 0, "problems": 0,
+                                               "fetched_at": None})
         row["total"] += 1
         if item["status"] == "ok" and not item["out_of_date"]:
             row["ok"] += 1
         else:
             row["problems"] += 1
+        if item["fetched_at"] and (row["fetched_at"] is None or item["fetched_at"] > row["fetched_at"]):
+            row["fetched_at"] = item["fetched_at"]
+    for row in rows.values():
+        row["fetched"] = _madrid_time(row["fetched_at"]).replace(" Madrid time", "")
     return sorted(rows.values(), key=lambda r: -r["total"])
 
 
@@ -106,6 +113,7 @@ def build_site(indicators: list[Indicator], store: Store | None = None, site_dir
         "as_of": _madrid_time(snapshot["data_as_of"]).replace(" Madrid time", ""),
         "sources": list(dict.fromkeys(SOURCE_NAMES.get(i.source, i.source) for i in indicators if not i.is_derived)),
         "nav": NAV,
+        "coming_up": schedule.coming_up(store),
     }
 
     def render(template: str, filename: str, **context) -> Path:
@@ -114,8 +122,14 @@ def build_site(indicators: list[Indicator], store: Store | None = None, site_dir
         path.write_text(html, encoding="utf-8")
         return path
 
+    today = pd.Timestamp(madrid_today())
+    recent = changes.recent_releases(store, by_id, schedule.releases(store, today), today)
+    whats_new = {**changes.latest_notes(store), "recent": recent}
+    for key in ("at", "updated_at", "started_at"):
+        whats_new[key] = _madrid_time(whats_new[key]).replace(" Madrid time", "") if whats_new[key] else None
     index = render("index.html", "index.html", tiles=[by_id[t] for t in snapshot["tiles"]],
-                   questions=snapshot["questions"], charts=charts, readings=snapshot["readings"])
+                   questions=snapshot["questions"], charts=charts, readings=snapshot["readings"],
+                   whats_new=whats_new)
     for section, (title, intro, batch) in SECTION_PAGES.items():
         page = build_page(section, indicators, store)
         charts_file = None
@@ -126,5 +140,13 @@ def build_site(indicators: list[Indicator], store: Store | None = None, site_dir
                blocks=page["blocks"], charts_file=charts_file,
                items=[i for i in items if i["section"] == section])
     groups = [{"id": s, "title": t, "items": [i for i in items if i["section"] == s]} for s, (t, _, _) in SECTION_PAGES.items()]
-    render("data.html", "data.html", source_summary=_source_summary(items), groups=[g for g in groups if g["items"]])
+    attention = [i for i in items if i["status"] != "ok" or i["out_of_date"]]
+    render("data.html", "data.html", source_summary=_source_summary(items), groups=[g for g in groups if g["items"]],
+           attention=attention, total=len(items))
+    render("calendar.html", "calendar.html", days=schedule.window(store, today), recent=recent,
+           calendar_page=schedule.INE_CALENDAR_PAGE)
+    counts = {}
+    for i in items:
+        counts[i["source"]] = counts.get(i["source"], 0) + 1
+    render("about.html", "about.html", total=len(items), source_counts=sorted(counts.items(), key=lambda kv: -kv[1]))
     return index

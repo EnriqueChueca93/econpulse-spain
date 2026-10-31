@@ -1,6 +1,7 @@
 """Command line: python -m econpulse <command>
 
-    fetch   download every indicator into data/ and print the latest values
+    fetch   download every indicator into data/ (and INE's release calendar), log what
+            changed since the last fetch, and print the latest values
     build   build the static site into site/ from the data already saved
     update  fetch, then build
     list    print the latest values from the data already saved (no download)
@@ -11,6 +12,7 @@ import argparse
 import sys
 import time
 
+from . import changes, schedule
 from .build import build_site
 from .fetch import fetch_all
 from .registry import load_registry
@@ -104,7 +106,13 @@ def main(argv: list[str] | None = None) -> int:
         catalog = fetch_all(indicators, store, only)
         targets = [i.id for i in indicators if only is None or i.id in only]
         ok = sum(1 for i in targets if catalog.get(i, {}).get("status") == "ok")
-        print(f"Fetched {ok}/{len(targets)} indicators in {time.monotonic() - started:.1f}s\n")
+        print(f"Fetched {ok}/{len(targets)} indicators in {time.monotonic() - started:.1f}s")
+        print(f"Release calendar: {schedule.refresh(store)} INE releases saved")
+        notes = changes.record(indicators, store)
+        print(f"What changed: {len(notes)} new note(s)")
+        for n in notes:
+            print(f"  - {n['text']}")
+        print()
 
     if args.command in ("fetch", "list"):
         print_table(build_snapshot(indicators, store))

@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block title %}About and methods · EconPulse Spain{% endblock %}
+
+{% block content %}
+  <h1>About EconPulse Spain</h1>
+  <p class="lede">A running read on the health of the Spanish economy: {{ total }} official series, updated together,
+    shown as tables and charts with the method behind every number.</p>
+
+  <section aria-labelledby="what">
+    <h2 id="what">What this is</h2>
+    <div class="prose">
+      <p>EconPulse Spain follows the idea of <a href="https://econvitals.org/" target="_blank" rel="noopener">Econvitals</a>,
+        which does the same for the United States, and is not affiliated with it. Everything here comes from official
+        or public sources, accessed through their open data services, and is rebuilt as a plain website that works
+        offline.</p>
+      <p>The site has no forecasts of its own beyond those clearly labelled on the <a href="analysis.html">Analysis</a>
+        page, and nothing on it is investment advice.</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="sources">
+    <h2 id="sources">Sources</h2>
+    <div class="table-scroll">
+      <table class="data-table">
+        <thead><tr><th scope="col">Source</th><th scope="col" class="num">Series</th><th scope="col">What it provides</th></tr></thead>
+        <tbody>
+          {% set what = {
+            "INE": "National accounts, CPI, labour force survey (EPA), labour costs, industry, retail, tourism, housing, regional data",
+            "Eurostat": "Harmonised inflation, unemployment and GDP for Spain and its peers, public finances, surveys",
+            "ECB": "Policy rates, €STR, exchange rates, the AAA euro-area yield curve, mortgage rates, household debt",
+            "Banco de España": "Daily Spanish yields, prima de riesgo, Euribor, IBEX 35, registered unemployment, wage agreements, permits",
+            "FRED": "Brent crude, European gas and US comparators (from the US EIA, IMF and US agencies)",
+            "Red Eléctrica": "Day-ahead electricity price and daily electricity demand",
+            "Seguridad Social": "Workers registered with the Social Security (afiliados)",
+            "EconPulse calculation": "Series computed here from the others: spreads, real values, averages"} %}
+          {% for source, count in source_counts %}
+          <tr><td class="ind-name">{{ source }}</td><td class="num">{{ count }}</td><td class="secondary">{{ what.get(source, "") }}</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Every series, with a link to its source, is listed on the <a href="data.html">Data</a> page.</p>
+  </section>
+
+  <section aria-labelledby="methods">
+    <h2 id="methods">How the numbers are made</h2>
+    <div class="prose">
+      <h3>As published, unless marked</h3>
+      <p>Figures are shown as each source publishes them. Where the site changes or combines them, it says so:
+        <abbr title="seasonally adjusted">SA</abbr> marks seasonal adjustment done here, and "EconPulse calculation"
+        marks anything computed here.</p>
+      <h3>Changes and growth rates</h3>
+      <p>"y/y" compares with the same period a year earlier, "q/q" and "m/m" with the previous quarter or month. Following
+        Spanish practice, quarterly GDP growth is not annualised. Tables comparing horizons annualise changes over less
+        than a year, so that a 1-month and a 12-month rate can be read side by side. Rates move in basis points
+        (bp, hundredths of a percentage point) or percentage points (pp); prices move in %.</p>
+      <h3>Seasonal adjustment</h3>
+      <p>Spain's CPI, the Social Security registrations and several other monthly series are published unadjusted.
+        Where a short-term change needs adjusting, EconPulse uses STL (seasonal-trend decomposition with LOESS) on the
+        logarithm of the series from 2010, with robust weights so that 2020 does not distort it, and seasonal factors
+        that change only slowly. Results can differ from adjusted figures the source publishes.</p>
+      <h3>Flash estimates and revisions</h3>
+      <p>INE's flash CPI estimate appears as soon as it is published and is labelled as such. Every update downloads
+        recent history again, so revisions replace earlier figures.</p>
+      <h3>Freshness</h3>
+      <p>Each series is checked against a delay that suits how often it is published. A series whose last download
+        failed keeps its previous data and is marked "stale"; one whose source has stopped publishing is marked
+        "not updating". Dates and times are Madrid time.</p>
+      <h3>EconPulse originals</h3>
+      <p>The composites, GDP nowcast, 10-year yield decomposition and Taylor rules are explained, with their
+        assumptions and track record, on the <a href="analysis.html">Analysis</a> page. The ECB page's market-implied
+        path uses AAA government bond forward rates as a stand-in for swap rates, which are not freely available.</p>
+      <h3>What changed and the calendar</h3>
+      <p>After each update the site compares every series with the previous update and writes a short note for each
+        new release, revision or large market move. The release calendar uses INE's published calendar, the Social
+        Security's usual publication day and the ECB's meeting schedule.</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="limits">
+    <h2 id="limits">Limits</h2>
+    <div class="prose">
+      <ul>
+        <li>Data appear when the site is next updated, not the moment a source publishes them.</li>
+        <li>Some series have no clean free source yet (Euro Stoxx 50, gold, euro credit spreads), and forecasts by AIReF,
+          Banco de España and FUNCAS are published as reports rather than data, so they are not shown.</li>
+        <li>Calculations are checked, but mistakes are possible: the source's own release is always the reference.</li>
+      </ul>
+    </div>
+  </section>
+{% endblock %}

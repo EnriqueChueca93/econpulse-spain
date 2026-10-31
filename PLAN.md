@@ -83,6 +83,7 @@ Status after Batch 6 (31 Oct 2026): 242 indicators. All sources are official or 
 | **FRED** | public CSV, no key | ✅ in use (8) | Brent spot (US EIA), European gas (IMF); US GDP, CPI, core CPI, unemployment, 10-year yield, Fed funds target |
 | **EconPulse calculations** | from the series above | ✅ in use (12) | Brent in euros, 10-year spreads over Germany, GDP deflator, real wages, real house prices, average mortgage, primary balance, monthly electricity demand |
 | ~~Yahoo Finance~~ | unofficial API | ❌ dropped | IBEX 35 now comes from Banco de España and Brent from FRED |
+| **INE release calendar** | iCal file `ine.es/dynt3/Calendario/calendario.ics` | ✅ in use | dates and times of every INE release; saved to `data/calendar.json` at each fetch |
 | **AIReF · FUNCAS · BdE projections** | web pages / PDF | ⏸ not automated | GDP nowcast, forecaster consensus, official projections: no stable data feed (AIReF's MIPred page has moved); a hand-updated file is an option |
 
 **Gotchas found already:**
@@ -99,6 +100,7 @@ Status after Batch 6 (31 Oct 2026): 242 indicators. All sources are official or 
 - Banco de España has no daily Spanish 2-year yield or 3- and 6-month bills in its API; the curve uses the 12-month bill and the 3, 5, 10, 15 and 30-year bonds.
 - No free feed of €STR swap rates exists, so "what markets expect" uses the ECB's AAA euro-area forward rates. They include a term premium; the page says so.
 - Euro high-yield credit spreads are on FRED, but they are ICE's proprietary data and FRED only keeps three years, so they are left out. Euro Stoxx 50 and gold still have no clean free source.
+- INE publishes its whole release calendar as an iCal file (about 1,100 events, past and future). The site keeps the releases that feed it and maps their titles ("Índice de Precios de Consumo. Avance. Noviembre 2026") to its own names and periods. Social Security registrations have no published calendar: they are expected on the second working day of the month (national holidays and Good Friday excluded).
 - The ECB meeting calendar is a list in `econpulse/policy.py`, taken from the ECB's published schedule and running to December 2028. After the last date, the page links to the ECB calendar.
 - The tourism series picked in Batch 2 (`FREG287`) was all visitors, including same-day visitors (144 million in 2025), not tourists. It now uses `FREG286`, tourists only (96.8 million in 2025); the home tile changed from 18.5 to 12.3 million for August.
 - Eurostat's euro area is `EA21` from 2026 for unemployment (Bulgaria joined); GDP growth still uses `EA20`.
@@ -203,7 +205,8 @@ Each batch is sized for one working session, ends with something you can open or
 - Nowcast panel (AIReF, BdE, FUNCAS) plus a simple bridge-equation nowcast of our own
 - Spain and euro-area Taylor rules
 
-### Batch 8 — Calendar, "what changed", About
+### Batch 8 — Calendar, "what changed", About ✅ done 1 Nov 2026
+*Result: a release calendar (`econpulse/schedule.py`) built from INE's iCal calendar, the Social Security rule and the ECB schedule, shown as a "Coming up" bar on every page and a Calendar page covering the past week and the next two months. "What changed" (`econpulse/changes.py`): after each fetch, every series is compared with the previous fetch and a sentence is logged for each new release, revision or large market move (10 bp, 2%) in `data/releases.json`. The first fetch only records the starting point, so notes begin with the next update; meanwhile the home page's "What's new" lists the past week's releases from the calendar with the figures they brought. A new About page covers sources, methods and limits; the Data page now opens with a freshness summary and shows when each source was last fetched. 123 offline and 8 live tests.*
 - Release calendar (INE calendar, Social Security, ECB meetings) and the "Today / Coming up" bar
 - Automatic "what changed since the last update" notes, rule-based
 - About and methodology page, data-freshness page

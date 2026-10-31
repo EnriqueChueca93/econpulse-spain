@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Release calendar · EconPulse Spain{% endblock %}
+
+{% block content %}
+  <h1>Release calendar</h1>
+  <p class="lede">When the figures on this site are published. Times are Madrid time.</p>
+  <p class="note">INE dates come from <a href="{{ calendar_page }}" target="_blank" rel="noopener">INE's own calendar</a>,
+    refreshed at every update. Social Security registrations are expected on the second working day of each month;
+    ECB decisions follow the ECB's published schedule.</p>
+
+  {% if recent %}
+  <section aria-labelledby="recent">
+    <h2 id="recent">Released in the past week</h2>
+    <ul class="news-list">
+      {% for r in recent %}
+      <li><span class="news-day">{{ r.day }}</span> <a href="{{ r.page }}">{{ r.label }}</a>{% if r.period %} · {{ r.period }}{% endif %}
+        {%- if r.figures %}: {{ r.figures | join("; ") }}{% endif %}</li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
+  <section aria-labelledby="upcoming">
+    <h2 id="upcoming">The next two months</h2>
+    {% set upcoming = days | rejectattr("past") | list %}
+    {% if upcoming %}
+    <div class="table-scroll">
+      <table class="data-table calendar-table">
+        <thead>
+          <tr><th scope="col">Time</th><th scope="col">Release</th><th scope="col">Period</th><th scope="col">Source</th></tr>
+        </thead>
+        {% for day in upcoming %}
+        <tbody>
+          <tr class="day-row{% if day.today %} is-today{% endif %}"><th scope="rowgroup" colspan="4">{{ day.label }}{% if day.today %} · today{% endif %}</th></tr>
+          {% for e in day.events %}
+          <tr>
+            <td class="nowrap secondary">{{ e.time }}</td>
+            <td><a href="{{ e.page }}">{{ e.label }}</a></td>
+            <td class="nowrap">{{ e.period }}</td>
+            <td class="secondary">{{ e.source }}{% if e.expected %} <span class="badge badge-info">expected</span>{% endif %}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+        {% endfor %}
+      </table>
+    </div>
+    {% else %}
+    <p class="note">No releases found for the coming weeks. The calendar fills in at the next data update.</p>
+    {% endif %}
+  </section>
+{% endblock %}

@@ -1,0 +1,1701 @@
+{
+ "state": {
+  "gdp": {
+   "date": "2026-07-01",
+   "raw": 127.1709,
+   "display": "0.6% q/q",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "domestic_demand": {
+   "date": "2026-07-01",
+   "raw": 125.3525,
+   "display": "0.6% q/q",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "consumption_households": {
+   "date": "2026-07-01",
+   "raw": 125.8189,
+   "display": "0.6% q/q",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "consumption_government": {
+   "date": "2026-07-01",
+   "raw": 118.5105,
+   "display": "0.9% q/q",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "investment": {
+   "date": "2026-07-01",
+   "raw": 130.3331,
+   "display": "0.7% q/q",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "exports": {
+   "date": "2026-07-01",
+   "raw": 145.6509,
+   "display": "1.3% q/q",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "imports": {
+   "date": "2026-07-01",
+   "raw": 141.1412,
+   "display": "1.1% q/q",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "investment_construction": {
+   "date": "2026-07-01",
+   "raw": 124.5348,
+   "display": "1.0% q/q",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "investment_housing": {
+   "date": "2026-07-01",
+   "raw": 120.3058,
+   "display": "0.8% q/q",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "investment_equipment": {
+   "date": "2026-07-01",
+   "raw": 124.1103,
+   "display": "0.2% q/q",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "exports_goods": {
+   "date": "2026-07-01",
+   "raw": 113.4059,
+   "display": "1.1% q/q",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "exports_services": {
+   "date": "2026-07-01",
+   "raw": 267.8518,
+   "display": "1.5% q/q",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "contrib_domestic_qq": {
+   "date": "2026-07-01",
+   "raw": 0.5331,
+   "display": "0.5 pp",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "contrib_external_qq": {
+   "date": "2026-07-01",
+   "raw": 0.1016,
+   "display": "0.1 pp",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "contrib_domestic_yy": {
+   "date": "2026-07-01",
+   "raw": 2.6453,
+   "display": "2.6 pp",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "contrib_external_yy": {
+   "date": "2026-07-01",
+   "raw": 0.0178,
+   "display": "0.0 pp",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "gva_agriculture": {
+   "date": "2026-07-01",
+   "raw": 128.1056,
+   "display": "1.5% q/q",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "gva_industry": {
+   "date": "2026-07-01",
+   "raw": 116.4638,
+   "display": "0.7% q/q",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "gva_construction": {
+   "date": "2026-07-01",
+   "raw": 116.3183,
+   "display": "0.0% q/q",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "gva_services": {
+   "date": "2026-07-01",
+   "raw": 131.3359,
+   "display": "0.7% q/q",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "gdp_nominal": {
+   "date": "2026-07-01",
+   "raw": 448442.0,
+   "display": "5.9% y/y",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "gdp_deflator": {
+   "date": "2026-07-01",
+   "raw": 3526.294144,
+   "display": "3.1% y/y",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "jobs_fte": {
+   "date": "2026-07-01",
+   "raw": 21301.1,
+   "display": "1.6% y/y",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "productivity_fte": {
+   "date": "2026-07-01",
+   "raw": 1.078,
+   "display": "1.1%",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "productivity_hour": {
+   "date": "2026-07-01",
+   "raw": 0.4207,
+   "display": "0.4%",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "unit_labour_cost": {
+   "date": "2026-07-01",
+   "raw": 2.8224,
+   "display": "2.8%",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "afiliados": {
+   "date": "2026-09-01",
+   "raw": 22437.55309,
+   "display": "+123.5k m/m SA",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "unemployment_epa": {
+   "date": "2026-07-01",
+   "raw": 10.18,
+   "display": "10.18%",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "employment_epa": {
+   "date": "2026-07-01",
+   "raw": 22852.6,
+   "display": "2.1% y/y",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "unemployment_monthly": {
+   "date": "2026-09-01",
+   "raw": 10.3,
+   "display": "10.3%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "youth_unemployment": {
+   "date": "2026-09-01",
+   "raw": 22.8,
+   "display": "22.8%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "paro_registrado": {
+   "date": "2026-09-01",
+   "raw": 2379.505,
+   "display": "−42.2k y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "activity_rate": {
+   "date": "2026-07-01",
+   "raw": 51.44,
+   "display": "51.44%",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "employment_rate": {
+   "date": "2026-07-01",
+   "raw": 46.2,
+   "display": "46.20%",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "temporary_rate": {
+   "date": "2026-07-01",
+   "raw": 15.4,
+   "display": "15.4%",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "long_term_unemployment": {
+   "date": "2026-04-01",
+   "raw": 3.2,
+   "display": "3.2%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "wage_cost": {
+   "date": "2026-04-01",
+   "raw": 2512.68,
+   "display": "4.0% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "wage_cost_ordinary": {
+   "date": "2026-04-01",
+   "raw": 2114.64,
+   "display": "3.6% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "wage_cost_hour": {
+   "date": "2026-04-01",
+   "raw": 19.42,
+   "display": "4.7% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "labour_cost": {
+   "date": "2026-04-01",
+   "raw": 3388.15,
+   "display": "4.0% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "lci_wages": {
+   "date": "2026-04-01",
+   "raw": 121.0,
+   "display": "4.2% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "compensation_per_employee": {
+   "date": "2026-07-01",
+   "raw": 3.9308,
+   "display": "3.9%",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "wage_agreements": {
+   "date": "2026-09-01",
+   "raw": 3.05,
+   "display": "3.05%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "cpi": {
+   "date": "2026-10-01",
+   "raw": 4.9,
+   "display": "4.9%",
+   "period": "Oct 2026",
+   "flash": true
+  },
+  "core_cpi": {
+   "date": "2026-10-01",
+   "raw": 3.1,
+   "display": "3.1%",
+   "period": "Oct 2026",
+   "flash": true
+  },
+  "cpi_index": {
+   "date": "2026-09-01",
+   "raw": 104.978,
+   "display": "0.3% m/m",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "core_cpi_index": {
+   "date": "2026-09-01",
+   "raw": 103.363,
+   "display": "−0.2% m/m",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "cpi_services_index": {
+   "date": "2026-09-01",
+   "raw": 104.761,
+   "display": "3.9% y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "cpi_goods_index": {
+   "date": "2026-09-01",
+   "raw": 106.832,
+   "display": "7.8% y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "cpi_processed_food_index": {
+   "date": "2026-09-01",
+   "raw": 101.407,
+   "display": "1.5% y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "cpi_unprocessed_food_index": {
+   "date": "2026-09-01",
+   "raw": 103.995,
+   "display": "5.8% y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "cpi_energy_index": {
+   "date": "2026-09-01",
+   "raw": 120.909,
+   "display": "21.7% y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "cpi_rent_index": {
+   "date": "2026-09-01",
+   "raw": 103.031,
+   "display": "2.5% y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "real_wage": {
+   "date": "2026-04-01",
+   "raw": 2436.089351,
+   "display": "0.7% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "ppi": {
+   "date": "2026-09-01",
+   "raw": 147.532,
+   "display": "18.3% y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "hicp": {
+   "date": "2026-09-01",
+   "raw": 5.0,
+   "display": "5.0%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "hicp_core": {
+   "date": "2026-09-01",
+   "raw": 3.5,
+   "display": "3.5%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "hicp_index": {
+   "date": "2026-09-01",
+   "raw": 105.4,
+   "display": "5.0% y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "hicp_core_index": {
+   "date": "2026-09-01",
+   "raw": 104.34,
+   "display": "3.5% y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "price_expectations": {
+   "date": "2026-10-01",
+   "raw": 29.0,
+   "display": "29.0",
+   "period": "Oct 2026",
+   "flash": false
+  },
+  "electricity_price": {
+   "date": "2026-11-01",
+   "raw": 163.1852083,
+   "display": "163 €/MWh",
+   "period": "1 Nov 2026",
+   "flash": false
+  },
+  "industrial_production": {
+   "date": "2026-08-01",
+   "raw": 103.987,
+   "display": "−0.7% m/m",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "retail_sales": {
+   "date": "2026-09-01",
+   "raw": 111.001,
+   "display": "−0.4% m/m",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "car_sales": {
+   "date": "2026-09-01",
+   "raw": 93858.0,
+   "display": "10.2% y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "electricity_demand": {
+   "date": "2026-10-30",
+   "raw": 685.37337,
+   "display": "685.4 GWh",
+   "period": "30 Oct 2026",
+   "flash": false
+  },
+  "electricity_demand_monthly": {
+   "date": "2026-09-01",
+   "raw": 736.650124,
+   "display": "6.1% y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "economic_sentiment": {
+   "date": "2026-10-01",
+   "raw": 105.1,
+   "display": "105.1",
+   "period": "Oct 2026",
+   "flash": false
+  },
+  "consumer_confidence": {
+   "date": "2026-10-01",
+   "raw": -4.4,
+   "display": "−4.4",
+   "period": "Oct 2026",
+   "flash": false
+  },
+  "industry_confidence": {
+   "date": "2026-10-01",
+   "raw": -0.4,
+   "display": "−0.4",
+   "period": "Oct 2026",
+   "flash": false
+  },
+  "construction_confidence": {
+   "date": "2026-10-01",
+   "raw": 5.5,
+   "display": "5.5",
+   "period": "Oct 2026",
+   "flash": false
+  },
+  "tourist_arrivals": {
+   "date": "2026-08-01",
+   "raw": 12.256087,
+   "display": "9.2% y/y",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "tourist_spending": {
+   "date": "2026-08-01",
+   "raw": 17838.23,
+   "display": "9.2% y/y",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "hotel_nights_foreign": {
+   "date": "2026-09-01",
+   "raw": 3.22,
+   "display": "3.2%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "tourism_receipts": {
+   "date": "2026-08-01",
+   "raw": 14198.92,
+   "display": "9.6% y/y",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "current_account_monthly": {
+   "date": "2026-08-01",
+   "raw": 5054.0,
+   "display": "€5,054 mn",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "current_account": {
+   "date": "2026-04-01",
+   "raw": 2.0,
+   "display": "2.0% of GDP",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "house_prices": {
+   "date": "2026-04-01",
+   "raw": 111.095,
+   "display": "12.2% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "home_sales": {
+   "date": "2026-08-01",
+   "raw": 49319.0,
+   "display": "3.4% y/y",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "house_prices_new": {
+   "date": "2026-04-01",
+   "raw": 107.228,
+   "display": "7.4% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "house_prices_used": {
+   "date": "2026-04-01",
+   "raw": 111.682,
+   "display": "12.9% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "real_house_prices": {
+   "date": "2026-04-01",
+   "raw": 107.70864,
+   "display": "8.7% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "mortgages_homes": {
+   "date": "2026-08-01",
+   "raw": 33841.0,
+   "display": "2.3% y/y",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "mortgage_lending_homes": {
+   "date": "2026-08-01",
+   "raw": 6134.856,
+   "display": "10.2% y/y",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "average_mortgage": {
+   "date": "2026-08-01",
+   "raw": 181284.7138,
+   "display": "€181,285",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "home_permits": {
+   "date": "2026-05-01",
+   "raw": 14289.0,
+   "display": "24.1% y/y",
+   "period": "May 2026",
+   "flash": false
+  },
+  "government_debt": {
+   "date": "2026-04-01",
+   "raw": 101.4,
+   "display": "101.4% of GDP",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "government_balance": {
+   "date": "2026-04-01",
+   "raw": -7.2,
+   "display": "−7.2% of GDP",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "deficit_annual": {
+   "date": "2025-01-01",
+   "raw": -2.4,
+   "display": "−2.4% of GDP",
+   "period": "2025",
+   "flash": false
+  },
+  "debt_annual": {
+   "date": "2025-01-01",
+   "raw": 100.5,
+   "display": "100.5% of GDP",
+   "period": "2025",
+   "flash": false
+  },
+  "interest_annual": {
+   "date": "2025-01-01",
+   "raw": 2.4,
+   "display": "2.4% of GDP",
+   "period": "2025",
+   "flash": false
+  },
+  "primary_balance": {
+   "date": "2025-01-01",
+   "raw": 0.0,
+   "display": "0.0% of GDP",
+   "period": "2025",
+   "flash": false
+  },
+  "revenue_annual": {
+   "date": "2025-01-01",
+   "raw": 42.9,
+   "display": "42.9% of GDP",
+   "period": "2025",
+   "flash": false
+  },
+  "spending_annual": {
+   "date": "2025-01-01",
+   "raw": 45.3,
+   "display": "45.3% of GDP",
+   "period": "2025",
+   "flash": false
+  },
+  "ecb_deposit_rate": {
+   "date": "2026-10-31",
+   "raw": 2.5,
+   "display": "2.50%",
+   "period": "31 Oct 2026",
+   "flash": false
+  },
+  "ecb_mro_rate": {
+   "date": "2026-10-31",
+   "raw": 2.65,
+   "display": "2.65%",
+   "period": "31 Oct 2026",
+   "flash": false
+  },
+  "ecb_mlf_rate": {
+   "date": "2026-10-31",
+   "raw": 2.9,
+   "display": "2.90%",
+   "period": "31 Oct 2026",
+   "flash": false
+  },
+  "estr": {
+   "date": "2026-10-29",
+   "raw": 2.439,
+   "display": "2.439%",
+   "period": "29 Oct 2026",
+   "flash": false
+  },
+  "aaa_fwd_3m": {
+   "date": "2026-10-29",
+   "raw": 2.734807789,
+   "display": "2.73%",
+   "period": "29 Oct 2026",
+   "flash": false
+  },
+  "aaa_fwd_6m": {
+   "date": "2026-10-29",
+   "raw": 2.944363676,
+   "display": "2.94%",
+   "period": "29 Oct 2026",
+   "flash": false
+  },
+  "aaa_fwd_9m": {
+   "date": "2026-10-29",
+   "raw": 3.060661046,
+   "display": "3.06%",
+   "period": "29 Oct 2026",
+   "flash": false
+  },
+  "aaa_fwd_1y": {
+   "date": "2026-10-29",
+   "raw": 3.117809489,
+   "display": "3.12%",
+   "period": "29 Oct 2026",
+   "flash": false
+  },
+  "aaa_fwd_2y": {
+   "date": "2026-10-29",
+   "raw": 3.124731779,
+   "display": "3.12%",
+   "period": "29 Oct 2026",
+   "flash": false
+  },
+  "aaa_fwd_3y": {
+   "date": "2026-10-29",
+   "raw": 3.12331461,
+   "display": "3.12%",
+   "period": "29 Oct 2026",
+   "flash": false
+  },
+  "euribor_3m": {
+   "date": "2026-10-29",
+   "raw": 2.643,
+   "display": "2.643%",
+   "period": "29 Oct 2026",
+   "flash": false
+  },
+  "euribor_12m": {
+   "date": "2026-10-29",
+   "raw": 3.308,
+   "display": "3.308%",
+   "period": "29 Oct 2026",
+   "flash": false
+  },
+  "es_12m_bill": {
+   "date": "2026-10-28",
+   "raw": 3.052,
+   "display": "3.05%",
+   "period": "28 Oct 2026",
+   "flash": false
+  },
+  "es_3y": {
+   "date": "2026-10-28",
+   "raw": 3.372,
+   "display": "3.37%",
+   "period": "28 Oct 2026",
+   "flash": false
+  },
+  "es_5y": {
+   "date": "2026-10-28",
+   "raw": 3.533,
+   "display": "3.53%",
+   "period": "28 Oct 2026",
+   "flash": false
+  },
+  "es_10y": {
+   "date": "2026-10-28",
+   "raw": 4.028,
+   "display": "4.03%",
+   "period": "28 Oct 2026",
+   "flash": false
+  },
+  "es_15y": {
+   "date": "2026-10-28",
+   "raw": 4.311,
+   "display": "4.31%",
+   "period": "28 Oct 2026",
+   "flash": false
+  },
+  "es_30y": {
+   "date": "2026-10-28",
+   "raw": 4.473,
+   "display": "4.47%",
+   "period": "28 Oct 2026",
+   "flash": false
+  },
+  "de_10y": {
+   "date": "2026-10-29",
+   "raw": 3.334,
+   "display": "3.33%",
+   "period": "29 Oct 2026",
+   "flash": false
+  },
+  "aaa_1y": {
+   "date": "2026-10-29",
+   "raw": 2.881057384,
+   "display": "2.88%",
+   "period": "29 Oct 2026",
+   "flash": false
+  },
+  "aaa_3y": {
+   "date": "2026-10-29",
+   "raw": 3.044433345,
+   "display": "3.04%",
+   "period": "29 Oct 2026",
+   "flash": false
+  },
+  "aaa_5y": {
+   "date": "2026-10-29",
+   "raw": 3.11075734,
+   "display": "3.11%",
+   "period": "29 Oct 2026",
+   "flash": false
+  },
+  "aaa_10y": {
+   "date": "2026-10-29",
+   "raw": 3.373314554,
+   "display": "3.37%",
+   "period": "29 Oct 2026",
+   "flash": false
+  },
+  "aaa_15y": {
+   "date": "2026-10-29",
+   "raw": 3.565596957,
+   "display": "3.57%",
+   "period": "29 Oct 2026",
+   "flash": false
+  },
+  "aaa_30y": {
+   "date": "2026-10-29",
+   "raw": 3.611025505,
+   "display": "3.61%",
+   "period": "29 Oct 2026",
+   "flash": false
+  },
+  "risk_premium": {
+   "date": "2026-10-29",
+   "raw": 64.7,
+   "display": "65 bp",
+   "period": "29 Oct 2026",
+   "flash": false
+  },
+  "ibex35": {
+   "date": "2026-10-29",
+   "raw": 18858.0,
+   "display": "18,858",
+   "period": "29 Oct 2026",
+   "flash": false
+  },
+  "eurusd": {
+   "date": "2026-10-30",
+   "raw": 1.1172,
+   "display": "1.1172",
+   "period": "30 Oct 2026",
+   "flash": false
+  },
+  "eurgbp": {
+   "date": "2026-10-30",
+   "raw": 0.8338,
+   "display": "0.8338",
+   "period": "30 Oct 2026",
+   "flash": false
+  },
+  "eurchf": {
+   "date": "2026-10-30",
+   "raw": 0.9194,
+   "display": "0.9194",
+   "period": "30 Oct 2026",
+   "flash": false
+  },
+  "eurjpy": {
+   "date": "2026-10-30",
+   "raw": 175.68,
+   "display": "175.68",
+   "period": "30 Oct 2026",
+   "flash": false
+  },
+  "brent_usd": {
+   "date": "2026-10-27",
+   "raw": 123.1,
+   "display": "$123.1",
+   "period": "27 Oct 2026",
+   "flash": false
+  },
+  "brent_eur": {
+   "date": "2026-10-27",
+   "raw": 110.403587,
+   "display": "110.4 €/bbl",
+   "period": "27 Oct 2026",
+   "flash": false
+  },
+  "gas_eu": {
+   "date": "2026-09-01",
+   "raw": 25.494,
+   "display": "25.5 $/MMBtu",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "mortgage_rate": {
+   "date": "2026-08-01",
+   "raw": 3.04,
+   "display": "3.04%",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "new_mortgage_lending": {
+   "date": "2026-08-01",
+   "raw": 4431.0,
+   "display": "1.0% y/y",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "housing_loans_growth": {
+   "date": "2026-09-01",
+   "raw": 3.939151754,
+   "display": "3.9%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "household_debt_gdp": {
+   "date": "2026-04-01",
+   "raw": 41.92538545,
+   "display": "41.9% of GDP",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "household_debt_income": {
+   "date": "2026-04-01",
+   "raw": 66.95101081,
+   "display": "67.0%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "hicp_euro_area": {
+   "date": "2026-09-01",
+   "raw": 3.8,
+   "display": "3.8%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "hicp_core_euro_area": {
+   "date": "2026-09-01",
+   "raw": 2.5,
+   "display": "2.5%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "es_10y_monthly": {
+   "date": "2026-09-01",
+   "raw": 3.927,
+   "display": "3.93%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "de_10y_monthly": {
+   "date": "2026-09-01",
+   "raw": 3.473,
+   "display": "3.47%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "risk_premium_monthly": {
+   "date": "2026-09-01",
+   "raw": 45.4,
+   "display": "45 bp",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "gdp_growth_de": {
+   "date": "2026-07-01",
+   "raw": 1.2,
+   "display": "1.2%",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "gdp_growth_fr": {
+   "date": "2026-07-01",
+   "raw": -0.1,
+   "display": "−0.1%",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "gdp_growth_it": {
+   "date": "2026-07-01",
+   "raw": 0.8,
+   "display": "0.8%",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "gdp_growth_pt": {
+   "date": "2026-07-01",
+   "raw": 2.4,
+   "display": "2.4%",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "gdp_growth_nl": {
+   "date": "2026-07-01",
+   "raw": 2.1,
+   "display": "2.1%",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "hicp_de": {
+   "date": "2026-09-01",
+   "raw": 3.3,
+   "display": "3.3%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "hicp_fr": {
+   "date": "2026-09-01",
+   "raw": 3.4,
+   "display": "3.4%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "hicp_it": {
+   "date": "2026-09-01",
+   "raw": 4.2,
+   "display": "4.2%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "hicp_pt": {
+   "date": "2026-09-01",
+   "raw": 3.6,
+   "display": "3.6%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "hicp_nl": {
+   "date": "2026-09-01",
+   "raw": 3.0,
+   "display": "3.0%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "hicp_core_de": {
+   "date": "2026-09-01",
+   "raw": 2.5,
+   "display": "2.5%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "hicp_core_fr": {
+   "date": "2026-09-01",
+   "raw": 1.8,
+   "display": "1.8%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "hicp_core_it": {
+   "date": "2026-09-01",
+   "raw": 1.9,
+   "display": "1.9%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "hicp_core_pt": {
+   "date": "2026-09-01",
+   "raw": 2.9,
+   "display": "2.9%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "hicp_core_nl": {
+   "date": "2026-09-01",
+   "raw": 2.9,
+   "display": "2.9%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "unemployment_de": {
+   "date": "2026-09-01",
+   "raw": 4.1,
+   "display": "4.1%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "unemployment_fr": {
+   "date": "2026-09-01",
+   "raw": 8.5,
+   "display": "8.5%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "unemployment_it": {
+   "date": "2026-09-01",
+   "raw": 6.3,
+   "display": "6.3%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "unemployment_pt": {
+   "date": "2026-09-01",
+   "raw": 5.6,
+   "display": "5.6%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "unemployment_nl": {
+   "date": "2026-09-01",
+   "raw": 4.0,
+   "display": "4.0%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "bond10_fr": {
+   "date": "2026-09-01",
+   "raw": 4.44,
+   "display": "4.44%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "bond10_it": {
+   "date": "2026-09-01",
+   "raw": 4.362,
+   "display": "4.36%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "bond10_pt": {
+   "date": "2026-09-01",
+   "raw": 3.846,
+   "display": "3.85%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "bond10_nl": {
+   "date": "2026-09-01",
+   "raw": 3.564,
+   "display": "3.56%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "spread10_fr": {
+   "date": "2026-09-01",
+   "raw": 96.7,
+   "display": "97 bp",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "spread10_it": {
+   "date": "2026-09-01",
+   "raw": 88.9,
+   "display": "89 bp",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "spread10_pt": {
+   "date": "2026-09-01",
+   "raw": 37.3,
+   "display": "37 bp",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "spread10_nl": {
+   "date": "2026-09-01",
+   "raw": 9.1,
+   "display": "9 bp",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "gdp_growth_ea": {
+   "date": "2026-07-01",
+   "raw": 1.3,
+   "display": "1.3%",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "unemployment_ea": {
+   "date": "2026-09-01",
+   "raw": 6.5,
+   "display": "6.5%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "us_gdp_growth": {
+   "date": "2026-07-01",
+   "raw": 2.1,
+   "display": "2.1%",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "us_cpi_index": {
+   "date": "2026-09-01",
+   "raw": 336.298,
+   "display": "3.7% y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "us_core_cpi_index": {
+   "date": "2026-09-01",
+   "raw": 338.896,
+   "display": "2.6% y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "us_unemployment": {
+   "date": "2026-09-01",
+   "raw": 4.2,
+   "display": "4.2%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "us_10y": {
+   "date": "2026-10-29",
+   "raw": 4.98,
+   "display": "4.98%",
+   "period": "29 Oct 2026",
+   "flash": false
+  },
+  "us_fed_funds": {
+   "date": "2026-10-31",
+   "raw": 4.0,
+   "display": "4.00%",
+   "period": "31 Oct 2026",
+   "flash": false
+  },
+  "unemployment_andalucia": {
+   "date": "2026-07-01",
+   "raw": 14.91,
+   "display": "14.91%",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "unemployment_aragon": {
+   "date": "2026-07-01",
+   "raw": 9.23,
+   "display": "9.23%",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "unemployment_asturias": {
+   "date": "2026-07-01",
+   "raw": 10.04,
+   "display": "10.04%",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "unemployment_baleares": {
+   "date": "2026-07-01",
+   "raw": 4.63,
+   "display": "4.63%",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "unemployment_canarias": {
+   "date": "2026-07-01",
+   "raw": 10.92,
+   "display": "10.92%",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "unemployment_cantabria": {
+   "date": "2026-07-01",
+   "raw": 7.56,
+   "display": "7.56%",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "unemployment_castilla_leon": {
+   "date": "2026-07-01",
+   "raw": 7.75,
+   "display": "7.75%",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "unemployment_castilla_mancha": {
+   "date": "2026-07-01",
+   "raw": 11.36,
+   "display": "11.36%",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "unemployment_cataluna": {
+   "date": "2026-07-01",
+   "raw": 8.3,
+   "display": "8.30%",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "unemployment_valenciana": {
+   "date": "2026-07-01",
+   "raw": 11.82,
+   "display": "11.82%",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "unemployment_extremadura": {
+   "date": "2026-07-01",
+   "raw": 13.01,
+   "display": "13.01%",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "unemployment_galicia": {
+   "date": "2026-07-01",
+   "raw": 9.17,
+   "display": "9.17%",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "unemployment_madrid": {
+   "date": "2026-07-01",
+   "raw": 8.18,
+   "display": "8.18%",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "unemployment_murcia": {
+   "date": "2026-07-01",
+   "raw": 10.8,
+   "display": "10.80%",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "unemployment_navarra": {
+   "date": "2026-07-01",
+   "raw": 9.16,
+   "display": "9.16%",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "unemployment_pais_vasco": {
+   "date": "2026-07-01",
+   "raw": 7.17,
+   "display": "7.17%",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "unemployment_rioja": {
+   "date": "2026-07-01",
+   "raw": 8.63,
+   "display": "8.63%",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "house_prices_andalucia": {
+   "date": "2026-04-01",
+   "raw": 110.903,
+   "display": "11.9% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "house_prices_aragon": {
+   "date": "2026-04-01",
+   "raw": 113.472,
+   "display": "14.6% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "house_prices_asturias": {
+   "date": "2026-04-01",
+   "raw": 114.014,
+   "display": "15.0% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "house_prices_baleares": {
+   "date": "2026-04-01",
+   "raw": 112.048,
+   "display": "13.7% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "house_prices_canarias": {
+   "date": "2026-04-01",
+   "raw": 110.44,
+   "display": "11.0% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "house_prices_cantabria": {
+   "date": "2026-04-01",
+   "raw": 111.313,
+   "display": "13.5% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "house_prices_castilla_leon": {
+   "date": "2026-04-01",
+   "raw": 113.551,
+   "display": "14.8% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "house_prices_castilla_mancha": {
+   "date": "2026-04-01",
+   "raw": 110.864,
+   "display": "11.7% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "house_prices_cataluna": {
+   "date": "2026-04-01",
+   "raw": 109.046,
+   "display": "10.1% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "house_prices_valenciana": {
+   "date": "2026-04-01",
+   "raw": 111.696,
+   "display": "13.0% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "house_prices_extremadura": {
+   "date": "2026-04-01",
+   "raw": 111.963,
+   "display": "12.8% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "house_prices_galicia": {
+   "date": "2026-04-01",
+   "raw": 111.825,
+   "display": "12.9% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "house_prices_madrid": {
+   "date": "2026-04-01",
+   "raw": 111.85,
+   "display": "12.9% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "house_prices_murcia": {
+   "date": "2026-04-01",
+   "raw": 113.192,
+   "display": "14.4% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "house_prices_navarra": {
+   "date": "2026-04-01",
+   "raw": 109.174,
+   "display": "9.5% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "house_prices_pais_vasco": {
+   "date": "2026-04-01",
+   "raw": 109.329,
+   "display": "10.0% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "house_prices_rioja": {
+   "date": "2026-04-01",
+   "raw": 113.309,
+   "display": "14.4% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "cpi_andalucia": {
+   "date": "2026-09-01",
+   "raw": 4.7,
+   "display": "4.7%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "cpi_aragon": {
+   "date": "2026-09-01",
+   "raw": 4.4,
+   "display": "4.4%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "cpi_asturias": {
+   "date": "2026-09-01",
+   "raw": 4.5,
+   "display": "4.5%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "cpi_baleares": {
+   "date": "2026-09-01",
+   "raw": 5.1,
+   "display": "5.1%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "cpi_canarias": {
+   "date": "2026-09-01",
+   "raw": 4.4,
+   "display": "4.4%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "cpi_cantabria": {
+   "date": "2026-09-01",
+   "raw": 5.4,
+   "display": "5.4%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "cpi_castilla_leon": {
+   "date": "2026-09-01",
+   "raw": 5.4,
+   "display": "5.4%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "cpi_castilla_mancha": {
+   "date": "2026-09-01",
+   "raw": 5.5,
+   "display": "5.5%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "cpi_cataluna": {
+   "date": "2026-09-01",
+   "raw": 4.5,
+   "display": "4.5%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "cpi_valenciana": {
+   "date": "2026-09-01",
+   "raw": 4.8,
+   "display": "4.8%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "cpi_extremadura": {
+   "date": "2026-09-01",
+   "raw": 5.3,
+   "display": "5.3%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "cpi_galicia": {
+   "date": "2026-09-01",
+   "raw": 5.5,
+   "display": "5.5%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "cpi_madrid": {
+   "date": "2026-09-01",
+   "raw": 5.3,
+   "display": "5.3%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "cpi_murcia": {
+   "date": "2026-09-01",
+   "raw": 5.0,
+   "display": "5.0%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "cpi_navarra": {
+   "date": "2026-09-01",
+   "raw": 5.3,
+   "display": "5.3%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "cpi_pais_vasco": {
+   "date": "2026-09-01",
+   "raw": 5.0,
+   "display": "5.0%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "cpi_rioja": {
+   "date": "2026-09-01",
+   "raw": 4.6,
+   "display": "4.6%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "gdp_per_head_spain": {
+   "date": "2025-01-01",
+   "raw": 100.0,
+   "display": "100",
+   "period": "2025",
+   "flash": true
+  },
+  "gdp_per_head_andalucia": {
+   "date": "2025-01-01",
+   "raw": 76.207027,
+   "display": "76",
+   "period": "2025",
+   "flash": true
+  },
+  "gdp_per_head_aragon": {
+   "date": "2025-01-01",
+   "raw": 111.096182,
+   "display": "111",
+   "period": "2025",
+   "flash": true
+  },
+  "gdp_per_head_asturias": {
+   "date": "2025-01-01",
+   "raw": 89.619418,
+   "display": "90",
+   "period": "2025",
+   "flash": true
+  },
+  "gdp_per_head_baleares": {
+   "date": "2025-01-01",
+   "raw": 112.48065,
+   "display": "112",
+   "period": "2025",
+   "flash": true
+  },
+  "gdp_per_head_canarias": {
+   "date": "2025-01-01",
+   "raw": 79.417005,
+   "display": "79",
+   "period": "2025",
+   "flash": true
+  },
+  "gdp_per_head_cantabria": {
+   "date": "2025-01-01",
+   "raw": 91.322254,
+   "display": "91",
+   "period": "2025",
+   "flash": true
+  },
+  "gdp_per_head_castilla_leon": {
+   "date": "2025-01-01",
+   "raw": 94.231387,
+   "display": "94",
+   "period": "2025",
+   "flash": true
+  },
+  "gdp_per_head_castilla_mancha": {
+   "date": "2025-01-01",
+   "raw": 79.758741,
+   "display": "80",
+   "period": "2025",
+   "flash": true
+  },
+  "gdp_per_head_cataluna": {
+   "date": "2025-01-01",
+   "raw": 114.493092,
+   "display": "114",
+   "period": "2025",
+   "flash": true
+  },
+  "gdp_per_head_valenciana": {
+   "date": "2025-01-01",
+   "raw": 83.754418,
+   "display": "84",
+   "period": "2025",
+   "flash": true
+  },
+  "gdp_per_head_extremadura": {
+   "date": "2025-01-01",
+   "raw": 78.102637,
+   "display": "78",
+   "period": "2025",
+   "flash": true
+  },
+  "gdp_per_head_galicia": {
+   "date": "2025-01-01",
+   "raw": 92.925782,
+   "display": "93",
+   "period": "2025",
+   "flash": true
+  },
+  "gdp_per_head_madrid": {
+   "date": "2025-01-01",
+   "raw": 137.920963,
+   "display": "138",
+   "period": "2025",
+   "flash": true
+  },
+  "gdp_per_head_murcia": {
+   "date": "2025-01-01",
+   "raw": 82.036978,
+   "display": "82",
+   "period": "2025",
+   "flash": true
+  },
+  "gdp_per_head_navarra": {
+   "date": "2025-01-01",
+   "raw": 118.06233,
+   "display": "118",
+   "period": "2025",
+   "flash": true
+  },
+  "gdp_per_head_pais_vasco": {
+   "date": "2025-01-01",
+   "raw": 124.111342,
+   "display": "124",
+   "period": "2025",
+   "flash": true
+  },
+  "gdp_per_head_rioja": {
+   "date": "2025-01-01",
+   "raw": 103.946023,
+   "display": "104",
+   "period": "2025",
+   "flash": true
+  }
+ },
+ "notes": [],
+ "updated_at": "2026-10-31T23:32:20+00:00",
+ "started_at": "2026-10-31T23:31:49+00:00"
+}

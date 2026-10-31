@@ -28,6 +28,35 @@
   </section>
   {% endif %}
 
+  {% if whats_new and (whats_new.notes or whats_new.recent) %}
+  <section aria-labelledby="whats-new">
+    <h2 id="whats-new">What's new</h2>
+    <div class="whats-new">
+      {% if whats_new.notes %}
+      <div class="card news-card">
+        <h3>Since the last update <span class="secondary news-when">{{ whats_new.at }}</span></h3>
+        <ul class="news-list">
+          {% for n in whats_new.notes[:10] %}<li class="news-{{ n.kind }}"><a href="{{ n.page }}">{{ n.text }}</a></li>{% endfor %}
+        </ul>
+        {% if whats_new.notes | length > 10 %}<p class="note">And {{ whats_new.notes | length - 10 }} more.</p>{% endif %}
+      </div>
+      {% endif %}
+      {% if whats_new.recent %}
+      <div class="card news-card">
+        <h3>Released in the past week</h3>
+        <ul class="news-list">
+          {% for r in whats_new.recent %}
+          <li><span class="news-day">{{ r.day }}</span> <a href="{{ r.page }}">{{ r.label }}</a>{% if r.period %} · {{ r.period }}{% endif %}
+            {%- if r.figures %}: {{ r.figures | join("; ") }}{% endif %}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+    </div>
+    {% if not whats_new.notes %}<p class="note">Notes on what each update changes start with the next data update{% if whats_new.updated_at %} after {{ whats_new.updated_at }}{% endif %}.</p>{% endif %}
+  </section>
+  {% endif %}
+
   <section aria-labelledby="four-questions">
     <h2 id="four-questions">The economy in four questions</h2>
     <div class="questions">

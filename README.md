@@ -31,7 +31,10 @@ python -m venv .venv
 - **Analysis**: EconPulse's own calculations, each explained on the page: activity and inflation composites,
   a GDP nowcast with its track record, the 10-year yield split into Bund and prima de riesgo, and Taylor rules
   for the euro area and Spain.
-- **Data** (`site/data.html`): every series, its source and whether it is up to date.
+- **Calendar** (`site/calendar.html`): releases in the past week and the next two months; every page has a
+  "Coming up" bar.
+- **Data** (`site/data.html`): a freshness summary, then every series, its source and whether it is up to date.
+- **About** (`site/about.html`): sources, how the numbers are made, and limits.
 
 Pages are plain HTML and work offline: Plotly is copied from the Python package, with no CDN. Light/dark
 follows the system setting, and the moon button switches it.
@@ -40,7 +43,7 @@ follows the system setting, and the moon button switches it.
 
 | Command | What it does |
 |---|---|
-| `python -m econpulse fetch` | Download every indicator into `data/` and print the latest values |
+| `python -m econpulse fetch` | Download every indicator into `data/`, refresh INE's release calendar, log what changed since the last fetch, and print the latest values |
 | `python -m econpulse fetch --only cpi,gdp` | Fetch just those indicators |
 | `python -m econpulse list` | Print the latest values from data already saved (no download) |
 | `python -m econpulse build` | Rebuild `site/` from data already saved |
@@ -69,10 +72,13 @@ econpulse/            Python package
   pages.py            what each section page shows: blocks of tables and charts
   policy.py           ECB meeting calendar, rate decisions, the mortgage check
   analytics.py        composites, GDP nowcast, 10-year decomposition, Taylor rules
+  schedule.py         release calendar: INE's iCal, the Social Security rule, ECB decisions
+  changes.py          "what changed": notes on new releases, revisions and big market moves
   build.py            renders every page into site/ (chart data goes in site/data/*.js)
 templates/            Jinja2 pages: base layout, home, section pages, data page
 static/               style.css (light/dark tokens), app.js (theme toggle, Plotly charts)
-data/                 fetched history (tracked in git)
+data/                 fetched history, the release calendar (calendar.json) and the log of
+                      what changed (releases.json), all tracked in git
 site/                 build output, open site/index.html (not tracked)
 tests/                pytest suite
 ```

@@ -1,0 +1,1038 @@
+{
+ "source": "https://www.ine.es/dynt3/Calendario/calendario.ics",
+ "fetched_at": "2026-10-31T16:32:20-07:00",
+ "events": [
+  {
+   "start": "2025-01-03T09:00",
+   "title": "Movimientos Turísticos en Fronteras. Noviembre 2024"
+  },
+  {
+   "start": "2025-01-03T09:00",
+   "title": "Encuesta de Gasto Turístico Mensual. Noviembre 2024"
+  },
+  {
+   "start": "2025-01-10T09:00",
+   "title": "Índice de Producción Industrial. Noviembre 2024"
+  },
+  {
+   "start": "2025-01-15T09:00",
+   "title": "Índice de Precios de Consumo. Diciembre 2024"
+  },
+  {
+   "start": "2025-01-20T09:00",
+   "title": "Estadística de Transmisiones de Derechos de la Propiedad. Noviembre 2024"
+  },
+  {
+   "start": "2025-01-24T09:00",
+   "title": "Hipotecas Mensual. Noviembre 2024"
+  },
+  {
+   "start": "2025-01-24T09:00",
+   "title": "Índice de Precios Industriales. Diciembre 2024"
+  },
+  {
+   "start": "2025-01-28T09:00",
+   "title": "Encuesta de Población Activa. Trimestre 4/2024"
+  },
+  {
+   "start": "2025-01-29T09:00",
+   "title": "Contabilidad Nacional Trimestral de España. Avance. Trimestre 4/2024"
+  },
+  {
+   "start": "2025-01-30T09:00",
+   "title": "Índice de Precios de Consumo. Avance. Enero 2025"
+  },
+  {
+   "start": "2025-01-31T09:00",
+   "title": "Índices de Comercio al por menor. Diciembre 2024"
+  },
+  {
+   "start": "2025-02-03T09:00",
+   "title": "Movimientos Turísticos en Fronteras. Diciembre 2024"
+  },
+  {
+   "start": "2025-02-03T09:00",
+   "title": "Encuesta de Gasto Turístico Mensual. Diciembre 2024"
+  },
+  {
+   "start": "2025-02-07T09:00",
+   "title": "Índice de Producción Industrial. Diciembre 2024"
+  },
+  {
+   "start": "2025-02-14T09:00",
+   "title": "Índice de Precios de Consumo. Enero 2025"
+  },
+  {
+   "start": "2025-02-19T09:00",
+   "title": "Hipotecas Mensual. Diciembre 2024"
+  },
+  {
+   "start": "2025-02-20T09:00",
+   "title": "Estadística de Transmisiones de Derechos de la Propiedad. Diciembre 2024"
+  },
+  {
+   "start": "2025-02-26T09:00",
+   "title": "Índice de Precios Industriales. Enero 2025"
+  },
+  {
+   "start": "2025-02-27T09:00",
+   "title": "Índice de Precios de Consumo. Avance. Febrero 2025"
+  },
+  {
+   "start": "2025-03-04T09:00",
+   "title": "Movimientos Turísticos en Fronteras. Enero 2025"
+  },
+  {
+   "start": "2025-03-04T09:00",
+   "title": "Encuesta de Gasto Turístico Mensual. Enero 2025"
+  },
+  {
+   "start": "2025-03-07T09:00",
+   "title": "Índice de Producción Industrial. Enero 2025"
+  },
+  {
+   "start": "2025-03-07T09:00",
+   "title": "Índice de Precios de Vivienda. Trimestre 4/2024"
+  },
+  {
+   "start": "2025-03-12T09:00",
+   "title": "Índices de Comercio al por menor. Enero 2025"
+  },
+  {
+   "start": "2025-03-14T09:00",
+   "title": "Índice de Precios de Consumo. Febrero 2025"
+  },
+  {
+   "start": "2025-03-17T09:00",
+   "title": "Encuesta Trimestral de Coste Laboral. Trimestre 4/2024"
+  },
+  {
+   "start": "2025-03-20T09:00",
+   "title": "Estadística de Transmisiones de Derechos de la Propiedad. Enero 2025"
+  },
+  {
+   "start": "2025-03-24T09:00",
+   "title": "Hipotecas Mensual. Enero 2025"
+  },
+  {
+   "start": "2025-03-25T09:00",
+   "title": "Índice de Precios Industriales. Febrero 2025"
+  },
+  {
+   "start": "2025-03-26T09:00",
+   "title": "Contabilidad Nacional Trimestral de España. Trimestre 4/2024"
+  },
+  {
+   "start": "2025-03-27T09:00",
+   "title": "Índices de Comercio al por menor. Febrero 2025"
+  },
+  {
+   "start": "2025-03-28T09:00",
+   "title": "Índice de Precios de Consumo. Avance. Marzo 2025"
+  },
+  {
+   "start": "2025-04-02T09:00",
+   "title": "Movimientos Turísticos en Fronteras. Febrero 2025"
+  },
+  {
+   "start": "2025-04-02T09:00",
+   "title": "Encuesta de Gasto Turístico Mensual. Febrero 2025"
+  },
+  {
+   "start": "2025-04-04T09:00",
+   "title": "Índice de Producción Industrial. Febrero 2025"
+  },
+  {
+   "start": "2025-04-11T09:00",
+   "title": "Índice de Precios de Consumo. Marzo 2025"
+  },
+  {
+   "start": "2025-04-23T09:00",
+   "title": "Estadística de Transmisiones de Derechos de la Propiedad. Febrero 2025"
+  },
+  {
+   "start": "2025-04-24T09:00",
+   "title": "Hipotecas Mensual. Febrero 2025"
+  },
+  {
+   "start": "2025-04-24T09:00",
+   "title": "Índice de Precios Industriales. Marzo 2025"
+  },
+  {
+   "start": "2025-04-28T09:00",
+   "title": "Índices de Comercio al por menor. Marzo 2025"
+  },
+  {
+   "start": "2025-04-28T09:00",
+   "title": "Encuesta de Población Activa. Trimestre 1/2025"
+  },
+  {
+   "start": "2025-04-29T09:00",
+   "title": "Índice de Precios de Consumo. Avance. Abril 2025"
+  },
+  {
+   "start": "2025-04-29T09:00",
+   "title": "Contabilidad Nacional Trimestral de España. Avance. Trimestre 1/2025"
+  },
+  {
+   "start": "2025-05-05T09:00",
+   "title": "Movimientos Turísticos en Fronteras. Marzo 2025"
+  },
+  {
+   "start": "2025-05-05T09:00",
+   "title": "Encuesta de Gasto Turístico Mensual. Marzo 2025"
+  },
+  {
+   "start": "2025-05-08T09:00",
+   "title": "Índice de Producción Industrial. Marzo 2025"
+  },
+  {
+   "start": "2025-05-14T09:00",
+   "title": "Índice de Precios de Consumo. Abril 2025"
+  },
+  {
+   "start": "2025-05-16T09:00",
+   "title": "Estadística de Transmisiones de Derechos de la Propiedad. Marzo 2025"
+  },
+  {
+   "start": "2025-05-26T09:00",
+   "title": "Índice de Precios Industriales. Abril 2025"
+  },
+  {
+   "start": "2025-05-27T09:00",
+   "title": "Hipotecas Mensual. Marzo 2025"
+  },
+  {
+   "start": "2025-05-29T09:00",
+   "title": "Índices de Comercio al por menor. Abril 2025"
+  },
+  {
+   "start": "2025-05-30T09:00",
+   "title": "Índice de Precios de Consumo. Avance. Mayo 2025"
+  },
+  {
+   "start": "2025-06-02T09:00",
+   "title": "Movimientos Turísticos en Fronteras. Abril 2025"
+  },
+  {
+   "start": "2025-06-02T09:00",
+   "title": "Encuesta de Gasto Turístico Mensual. Abril 2025"
+  },
+  {
+   "start": "2025-06-04T09:00",
+   "title": "Índice de Producción Industrial. Abril 2025"
+  },
+  {
+   "start": "2025-06-06T09:00",
+   "title": "Índice de Precios de Vivienda. Trimestre 1/2025"
+  },
+  {
+   "start": "2025-06-13T09:00",
+   "title": "Índice de Precios de Consumo. Mayo 2025"
+  },
+  {
+   "start": "2025-06-17T09:00",
+   "title": "Encuesta Trimestral de Coste Laboral. Trimestre 1/2025"
+  },
+  {
+   "start": "2025-06-19T09:00",
+   "title": "Estadística de Transmisiones de Derechos de la Propiedad. Abril 2025"
+  },
+  {
+   "start": "2025-06-20T09:00",
+   "title": "Hipotecas Mensual. Abril 2025"
+  },
+  {
+   "start": "2025-06-25T09:00",
+   "title": "Índice de Precios Industriales. Mayo 2025"
+  },
+  {
+   "start": "2025-06-25T09:00",
+   "title": "Contabilidad Nacional Trimestral de España. Trimestre 1/2025"
+  },
+  {
+   "start": "2025-06-27T09:00",
+   "title": "Índices de Comercio al por menor. Mayo 2025"
+  },
+  {
+   "start": "2025-06-27T09:00",
+   "title": "Índice de Precios de Consumo. Avance. Junio 2025"
+  },
+  {
+   "start": "2025-07-02T09:00",
+   "title": "Movimientos Turísticos en Fronteras. Mayo 2025"
+  },
+  {
+   "start": "2025-07-02T09:00",
+   "title": "Encuesta de Gasto Turístico Mensual. Mayo 2025"
+  },
+  {
+   "start": "2025-07-04T09:00",
+   "title": "Índice de Producción Industrial. Mayo 2025"
+  },
+  {
+   "start": "2025-07-15T09:00",
+   "title": "Índice de Precios de Consumo. Junio 2025"
+  },
+  {
+   "start": "2025-07-15T09:00",
+   "title": "Estadística de Transmisiones de Derechos de la Propiedad. Mayo 2025"
+  },
+  {
+   "start": "2025-07-18T09:00",
+   "title": "Hipotecas Mensual. Mayo 2025"
+  },
+  {
+   "start": "2025-07-24T09:00",
+   "title": "Índice de Precios Industriales. Junio 2025"
+  },
+  {
+   "start": "2025-07-24T09:00",
+   "title": "Encuesta de Población Activa. Trimestre 2/2025"
+  },
+  {
+   "start": "2025-07-29T09:00",
+   "title": "Índices de Comercio al por menor. Junio 2025"
+  },
+  {
+   "start": "2025-07-29T09:00",
+   "title": "Contabilidad Nacional Trimestral de España. Avance. Trimestre 2/2025"
+  },
+  {
+   "start": "2025-07-30T09:00",
+   "title": "Índice de Precios de Consumo. Avance. Julio 2025"
+  },
+  {
+   "start": "2025-08-01T09:00",
+   "title": "Movimientos Turísticos en Fronteras. Junio 2025"
+  },
+  {
+   "start": "2025-08-01T09:00",
+   "title": "Encuesta de Gasto Turístico Mensual. Junio 2025"
+  },
+  {
+   "start": "2025-08-05T09:00",
+   "title": "Índice de Producción Industrial. Junio 2025"
+  },
+  {
+   "start": "2025-08-05T09:00",
+   "title": "Estadística de Transmisiones de Derechos de la Propiedad. Junio 2025"
+  },
+  {
+   "start": "2025-08-13T09:00",
+   "title": "Índice de Precios de Consumo. Julio 2025"
+  },
+  {
+   "start": "2025-08-25T09:00",
+   "title": "Índice de Precios Industriales. Julio 2025"
+  },
+  {
+   "start": "2025-08-27T09:00",
+   "title": "Hipotecas Mensual. Junio 2025"
+  },
+  {
+   "start": "2025-08-29T09:00",
+   "title": "Índices de Comercio al por menor. Julio 2025"
+  },
+  {
+   "start": "2025-08-29T09:00",
+   "title": "Índice de Precios de Consumo. Avance. Agosto 2025"
+  },
+  {
+   "start": "2025-09-01T09:00",
+   "title": "Movimientos Turísticos en Fronteras. Julio 2025"
+  },
+  {
+   "start": "2025-09-01T09:00",
+   "title": "Encuesta de Gasto Turístico Mensual. Julio 2025"
+  },
+  {
+   "start": "2025-09-05T09:00",
+   "title": "Índice de Precios de Vivienda. Trimestre 2/2025"
+  },
+  {
+   "start": "2025-09-10T09:00",
+   "title": "Índice de Producción Industrial. Julio 2025"
+  },
+  {
+   "start": "2025-09-12T09:00",
+   "title": "Índice de Precios de Consumo. Agosto 2025"
+  },
+  {
+   "start": "2025-09-16T09:00",
+   "title": "Encuesta Trimestral de Coste Laboral. Trimestre 2/2025"
+  },
+  {
+   "start": "2025-09-24T09:00",
+   "title": "Índice de Precios Industriales. Agosto 2025"
+  },
+  {
+   "start": "2025-09-25T09:00",
+   "title": "Hipotecas Mensual. Julio 2025"
+  },
+  {
+   "start": "2025-09-25T09:00",
+   "title": "Estadística de Transmisiones de Derechos de la Propiedad. Julio 2025"
+  },
+  {
+   "start": "2025-09-26T09:00",
+   "title": "Contabilidad Nacional Trimestral de España. Trimestre 2/2025"
+  },
+  {
+   "start": "2025-09-29T09:00",
+   "title": "Índices de Comercio al por menor. Agosto 2025"
+  },
+  {
+   "start": "2025-09-29T09:00",
+   "title": "Índice de Precios de Consumo. Avance. Septiembre 2025"
+  },
+  {
+   "start": "2025-09-30T11:00",
+   "title": "Contabilidad Regional de España. Avance PIB. Serie 2000-2024"
+  },
+  {
+   "start": "2025-10-02T09:00",
+   "title": "Movimientos Turísticos en Fronteras. Agosto 2025"
+  },
+  {
+   "start": "2025-10-02T09:00",
+   "title": "Encuesta de Gasto Turístico Mensual. Agosto 2025"
+  },
+  {
+   "start": "2025-10-06T09:00",
+   "title": "Índice de Producción Industrial. Agosto 2025"
+  },
+  {
+   "start": "2025-10-15T09:00",
+   "title": "Índice de Precios de Consumo. Septiembre 2025"
+  },
+  {
+   "start": "2025-10-23T09:00",
+   "title": "Hipotecas Mensual. Agosto 2025"
+  },
+  {
+   "start": "2025-10-23T09:00",
+   "title": "Estadística de Transmisiones de Derechos de la Propiedad. Agosto 2025"
+  },
+  {
+   "start": "2025-10-24T09:00",
+   "title": "Índice de Precios Industriales. Septiembre 2025"
+  },
+  {
+   "start": "2025-10-24T09:00",
+   "title": "Encuesta de Población Activa. Trimestre 3/2025"
+  },
+  {
+   "start": "2025-10-29T09:00",
+   "title": "Índices de Comercio al por menor. Septiembre 2025"
+  },
+  {
+   "start": "2025-10-29T09:00",
+   "title": "Contabilidad Nacional Trimestral de España. Avance. Trimestre 3/2025"
+  },
+  {
+   "start": "2025-10-30T09:00",
+   "title": "Índice de Precios de Consumo. Avance. Octubre 2025"
+  },
+  {
+   "start": "2025-10-31T09:00",
+   "title": "Movimientos Turísticos en Fronteras. Septiembre 2025"
+  },
+  {
+   "start": "2025-10-31T09:00",
+   "title": "Encuesta de Gasto Turístico Mensual. Septiembre 2025"
+  },
+  {
+   "start": "2025-11-06T09:00",
+   "title": "Índice de Producción Industrial. Septiembre 2025"
+  },
+  {
+   "start": "2025-11-14T09:00",
+   "title": "Índice de Precios de Consumo. Octubre 2025"
+  },
+  {
+   "start": "2025-11-18T09:00",
+   "title": "Estadística de Transmisiones de Derechos de la Propiedad. Septiembre 2025"
+  },
+  {
+   "start": "2025-11-25T09:00",
+   "title": "Índice de Precios Industriales. Octubre 2025"
+  },
+  {
+   "start": "2025-11-27T09:00",
+   "title": "Hipotecas Mensual. Septiembre 2025"
+  },
+  {
+   "start": "2025-11-28T09:00",
+   "title": "Índices de Comercio al por menor. Octubre 2025"
+  },
+  {
+   "start": "2025-11-28T09:00",
+   "title": "Índice de Precios de Consumo. Avance. Noviembre 2025"
+  },
+  {
+   "start": "2025-12-03T09:00",
+   "title": "Movimientos Turísticos en Fronteras. Octubre 2025"
+  },
+  {
+   "start": "2025-12-03T09:00",
+   "title": "Encuesta de Gasto Turístico Mensual. Octubre 2025"
+  },
+  {
+   "start": "2025-12-05T09:00",
+   "title": "Índice de Producción Industrial. Octubre 2025"
+  },
+  {
+   "start": "2025-12-05T09:00",
+   "title": "Índice de Precios de Vivienda. Trimestre 3/2025"
+  },
+  {
+   "start": "2025-12-12T09:00",
+   "title": "Índice de Precios de Consumo. Noviembre 2025"
+  },
+  {
+   "start": "2025-12-15T09:00",
+   "title": "Estadística de Transmisiones de Derechos de la Propiedad. Octubre 2025"
+  },
+  {
+   "start": "2025-12-16T09:00",
+   "title": "Encuesta Trimestral de Coste Laboral. Trimestre 3/2025"
+  },
+  {
+   "start": "2025-12-17T09:00",
+   "title": "Hipotecas Mensual. Octubre 2025"
+  },
+  {
+   "start": "2025-12-23T09:00",
+   "title": "Índice de Precios Industriales. Noviembre 2025"
+  },
+  {
+   "start": "2025-12-23T09:00",
+   "title": "Contabilidad Nacional Trimestral de España. Trimestre 3/2025"
+  },
+  {
+   "start": "2025-12-30T09:00",
+   "title": "Índices de Comercio al por menor. Noviembre 2025"
+  },
+  {
+   "start": "2025-12-30T09:00",
+   "title": "Índice de Precios de Consumo. Avance. Diciembre 2025"
+  },
+  {
+   "start": "2026-01-02T09:00",
+   "title": "Movimientos Turísticos en Fronteras. Noviembre 2025"
+  },
+  {
+   "start": "2026-01-02T09:00",
+   "title": "Encuesta de Gasto Turístico Mensual. Noviembre 2025"
+  },
+  {
+   "start": "2026-01-09T09:00",
+   "title": "Índice de Producción Industrial. Noviembre 2025"
+  },
+  {
+   "start": "2026-01-15T09:00",
+   "title": "Índice de Precios de Consumo. Diciembre 2025"
+  },
+  {
+   "start": "2026-01-19T09:00",
+   "title": "Estadística de Transmisiones de Derechos de la Propiedad. Noviembre 2025"
+  },
+  {
+   "start": "2026-01-26T09:00",
+   "title": "Hipotecas Mensual. Noviembre 2025"
+  },
+  {
+   "start": "2026-01-26T09:00",
+   "title": "Índice de Precios Industriales. Diciembre 2025"
+  },
+  {
+   "start": "2026-01-27T09:00",
+   "title": "Encuesta de Población Activa. Trimestre 4/2025"
+  },
+  {
+   "start": "2026-01-29T09:00",
+   "title": "Índices de Comercio al por menor. Diciembre 2025"
+  },
+  {
+   "start": "2026-01-30T09:00",
+   "title": "Índice de Precios de Consumo. Avance. Enero 2026"
+  },
+  {
+   "start": "2026-01-30T09:00",
+   "title": "Contabilidad Nacional Trimestral de España. Avance. Trimestre 4/2025"
+  },
+  {
+   "start": "2026-02-03T09:00",
+   "title": "Movimientos Turísticos en Fronteras. Diciembre 2025"
+  },
+  {
+   "start": "2026-02-03T09:00",
+   "title": "Encuesta de Gasto Turístico Mensual. Diciembre 2025"
+  },
+  {
+   "start": "2026-02-06T09:00",
+   "title": "Índice de Producción Industrial. Diciembre 2025"
+  },
+  {
+   "start": "2026-02-13T09:00",
+   "title": "Índice de Precios de Consumo. Enero 2026"
+  },
+  {
+   "start": "2026-02-19T09:00",
+   "title": "Hipotecas Mensual. Diciembre 2025"
+  },
+  {
+   "start": "2026-02-20T09:00",
+   "title": "Estadística de Transmisiones de Derechos de la Propiedad. Diciembre 2025"
+  },
+  {
+   "start": "2026-02-25T09:00",
+   "title": "Índice de Precios Industriales. Enero 2026"
+  },
+  {
+   "start": "2026-02-27T09:00",
+   "title": "Índice de Precios de Consumo. Avance. Febrero 2026"
+  },
+  {
+   "start": "2026-03-04T09:00",
+   "title": "Movimientos Turísticos en Fronteras. Enero 2026"
+  },
+  {
+   "start": "2026-03-04T09:00",
+   "title": "Encuesta de Gasto Turístico Mensual. Enero 2026"
+  },
+  {
+   "start": "2026-03-05T09:00",
+   "title": "Índice de Producción Industrial. Enero 2026"
+  },
+  {
+   "start": "2026-03-06T09:00",
+   "title": "Índice de Precios de Vivienda. Trimestre 4/2025"
+  },
+  {
+   "start": "2026-03-11T09:00",
+   "title": "Índices de Comercio al por menor. Enero 2026"
+  },
+  {
+   "start": "2026-03-13T09:00",
+   "title": "Índice de Precios de Consumo. Febrero 2026"
+  },
+  {
+   "start": "2026-03-17T09:00",
+   "title": "Encuesta Trimestral de Coste Laboral. Trimestre 4/2025"
+  },
+  {
+   "start": "2026-03-24T09:00",
+   "title": "Hipotecas Mensual. Enero 2026"
+  },
+  {
+   "start": "2026-03-24T09:00",
+   "title": "Estadística de Transmisiones de Derechos de la Propiedad. Enero 2026"
+  },
+  {
+   "start": "2026-03-25T09:00",
+   "title": "Índice de Precios Industriales. Febrero 2026"
+  },
+  {
+   "start": "2026-03-26T09:00",
+   "title": "Contabilidad Nacional Trimestral de España. Trimestre 4/2025"
+  },
+  {
+   "start": "2026-03-27T09:00",
+   "title": "Índice de Precios de Consumo. Avance. Marzo 2026"
+  },
+  {
+   "start": "2026-03-30T09:00",
+   "title": "Índices de Comercio al por menor. Febrero 2026"
+  },
+  {
+   "start": "2026-04-01T09:00",
+   "title": "Movimientos Turísticos en Fronteras. Febrero 2026"
+  },
+  {
+   "start": "2026-04-01T09:00",
+   "title": "Encuesta de Gasto Turístico Mensual. Febrero 2026"
+  },
+  {
+   "start": "2026-04-09T09:00",
+   "title": "Índice de Producción Industrial. Febrero 2026"
+  },
+  {
+   "start": "2026-04-14T09:00",
+   "title": "Índice de Precios de Consumo. Marzo 2026"
+  },
+  {
+   "start": "2026-04-23T09:00",
+   "title": "Estadística de Transmisiones de Derechos de la Propiedad. Febrero 2026"
+  },
+  {
+   "start": "2026-04-24T09:00",
+   "title": "Hipotecas Mensual. Febrero 2026"
+  },
+  {
+   "start": "2026-04-24T09:00",
+   "title": "Índice de Precios Industriales. Marzo 2026"
+  },
+  {
+   "start": "2026-04-28T09:00",
+   "title": "Índices de Comercio al por menor. Marzo 2026"
+  },
+  {
+   "start": "2026-04-28T09:00",
+   "title": "Encuesta de Población Activa. Trimestre 1/2026"
+  },
+  {
+   "start": "2026-04-29T09:00",
+   "title": "Índice de Precios de Consumo. Avance. Abril 2026"
+  },
+  {
+   "start": "2026-04-30T09:00",
+   "title": "Contabilidad Nacional Trimestral de España. Avance. Trimestre 1/2026"
+  },
+  {
+   "start": "2026-05-05T09:00",
+   "title": "Movimientos Turísticos en Fronteras. Marzo 2026"
+  },
+  {
+   "start": "2026-05-05T09:00",
+   "title": "Encuesta de Gasto Turístico Mensual. Marzo 2026"
+  },
+  {
+   "start": "2026-05-08T09:00",
+   "title": "Índice de Producción Industrial. Marzo 2026"
+  },
+  {
+   "start": "2026-05-14T09:00",
+   "title": "Índice de Precios de Consumo. Abril 2026"
+  },
+  {
+   "start": "2026-05-18T09:00",
+   "title": "Estadística de Transmisiones de Derechos de la Propiedad. Marzo 2026"
+  },
+  {
+   "start": "2026-05-26T09:00",
+   "title": "Índice de Precios Industriales. Abril 2026"
+  },
+  {
+   "start": "2026-05-27T09:00",
+   "title": "Hipotecas Mensual. Marzo 2026"
+  },
+  {
+   "start": "2026-05-28T09:00",
+   "title": "Índices de Comercio al por menor. Abril 2026"
+  },
+  {
+   "start": "2026-05-29T09:00",
+   "title": "Índice de Precios de Consumo. Avance. Mayo 2026"
+  },
+  {
+   "start": "2026-06-02T09:00",
+   "title": "Movimientos Turísticos en Fronteras. Abril 2026"
+  },
+  {
+   "start": "2026-06-02T09:00",
+   "title": "Encuesta de Gasto Turístico Mensual. Abril 2026"
+  },
+  {
+   "start": "2026-06-04T09:00",
+   "title": "Índice de Producción Industrial. Abril 2026"
+  },
+  {
+   "start": "2026-06-08T09:00",
+   "title": "Índice de Precios de Vivienda. Trimestre 1/2026"
+  },
+  {
+   "start": "2026-06-12T09:00",
+   "title": "Índice de Precios de Consumo. Mayo 2026"
+  },
+  {
+   "start": "2026-06-16T09:00",
+   "title": "Encuesta Trimestral de Coste Laboral. Trimestre 1/2026"
+  },
+  {
+   "start": "2026-06-19T09:00",
+   "title": "Estadística de Transmisiones de Derechos de la Propiedad. Abril 2026"
+  },
+  {
+   "start": "2026-06-22T09:00",
+   "title": "Hipotecas Mensual. Abril 2026"
+  },
+  {
+   "start": "2026-06-25T09:00",
+   "title": "Índice de Precios Industriales. Mayo 2026"
+  },
+  {
+   "start": "2026-06-25T09:00",
+   "title": "Contabilidad Nacional Trimestral de España. Trimestre 1/2026"
+  },
+  {
+   "start": "2026-06-29T09:00",
+   "title": "Índices de Comercio al por menor. Mayo 2026"
+  },
+  {
+   "start": "2026-06-29T09:00",
+   "title": "Índice de Precios de Consumo. Avance. Junio 2026"
+  },
+  {
+   "start": "2026-07-02T09:00",
+   "title": "Movimientos Turísticos en Fronteras. Mayo 2026"
+  },
+  {
+   "start": "2026-07-02T09:00",
+   "title": "Encuesta de Gasto Turístico Mensual. Mayo 2026"
+  },
+  {
+   "start": "2026-07-03T09:00",
+   "title": "Índice de Producción Industrial. Mayo 2026"
+  },
+  {
+   "start": "2026-07-14T09:00",
+   "title": "Estadística de Transmisiones de Derechos de la Propiedad. Mayo 2026"
+  },
+  {
+   "start": "2026-07-15T09:00",
+   "title": "Índice de Precios de Consumo. Junio 2026"
+  },
+  {
+   "start": "2026-07-20T09:00",
+   "title": "Hipotecas Mensual. Mayo 2026"
+  },
+  {
+   "start": "2026-07-24T09:00",
+   "title": "Índice de Precios Industriales. Junio 2026"
+  },
+  {
+   "start": "2026-07-28T09:00",
+   "title": "Índices de Comercio al por menor. Junio 2026"
+  },
+  {
+   "start": "2026-07-28T09:00",
+   "title": "Encuesta de Población Activa. Trimestre 2/2026"
+  },
+  {
+   "start": "2026-07-30T09:00",
+   "title": "Índice de Precios de Consumo. Avance. Julio 2026"
+  },
+  {
+   "start": "2026-07-30T09:00",
+   "title": "Contabilidad Nacional Trimestral de España. Avance. Trimestre 2/2026"
+  },
+  {
+   "start": "2026-08-03T09:00",
+   "title": "Movimientos Turísticos en Fronteras. Junio 2026"
+  },
+  {
+   "start": "2026-08-03T09:00",
+   "title": "Encuesta de Gasto Turístico Mensual. Junio 2026"
+  },
+  {
+   "start": "2026-08-06T09:00",
+   "title": "Índice de Producción Industrial. Junio 2026"
+  },
+  {
+   "start": "2026-08-07T09:00",
+   "title": "Estadística de Transmisiones de Derechos de la Propiedad. Junio 2026"
+  },
+  {
+   "start": "2026-08-13T09:00",
+   "title": "Índice de Precios de Consumo. Julio 2026"
+  },
+  {
+   "start": "2026-08-25T09:00",
+   "title": "Índice de Precios Industriales. Julio 2026"
+  },
+  {
+   "start": "2026-08-26T09:00",
+   "title": "Hipotecas Mensual. Junio 2026"
+  },
+  {
+   "start": "2026-08-28T09:00",
+   "title": "Índices de Comercio al por menor. Julio 2026"
+  },
+  {
+   "start": "2026-08-28T09:00",
+   "title": "Índice de Precios de Consumo. Avance. Agosto 2026"
+  },
+  {
+   "start": "2026-09-01T09:00",
+   "title": "Movimientos Turísticos en Fronteras. Julio 2026"
+  },
+  {
+   "start": "2026-09-01T09:00",
+   "title": "Encuesta de Gasto Turístico Mensual. Julio 2026"
+  },
+  {
+   "start": "2026-09-07T09:00",
+   "title": "Índice de Precios de Vivienda. Trimestre 2/2026"
+  },
+  {
+   "start": "2026-09-10T09:00",
+   "title": "Índice de Producción Industrial. Julio 2026"
+  },
+  {
+   "start": "2026-09-15T09:00",
+   "title": "Índice de Precios de Consumo. Agosto 2026"
+  },
+  {
+   "start": "2026-09-17T09:00",
+   "title": "Encuesta Trimestral de Coste Laboral. Trimestre 2/2026"
+  },
+  {
+   "start": "2026-09-24T09:00",
+   "title": "Índice de Precios Industriales. Agosto 2026"
+  },
+  {
+   "start": "2026-09-25T09:00",
+   "title": "Contabilidad Nacional Trimestral de España. Trimestre 2/2026"
+  },
+  {
+   "start": "2026-09-25T09:00",
+   "title": "Estadística de Transmisiones de Derechos de la Propiedad. Julio 2026"
+  },
+  {
+   "start": "2026-09-28T09:00",
+   "title": "Hipotecas Mensual. Julio 2026"
+  },
+  {
+   "start": "2026-09-29T09:00",
+   "title": "Índices de Comercio al por menor. Agosto 2026"
+  },
+  {
+   "start": "2026-09-29T09:00",
+   "title": "Índice de Precios de Consumo. Avance. Septiembre 2026"
+  },
+  {
+   "start": "2026-09-30T11:00",
+   "title": "Contabilidad Regional de España. Avance PIB. Serie 2000-2025"
+  },
+  {
+   "start": "2026-10-02T09:00",
+   "title": "Movimientos Turísticos en Fronteras. Agosto 2026"
+  },
+  {
+   "start": "2026-10-02T09:00",
+   "title": "Encuesta de Gasto Turístico Mensual. Agosto 2026"
+  },
+  {
+   "start": "2026-10-06T09:00",
+   "title": "Índice de Producción Industrial. Agosto 2026"
+  },
+  {
+   "start": "2026-10-14T09:00",
+   "title": "Índice de Precios de Consumo. Septiembre 2026"
+  },
+  {
+   "start": "2026-10-26T09:00",
+   "title": "Hipotecas Mensual. Agosto 2026"
+  },
+  {
+   "start": "2026-10-26T09:00",
+   "title": "Índice de Precios Industriales. Septiembre 2026"
+  },
+  {
+   "start": "2026-10-26T09:00",
+   "title": "Estadística de Transmisiones de Derechos de la Propiedad. Agosto 2026"
+  },
+  {
+   "start": "2026-10-27T09:00",
+   "title": "Encuesta de Población Activa. Trimestre 3/2026"
+  },
+  {
+   "start": "2026-10-29T09:00",
+   "title": "Índices de Comercio al por menor. Septiembre 2026"
+  },
+  {
+   "start": "2026-10-30T09:00",
+   "title": "Índice de Precios de Consumo. Avance. Octubre 2026"
+  },
+  {
+   "start": "2026-10-30T09:00",
+   "title": "Contabilidad Nacional Trimestral de España. Avance. Trimestre 3/2026"
+  },
+  {
+   "start": "2026-11-04T09:00",
+   "title": "Movimientos Turísticos en Fronteras. Septiembre 2026"
+  },
+  {
+   "start": "2026-11-04T09:00",
+   "title": "Encuesta de Gasto Turístico Mensual. Septiembre 2026"
+  },
+  {
+   "start": "2026-11-06T09:00",
+   "title": "Índice de Producción Industrial. Septiembre 2026"
+  },
+  {
+   "start": "2026-11-13T09:00",
+   "title": "Índice de Precios de Consumo. Octubre 2026"
+  },
+  {
+   "start": "2026-11-17T09:00",
+   "title": "Estadística de Transmisiones de Derechos de la Propiedad. Septiembre 2026"
+  },
+  {
+   "start": "2026-11-24T09:00",
+   "title": "Índice de Precios Industriales. Octubre 2026"
+  },
+  {
+   "start": "2026-11-25T09:00",
+   "title": "Hipotecas Mensual. Septiembre 2026"
+  },
+  {
+   "start": "2026-11-27T09:00",
+   "title": "Índices de Comercio al por menor. Octubre 2026"
+  },
+  {
+   "start": "2026-11-27T09:00",
+   "title": "Índice de Precios de Consumo. Avance. Noviembre 2026"
+  },
+  {
+   "start": "2026-12-02T09:00",
+   "title": "Movimientos Turísticos en Fronteras. Octubre 2026"
+  },
+  {
+   "start": "2026-12-02T09:00",
+   "title": "Encuesta de Gasto Turístico Mensual. Octubre 2026"
+  },
+  {
+   "start": "2026-12-04T09:00",
+   "title": "Índice de Producción Industrial. Octubre 2026"
+  },
+  {
+   "start": "2026-12-04T09:00",
+   "title": "Índice de Precios de Vivienda. Trimestre 3/2026"
+  },
+  {
+   "start": "2026-12-15T09:00",
+   "title": "Índice de Precios de Consumo. Noviembre 2026"
+  },
+  {
+   "start": "2026-12-16T09:00",
+   "title": "Estadística de Transmisiones de Derechos de la Propiedad. Octubre 2026"
+  },
+  {
+   "start": "2026-12-17T09:00",
+   "title": "Encuesta Trimestral de Coste Laboral. Trimestre 3/2026"
+  },
+  {
+   "start": "2026-12-18T09:00",
+   "title": "Hipotecas Mensual. Octubre 2026"
+  },
+  {
+   "start": "2026-12-23T09:00",
+   "title": "Índice de Precios Industriales. Noviembre 2026"
+  },
+  {
+   "start": "2026-12-23T09:00",
+   "title": "Contabilidad Nacional Trimestral de España. Trimestre 3/2026"
+  },
+  {
+   "start": "2026-12-30T09:00",
+   "title": "Índices de Comercio al por menor. Noviembre 2026"
+  },
+  {
+   "start": "2026-12-30T09:00",
+   "title": "Índice de Precios de Consumo. Avance. Diciembre 2026"
+  }
+ ]
+}
