@@ -24,40 +24,63 @@
 
   // ---------------------------------------------------------------- charts
   var specs = (window.EP && window.EP.charts) || [];
+  var MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
   function token(name) {
     return getComputedStyle(root).getPropertyValue(name).trim();
   }
 
+  // "%" and "k" attach to the number; other units ("pp", "€/MWh") follow after a space.
+  function suffix(spec) {
+    var u = spec.unit || "";
+    return u === "%" || u === "k" ? u : (u ? " " + u : "");
+  }
+
   function fmt(v, spec, signed) {
     var s = Math.abs(v).toLocaleString("en-GB", { minimumFractionDigits: spec.decimals, maximumFractionDigits: spec.decimals });
     var sign = v < 0 ? "−" : (signed && v > 0 ? "+" : "");
-    return sign + s + (spec.unit === "%" ? "%" : spec.unit === "k" ? "k" : "");
+    return sign + s + suffix(spec);
   }
 
-  function hoverFormat(spec) {
-    var d = ":" + (spec.kind === "bar" ? "+" : "") + "." + spec.decimals + "f";
-    var suffix = spec.unit === "%" ? "%" : spec.unit === "k" ? "k" : "";
-    return d + "}" + suffix;
+  function dateLabel(iso, freq) {
+    var y = iso.slice(0, 4), m = parseInt(iso.slice(5, 7), 10);
+    if (freq === "Q") return "Q" + (Math.floor((m - 1) / 3) + 1) + " " + y;
+    if (freq === "D") return parseInt(iso.slice(8, 10), 10) + " " + MONTHS[m - 1] + " " + y;
+    return MONTHS[m - 1] + " " + y;
+  }
+
+  function hoverDate(spec) {
+    if (spec.date_format) return spec.date_format;
+    return spec.freq === "Q" ? "Q%q %Y" : spec.freq === "D" ? "%-d %b %Y" : "%b %Y";
   }
 
   function draw(spec) {
     var el = document.getElementById("chart-" + spec.id);
     if (!el || !window.Plotly) return;
-    // Fixed slot order, never cycled: a spec has at most three series.
+    // Fixed slot order, never cycled: a spec has at most three palette series.
     var colors = [token("--series-1"), token("--series-2"), token("--series-3")];
     var surface = token("--surface"), ink = token("--text"), ink2 = token("--text-2");
     var muted = token("--muted"), grid = token("--grid"), axis = token("--axis");
     var multi = spec.series.length > 1;
+    // On narrow (phone-width) charts the legend names the lines; end labels would squeeze the plot.
+    var endLabels = multi && el.clientWidth >= 480;
+    var valueFormat = ":" + (spec.signed ? "+" : "") + "." + spec.decimals + "f}" + suffix(spec);
 
     var traces = [];
     var annotations = [];
-    spec.series.forEach(function (s, i) {
-      var color = colors[i];
-      // Value leads, name follows; the colored key comes from Plotly's line swatch.
-      var template = "<b>%{y" + hoverFormat(spec) + "</b>  " + s.name + "<extra></extra>";
-      if (spec.kind === "bar") {
-        traces.push({ type: "bar", x: s.x, y: s.y, name: s.name, marker: { color: color }, hovertemplate: template });
+    var slot = 0;
+    spec.series.forEach(function (s) {
+      // A total drawn in text colour takes no palette slot.
+      var color = s.color === "ink" ? ink : colors[slot++];
+      var kind = s.kind || spec.kind;
+      // Value leads, name follows; the colored key comes from Plotly's swatch.
+      var template = "<b>%{y" + valueFormat + "</b>  " + s.name + "<extra></extra>";
+      if (kind === "bar") {
+        traces.push({
+          type: "bar", x: s.x, y: s.y, name: s.name, hovertemplate: template,
+          // Stacked segments are separated by a thin gap in the surface colour.
+          marker: { color: color, line: { color: surface, width: spec.stack ? 1.5 : 0 } }
+        });
         return;
       }
       traces.push({
@@ -70,10 +93,10 @@
         type: "scatter", mode: "markers", x: [lastX], y: [lastY], showlegend: false, hoverinfo: "skip",
         marker: { size: 9, color: color, line: { width: 2, color: surface } }
       });
-      if (multi) {
+      if (endLabels) {
         // In the right margin (paper x = 1), so the label doesn't stretch the date axis.
         annotations.push({
-          x: 1, xref: "paper", y: lastY, yref: "y", text: s.name + " " + fmt(lastY, spec),
+          x: 1, xref: "paper", y: lastY, yref: "y", text: s.name + " " + fmt(lastY, spec, spec.signed),
           showarrow: false, xanchor: "left", xshift: 8, font: { size: 12, color: ink2 }
         });
       }
@@ -91,22 +114,23 @@
     var layout = {
       paper_bgcolor: surface, plot_bgcolor: surface,
       font: { family: token("--sans") || "system-ui, sans-serif", size: 12, color: ink2 },
-      margin: { l: 44, r: multi || shapes.length ? 96 : 14, t: multi ? 30 : 10, b: 30 },
+      margin: { l: 44, r: labelMargin(annotations), t: multi ? 30 : 10, b: 30 },
       showlegend: multi,
       legend: { orientation: "h", x: 0, xanchor: "left", y: 1.02, yanchor: "bottom", font: { size: 12, color: ink2 } },
       hovermode: "x unified",
       hoverlabel: { bgcolor: surface, bordercolor: grid, font: { color: ink, size: 12 } },
       xaxis: {
         type: "date", showgrid: false, showline: true, linecolor: axis, ticks: "", fixedrange: true,
-        hoverformat: spec.date_format || "%b %Y",
+        hoverformat: hoverDate(spec),
         tickfont: { color: muted }, showspikes: true, spikemode: "across", spikethickness: 1,
         spikecolor: axis, spikedash: "solid", spikesnap: "cursor"
       },
       yaxis: {
-        gridcolor: grid, gridwidth: 1, zeroline: spec.kind === "bar", zerolinecolor: axis, zerolinewidth: 1,
-        fixedrange: true, tickfont: { color: muted }, ticksuffix: spec.unit === "%" ? "%" : spec.unit === "k" ? "k" : "",
-        automargin: true
+        // The zero line shows whenever zero is in range (growth rates, monthly changes).
+        gridcolor: grid, gridwidth: 1, zeroline: true, zerolinecolor: axis, zerolinewidth: 1,
+        fixedrange: true, tickfont: { color: muted }, ticksuffix: suffix(spec), automargin: true
       },
+      barmode: spec.stack ? "relative" : "group",
       bargap: 0.3, barcornerradius: 4,
       annotations: annotations, shapes: shapes
     };
@@ -116,7 +140,36 @@
         "resetScale2d", "toggleSpikelines", "hoverClosestCartesian", "hoverCompareCartesian"],
       toImageButtonOptions: { filename: "econpulse-" + spec.id, scale: 2 }
     };
-    window.Plotly.react(el, traces, layout, config);
+    window.Plotly.react(el, traces, layout, config).then(function () { spreadLabels(el); });
+  }
+
+  // Right margin wide enough for the longest end label (about 6.5px a character at 12px).
+  function labelMargin(annotations) {
+    var longest = 0;
+    annotations.forEach(function (a) { longest = Math.max(longest, a.text.length); });
+    return longest ? Math.min(180, Math.round(longest * 6.5) + 18) : 14;
+  }
+
+  // End labels of lines that finish close together would overlap: push them apart
+  // vertically (at least 15px) once Plotly has laid out the axis.
+  function spreadLabels(el) {
+    try {
+      var ya = el._fullLayout.yaxis, height = el._fullLayout._size.h;
+      var notes = el.layout.annotations || [];
+      if (notes.length < 2) return;
+      var items = notes.map(function (a, i) { return { i: i, px: ya.l2p(a.y), orig: ya.l2p(a.y) }; });
+      items.sort(function (a, b) { return a.px - b.px; });
+      for (var k = 1; k < items.length; k++) {
+        if (items[k].px - items[k - 1].px < 15) items[k].px = items[k - 1].px + 15;
+      }
+      var overflow = items[items.length - 1].px - height;
+      var update = {};
+      items.forEach(function (it) {
+        var px = overflow > 0 ? it.px - overflow : it.px;
+        update["annotations[" + it.i + "].yshift"] = it.orig - px;  // yshift is upwards
+      });
+      window.Plotly.relayout(el, update);
+    } catch (e) { /* labels stay where they are */ }
   }
 
   // A plain table under each chart, so every value is readable without hovering.
@@ -128,20 +181,22 @@
     ["Date"].concat(spec.series.map(function (s) { return s.name; })).forEach(function (h) {
       var th = document.createElement("th"); th.scope = "col"; th.textContent = h; head.appendChild(th);
     });
+    // Every date any series has (series can differ in frequency), newest first.
+    var seen = {};
+    spec.series.forEach(function (s) { s.x.forEach(function (d) { seen[d] = true; }); });
+    var dates = Object.keys(seen).sort().reverse().slice(0, 12);
     var body = table.createTBody();
-    var dates = spec.series[0].x;
-    var start = Math.max(0, dates.length - 12);
-    for (var i = dates.length - 1; i >= start; i--) {
+    dates.forEach(function (d) {
       var row = body.insertRow();
-      row.insertCell().textContent = dates[i];
+      row.insertCell().textContent = dateLabel(d, spec.freq);
       spec.series.forEach(function (s) {
-        var j = s.x.indexOf(dates[i]);
-        row.insertCell().textContent = j >= 0 ? fmt(s.y[j], spec, spec.kind === "bar") : "–";
+        var j = s.x.indexOf(d);
+        row.insertCell().textContent = j >= 0 ? fmt(s.y[j], spec, spec.signed) : "–";
       });
-    }
+    });
     var caption = document.createElement("p");
     caption.className = "note";
-    caption.textContent = "Latest 12 observations.";
+    caption.textContent = "Latest " + dates.length + " dates.";
     holder.appendChild(table);
     holder.appendChild(caption);
   }
@@ -152,4 +207,11 @@
 
   specs.forEach(fillTable);
   drawAll();
+
+  // Redraw after a resize settles: whether end labels fit depends on the chart's width.
+  var resizeTimer;
+  window.addEventListener("resize", function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(drawAll, 250);
+  });
 })();

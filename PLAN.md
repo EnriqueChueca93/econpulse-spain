@@ -70,17 +70,18 @@ One Python codebase. Its output is a plain static website that opens by double-c
 
 ## 3. Data sources
 
-Status after Batch 2 (30 Oct 2026). All sources are official or public and are accessed with an honest `EconPulseSpain` User-Agent:
+Status after Batch 4 (31 Oct 2026): 102 indicators. All sources are official or public and are accessed with an honest `EconPulseSpain` User-Agent:
 
 | Provider | Access | Status | Covers |
 |---|---|---|---|
-| **INE** | JSON API `servicios.ine.es/wstempus` | ✅ in use (20 indicators) | GDP (CNTR), CPI, core, EPA, industrial production, retail, house prices, wage cost (ETCL), tourism (FRONTUR, EGATUR), home sales |
-| **Eurostat** | JSON-stat API | ✅ in use (12) | monthly unemployment, HICP, EC sentiment surveys, government debt and balance, current account |
+| **INE** | JSON API `servicios.ine.es/wstempus` | ✅ in use (52 indicators) | GDP (CNTR): spending and output components, contributions to growth, jobs, productivity, unit labour costs; CPI with core and special groups, rents; producer prices (IPRI); EPA rates; industrial production, retail, house prices, labour costs (ETCL), tourism (FRONTUR, EGATUR), home sales |
+| **Eurostat** | JSON-stat API | ✅ in use (18) | monthly and long-term unemployment, HICP (rates and index, Spain and euro area), labour cost index, EC sentiment surveys and price expectations, government debt and balance, current account |
 | **ECB Data Portal** | SDMX REST, CSV | ✅ in use (7) | policy rates, €STR, EUR/USD, mortgage rates (MIR), convergence yields |
-| **Banco de España** | REST API `app.bde.es/bierest` | ✅ in use (15) | daily Spanish yield curve, German 10y, prima de riesgo, Euribor, IBEX 35; registered unemployment, car sales, hotel nights, balance of payments |
+| **Banco de España** | REST API `app.bde.es/bierest` | ✅ in use (16) | daily Spanish yield curve, German 10y, prima de riesgo, Euribor, IBEX 35; registered unemployment, pay rises agreed in collective agreements, car sales, hotel nights, balance of payments |
 | **Seguridad Social** | spreadsheet linked from its statistics page | ✅ in use (1) | average registrations (*afiliados*), total system, since 2001 |
 | **Red Eléctrica (REE)** | REData API `apidatos.ree.es` | ✅ in use (2) | day-ahead electricity price (daily average of 15-minute prices), daily demand |
 | **FRED** | public CSV, no key | ✅ in use (2) | Brent spot (US EIA), European gas (IMF) |
+| **EconPulse calculations** | from the series above | ✅ in use (4) | Brent in euros, monthly ES–DE spread, GDP deflator, real wages |
 | ~~Yahoo Finance~~ | unofficial API | ❌ dropped | IBEX 35 now comes from Banco de España and Brent from FRED |
 | **AIReF · FUNCAS · BdE projections** | web pages / Excel | 🔲 Batch 7 | GDP nowcast, forecaster consensus, official projections |
 
@@ -92,6 +93,9 @@ Status after Batch 2 (30 Oct 2026). All sources are official or public and are a
 - Banco de España serves at most 36 months of a daily series per request, so the first fetch walks back year by year to 2000 (about 3 minutes). After that, `fetch` downloads only recent observations and merges them into the stored history (about 10 seconds).
 - REE serves prices only at hourly resolution, in windows of about a week. They're fetched in 7-day chunks and averaged to a daily price.
 - The machine clock may not be on Spanish time. "Today" for freshness checks and request windows is Madrid time.
+- STL's default seasonal smoothing (a local line) extrapolates recent swings at the end of a series: the 2026 energy surge was being read as seasonality, which put CPI and HICP monthly rates far apart (−1.7% vs +8.6% annualised for the same month). The seasonal factors now use a local constant (`seasonal_deg=0`), and CPI and HICP agree.
+- The labour cost survey (ETCL) is unadjusted, and bonuses move between quarters, so seasonally adjusted quarterly rates flip sign depending on the method. Wages are compared with a year earlier; Eurostat's labour cost index is the adjusted measure.
+- Banco de España table CSVs (`www.bde.es/webbe/es/estadisticas/compartido/datos/csv/be24NN.csv`) are a good way to find series codes: the level of registered unemployment (`D_1JA0D000`) and agreed pay rises came from tables 24.15 and 24.22.
 
 ---
 
@@ -157,7 +161,7 @@ Each batch is sized for one working session, ends with something you can open or
 - **Done when:** `python -m econpulse fetch` fills `data/` and prints a table of latest values.
 
 ### Batch 2 — Remaining sources and robustness ✅ done 30 Oct 2026
-*Result: 61 indicators from 7 sources, plus 2 derived (Brent in €, monthly ES–DE spread). The first fetch backfills history in about 3 minutes; later updates take about 10 seconds. There is a `status` freshness report, and 62 offline plus 8 live tests. The home page has 13 tiles in econvitals order. Deferred: household debt and the level of registered unemployment (Batch 6), and Euro Stoxx 50 and gold (no clean free source yet).*
+*Result: 61 indicators from 7 sources, plus 2 derived (Brent in €, monthly ES–DE spread). The first fetch backfills history in about 3 minutes; later updates take about 10 seconds. There is a `status` freshness report, and 62 offline plus 8 live tests. The home page has 13 tiles in econvitals order. Deferred: household debt and the level of registered unemployment (Batch 6; the level landed in Batch 4), and Euro Stoxx 50 and gold (no clean free source yet).*
 - Banco de España (yields, Euribor, mortgage rates, household debt, balance of payments), Bundesbank 10y, Yahoo markets
 - Seguridad Social and SEPE downloads (Excel parsing), REE or OMIE electricity price
 - Retries, caching, per-source failure isolation, a "stale data" flag, a freshness report
@@ -170,7 +174,8 @@ Each batch is sized for one working session, ends with something you can open or
 - Vendored Plotly and a chart helper with PNG download
 - **Done when:** `update.bat` fetches, builds and opens a working home page.
 
-### Batch 4 — Sections I: GDP, Labour, Wages, Inflation
+### Batch 4 — Sections I: GDP, Labour, Wages, Inflation ✅ done 31 Oct 2026
+*Result: the four pages are filled, with 9 tables and 25 charts. Each page is a set of blocks (sub-heading, intro, tables, charts), defined in `econpulse/pages.py`; the tables are computed in `econpulse/tables.py`. 41 new indicators (102 in all): GDP components, contributions to growth, output by sector, the GDP deflator, jobs, productivity and unit labour costs; EPA rates, long-term unemployment, the level of registered unemployment; labour costs per worker and per hour, the labour cost index, agreed pay rises, real wages; CPI special groups, rents, producer prices, the HICP index, euro-area core inflation, consumers' price expectations. GDP: q/q and y/y with INE's contributions (not annualised, Spanish practice). Labour: average monthly change (1, 3, 12 months), levels, EPA and Eurostat rates. Wages: annual growth now, a quarter ago and a year ago. Inflation: 1-, 3- and 6-month annualised rates plus 12-month, with the CPI flash shown as a note. Charts support stacked bars, a line over bars, end labels pushed apart, and dropping end labels on phones. The registrations tile now headlines the seasonally adjusted monthly change, as econvitals does for payrolls, with the published y/y change below it. 85 offline and 8 live tests.*
 - Charts plus the econvitals-style tables (1-month, 3-month and 12-month columns; latest, one month ago, one year ago)
 - Seasonal adjustment exists since Batch 3 (`sa_*` transforms). Use it in the tables, and decide whether the registrations tile switches from the official y/y change to the SA monthly change, as econvitals does for payrolls
 - Fill the section pages using the chart helper from Batch 3 (`charts.py` specs + `app.js`)

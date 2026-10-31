@@ -7,10 +7,11 @@
 #   source       ine | eurostat | ecb | bde | segsocial | fred | ree | derived
 #   key, params  what to ask the source for (see econpulse/sources/<source>.py)
 #   freq         D | M | Q | A
-#   unit         unit of the stored series: "%", "% of GDP", "bp", "thousands", "$/bbl", "€/MWh",
+#   unit         unit of the stored series: "%", "% of GDP", "bp", "pp", "thousands", "$/bbl", "€/MWh",
 #                "€ mn", "€", or a plain number shown without suffix: "index", "balance", "rate"
 #   scale        multiply fetched values (default 1), e.g. 0.001 for persons -> thousands
-#   transforms   how to show it; the first one is the headline (level, pop, yoy, ann3m, saar, diff, diff_yoy)
+#   transforms   how to show it; the first one is the headline (level, pop, yoy, ann3m, saar, diff, diff_yoy;
+#                sa_pop, sa_diff… first apply EconPulse seasonal adjustment)
 #   decimals     decimals to display (default 1)
 #   change_unit  pp | bp for rates; % for relative change (prices, indices, exchange rates)
 #   tile         position in the home-page key-indicators strip (omit if not a tile)
@@ -18,6 +19,7 @@
 #
 # INE codes are series codes (not table ids): INE moves series to new tables when
 # it rebases, so check `python -m econpulse status` if a series stops updating.
+# What the section pages show (tables, charts) is defined in econpulse/pages.py.
 
 indicators:
 
@@ -94,6 +96,202 @@ indicators:
     unit: index
     transforms: [pop, yoy]
 
+  - id: investment_construction
+    label: Investment in construction
+    label_es: FBCF en construcción
+    section: gdp
+    source: ine
+    key: CNTR7221
+    freq: Q
+    unit: index
+    transforms: [pop, yoy]
+
+  - id: investment_housing
+    label: Investment in housing
+    label_es: FBCF en viviendas
+    section: gdp
+    source: ine
+    key: CNTR7226
+    freq: Q
+    unit: index
+    transforms: [pop, yoy]
+
+  - id: investment_equipment
+    label: Investment in machinery and equipment
+    label_es: FBCF en maquinaria, bienes de equipo y sistemas de armamento
+    section: gdp
+    source: ine
+    key: CNTR7236
+    freq: Q
+    unit: index
+    transforms: [pop, yoy]
+
+  - id: exports_goods
+    label: Exports of goods
+    label_es: Exportaciones de bienes
+    section: gdp
+    source: ine
+    key: CNTR7270
+    freq: Q
+    unit: index
+    transforms: [pop, yoy]
+
+  - id: exports_services
+    label: Exports of services
+    label_es: Exportaciones de servicios
+    section: gdp
+    source: ine
+    key: CNTR7275
+    freq: Q
+    unit: index
+    transforms: [pop, yoy]
+    notes: Includes spending by foreign tourists in Spain.
+
+  # Contributions to GDP growth, in percentage points, as published by INE.
+  - id: contrib_domestic_qq
+    label: Domestic demand, contribution to q/q growth
+    label_es: Demanda nacional, aportación trimestral al PIB
+    section: gdp
+    source: ine
+    key: CNTR7149
+    freq: Q
+    unit: pp
+
+  - id: contrib_external_qq
+    label: External demand, contribution to q/q growth
+    label_es: Demanda externa, aportación trimestral al PIB
+    section: gdp
+    source: ine
+    key: CNTR7263
+    freq: Q
+    unit: pp
+
+  - id: contrib_domestic_yy
+    label: Domestic demand, contribution to y/y growth
+    label_es: Demanda nacional, aportación anual al PIB
+    section: gdp
+    source: ine
+    key: CNTR7150
+    freq: Q
+    unit: pp
+
+  - id: contrib_external_yy
+    label: External demand, contribution to y/y growth
+    label_es: Demanda externa, aportación anual al PIB
+    section: gdp
+    source: ine
+    key: CNTR7264
+    freq: Q
+    unit: pp
+
+  # Output by sector: gross value added, chain-linked volumes, adjusted.
+  - id: gva_agriculture
+    label: Gross value added, agriculture
+    label_es: VAB agricultura, ganadería, silvicultura y pesca
+    section: gdp
+    source: ine
+    key: CNTR6657
+    freq: Q
+    unit: index
+    transforms: [pop, yoy]
+
+  - id: gva_industry
+    label: Gross value added, industry
+    label_es: VAB industria
+    section: gdp
+    source: ine
+    key: CNTR6662
+    freq: Q
+    unit: index
+    transforms: [pop, yoy]
+
+  - id: gva_construction
+    label: Gross value added, construction
+    label_es: VAB construcción
+    section: gdp
+    source: ine
+    key: CNTR6672
+    freq: Q
+    unit: index
+    transforms: [pop, yoy]
+
+  - id: gva_services
+    label: Gross value added, services
+    label_es: VAB servicios
+    section: gdp
+    source: ine
+    key: CNTR6677
+    freq: Q
+    unit: index
+    transforms: [pop, yoy]
+
+  - id: gdp_nominal
+    label: Nominal GDP
+    label_es: PIB a precios corrientes
+    section: gdp
+    source: ine
+    key: CNTR6597
+    freq: Q
+    unit: "€ mn"
+    decimals: 0
+    transforms: [yoy, pop]
+    notes: Current prices, seasonally and calendar adjusted, euros million per quarter.
+
+  - id: gdp_deflator
+    label: GDP deflator
+    label_es: Deflactor implícito del PIB
+    section: gdp
+    source: derived
+    key: divide
+    params: {a: gdp_nominal, b: gdp}
+    freq: Q
+    unit: index
+    transforms: [yoy, pop]
+    notes: Nominal GDP divided by real GDP; the price of everything Spain produces.
+
+  - id: jobs_fte
+    label: Employment, full-time equivalent jobs
+    label_es: Puestos de trabajo equivalentes a tiempo completo
+    section: gdp
+    source: ine
+    key: CNTR7818
+    freq: Q
+    unit: thousands
+    transforms: [yoy, pop]
+    notes: National accounts measure, seasonally and calendar adjusted.
+
+  # Already published as % changes on a year earlier.
+  - id: productivity_fte
+    label: Productivity per FTE job, y/y
+    label_es: Productividad por puesto de trabajo equivalente a tiempo completo
+    section: gdp
+    source: ine
+    key: CNTR8241
+    freq: Q
+    unit: "%"
+    change_unit: pp
+
+  - id: productivity_hour
+    label: Productivity per hour worked, y/y
+    label_es: Productividad por hora efectivamente trabajada
+    section: gdp
+    source: ine
+    key: CNTR8242
+    freq: Q
+    unit: "%"
+    change_unit: pp
+
+  - id: unit_labour_cost
+    label: Unit labour cost, y/y
+    label_es: Coste laboral unitario
+    section: gdp
+    source: ine
+    key: CNTR8244
+    freq: Q
+    unit: "%"
+    change_unit: pp
+    notes: Compensation per employee relative to productivity.
+
   # ---------------------------------------------------------------- Labour
   - id: afiliados
     label: Social Security registrations
@@ -104,9 +302,9 @@ indicators:
     freq: M
     unit: thousands
     scale: 0.001
-    transforms: [diff_yoy, yoy, diff]
+    transforms: [sa_diff, diff_yoy, yoy]
     tile: 2
-    notes: Monthly average, total system, not seasonally adjusted (seasonal adjustment comes in Batch 4).
+    notes: Monthly average, total system. The monthly change is seasonally adjusted by EconPulse; the y/y change is as published.
 
   - id: unemployment_epa
     label: Unemployment rate (EPA)
@@ -155,15 +353,63 @@ indicators:
     change_unit: pp
 
   - id: paro_registrado
-    label: Registered unemployment, y/y
-    label_es: Paro registrado, tasa interanual
+    label: Registered unemployment
+    label_es: Paro registrado
     section: labour
     source: bde
-    key: DPU1JA0D000_TVA
+    key: D_1JA0D000
     freq: M
+    unit: thousands
+    scale: 0.001
+    transforms: [diff_yoy, yoy]
+    notes: Job seekers registered at public employment offices (SEPE), end of month, not seasonally adjusted.
+
+  - id: activity_rate
+    label: Activity rate (EPA)
+    label_es: Tasa de actividad (EPA)
+    section: labour
+    source: ine
+    key: EPA388038
+    freq: Q
+    unit: "%"
+    decimals: 2
+    change_unit: pp
+    notes: Share of people aged 16 and over who are working or looking for work.
+
+  - id: employment_rate
+    label: Employment rate (EPA)
+    label_es: Tasa de empleo (EPA)
+    section: labour
+    source: ine
+    key: EPA388039
+    freq: Q
+    unit: "%"
+    decimals: 2
+    change_unit: pp
+    notes: Share of people aged 16 and over who are in work.
+
+  - id: temporary_rate
+    label: Temporary employment rate (EPA)
+    label_es: Tasa de temporalidad (EPA)
+    section: labour
+    source: ine
+    key: EPA416256
+    freq: Q
     unit: "%"
     change_unit: pp
-    notes: Job seekers registered at public employment offices (SEPE), year-on-year change.
+    notes: Employees on temporary contracts, % of all employees. The 2022 labour reform cut it sharply.
+
+  - id: long_term_unemployment
+    label: Long-term unemployment rate
+    label_es: Tasa de paro de larga duración
+    section: labour
+    source: eurostat
+    key: une_ltu_q
+    params: {geo: ES, indic_em: LTU, unit: PC_ACT, s_adj: NSA, age: Y15-74, sex: T}
+    freq: Q
+    unit: "%"
+    change_unit: pp
+    notes: Unemployed for 12 months or more, % of the labour force aged 15-74 (Eurostat, from the EPA).
 
   # ---------------------------------------------------------------- Wages
   - id: wage_cost
@@ -177,6 +423,76 @@ indicators:
     decimals: 0
     transforms: [yoy, level]
     notes: Monthly average per worker in the quarter, not seasonally adjusted.
+
+  - id: wage_cost_ordinary
+    label: Ordinary wage cost per worker
+    label_es: Coste salarial ordinario por trabajador (ETCL)
+    section: wages
+    source: ine
+    key: ETCL66
+    freq: Q
+    unit: "€"
+    decimals: 0
+    transforms: [yoy, level]
+    notes: Regular pay, leaving out bonuses and back pay; a steadier read on wage growth.
+
+  - id: wage_cost_hour
+    label: Wage cost per hour
+    label_es: Coste salarial total por hora efectiva (ETCL)
+    section: wages
+    source: ine
+    key: ETCL4371
+    freq: Q
+    unit: "€"
+    decimals: 2
+    transforms: [yoy, level]
+
+  - id: labour_cost
+    label: Total labour cost per worker
+    label_es: Coste laboral total por trabajador (ETCL)
+    section: wages
+    source: ine
+    key: ETCL68
+    freq: Q
+    unit: "€"
+    decimals: 0
+    transforms: [yoy, level]
+    notes: Wages plus employers' social contributions and other costs.
+
+  - id: lci_wages
+    label: Labour cost index, wages and salaries (SA)
+    label_es: Índice de costes laborales, sueldos y salarios
+    section: wages
+    source: eurostat
+    key: lc_lci_r2_q
+    params: {geo: ES, unit: I20, s_adj: SCA, lcstruct: D11, nace_r2: B-S}
+    freq: Q
+    unit: index
+    transforms: [yoy, pop]
+    notes: Eurostat's harmonised measure, seasonally and calendar adjusted.
+
+  - id: compensation_per_employee
+    label: Compensation per employee, y/y
+    label_es: Remuneración por puesto de trabajo equivalente asalariado
+    section: wages
+    source: ine
+    key: CNTR8243
+    freq: Q
+    unit: "%"
+    change_unit: pp
+    notes: National accounts, per full-time equivalent employee.
+
+  - id: wage_agreements
+    label: Pay rise agreed in collective agreements
+    label_es: Incremento salarial medio pactado en convenios
+    section: wages
+    source: bde
+    key: DCC_M.VS.TOT.TOT._Z.TOT.25000.AC
+    freq: M
+    unit: "%"
+    decimals: 2
+    change_unit: pp
+    notes: Average increase agreed for the current year in agreements registered so far (Ministerio de Trabajo); it restarts each January.
 
   # ---------------------------------------------------------------- Inflation
   - id: cpi
@@ -224,6 +540,92 @@ indicators:
     transforms: [pop, yoy]
     decimals: 2
 
+  # CPI special groups (INE "grupos especiales"): core = processed food + goods + services.
+  - id: cpi_services_index
+    label: CPI services
+    label_es: IPC servicios, índice
+    section: inflation
+    source: ine
+    key: IPC292495
+    freq: M
+    unit: index
+    transforms: [yoy, pop]
+
+  - id: cpi_goods_index
+    label: CPI non-energy industrial goods
+    label_es: IPC bienes industriales sin productos energéticos, índice
+    section: inflation
+    source: ine
+    key: IPC292531
+    freq: M
+    unit: index
+    transforms: [yoy, pop]
+
+  - id: cpi_processed_food_index
+    label: CPI processed food, drinks and tobacco
+    label_es: IPC alimentos con elaboración, bebidas y tabaco, índice
+    section: inflation
+    source: ine
+    key: IPC292543
+    freq: M
+    unit: index
+    transforms: [yoy, pop]
+
+  - id: cpi_unprocessed_food_index
+    label: CPI unprocessed food
+    label_es: IPC alimentos sin elaboración, índice
+    section: inflation
+    source: ine
+    key: IPC292443
+    freq: M
+    unit: index
+    transforms: [yoy, pop]
+
+  - id: cpi_energy_index
+    label: CPI energy
+    label_es: IPC productos energéticos, índice
+    section: inflation
+    source: ine
+    key: IPC292459
+    freq: M
+    unit: index
+    transforms: [yoy, pop]
+
+  - id: cpi_rent_index
+    label: CPI rents
+    label_es: IPC vivienda en alquiler, índice
+    section: inflation
+    source: ine
+    key: IPC292307
+    freq: M
+    unit: index
+    transforms: [yoy, pop]
+
+  # Needs the CPI index above, so it sits here rather than with the other wages.
+  - id: real_wage
+    label: Real wage cost per worker
+    label_es: Coste salarial por trabajador deflactado por el IPC
+    section: wages
+    source: derived
+    key: deflate
+    params: {a: wage_cost, b: cpi_index, period: Q}
+    freq: Q
+    unit: "€"
+    decimals: 0
+    transforms: [yoy]
+    notes: Wage cost per worker (ETCL) divided by the CPI averaged over the quarter.
+
+  - id: ppi
+    label: Producer prices
+    label_es: Índice de precios industriales, mercado interior
+    section: inflation
+    source: ine
+    key: IPR34522
+    freq: M
+    unit: index
+    transforms: [yoy, pop]
+    notes: Prices charged by Spanish industry on the domestic market; an early signal for consumer prices.
+
   - id: hicp
     label: HICP inflation
     label_es: IPCA, variación anual
@@ -247,6 +649,39 @@ indicators:
     freq: M
     unit: "%"
     change_unit: pp
+
+  - id: hicp_index
+    label: HICP index
+    label_es: IPCA, índice
+    section: inflation
+    source: eurostat
+    key: prc_hicp_minr
+    params: {geo: ES, unit: I25, coicop18: TOTAL}
+    freq: M
+    unit: index
+    transforms: [yoy, pop]
+
+  - id: hicp_core_index
+    label: Core HICP index
+    label_es: IPCA sin energía, alimentos, alcohol y tabaco, índice
+    section: inflation
+    source: eurostat
+    key: prc_hicp_minr
+    params: {geo: ES, unit: I25, coicop18: TOT_X_NRG_FOOD}
+    freq: M
+    unit: index
+    transforms: [yoy, pop]
+
+  - id: price_expectations
+    label: Consumers' price expectations
+    label_es: Expectativas de precios de los consumidores (CE)
+    section: inflation
+    source: eurostat
+    key: ei_bsco_m
+    params: {geo: ES, indic: BS-PT-NY, s_adj: SA, unit: BAL}
+    freq: M
+    unit: balance
+    notes: European Commission consumer survey, prices over the next 12 months; net balance of households expecting faster rises.
 
   - id: electricity_price
     label: Electricity price (day-ahead)
@@ -680,6 +1115,17 @@ indicators:
     source: eurostat
     key: prc_hicp_minr
     params: {geo: EA, unit: RCH_A, coicop18: TOTAL}
+    freq: M
+    unit: "%"
+    change_unit: pp
+
+  - id: hicp_core_euro_area
+    label: Euro area core HICP inflation
+    label_es: IPCA subyacente zona euro
+    section: international
+    source: eurostat
+    key: prc_hicp_minr
+    params: {geo: EA, unit: RCH_A, coicop18: TOT_X_NRG_FOOD}
     freq: M
     unit: "%"
     change_unit: pp

@@ -1,16 +1,48 @@
 {% extends "base.html" %}
-{% from "macros.html" import indicator_table %}
+{% from "macros.html" import indicator_table, stat_table, chart_card %}
 
 {% block title %}{{ page.title }} · EconPulse Spain{% endblock %}
 
 {% block content %}
   <h1>{{ page.title }}</h1>
   <p class="lede">{{ page.intro }}</p>
-  <p class="notice">Charts and detailed tables for this page arrive in Batch {{ page.batch }} of the build plan.
-    For now, here is every {{ page.title | lower }} indicator tracked, with its latest reading.</p>
-  {% if items %}
-    {{ indicator_table(items) }}
+  {% if blocks %}
+    {% if blocks | length > 1 %}
+    <nav class="on-page" aria-label="On this page">
+      {% for b in blocks %}<a href="#{{ b.id }}">{{ b.title }}</a>{% endfor %}
+    </nav>
+    {% endif %}
+    {% for b in blocks %}
+    <section class="block" aria-labelledby="{{ b.id }}">
+      <h2 id="{{ b.id }}">{{ b.title }}</h2>
+      <p class="block-intro">{{ b.intro }}</p>
+      {% for t in b.tables %}{{ stat_table(t) }}{% endfor %}
+      {% if b.flash %}<p class="notice flash-note">{{ b.flash }}</p>{% endif %}
+      {% if b.charts %}
+      <div class="charts">
+        {% for c in b.charts %}{{ chart_card(c) }}{% endfor %}
+      </div>
+      {% endif %}
+    </section>
+    {% endfor %}
+    <details class="all-series">
+      <summary>All {{ items | length }} series in this section, with their sources</summary>
+      {{ indicator_table(items) }}
+    </details>
   {% else %}
-    <p class="note">No indicators in this section yet.</p>
+    <p class="notice">Charts and detailed tables for this page arrive in Batch {{ page.batch }} of the build plan.
+      For now, here is every {{ page.title | lower }} indicator tracked, with its latest reading.</p>
+    {% if items %}
+      {{ indicator_table(items) }}
+    {% else %}
+      <p class="note">No indicators in this section yet.</p>
+    {% endif %}
+  {% endif %}
+{% endblock %}
+
+{% block scripts %}
+  {% if charts_file %}
+  <script src="assets/plotly.min.js?v={{ build_id }}"></script>
+  <script src="{{ charts_file }}?v={{ build_id }}"></script>
   {% endif %}
 {% endblock %}

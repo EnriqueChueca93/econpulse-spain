@@ -3,6 +3,10 @@
 Method: STL decomposition (statsmodels, robust to outliers such as the 2020 shock)
 on the log of the series, estimated from 2010 onwards. This is an EconPulse
 estimate, not an official figure, and it is labelled "SA" wherever it is shown.
+
+The seasonal factors are smoothed with a local constant (seasonal_deg=0), not the
+default local line: a line extrapolates recent swings at the end of the series, so a
+shock like the 2026 energy surge was being read as a change in seasonality.
 """
 
 import numpy as np
@@ -26,7 +30,7 @@ def adjust(s: pd.Series, freq: str, start: pd.Timestamp = ESTIMATION_START) -> p
         raise ValueError("Seasonal adjustment needs at least four years of data")
     positive = bool((r > 0).all())
     y = np.log(r) if positive else r
-    fit = STL(y, period=PERIODS[freq], seasonal=SEASONAL_WINDOW[freq], robust=True).fit()
+    fit = STL(y, period=PERIODS[freq], seasonal=SEASONAL_WINDOW[freq], seasonal_deg=0, robust=True).fit()
     adjusted = y - fit.seasonal
     out = np.exp(adjusted) if positive else adjusted
     out.name = s.name

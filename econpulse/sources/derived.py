@@ -3,6 +3,7 @@
 Key is the operation; params name the inputs. Examples:
     prima de riesgo in bp:   key: subtract   params: {a: es_10y, b: de_10y, scale: 100}
     Brent in euros:          key: divide     params: {a: brent_usd, b: eurusd, fill: 5}
+    real wages:              key: deflate    params: {a: wage_cost, b: cpi_index, period: Q}
 
 Inputs are aligned on common dates. For daily data from different calendars,
 `fill: n` carries the second input forward up to n days, so a holiday in one
@@ -31,7 +32,19 @@ def divide(inputs: dict[str, pd.Series], a: str, b: str, scale: float = 1.0, fil
     return joined["a"] / joined["b"] * scale
 
 
-OPERATIONS = {"subtract": subtract, "divide": divide}
+def deflate(inputs: dict[str, pd.Series], a: str, b: str, period: str = "M", scale: float = 100.0) -> pd.Series:
+    """a in real terms: divided by the price index b averaged over each of a's periods (M or Q).
+
+    Only complete periods of b are used, so a quarter with one month of prices is left out.
+    """
+    rule, months = {"M": ("MS", 1), "Q": ("QS", 3)}[period]
+    prices = inputs[b].resample(rule)
+    complete = prices.count() == months
+    joined = pd.DataFrame({"a": inputs[a], "b": prices.mean()[complete]}).dropna()
+    return joined["a"] / joined["b"] * scale
+
+
+OPERATIONS = {"subtract": subtract, "divide": divide, "deflate": deflate}
 
 
 def inputs_of(params: dict) -> list[str]:

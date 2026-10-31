@@ -20,7 +20,9 @@ python -m venv .venv
 ## The site
 
 - **Home** (`site/index.html`): 16 key-indicator tiles, "The economy in four questions" and three charts.
-- **Section pages** (GDP, Labour market, Inflation, …): every indicator in that area. Charts and detailed tables come in Batches 4–6.
+- **GDP, Labour market, Wages, Inflation**: econvitals-style tables (1-, 3-, 6- and 12-month changes; latest,
+  a month ago, a year ago; contributions to growth) and 25 charts, each with a data table and PNG download.
+- **Other section pages** (Financial, ECB, Fiscal, …): every indicator in that area, until Batches 5–6 fill them.
 - **Data** (`site/data.html`): every series, its source and whether it is up to date.
 
 Pages are plain HTML and work offline: Plotly is copied from the Python package, with no CDN. Light/dark
@@ -50,10 +52,12 @@ econpulse/            Python package
   transforms.py       y/y, m/m, q/q, 3-month annualised, changes
   store.py            data/series/<id>.csv + data/catalog.json
   fetch.py            fetches everything; one failing source never stops the rest
-  seasonal.py         EconPulse seasonal adjustment (STL), used by the sa_* transforms
+  seasonal.py         EconPulse seasonal adjustment (STL), used by the sa_* transforms and tables
   snapshot.py         latest values, changes and display strings
   questions.py        "The economy in four questions" on the home page
   charts.py           chart specifications (data and wording; colours come from the CSS theme)
+  tables.py           econvitals-style section tables (horizons, levels, contributions)
+  pages.py            what each section page shows: blocks of tables and charts
   build.py            renders every page into site/ (chart data goes in site/data/*.js)
 templates/            Jinja2 pages: base layout, home, section pages, data page
 static/               style.css (light/dark tokens), app.js (theme toggle, Plotly charts)
@@ -66,13 +70,14 @@ tests/                pytest suite
 
 Add an entry to `econpulse/indicators.yaml` (the header comment explains each field), then run
 `python -m econpulse fetch --only <id>`. No code changes are needed for series from a supported source.
+To show it in a section table or chart, add a `Row` or a chart series to that page in `econpulse/pages.py`.
 
 - **INE:** use the *series* code (e.g. `IPC290750`), found on any INE table via the series' info link.
 - **Eurostat:** dataset code plus `params` that fix every dimension except time.
 - **ECB:** `FLOW/SERIES_KEY`, as shown on data.ecb.europa.eu.
 - **Banco de España:** the series code from the first row of any table's CSV download (e.g. `DPUG0B1F0ZP`).
 - **FRED:** the series id (e.g. `DCOILBRENTEU`).
-- **Derived:** `subtract` or `divide` two indicators defined earlier in the file.
+- **Derived:** `subtract` or `divide` two indicators defined earlier in the file, or `deflate` one by a price index.
 
 ## Tests
 

@@ -62,3 +62,49 @@
     </table>
   </div>
 {%- endmacro %}
+
+{# An econvitals-style table: built in econpulse/tables.py, laid out here. #}
+{% macro stat_table(t) -%}
+  <div class="stat">
+    <p class="stat-caption">{{ t.caption }}</p>
+    <div class="table-scroll">
+      <table class="data-table stat-table">
+        <thead>
+          <tr><th scope="col">{{ t.title }}</th>{% for c in t.columns %}<th scope="col" class="num">{{ c }}</th>{% endfor %}</tr>
+        </thead>
+        <tbody>
+          {% for r in t.rows %}
+          {% if r.heading %}
+          <tr class="group-row"><td colspan="{{ t.columns | length + 1 }}">{{ r.label }}</td></tr>
+          {% else %}
+          <tr>
+            <th scope="row" class="indent-{{ r.indent }}"{% if r.label_es %} title="{{ r.label_es }}"{% endif %}>
+              {%- if r.url %}<a href="{{ r.url }}" target="_blank" rel="noopener">{{ r.label }}</a>{% else %}{{ r.label }}{% endif -%}
+              {%- if r.period_note %}<span class="period-note"> · {{ r.period_note }}</span>{% endif -%}
+            </th>
+            {% for cell in r.cells %}<td class="num">{{ cell }}</td>{% endfor %}
+          </tr>
+          {% endif %}
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% if t.note %}<p class="note">{{ t.note }}</p>{% endif %}
+  </div>
+{%- endmacro %}
+
+{# A chart: the plot is drawn by assets/app.js from the page's data/charts*.js. #}
+{% macro chart_card(c) -%}
+  <figure class="card chart-card">
+    <figcaption>
+      <span class="chart-title">{{ c.title }}</span>
+      <span class="chart-subtitle">{{ c.subtitle }}</span>
+    </figcaption>
+    <div class="chart" id="chart-{{ c.id }}" role="img" aria-label="{{ c.title }}: {{ c.subtitle }}"></div>
+    <div class="chart-foot">
+      <span class="secondary">Source: {{ c.source }}</span>
+      {% if c.link %}<a class="more" href="{{ c.link }}">More <span aria-hidden="true">&rarr;</span></a>{% endif %}
+    </div>
+    <details class="chart-data" data-chart="{{ c.id }}"><summary>Show data</summary></details>
+  </figure>
+{%- endmacro %}

@@ -142,7 +142,13 @@ def subline(ind: Indicator, values: list[dict]) -> str:
 def summarize(ind: Indicator, series: pd.Series | None, entry: dict) -> dict:
     values = []
     if series is not None and not series.empty:
-        values = [v for v in (summarize_transform(ind, series, t) for t in ind.transforms) if v]
+        for name in ind.transforms:
+            try:
+                v = summarize_transform(ind, series, name)
+            except ValueError:  # e.g. too little history to seasonally adjust
+                v = None
+            if v:
+                values.append(v)
     last_date = entry.get("last_date") or (series.index[-1].strftime("%Y-%m-%d") if series is not None else None)
     status = entry.get("status", "missing" if series is None else "ok")
     return {

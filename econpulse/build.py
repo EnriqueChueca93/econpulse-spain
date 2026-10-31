@@ -16,6 +16,7 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 from . import __version__
 from .charts import build_home_charts
 from .config import SITE_DIR, STATIC_DIR, TEMPLATES_DIR
+from .pages import build_page
 from .questions import four_questions
 from .registry import Indicator
 from .snapshot import build_snapshot
@@ -24,6 +25,7 @@ from .sources.base import MADRID
 from .store import Store
 
 # Section pages: title, one-line intro, and the batch that fills them in (see PLAN.md).
+# What a filled page shows is defined in pages.py.
 SECTION_PAGES = {
     "gdp": ("GDP", "What Spain produces, and who is spending: households, firms, government and the rest of the world.", 4),
     "labour": ("Labour market", "Jobs, registrations and unemployment, from the Social Security register and the labour force survey (EPA).", 4),
@@ -111,7 +113,13 @@ def build_site(indicators: list[Indicator], store: Store | None = None, site_dir
     index = render("index.html", "index.html", tiles=[by_id[t] for t in snapshot["tiles"]],
                    questions=snapshot["questions"], charts=charts)
     for section, (title, intro, batch) in SECTION_PAGES.items():
+        page = build_page(section, indicators, store)
+        charts_file = None
+        if page["charts"]:
+            charts_file = f"data/charts-{section}.js"
+            write_data_js(site_dir / charts_file, "charts", page["charts"])
         render("section.html", f"{section}.html", page={"title": title, "intro": intro, "batch": batch},
+               blocks=page["blocks"], charts_file=charts_file,
                items=[i for i in items if i["section"] == section])
     groups = [{"id": s, "title": t, "items": [i for i in items if i["section"] == s]} for s, (t, _, _) in SECTION_PAGES.items()]
     render("data.html", "data.html", source_summary=_source_summary(items), groups=[g for g in groups if g["items"]])

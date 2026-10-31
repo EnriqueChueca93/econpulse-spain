@@ -1,7 +1,17 @@
 {
+ "activity_rate": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T20:45:22+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 99,
+  "signature": "[\"ine\", \"EPA388038\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Total Nacional. Tasa de actividad. Ambos sexos. Total."
+ },
  "afiliados": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:13+00:00",
+  "fetched_at": "2026-10-31T20:45:22+00:00",
   "first_date": "2001-01-01",
   "last_date": "2026-09-01",
   "n_obs": 309,
@@ -10,7 +20,7 @@
  },
  "brent_eur": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:20+00:00",
+  "fetched_at": "2026-10-31T20:45:29+00:00",
   "first_date": "1999-01-04",
   "last_date": "2026-10-27",
   "n_obs": 6669,
@@ -18,7 +28,7 @@
  },
  "brent_usd": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:20+00:00",
+  "fetched_at": "2026-10-31T20:45:29+00:00",
   "first_date": "1987-05-20",
   "last_date": "2026-10-27",
   "n_obs": 9117,
@@ -26,16 +36,26 @@
  },
  "car_sales": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:16+00:00",
+  "fetched_at": "2026-10-31T20:45:26+00:00",
   "first_date": "1988-05-01",
   "last_date": "2026-09-01",
   "n_obs": 461,
   "signature": "[\"bde\", \"D_1KN31000\", {}, 1.0]",
   "source_name": "Estadísticas Generales. Ventas de automóviles"
  },
+ "compensation_per_employee": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T20:45:23+00:00",
+  "first_date": "1996-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 123,
+  "signature": "[\"ine\", \"CNTR8243\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Remuneración por puesto de trabajo equivalente asalariado. Datos ajustados de estacionalidad y calendario. Variación anual. Total Nacional."
+ },
  "construction_confidence": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:16+00:00",
+  "fetched_at": "2026-10-31T20:45:26+00:00",
   "first_date": "1989-01-01",
   "last_date": "2026-10-01",
   "n_obs": 454,
@@ -45,7 +65,7 @@
  },
  "consumer_confidence": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:16+00:00",
+  "fetched_at": "2026-10-31T20:45:26+00:00",
   "first_date": "1986-06-01",
   "last_date": "2026-10-01",
   "n_obs": 485,
@@ -55,7 +75,7 @@
  },
  "consumption_government": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:12+00:00",
+  "fetched_at": "2026-10-31T20:45:20+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
@@ -65,7 +85,7 @@
  },
  "consumption_households": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:12+00:00",
+  "fetched_at": "2026-10-31T20:45:20+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
@@ -73,9 +93,49 @@
   "flash": false,
   "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. Gasto en consumo final de los hogares. Dato base. Índices de volumen encadenados."
  },
+ "contrib_domestic_qq": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T20:45:20+00:00",
+  "first_date": "1997-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 119,
+  "signature": "[\"ine\", \"CNTR7149\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. Demanda nacional. Aportación trimestral. Índices de volumen encadenados."
+ },
+ "contrib_domestic_yy": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T20:45:20+00:00",
+  "first_date": "1997-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 119,
+  "signature": "[\"ine\", \"CNTR7150\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. Demanda nacional. Aportación anual. Índices de volumen encadenados."
+ },
+ "contrib_external_qq": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T20:45:20+00:00",
+  "first_date": "1997-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 119,
+  "signature": "[\"ine\", \"CNTR7263\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. Demanda externa. Aportación trimestral. Índices de volumen encadenados."
+ },
+ "contrib_external_yy": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T20:45:20+00:00",
+  "first_date": "1997-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 119,
+  "signature": "[\"ine\", \"CNTR7264\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. Demanda externa. Aportación anual. Índices de volumen encadenados."
+ },
  "core_cpi": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:14+00:00",
+  "fetched_at": "2026-10-31T20:45:23+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-10-01",
   "n_obs": 298,
@@ -85,7 +145,7 @@
  },
  "core_cpi_index": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:14+00:00",
+  "fetched_at": "2026-10-31T20:45:23+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-09-01",
   "n_obs": 297,
@@ -95,7 +155,7 @@
  },
  "cpi": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:14+00:00",
+  "fetched_at": "2026-10-31T20:45:23+00:00",
   "first_date": "1962-01-01",
   "last_date": "2026-10-01",
   "n_obs": 778,
@@ -103,9 +163,29 @@
   "flash": true,
   "source_name": "Nacional. Índice general. Variación anual."
  },
+ "cpi_energy_index": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T20:45:23+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 297,
+  "signature": "[\"ine\", \"IPC292459\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Nacional. Productos energéticos. Índice."
+ },
+ "cpi_goods_index": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T20:45:23+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 297,
+  "signature": "[\"ine\", \"IPC292531\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Nacional. Bienes industriales sin energía. Índice."
+ },
  "cpi_index": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:14+00:00",
+  "fetched_at": "2026-10-31T20:45:23+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-09-01",
   "n_obs": 297,
@@ -113,9 +193,49 @@
   "flash": false,
   "source_name": "Nacional. Índice general. Índice."
  },
+ "cpi_processed_food_index": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T20:45:23+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 297,
+  "signature": "[\"ine\", \"IPC292543\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Nacional. Alimentos con elaboración, bebidas y tabaco. Índice."
+ },
+ "cpi_rent_index": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T20:45:23+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 297,
+  "signature": "[\"ine\", \"IPC292307\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Nacional. Vivienda en alquiler. Índice."
+ },
+ "cpi_services_index": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T20:45:23+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 297,
+  "signature": "[\"ine\", \"IPC292495\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Nacional. Servicios. Índice."
+ },
+ "cpi_unprocessed_food_index": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T20:45:23+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 297,
+  "signature": "[\"ine\", \"IPC292443\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Nacional. Alimentos sin elaboración. Índice."
+ },
  "current_account": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:17+00:00",
+  "fetched_at": "2026-10-31T20:45:26+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-04-01",
   "n_obs": 126,
@@ -125,7 +245,7 @@
  },
  "current_account_monthly": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:16+00:00",
+  "fetched_at": "2026-10-31T20:45:26+00:00",
   "first_date": "1993-01-01",
   "last_date": "2026-08-01",
   "n_obs": 404,
@@ -134,7 +254,7 @@
  },
  "de_10y": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:19+00:00",
+  "fetched_at": "2026-10-31T20:45:29+00:00",
   "first_date": "2000-01-03",
   "last_date": "2026-10-29",
   "n_obs": 6582,
@@ -143,7 +263,7 @@
  },
  "de_10y_monthly": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:20+00:00",
+  "fetched_at": "2026-10-31T20:45:29+00:00",
   "first_date": "1990-01-01",
   "last_date": "2026-09-01",
   "n_obs": 441,
@@ -151,7 +271,7 @@
  },
  "domestic_demand": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:12+00:00",
+  "fetched_at": "2026-10-31T20:45:20+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
@@ -161,7 +281,7 @@
  },
  "ecb_deposit_rate": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:18+00:00",
+  "fetched_at": "2026-10-31T20:45:28+00:00",
   "first_date": "1999-01-01",
   "last_date": "2026-10-31",
   "n_obs": 10166,
@@ -169,7 +289,7 @@
  },
  "ecb_mro_rate": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:18+00:00",
+  "fetched_at": "2026-10-31T20:45:28+00:00",
   "first_date": "1999-01-01",
   "last_date": "2026-10-31",
   "n_obs": 7135,
@@ -177,7 +297,7 @@
  },
  "economic_sentiment": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:16+00:00",
+  "fetched_at": "2026-10-31T20:45:26+00:00",
   "first_date": "1987-04-01",
   "last_date": "2026-10-01",
   "n_obs": 475,
@@ -187,7 +307,7 @@
  },
  "electricity_demand": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:16+00:00",
+  "fetched_at": "2026-10-31T20:45:26+00:00",
   "first_date": "2015-01-01",
   "last_date": "2026-10-30",
   "n_obs": 4321,
@@ -195,7 +315,7 @@
  },
  "electricity_price": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:16+00:00",
+  "fetched_at": "2026-10-31T20:45:26+00:00",
   "first_date": "2025-01-01",
   "last_date": "2026-10-31",
   "n_obs": 669,
@@ -203,7 +323,7 @@
  },
  "employment_epa": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:13+00:00",
+  "fetched_at": "2026-10-31T20:45:22+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-07-01",
   "n_obs": 99,
@@ -211,9 +331,19 @@
   "flash": false,
   "source_name": "Total Nacional. Ambos sexos. Total. Ocupados. Valor absoluto."
  },
+ "employment_rate": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T20:45:22+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 99,
+  "signature": "[\"ine\", \"EPA388039\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Total Nacional. Tasa de empleo de la población. Ambos sexos. Total."
+ },
  "es_10y": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:19+00:00",
+  "fetched_at": "2026-10-31T20:45:28+00:00",
   "first_date": "2000-01-03",
   "last_date": "2026-10-28",
   "n_obs": 6827,
@@ -222,7 +352,7 @@
  },
  "es_10y_monthly": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:20+00:00",
+  "fetched_at": "2026-10-31T20:45:29+00:00",
   "first_date": "1991-11-01",
   "last_date": "2026-09-01",
   "n_obs": 419,
@@ -230,7 +360,7 @@
  },
  "es_12m_bill": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:19+00:00",
+  "fetched_at": "2026-10-31T20:45:28+00:00",
   "first_date": "2000-01-03",
   "last_date": "2026-10-28",
   "n_obs": 4287,
@@ -239,7 +369,7 @@
  },
  "es_30y": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:19+00:00",
+  "fetched_at": "2026-10-31T20:45:29+00:00",
   "first_date": "2000-01-03",
   "last_date": "2026-10-28",
   "n_obs": 6082,
@@ -248,7 +378,7 @@
  },
  "es_3y": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:19+00:00",
+  "fetched_at": "2026-10-31T20:45:28+00:00",
   "first_date": "2000-01-03",
   "last_date": "2026-10-28",
   "n_obs": 6736,
@@ -257,7 +387,7 @@
  },
  "es_5y": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:19+00:00",
+  "fetched_at": "2026-10-31T20:45:28+00:00",
   "first_date": "2000-01-03",
   "last_date": "2026-10-28",
   "n_obs": 6719,
@@ -266,7 +396,7 @@
  },
  "estr": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:18+00:00",
+  "fetched_at": "2026-10-31T20:45:28+00:00",
   "first_date": "2019-10-01",
   "last_date": "2026-10-29",
   "n_obs": 1814,
@@ -274,7 +404,7 @@
  },
  "euribor_12m": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:19+00:00",
+  "fetched_at": "2026-10-31T20:45:28+00:00",
   "first_date": "2000-01-03",
   "last_date": "2026-10-29",
   "n_obs": 6861,
@@ -283,7 +413,7 @@
  },
  "euribor_3m": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:19+00:00",
+  "fetched_at": "2026-10-31T20:45:28+00:00",
   "first_date": "2000-01-03",
   "last_date": "2026-10-29",
   "n_obs": 6860,
@@ -292,7 +422,7 @@
  },
  "eurusd": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:20+00:00",
+  "fetched_at": "2026-10-31T20:45:29+00:00",
   "first_date": "1999-01-04",
   "last_date": "2026-10-30",
   "n_obs": 7126,
@@ -300,7 +430,7 @@
  },
  "exports": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:12+00:00",
+  "fetched_at": "2026-10-31T20:45:20+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
@@ -308,9 +438,29 @@
   "flash": false,
   "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. Exportaciones de bienes y servicios. Dato base. Índices de volumen encadenados."
  },
+ "exports_goods": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T20:45:20+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"ine\", \"CNTR7270\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. Exportaciones de bienes. Dato base. Índices de volumen encadenados."
+ },
+ "exports_services": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T20:45:20+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"ine\", \"CNTR7275\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. Exportaciones de servicios. Dato base. Índices de volumen encadenados."
+ },
  "gas_eu": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:20+00:00",
+  "fetched_at": "2026-10-31T20:45:29+00:00",
   "first_date": "1992-01-01",
   "last_date": "2026-09-01",
   "n_obs": 417,
@@ -318,7 +468,7 @@
  },
  "gdp": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:12+00:00",
+  "fetched_at": "2026-10-31T20:45:20+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
@@ -326,9 +476,27 @@
   "flash": false,
   "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. Producto interior bruto a precios de mercado. Dato base. Índices de volumen encadenados."
  },
+ "gdp_deflator": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T20:45:29+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"derived\", \"divide\", {\"a\": \"gdp_nominal\", \"b\": \"gdp\"}, 1.0]"
+ },
+ "gdp_nominal": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T20:45:20+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"ine\", \"CNTR6597\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. Producto interior bruto a precios de mercado. Dato base. Precios corrientes."
+ },
  "government_balance": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:17+00:00",
+  "fetched_at": "2026-10-31T20:45:27+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-04-01",
   "n_obs": 126,
@@ -338,7 +506,7 @@
  },
  "government_debt": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:17+00:00",
+  "fetched_at": "2026-10-31T20:45:27+00:00",
   "first_date": "1995-10-01",
   "last_date": "2026-04-01",
   "n_obs": 123,
@@ -346,9 +514,49 @@
   "source_name": "Quarterly government debt",
   "source_updated": "2026-10-21T11:00:00+0200"
  },
+ "gva_agriculture": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T20:45:20+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"ine\", \"CNTR6657\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. VABpb Agricultura, ganadería, silvicultura y pesca (A, CNAE 2009). Dato base. Índices de volumen encadenados."
+ },
+ "gva_construction": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T20:45:20+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"ine\", \"CNTR6672\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. VABpb Construcción (F, CNAE 2009). Dato base. Índices de volumen encadenados."
+ },
+ "gva_industry": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T20:45:20+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"ine\", \"CNTR6662\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. VABpb Industria (B-E, CNAE 2009). Dato base. Índices de volumen encadenados."
+ },
+ "gva_services": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T20:45:20+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"ine\", \"CNTR6677\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. VABpb Servicios (G-T, CNAE 2009). Dato base. Índices de volumen encadenados."
+ },
  "hicp": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:14+00:00",
+  "fetched_at": "2026-10-31T20:45:24+00:00",
   "first_date": "1997-01-01",
   "last_date": "2026-09-01",
   "n_obs": 357,
@@ -358,7 +566,7 @@
  },
  "hicp_core": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:14+00:00",
+  "fetched_at": "2026-10-31T20:45:24+00:00",
   "first_date": "2001-12-01",
   "last_date": "2026-09-01",
   "n_obs": 298,
@@ -366,9 +574,29 @@
   "source_name": "Harmonised index of consumer prices (HICP) - ECOICOP ver.2 - indices and rates of change, monthly data",
   "source_updated": "2026-10-16T23:00:00+0200"
  },
+ "hicp_core_euro_area": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T20:45:29+00:00",
+  "first_date": "2000-12-01",
+  "last_date": "2026-09-01",
+  "n_obs": 310,
+  "signature": "[\"eurostat\", \"prc_hicp_minr\", {\"coicop18\": \"TOT_X_NRG_FOOD\", \"geo\": \"EA\", \"unit\": \"RCH_A\"}, 1.0]",
+  "source_name": "Harmonised index of consumer prices (HICP) - ECOICOP ver.2 - indices and rates of change, monthly data",
+  "source_updated": "2026-10-16T23:00:00+0200"
+ },
+ "hicp_core_index": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T20:45:24+00:00",
+  "first_date": "2000-12-01",
+  "last_date": "2026-09-01",
+  "n_obs": 310,
+  "signature": "[\"eurostat\", \"prc_hicp_minr\", {\"coicop18\": \"TOT_X_NRG_FOOD\", \"geo\": \"ES\", \"unit\": \"I25\"}, 1.0]",
+  "source_name": "Harmonised index of consumer prices (HICP) - ECOICOP ver.2 - indices and rates of change, monthly data",
+  "source_updated": "2026-10-16T23:00:00+0200"
+ },
  "hicp_euro_area": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:20+00:00",
+  "fetched_at": "2026-10-31T20:45:29+00:00",
   "first_date": "1997-01-01",
   "last_date": "2026-09-01",
   "n_obs": 357,
@@ -376,9 +604,19 @@
   "source_name": "Harmonised index of consumer prices (HICP) - ECOICOP ver.2 - indices and rates of change, monthly data",
   "source_updated": "2026-10-16T23:00:00+0200"
  },
+ "hicp_index": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T20:45:24+00:00",
+  "first_date": "1996-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 369,
+  "signature": "[\"eurostat\", \"prc_hicp_minr\", {\"coicop18\": \"TOTAL\", \"geo\": \"ES\", \"unit\": \"I25\"}, 1.0]",
+  "source_name": "Harmonised index of consumer prices (HICP) - ECOICOP ver.2 - indices and rates of change, monthly data",
+  "source_updated": "2026-10-16T23:00:00+0200"
+ },
  "home_sales": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:17+00:00",
+  "fetched_at": "2026-10-31T20:45:27+00:00",
   "first_date": "2007-01-01",
   "last_date": "2026-08-01",
   "n_obs": 236,
@@ -388,7 +626,7 @@
  },
  "hotel_nights_foreign": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:16+00:00",
+  "fetched_at": "2026-10-31T20:45:26+00:00",
   "first_date": "2003-01-01",
   "last_date": "2026-09-01",
   "n_obs": 283,
@@ -397,7 +635,7 @@
  },
  "house_prices": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:17+00:00",
+  "fetched_at": "2026-10-31T20:45:26+00:00",
   "first_date": "2007-01-01",
   "last_date": "2026-04-01",
   "n_obs": 78,
@@ -407,7 +645,7 @@
  },
  "ibex35": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:19+00:00",
+  "fetched_at": "2026-10-31T20:45:29+00:00",
   "first_date": "2000-01-03",
   "last_date": "2026-10-29",
   "n_obs": 6827,
@@ -416,7 +654,7 @@
  },
  "imports": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:12+00:00",
+  "fetched_at": "2026-10-31T20:45:20+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
@@ -426,7 +664,7 @@
  },
  "industrial_production": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:16+00:00",
+  "fetched_at": "2026-10-31T20:45:26+00:00",
   "first_date": "1992-01-01",
   "last_date": "2026-08-01",
   "n_obs": 416,
@@ -436,7 +674,7 @@
  },
  "industry_confidence": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:16+00:00",
+  "fetched_at": "2026-10-31T20:45:26+00:00",
   "first_date": "1987-04-01",
   "last_date": "2026-10-01",
   "n_obs": 475,
@@ -446,7 +684,7 @@
  },
  "investment": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:12+00:00",
+  "fetched_at": "2026-10-31T20:45:20+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
@@ -454,9 +692,79 @@
   "flash": false,
   "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. Formación bruta de capital fijo (FBCF). Dato base. Índices de volumen encadenados."
  },
+ "investment_construction": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T20:45:20+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"ine\", \"CNTR7221\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. FBCF. Activos fijos materiales. Construcción. Dato base. Índices de volumen encadenados."
+ },
+ "investment_equipment": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T20:45:20+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"ine\", \"CNTR7236\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. FBCF. Activos fijos materiales. Maquinaria, bienes de equipo y sistemas de armamento. Dato base. Índices de volumen encadenados."
+ },
+ "investment_housing": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T20:45:20+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"ine\", \"CNTR7226\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. FBCF. Activos fijos materiales. Construcción. Viviendas. Dato base. Índices de volumen encadenados."
+ },
+ "jobs_fte": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T20:45:21+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"ine\", \"CNTR7818\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Ocupado/a. Total Nacional. Puestos de trabajo equivalentes a tiempo completo. Datos ajustados de estacionalidad y calendario. Total CNAE. Dato base."
+ },
+ "labour_cost": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T20:45:22+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL68\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Industria, construcción y servicios (excepto actividades de los hogares como empleadores y de organizaciones y organismos extraterritoriales). Coste laboral total. Total. Total Nacional. Costes laborales. Euros."
+ },
+ "lci_wages": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T20:45:23+00:00",
+  "first_date": "2000-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 106,
+  "signature": "[\"eurostat\", \"lc_lci_r2_q\", {\"geo\": \"ES\", \"lcstruct\": \"D11\", \"nace_r2\": \"B-S\", \"s_adj\": \"SCA\", \"unit\": \"I20\"}, 1.0]",
+  "source_name": "Labour cost index by NACE Rev. 2 activity - nominal value, quarterly data",
+  "source_updated": "2026-09-16T11:00:00+0200"
+ },
+ "long_term_unemployment": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T20:45:22+00:00",
+  "first_date": "2009-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 70,
+  "signature": "[\"eurostat\", \"une_ltu_q\", {\"age\": \"Y15-74\", \"geo\": \"ES\", \"indic_em\": \"LTU\", \"s_adj\": \"NSA\", \"sex\": \"T\", \"unit\": \"PC_ACT\"}, 1.0]",
+  "source_name": "Long-term unemployment by sex - quarterly data",
+  "source_updated": "2026-10-26T23:00:00+0100"
+ },
  "mortgage_rate": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:20+00:00",
+  "fetched_at": "2026-10-31T20:45:29+00:00",
   "first_date": "2000-01-01",
   "last_date": "2026-08-01",
   "n_obs": 320,
@@ -464,16 +772,64 @@
  },
  "paro_registrado": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:14+00:00",
-  "first_date": "1962-01-01",
+  "fetched_at": "2026-10-31T20:45:22+00:00",
+  "first_date": "1943-06-01",
   "last_date": "2026-09-01",
-  "n_obs": 777,
-  "signature": "[\"bde\", \"DPU1JA0D000_TVA\", {}, 1.0]",
-  "source_name": "Paro registrado. TVA"
+  "n_obs": 1000,
+  "signature": "[\"bde\", \"D_1JA0D000\", {}, 0.001]",
+  "source_name": "Paro registrado"
+ },
+ "ppi": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T20:45:24+00:00",
+  "first_date": "1975-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 621,
+  "signature": "[\"ine\", \"IPR34522\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Nacional. Mercado interior. Total industria. Índice."
+ },
+ "price_expectations": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T20:45:24+00:00",
+  "first_date": "1986-06-01",
+  "last_date": "2026-10-01",
+  "n_obs": 485,
+  "signature": "[\"eurostat\", \"ei_bsco_m\", {\"geo\": \"ES\", \"indic\": \"BS-PT-NY\", \"s_adj\": \"SA\", \"unit\": \"BAL\"}, 1.0]",
+  "source_name": "Consumers confidence indicator and survey results - monthly data",
+  "source_updated": "2026-10-29T11:00:00+0100"
+ },
+ "productivity_fte": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T20:45:21+00:00",
+  "first_date": "1996-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 123,
+  "signature": "[\"ine\", \"CNTR8241\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Productividad por puesto de trabajo equivalente a tiempo completo. Datos ajustados de estacionalidad y calendario. Variación anual. Total Nacional."
+ },
+ "productivity_hour": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T20:45:21+00:00",
+  "first_date": "1996-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 123,
+  "signature": "[\"ine\", \"CNTR8242\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Productividad por hora efectivamente trabajada. Datos ajustados de estacionalidad y calendario. Variación anual. Total Nacional."
+ },
+ "real_wage": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T20:45:29+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"derived\", \"deflate\", {\"a\": \"wage_cost\", \"b\": \"cpi_index\", \"period\": \"Q\"}, 1.0]"
  },
  "retail_sales": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:16+00:00",
+  "fetched_at": "2026-10-31T20:45:26+00:00",
   "first_date": "2000-01-01",
   "last_date": "2026-09-01",
   "n_obs": 321,
@@ -483,7 +839,7 @@
  },
  "risk_premium": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:19+00:00",
+  "fetched_at": "2026-10-31T20:45:29+00:00",
   "first_date": "2000-01-03",
   "last_date": "2026-10-29",
   "n_obs": 6571,
@@ -492,15 +848,25 @@
  },
  "risk_premium_monthly": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:20+00:00",
+  "fetched_at": "2026-10-31T20:45:29+00:00",
   "first_date": "1991-11-01",
   "last_date": "2026-09-01",
   "n_obs": 419,
   "signature": "[\"derived\", \"subtract\", {\"a\": \"es_10y_monthly\", \"b\": \"de_10y_monthly\", \"scale\": 100}, 1.0]"
  },
+ "temporary_rate": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T20:45:22+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 99,
+  "signature": "[\"ine\", \"EPA416256\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Asalariados. Total Nacional. Ambos sexos. Temporal: Total. Porcentaje."
+ },
  "tourism_receipts": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:16+00:00",
+  "fetched_at": "2026-10-31T20:45:26+00:00",
   "first_date": "1993-01-01",
   "last_date": "2026-08-01",
   "n_obs": 404,
@@ -509,7 +875,7 @@
  },
  "tourist_arrivals": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:16+00:00",
+  "fetched_at": "2026-10-31T20:45:26+00:00",
   "first_date": "2015-10-01",
   "last_date": "2026-08-01",
   "n_obs": 131,
@@ -519,7 +885,7 @@
  },
  "tourist_spending": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:16+00:00",
+  "fetched_at": "2026-10-31T20:45:26+00:00",
   "first_date": "2015-10-01",
   "last_date": "2026-08-01",
   "n_obs": 131,
@@ -529,7 +895,7 @@
  },
  "unemployment_epa": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:13+00:00",
+  "fetched_at": "2026-10-31T20:45:22+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-07-01",
   "n_obs": 99,
@@ -539,7 +905,7 @@
  },
  "unemployment_monthly": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:13+00:00",
+  "fetched_at": "2026-10-31T20:45:22+00:00",
   "first_date": "1986-04-01",
   "last_date": "2026-09-01",
   "n_obs": 486,
@@ -547,9 +913,28 @@
   "source_name": "Unemployment by sex and age - monthly data",
   "source_updated": "2026-10-30T11:00:00+0100"
  },
+ "unit_labour_cost": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T20:45:21+00:00",
+  "first_date": "1996-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 123,
+  "signature": "[\"ine\", \"CNTR8244\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Coste laboral unitario. Datos ajustados de estacionalidad y calendario. Variación anual. Total Nacional."
+ },
+ "wage_agreements": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T20:45:23+00:00",
+  "first_date": "1983-02-01",
+  "last_date": "2026-09-01",
+  "n_obs": 524,
+  "signature": "[\"bde\", \"DCC_M.VS.TOT.TOT._Z.TOT.25000.AC\", {}, 1.0]",
+  "source_name": "Estadísticas Generales. Convenios colectivos. Incremento salarial medio pactado acumulado desde el comienzo del año."
+ },
  "wage_cost": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:14+00:00",
+  "fetched_at": "2026-10-31T20:45:22+00:00",
   "first_date": "2008-01-01",
   "last_date": "2026-04-01",
   "n_obs": 74,
@@ -557,9 +942,29 @@
   "flash": false,
   "source_name": "Industria, construcción y servicios (excepto actividades de los hogares como empleadores y de organizaciones y organismos extraterritoriales). Coste salarial total. Total. Total Nacional. Costes laborales. Euros."
  },
+ "wage_cost_hour": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T20:45:22+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL4371\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Coste salarial total por hora. Total Nacional. Industria, construcción y servicios (excepto actividades de los hogares como empleadores y de organizaciones y organismos extraterritoriales). Costes laborales. Euros."
+ },
+ "wage_cost_ordinary": {
+  "status": "ok",
+  "fetched_at": "2026-10-31T20:45:22+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL66\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Industria, construcción y servicios (excepto actividades de los hogares como empleadores y de organizaciones y organismos extraterritoriales). Coste salarial ordinario. Total. Total Nacional. Costes laborales. Euros."
+ },
  "youth_unemployment": {
   "status": "ok",
-  "fetched_at": "2026-10-31T01:05:13+00:00",
+  "fetched_at": "2026-10-31T20:45:22+00:00",
   "first_date": "1986-04-01",
   "last_date": "2026-09-01",
   "n_obs": 486,

@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% from "macros.html" import tile %}
+{% from "macros.html" import tile, chart_card %}
 
 {% block content %}
   <p class="lede">A running read on the health of the Spanish economy.</p>
@@ -37,20 +37,7 @@
   <section aria-labelledby="charts">
     <h2 id="charts">Charts</h2>
     <div class="charts">
-      {% for c in charts %}
-      <figure class="card chart-card">
-        <figcaption>
-          <span class="chart-title">{{ c.title }}</span>
-          <span class="chart-subtitle">{{ c.subtitle }}</span>
-        </figcaption>
-        <div class="chart" id="chart-{{ c.id }}" role="img" aria-label="{{ c.title }}: {{ c.subtitle }}"></div>
-        <div class="chart-foot">
-          <span class="secondary">Source: {{ c.source }}</span>
-          <a class="more" href="{{ c.link }}">More <span aria-hidden="true">&rarr;</span></a>
-        </div>
-        <details class="chart-data" data-chart="{{ c.id }}"><summary>Show data</summary></details>
-      </figure>
-      {% endfor %}
+      {% for c in charts %}{{ chart_card(c) }}{% endfor %}
     </div>
   </section>
   {% endif %}
