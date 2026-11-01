@@ -38,6 +38,8 @@ Because the workflow commits data every day, run `git pull` before working local
   questions" and three charts.
 - **GDP, Labour market, Wages, Inflation**: econvitals-style tables (1-, 3-, 6- and 12-month changes; latest,
   a month ago, a year ago; contributions to growth) and 25 charts, each with a data table and PNG download.
+  The Inflation page also measures underlying inflation across the ~180 detailed HICP items: weighted median,
+  10% and 30% trimmed means, how widespread price rises are, and the items rising fastest and slowest.
 - **Financial, ECB**: a markets table (1-day, 1-week, YTD, 1-year moves), the Spanish yield curve against the
   AAA euro-area curve, the prima de riesgo, Euribor with a mortgage check, ECB rates and decisions, the next
   ECB meeting and a market-implied rate path.
@@ -94,6 +96,7 @@ econpulse/            Python package
   policy.py           ECB meeting calendar, rate decisions, the mortgage check
   analytics.py        composites, GDP nowcast, 10-year decomposition, Taylor rules
   surprises.py        data surprises: each figure against a one-step AR(1) forecast
+  underlying.py       underlying inflation on the Inflation page (the measures come from sources/hicpdist.py)
   forecasts.py        the forecasters' table, read automatically, with the AI check (data/forecast_checks.json)
   forecasts.yaml      optional overrides by hand, for an edition the automatic sources have not picked up
   tools.py            data for the interactive tools (the browser does the arithmetic, static/tools.js)

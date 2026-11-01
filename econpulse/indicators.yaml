@@ -7,6 +7,7 @@
 #                regions | analysis
 #   source       ine | eurostat | ecb | bde | segsocial | ree | oecd | bis | bls | dbnomics | eia | worldbank |
 #                bundesbank | imf | bdeproj (Banco de España projections) | funcas |
+#                hicpdist (underlying inflation from Eurostat's detailed HICP items) |
 #                fred | derived  (FRED does not answer GitHub's servers, so the online site avoids it)
 #   key, params  what to ask the source for (see econpulse/sources/<source>.py)
 #   freq         D | M | Q | A
@@ -720,6 +721,82 @@ indicators:
     change_unit: pp
     tile: 7
     notes: Harmonised index, the measure the ECB targets.
+
+  # Underlying inflation: EconPulse calculations over the ~200 detailed HICP items (see sources/hicpdist.py).
+  - id: hicp_wmedian
+    label: Weighted median inflation (HICP)
+    label_es: Mediana ponderada de la inflación (IPCA)
+    section: inflation
+    source: hicpdist
+    key: ES/median
+    freq: M
+    unit: "%"
+    change_unit: pp
+    notes: EconPulse calculation from Eurostat's detailed HICP items and each year's weights, following the ECB's method.
+
+  - id: hicp_trim10
+    label: Trimmed mean inflation, 10% (HICP)
+    label_es: Media truncada de la inflación, 10% (IPCA)
+    section: inflation
+    source: hicpdist
+    key: ES/trim10
+    freq: M
+    unit: "%"
+    change_unit: pp
+    notes: Mean annual rate after dropping the 5% of the basket with the highest rates and the 5% with the lowest.
+
+  - id: hicp_trim30
+    label: Trimmed mean inflation, 30% (HICP)
+    label_es: Media truncada de la inflación, 30% (IPCA)
+    section: inflation
+    source: hicpdist
+    key: ES/trim30
+    freq: M
+    unit: "%"
+    change_unit: pp
+    notes: Mean annual rate after dropping 15% of the basket at each end of the distribution.
+
+  - id: hicp_share_above2
+    label: Share of the HICP basket with inflation above 2%
+    label_es: Peso de la cesta del IPCA con inflación superior al 2%
+    section: inflation
+    source: hicpdist
+    key: ES/above2
+    freq: M
+    unit: "%"
+    change_unit: pp
+    notes: Share of the basket, by weight, whose annual rate of change is above 2%.
+
+  - id: hicp_share_above5
+    label: Share of the HICP basket with inflation above 5%
+    label_es: Peso de la cesta del IPCA con inflación superior al 5%
+    section: inflation
+    source: hicpdist
+    key: ES/above5
+    freq: M
+    unit: "%"
+    change_unit: pp
+
+  - id: hicp_wmedian_euro_area
+    label: Weighted median inflation, euro area (HICP)
+    label_es: Mediana ponderada de la inflación, zona euro (IPCA)
+    section: inflation
+    source: hicpdist
+    key: EA/median
+    freq: M
+    unit: "%"
+    change_unit: pp
+    notes: Same calculation on euro-area data; the ECB's own series stopped in December 2025.
+
+  - id: hicp_trim30_euro_area
+    label: Trimmed mean inflation, 30%, euro area (HICP)
+    label_es: Media truncada de la inflación, 30%, zona euro (IPCA)
+    section: inflation
+    source: hicpdist
+    key: EA/trim30
+    freq: M
+    unit: "%"
+    change_unit: pp
 
   - id: hicp_core
     label: Core HICP inflation

@@ -8,7 +8,7 @@ lists the indicators those functions read. Sections without blocks yet show thei
 (see build.SECTION_PAGES for the batch that fills them).
 """
 
-from . import analytics, forecasts, policy, surprises
+from . import analytics, forecasts, policy, surprises, underlying
 from .charts import build_chart, build_curve, build_ranking, build_xy
 from .registry import Indicator
 from .snapshot import fmt_value, period_label
@@ -392,6 +392,57 @@ PAGES: dict[str, list[dict]] = {
                  "subtitle": "Core HICP, % change on a year earlier",
                  "kind": "line", "unit": "%", "decimals": 1, "start": "2019-01-01", "ref_lines": TARGET,
                  "series": [("hicp_core", "level", "Spain"), ("hicp_core_euro_area", "level", "Euro area")]},
+            ],
+        },
+        {
+            "id": "underlying",
+            "title": "Underlying inflation",
+            "intro": ("A few big price moves, like energy, can push headline inflation around. These measures look at "
+                      "the whole spread of price changes across about 180 detailed items of the harmonised basket: "
+                      "the weighted median is the rate half the basket is rising faster than, and the trimmed means "
+                      "average what is left after dropping the most extreme rises and falls. EconPulse calculation from "
+                      "Eurostat data, following the method the ECB uses for the euro area."),
+            "facts": underlying.facts,
+            "callout": underlying.callout,
+            "uses": underlying.MEASURE_IDS,
+            "tables": [Table(
+                title="Measure",
+                caption="Annual inflation, % change on a year earlier",
+                columns=LEVELS,
+                rows=[
+                    Row("hicp", "Headline HICP"),
+                    Row("hicp_core", "Core HICP"),
+                    Row("hicp_wmedian", "Weighted median"),
+                    Row("hicp_trim10", "Trimmed mean, 10%"),
+                    Row("hicp_trim30", "Trimmed mean, 30%"),
+                    Heading("How widespread"),
+                    Row("hicp_share_above2", "Basket rising faster than 2%"),
+                    Row("hicp_share_above5", "Basket rising faster than 5%"),
+                    Heading("Euro area"),
+                    Row("hicp_euro_area", "Headline HICP"),
+                    Row("hicp_wmedian_euro_area", "Weighted median"),
+                    Row("hicp_trim30_euro_area", "Trimmed mean, 30%"),
+                ],
+                note=("Each item's annual rate is weighted by its share of household spending that year. The 10% "
+                      "trimmed mean drops 5% of the basket at each end of the distribution, the 30% one drops 15%. "
+                      "Run on euro-area data, the trimmed means match the ECB's own within about 0.05 points on "
+                      "average (2018–2025) and the median within about 0.15; the ECB's series stopped in December "
+                      "2025. Detailed items start in 2015 for Spain and 2017 for the euro area."),
+            ), underlying.movers_table],
+            "charts": [
+                {"id": "underlying", "title": "Headline and underlying inflation", "subtitle": "HICP, % change on a year earlier",
+                 "kind": "line", "unit": "%", "decimals": 1, "start": "2016-01-01", "ref_lines": TARGET,
+                 "series": [("hicp", "level", "Headline", {"color": "ink"}), ("hicp_wmedian", "level", "Weighted median"),
+                            ("hicp_trim30", "level", "Trimmed mean 30%"), ("hicp_core", "level", "Core")]},
+                {"id": "underlying-ea", "title": "Weighted median: Spain and the euro area",
+                 "subtitle": "HICP, % change on a year earlier", "kind": "line", "unit": "%", "decimals": 1,
+                 "start": "2018-01-01", "ref_lines": TARGET,
+                 "series": [("hicp_wmedian", "level", "Spain"), ("hicp_wmedian_euro_area", "level", "Euro area")]},
+                {"id": "breadth", "title": "How widespread are price rises?",
+                 "subtitle": "Share of the HICP basket, by weight, with annual inflation above 2% and above 5%",
+                 "kind": "line", "unit": "%", "decimals": 0, "start": "2016-01-01",
+                 "series": [("hicp_share_above2", "level", "Above 2%"), ("hicp_share_above5", "level", "Above 5%")]},
+                underlying.distribution_chart,
             ],
         },
         {

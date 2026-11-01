@@ -37,7 +37,7 @@ import pandas as pd
 from . import transforms
 from .registry import Indicator
 from .snapshot import period_label
-from .sources import SOURCE_NAMES, derived
+from .sources import CALCULATED_FROM, SOURCE_NAMES, derived
 from .store import Store
 
 HOME_CHARTS = [
@@ -74,6 +74,8 @@ FREQ_ORDER = "DMQA"
 
 def source_names(ind: Indicator, by_id: dict[str, Indicator]) -> list[str]:
     """Who publishes the data behind an indicator; a calculation credits its inputs' sources too."""
+    if ind.source in CALCULATED_FROM:
+        return [CALCULATED_FROM[ind.source], SOURCE_NAMES["derived"]]
     if not ind.is_derived:
         return [ind.source_name]
     names = [n for dep in derived.inputs_of(ind.params) if dep in by_id for n in source_names(by_id[dep], by_id)]

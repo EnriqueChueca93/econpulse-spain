@@ -3,7 +3,7 @@
 import pandas as pd
 import pytest
 
-from econpulse.sources import bde, bdeproj, dbnomics, ecb, eurostat, fred, funcas, imf, ine, oecd, ree, segsocial
+from econpulse.sources import bde, bdeproj, dbnomics, ecb, eurostat, fred, funcas, hicpdist, imf, ine, oecd, ree, segsocial
 
 pytestmark = pytest.mark.live
 
@@ -70,3 +70,10 @@ def test_forecasts_read_from_web_pages():
     funcas.clear_cache()
     for key in ("consensus/gdp", "max/gdp", "government/gdp", "airef/gdp"):
         assert len(funcas.fetch(key).series) >= 1, key
+
+
+def test_underlying_inflation_from_detailed_hicp():
+    hicpdist.clear_cache()
+    r = hicpdist.fetch("ES/median")
+    assert recent(r.series, 120) and r.meta["distribution"]["items"] >= 150
+    assert abs(sum(share for _, share in r.meta["distribution"]["bands"]) - 100) < 0.5

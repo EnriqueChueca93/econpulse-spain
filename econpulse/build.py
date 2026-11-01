@@ -31,7 +31,7 @@ SECTION_PAGES = {
     "gdp": ("GDP", "What Spain produces, and who is spending: households, firms, government and the rest of the world.", 4),
     "labour": ("Labour market", "Jobs, registrations and unemployment, from the Social Security register and the labour force survey (EPA).", 4),
     "wages": ("Wages", "Pay and labour costs, and how they compare with inflation.", 4),
-    "inflation": ("Inflation", "Consumer prices on Spain's own index (IPC) and the harmonised index the ECB targets (IPCA), plus energy prices.", 4),
+    "inflation": ("Inflation", "Consumer prices on Spain's own index (IPC) and the harmonised index the ECB targets (IPCA), underlying inflation across the basket, and energy prices.", 4),
     "financial": ("Financial", "Spanish bond yields and the prima de riesgo, Euribor, the IBEX 35, the euro and commodities.", 5),
     "ecb": ("ECB", "Spain has no monetary policy of its own: the European Central Bank sets rates for the whole euro area.", 5),
     "fiscal": ("Fiscal", "Government deficit and debt.", 6),
