@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% from "macros.html" import stat_table, chart_card %}
+{% from "macros.html" import stat_table, chart_card, updated_badge %}
 
 {% block title %}Trade · EconPulse Spain{% endblock %}
 {% block description %}Spain's trade: goods by product group and partner, services by type, and export and import prices, with the balance with and without energy.{% endblock %}
@@ -12,10 +12,10 @@
     <a href="activity.html">Activity</a> page.</p>
   {% if table %}
   <nav class="on-page" aria-label="On this page">
-    {% for id, title in page_nav %}<a href="#{{ id }}">{{ title }}</a>{% endfor %}
+    {% for id, title in page_nav %}<a href="#{{ id }}"{% if updated[id] %} class="has-new" title="Updated {{ updated[id].day }}"{% endif %}>{{ title }}</a>{% endfor %}
   </nav>
   <section class="block" aria-labelledby="overview">
-    <h2 id="overview">Exports, imports and the balance</h2>
+    <h2 id="overview">Exports, imports and the balance{{ updated_badge(updated["overview"]) }}</h2>
     {% if facts %}
     <div class="facts">
       {% for f in facts %}
@@ -32,7 +32,7 @@
     </div>
   </section>
   <section class="block" aria-labelledby="by-product">
-    <h2 id="by-product">Trade by product group</h2>
+    <h2 id="by-product">Trade by product group{{ updated_badge(updated["by-product"]) }}</h2>
     {{ stat_table(table) }}
   </section>
   <section class="block" aria-labelledby="rankings">
@@ -43,7 +43,7 @@
   </section>
   {% for x in extras %}
   <section class="block" aria-labelledby="{{ x.id }}">
-    <h2 id="{{ x.id }}">{{ x.title }}</h2>
+    <h2 id="{{ x.id }}">{{ x.title }}{{ updated_badge(updated[x.id]) }}</h2>
     <p class="block-intro">{{ x.intro }}</p>
     {% if x.facts %}
     <div class="facts">

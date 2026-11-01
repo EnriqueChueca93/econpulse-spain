@@ -18,7 +18,7 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 from . import __version__, analytics, changes, ecbspeak, feed, fiscal, industries, schedule, search, sectortables, stance, surprises, tools, trade
 from .charts import build_home_charts
 from .config import SITE_DIR, SITE_URL, STATIC_DIR, TEMPLATES_DIR
-from .pages import build_page, indicator_anchors
+from .pages import PAGES, block_indicator_ids, build_page, indicator_anchors
 from .questions import four_questions
 from .registry import Indicator
 from .snapshot import build_snapshot
@@ -61,8 +61,9 @@ NAV_EXTRA = {
 NAV_SUBPAGES = {"labour.html": [("industry-detail.html", "Every industry")]}
 
 
-def nav_items(section_pages: dict) -> list[dict]:
-    """The tabs, each with the sections its dropdown links to."""
+def nav_items(section_pages: dict, updated: set[str] = frozenset()) -> list[dict]:
+    """The tabs, each with the sections its dropdown links to (`new` for those in `updated`, a set of
+    "page.html#section" with figures from the past week)."""
     items = []
     for href, label in NAV:
         section = href.removesuffix(".html")
@@ -71,7 +72,8 @@ def nav_items(section_pages: dict) -> list[dict]:
         else:
             children = NAV_EXTRA.get(href, [])
         items.append({"href": href, "label": label, "id": section,
-                      "children": [{"href": c if not c.startswith("#") else href + c, "title": t} for c, t in children]})
+                      "children": [{"href": (link := c if not c.startswith("#") else href + c), "title": t,
+                                    "new": link in updated} for c, t in children]})
     return items
 
 
@@ -133,14 +135,41 @@ def build_site(indicators: list[Indicator], store: Store | None = None, site_dir
     env = Environment(loader=FileSystemLoader(TEMPLATES_DIR), autoescape=select_autoescape(["html"]),
                       trim_blocks=True, lstrip_blocks=True)
     section_pages = {s: build_page(s, indicators, store) for s in SECTION_PAGES}   # the navigation lists their sections
+    # Sections with figures from the past week get an "updated" mark, also in the tabs' dropdowns.
+    today = pd.Timestamp(madrid_today())
+    events = schedule.releases(store, today)
+    fresh = changes.fresh_series(store, by_id, events, today)
+    labels = {i["id"]: i["label"] for i in items}
+    updated = set()
+    for section, page in section_pages.items():
+        definitions = {b["id"]: b for b in PAGES.get(section, [])}
+        for block in page["blocks"]:
+            block["updated"] = changes.updated_mark(block_indicator_ids(definitions[block["id"]]), fresh, labels)
+            if block["updated"]:
+                updated.add(f"{section}.html#{block['id']}")
+    trade_parts: dict[str, list[str]] = {}
+    for ind_id in fresh:
+        if (part := trade.indicator_section(ind_id)):
+            trade_parts.setdefault(part, []).append(ind_id)
+    trade_updated = {part: changes.updated_mark(ids, fresh, labels) for part, ids in trade_parts.items()}
+    updated |= {f"trade.html#{part}" for part in trade_updated}
+    # Links to a release go to the section that shows its figures.
+    anchors = _search_anchors(section_pages, items)
+
+    def section_link(ids: list[str], page: str) -> str:
+        return next((anchors[i][0] for i in ids if i in anchors), page)
+
+    coming = schedule.coming_up(store)
+    for entry in coming["today_items"] + coming["items"]:
+        entry["page"] = section_link(entry["ids"], entry["page"])
     common = {
         "version": __version__,
         "build_id": build_id,
         "built": _madrid_time(snapshot["generated_at"]),
         "as_of": _madrid_time(snapshot["data_as_of"]).replace(" Madrid time", ""),
         "sources": list(dict.fromkeys(i.source_name for i in indicators if not i.is_derived)),
-        "nav": nav_items(section_pages),
-        "coming_up": schedule.coming_up(store),
+        "nav": nav_items(section_pages, updated),
+        "coming_up": coming,
     }
 
     def render(template: str, filename: str, **context) -> Path:
@@ -150,9 +179,12 @@ def build_site(indicators: list[Indicator], store: Store | None = None, site_dir
         path.write_text(html, encoding="utf-8")
         return path
 
-    today = pd.Timestamp(madrid_today())
-    recent = changes.recent_releases(store, by_id, schedule.releases(store, today), today)
+    recent = changes.recent_releases(store, by_id, events, today)
+    for r in recent:
+        r["page"] = section_link(r["ids"], r["page"])
     whats_new = {**changes.latest_notes(store), "recent": recent}
+    for note in whats_new["notes"]:
+        note["page"] = section_link([note["id"]], note["page"])
     for key in ("at", "updated_at", "started_at"):
         whats_new[key] = _madrid_time(whats_new[key]).replace(" Madrid time", "") if whats_new[key] else None
     index = render("index.html", "index.html", tiles=[by_id[t] for t in snapshot["tiles"]],
@@ -185,6 +217,7 @@ def build_site(indicators: list[Indicator], store: Store | None = None, site_dir
         write_data_js(data_dir / "charts-trade.js", "charts", goods["charts"])
     render("trade.html", "trade.html", facts=goods["facts"], table=goods["table"], overview=goods["overview"],
            rankings=goods["rankings"], extras=goods["extras"], sections=goods["sections"], chapters=goods["chapters"], page_nav=trade.PAGE,
+           updated=trade_updated,
            charts_file="data/charts-trade.js" if goods["charts"] else None)
     sector = sectortables.page(readings_data)
     page_charts.append(("sector-tables.html", "Sector tables", sector["charts"]))
@@ -196,7 +229,11 @@ def build_site(indicators: list[Indicator], store: Store | None = None, site_dir
     render("data.html", "data.html", source_summary=_source_summary(items), groups=[g for g in groups if g["items"]],
            attention=attention, total=len(items), workbook=f"data/{sectortables.WORKBOOK}" if workbook else None,
            sector_tables=[(f"{t.section}.html#{t.block}", f"{t.label}. {t.title}") for t in sectortables.TABLES])
-    render("calendar.html", "calendar.html", days=schedule.window(store, today), recent=recent,
+    days = schedule.window(store, today)
+    for day in days:
+        for e in day["events"]:
+            e["page"] = section_link(e.get("ids", []), e["page"])
+    render("calendar.html", "calendar.html", days=days, recent=recent,
            calendar_page=schedule.INE_CALENDAR_PAGE)
     counts = {}
     for i in items:
@@ -228,7 +265,7 @@ def build_site(indicators: list[Indicator], store: Store | None = None, site_dir
     page_charts += [("ecb-speak.html", "ECB-speak", speak["charts"] if speak else []),
                     ("stance.html", "Central bank stance", stance_charts or [])]
     write_data_js(data_dir / "search.js", "search",
-                  search.build_index(common["nav"], page_charts, items, _search_anchors(section_pages, items)))
+                  search.build_index(common["nav"], page_charts, items, anchors))
     return index
 
 

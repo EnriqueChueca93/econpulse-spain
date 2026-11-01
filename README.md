@@ -98,6 +98,8 @@ Because the workflow commits data every day, run `git pull` before working local
   "Coming up" bar.
 - **Search** (every page): the header's search button, or `/` or Ctrl+K, finds any page, section, chart or
   series by its English or Spanish name and jumps to where the site shows it.
+- **What's new** (every page): a section whose figures arrived in the past week carries an "Updated" mark,
+  with a dot in the tabs' menus and the page's list of sections; release lists link to the section itself.
 - **Data** (`site/data.html`): a freshness summary, a link to the sector tables workbook, then every series,
   its source and whether it is up to date.
 - **About** (`site/about.html`): sources, how the numbers are made, and limits.

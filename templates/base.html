@@ -51,7 +51,7 @@
     {% for item in nav if item.children %}
     <div class="nav-menu" id="menu-{{ item.id }}" hidden>
       <a class="nav-menu-head" href="{{ item.href }}">{{ item.label }}</a>
-      {% for c in item.children %}<a href="{{ c.href }}">{{ c.title }}</a>{% endfor %}
+      {% for c in item.children %}<a href="{{ c.href }}"{% if c.new %} class="has-new" title="Updated in the past week"{% endif %}>{{ c.title }}</a>{% endfor %}
     </div>
     {% endfor %}
   </header>

@@ -740,7 +740,7 @@
     var a = document.createElement("a");
     a.className = "anchor";
     a.href = "#" + h.id;
-    a.setAttribute("aria-label", "Copy a link to the section " + h.textContent.trim());
+    a.setAttribute("aria-label", "Copy a link to the section " + (h.firstChild ? h.firstChild.textContent : h.textContent).trim());
     a.textContent = "#";
     a.addEventListener("click", function (event) {
       event.preventDefault();
@@ -916,6 +916,7 @@
       var m = document.createElement("a");
       m.href = a.getAttribute("href");
       m.textContent = a.textContent;
+      if (a.classList.contains("has-new")) { m.className = "has-new"; m.title = a.title; }
       menu.appendChild(m);
       return m;
     });

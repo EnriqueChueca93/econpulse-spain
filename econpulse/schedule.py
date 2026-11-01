@@ -194,6 +194,6 @@ def coming_up(store: Store, today: pd.Timestamp | None = None, count: int = 3, h
     later = [e for e in events if e["when"].normalize() > today][:count]
 
     def item(e):  # the bar stays short: the period is on the Calendar page
-        return {"day": _day_label(e["when"]), "text": e["label"], "page": e["page"]}
+        return {"day": _day_label(e["when"]), "text": e["label"], "page": e["page"], "ids": e.get("ids", [])}
 
     return {"today": _day_label(today), "today_items": [item(e) for e in todays], "items": [item(e) for e in later]}

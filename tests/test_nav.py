@@ -11,10 +11,12 @@ from econpulse.store import Store
 def test_nav_items_list_sections_and_extras():
     pages = {"gdp": {"blocks": [{"id": "growth", "title": "GDP and its components"}]}}
     items = {i["href"]: i for i in nav_items(pages)}
-    assert items["gdp.html"]["children"] == [{"href": "gdp.html#growth", "title": "GDP and its components"}]
+    assert items["gdp.html"]["children"] == [{"href": "gdp.html#growth", "title": "GDP and its components", "new": False}]
     tools = [c["href"] for c in items["tools.html"]["children"]]
     assert "tools.html#taylor" in tools and "fiscal-explorer.html" in tools and "ecb-speak.html" in tools
     assert items["data.html"]["children"] == []   # no dropdown
+    fresh = {i["href"]: i for i in nav_items(pages, {"gdp.html#growth"})}   # a section updated in the past week
+    assert fresh["gdp.html"]["children"][0]["new"] is True
 
 
 def test_every_page_has_the_dropdowns(tmp_path):

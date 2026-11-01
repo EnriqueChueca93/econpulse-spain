@@ -476,6 +476,12 @@ body.search-on { overflow: hidden; }
 .section-bar-menu a.is-current { font-weight: 600; }
 .on-page a.is-current { color: var(--text); border-bottom-color: var(--accent); }
 .data-table tr:target td { background: var(--info-bg); }
+/* Updated in the past week: a badge after the section heading, a dot in the lists of sections */
+.badge-updated { margin: 0 0 0 10px; vertical-align: middle; font: 600 11px/1.6 var(--sans); }
+.has-new::after {
+  content: ""; display: inline-block; width: 6px; height: 6px; margin: 0 0 2px 6px; border-radius: 50%;
+  background: var(--ok-text); vertical-align: middle;
+}
 
 /* Not found */
 .lost-list { margin-top: 18px; }

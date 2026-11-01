@@ -10,6 +10,9 @@ the time before (data/releases.json):
 The first run only saves the state, and an indicator added later starts quietly too, so
 the log never fills with "new" data that was simply fetched for the first time. Notes are
 kept for 60 days.
+
+`fresh_series` says which series brought new figures in the past week (from the release calendar
+and from the release notes); the site marks the sections that show them as updated.
 """
 
 import re
@@ -18,6 +21,7 @@ from datetime import datetime, timedelta, timezone
 import pandas as pd
 
 from .registry import Indicator
+from .sources.base import MADRID
 from .snapshot import summarize
 from .store import Store
 from .tables import fmt_move
@@ -137,5 +141,46 @@ def recent_releases(store: Store, items_by_id: dict, events: list[dict], today: 
             if head and (not e["period"] or head["period"] == e["period"]):
                 figures.append(f"{item['label']} {head['display']} {head['label']}".strip())
         out.append({"day": f"{day:%a} {day.day} {day:%b}", "label": e["label"], "period": e["period"],
-                    "page": e["page"], "figures": figures})
+                    "page": e["page"], "figures": figures, "ids": e.get("ids", [])})
     return list(reversed(out))
+
+
+def fresh_series(store: Store, items_by_id: dict, events: list[dict], today: pd.Timestamp, days: int = 7) -> dict:
+    """Series with new figures in the past `days` days: id -> {"day": the Madrid date, "period": shown}.
+
+    A calendar release counts when the site now shows the period it brought; a release note (the
+    log compares every update with the one before) counts on the day it was written. Revisions and
+    market moves do not count."""
+    start = today - pd.Timedelta(days=days)
+    out: dict[str, dict] = {}
+
+    def add(ind_id: str, day: pd.Timestamp) -> None:
+        item = items_by_id.get(ind_id)
+        head = item and item["headline"]
+        if head and (ind_id not in out or day > out[ind_id]["day"]):
+            out[ind_id] = {"day": day, "period": head["period"]}
+
+    for e in events:
+        day = e["when"].normalize()
+        if start <= day <= today:
+            for ind_id in e.get("ids", []):
+                item = items_by_id.get(ind_id)
+                head = item and item["headline"]
+                if head and (not e["period"] or head["period"] == e["period"]):
+                    add(ind_id, day)
+    for n in (store.load_json("releases", None) or {}).get("notes", []):
+        if n["kind"] == "release":
+            day = pd.Timestamp(datetime.fromisoformat(n["at"]).astimezone(MADRID).date())
+            if start <= day <= today:
+                add(n["id"], day)
+    return out
+
+
+def updated_mark(ids, fresh: dict, labels: dict) -> dict | None:
+    """For a section showing these series: the day of its newest figures and which they are."""
+    hits = sorted((i for i in set(ids) if i in fresh), key=lambda i: (-fresh[i]["day"].value, labels.get(i, i)))
+    if not hits:
+        return None
+    day = fresh[hits[0]]["day"]
+    names = [f"{labels.get(i, i)} ({fresh[i]['period']})" for i in hits[:6]]
+    return {"day": f"{day.day} {day:%b}", "what": "; ".join(names) + (f"; and {len(hits) - 6} more" if len(hits) > 6 else "")}

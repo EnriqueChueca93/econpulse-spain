@@ -89,3 +89,48 @@ def test_charts_only_use_what_the_basic_bundle_has(tmp_path):
     site = tmp_path / "site"
     assert 'src="assets/plotly-basic.min.js?v=' in (site / "trade.html").read_text(encoding="utf-8")
     assert not (site / "assets" / "plotly.min.js").exists()
+
+
+def test_fresh_series_and_marks(tmp_path):
+    """Batch U5: which series brought figures in the past week, and the mark a section gets."""
+    import pandas as pd
+
+    from econpulse import changes
+    from econpulse.store import Store
+
+    store = Store(tmp_path / "data")
+    today = pd.Timestamp("2026-11-01")
+    items = {"cpi": {"label": "CPI inflation", "headline": {"period": "Oct 2026"}},
+             "gdp": {"label": "Real GDP", "headline": {"period": "Q3 2026"}},
+             "ppi": {"label": "Producer prices", "headline": {"period": "Aug 2026"}},
+             "exports": {"label": "Goods exports", "headline": {"period": "Aug 2026"}}}
+    events = [{"when": pd.Timestamp("2026-10-30 09:00"), "period": "Oct 2026", "ids": ["cpi"]},
+              {"when": pd.Timestamp("2026-10-26 09:00"), "period": "Sep 2026", "ids": ["ppi"]},   # not shown yet
+              {"when": pd.Timestamp("2026-10-20 09:00"), "period": "Q3 2026", "ids": ["gdp"]},    # too old
+              {"when": pd.Timestamp("2026-11-04 09:00"), "period": "Oct 2026", "ids": ["gdp"]}]   # not yet
+    store.save_json("releases", {"state": {}, "notes": [
+        {"kind": "release", "id": "exports", "at": "2026-10-31T21:23:00+00:00"},       # 31 Oct in Madrid
+        {"kind": "revision", "id": "gdp", "at": "2026-10-31T21:23:00+00:00"}]})
+    fresh = changes.fresh_series(store, items, events, today)
+    assert set(fresh) == {"cpi", "exports"} and fresh["exports"]["day"] == pd.Timestamp("2026-10-31")
+    mark = changes.updated_mark(["exports", "cpi", "gdp"], fresh, {k: v["label"] for k, v in items.items()})
+    assert mark == {"day": "31 Oct", "what": "Goods exports (Aug 2026); CPI inflation (Oct 2026)"}
+    assert changes.updated_mark(["gdp"], fresh, {}) is None
+
+
+def test_updated_sections_are_marked_and_linked(tmp_path):
+    from datetime import datetime, timezone
+
+    store = full_store(tmp_path)
+    store.save_json("releases", {"state": {}, "updated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+                                 "notes": [{"kind": "release", "id": "trade_exp_total", "page": "international.html",
+                                            "text": "Goods exports (Comext): €401,843 mn in Aug 2026.",
+                                            "at": datetime.now(timezone.utc).isoformat(timespec="seconds")}]})
+    build_site(load_registry(), store, site_dir=tmp_path / "site")
+    site = tmp_path / "site"
+    trade = (site / "trade.html").read_text(encoding="utf-8")
+    assert 'Exports, imports and the balance <span class="badge badge-ok badge-updated" title="New figures: ' \
+           'Goods exports (Comext) (Aug 2026)">Updated' in trade
+    assert '<a href="#overview" class="has-new"' in trade and '<a href="trade.html#overview" class="has-new"' in trade
+    index = (site / "index.html").read_text(encoding="utf-8")
+    assert '<a href="trade.html#overview">Goods exports (Comext): €401,843 mn in Aug 2026.</a>' in index

@@ -96,6 +96,11 @@
   </div>
 {%- endmacro %}
 
+{# "Updated 30 Oct" after a section heading whose figures are from the past week. #}
+{% macro updated_badge(u) -%}
+  {%- if u %} <span class="badge badge-ok badge-updated" title="New figures: {{ u.what }}">Updated {{ u.day }}</span>{% endif -%}
+{%- endmacro %}
+
 {# A chart: the plot is drawn by assets/app.js from the page's data/charts*.js. #}
 {% macro chart_card(c) -%}
   <figure class="card chart-card" id="fig-{{ c.id }}">
