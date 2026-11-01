@@ -1574,27 +1574,54 @@ PAGES: dict[str, list[dict]] = {
 }
 
 
+def block_indicator_ids(block: dict) -> set[str]:
+    """Every indicator a block reads (tables, charts, flash notes, extras)."""
+    ids = set()
+    for t in block["tables"]:
+        if isinstance(t, (Table, Panel)):
+            ids |= t.indicator_ids()
+    for c in block.get("charts", []):
+        if callable(c):
+            continue  # a computed chart: its inputs are listed in the block's "uses"
+        ids |= {i for i, *_ in c.get("ref_from", [])}
+        if c.get("curve"):
+            ids |= {i for line in c["lines"] for i, _ in line["points"]}
+        elif c.get("kind") == "hbar":
+            ids |= {item[0] for item in c["items"]}
+        elif c.get("kind") == "xy":
+            ids |= {c["x"][0], c["y"][0]}
+        else:
+            ids |= {s[0] for s in c["series"]}
+    return ids | {i for i, _ in block.get("flash", [])} | set(block.get("uses", []))
+
+
 def page_indicator_ids(section: str) -> set[str]:
-    """Every indicator a section page reads (tables, charts, flash notes, extras)."""
+    """Every indicator a section page reads."""
     ids = set()
     for block in PAGES.get(section, []):
-        for t in block["tables"]:
-            if isinstance(t, (Table, Panel)):
-                ids |= t.indicator_ids()
-        for c in block.get("charts", []):
-            if callable(c):
-                continue  # a computed chart: its inputs are listed in the block's "uses"
-            ids |= {i for i, *_ in c.get("ref_from", [])}
-            if c.get("curve"):
-                ids |= {i for line in c["lines"] for i, _ in line["points"]}
-            elif c.get("kind") == "hbar":
-                ids |= {item[0] for item in c["items"]}
-            elif c.get("kind") == "xy":
-                ids |= {c["x"][0], c["y"][0]}
-            else:
-                ids |= {s[0] for s in c["series"]}
-        ids |= {i for i, _ in block.get("flash", [])} | set(block.get("uses", []))
+        ids |= block_indicator_ids(block)
     return ids
+
+
+def indicator_anchors(built: dict[str, dict], home: dict[str, str] | None = None) -> dict[str, str]:
+    """Indicator id -> the first block that shows it ("labour.html#hours"), among the blocks that were
+    built (`built`: section -> built page): on the indicator's own section page (`home`: id -> section)
+    if it shows it, otherwise on the first page that does."""
+    home = home or {}
+    by_section: dict[str, dict[str, str]] = {}
+    for section, blocks in PAGES.items():
+        shown = {b["id"] for b in built.get(section, {}).get("blocks", [])}
+        found = by_section.setdefault(section, {})
+        for block in blocks:
+            if block["id"] in shown:
+                for ind_id in sorted(block_indicator_ids(block)):
+                    found.setdefault(ind_id, f"{section}.html#{block['id']}")
+    anchors = {}
+    for section, found in by_section.items():
+        for ind_id, href in found.items():
+            own = by_section.get(home.get(ind_id, ""), {})
+            anchors.setdefault(ind_id, own.get(ind_id, href))
+    return anchors
 
 
 def _flash_note(block: dict, tables: list[dict], data: Data) -> str:

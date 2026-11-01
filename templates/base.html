@@ -28,6 +28,11 @@
       <a class="brand" href="index.html">EconPulse <span>Spain</span></a>
       <div class="header-meta">
         <span class="asof">Data as of {{ as_of }}</span>
+        <button class="search-open" id="search-open" type="button" aria-haspopup="dialog" aria-controls="search-panel"
+          data-index="data/search.js?v={{ build_id }}" aria-label="Search the site (press / or Ctrl+K)">
+          <svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <span class="search-label">Search</span><kbd aria-hidden="true">/</kbd>
+        </button>
         <a class="header-link" href="about.html"{% if active == "about.html" %} aria-current="page"{% endif %}>About</a>
         <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch between light and dark theme">
           <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z" fill="currentColor"/></svg>
@@ -78,6 +83,16 @@
         <a href="feed.xml">RSS feed</a></p>
     </div>
   </footer>
+
+  <div class="search-panel" id="search-panel" role="dialog" aria-modal="true" aria-label="Search the site" hidden>
+    <div class="search-box">
+      <input id="search-input" type="search" role="combobox" aria-expanded="false" aria-controls="search-results"
+        aria-autocomplete="list" autocomplete="off" spellcheck="false"
+        placeholder="Search series, charts and sections, in English or Spanish">
+      <ul class="search-results" id="search-results" role="listbox" aria-label="Results"></ul>
+      <p class="search-hint" aria-live="polite"></p>
+    </div>
+  </div>
 
   {% block scripts %}{% endblock %}
   <script src="assets/app.js?v={{ build_id }}"></script>

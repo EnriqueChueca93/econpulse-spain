@@ -37,3 +37,35 @@ def test_not_found_page(tmp_path):
     html = (tmp_path / "site" / "404.html").read_text(encoding="utf-8")
     assert "<h1>Page not found</h1>" in html and '<base href="/econpulse-spain/">' in html
     assert SITE_URL.endswith("/econpulse-spain/") and 'href="trade.html"' in html and 'aria-current="page"' not in html
+
+
+def test_search_index(tmp_path):
+    """Batch U3: pages, sections, charts and series, each linked to where the site shows it."""
+    import json
+
+    build_site(load_registry(), full_store(tmp_path), site_dir=tmp_path / "site")
+    site = tmp_path / "site"
+    text = (site / "data" / "search.js").read_text(encoding="utf-8")
+    index = json.loads(text[text.index("["):text.rindex("]") + 1])
+    by_title = {}
+    for kind, title, context, href, extra in index:
+        by_title.setdefault((kind, title), (context, href, extra))
+    assert by_title[(0, "Trade")][1] == "trade.html" and by_title[(1, "Trade by partner")][1] == "trade.html#partners"
+    assert by_title[(2, "Exports by partner")][1] == "trade.html#fig-partner-exports-ranking"
+    context, href, extra = by_title[(3, "Goods exports to China")]
+    assert href == "trade.html#partners" and context == "Trade · Eurostat (Comext)" and "China" in extra
+    assert by_title[(3, "Services exports, transport")][1] == "trade.html#services"
+    # a series nobody charts links to its row on the Data page, which carries that anchor
+    orphans = [href for kind, _, _, href, _ in index if kind == 3 and href.startswith("data.html#ind-")]
+    data = (site / "data.html").read_text(encoding="utf-8")
+    assert orphans and all(f'id="{href.split("#")[1]}"' in data for href in orphans)
+    html = (site / "labour.html").read_text(encoding="utf-8")
+    assert 'id="search-open"' in html and 'data-index="data/search.js?v=' in html and 'role="dialog"' in html
+
+
+def test_series_link_to_their_own_page():
+    from econpulse.pages import indicator_anchors
+
+    built = {"gdp": {"blocks": [{"id": "real-sector"}]}, "labour": {"blocks": [{"id": "epa"}]}}
+    anchors = indicator_anchors(built, {"unemployment_epa": "labour"})
+    assert anchors["unemployment_epa"] == "labour.html#epa"   # shown on GDP's IMF table too, but its home is Labour

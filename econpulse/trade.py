@@ -61,6 +61,20 @@ def groups() -> list[tuple[str, str]]:
     return [g for _, _, items in SECTIONS for g in items]
 
 
+def indicator_section(ind_id: str) -> str | None:
+    """The section of this page that shows an indicator (for the site search), if any."""
+    if ind_id.startswith(("export_prices_", "import_prices_", "terms_of_trade", "deflator_")):
+        return "prices"
+    if ind_id.startswith(("svc_exp_", "svc_imp_")):
+        return "services"
+    if ind_id.startswith(("trade_exp_", "trade_imp_", "trade_bal_")):
+        slug = ind_id.split("_", 2)[2]
+        if slug == "total":
+            return "overview"
+        return "partners" if slug in {s for s, _, _ in PARTNERS} else "by-product"
+    return None
+
+
 def _12m(data: Data, ind_id: str) -> pd.Series | None:
     """Total over the past 12 months (four quarters), € billion."""
     s = data.raw(ind_id)

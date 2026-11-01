@@ -40,7 +40,7 @@
       <tbody>
         {% for item in items %}
         {% set head = item.headline %}
-        <tr>
+        <tr{% if with_status %} id="ind-{{ item.id }}"{% endif %}>
           <td>
             <div class="ind-name">{{ item.label }}</div>
             <div class="ind-es">{{ item.label_es }}</div>

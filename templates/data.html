@@ -8,10 +8,14 @@
   <h1>Data and sources</h1>
   <p class="lede">Every series on the site, where it comes from, and whether it is up to date.</p>
   {% if attention %}
-  <p class="notice">{{ attention | length }} of {{ total }} series need attention: {% for i in attention %}<a href="#sec-{{ i.section }}">{{ i.label }}</a>{% if not loop.last %}, {% endif %}{% endfor %}.</p>
+  <p class="notice">{{ attention | length }} of {{ total }} series need attention: {% for i in attention %}<a href="#ind-{{ i.id }}">{{ i.label }}</a>{% if not loop.last %}, {% endif %}{% endfor %}.</p>
   {% else %}
   <p class="notice">All {{ total }} series were fetched successfully and are up to date. Next releases are on the <a href="calendar.html">calendar</a>.</p>
   {% endif %}
+  <nav class="on-page" aria-label="On this page">
+    <a href="#by-source">By source</a>{% if workbook %}<a href="#sector-tables">IMF-style sector tables</a>{% endif %}
+    {%- for group in groups %}<a href="#sec-{{ group.id }}">{{ group.title }}</a>{% endfor %}
+  </nav>
 
   <section aria-labelledby="by-source">
     <h2 id="by-source">By source</h2>

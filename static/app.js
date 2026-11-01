@@ -754,6 +754,207 @@
     h.appendChild(a);
   });
 
+  // ---------------------------------------------------------------- site search
+  // The button (or "/" or Ctrl+K) opens a panel over the page. The index (data/search.js: every page,
+  // section, chart and series) loads the first time; matching ignores case and accents, and every word
+  // typed must appear in the title, the place or the Spanish name.
+  (function () {
+    var opener = document.getElementById("search-open"), panel = document.getElementById("search-panel");
+    if (!opener || !panel) return;
+    var input = document.getElementById("search-input"), list = document.getElementById("search-results");
+    var hint = panel.querySelector(".search-hint");
+    var KINDS = ["Page", "Section", "Chart", "Series"], BONUS = [5, 4, 2, 0];
+    var index = null, loading = false, results = [], active = -1;
+
+    function norm(s) { return (s || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase(); }
+
+    function prepare() {
+      index = (window.EP.search || []).map(function (e) {
+        return { kind: e[0], title: e[1], context: e[2], href: e[3], t: norm(e[1]), all: norm(e[1] + " " + e[2] + " " + e[4]) };
+      });
+    }
+
+    function load(then) {
+      if (index) return then();
+      if (window.EP && window.EP.search) { prepare(); return then(); }
+      if (loading) return;
+      loading = true;
+      hint.textContent = "Loading the index…";
+      var script = document.createElement("script");
+      script.src = opener.getAttribute("data-index");
+      script.onload = function () { prepare(); then(); };
+      script.onerror = function () { loading = false; hint.textContent = "The search index could not be loaded."; };
+      document.head.appendChild(script);
+    }
+
+    function wordStart(text, at) { return at === 0 || /[\s(,·/-]/.test(text.charAt(at - 1)); }
+
+    function score(e, words, q) {
+      var s = BONUS[e.kind] - e.title.length / 60;
+      for (var i = 0; i < words.length; i++) {
+        var at = e.all.indexOf(words[i]);
+        if (at < 0) return -1;
+        var inTitle = e.t.indexOf(words[i]);
+        s += inTitle >= 0 ? (wordStart(e.t, inTitle) ? 6 : 3) : (wordStart(e.all, at) ? 2 : 1);
+      }
+      var whole = e.t.indexOf(q);
+      return s + (whole === 0 ? 8 : whole > 0 ? 3 : 0);
+    }
+
+    function matches(words, q) {
+      var found = [];
+      index.forEach(function (e) { var s = score(e, words, q); if (s >= 0) found.push({ e: e, s: s }); });
+      found.sort(function (a, b) { return b.s - a.s; });
+      return found.slice(0, 20).map(function (f) { return f.e; });
+    }
+
+    function search() {
+      var q = norm(input.value).trim();
+      results = [];
+      if (q) {
+        var words = q.split(/\s+/);
+        results = matches(words, q);
+        // Nothing? Try the stems of the longer words ("electricidad" finds "eléctrica" and "electricity").
+        if (!results.length && words.some(function (w) { return w.length >= 6; })) {
+          results = matches(words.map(function (w) { return w.length >= 6 ? w.slice(0, Math.max(5, Math.ceil(w.length * 0.67))) : w; }), q);
+        }
+      }
+      list.innerHTML = "";
+      results.forEach(function (e, i) {
+        var li = document.createElement("li"), a = document.createElement("a");
+        li.id = "search-opt-" + i;
+        li.setAttribute("role", "option");
+        a.href = e.href;
+        a.tabIndex = -1;
+        var title = document.createElement("span"), where = document.createElement("span");
+        title.className = "search-title"; title.textContent = e.title;
+        where.className = "search-context"; where.textContent = KINDS[e.kind] + (e.kind ? " · " + e.context : "");
+        a.appendChild(title); a.appendChild(where); li.appendChild(a); list.appendChild(li);
+      });
+      setActive(results.length ? 0 : -1);
+      input.setAttribute("aria-expanded", String(results.length > 0));
+      hint.textContent = !q ? "Every series, chart and section on the site. Try “paro”, “house prices” or “exports to China”."
+        : results.length ? "" : "Nothing matches “" + input.value.trim() + "”.";
+    }
+
+    function setActive(i) {
+      active = i;
+      Array.prototype.forEach.call(list.children, function (li, k) { li.setAttribute("aria-selected", String(k === i)); });
+      if (i >= 0) {
+        input.setAttribute("aria-activedescendant", "search-opt-" + i);
+        list.children[i].scrollIntoView({ block: "nearest" });
+      } else {
+        input.removeAttribute("aria-activedescendant");
+      }
+    }
+
+    function show() {
+      if (!panel.hidden) return input.focus();
+      panel.hidden = false;
+      document.body.classList.add("search-on");
+      input.focus();
+      input.select();
+      load(search);
+    }
+
+    function hide(refocus) {
+      panel.hidden = true;
+      document.body.classList.remove("search-on");
+      if (refocus) opener.focus();
+    }
+
+    opener.addEventListener("click", show);
+    panel.addEventListener("click", function (e) {
+      if (e.target === panel) hide(true);
+      else if (e.target.closest("a")) hide(false);   // a result on this page only moves the page
+    });
+    input.addEventListener("input", function () { if (index) search(); });
+    input.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+        e.preventDefault();
+        if (results.length) setActive((active + (e.key === "ArrowDown" ? 1 : -1) + results.length) % results.length);
+      } else if (e.key === "Enter") {
+        e.preventDefault();
+        if (active >= 0) { hide(false); location.href = results[active].href; }
+      } else if (e.key === "Escape") {
+        e.preventDefault();
+        hide(true);
+      } else if (e.key === "Tab") {
+        e.preventDefault();                             // the input is the panel's only control
+      }
+    });
+    document.addEventListener("keydown", function (e) {
+      var el = document.activeElement, typing = el && (/^(INPUT|TEXTAREA|SELECT)$/.test(el.tagName) || el.isContentEditable);
+      if ((e.key === "/" && !typing && !e.ctrlKey && !e.metaKey && !e.altKey) ||
+          ((e.ctrlKey || e.metaKey) && (e.key === "k" || e.key === "K"))) {
+        e.preventDefault();
+        show();
+      }
+    });
+  })();
+
+  // ---------------------------------------------------------------- where you are on a long page
+  // Once the list of sections at the top scrolls away, a slim bar names the section you are reading;
+  // it opens the list. The current section is also marked in the list at the top.
+  (function () {
+    var nav = document.querySelector("nav.on-page");
+    if (!nav || document.querySelector(".sector-controls")) return;   // Sector tables keep their own sticky bar
+    var links = Array.prototype.slice.call(nav.querySelectorAll('a[href^="#"]')).filter(function (a) {
+      return document.getElementById(a.getAttribute("href").slice(1));
+    });
+    if (links.length < 3) return;
+    var heads = links.map(function (a) { return document.getElementById(a.getAttribute("href").slice(1)); });
+    var bar = document.createElement("div");
+    bar.className = "section-bar";
+    bar.hidden = true;
+    bar.innerHTML = '<div class="wrap section-bar-inner"><button type="button" class="section-bar-toggle" aria-expanded="false">' +
+      '<span class="section-bar-label">On this page</span><strong></strong><svg viewBox="0 0 10 6" width="10" height="6" ' +
+      'aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>' +
+      '<nav class="section-bar-menu" aria-label="Sections of this page" hidden></nav></div>';
+    var toggle = bar.querySelector("button"), current = bar.querySelector("strong"), menu = bar.querySelector("nav");
+    var copies = links.map(function (a) {
+      var m = document.createElement("a");
+      m.href = a.getAttribute("href");
+      m.textContent = a.textContent;
+      menu.appendChild(m);
+      return m;
+    });
+    document.body.appendChild(bar);
+
+    function setMenu(open) {
+      menu.hidden = !open;
+      toggle.setAttribute("aria-expanded", String(open));
+    }
+    toggle.addEventListener("click", function () { setMenu(menu.hidden); });
+    menu.addEventListener("click", function (e) { if (e.target.closest("a")) setMenu(false); });
+    document.addEventListener("click", function (e) { if (!bar.contains(e.target)) setMenu(false); });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && !menu.hidden) { setMenu(false); toggle.focus(); }
+    });
+
+    var pending = false;
+    function update() {
+      pending = false;
+      var past = nav.getBoundingClientRect().bottom < 0;
+      bar.hidden = !past;
+      if (!past) setMenu(false);
+      var at = -1;
+      for (var i = 0; i < heads.length; i++) if (heads[i].getBoundingClientRect().top < 90) at = i;
+      [links, copies].forEach(function (group) {
+        group.forEach(function (a, i) {
+          a.classList.toggle("is-current", i === at);
+          if (i === at) a.setAttribute("aria-current", "location"); else a.removeAttribute("aria-current");
+        });
+      });
+      current.textContent = links[Math.max(at, 0)].textContent;
+    }
+    window.addEventListener("scroll", function () {
+      if (!pending) { pending = true; requestAnimationFrame(update); }
+    }, { passive: true });
+    window.addEventListener("resize", update);
+    update();
+  })();
+
   (function () {
     var button = document.createElement("button");
     button.type = "button";

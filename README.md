@@ -96,6 +96,8 @@ Because the workflow commits data every day, run `git pull` before working local
   Taylor rules for the euro area and Spain.
 - **Calendar** (`site/calendar.html`): releases in the past week and the next two months; every page has a
   "Coming up" bar.
+- **Search** (every page): the header's search button, or `/` or Ctrl+K, finds any page, section, chart or
+  series by its English or Spanish name and jumps to where the site shows it.
 - **Data** (`site/data.html`): a freshness summary, a link to the sector tables workbook, then every series,
   its source and whether it is up to date.
 - **About** (`site/about.html`): sources, how the numbers are made, and limits.
@@ -161,6 +163,7 @@ econpulse/            Python package
   demography.py       the Labour page's rates by group and the ageing figures (from sources/ageing.py)
   workstats.py        hours, vacancies and pay by activity, and layoffs (Labour and Wages pages)
   trade.py            the Trade page: goods by product group and partner, services by type, prices
+  search.py           the site search index (site/data/search.js): pages, sections, charts, series
   certs/              intermediate certificates some servers leave out (see http.py)
   sectortables.py     IMF-style sector tables: their lines, the section-page tables and the Excel workbook
   serve.py            serves site/ on this computer for `python -m econpulse serve` (what EconPulse.exe runs)

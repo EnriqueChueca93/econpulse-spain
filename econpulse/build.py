@@ -15,10 +15,10 @@ from pathlib import Path
 import pandas as pd
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
-from . import __version__, analytics, changes, ecbspeak, feed, fiscal, industries, schedule, sectortables, stance, surprises, tools, trade
+from . import __version__, analytics, changes, ecbspeak, feed, fiscal, industries, schedule, search, sectortables, stance, surprises, tools, trade
 from .charts import build_home_charts
 from .config import SITE_DIR, SITE_URL, STATIC_DIR, TEMPLATES_DIR
-from .pages import build_page
+from .pages import build_page, indicator_anchors
 from .questions import four_questions
 from .registry import Indicator
 from .snapshot import build_snapshot
@@ -161,8 +161,10 @@ def build_site(indicators: list[Indicator], store: Store | None = None, site_dir
     index = render("index.html", "index.html", tiles=[by_id[t] for t in snapshot["tiles"]],
                    questions=snapshot["questions"], charts=charts, readings=snapshot["readings"],
                    whats_new=whats_new)
+    page_charts = [("index.html", "Home", charts)]      # (page, title, charts), for the site search
     for section, (title, intro, batch) in SECTION_PAGES.items():
         page = section_pages[section]
+        page_charts.append((f"{section}.html", title, page["charts"]))
         charts_file = None
         if page["charts"]:
             charts_file = f"data/charts-{section}.js"
@@ -179,13 +181,16 @@ def build_site(indicators: list[Indicator], store: Store | None = None, site_dir
     render("industry-detail.html", "industry-detail.html", active="labour.html", table=detail["table"],
            sections=detail["sections"], moves=detail["moves"],
            charts_file="data/charts-industries.js" if detail["charts"] else None)
+    page_charts.append(("industry-detail.html", "Every industry", detail["charts"]))
     goods = trade.page(readings_data)
+    page_charts.append(("trade.html", "Trade", goods["charts"]))
     if goods["charts"]:
         write_data_js(data_dir / "charts-trade.js", "charts", goods["charts"])
     render("trade.html", "trade.html", facts=goods["facts"], table=goods["table"], overview=goods["overview"],
            rankings=goods["rankings"], extras=goods["extras"], sections=goods["sections"], chapters=goods["chapters"], page_nav=trade.PAGE,
            charts_file="data/charts-trade.js" if goods["charts"] else None)
     sector = sectortables.page(readings_data)
+    page_charts.append(("sector-tables.html", "Sector tables", sector["charts"]))
     if sector["charts"]:
         write_data_js(data_dir / "charts-sectortables.js", "charts", sector["charts"])
     render("sector-tables.html", "sector-tables.html", sections=sector["sections"],
@@ -223,4 +228,24 @@ def build_site(indicators: list[Indicator], store: Store | None = None, site_dir
     render("stance.html", "stance.html", active="tools.html", s=stance.page(store), charts=stance_charts,
            charts_file="data/charts-stance.js" if stance_charts else None,
            econvitals_page=stance.PAGE, econvitals_terms=stance.TERMS)
+    page_charts += [("ecb-speak.html", "ECB-speak", speak["charts"] if speak else []),
+                    ("stance.html", "Central bank stance", stance_charts or [])]
+    write_data_js(data_dir / "search.js", "search",
+                  search.build_index(common["nav"], page_charts, items, _search_anchors(section_pages, items)))
     return index
+
+
+def _search_anchors(section_pages: dict, items: list[dict]) -> dict[str, tuple[str, str]]:
+    """Indicator id -> (where the site shows it, that page's title), for the site search."""
+    titles = {f"{s}.html": t for s, (t, _, _) in SECTION_PAGES.items()}
+    home = {item["id"]: item["section"] for item in items}
+    anchors = {i: (href, titles[href.split("#")[0]]) for i, href in indicator_anchors(section_pages, home).items()}
+    for item in items:
+        ind_id = item["id"]
+        if ind_id in anchors:
+            continue
+        if (part := trade.indicator_section(ind_id)):
+            anchors[ind_id] = (f"trade.html#{part}", "Trade")
+        elif ind_id.startswith("ind_"):
+            anchors[ind_id] = (f"industry-detail.html#fig-{ind_id.replace('_', '-')}", "Every industry")
+    return anchors
