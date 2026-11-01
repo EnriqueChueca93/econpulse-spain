@@ -1931,6 +1931,195 @@
    "display": "−2.0% of GDP",
    "period": "2027",
    "flash": false
+  },
+  "fc_imf_gdp": {
+   "date": "2031-01-01",
+   "raw": 1.702901,
+   "display": "1.7%",
+   "period": "2031",
+   "flash": false
+  },
+  "fc_imf_inflation": {
+   "date": "2031-01-01",
+   "raw": 2.0,
+   "display": "2.0%",
+   "period": "2031",
+   "flash": false
+  },
+  "fc_imf_unemployment": {
+   "date": "2031-01-01",
+   "raw": 9.962198,
+   "display": "10.0%",
+   "period": "2031",
+   "flash": false
+  },
+  "fc_imf_balance": {
+   "date": "2031-01-01",
+   "raw": -2.068775,
+   "display": "−2.1% of GDP",
+   "period": "2031",
+   "flash": false
+  },
+  "fc_bde_gdp": {
+   "date": "2027-01-01",
+   "raw": 2.2,
+   "display": "2.2%",
+   "period": "2027",
+   "flash": false
+  },
+  "fc_bde_inflation": {
+   "date": "2027-01-01",
+   "raw": 3.7,
+   "display": "3.7%",
+   "period": "2027",
+   "flash": false
+  },
+  "fc_bde_unemployment": {
+   "date": "2027-01-01",
+   "raw": 9.7,
+   "display": "9.7%",
+   "period": "2027",
+   "flash": false
+  },
+  "fc_bde_balance": {
+   "date": "2027-01-01",
+   "raw": -2.2,
+   "display": "−2.2% of GDP",
+   "period": "2027",
+   "flash": false
+  },
+  "fc_funcas_gdp": {
+   "date": "2027-01-01",
+   "raw": 2.0,
+   "display": "2.0%",
+   "period": "2027",
+   "flash": false
+  },
+  "fc_funcas_inflation": {
+   "date": "2027-01-01",
+   "raw": 2.5,
+   "display": "2.5%",
+   "period": "2027",
+   "flash": false
+  },
+  "fc_funcas_unemployment": {
+   "date": "2027-01-01",
+   "raw": 9.6,
+   "display": "9.6%",
+   "period": "2027",
+   "flash": false
+  },
+  "fc_funcas_balance": {
+   "date": "2027-01-01",
+   "raw": -2.3,
+   "display": "−2.3% of GDP",
+   "period": "2027",
+   "flash": false
+  },
+  "fc_funcas_gdp_max": {
+   "date": "2027-01-01",
+   "raw": 2.2,
+   "display": "2.2%",
+   "period": "2027",
+   "flash": false
+  },
+  "fc_funcas_inflation_max": {
+   "date": "2027-01-01",
+   "raw": 2.9,
+   "display": "2.9%",
+   "period": "2027",
+   "flash": false
+  },
+  "fc_funcas_unemployment_max": {
+   "date": "2027-01-01",
+   "raw": 10.3,
+   "display": "10.3%",
+   "period": "2027",
+   "flash": false
+  },
+  "fc_funcas_balance_max": {
+   "date": "2027-01-01",
+   "raw": -2.1,
+   "display": "−2.1% of GDP",
+   "period": "2027",
+   "flash": false
+  },
+  "fc_funcas_gdp_min": {
+   "date": "2027-01-01",
+   "raw": 1.8,
+   "display": "1.8%",
+   "period": "2027",
+   "flash": false
+  },
+  "fc_funcas_inflation_min": {
+   "date": "2027-01-01",
+   "raw": 2.1,
+   "display": "2.1%",
+   "period": "2027",
+   "flash": false
+  },
+  "fc_funcas_unemployment_min": {
+   "date": "2027-01-01",
+   "raw": 8.8,
+   "display": "8.8%",
+   "period": "2027",
+   "flash": false
+  },
+  "fc_funcas_balance_min": {
+   "date": "2027-01-01",
+   "raw": -2.5,
+   "display": "−2.5% of GDP",
+   "period": "2027",
+   "flash": false
+  },
+  "fc_gov_gdp": {
+   "date": "2027-01-01",
+   "raw": 2.2,
+   "display": "2.2%",
+   "period": "2027",
+   "flash": false
+  },
+  "fc_gov_unemployment": {
+   "date": "2027-01-01",
+   "raw": 9.4,
+   "display": "9.4%",
+   "period": "2027",
+   "flash": false
+  },
+  "fc_gov_balance": {
+   "date": "2027-01-01",
+   "raw": -1.8,
+   "display": "−1.8% of GDP",
+   "period": "2027",
+   "flash": false
+  },
+  "fc_airef_gdp": {
+   "date": "2027-01-01",
+   "raw": 2.1,
+   "display": "2.1%",
+   "period": "2027",
+   "flash": false
+  },
+  "fc_airef_inflation": {
+   "date": "2027-01-01",
+   "raw": 2.4,
+   "display": "2.4%",
+   "period": "2027",
+   "flash": false
+  },
+  "fc_airef_unemployment": {
+   "date": "2027-01-01",
+   "raw": 10.1,
+   "display": "10.1%",
+   "period": "2027",
+   "flash": false
+  },
+  "fc_airef_balance": {
+   "date": "2026-01-01",
+   "raw": -2.6,
+   "display": "−2.6% of GDP",
+   "period": "2026",
+   "flash": false
   }
  },
  "notes": [
@@ -1956,6 +2145,6 @@
    "at": "2026-11-01T02:50:46+00:00"
   }
  ],
- "updated_at": "2026-11-01T03:36:20+00:00",
+ "updated_at": "2026-11-01T04:15:43+00:00",
  "started_at": "2026-10-31T23:31:49+00:00"
 }
