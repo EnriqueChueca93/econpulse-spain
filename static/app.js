@@ -79,6 +79,26 @@
     if (bar) bar.addEventListener("scroll", function () { if (open) place(open.item, open.menu); }, { passive: true });
   })();
 
+  // On phones the tab bar scrolls sideways: fade the edge where there are more tabs, and bring the
+  // current page's tab into view.
+  (function () {
+    var bar = document.querySelector(".site-nav");
+    if (!bar) return;
+    function edges() {
+      var scrollable = bar.scrollWidth > bar.clientWidth + 2;
+      bar.classList.toggle("more-left", scrollable && bar.scrollLeft > 2);
+      bar.classList.toggle("more-right", scrollable && bar.scrollLeft + bar.clientWidth < bar.scrollWidth - 2);
+    }
+    var current = bar.querySelector('[aria-current="page"]');
+    if (current && bar.scrollWidth > bar.clientWidth + 2) {
+      var item = current.closest(".nav-item") || current;
+      if (item.offsetLeft + item.offsetWidth > bar.clientWidth) bar.scrollLeft = item.offsetLeft - 24;
+    }
+    edges();
+    bar.addEventListener("scroll", edges, { passive: true });
+    window.addEventListener("resize", edges);
+  })();
+
   // ---------------------------------------------------------------- charts
   var specs = (window.EP && window.EP.charts) || [];
   var MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];

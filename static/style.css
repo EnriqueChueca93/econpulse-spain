@@ -103,6 +103,20 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
 
 .site-nav { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; padding-bottom: 0; }
 .site-nav::-webkit-scrollbar { display: none; }
+/* Wide enough screens show every tab, on two rows if need be. Phones scroll the bar sideways, and an
+   edge fades where there are more tabs (classes set by app.js). */
+@media (min-width: 720px) {
+  .site-nav { flex-wrap: wrap; overflow-x: visible; }
+}
+@media (max-width: 719.98px) {
+  .site-nav.more-right { -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 56px), transparent);
+    mask-image: linear-gradient(to right, #000 calc(100% - 56px), transparent); }
+  .site-nav.more-left { -webkit-mask-image: linear-gradient(to right, transparent, #000 40px);
+    mask-image: linear-gradient(to right, transparent, #000 40px); }
+  .site-nav.more-left.more-right {
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 40px, #000 calc(100% - 56px), transparent);
+    mask-image: linear-gradient(to right, transparent, #000 40px, #000 calc(100% - 56px), transparent); }
+}
 .site-nav .nav-item { flex: none; display: inline-flex; align-items: stretch; }
 .site-nav a {
   flex: none; padding: 8px 4px 9px 10px; font-size: 14px; color: var(--text-2); text-decoration: none;
