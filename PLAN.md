@@ -211,7 +211,8 @@ Each batch is sized for one working session, ends with something you can open or
 - Automatic "what changed since the last update" notes, rule-based
 - About and methodology page, data-freshness page
 
-### Batch 9 — Go online
+### Batch 9 — Go online ✅ done 1 Nov 2026
+*Result: the site is live at https://enriquechueca93.github.io/econpulse-spain/, from the public repository EnriqueChueca93/econpulse-spain. A GitHub Actions workflow runs once a day at 17:30 UTC: offline tests, `update`, a commit of the new data back to the repository, and a Pages deploy. Code pushes rebuild and redeploy from the saved data, and the workflow can be run by hand. `requirements.txt` pins the versions tested locally. Before the first push, the commit history was rewritten to use the GitHub noreply address instead of a personal email. No custom domain.*
 - GitHub repository, GitHub Actions on a schedule (e.g. 07:30 and 18:30 Madrid time) that runs `update` and deploys `site/` to GitHub Pages; custom domain optional
 - Optional later: email digest, AI-written daily briefing, more tools (rate decomposer, Economy vs. Trend)
 
@@ -220,9 +221,9 @@ Each batch is sized for one working session, ends with something you can open or
 ## 6. Open decisions
 
 1. ~~**Language**~~ **Decided 30 Oct 2026:** English UI, with Spanish official names alongside (e.g. "Social Security registrations · *Afiliados medios*").
-2. **Name and domain:** "EconPulse Spain" for now. Needed by Batch 9.
-3. **Hosting account:** the GitHub account to use. Needed by Batch 9.
-4. **Update frequency once online:** daily or twice daily (markets want more often than macro data).
+2. ~~**Name and domain**~~ **Decided 1 Nov 2026:** "EconPulse Spain" on GitHub Pages' own address; no custom domain for now.
+3. ~~**Hosting account**~~ **Decided 1 Nov 2026:** GitHub account EnriqueChueca93, public repository `econpulse-spain`.
+4. ~~**Update frequency once online**~~ **Decided 1 Nov 2026:** once a day, 17:30 UTC.
 5. **History window for z-scores:** econvitals uses 2013 onwards; the same works for Spain and avoids the 2008–12 crisis dominating the scale.
 
 ---

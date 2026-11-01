@@ -17,6 +17,20 @@ python -m venv .venv
 .venv/Scripts/python -m econpulse update
 ```
 
+## The site online
+
+**https://enriquechueca93.github.io/econpulse-spain/** (repository:
+[EnriqueChueca93/econpulse-spain](https://github.com/EnriqueChueca93/econpulse-spain)).
+
+A GitHub Actions workflow ([.github/workflows/update.yml](.github/workflows/update.yml)) runs once a day at
+17:30 UTC (18:30 Madrid in winter, 19:30 in summer): it runs the offline tests, fetches the data, rebuilds the
+site, commits the updated `data/` back to the repository as "Data update …" and publishes `site/` to GitHub
+Pages. Pushing code changes rebuilds and republishes from the saved data. To update by hand, open the
+repository's **Actions** tab, pick "Update and deploy" and click **Run workflow**.
+
+Because the workflow commits data every day, run `git pull` before working locally. If a local update changed
+`data/` and you only want the code, `git checkout -- data` discards the local data before pulling.
+
 ## The site
 
 - **Home** (`site/index.html`): 16 key-indicator tiles, EconPulse readings (activity and inflation against their
