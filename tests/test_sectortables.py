@@ -310,7 +310,7 @@ def test_the_sector_tables_page(store, tmp_path):
     assert set(fiscal) == {"amounts", "gdp"}
     assert fiscal["amounts"]["title"].startswith("Table 2a") and fiscal["gdp"]["title"].startswith("Table 2b")
     assert set(by_id["real-sector"]["tables"][0]) == {"amounts", "gdp"}
-    assert [set(x) for x in by_id["debt-sustainability"]["tables"]] == [{"single"}, {"single"}]   # shares of GDP only
+    assert [set(x) for x in by_id["debt-sustainability"]["tables"]] == [{"amounts", "gdp"}, {"amounts", "gdp"}]
     # Every line of a pair exists in both versions, in the same order (the first row can name the unit).
     for amounts, gdp in [(st.BOP_AMOUNTS, st.BOP_GDP), (st.EXT_AMOUNTS, st.EXT_GDP), (st.MONETARY, st.MONETARY_GDP)]:
         assert [r.label for r in amounts.rows][1:] == [r.label for r in gdp.rows][1:]
@@ -349,3 +349,23 @@ def test_convert_switches_amounts_and_shares(store):
     fsi = by_label(st.convert(st.FINANCIAL_SOUNDNESS, "gdp"), store, 2015, 2025)
     assert fsi["Nonperforming loans (percent of GDP)"][2020] == pytest.approx(30.0 / (nominal[2020] / 1000) * 100, abs=1e-6)
     assert st._with_unit("Potential output 1/", "percent change") == "Potential output (percent change) 1/"
+
+
+def test_debt_sustainability_in_euros(fiscal_store):
+    dsa = by_label(st.DSA_BASELINE_AMOUNTS, fiscal_store)
+    y = 2020
+    # In euros the change in debt is the primary deficit, interest paid less received, and other flows.
+    parts = (dsa["Primary deficit"][y] + dsa["Interest payments 1/"][y] + dsa["(minus) Interest revenues 1/"][y]
+             + dsa["Other flows (stock-flow adjustment) 2/"][y])
+    assert dsa["Change in public debt"][y] == pytest.approx(parts, abs=1e-5)
+    nominal = 1000.0 * 1.04 ** (y - 2015)
+    assert dsa["Public debt"][y] == pytest.approx(nominal * (1.0 - 0.01 * (y - 2015)) / 1000, abs=1e-6)
+    # The Commission's tables in euros: ratios times its GDP path, from Eurostat's GDP in its first year.
+    data = Data(load_registry(), fiscal_store)
+    raw = st.fiscal.load()["dsm"]
+    first = int(min(raw["baseline"]["debt"]))
+    fiscal_store.save_series("gdp_nominal_annual", annual([1000.0] * (first - 2015 + 1)))
+    data = Data(load_registry(), fiscal_store)
+    stress = st.values(st.DSA_STRESS_AMOUNTS, data, first, first, first)
+    base = next(r for r in stress if not r["heading"] and r["label"] == "Baseline (no policy change)")
+    assert base["cells"][0] == pytest.approx(raw["baseline"]["debt"][str(first)] / 100 * 1000 * 1e-3, abs=1e-6)

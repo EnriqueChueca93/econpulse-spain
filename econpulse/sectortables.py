@@ -920,6 +920,93 @@ def _ext_unit_rows(in_gdp: bool) -> list:
                  indent=indent, source=f"{IIP}; {note}", link=link) for label, indent, e, note, link in EXT_LINES]
 
 
+# DSA 1 in euros: the debt changes only through the primary deficit, interest and other flows (growth and
+# inflation lower the ratio, not the amount owed). Projection years use the WEO's net interest.
+DEBT_BN, W_DEBT_BN = scaled(DEBT_EUR, 1e-3), scaled(published("fc_imf_debt_eur"), 1e-9)
+PRIMARY_DEFICIT_BN = scaled(PRIMARY_EUR, -1e-3)
+W_PRIMARY_DEFICIT_BN = scaled(published("fc_imf_primary_balance_eur"), -1e-9)
+INTEREST_PAID_BN, W_NET_INTEREST_BN = scaled(INTEREST_PAID, 1e-3), scaled(W_NET_INTEREST, 1e-9)
+INTEREST_RECEIVED_BN = scaled(INTEREST_RECEIVED, -1e-3)
+
+DSA_BASELINE_AMOUNTS = replace(
+    DSA_BASELINE, id="dsa-baseline-amounts", unit="Billions of euros unless otherwise indicated",
+    rows=[
+        Line("Public debt", DEBT_BN, W_DEBT_BN, source=f"{ESTAT}; Maastricht debt", proj_source=WEO, link="gg_debt_eur"),
+        Line("Change in public debt", diff(DEBT_BN), diff(W_DEBT_BN), source=ESTAT, proj_source=WEO),
+        Line("Primary deficit", PRIMARY_DEFICIT_BN, W_PRIMARY_DEFICIT_BN, indent=1,
+             source=f"{ESTAT}; minus the primary balance", proj_source=WEO),
+        Line("Interest payments 1/", INTEREST_PAID_BN, W_NET_INTEREST_BN, indent=1, source=f"{ESTAT}; D41 paid",
+             proj_source=f"{WEO}; net interest", link="gg_interest_paid_eur"),
+        Line("(minus) Interest revenues 1/", INTEREST_RECEIVED_BN, indent=1, source=f"{ESTAT}; D41 received",
+             link="gg_interest_received_eur"),
+        Line("Other flows (stock-flow adjustment) 2/",
+             less(diff(DEBT_BN), PRIMARY_DEFICIT_BN, INTEREST_PAID_BN, INTEREST_RECEIVED_BN),
+             less(diff(W_DEBT_BN), W_PRIMARY_DEFICIT_BN, W_NET_INTEREST_BN), indent=1, source="EconPulse calculation",
+             proj_source="EconPulse calculation from the WEO"),
+        Group("Memo items"),
+        Line("Nominal GDP (billions of euros)", scaled(GDP, 1e-3), scaled(published("fc_imf_nominal_gdp"), 1e-9), source=ESTAT,
+             proj_source=WEO, link="gdp_nominal_annual"),
+        Line("Nominal GDP growth (percent)", growth(GDP), growth(published("fc_imf_nominal_gdp")), source=ESTAT, proj_source=WEO,
+             link="gdp_nominal_annual"),
+        Line("Effective interest rate (percent) 1/", EFFECTIVE_RATE, W_EFFECTIVE_RATE,
+             source=f"{ESTAT}; interest paid over the previous year's debt", proj_source=f"{WEO}; net interest"),
+    ],
+    footnotes=[
+        "In euros the debt changes only through the deficit and other flows; growth and inflation lower the debt "
+        "ratio, not the amount owed, so their effects appear only in the percent-of-GDP version.",
+        "1/ Interest paid and received. The World Economic Outlook publishes interest only net of interest earnings, "
+        "so projection years show net interest and no separate interest revenues.",
+        "2/ The change in debt the deficit does not explain: mainly changes in government deposits and other "
+        "financial assets.",
+    ],
+)
+
+
+def _dsm_gdp(data: Data):
+    """The Commission's nominal GDP path (€ mn): Eurostat's GDP in its first year, grown at the baseline's
+    nominal growth rate."""
+    if "dsm_gdp" not in data.cache:
+        gdp, rows = GDP(data), (fiscal.baseline(fiscal.load()) if fiscal.BASELINE_FILE.exists() else {})
+        base = dsm("baseline", "debt")(data)
+        path = {}
+        if gdp is not None and base is not None and int(base.index.min()) in gdp.index:
+            first = int(base.index.min())
+            path[first] = float(gdp[first])
+            for y in range(first + 1, int(base.index.max()) + 1):
+                path[y] = path[y - 1] * (1 + rows[y]["g"] / 100)
+        data.cache["dsm_gdp"] = pd.Series(path, dtype=float)
+    return data.cache["dsm_gdp"]
+
+
+DSM_GDP = _expr(_dsm_gdp, {"gdp_nominal_annual"})
+
+
+_DSM_GROUPS = {"Gross public debt": "Gross public debt (billions of euros) 1/",
+               "Stochastic projections around the baseline 1/":
+                   "Stochastic projections around the baseline (billions of euros) 1/ 2/",
+               "Baseline": "Baseline (billions of euros)"}
+
+
+def _dsm_amounts(row):
+    if isinstance(row, Group):
+        return Group(_DSM_GROUPS.get(row.label, row.label))
+    to_bn = lambda e: combine(lambda v, y: v / 100 * y * 1e-3, e, DSM_GDP)
+    return replace(row, actual=to_bn(row.actual), proj=to_bn(row.proj))
+
+
+DSA_STRESS_AMOUNTS = replace(
+    DSA_STRESS, id="dsa-stress-amounts", unit="Billions of euros", rows=[_dsm_amounts(r) for r in DSA_STRESS.rows],
+    footnotes=[
+        "1/ The Commission's debt ratios times its baseline nominal GDP (Eurostat's GDP in 2024, grown at the "
+        "baseline's nominal growth rate). The stress tests and percentiles are shown at baseline GDP, as a guide to "
+        "scale: each scenario also has its own path for GDP, which the Commission does not publish.",
+        "2/ The range of debt paths the Commission simulates from past shocks to growth, interest rates and the "
+        "primary balance: four in five paths lie between the 10th and 90th percentiles.",
+        "The baseline assumes no change in policy after the Commission's forecast years: the structural primary "
+        "balance then moves only with the cost of ageing.",
+    ],
+)
+
 BOP_AMOUNTS = replace(BALANCE_OF_PAYMENTS, id="bop-amounts", unit="Billions of euros", rows=_bop_unit_rows(False))
 BOP_GDP = replace(BALANCE_OF_PAYMENTS, id="bop-gdp", unit="Percent of GDP", rows=_bop_unit_rows(True))
 EXT_AMOUNTS = replace(EXTERNAL_DEBT, id="ext-amounts", unit="End of year; billions of euros", rows=_ext_unit_rows(False))
@@ -1424,10 +1511,11 @@ PAGE = [
      "Revenue, spending and the balances of the general government, from Eurostat's accounts.",
      [(FISCAL_EUR, FISCAL_GDP)], [chart_fiscal]),
     ("debt-sustainability", "Debt sustainability",
-     "What drives the debt ratio, in the IMF's layout, and how it fares under the European Commission's stress tests. "
-     "Both tables stay in percent of GDP whichever unit is chosen: they analyse the debt ratio itself, and each stress "
-     "test has its own path for GDP.",
-     [DSA_BASELINE, DSA_STRESS], [chart_debt_dynamics, dsa_fan_chart, dsa_stress_chart]),
+     "What changes the debt, in the IMF's layout, and how it fares under the European Commission's stress tests. In "
+     "percent of GDP, DSA 1 splits the change in the debt ratio, growth and inflation included; in euros, the change "
+     "in the amount owed, which only the deficit, interest and other flows move.",
+     [(DSA_BASELINE_AMOUNTS, DSA_BASELINE), (DSA_STRESS_AMOUNTS, DSA_STRESS)],
+     [chart_debt_dynamics, dsa_fan_chart, dsa_stress_chart]),
     ("financial-soundness", "Financial soundness",
      "Bank capital, asset quality and profitability, banks' exposures at home, and the debt of firms and households.",
      [(convert(FINANCIAL_SOUNDNESS, "amounts"), convert(FINANCIAL_SOUNDNESS, "gdp"))], [chart_capital, chart_bad_loans]),
