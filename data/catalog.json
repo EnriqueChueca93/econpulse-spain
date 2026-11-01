@@ -178,6 +178,266 @@
   "n_obs": 441,
   "signature": "[\"oecd\", \"OECD.SDD.STES,DSD_STES@DF_FINMARK,/GBR.M.IRLT.PA.....\", {}, 1.0]"
  },
+ "bop_capital_account": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:11:46+00:00",
+  "first_date": "1993-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 33,
+  "signature": "[\"eurostat\", \"bop_c6_a\", {\"bop_item\": \"KA\", \"currency\": \"MIO_EUR\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S1\", \"sectpart\": \"S1\", \"stk_flow\": \"BAL\"}, 1.0]",
+  "source_name": "Balance of payments by country - annual data (BPM6)",
+  "source_updated": "2026-10-02T11:00:00+0200"
+ },
+ "bop_derivatives": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:11:47+00:00",
+  "first_date": "1993-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 33,
+  "signature": "[\"eurostat\", \"bop_c6_a\", {\"bop_item\": \"FA__F__F7\", \"currency\": \"MIO_EUR\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S1\", \"sectpart\": \"S1\", \"stk_flow\": \"NET\"}, 1.0]",
+  "source_name": "Balance of payments by country - annual data (BPM6)",
+  "source_updated": "2026-10-02T11:00:00+0200"
+ },
+ "bop_errors": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:11:49+00:00",
+  "first_date": "1993-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 33,
+  "signature": "[\"eurostat\", \"bop_c6_a\", {\"bop_item\": \"EO\", \"currency\": \"MIO_EUR\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S1\", \"sectpart\": \"S1\", \"stk_flow\": \"NET\"}, 1.0]",
+  "source_name": "Balance of payments by country - annual data (BPM6)",
+  "source_updated": "2026-10-02T11:00:00+0200"
+ },
+ "bop_exports_goods": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:11:45+00:00",
+  "first_date": "1993-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 33,
+  "signature": "[\"eurostat\", \"bop_c6_a\", {\"bop_item\": \"G\", \"currency\": \"MIO_EUR\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S1\", \"sectpart\": \"S1\", \"stk_flow\": \"CRE\"}, 1.0]",
+  "source_name": "Balance of payments by country - annual data (BPM6)",
+  "source_updated": "2026-10-02T11:00:00+0200"
+ },
+ "bop_exports_gs": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:11:44+00:00",
+  "first_date": "1993-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 33,
+  "signature": "[\"eurostat\", \"bop_c6_a\", {\"bop_item\": \"GS\", \"currency\": \"MIO_EUR\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S1\", \"sectpart\": \"S1\", \"stk_flow\": \"CRE\"}, 1.0]",
+  "source_name": "Balance of payments by country - annual data (BPM6)",
+  "source_updated": "2026-10-02T11:00:00+0200"
+ },
+ "bop_exports_services": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:11:45+00:00",
+  "first_date": "1993-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 33,
+  "signature": "[\"eurostat\", \"bop_c6_a\", {\"bop_item\": \"S\", \"currency\": \"MIO_EUR\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S1\", \"sectpart\": \"S1\", \"stk_flow\": \"CRE\"}, 1.0]",
+  "source_name": "Balance of payments by country - annual data (BPM6)",
+  "source_updated": "2026-10-02T11:00:00+0200"
+ },
+ "bop_fdi_abroad": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:11:47+00:00",
+  "first_date": "1993-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 33,
+  "signature": "[\"eurostat\", \"bop_c6_a\", {\"bop_item\": \"FA__D__F\", \"currency\": \"MIO_EUR\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S1\", \"sectpart\": \"S1\", \"stk_flow\": \"ASS\"}, 1.0]",
+  "source_name": "Balance of payments by country - annual data (BPM6)",
+  "source_updated": "2026-10-02T11:00:00+0200"
+ },
+ "bop_fdi_inward": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:11:47+00:00",
+  "first_date": "1993-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 33,
+  "signature": "[\"eurostat\", \"bop_c6_a\", {\"bop_item\": \"FA__D__F\", \"currency\": \"MIO_EUR\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S1\", \"sectpart\": \"S1\", \"stk_flow\": \"LIAB\"}, 1.0]",
+  "source_name": "Balance of payments by country - annual data (BPM6)",
+  "source_updated": "2026-10-02T11:00:00+0200"
+ },
+ "bop_fdi_net": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:11:47+00:00",
+  "first_date": "1993-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 33,
+  "signature": "[\"eurostat\", \"bop_c6_a\", {\"bop_item\": \"FA__D__F\", \"currency\": \"MIO_EUR\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S1\", \"sectpart\": \"S1\", \"stk_flow\": \"NET\"}, 1.0]",
+  "source_name": "Balance of payments by country - annual data (BPM6)",
+  "source_updated": "2026-10-02T11:00:00+0200"
+ },
+ "bop_financial_account": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:11:47+00:00",
+  "first_date": "1993-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 33,
+  "signature": "[\"eurostat\", \"bop_c6_a\", {\"bop_item\": \"FA\", \"currency\": \"MIO_EUR\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S1\", \"sectpart\": \"S1\", \"stk_flow\": \"NET\"}, 1.0]",
+  "source_name": "Balance of payments by country - annual data (BPM6)",
+  "source_updated": "2026-10-02T11:00:00+0200"
+ },
+ "bop_goods_balance": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:11:45+00:00",
+  "first_date": "1993-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 33,
+  "signature": "[\"eurostat\", \"bop_c6_a\", {\"bop_item\": \"G\", \"currency\": \"MIO_EUR\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S1\", \"sectpart\": \"S1\", \"stk_flow\": \"BAL\"}, 1.0]",
+  "source_name": "Balance of payments by country - annual data (BPM6)",
+  "source_updated": "2026-10-02T11:00:00+0200"
+ },
+ "bop_imports_goods": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:11:45+00:00",
+  "first_date": "1993-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 33,
+  "signature": "[\"eurostat\", \"bop_c6_a\", {\"bop_item\": \"G\", \"currency\": \"MIO_EUR\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S1\", \"sectpart\": \"S1\", \"stk_flow\": \"DEB\"}, 1.0]",
+  "source_name": "Balance of payments by country - annual data (BPM6)",
+  "source_updated": "2026-10-02T11:00:00+0200"
+ },
+ "bop_imports_gs": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:11:45+00:00",
+  "first_date": "1993-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 33,
+  "signature": "[\"eurostat\", \"bop_c6_a\", {\"bop_item\": \"GS\", \"currency\": \"MIO_EUR\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S1\", \"sectpart\": \"S1\", \"stk_flow\": \"DEB\"}, 1.0]",
+  "source_name": "Balance of payments by country - annual data (BPM6)",
+  "source_updated": "2026-10-02T11:00:00+0200"
+ },
+ "bop_imports_services": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:11:45+00:00",
+  "first_date": "1993-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 33,
+  "signature": "[\"eurostat\", \"bop_c6_a\", {\"bop_item\": \"S\", \"currency\": \"MIO_EUR\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S1\", \"sectpart\": \"S1\", \"stk_flow\": \"DEB\"}, 1.0]",
+  "source_name": "Balance of payments by country - annual data (BPM6)",
+  "source_updated": "2026-10-02T11:00:00+0200"
+ },
+ "bop_other_investment": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:11:47+00:00",
+  "first_date": "1993-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 33,
+  "signature": "[\"eurostat\", \"bop_c6_a\", {\"bop_item\": \"FA__O__F\", \"currency\": \"MIO_EUR\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S1\", \"sectpart\": \"S1\", \"stk_flow\": \"NET\"}, 1.0]",
+  "source_name": "Balance of payments by country - annual data (BPM6)",
+  "source_updated": "2026-10-02T11:00:00+0200"
+ },
+ "bop_other_investment_bde": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:11:47+00:00",
+  "first_date": "1993-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 33,
+  "signature": "[\"eurostat\", \"bop_c6_a\", {\"bop_item\": \"FA__O__F\", \"currency\": \"MIO_EUR\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S121\", \"sectpart\": \"S1\", \"stk_flow\": \"NET\"}, 1.0]",
+  "source_name": "Balance of payments by country - annual data (BPM6)",
+  "source_updated": "2026-10-02T11:00:00+0200"
+ },
+ "bop_portfolio": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:11:47+00:00",
+  "first_date": "1993-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 33,
+  "signature": "[\"eurostat\", \"bop_c6_a\", {\"bop_item\": \"FA__P__F\", \"currency\": \"MIO_EUR\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S1\", \"sectpart\": \"S1\", \"stk_flow\": \"NET\"}, 1.0]",
+  "source_name": "Balance of payments by country - annual data (BPM6)",
+  "source_updated": "2026-10-02T11:00:00+0200"
+ },
+ "bop_primary_income": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:11:46+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 31,
+  "signature": "[\"eurostat\", \"bop_c6_a\", {\"bop_item\": \"IN1\", \"currency\": \"MIO_EUR\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S1\", \"sectpart\": \"S1\", \"stk_flow\": \"BAL\"}, 1.0]",
+  "source_name": "Balance of payments by country - annual data (BPM6)",
+  "source_updated": "2026-10-02T11:00:00+0200"
+ },
+ "bop_reserves": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:11:49+00:00",
+  "first_date": "1993-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 33,
+  "signature": "[\"eurostat\", \"bop_c6_a\", {\"bop_item\": \"FA__R__F\", \"currency\": \"MIO_EUR\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S121\", \"sectpart\": \"S1\", \"stk_flow\": \"ASS\"}, 1.0]",
+  "source_name": "Balance of payments by country - annual data (BPM6)",
+  "source_updated": "2026-10-02T11:00:00+0200"
+ },
+ "bop_secondary_income": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:11:46+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 31,
+  "signature": "[\"eurostat\", \"bop_c6_a\", {\"bop_item\": \"IN2\", \"currency\": \"MIO_EUR\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S1\", \"sectpart\": \"S1\", \"stk_flow\": \"BAL\"}, 1.0]",
+  "source_name": "Balance of payments by country - annual data (BPM6)",
+  "source_updated": "2026-10-02T11:00:00+0200"
+ },
+ "bop_secondary_income_gov": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:11:46+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 31,
+  "signature": "[\"eurostat\", \"bop_c6_a\", {\"bop_item\": \"IN2\", \"currency\": \"MIO_EUR\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S13\", \"sectpart\": \"S1\", \"stk_flow\": \"BAL\"}, 1.0]",
+  "source_name": "Balance of payments by country - annual data (BPM6)",
+  "source_updated": "2026-10-02T11:00:00+0200"
+ },
+ "bop_secondary_income_other": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:11:46+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 31,
+  "signature": "[\"eurostat\", \"bop_c6_a\", {\"bop_item\": \"IN2\", \"currency\": \"MIO_EUR\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S1W\", \"sectpart\": \"S1\", \"stk_flow\": \"BAL\"}, 1.0]",
+  "source_name": "Balance of payments by country - annual data (BPM6)",
+  "source_updated": "2026-10-02T11:00:00+0200"
+ },
+ "bop_services_balance": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:11:45+00:00",
+  "first_date": "1993-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 33,
+  "signature": "[\"eurostat\", \"bop_c6_a\", {\"bop_item\": \"S\", \"currency\": \"MIO_EUR\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S1\", \"sectpart\": \"S1\", \"stk_flow\": \"BAL\"}, 1.0]",
+  "source_name": "Balance of payments by country - annual data (BPM6)",
+  "source_updated": "2026-10-02T11:00:00+0200"
+ },
+ "bop_travel_balance": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:11:46+00:00",
+  "first_date": "1993-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 33,
+  "signature": "[\"eurostat\", \"bop_c6_a\", {\"bop_item\": \"SD\", \"currency\": \"MIO_EUR\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S1\", \"sectpart\": \"S1\", \"stk_flow\": \"BAL\"}, 1.0]",
+  "source_name": "Balance of payments by country - annual data (BPM6)",
+  "source_updated": "2026-10-02T11:00:00+0200"
+ },
+ "bop_travel_credit": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:11:46+00:00",
+  "first_date": "1993-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 33,
+  "signature": "[\"eurostat\", \"bop_c6_a\", {\"bop_item\": \"SD\", \"currency\": \"MIO_EUR\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S1\", \"sectpart\": \"S1\", \"stk_flow\": \"CRE\"}, 1.0]",
+  "source_name": "Balance of payments by country - annual data (BPM6)",
+  "source_updated": "2026-10-02T11:00:00+0200"
+ },
+ "bop_travel_debit": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:11:46+00:00",
+  "first_date": "1993-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 33,
+  "signature": "[\"eurostat\", \"bop_c6_a\", {\"bop_item\": \"SD\", \"currency\": \"MIO_EUR\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S1\", \"sectpart\": \"S1\", \"stk_flow\": \"DEB\"}, 1.0]",
+  "source_name": "Balance of payments by country - annual data (BPM6)",
+  "source_updated": "2026-10-02T11:00:00+0200"
+ },
  "brent_eur": {
   "status": "ok",
   "fetched_at": "2026-11-01T06:28:53+00:00",
@@ -997,6 +1257,116 @@
   "signature": "[\"ine\", \"CNTR7275\", {}, 1.0]",
   "flash": false,
   "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. Exportaciones de servicios. Dato base. Índices de volumen encadenados."
+ },
+ "ext_deposits": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:11:51+00:00",
+  "first_date": "1999-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 27,
+  "signature": "[\"eurostat\", \"bop_iip6_q\", {\"bop_item\": \"FA__O__F2\", \"currency\": \"MIO_EUR\", \"freq\": \"A\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S1\", \"sectpart\": \"S1\", \"stk_flow\": \"L_LE\"}, 1.0]",
+  "source_name": "International investment position - quarterly and annual data (BPM6)",
+  "source_updated": "2026-10-29T11:00:00+0100"
+ },
+ "ext_direct_investment": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:11:50+00:00",
+  "first_date": "1993-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 33,
+  "signature": "[\"eurostat\", \"bop_iip6_q\", {\"bop_item\": \"FA__D__FL\", \"currency\": \"MIO_EUR\", \"freq\": \"A\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S1\", \"sectpart\": \"S1\", \"stk_flow\": \"L_LE\"}, 1.0]",
+  "source_name": "International investment position - quarterly and annual data (BPM6)",
+  "source_updated": "2026-10-29T11:00:00+0100"
+ },
+ "ext_other": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:11:51+00:00",
+  "first_date": "1992-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 34,
+  "signature": "[\"eurostat\", \"bop_iip6_q\", {\"bop_item\": \"FA__O__F\", \"currency\": \"MIO_EUR\", \"freq\": \"A\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S1\", \"sectpart\": \"S1\", \"stk_flow\": \"L_LE\"}, 1.0]",
+  "source_name": "International investment position - quarterly and annual data (BPM6)",
+  "source_updated": "2026-10-29T11:00:00+0100"
+ },
+ "ext_other_bde": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:11:49+00:00",
+  "first_date": "1992-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 34,
+  "signature": "[\"eurostat\", \"bop_iip6_q\", {\"bop_item\": \"FA__O__F\", \"currency\": \"MIO_EUR\", \"freq\": \"A\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S121\", \"sectpart\": \"S1\", \"stk_flow\": \"L_LE\"}, 1.0]",
+  "source_name": "International investment position - quarterly and annual data (BPM6)",
+  "source_updated": "2026-10-29T11:00:00+0100"
+ },
+ "ext_other_gov": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:11:49+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 18,
+  "signature": "[\"eurostat\", \"bop_iip6_q\", {\"bop_item\": \"FA__O__F\", \"currency\": \"MIO_EUR\", \"freq\": \"A\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S13\", \"sectpart\": \"S1\", \"stk_flow\": \"L_LE\"}, 1.0]",
+  "source_name": "International investment position - quarterly and annual data (BPM6)",
+  "source_updated": "2026-10-29T11:00:00+0100"
+ },
+ "ext_other_mfi": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:11:49+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 18,
+  "signature": "[\"eurostat\", \"bop_iip6_q\", {\"bop_item\": \"FA__O__F\", \"currency\": \"MIO_EUR\", \"freq\": \"A\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S12T\", \"sectpart\": \"S1\", \"stk_flow\": \"L_LE\"}, 1.0]",
+  "source_name": "International investment position - quarterly and annual data (BPM6)",
+  "source_updated": "2026-10-29T11:00:00+0100"
+ },
+ "ext_other_other": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:11:49+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 18,
+  "signature": "[\"eurostat\", \"bop_iip6_q\", {\"bop_item\": \"FA__O__F\", \"currency\": \"MIO_EUR\", \"freq\": \"A\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S1P\", \"sectpart\": \"S1\", \"stk_flow\": \"L_LE\"}, 1.0]",
+  "source_name": "International investment position - quarterly and annual data (BPM6)",
+  "source_updated": "2026-10-29T11:00:00+0100"
+ },
+ "ext_securities": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:11:50+00:00",
+  "first_date": "1992-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 34,
+  "signature": "[\"eurostat\", \"bop_iip6_q\", {\"bop_item\": \"FA__P__F3\", \"currency\": \"MIO_EUR\", \"freq\": \"A\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S1\", \"sectpart\": \"S1\", \"stk_flow\": \"L_LE\"}, 1.0]",
+  "source_name": "International investment position - quarterly and annual data (BPM6)",
+  "source_updated": "2026-10-29T11:00:00+0100"
+ },
+ "ext_securities_gov": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:11:49+00:00",
+  "first_date": "1992-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 34,
+  "signature": "[\"eurostat\", \"bop_iip6_q\", {\"bop_item\": \"FA__P__F3\", \"currency\": \"MIO_EUR\", \"freq\": \"A\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S13\", \"sectpart\": \"S1\", \"stk_flow\": \"L_LE\"}, 1.0]",
+  "source_name": "International investment position - quarterly and annual data (BPM6)",
+  "source_updated": "2026-10-29T11:00:00+0100"
+ },
+ "ext_securities_mfi": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:11:49+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 24,
+  "signature": "[\"eurostat\", \"bop_iip6_q\", {\"bop_item\": \"FA__P__F3\", \"currency\": \"MIO_EUR\", \"freq\": \"A\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S12T\", \"sectpart\": \"S1\", \"stk_flow\": \"L_LE\"}, 1.0]",
+  "source_name": "International investment position - quarterly and annual data (BPM6)",
+  "source_updated": "2026-10-29T11:00:00+0100"
+ },
+ "ext_securities_other": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:11:49+00:00",
+  "first_date": "1992-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 34,
+  "signature": "[\"eurostat\", \"bop_iip6_q\", {\"bop_item\": \"FA__P__F3\", \"currency\": \"MIO_EUR\", \"freq\": \"A\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S1P\", \"sectpart\": \"S1\", \"stk_flow\": \"L_LE\"}, 1.0]",
+  "source_name": "International investment position - quarterly and annual data (BPM6)",
+  "source_updated": "2026-10-29T11:00:00+0100"
  },
  "fc_airef_balance": {
   "status": "ok",
@@ -3121,6 +3491,16 @@
   "source_name": "Non-financial transactions - annual data",
   "source_updated": "2026-10-29T23:00:00+0100"
  },
+ "net_external_debt_gdp": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:11:49+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 31,
+  "signature": "[\"eurostat\", \"tipsii20\", {\"geo\": \"ES\", \"partner\": \"WRL_REST\", \"unit\": \"PC_GDP\"}, 1.0]",
+  "source_name": "Net external debt - annual data, % of GDP",
+  "source_updated": "2026-10-28T23:00:00+0100"
+ },
  "new_mortgage_lending": {
   "status": "ok",
   "fetched_at": "2026-11-01T06:28:27+00:00",
@@ -3128,6 +3508,16 @@
   "last_date": "2026-08-01",
   "n_obs": 284,
   "signature": "[\"ecb\", \"MIR/M.ES.B.A2C.A.B.A.2250.EUR.N\", {}, 1.0]"
+ },
+ "niip_eur_annual": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:11:49+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 31,
+  "signature": "[\"eurostat\", \"tipsii10\", {\"geo\": \"ES\", \"partner\": \"WRL_REST\", \"unit\": \"MIO_NAC\"}, 1.0]",
+  "source_name": "Net international investment position - annual data",
+  "source_updated": "2026-10-28T23:00:00+0100"
  },
  "niip_gdp_annual": {
   "status": "ok",

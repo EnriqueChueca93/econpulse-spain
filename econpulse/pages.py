@@ -817,6 +817,15 @@ PAGES: dict[str, list[dict]] = {
                  "series": [("current_account", "avg_1y", "Current account")]},
             ],
         },
+        {
+            "id": "external-tables",
+            "title": "IMF-style external accounts",
+            "intro": ("Tables 4 and 5 of the IMF's 2026 Article IV report for Spain: the balance of payments, in euros "
+                      "and in % of GDP, and external debt by sector and instrument, from Eurostat. The World Economic "
+                      "Outlook projects only the current account, so the other lines show … in the projection years."),
+            "uses": sorted(sectortables.BALANCE_OF_PAYMENTS.indicator_ids() | sectortables.EXTERNAL_DEBT.indicator_ids()),
+            "tables": [sectortables.table_function("balance-of-payments"), sectortables.table_function("external-debt")],
+        },
     ],
     # ------------------------------------------------------------------ Housing
     "housing": [

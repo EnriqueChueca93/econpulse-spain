@@ -117,8 +117,9 @@ def test_the_workbook_and_the_gdp_page(store, tmp_path):
     site = tmp_path / "site"
     build_site(load_registry(), store, site_dir=site)
     wb = load_workbook(site / "data" / st.WORKBOOK)
+    # Table 5 has no data in this store, so its sheet is left out.
     assert wb.sheetnames == ["Contents", "T1 Real sector", "T2a Fiscal EUR bn", "T2b Fiscal % GDP", "DSA1 Baseline",
-                             "DSA2 EC stress tests"]
+                             "DSA2 EC stress tests", "T4 Balance of payments"]
     ws = wb["T1 Real sector"]
     assert ws["A1"].value == "Table 1. Spain: Main Economic Indicators" and ws.freeze_panes == "B5"
     header = [c.value for c in ws[4]]
@@ -156,9 +157,13 @@ def fiscal_store(store):
 
 
 def by_label(table, store, first=2015, last=2031):
+    """Line values by label; where a label repeats (euros, then % of GDP), the first."""
     data = Data(load_registry(), store)
-    return {r["label"]: dict(zip(range(first, last + 1), r["cells"]))
-            for r in st.values(table, data, first, last, 2025) if not r["heading"]}
+    out = {}
+    for r in st.values(table, data, first, last, 2025):
+        if not r["heading"]:
+            out.setdefault(r["label"], dict(zip(range(first, last + 1), r["cells"])))
+    return out
 
 
 def test_government_operations(fiscal_store):
@@ -206,3 +211,38 @@ def test_commission_stress_tests_come_from_the_dsm_file(tmp_path):
     assert fan["series"][1]["slot"] == fan["series"][2]["slot"] == 1
     facts = st.dsa_facts(data)
     assert any(f["label"].startswith("Sustainability gap S1") for f in facts)
+
+
+def test_balance_of_payments_and_external_debt(store, tmp_path):
+    n = len(YEARS)
+    gdp = [1000.0 * 1.04 ** k for k in range(n)]
+    store.save_series("current_account_annual", annual([g * 0.03 for g in gdp]))
+    store.save_series("bop_travel_debit", annual([30.0] * n))
+    store.save_series("bop_financial_account", annual([20.0] * n))
+    store.save_series("niip_eur_annual", annual([-500.0 + 10 * k for k in range(n)]))
+    store.save_series("fc_imf_current_account", annual([2.0] * len(WEO), WEO))
+    store.save_series("fc_imf_nominal_gdp", annual([2e12] * len(WEO), WEO))
+    for ind_id, v in [("ext_securities_gov", 300), ("ext_other_gov", 50), ("ext_other_bde", 200), ("ext_securities_mfi", 100),
+                      ("ext_other_mfi", 150), ("ext_securities_other", 40), ("ext_other_other", 60),
+                      ("ext_direct_investment", 100), ("ext_securities", 440), ("ext_other", 460), ("ext_deposits", 300)]:
+        store.save_series(ind_id, annual([float(v)] * n))
+    store.save_series("net_external_debt_gdp", annual([40.0] * n))
+    bop, ext = by_label(st.BALANCE_OF_PAYMENTS, store), by_label(st.EXTERNAL_DEBT, store, 2015, 2025)
+    y = 2020
+    nominal = 1000.0 * 1.04 ** (y - 2015)
+    assert bop["Tourism payments"][y] == pytest.approx(-0.03)                    # payments negative, € bn
+    assert bop["Valuation changes 2/"][y] == pytest.approx((10 - 20) / nominal * 100)
+    assert bop["Current account"][2026] == pytest.approx(40.0)                   # 2% of the WEO's €2,000 bn
+    assert bop["Exports of goods and services"][2026] is None
+    # External debt: sectors with direct investment add up to the total, and so do the instruments.
+    total = ext["Gross external debt 1/"][y]
+    assert total == pytest.approx(1.0)
+    assert sum(ext[k][y] for k in ("General government", "Bank of Spain", "Other monetary financial institutions",
+                                   "Other resident sectors", "Direct investment debt liabilities")) == pytest.approx(total)
+    assert sum(ext[k][y] for k in ("Debt securities", "Loans, trade credits and other liabilities", "Deposits",
+                                   "Direct investment debt liabilities")) == pytest.approx(total)
+    data = Data(load_registry(), store)
+    assert st.span(st.EXTERNAL_DEBT, data) == (2025, 2025)                        # no projection years
+    t = st.web_table(st.EXTERNAL_DEBT, data)
+    assert t["columns"] == ["2021", "2022", "2023", "2024", "2025"] and "proj." not in t["column_notes"]
+    assert "projections" not in t["caption"]

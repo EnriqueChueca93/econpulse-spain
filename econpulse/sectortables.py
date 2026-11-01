@@ -561,7 +561,130 @@ DSA_STRESS = SectorTable(
     ],
 )
 
-TABLES = [REAL_SECTOR, FISCAL_EUR, FISCAL_GDP, DSA_BASELINE, DSA_STRESS]
+# ---------------------------------------------------------------- balance of payments and external debt (Tables 4, 5)
+# Eurostat's BPM6 balance of payments and international investment position, in millions of euros.
+# The WEO projects only the current account, as a share of GDP.
+
+def _bn(x) -> Expr:
+    return scaled(published(x) if isinstance(x, str) else x, 1e-3)
+
+
+def _pct(x) -> Expr:
+    return share(published(x) if isinstance(x, str) else x, GDP)
+
+
+W_CURRENT_ACCOUNT = published("fc_imf_current_account")
+W_CURRENT_ACCOUNT_BN = combine(lambda ca, y: ca / 100 * y * 1e-9, W_CURRENT_ACCOUNT, published("fc_imf_nominal_gdp"))
+NIIP_EUR = published("niip_eur_annual")
+# The change in the investment position not explained by financial flows (prices, exchange rates, other changes).
+VALUATION = _pct(less(diff(NIIP_EUR), published("bop_financial_account")))
+BPM6 = f"{ESTAT}, BPM6"
+
+# label, indent, indicator, shown in % of GDP too
+BOP_LINES = [
+    ("Current account", 0, "current_account_annual", True),
+    ("Trade balance of goods and services", 1, "trade_balance_annual", True),
+    ("Exports of goods and services", 2, "bop_exports_gs", True),
+    ("Exports of goods", 3, "bop_exports_goods", True),
+    ("Exports of services", 3, "bop_exports_services", True),
+    ("Trade of goods balance", 2, "bop_goods_balance", False),
+    ("Imports of goods and services", 2, "bop_imports_gs", True),
+    ("Imports of goods", 3, "bop_imports_goods", True),
+    ("Imports of services", 3, "bop_imports_services", True),
+    ("Services", 2, "bop_services_balance", False),
+    ("o.w. Tourism (travel)", 3, "bop_travel_balance", False),
+    ("Tourism receipts", 3, "bop_travel_credit", False),
+    ("Tourism payments", 3, "bop_travel_debit", False),
+    ("Primary income", 1, "bop_primary_income", True),
+    ("Secondary income", 1, "bop_secondary_income", True),
+    ("General government", 2, "bop_secondary_income_gov", False),
+    ("Other sectors", 2, "bop_secondary_income_other", False),
+    ("Capital account", 0, "bop_capital_account", True),
+    ("Financial account 1/", 0, "bop_financial_account", True),
+    ("Direct investment", 1, "bop_fdi_net", True),
+    ("Spanish investment abroad", 2, "bop_fdi_abroad", False),
+    ("Foreign investment in Spain", 2, "bop_fdi_inward", False),
+    ("Portfolio investment", 1, "bop_portfolio", True),
+    ("Financial derivatives", 1, "bop_derivatives", True),
+    ("Other investment", 1, "bop_other_investment", True),
+    ("o.w. Banco de España", 2, "bop_other_investment_bde", None),   # % of GDP only, as in the IMF's table
+    ("Change in reserve assets", 1, "bop_reserves", True),
+    ("Errors and omissions", 0, "bop_errors", True),
+]
+
+
+def _bop_rows() -> list:
+    eur, gdp = [Group("Billions of euros")], [Group("Percent of GDP")]
+    for label, indent, ind, in_gdp in BOP_LINES:
+        sign = -1 if ind == "bop_travel_debit" else 1   # payments shown as negative, as the IMF does
+        ca = ind == "current_account_annual"
+        if in_gdp is not None:
+            eur.append(Line(label, scaled(_bn(ind), sign), W_CURRENT_ACCOUNT_BN if ca else None, indent=indent,
+                            source=BPM6, proj_source=f"{WEO}; current account share of nominal GDP" if ca else "",
+                            link=ind))
+        if in_gdp is not False:
+            gdp.append(Line(label, _pct(ind), W_CURRENT_ACCOUNT if ca else None, indent=indent, source=BPM6,
+                            proj_source=WEO if ca else "", link=ind))
+    gdp += [Line("Net international investment position", _pct(NIIP_EUR), source=f"{ESTAT}, end of year",
+                 link="niip_eur_annual"),
+            Line("Valuation changes 2/", VALUATION, source=f"{ESTAT}; change in the position less the financial account")]
+    return eur + gdp
+
+
+BALANCE_OF_PAYMENTS = SectorTable(
+    id="balance-of-payments", label="Table 4", title="Balance of Payments",
+    unit="Billions of euros and percent of GDP", section="activity", block="external-tables",
+    sheet="T4 Balance of payments", imf_table="Table 4. Spain: Balance of Payments",
+    rows=_bop_rows(),
+    footnotes=[
+        "Eurostat, sixth edition of the IMF's Balance of Payments Manual (BPM6). The World Economic Outlook projects "
+        "only the current account, as a share of GDP; the euro figure applies it to the WEO's nominal GDP.",
+        "1/ Net lending to the rest of the world: net acquisition of foreign assets less net incurrence of liabilities.",
+        "2/ The change in the net international investment position not explained by the financial account: changes "
+        "in prices and exchange rates, and other changes.",
+    ],
+)
+
+GOV_EXT = total(published("ext_securities_gov"), published("ext_other_gov"))
+MFI_EXT = total(published("ext_securities_mfi"), published("ext_other_mfi"))
+OTHER_EXT = total(published("ext_securities_other"), published("ext_other_other"))
+GROSS_EXT = total(published("ext_securities"), published("ext_other"), published("ext_direct_investment"))
+LOANS_EXT = less(published("ext_other"), published("ext_deposits"))
+NET_EXT_EUR = combine(lambda pct, y: pct / 100 * y, published("net_external_debt_gdp"), GDP)
+IIP = f"{ESTAT}, international investment position"
+
+# label, indent, expression (€ mn), source note, linked indicator
+EXT_LINES = [
+    ("Gross external debt 1/", 0, GROSS_EXT, "debt securities, other investment and direct investment debt", None),
+    ("General government", 1, GOV_EXT, "S13", "ext_securities_gov"),
+    ("Bank of Spain", 1, published("ext_other_bde"), "S121", "ext_other_bde"),
+    ("Other monetary financial institutions", 1, MFI_EXT, "S12T", "ext_securities_mfi"),
+    ("Other resident sectors", 1, OTHER_EXT, "S1P", "ext_securities_other"),
+    ("Debt securities", 1, published("ext_securities"), "F3", "ext_securities"),
+    ("Loans, trade credits and other liabilities", 1, LOANS_EXT, "other investment less deposits", None),
+    ("Deposits", 1, published("ext_deposits"), "F2", "ext_deposits"),
+    ("Direct investment debt liabilities", 1, published("ext_direct_investment"), "direct investment, debt", "ext_direct_investment"),
+    ("Net external debt 2/", 0, NET_EXT_EUR, "net external debt (% of GDP) times GDP", "net_external_debt_gdp"),
+]
+
+EXTERNAL_DEBT = SectorTable(
+    id="external-debt", label="Table 5", title="External Debt", unit="End of year; billions of euros and percent of GDP",
+    section="activity", block="external-tables", sheet="T5 External debt", imf_table="Table 5. Spain: External Debt",
+    kind="actual", web_actual=5,
+    rows=[Group("Billions of euros")]
+    + [Line(label, _bn(e), indent=indent, source=f"{IIP}; {note}", link=link) for label, indent, e, note, link in EXT_LINES]
+    + [Group("Percent of GDP")]
+    + [Line(label, _pct(e) if "Net" not in label else published("net_external_debt_gdp"), indent=indent,
+            source=f"{IIP}; {note}", link=link) for label, indent, e, note, link in EXT_LINES],
+    footnotes=[
+        "1/ Liabilities to non-residents in debt instruments at the end of the year, from Eurostat's international "
+        "investment position (BPM6). The sectors, with direct investment debt, add up to the total; so do the "
+        "instruments. The IMF's table uses the World Bank's Quarterly External Debt Statistics, which differ slightly.",
+        "2/ Gross external debt less external assets in debt instruments (Eurostat).",
+    ],
+)
+
+TABLES = [REAL_SECTOR, FISCAL_EUR, FISCAL_GDP, DSA_BASELINE, DSA_STRESS, BALANCE_OF_PAYMENTS, EXTERNAL_DEBT]
 BY_ID = {t.id: t for t in TABLES}
 
 
@@ -585,6 +708,11 @@ def span(table: SectorTable, data: Data) -> tuple[int, int] | None:
         if history is None or debt is None:
             return None
         return int(history.index.max()), int(debt.index.max())
+    if table.kind == "actual":   # no projections: to the last year of the first line
+        first = next(r for r in table.rows if isinstance(r, Line)).actual(data)
+        if first is None or first.empty:
+            return None
+        return int(first.index.max()), int(first.index.max())
     return years(data)
 
 
@@ -612,6 +740,8 @@ def projections_phrase(table: SectorTable, data: Data) -> str:
 def sources_line(table: SectorTable, data: Data) -> str:
     if table.kind == "dsm":
         return f"Source: {dsm_edition(data)}, Spain's country fiche."
+    if table.kind == "actual":
+        return "Sources: Eurostat; EconPulse calculations."
     edition = weo_edition(data)
     return ("Sources: INE, Eurostat and the ECB for actual years; IMF World Economic Outlook"
             + (f" ({edition})" if edition else "") + " for projections; EconPulse calculations.")
@@ -661,6 +791,8 @@ def web_table(table: SectorTable, data: Data) -> dict | None:
     n_proj = last - last_actual
     if table.kind == "dsm":
         note = " ".join(table.footnotes) + " " + sources_line(table, data)
+    elif table.kind == "actual":
+        note = " ".join(table.footnotes) + f" After the {REPORT_PREFIX}."
     else:
         note = (" ".join(table.footnotes) + f" {NA} not available: the IMF's database does not publish the line. "
                 f"After the {REPORT_PREFIX}; past years differ where the data have been revised since.")

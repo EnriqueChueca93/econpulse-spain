@@ -2708,6 +2708,279 @@
    "display": "75.8% of GDP",
    "period": "2031",
    "flash": false
+  },
+  "bop_exports_gs": {
+   "date": "2025-01-01",
+   "raw": 616491.0,
+   "display": "€616,491 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "bop_exports_goods": {
+   "date": "2025-01-01",
+   "raw": 391487.0,
+   "display": "€391,487 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "bop_exports_services": {
+   "date": "2025-01-01",
+   "raw": 225003.0,
+   "display": "€225,003 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "bop_imports_gs": {
+   "date": "2025-01-01",
+   "raw": 551386.0,
+   "display": "€551,386 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "bop_imports_goods": {
+   "date": "2025-01-01",
+   "raw": 441753.0,
+   "display": "€441,753 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "bop_imports_services": {
+   "date": "2025-01-01",
+   "raw": 109633.0,
+   "display": "€109,633 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "bop_goods_balance": {
+   "date": "2025-01-01",
+   "raw": -50266.0,
+   "display": "−€50,266 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "bop_services_balance": {
+   "date": "2025-01-01",
+   "raw": 115371.0,
+   "display": "€115,371 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "bop_travel_balance": {
+   "date": "2025-01-01",
+   "raw": 72030.0,
+   "display": "€72,030 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "bop_travel_credit": {
+   "date": "2025-01-01",
+   "raw": 105145.0,
+   "display": "€105,145 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "bop_travel_debit": {
+   "date": "2025-01-01",
+   "raw": 33115.0,
+   "display": "€33,115 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "bop_primary_income": {
+   "date": "2025-01-01",
+   "raw": 3722.0,
+   "display": "€3,722 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "bop_secondary_income": {
+   "date": "2025-01-01",
+   "raw": -13999.0,
+   "display": "−€13,999 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "bop_secondary_income_gov": {
+   "date": "2025-01-01",
+   "raw": -5774.0,
+   "display": "−€5,774 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "bop_secondary_income_other": {
+   "date": "2025-01-01",
+   "raw": -8224.0,
+   "display": "−€8,224 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "bop_capital_account": {
+   "date": "2025-01-01",
+   "raw": 17432.0,
+   "display": "€17,432 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "bop_financial_account": {
+   "date": "2025-01-01",
+   "raw": 85198.0,
+   "display": "€85,198 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "bop_fdi_net": {
+   "date": "2025-01-01",
+   "raw": 25273.0,
+   "display": "€25,273 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "bop_fdi_abroad": {
+   "date": "2025-01-01",
+   "raw": 52402.0,
+   "display": "€52,402 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "bop_fdi_inward": {
+   "date": "2025-01-01",
+   "raw": 27129.0,
+   "display": "€27,129 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "bop_portfolio": {
+   "date": "2025-01-01",
+   "raw": 26428.0,
+   "display": "€26,428 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "bop_derivatives": {
+   "date": "2025-01-01",
+   "raw": 3280.0,
+   "display": "€3,280 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "bop_other_investment": {
+   "date": "2025-01-01",
+   "raw": 29055.0,
+   "display": "€29,055 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "bop_other_investment_bde": {
+   "date": "2025-01-01",
+   "raw": 36786.0,
+   "display": "€36,786 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "bop_reserves": {
+   "date": "2025-01-01",
+   "raw": 1162.0,
+   "display": "€1,162 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "bop_errors": {
+   "date": "2025-01-01",
+   "raw": 12938.0,
+   "display": "€12,938 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "niip_eur_annual": {
+   "date": "2025-01-01",
+   "raw": -721250.0,
+   "display": "−€721,250 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "net_external_debt_gdp": {
+   "date": "2025-01-01",
+   "raw": 42.6,
+   "display": "42.6% of GDP",
+   "period": "2025",
+   "flash": false
+  },
+  "ext_securities_gov": {
+   "date": "2025-01-01",
+   "raw": 706269.0,
+   "display": "€706,269 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "ext_other_gov": {
+   "date": "2025-01-01",
+   "raw": 99084.0,
+   "display": "€99,084 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "ext_other_bde": {
+   "date": "2025-01-01",
+   "raw": 567735.0,
+   "display": "€567,735 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "ext_securities_mfi": {
+   "date": "2025-01-01",
+   "raw": 256056.0,
+   "display": "€256,056 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "ext_other_mfi": {
+   "date": "2025-01-01",
+   "raw": 492347.0,
+   "display": "€492,347 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "ext_securities_other": {
+   "date": "2025-01-01",
+   "raw": 138956.0,
+   "display": "€138,956 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "ext_other_other": {
+   "date": "2025-01-01",
+   "raw": 161756.0,
+   "display": "€161,756 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "ext_direct_investment": {
+   "date": "2025-01-01",
+   "raw": 320159.0,
+   "display": "€320,159 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "ext_securities": {
+   "date": "2025-01-01",
+   "raw": 1101281.0,
+   "display": "€1,101,281 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "ext_other": {
+   "date": "2025-01-01",
+   "raw": 1320922.0,
+   "display": "€1,320,922 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "ext_deposits": {
+   "date": "2025-01-01",
+   "raw": 1041870.0,
+   "display": "€1,041,870 mn",
+   "period": "2025",
+   "flash": false
   }
  },
  "notes": [
@@ -2733,6 +3006,6 @@
    "at": "2026-11-01T02:50:46+00:00"
   }
  ],
- "updated_at": "2026-11-01T07:48:49+00:00",
+ "updated_at": "2026-11-01T08:11:55+00:00",
  "started_at": "2026-10-31T23:31:49+00:00"
 }

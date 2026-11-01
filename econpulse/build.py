@@ -35,7 +35,7 @@ SECTION_PAGES = {
     "financial": ("Financial", "Spanish bond yields and the prima de riesgo, Euribor, the IBEX 35, the euro and commodities.", 5),
     "ecb": ("ECB", "Spain has no monetary policy of its own: the European Central Bank sets rates for the whole euro area.", 5),
     "fiscal": ("Fiscal", "Government deficit and debt, the IMF-style fiscal tables, and debt sustainability.", 6),
-    "activity": ("Activity", "Industry, retail, sentiment surveys, tourism, electricity demand and the external accounts.", 6),
+    "activity": ("Activity", "Industry, retail, sentiment surveys, tourism, electricity demand, the external accounts and the IMF-style balance of payments and external debt tables.", 6),
     "housing": ("Housing", "House prices, home sales and mortgage rates.", 6),
     "international": ("International", "Spain next to the euro area and its peers.", 6),
     "regions": ("Regions", "The 17 autonomous communities: unemployment, house prices, inflation and income per head.", 6),

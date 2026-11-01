@@ -3186,3 +3186,477 @@ indicators:
     unit: "% of GDP"
     change_unit: "pp"
     notes: IMF World Economic Outlook, from the IMF's data service; history then projections.
+
+  # ---------------------------------------------------------------- Balance of payments by item
+  # (the IMF-style external tables, econpulse/sectortables.py). Eurostat, BPM6, annual, millions of euros.
+
+  - id: bop_exports_gs
+    label: Exports of goods and services (BoP)
+    label_es: Exportaciones de bienes y servicios (BP)
+    section: activity
+    source: eurostat
+    key: bop_c6_a
+    params: {geo: ES, currency: MIO_EUR, partner: WRL_REST, sectpart: S1, sector10: S1, bop_item: GS, stk_flow: CRE}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: bop_exports_goods
+    label: Exports of goods (BoP)
+    label_es: Exportaciones de bienes (BP)
+    section: activity
+    source: eurostat
+    key: bop_c6_a
+    params: {geo: ES, currency: MIO_EUR, partner: WRL_REST, sectpart: S1, sector10: S1, bop_item: G, stk_flow: CRE}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: bop_exports_services
+    label: Exports of services (BoP)
+    label_es: Exportaciones de servicios (BP)
+    section: activity
+    source: eurostat
+    key: bop_c6_a
+    params: {geo: ES, currency: MIO_EUR, partner: WRL_REST, sectpart: S1, sector10: S1, bop_item: S, stk_flow: CRE}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: bop_imports_gs
+    label: Imports of goods and services (BoP)
+    label_es: Importaciones de bienes y servicios (BP)
+    section: activity
+    source: eurostat
+    key: bop_c6_a
+    params: {geo: ES, currency: MIO_EUR, partner: WRL_REST, sectpart: S1, sector10: S1, bop_item: GS, stk_flow: DEB}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: bop_imports_goods
+    label: Imports of goods (BoP)
+    label_es: Importaciones de bienes (BP)
+    section: activity
+    source: eurostat
+    key: bop_c6_a
+    params: {geo: ES, currency: MIO_EUR, partner: WRL_REST, sectpart: S1, sector10: S1, bop_item: G, stk_flow: DEB}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: bop_imports_services
+    label: Imports of services (BoP)
+    label_es: Importaciones de servicios (BP)
+    section: activity
+    source: eurostat
+    key: bop_c6_a
+    params: {geo: ES, currency: MIO_EUR, partner: WRL_REST, sectpart: S1, sector10: S1, bop_item: S, stk_flow: DEB}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: bop_goods_balance
+    label: Goods balance (BoP)
+    label_es: Saldo de bienes (BP)
+    section: activity
+    source: eurostat
+    key: bop_c6_a
+    params: {geo: ES, currency: MIO_EUR, partner: WRL_REST, sectpart: S1, sector10: S1, bop_item: G, stk_flow: BAL}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: bop_services_balance
+    label: Services balance (BoP)
+    label_es: Saldo de servicios (BP)
+    section: activity
+    source: eurostat
+    key: bop_c6_a
+    params: {geo: ES, currency: MIO_EUR, partner: WRL_REST, sectpart: S1, sector10: S1, bop_item: S, stk_flow: BAL}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: bop_travel_balance
+    label: Travel balance
+    label_es: Saldo de turismo y viajes
+    section: activity
+    source: eurostat
+    key: bop_c6_a
+    params: {geo: ES, currency: MIO_EUR, partner: WRL_REST, sectpart: S1, sector10: S1, bop_item: SD, stk_flow: BAL}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: bop_travel_credit
+    label: Travel receipts
+    label_es: Ingresos por turismo y viajes
+    section: activity
+    source: eurostat
+    key: bop_c6_a
+    params: {geo: ES, currency: MIO_EUR, partner: WRL_REST, sectpart: S1, sector10: S1, bop_item: SD, stk_flow: CRE}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: bop_travel_debit
+    label: Travel payments
+    label_es: Pagos por turismo y viajes
+    section: activity
+    source: eurostat
+    key: bop_c6_a
+    params: {geo: ES, currency: MIO_EUR, partner: WRL_REST, sectpart: S1, sector10: S1, bop_item: SD, stk_flow: DEB}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: bop_primary_income
+    label: Primary income balance
+    label_es: Saldo de rentas primarias
+    section: activity
+    source: eurostat
+    key: bop_c6_a
+    params: {geo: ES, currency: MIO_EUR, partner: WRL_REST, sectpart: S1, sector10: S1, bop_item: IN1, stk_flow: BAL}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: bop_secondary_income
+    label: Secondary income balance
+    label_es: Saldo de rentas secundarias
+    section: activity
+    source: eurostat
+    key: bop_c6_a
+    params: {geo: ES, currency: MIO_EUR, partner: WRL_REST, sectpart: S1, sector10: S1, bop_item: IN2, stk_flow: BAL}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: bop_secondary_income_gov
+    label: Secondary income balance, general government
+    label_es: Rentas secundarias, AAPP
+    section: activity
+    source: eurostat
+    key: bop_c6_a
+    params: {geo: ES, currency: MIO_EUR, partner: WRL_REST, sectpart: S1, sector10: S13, bop_item: IN2, stk_flow: BAL}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: bop_secondary_income_other
+    label: Secondary income balance, other sectors
+    label_es: Rentas secundarias, otros sectores
+    section: activity
+    source: eurostat
+    key: bop_c6_a
+    params: {geo: ES, currency: MIO_EUR, partner: WRL_REST, sectpart: S1, sector10: S1W, bop_item: IN2, stk_flow: BAL}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: bop_capital_account
+    label: Capital account balance
+    label_es: Saldo de la cuenta de capital
+    section: activity
+    source: eurostat
+    key: bop_c6_a
+    params: {geo: ES, currency: MIO_EUR, partner: WRL_REST, sectpart: S1, sector10: S1, bop_item: KA, stk_flow: BAL}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: bop_financial_account
+    label: Financial account, net
+    label_es: Cuenta financiera, saldo
+    section: activity
+    source: eurostat
+    key: bop_c6_a
+    params: {geo: ES, currency: MIO_EUR, partner: WRL_REST, sectpart: S1, sector10: S1, bop_item: FA, stk_flow: NET}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: bop_fdi_net
+    label: Direct investment, net
+    label_es: Inversión directa, saldo
+    section: activity
+    source: eurostat
+    key: bop_c6_a
+    params: {geo: ES, currency: MIO_EUR, partner: WRL_REST, sectpart: S1, sector10: S1, bop_item: FA__D__F, stk_flow: NET}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: bop_fdi_abroad
+    label: Direct investment abroad
+    label_es: Inversión directa de España en el exterior
+    section: activity
+    source: eurostat
+    key: bop_c6_a
+    params: {geo: ES, currency: MIO_EUR, partner: WRL_REST, sectpart: S1, sector10: S1, bop_item: FA__D__F, stk_flow: ASS}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: bop_fdi_inward
+    label: Direct investment in Spain
+    label_es: Inversión directa del exterior en España
+    section: activity
+    source: eurostat
+    key: bop_c6_a
+    params: {geo: ES, currency: MIO_EUR, partner: WRL_REST, sectpart: S1, sector10: S1, bop_item: FA__D__F, stk_flow: LIAB}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: bop_portfolio
+    label: Portfolio investment, net
+    label_es: Inversión de cartera, saldo
+    section: activity
+    source: eurostat
+    key: bop_c6_a
+    params: {geo: ES, currency: MIO_EUR, partner: WRL_REST, sectpart: S1, sector10: S1, bop_item: FA__P__F, stk_flow: NET}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: bop_derivatives
+    label: Financial derivatives, net
+    label_es: Derivados financieros, saldo
+    section: activity
+    source: eurostat
+    key: bop_c6_a
+    params: {geo: ES, currency: MIO_EUR, partner: WRL_REST, sectpart: S1, sector10: S1, bop_item: FA__F__F7, stk_flow: NET}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: bop_other_investment
+    label: Other investment, net
+    label_es: Otra inversión, saldo
+    section: activity
+    source: eurostat
+    key: bop_c6_a
+    params: {geo: ES, currency: MIO_EUR, partner: WRL_REST, sectpart: S1, sector10: S1, bop_item: FA__O__F, stk_flow: NET}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: bop_other_investment_bde
+    label: Other investment, net, Banco de España
+    label_es: Otra inversión, saldo, Banco de España
+    section: activity
+    source: eurostat
+    key: bop_c6_a
+    params: {geo: ES, currency: MIO_EUR, partner: WRL_REST, sectpart: S1, sector10: S121, bop_item: FA__O__F, stk_flow: NET}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: bop_reserves
+    label: Change in reserve assets
+    label_es: Variación de activos de reserva
+    section: activity
+    source: eurostat
+    key: bop_c6_a
+    params: {geo: ES, currency: MIO_EUR, partner: WRL_REST, sectpart: S1, sector10: S121, bop_item: FA__R__F, stk_flow: ASS}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: bop_errors
+    label: Net errors and omissions
+    label_es: Errores y omisiones netos
+    section: activity
+    source: eurostat
+    key: bop_c6_a
+    params: {geo: ES, currency: MIO_EUR, partner: WRL_REST, sectpart: S1, sector10: S1, bop_item: EO, stk_flow: NET}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: niip_eur_annual
+    label: Net international investment position, euros
+    label_es: Posición de inversión internacional neta, euros
+    section: activity
+    source: eurostat
+    key: tipsii10
+    params: {geo: ES, unit: MIO_NAC, partner: WRL_REST}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: net_external_debt_gdp
+    label: Net external debt
+    label_es: Deuda externa neta
+    section: activity
+    source: eurostat
+    key: tipsii20
+    params: {geo: ES, unit: PC_GDP, partner: WRL_REST}
+    freq: A
+    unit: "% of GDP"
+    change_unit: "pp"
+    notes: Gross external debt less external assets in debt instruments.
+
+  # External debt: liabilities to non-residents in debt instruments at the end of each year (Eurostat, BPM6
+  # international investment position), by sector and instrument.
+
+  - id: ext_securities_gov
+    label: External debt securities, general government
+    label_es: Valores de deuda en manos de no residentes, AAPP
+    section: activity
+    source: eurostat
+    key: bop_iip6_q
+    params: {geo: ES, currency: MIO_EUR, partner: WRL_REST, sectpart: S1, freq: A, stk_flow: L_LE, sector10: S13, bop_item: FA__P__F3}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: ext_other_gov
+    label: External loans and other debt, general government
+    label_es: Préstamos y otra deuda externa, AAPP
+    section: activity
+    source: eurostat
+    key: bop_iip6_q
+    params: {geo: ES, currency: MIO_EUR, partner: WRL_REST, sectpart: S1, freq: A, stk_flow: L_LE, sector10: S13, bop_item: FA__O__F}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: ext_other_bde
+    label: External debt, Banco de España
+    label_es: Deuda externa, Banco de España
+    section: activity
+    source: eurostat
+    key: bop_iip6_q
+    params: {geo: ES, currency: MIO_EUR, partner: WRL_REST, sectpart: S1, freq: A, stk_flow: L_LE, sector10: S121, bop_item: FA__O__F}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: ext_securities_mfi
+    label: External debt securities, banks
+    label_es: Valores de deuda externa, entidades de crédito
+    section: activity
+    source: eurostat
+    key: bop_iip6_q
+    params: {geo: ES, currency: MIO_EUR, partner: WRL_REST, sectpart: S1, freq: A, stk_flow: L_LE, sector10: S12T, bop_item: FA__P__F3}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: ext_other_mfi
+    label: External deposits, loans and other debt, banks
+    label_es: Depósitos, préstamos y otra deuda externa, entidades de crédito
+    section: activity
+    source: eurostat
+    key: bop_iip6_q
+    params: {geo: ES, currency: MIO_EUR, partner: WRL_REST, sectpart: S1, freq: A, stk_flow: L_LE, sector10: S12T, bop_item: FA__O__F}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: ext_securities_other
+    label: External debt securities, other sectors
+    label_es: Valores de deuda externa, otros sectores
+    section: activity
+    source: eurostat
+    key: bop_iip6_q
+    params: {geo: ES, currency: MIO_EUR, partner: WRL_REST, sectpart: S1, freq: A, stk_flow: L_LE, sector10: S1P, bop_item: FA__P__F3}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: ext_other_other
+    label: External loans and other debt, other sectors
+    label_es: Préstamos y otra deuda externa, otros sectores
+    section: activity
+    source: eurostat
+    key: bop_iip6_q
+    params: {geo: ES, currency: MIO_EUR, partner: WRL_REST, sectpart: S1, freq: A, stk_flow: L_LE, sector10: S1P, bop_item: FA__O__F}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: ext_direct_investment
+    label: Direct investment debt liabilities
+    label_es: Deuda entre empresas relacionadas (inversión directa)
+    section: activity
+    source: eurostat
+    key: bop_iip6_q
+    params: {geo: ES, currency: MIO_EUR, partner: WRL_REST, sectpart: S1, freq: A, stk_flow: L_LE, sector10: S1, bop_item: FA__D__FL}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: ext_securities
+    label: External debt securities
+    label_es: Valores de deuda externa
+    section: activity
+    source: eurostat
+    key: bop_iip6_q
+    params: {geo: ES, currency: MIO_EUR, partner: WRL_REST, sectpart: S1, freq: A, stk_flow: L_LE, sector10: S1, bop_item: FA__P__F3}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: ext_other
+    label: External deposits, loans and other debt
+    label_es: Depósitos, préstamos y otra deuda externa
+    section: activity
+    source: eurostat
+    key: bop_iip6_q
+    params: {geo: ES, currency: MIO_EUR, partner: WRL_REST, sectpart: S1, freq: A, stk_flow: L_LE, sector10: S1, bop_item: FA__O__F}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: ext_deposits
+    label: External deposits
+    label_es: Depósitos de no residentes
+    section: activity
+    source: eurostat
+    key: bop_iip6_q
+    params: {geo: ES, currency: MIO_EUR, partner: WRL_REST, sectpart: S1, freq: A, stk_flow: L_LE, sector10: S1, bop_item: FA__O__F2}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
