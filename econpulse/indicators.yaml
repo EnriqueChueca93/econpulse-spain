@@ -36,17 +36,28 @@ countries: &countries
   - {slug: fr, geo: FR, name: France, name_es: Francia}
   - {slug: it, geo: IT, name: Italy, name_es: Italia}
   - {slug: pt, geo: PT, name: Portugal, name_es: Portugal}
-  - {slug: nl, geo: NL, name: Netherlands, name_es: Países Bajos}
+  - {slug: pl, geo: PL, name: Poland, name_es: Polonia}
 
 # Other economies, from the OECD (CPI, unemployment, GDP, 10-year yields) and the BIS (policy rates).
-# Japan's CPI comes from the BIS: the OECD's stops in 2021.
 peers: &peers
   - {slug: uk, oecd: GBR, bis: GB, name: United Kingdom, name_es: Reino Unido,
      cpi_source: oecd, cpi_key: "OECD.SDD.TPS,DSD_PRICES@DF_PRICES_ALL,1.0/GBR.M.N.CPI.PA._T.N.GY"}
-  - {slug: jp, oecd: JPN, bis: JP, name: Japan, name_es: Japón,
-     cpi_source: bis, cpi_key: "WS_LONG_CPI/M.JP.771"}
   - {slug: ca, oecd: CAN, bis: CA, name: Canada, name_es: Canadá,
      cpi_source: oecd, cpi_key: "OECD.SDD.TPS,DSD_PRICES@DF_PRICES_ALL,1.0/CAN.M.N.CPI.PA._T.N.GY"}
+
+# Spain and its comparators on the International page (Batch 27a), for the measures taken from one
+# source for all of them: the OECD's labour statistics (youth unemployment, employment rate) and the
+# IMF's World Economic Outlook (GDP per head at purchasing power). The euro area comes from Eurostat.
+comparators: &comparators
+  - {slug: es, oecd: ESP, name: Spain, name_es: España}
+  - {slug: fr, oecd: FRA, name: France, name_es: Francia}
+  - {slug: de, oecd: DEU, name: Germany, name_es: Alemania}
+  - {slug: it, oecd: ITA, name: Italy, name_es: Italia}
+  - {slug: pt, oecd: PRT, name: Portugal, name_es: Portugal}
+  - {slug: pl, oecd: POL, name: Poland, name_es: Polonia}
+  - {slug: uk, oecd: GBR, name: United Kingdom, name_es: Reino Unido}
+  - {slug: us, oecd: USA, name: United States, name_es: Estados Unidos}
+  - {slug: ca, oecd: CAN, name: Canada, name_es: Canadá}
 
 # The 17 autonomous communities with their INE series codes: unemployment rate (EPA),
 # house price index (IPV), CPI annual rate (IPC) and GDP per head, Spain = 100 (CRE).
@@ -2116,15 +2127,15 @@ indicators:
 
   - id: bond10_{slug}
     for_each:
-      - {slug: fr, geo: FR, name: France, name_es: Francia}
-      - {slug: it, geo: IT, name: Italy, name_es: Italia}
-      - {slug: pt, geo: PT, name: Portugal, name_es: Portugal}
-      - {slug: nl, geo: NL, name: Netherlands, name_es: Países Bajos}
+      - {slug: fr, geo: FR, cur: EUR, name: France, name_es: Francia}
+      - {slug: it, geo: IT, cur: EUR, name: Italy, name_es: Italia}
+      - {slug: pt, geo: PT, cur: EUR, name: Portugal, name_es: Portugal}
+      - {slug: pl, geo: PL, cur: PLN, name: Poland, name_es: Polonia}
     label: 10-year yield, {name} (monthly avg.)
     label_es: Rendimiento a largo plazo, {name_es} (convergencia)
     section: international
     source: ecb
-    key: IRS/M.{geo}.L.L40.CI.0000.EUR.N.Z
+    key: IRS/M.{geo}.L.L40.CI.0000.{cur}.N.Z
     freq: M
     unit: "%"
     decimals: 2
@@ -2135,7 +2146,6 @@ indicators:
       - {slug: fr, name: France}
       - {slug: it, name: Italy}
       - {slug: pt, name: Portugal}
-      - {slug: nl, name: Netherlands}
     label: 10-year spread over Germany, {name}
     label_es: Diferencial con el bund, {name}
     section: international
@@ -2235,7 +2245,7 @@ indicators:
     change_unit: bp
     notes: Mid-point of the Federal Reserve's target range (BIS central bank policy rates).
 
-  # United Kingdom, Japan, Canada: one entry per country in the `peers` list at the top.
+  # United Kingdom and Canada: one entry per country in the `peers` list at the top.
   - id: gdp_growth_{slug}
     for_each: *peers
     label: Real GDP growth, {name}
@@ -2305,6 +2315,124 @@ indicators:
     unit: "%"
     decimals: 2
     change_unit: bp
+
+  # ---------------------------------------------------------------- Comparators (Batch 27a)
+  # Poland's policy rate; real GDP levels (for GDP against end-2019); youth unemployment, the employment
+  # rate and GDP per head at purchasing power for Spain and its eight comparators, plus the euro area.
+  - id: policy_rate_pl
+    label: Policy rate, Poland
+    label_es: Tipo de interés oficial, Polonia
+    section: international
+    source: bis
+    key: "WS_CBPOL/D.PL"
+    freq: D
+    unit: "%"
+    decimals: 2
+    change_unit: bp
+    notes: The National Bank of Poland's reference rate (BIS central bank policy rates).
+
+  - id: gdp_level_{slug}
+    for_each: *countries
+    label: Real GDP, {name}
+    label_es: PIB real, índice de volumen, {name_es}
+    section: international
+    source: eurostat
+    key: namq_10_gdp
+    params: {geo: "{geo}", unit: CLV_I20, s_adj: SCA, na_item: B1GQ}
+    freq: Q
+    unit: index
+    transforms: [yoy, pop]
+    notes: Chain-linked volumes, 2020 = 100, seasonally and calendar adjusted.
+
+  - id: gdp_level_ea
+    label: Real GDP, euro area
+    label_es: PIB real, índice de volumen, zona euro
+    section: international
+    source: eurostat
+    key: namq_10_gdp
+    params: {geo: EA20, unit: CLV_I20, s_adj: SCA, na_item: B1GQ}
+    freq: Q
+    unit: index
+    transforms: [yoy, pop]
+
+  - id: gdp_level_{slug}
+    for_each:
+      - {slug: uk, oecd: GBR, name: United Kingdom, name_es: Reino Unido}
+      - {slug: us, oecd: USA, name: United States, name_es: Estados Unidos}
+      - {slug: ca, oecd: CAN, name: Canada, name_es: Canadá}
+    label: Real GDP, {name}
+    label_es: PIB real, volumen, {name_es}
+    section: international
+    source: oecd
+    key: "OECD.SDD.NAD,DSD_NAMAIN1@DF_QNA,/Q.Y.{oecd}.S1..B1GQ._Z._Z._Z.XDC.LR.LA.T0102"
+    freq: Q
+    unit: bn
+    scale: 0.001
+    decimals: 0
+    transforms: [yoy, pop]
+    notes: Chain-linked volumes in national currency, billions, seasonally adjusted (OECD quarterly national accounts).
+
+  - id: youth_unemp_{slug}
+    for_each: *comparators
+    label: Youth unemployment rate (15-24), {name}
+    label_es: Tasa de paro juvenil (15-24), {name_es}
+    section: international
+    source: oecd
+    key: "OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/{oecd}..._Z.Y._T.Y15T24..M"
+    freq: M
+    unit: "%"
+    change_unit: pp
+    max_age_days: 160
+    notes: Seasonally adjusted, OECD harmonised definition.
+
+  - id: youth_unemp_ea
+    label: Youth unemployment rate (under 25), euro area
+    label_es: Tasa de paro juvenil (menores de 25), zona euro
+    section: international
+    source: eurostat
+    key: une_rt_m
+    params: {geo: EA21, s_adj: SA, age: Y_LT25, sex: T, unit: PC_ACT}
+    freq: M
+    unit: "%"
+    change_unit: pp
+
+  - id: emp_rate_{slug}
+    for_each: *comparators
+    label: Employment rate (15-64), {name}
+    label_es: Tasa de empleo (15-64), {name_es}
+    section: international
+    source: oecd
+    key: "OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/{oecd}..._Z.Y._T.Y15T64..Q"
+    freq: Q
+    unit: "%"
+    change_unit: pp
+    max_age_days: 300
+    notes: Employed people aged 15-64 as a share of the population that age, seasonally adjusted (OECD).
+
+  - id: emp_rate_ea
+    label: Employment rate (15-64), euro area
+    label_es: Tasa de empleo (15-64), zona euro
+    section: international
+    source: eurostat
+    key: lfsi_emp_q
+    params: {geo: EA20, indic_em: EMP_LFS, age: Y15-64, sex: T, unit: PC_POP, s_adj: SA}
+    freq: Q
+    unit: "%"
+    change_unit: pp
+
+  - id: gdp_pc_ppp_{slug}
+    for_each: *comparators
+    label: GDP per head at purchasing power, {name}
+    label_es: PIB per cápita en paridad de poder adquisitivo, {name_es}
+    section: international
+    source: imf
+    key: "IMF.RES,WEO/{oecd}.PPPPC.A"
+    freq: A
+    unit: "$"
+    decimals: 0
+    transforms: [level, yoy]
+    max_age_days: 900
+    notes: International dollars at current prices (IMF World Economic Outlook), history, estimates and projections.
 
   # ---------------------------------------------------------------- Regions (one entry per autonomous community)
   - id: unemployment_{slug}

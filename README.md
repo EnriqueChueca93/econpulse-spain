@@ -67,7 +67,9 @@ Because the workflow commits data every day, run `git pull` before working local
   AAA euro-area curve, the prima de riesgo, Euribor with a mortgage check, ECB rates and decisions, the next
   ECB meeting and a market-implied rate path.
 - **Fiscal, Activity, Housing, International, Regions**: the public finances, activity and tourism, the housing
-  market and household debt, Spain against its peers, and the 17 autonomous communities.
+  market and household debt, Spain against the euro area and eight comparators (France, Germany, Italy, Portugal,
+  Poland, the UK, the US and Canada: growth and GDP since 2019, GDP per head, jobs, prices and interest rates), and
+  the 17 autonomous communities.
 - **Tools**: Economy vs pre-COVID trend, an interactive Taylor rule and an interest rate decomposer; change a
   setting and the numbers and charts recompute in the browser. **Fiscal Explorer** (`site/fiscal-explorer.html`):
   Spain's debt and deficits since 1970 and to 2070, starting from the European Commission's baseline (reproduced
@@ -164,6 +166,7 @@ econpulse/            Python package
   industries.py       the Every industry page: registrations by group of activities, charts and table
   demography.py       the Labour page's rates by group and the ageing figures (from sources/ageing.py)
   workstats.py        hours, vacancies and pay by activity, and layoffs (Labour and Wages pages)
+  peers.py            Spain and its comparators (International page): series, GDP since 2019, ranks
   trade.py            the Trade page: goods by product group and partner, services by type, prices
   search.py           the site search index (site/data/search.js): pages, sections, charts, series
   certs/              intermediate certificates some servers leave out (see http.py)

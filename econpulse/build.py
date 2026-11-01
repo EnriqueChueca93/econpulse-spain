@@ -38,7 +38,7 @@ SECTION_PAGES = {
     "fiscal": ("Fiscal", "Government deficit and debt, the IMF-style fiscal tables, and debt sustainability.", 6),
     "activity": ("Activity", "Industry, retail, sentiment surveys, tourism, electricity demand, the external accounts and the IMF-style balance of payments and external debt tables.", 6),
     "housing": ("Housing", "House prices, home sales and mortgage rates.", 6),
-    "international": ("International", "Spain next to the euro area and its peers.", 6),
+    "international": ("International", "Spain next to the euro area and eight comparators: France, Germany, Italy, Portugal, Poland, the United Kingdom, the United States and Canada.", 6),
     "regions": ("Regions", "The 17 autonomous communities: unemployment, house prices, inflation and income per head.", 6),
     "analysis": ("Analysis", "EconPulse's own readings: the economy against its history, data surprises, a GDP nowcast, what forecasters expect, the 10-year yield split in two, and Taylor rules.", 7),
 }

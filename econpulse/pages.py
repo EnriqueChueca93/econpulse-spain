@@ -8,7 +8,7 @@ lists the indicators those functions read. Sections without blocks yet show thei
 (see build.SECTION_PAGES for the batch that fills them).
 """
 
-from . import analytics, demography, forecasts, policy, sectortables, surprises, underlying, workstats
+from . import analytics, demography, forecasts, peers, policy, sectortables, surprises, underlying, workstats
 from .charts import build_chart, build_curve, build_ranking, build_xy
 from .registry import Indicator
 from .snapshot import fmt_value, period_label
@@ -38,37 +38,6 @@ REGIONS = [
     ("navarra", "Navarra"), ("pais_vasco", "País Vasco"), ("rioja", "La Rioja"),
 ]
 
-
-def _peer(label, gdp, hicp, core, unemp, y10, policy, highlight=False) -> PanelRow:
-    ids = {"gdp": gdp, "hicp": hicp, "core": core, "unemp": unemp, "y10": y10, "policy": policy}
-    return PanelRow(label, {k: v for k, v in ids.items() if v}, highlight)
-
-
-PEERS = [
-    _peer("Spain", ("gdp", "yoy"), "hicp", "hicp_core", "unemployment_monthly", "es_10y_monthly", "ecb_deposit_rate", True),
-    _peer("Euro area", "gdp_growth_ea", "hicp_euro_area", "hicp_core_euro_area", "unemployment_ea", None, "ecb_deposit_rate"),
-    _peer("Germany", "gdp_growth_de", "hicp_de", "hicp_core_de", "unemployment_de", "de_10y_monthly", "ecb_deposit_rate"),
-    _peer("France", "gdp_growth_fr", "hicp_fr", "hicp_core_fr", "unemployment_fr", "bond10_fr", "ecb_deposit_rate"),
-    _peer("Italy", "gdp_growth_it", "hicp_it", "hicp_core_it", "unemployment_it", "bond10_it", "ecb_deposit_rate"),
-    _peer("Portugal", "gdp_growth_pt", "hicp_pt", "hicp_core_pt", "unemployment_pt", "bond10_pt", "ecb_deposit_rate"),
-    _peer("Netherlands", "gdp_growth_nl", "hicp_nl", "hicp_core_nl", "unemployment_nl", "bond10_nl", "ecb_deposit_rate"),
-    _peer("United Kingdom", "gdp_growth_uk", "cpi_uk", "core_cpi_uk", "unemployment_uk", "bond10_uk", "policy_rate_uk"),
-    _peer("United States", "us_gdp_growth", ("us_cpi_index", "yoy"), ("us_core_cpi_index", "yoy"), "us_unemployment",
-          "us_10y", "us_fed_funds"),
-    _peer("Japan", "gdp_growth_jp", "cpi_jp", None, "unemployment_jp", "bond10_jp", "policy_rate_jp"),
-    _peer("Canada", "gdp_growth_ca", "cpi_ca", None, "unemployment_ca", "bond10_ca", "policy_rate_ca"),
-]
-
-
-def _ranking(measure: str) -> list[tuple]:
-    """Ranking items (indicator id, label, transform) for one measure of PEERS."""
-    items = []
-    for row in PEERS:
-        ref = row.ids.get(measure)
-        if ref is not None:
-            ind_id, transform = ref if isinstance(ref, tuple) else (ref, "level")
-            items.append((ind_id, row.label, transform))
-    return items
 
 PAGES: dict[str, list[dict]] = {
     # ------------------------------------------------------------------ GDP
@@ -1407,43 +1376,112 @@ PAGES: dict[str, list[dict]] = {
     "international": [
         {
             "id": "peers",
-            "title": "Spain and its peers",
-            "intro": "Spain next to the euro area, the other large euro economies, Portugal, and the UK, US, Japan and Canada.",
+            "title": "Spain and its comparators",
+            "intro": ("Spain next to the euro area and eight comparators: France, Germany, Italy, Portugal and Poland in "
+                      "the EU, and the United Kingdom, the United States and Canada. The sections below take growth, "
+                      "jobs, and prices and interest rates in turn."),
+            "facts": peers.facts,
+            "uses": sorted(peers.IDS["level"].values()),
             "tables": [Panel(
                 title="Country",
                 caption="%",
                 columns=[PanelColumn("gdp", "GDP growth, y/y"), PanelColumn("hicp", "Inflation"),
                          PanelColumn("core", "Core inflation"), PanelColumn("unemp", "Unemployment"),
                          PanelColumn("y10", "10-year yield"), PanelColumn("policy", "Policy rate")],
-                rows=PEERS,
-                note=("Inflation is the harmonised index (HICP) in the euro area and each country's CPI elsewhere; "
-                      "core inflation leaves out food and energy, and is not shown where no current measure is "
-                      "available. 10-year yields are monthly averages. Euro-area countries share the ECB's deposit "
-                      "rate; the US rate is the mid-point of the Fed's target range. Sources: Eurostat, ECB, OECD, "
-                      "BIS, US BLS and BEA."),
+                rows=peers.panel_rows("gdp", "hicp", "core", "unemp", "y10", "policy"),
+                note=("Inflation is the harmonised index (HICP) in the EU and each country's CPI elsewhere; core "
+                      "inflation leaves out food and energy, where a current measure is available. 10-year yields are "
+                      "monthly averages. The euro-area countries share the ECB's deposit rate; the US rate is the "
+                      "mid-point of the Fed's target range. Sources: INE, Eurostat, ECB, OECD, BIS, US BLS and BEA."),
+            )],
+            "charts": [],
+        },
+        {
+            "id": "growth",
+            "title": "Growth",
+            "intro": ("How fast each economy is growing, how far it has come since the end of 2019, the last quarter "
+                      "before the pandemic, and how rich it is per head at purchasing power."),
+            "uses": sorted(set(peers.IDS["level"].values()) | set(peers.IDS["ppp"].values())),
+            "tables": [peers.growth_table],
+            "charts": [
+                peers.recovery_chart,
+                peers.recovery_ranking,
+                {"id": "gdp-growth-ranking", "kind": "hbar", "title": "GDP growth",
+                 "subtitle": "Real GDP, % change on a year earlier", "unit": "%", "decimals": 1, "x_title": "Country",
+                 "highlight": "Spain", "items": peers.ranking_items("gdp"), "ref_from": peers.euro_area_ref("gdp")},
+                peers.ppp_ranking,
+            ],
+        },
+        {
+            "id": "jobs",
+            "title": "Jobs",
+            "intro": ("Unemployment, for everyone and for people under 25, and the share of people aged 15 to 64 in "
+                      "work. Spain's unemployment and youth unemployment are the highest of the group."),
+            "tables": [Panel(
+                title="Country",
+                caption="% · changes on a year earlier in percentage points",
+                columns=[PanelColumn("unemp", "Unemployment"), PanelColumn("unemp", "1-yr change", col=Move("1-yr", "year")),
+                         PanelColumn("youth", "Youth unemployment"),
+                         PanelColumn("emp", "Employment rate, 15-64"), PanelColumn("emp", "1-yr change", col=Move("1-yr", "year"))],
+                rows=peers.panel_rows("unemp", "youth", "emp"),
+                note=("Unemployment and youth unemployment are seasonally adjusted monthly rates; youth unemployment "
+                      "and the employment rate follow the OECD's harmonised definitions (people aged 15 to 24, and 15 "
+                      "to 64), and Eurostat's for the euro area (under 25). Sources: Eurostat, OECD, US BLS."),
+            )],
+            "charts": [
+                {"id": "unemployment-ranking", "kind": "hbar", "title": "Unemployment", "subtitle": "% of the labour force",
+                 "unit": "%", "decimals": 1, "x_title": "Country", "highlight": "Spain",
+                 "items": peers.ranking_items("unemp"), "ref_from": peers.euro_area_ref("unemp")},
+                {"id": "youth-ranking", "kind": "hbar", "title": "Youth unemployment",
+                 "subtitle": "People aged 15-24, % of the labour force that age", "unit": "%", "decimals": 1,
+                 "x_title": "Country", "highlight": "Spain", "items": peers.ranking_items("youth"),
+                 "ref_from": peers.euro_area_ref("youth")},
+                {"id": "employment-ranking", "kind": "hbar", "title": "Employment rate",
+                 "subtitle": "People aged 15-64 in work, % of the population that age", "unit": "%", "decimals": 1,
+                 "x_title": "Country", "highlight": "Spain", "items": peers.ranking_items("emp"),
+                 "ref_from": peers.euro_area_ref("emp")},
+                {"id": "unemployment-peers", "title": "Unemployment", "subtitle": "% of the labour force, seasonally adjusted",
+                 "kind": "line", "unit": "%", "decimals": 1, "start": "2008-01-01",
+                 "series": [("unemployment_monthly", "level", "Spain"), ("unemployment_ea", "level", "Euro area"),
+                            ("unemployment_pt", "level", "Portugal")]},
+            ],
+        },
+        {
+            "id": "prices-rates",
+            "title": "Prices and interest rates",
+            "intro": ("Inflation, policy rates and what governments pay to borrow for ten years. Spain, France, "
+                      "Germany, Italy and Portugal share the ECB's rates; Poland, the UK, the US and Canada set their own."),
+            "tables": [Panel(
+                title="Country",
+                caption="% · spread in basis points",
+                columns=[PanelColumn("hicp", "Inflation"), PanelColumn("core", "Core inflation"),
+                         PanelColumn("policy", "Policy rate"), PanelColumn("y10", "10-year yield"),
+                         PanelColumn("spread", "Spread over Germany")],
+                rows=peers.panel_rows("hicp", "core", "policy", "y10", "spread"),
+                note=("Inflation on a year earlier (HICP in the EU, CPI elsewhere). 10-year yields and spreads over "
+                      "Germany's are monthly averages; spreads are shown for the euro-area countries. Sources: INE, "
+                      "Eurostat, ECB, OECD, BIS, US BLS."),
             )],
             "charts": [
                 {"id": "inflation-ranking", "kind": "hbar", "title": "Inflation", "subtitle": "% change on a year earlier",
-                 "unit": "%", "decimals": 1, "x_title": "Country", "highlight": "Spain", "items": _ranking("hicp")},
-                {"id": "unemployment-ranking", "kind": "hbar", "title": "Unemployment", "subtitle": "% of the labour force",
-                 "unit": "%", "decimals": 1, "x_title": "Country", "highlight": "Spain", "items": _ranking("unemp")},
-                {"id": "gdp-peers", "title": "GDP growth", "subtitle": "Real GDP, % change on a year earlier",
-                 "kind": "line", "unit": "%", "decimals": 1, "start": "2022-01-01",
-                 "series": [("gdp", "yoy", "Spain"), ("gdp_growth_ea", "level", "Euro area"),
-                            ("gdp_growth_de", "level", "Germany")]},
+                 "unit": "%", "decimals": 1, "x_title": "Country", "highlight": "Spain",
+                 "items": peers.ranking_items("hicp"), "ref_from": peers.euro_area_ref("hicp")},
                 {"id": "inflation-peers", "title": "Inflation", "subtitle": "% change on a year earlier (US: CPI)",
                  "kind": "line", "unit": "%", "decimals": 1, "start": "2019-01-01", "ref_lines": TARGET,
                  "series": [("hicp", "level", "Spain"), ("hicp_euro_area", "level", "Euro area"),
                             ("us_cpi_index", "yoy", "United States")]},
-                {"id": "unemployment-peers", "title": "Unemployment", "subtitle": "% of the labour force, seasonally adjusted",
-                 "kind": "line", "unit": "%", "decimals": 1, "start": "2008-01-01",
-                 "series": [("unemployment_monthly", "level", "Spain"), ("unemployment_ea", "level", "Euro area"),
-                            ("unemployment_de", "level", "Germany")]},
+                {"id": "policy-rates-peers", "title": "Policy rates", "subtitle": "%, daily",
+                 "kind": "line", "unit": "%", "decimals": 2, "start": "2019-01-01",
+                 "series": [("ecb_deposit_rate", "level", "ECB deposit rate"), ("us_fed_funds", "level", "US Fed funds"),
+                            ("policy_rate_uk", "level", "Bank of England")]},
+                {"id": "yields-ranking", "kind": "hbar", "title": "10-year government bond yields",
+                 "subtitle": "%, monthly average", "unit": "%", "decimals": 2, "x_title": "Country", "highlight": "Spain",
+                 "items": peers.ranking_items("y10")},
                 {"id": "spreads", "title": "Borrowing costs over Germany",
                  "subtitle": "10-year yield minus Germany's, basis points, monthly averages",
                  "kind": "line", "unit": "bp", "decimals": 0, "start": "2008-01-01",
                  "series": [("risk_premium_monthly", "level", "Spain"), ("spread10_it", "level", "Italy"),
-                            ("spread10_fr", "level", "France")]},
+                            ("spread10_pt", "level", "Portugal")]},
             ],
         },
     ],

@@ -321,21 +321,13 @@
   "n_obs": 427,
   "signature": "[\"ecb\", \"IRS/M.IT.L.L40.CI.0000.EUR.N.Z\", {}, 1.0]"
  },
- "bond10_jp": {
+ "bond10_pl": {
   "status": "ok",
-  "fetched_at": "2026-11-01T21:22:41+00:00",
-  "first_date": "1990-01-01",
+  "fetched_at": "2026-11-01T22:25:27+00:00",
+  "first_date": "2001-01-01",
   "last_date": "2026-09-01",
-  "n_obs": 441,
-  "signature": "[\"oecd\", \"OECD.SDD.STES,DSD_STES@DF_FINMARK,/JPN.M.IRLT.PA.....\", {}, 1.0]"
- },
- "bond10_nl": {
-  "status": "ok",
-  "fetched_at": "2026-11-01T21:22:40+00:00",
-  "first_date": "1986-04-01",
-  "last_date": "2026-09-01",
-  "n_obs": 486,
-  "signature": "[\"ecb\", \"IRS/M.NL.L.L40.CI.0000.EUR.N.Z\", {}, 1.0]"
+  "n_obs": 309,
+  "signature": "[\"ecb\", \"IRS/M.PL.L.L40.CI.0000.PLN.N.Z\", {}, 1.0]"
  },
  "bond10_pt": {
   "status": "ok",
@@ -1352,14 +1344,6 @@
   "flash": false,
   "source_name": "Nacional. Índice general. Índice."
  },
- "cpi_jp": {
-  "status": "ok",
-  "fetched_at": "2026-11-01T21:22:40+00:00",
-  "first_date": "1990-01-01",
-  "last_date": "2026-09-01",
-  "n_obs": 441,
-  "signature": "[\"bis\", \"WS_LONG_CPI/M.JP.771\", {}, 1.0]"
- },
  "cpi_madrid": {
   "status": "ok",
   "fetched_at": "2026-11-01T21:22:44+00:00",
@@ -1666,6 +1650,88 @@
   "last_date": "2026-11-01",
   "n_obs": 670,
   "signature": "[\"ree\", \"spot_price\", {}, 1.0]"
+ },
+ "emp_rate_ca": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:25:29+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 147,
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/CAN..._Z.Y._T.Y15T64..Q\", {}, 1.0]"
+ },
+ "emp_rate_de": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:25:29+00:00",
+  "first_date": "2005-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 86,
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/DEU..._Z.Y._T.Y15T64..Q\", {}, 1.0]"
+ },
+ "emp_rate_ea": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:25:29+00:00",
+  "first_date": "2009-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 70,
+  "signature": "[\"eurostat\", \"lfsi_emp_q\", {\"age\": \"Y15-64\", \"geo\": \"EA20\", \"indic_em\": \"EMP_LFS\", \"s_adj\": \"SA\", \"sex\": \"T\", \"unit\": \"PC_POP\"}, 1.0]",
+  "source_name": "Employment and labour force by sex and age - quarterly data",
+  "source_updated": "2026-10-26T23:00:00+0100"
+ },
+ "emp_rate_es": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:25:28+00:00",
+  "first_date": "1999-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 110,
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/ESP..._Z.Y._T.Y15T64..Q\", {}, 1.0]"
+ },
+ "emp_rate_fr": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:25:29+00:00",
+  "first_date": "2003-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 94,
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/FRA..._Z.Y._T.Y15T64..Q\", {}, 1.0]"
+ },
+ "emp_rate_it": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:25:29+00:00",
+  "first_date": "1998-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 114,
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/ITA..._Z.Y._T.Y15T64..Q\", {}, 1.0]"
+ },
+ "emp_rate_pl": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:25:29+00:00",
+  "first_date": "2000-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 106,
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/POL..._Z.Y._T.Y15T64..Q\", {}, 1.0]"
+ },
+ "emp_rate_pt": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:25:29+00:00",
+  "first_date": "1998-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 114,
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/PRT..._Z.Y._T.Y15T64..Q\", {}, 1.0]"
+ },
+ "emp_rate_uk": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:25:29+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 146,
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/GBR..._Z.Y._T.Y15T64..Q\", {}, 1.0]"
+ },
+ "emp_rate_us": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:25:29+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 146,
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/USA..._Z.Y._T.Y15T64..Q\", {}, 1.0]"
  },
  "employment_epa": {
   "status": "ok",
@@ -3137,21 +3203,13 @@
   "source_name": "Gross domestic product (GDP) and main components (output, expenditure and income) - quarterly data",
   "source_updated": "2026-10-30T23:00:00+0100"
  },
- "gdp_growth_jp": {
+ "gdp_growth_pl": {
   "status": "ok",
-  "fetched_at": "2026-11-01T21:22:40+00:00",
-  "first_date": "1990-01-01",
+  "fetched_at": "2026-11-01T22:25:26+00:00",
+  "first_date": "1996-01-01",
   "last_date": "2026-04-01",
-  "n_obs": 146,
-  "signature": "[\"oecd\", \"OECD.SDD.NAD,DSD_NAMAIN1@DF_QNA_EXPENDITURE_GROWTH_OECD,/Q..JPN.S1..B1GQ......GY.\", {}, 1.0]"
- },
- "gdp_growth_nl": {
-  "status": "ok",
-  "fetched_at": "2026-11-01T21:22:38+00:00",
-  "first_date": "1997-01-01",
-  "last_date": "2026-07-01",
-  "n_obs": 119,
-  "signature": "[\"eurostat\", \"namq_10_gdp\", {\"geo\": \"NL\", \"na_item\": \"B1GQ\", \"s_adj\": \"SCA\", \"unit\": \"CLV_PCH_SM\"}, 1.0]",
+  "n_obs": 122,
+  "signature": "[\"eurostat\", \"namq_10_gdp\", {\"geo\": \"PL\", \"na_item\": \"B1GQ\", \"s_adj\": \"SCA\", \"unit\": \"CLV_PCH_SM\"}, 1.0]",
   "source_name": "Gross domestic product (GDP) and main components (output, expenditure and income) - quarterly data",
   "source_updated": "2026-10-30T23:00:00+0100"
  },
@@ -3173,6 +3231,90 @@
   "n_obs": 146,
   "signature": "[\"oecd\", \"OECD.SDD.NAD,DSD_NAMAIN1@DF_QNA_EXPENDITURE_GROWTH_OECD,/Q..GBR.S1..B1GQ......GY.\", {}, 1.0]"
  },
+ "gdp_level_ca": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:25:27+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 147,
+  "signature": "[\"oecd\", \"OECD.SDD.NAD,DSD_NAMAIN1@DF_QNA,/Q.Y.CAN.S1..B1GQ._Z._Z._Z.XDC.LR.LA.T0102\", {}, 0.001]"
+ },
+ "gdp_level_de": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:25:27+00:00",
+  "first_date": "1991-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 143,
+  "signature": "[\"eurostat\", \"namq_10_gdp\", {\"geo\": \"DE\", \"na_item\": \"B1GQ\", \"s_adj\": \"SCA\", \"unit\": \"CLV_I20\"}, 1.0]",
+  "source_name": "Gross domestic product (GDP) and main components (output, expenditure and income) - quarterly data",
+  "source_updated": "2026-10-30T23:00:00+0100"
+ },
+ "gdp_level_ea": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:25:27+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"eurostat\", \"namq_10_gdp\", {\"geo\": \"EA20\", \"na_item\": \"B1GQ\", \"s_adj\": \"SCA\", \"unit\": \"CLV_I20\"}, 1.0]",
+  "source_name": "Gross domestic product (GDP) and main components (output, expenditure and income) - quarterly data",
+  "source_updated": "2026-10-30T23:00:00+0100"
+ },
+ "gdp_level_fr": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:25:27+00:00",
+  "first_date": "1980-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 187,
+  "signature": "[\"eurostat\", \"namq_10_gdp\", {\"geo\": \"FR\", \"na_item\": \"B1GQ\", \"s_adj\": \"SCA\", \"unit\": \"CLV_I20\"}, 1.0]",
+  "source_name": "Gross domestic product (GDP) and main components (output, expenditure and income) - quarterly data",
+  "source_updated": "2026-10-30T23:00:00+0100"
+ },
+ "gdp_level_it": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:25:27+00:00",
+  "first_date": "1996-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 123,
+  "signature": "[\"eurostat\", \"namq_10_gdp\", {\"geo\": \"IT\", \"na_item\": \"B1GQ\", \"s_adj\": \"SCA\", \"unit\": \"CLV_I20\"}, 1.0]",
+  "source_name": "Gross domestic product (GDP) and main components (output, expenditure and income) - quarterly data",
+  "source_updated": "2026-10-30T23:00:00+0100"
+ },
+ "gdp_level_pl": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:25:27+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 126,
+  "signature": "[\"eurostat\", \"namq_10_gdp\", {\"geo\": \"PL\", \"na_item\": \"B1GQ\", \"s_adj\": \"SCA\", \"unit\": \"CLV_I20\"}, 1.0]",
+  "source_name": "Gross domestic product (GDP) and main components (output, expenditure and income) - quarterly data",
+  "source_updated": "2026-10-30T23:00:00+0100"
+ },
+ "gdp_level_pt": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:25:27+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 126,
+  "signature": "[\"eurostat\", \"namq_10_gdp\", {\"geo\": \"PT\", \"na_item\": \"B1GQ\", \"s_adj\": \"SCA\", \"unit\": \"CLV_I20\"}, 1.0]",
+  "source_name": "Gross domestic product (GDP) and main components (output, expenditure and income) - quarterly data",
+  "source_updated": "2026-10-30T23:00:00+0100"
+ },
+ "gdp_level_uk": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:25:27+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 146,
+  "signature": "[\"oecd\", \"OECD.SDD.NAD,DSD_NAMAIN1@DF_QNA,/Q.Y.GBR.S1..B1GQ._Z._Z._Z.XDC.LR.LA.T0102\", {}, 0.001]"
+ },
+ "gdp_level_us": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:25:27+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 147,
+  "signature": "[\"oecd\", \"OECD.SDD.NAD,DSD_NAMAIN1@DF_QNA,/Q.Y.USA.S1..B1GQ._Z._Z._Z.XDC.LR.LA.T0102\", {}, 0.001]"
+ },
  "gdp_nominal": {
   "status": "ok",
   "fetched_at": "2026-11-01T21:22:22+00:00",
@@ -3192,6 +3334,87 @@
   "signature": "[\"eurostat\", \"nama_10_gdp\", {\"geo\": \"ES\", \"na_item\": \"B1GQ\", \"unit\": \"CP_MEUR\"}, 1.0]",
   "source_name": "Gross domestic product (GDP) and main components (output, expenditure and income) - annual data",
   "source_updated": "2026-10-22T23:00:00+0200"
+ },
+ "gdp_pc_ppp_ca": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:25:30+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/CAN.PPPPC.A\", {}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "gdp_pc_ppp_de": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:25:30+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/DEU.PPPPC.A\", {}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "gdp_pc_ppp_es": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:25:29+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/ESP.PPPPC.A\", {}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "gdp_pc_ppp_fr": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:25:30+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/FRA.PPPPC.A\", {}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "gdp_pc_ppp_it": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:25:30+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/ITA.PPPPC.A\", {}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "gdp_pc_ppp_pl": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:25:30+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/POL.PPPPC.A\", {}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "gdp_pc_ppp_pt": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:25:30+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/PRT.PPPPC.A\", {}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "gdp_pc_ppp_uk": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:25:30+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/GBR.PPPPC.A\", {}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "gdp_pc_ppp_us": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:25:30+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/USA.PPPPC.A\", {}, 1.0]",
+  "published": "2026-10-13"
  },
  "gdp_per_capita_growth_annual": {
   "status": "ok",
@@ -3921,16 +4144,6 @@
   "source_name": "Harmonised index of consumer prices (HICP) - ECOICOP ver.2 - indices and rates of change, monthly data",
   "source_updated": "2026-10-16T23:00:00+0200"
  },
- "hicp_core_nl": {
-  "status": "ok",
-  "fetched_at": "2026-11-01T21:22:39+00:00",
-  "first_date": "2000-12-01",
-  "last_date": "2026-09-01",
-  "n_obs": 310,
-  "signature": "[\"eurostat\", \"prc_hicp_minr\", {\"coicop18\": \"TOT_X_NRG_FOOD\", \"geo\": \"NL\", \"unit\": \"RCH_A\"}, 1.0]",
-  "source_name": "Harmonised index of consumer prices (HICP) - ECOICOP ver.2 - indices and rates of change, monthly data",
-  "source_updated": "2026-10-16T23:00:00+0200"
- },
  "hicp_core_np_index": {
   "status": "ok",
   "fetched_at": "2026-11-01T21:22:31+00:00",
@@ -3938,6 +4151,16 @@
   "last_date": "2026-09-01",
   "n_obs": 310,
   "signature": "[\"eurostat\", \"prc_hicp_minr\", {\"coicop18\": \"TOT_X_NRG_FOOD_NP\", \"geo\": \"ES\", \"unit\": \"I25\"}, 1.0]",
+  "source_name": "Harmonised index of consumer prices (HICP) - ECOICOP ver.2 - indices and rates of change, monthly data",
+  "source_updated": "2026-10-16T23:00:00+0200"
+ },
+ "hicp_core_pl": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:25:26+00:00",
+  "first_date": "1997-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 357,
+  "signature": "[\"eurostat\", \"prc_hicp_minr\", {\"coicop18\": \"TOT_X_NRG_FOOD\", \"geo\": \"PL\", \"unit\": \"RCH_A\"}, 1.0]",
   "source_name": "Harmonised index of consumer prices (HICP) - ECOICOP ver.2 - indices and rates of change, monthly data",
   "source_updated": "2026-10-16T23:00:00+0200"
  },
@@ -4001,13 +4224,13 @@
   "source_name": "Harmonised index of consumer prices (HICP) - ECOICOP ver.2 - indices and rates of change, monthly data",
   "source_updated": "2026-10-16T23:00:00+0200"
  },
- "hicp_nl": {
+ "hicp_pl": {
   "status": "ok",
-  "fetched_at": "2026-11-01T21:22:39+00:00",
+  "fetched_at": "2026-11-01T22:25:26+00:00",
   "first_date": "1997-01-01",
   "last_date": "2026-09-01",
   "n_obs": 357,
-  "signature": "[\"eurostat\", \"prc_hicp_minr\", {\"coicop18\": \"TOTAL\", \"geo\": \"NL\", \"unit\": \"RCH_A\"}, 1.0]",
+  "signature": "[\"eurostat\", \"prc_hicp_minr\", {\"coicop18\": \"TOTAL\", \"geo\": \"PL\", \"unit\": \"RCH_A\"}, 1.0]",
   "source_name": "Harmonised index of consumer prices (HICP) - ECOICOP ver.2 - indices and rates of change, monthly data",
   "source_updated": "2026-10-16T23:00:00+0200"
  },
@@ -6610,13 +6833,13 @@
   "n_obs": 9547,
   "signature": "[\"bis\", \"WS_CBPOL/D.CA\", {}, 1.0]"
  },
- "policy_rate_jp": {
+ "policy_rate_pl": {
   "status": "ok",
-  "fetched_at": "2026-11-01T21:22:42+00:00",
-  "first_date": "1990-01-01",
+  "fetched_at": "2026-11-01T22:25:27+00:00",
+  "first_date": "1993-01-16",
   "last_date": "2026-10-27",
-  "n_obs": 8843,
-  "signature": "[\"bis\", \"WS_CBPOL/D.JP\", {}, 1.0]"
+  "n_obs": 9113,
+  "signature": "[\"bis\", \"WS_CBPOL/D.PL\", {}, 1.0]"
  },
  "policy_rate_uk": {
   "status": "ok",
@@ -6966,14 +7189,6 @@
   "last_date": "2026-09-01",
   "n_obs": 427,
   "signature": "[\"derived\", \"subtract\", {\"a\": \"bond10_it\", \"b\": \"de_10y_monthly\", \"scale\": 100}, 1.0]"
- },
- "spread10_nl": {
-  "status": "ok",
-  "fetched_at": "2026-11-01T21:23:23+00:00",
-  "first_date": "1990-01-01",
-  "last_date": "2026-09-01",
-  "n_obs": 441,
-  "signature": "[\"derived\", \"subtract\", {\"a\": \"bond10_nl\", \"b\": \"de_10y_monthly\", \"scale\": 100}, 1.0]"
  },
  "spread10_pt": {
   "status": "ok",
@@ -8100,14 +8315,6 @@
   "source_name": "Unemployment by sex and age - monthly data",
   "source_updated": "2026-10-30T11:00:00+0100"
  },
- "unemployment_jp": {
-  "status": "ok",
-  "fetched_at": "2026-11-01T21:22:41+00:00",
-  "first_date": "1990-01-01",
-  "last_date": "2026-08-01",
-  "n_obs": 440,
-  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/JPN..._Z.Y._T.Y_GE15..M\", {}, 1.0]"
- },
  "unemployment_madrid": {
   "status": "ok",
   "fetched_at": "2026-11-01T21:22:43+00:00",
@@ -8148,16 +8355,6 @@
   "flash": false,
   "source_name": "Tasa de paro de la población. Ambos sexos. Navarra, Comunidad Foral de. Total."
  },
- "unemployment_nl": {
-  "status": "ok",
-  "fetched_at": "2026-11-01T21:22:39+00:00",
-  "first_date": "1983-01-01",
-  "last_date": "2026-09-01",
-  "n_obs": 525,
-  "signature": "[\"eurostat\", \"une_rt_m\", {\"age\": \"TOTAL\", \"geo\": \"NL\", \"s_adj\": \"SA\", \"sex\": \"T\", \"unit\": \"PC_ACT\"}, 1.0]",
-  "source_name": "Unemployment by sex and age - monthly data",
-  "source_updated": "2026-10-30T11:00:00+0100"
- },
  "unemployment_pais_vasco": {
   "status": "ok",
   "fetched_at": "2026-11-01T21:22:43+00:00",
@@ -8167,6 +8364,16 @@
   "signature": "[\"ine\", \"EPA452560\", {}, 1.0]",
   "flash": false,
   "source_name": "Tasa de paro de la población. Ambos sexos. País Vasco. Total."
+ },
+ "unemployment_pl": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:25:26+00:00",
+  "first_date": "1997-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 357,
+  "signature": "[\"eurostat\", \"une_rt_m\", {\"age\": \"TOTAL\", \"geo\": \"PL\", \"s_adj\": \"SA\", \"sex\": \"T\", \"unit\": \"PC_ACT\"}, 1.0]",
+  "source_name": "Unemployment by sex and age - monthly data",
+  "source_updated": "2026-10-30T11:00:00+0100"
  },
  "unemployment_pt": {
   "status": "ok",
@@ -8453,6 +8660,88 @@
   "signature": "[\"ine\", \"ETCL66\", {}, 1.0]",
   "flash": false,
   "source_name": "Industria, construcción y servicios (excepto actividades de los hogares como empleadores y de organizaciones y organismos extraterritoriales). Coste salarial ordinario. Total. Total Nacional. Costes laborales. Euros."
+ },
+ "youth_unemp_ca": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:25:28+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 441,
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/CAN..._Z.Y._T.Y15T24..M\", {}, 1.0]"
+ },
+ "youth_unemp_de": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:25:28+00:00",
+  "first_date": "1991-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 428,
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/DEU..._Z.Y._T.Y15T24..M\", {}, 1.0]"
+ },
+ "youth_unemp_ea": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:25:28+00:00",
+  "first_date": "2000-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 321,
+  "signature": "[\"eurostat\", \"une_rt_m\", {\"age\": \"Y_LT25\", \"geo\": \"EA21\", \"s_adj\": \"SA\", \"sex\": \"T\", \"unit\": \"PC_ACT\"}, 1.0]",
+  "source_name": "Unemployment by sex and age - monthly data",
+  "source_updated": "2026-10-30T11:00:00+0100"
+ },
+ "youth_unemp_es": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:25:27+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 440,
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/ESP..._Z.Y._T.Y15T24..M\", {}, 1.0]"
+ },
+ "youth_unemp_fr": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:25:28+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 440,
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/FRA..._Z.Y._T.Y15T24..M\", {}, 1.0]"
+ },
+ "youth_unemp_it": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:25:28+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 440,
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/ITA..._Z.Y._T.Y15T24..M\", {}, 1.0]"
+ },
+ "youth_unemp_pl": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:25:28+00:00",
+  "first_date": "1997-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 356,
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/POL..._Z.Y._T.Y15T24..M\", {}, 1.0]"
+ },
+ "youth_unemp_pt": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:25:28+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 440,
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/PRT..._Z.Y._T.Y15T24..M\", {}, 1.0]"
+ },
+ "youth_unemp_uk": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:25:28+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 439,
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/GBR..._Z.Y._T.Y15T24..M\", {}, 1.0]"
+ },
+ "youth_unemp_us": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:25:28+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 440,
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/USA..._Z.Y._T.Y15T24..M\", {}, 1.0]"
  },
  "youth_unemployment": {
   "status": "ok",
