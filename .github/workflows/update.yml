@@ -1,0 +1,76 @@
+name: Update and deploy
+
+# Once a day: fetch the latest data, rebuild the site, save the data back to the
+# repository (so the next run only downloads what is new, and "what changed" keeps
+# its baseline) and publish site/ to GitHub Pages.
+# A push of code changes rebuilds and republishes from the data already saved.
+
+on:
+  schedule:
+    - cron: "30 17 * * *"   # 17:30 UTC: 18:30 Madrid in winter, 19:30 in summer (GitHub may start it a little late)
+  workflow_dispatch:         # "Run workflow" button in the Actions tab
+  push:
+    branches: [main]
+    paths-ignore: ["data/**"]
+
+permissions:
+  contents: write            # to save the updated data
+  pages: write
+  id-token: write
+
+concurrency:
+  group: update-and-deploy
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.14"
+          cache: pip
+
+      - name: Install
+        run: pip install -r requirements.txt
+
+      - name: Offline tests
+        run: python -m pytest -q
+
+      - name: Fetch and build
+        run: |
+          if [ "${{ github.event_name }}" = "push" ]; then
+            python -m econpulse build
+          else
+            python -m econpulse update
+          fi
+          python -m econpulse status
+
+      - name: Save the new data
+        if: github.event_name != 'push'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data
+          if git diff --cached --quiet; then
+            echo "No data changes."
+          else
+            git commit -m "Data update $(TZ=Europe/Madrid date '+%Y-%m-%d %H:%M') Madrid"
+            git pull --rebase
+            git push
+          fi
+
+      - uses: actions/configure-pages@v6
+
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: site
+
+      - id: deploy
+        uses: actions/deploy-pages@v5
