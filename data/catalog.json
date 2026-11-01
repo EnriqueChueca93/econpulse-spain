@@ -2577,6 +2577,132 @@
   "signature": "[\"imf\", \"IMF.STA,FSIBSIS/ESP.S12CFSI.NPF4_EUR.A\", {}, 1.0]",
   "published": "2026-10-31"
  },
+ "fsi_q_average_assets": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T10:06:45+00:00",
+  "first_date": "2012-10-01",
+  "last_date": "2026-04-01",
+  "n_obs": 51,
+  "signature": "[\"imf\", \"IMF.STA,FSIBSIS/ESP.S12CFSI.ATA_EUR.Q\", {}, 1.0]",
+  "published": "2026-10-31"
+ },
+ "fsi_q_average_capital": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T10:06:46+00:00",
+  "first_date": "2006-04-01",
+  "last_date": "2026-04-01",
+  "n_obs": 58,
+  "signature": "[\"imf\", \"IMF.STA,FSIBSIS/ESP.S12CFSI.ACR_EUR.Q\", {}, 1.0]",
+  "published": "2026-10-31"
+ },
+ "fsi_q_gross_loans": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T10:06:45+00:00",
+  "first_date": "2012-10-01",
+  "last_date": "2026-04-01",
+  "n_obs": 51,
+  "signature": "[\"imf\", \"IMF.STA,FSIBSIS/ESP.S12CFSI.GF4_A_EUR.Q\", {}, 1.0]",
+  "published": "2026-10-31"
+ },
+ "fsi_q_income_after_tax": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T10:06:45+00:00",
+  "first_date": "2005-10-01",
+  "last_date": "2026-04-01",
+  "n_obs": 65,
+  "signature": "[\"imf\", \"IMF.STA,FSIBSIS/ESP.S12CFSI.ANIAT_EUR.Q\", {}, 1.0]",
+  "published": "2026-10-31"
+ },
+ "fsi_q_income_before_tax": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T10:06:45+00:00",
+  "first_date": "2010-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 66,
+  "signature": "[\"imf\", \"IMF.STA,FSIBSIS/ESP.S12CFSI.NINCBTX_EUR.Q\", {}, 1.0]",
+  "published": "2026-10-31"
+ },
+ "fsi_q_leverage_exposure": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T10:06:44+00:00",
+  "first_date": "2022-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 18,
+  "signature": "[\"imf\", \"IMF.STA,FSIBSIS/ESP.S12CFSI.B3TXM_EUR.Q\", {}, 1.0]",
+  "published": "2026-10-31"
+ },
+ "fsi_q_nfc_balance_sheet": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T10:06:46+00:00",
+  "first_date": "1999-10-01",
+  "last_date": "2026-01-01",
+  "n_obs": 106,
+  "signature": "[\"imf\", \"IMF.STA,FSIBSIS/ESP.S11.BST_EUR.Q\", {}, 1.0]",
+  "published": "2026-10-31"
+ },
+ "fsi_q_nfc_debt": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T10:06:46+00:00",
+  "first_date": "1999-10-01",
+  "last_date": "2026-01-01",
+  "n_obs": 106,
+  "signature": "[\"imf\", \"IMF.STA,FSIBSIS/ESP.S11.DEBT_L_EUR.Q\", {}, 1.0]",
+  "published": "2026-10-31"
+ },
+ "fsi_q_npl": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T10:06:45+00:00",
+  "first_date": "2005-10-01",
+  "last_date": "2026-04-01",
+  "n_obs": 65,
+  "signature": "[\"imf\", \"IMF.STA,FSIBSIS/ESP.S12CFSI.NPF4_EUR.Q\", {}, 1.0]",
+  "published": "2026-10-31"
+ },
+ "fsi_q_regulatory_capital": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T10:06:44+00:00",
+  "first_date": "2005-10-01",
+  "last_date": "2026-04-01",
+  "n_obs": 65,
+  "signature": "[\"imf\", \"IMF.STA,FSIBSIS/ESP.S12CFSI.TREGK_EUR.Q\", {}, 1.0]",
+  "published": "2026-10-31"
+ },
+ "fsi_q_rwa": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T10:06:44+00:00",
+  "first_date": "2005-10-01",
+  "last_date": "2026-04-01",
+  "n_obs": 65,
+  "signature": "[\"imf\", \"IMF.STA,FSIBSIS/ESP.S12CFSI.RWA_EUR.Q\", {}, 1.0]",
+  "published": "2026-10-31"
+ },
+ "fsi_q_specific_provisions": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T10:06:45+00:00",
+  "first_date": "2012-10-01",
+  "last_date": "2026-04-01",
+  "n_obs": 51,
+  "signature": "[\"imf\", \"IMF.STA,FSIBSIS/ESP.S12CFSI.SP_A_EUR.Q\", {}, 1.0]",
+  "published": "2026-10-31"
+ },
+ "fsi_q_tier1_capital": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T10:06:44+00:00",
+  "first_date": "2005-10-01",
+  "last_date": "2026-04-01",
+  "n_obs": 65,
+  "signature": "[\"imf\", \"IMF.STA,FSIBSIS/ESP.S12CFSI.T1KXCSD_EUR.Q\", {}, 1.0]",
+  "published": "2026-10-31"
+ },
+ "fsi_q_total_assets": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T10:06:44+00:00",
+  "first_date": "2012-10-01",
+  "last_date": "2026-04-01",
+  "n_obs": 51,
+  "signature": "[\"imf\", \"IMF.STA,FSIBSIS/ESP.S12CFSI.TA_A_EUR.Q\", {}, 1.0]",
+  "published": "2026-10-31"
+ },
  "fsi_regulatory_capital": {
   "status": "ok",
   "fetched_at": "2026-11-01T08:26:55+00:00",
@@ -3080,6 +3206,186 @@
   "n_obs": 31,
   "signature": "[\"eurostat\", \"gov_10a_main\", {\"geo\": \"ES\", \"na_item\": \"NP\", \"sector\": \"S13\", \"unit\": \"MIO_EUR\"}, 1.0]",
   "source_name": "Government revenue, expenditure and main aggregates",
+  "source_updated": "2026-10-21T11:00:00+0200"
+ },
+ "gg_q_balance": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T10:06:41+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 126,
+  "signature": "[\"eurostat\", \"gov_10q_ggnfa\", {\"geo\": \"ES\", \"na_item\": \"B9\", \"s_adj\": \"NSA\", \"sector\": \"S13\", \"unit\": \"MIO_EUR\"}, 1.0]",
+  "source_name": "Quarterly non-financial accounts for general government",
+  "source_updated": "2026-10-21T11:00:00+0200"
+ },
+ "gg_q_capital_formation": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T10:06:43+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 126,
+  "signature": "[\"eurostat\", \"gov_10q_ggnfa\", {\"geo\": \"ES\", \"na_item\": \"P5\", \"s_adj\": \"NSA\", \"sector\": \"S13\", \"unit\": \"MIO_EUR\"}, 1.0]",
+  "source_name": "Quarterly non-financial accounts for general government",
+  "source_updated": "2026-10-21T11:00:00+0200"
+ },
+ "gg_q_capital_taxes": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T10:06:42+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 126,
+  "signature": "[\"eurostat\", \"gov_10q_ggnfa\", {\"geo\": \"ES\", \"na_item\": \"D91REC\", \"s_adj\": \"NSA\", \"sector\": \"S13\", \"unit\": \"MIO_EUR\"}, 1.0]",
+  "source_name": "Quarterly non-financial accounts for general government",
+  "source_updated": "2026-10-21T11:00:00+0200"
+ },
+ "gg_q_capital_transfers": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T10:06:43+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 126,
+  "signature": "[\"eurostat\", \"gov_10q_ggnfa\", {\"geo\": \"ES\", \"na_item\": \"D9PAY\", \"s_adj\": \"NSA\", \"sector\": \"S13\", \"unit\": \"MIO_EUR\"}, 1.0]",
+  "source_name": "Quarterly non-financial accounts for general government",
+  "source_updated": "2026-10-21T11:00:00+0200"
+ },
+ "gg_q_compensation": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T10:06:43+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 126,
+  "signature": "[\"eurostat\", \"gov_10q_ggnfa\", {\"geo\": \"ES\", \"na_item\": \"D1PAY\", \"s_adj\": \"NSA\", \"sector\": \"S13\", \"unit\": \"MIO_EUR\"}, 1.0]",
+  "source_name": "Quarterly non-financial accounts for general government",
+  "source_updated": "2026-10-21T11:00:00+0200"
+ },
+ "gg_q_debt": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T10:06:44+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 126,
+  "signature": "[\"eurostat\", \"gov_10q_ggdebt\", {\"geo\": \"ES\", \"na_item\": \"GD\", \"sector\": \"S13\", \"unit\": \"MIO_EUR\"}, 1.0]",
+  "source_name": "Quarterly government debt",
+  "source_updated": "2026-10-21T11:00:00+0200"
+ },
+ "gg_q_goods_services": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T10:06:43+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 126,
+  "signature": "[\"eurostat\", \"gov_10q_ggnfa\", {\"geo\": \"ES\", \"na_item\": \"P2\", \"s_adj\": \"NSA\", \"sector\": \"S13\", \"unit\": \"MIO_EUR\"}, 1.0]",
+  "source_name": "Quarterly non-financial accounts for general government",
+  "source_updated": "2026-10-21T11:00:00+0200"
+ },
+ "gg_q_interest_paid": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T10:06:43+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 126,
+  "signature": "[\"eurostat\", \"gov_10q_ggnfa\", {\"geo\": \"ES\", \"na_item\": \"D41PAY\", \"s_adj\": \"NSA\", \"sector\": \"S13\", \"unit\": \"MIO_EUR\"}, 1.0]",
+  "source_name": "Quarterly non-financial accounts for general government",
+  "source_updated": "2026-10-21T11:00:00+0200"
+ },
+ "gg_q_interest_received": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T10:06:43+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 126,
+  "signature": "[\"eurostat\", \"gov_10q_ggnfa\", {\"geo\": \"ES\", \"na_item\": \"D41REC\", \"s_adj\": \"NSA\", \"sector\": \"S13\", \"unit\": \"MIO_EUR\"}, 1.0]",
+  "source_name": "Quarterly non-financial accounts for general government",
+  "source_updated": "2026-10-21T11:00:00+0200"
+ },
+ "gg_q_nonproduced": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T10:06:44+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 126,
+  "signature": "[\"eurostat\", \"gov_10q_ggnfa\", {\"geo\": \"ES\", \"na_item\": \"NP\", \"s_adj\": \"NSA\", \"sector\": \"S13\", \"unit\": \"MIO_EUR\"}, 1.0]",
+  "source_name": "Quarterly non-financial accounts for general government",
+  "source_updated": "2026-10-21T11:00:00+0200"
+ },
+ "gg_q_revenue": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T10:06:41+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 126,
+  "signature": "[\"eurostat\", \"gov_10q_ggnfa\", {\"geo\": \"ES\", \"na_item\": \"TR\", \"s_adj\": \"NSA\", \"sector\": \"S13\", \"unit\": \"MIO_EUR\"}, 1.0]",
+  "source_name": "Quarterly non-financial accounts for general government",
+  "source_updated": "2026-10-21T11:00:00+0200"
+ },
+ "gg_q_social_benefits": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T10:06:43+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 126,
+  "signature": "[\"eurostat\", \"gov_10q_ggnfa\", {\"geo\": \"ES\", \"na_item\": \"D62_D632PAY\", \"s_adj\": \"NSA\", \"sector\": \"S13\", \"unit\": \"MIO_EUR\"}, 1.0]",
+  "source_name": "Quarterly non-financial accounts for general government",
+  "source_updated": "2026-10-21T11:00:00+0200"
+ },
+ "gg_q_social_contributions": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T10:06:43+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 126,
+  "signature": "[\"eurostat\", \"gov_10q_ggnfa\", {\"geo\": \"ES\", \"na_item\": \"D61REC\", \"s_adj\": \"NSA\", \"sector\": \"S13\", \"unit\": \"MIO_EUR\"}, 1.0]",
+  "source_name": "Quarterly non-financial accounts for general government",
+  "source_updated": "2026-10-21T11:00:00+0200"
+ },
+ "gg_q_spending": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T10:06:41+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 126,
+  "signature": "[\"eurostat\", \"gov_10q_ggnfa\", {\"geo\": \"ES\", \"na_item\": \"TE\", \"s_adj\": \"NSA\", \"sector\": \"S13\", \"unit\": \"MIO_EUR\"}, 1.0]",
+  "source_name": "Quarterly non-financial accounts for general government",
+  "source_updated": "2026-10-21T11:00:00+0200"
+ },
+ "gg_q_subsidies": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T10:06:44+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 126,
+  "signature": "[\"eurostat\", \"gov_10q_ggnfa\", {\"geo\": \"ES\", \"na_item\": \"D3PAY\", \"s_adj\": \"NSA\", \"sector\": \"S13\", \"unit\": \"MIO_EUR\"}, 1.0]",
+  "source_name": "Quarterly non-financial accounts for general government",
+  "source_updated": "2026-10-21T11:00:00+0200"
+ },
+ "gg_q_taxes_income": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T10:06:42+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 126,
+  "signature": "[\"eurostat\", \"gov_10q_ggnfa\", {\"geo\": \"ES\", \"na_item\": \"D5REC\", \"s_adj\": \"NSA\", \"sector\": \"S13\", \"unit\": \"MIO_EUR\"}, 1.0]",
+  "source_name": "Quarterly non-financial accounts for general government",
+  "source_updated": "2026-10-21T11:00:00+0200"
+ },
+ "gg_q_taxes_production": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T10:06:42+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 126,
+  "signature": "[\"eurostat\", \"gov_10q_ggnfa\", {\"geo\": \"ES\", \"na_item\": \"D2REC\", \"s_adj\": \"NSA\", \"sector\": \"S13\", \"unit\": \"MIO_EUR\"}, 1.0]",
+  "source_name": "Quarterly non-financial accounts for general government",
+  "source_updated": "2026-10-21T11:00:00+0200"
+ },
+ "gg_q_vat": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T10:06:42+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 126,
+  "signature": "[\"eurostat\", \"gov_10q_ggnfa\", {\"geo\": \"ES\", \"na_item\": \"D211REC\", \"s_adj\": \"NSA\", \"sector\": \"S13\", \"unit\": \"MIO_EUR\"}, 1.0]",
+  "source_name": "Quarterly non-financial accounts for general government",
   "source_updated": "2026-10-21T11:00:00+0200"
  },
  "gg_revenue_eur": {
@@ -3945,6 +4251,16 @@
   "signature": "[\"eurostat\", \"nasa_10_f_bs\", {\"co_nco\": \"CO\", \"finpos\": \"LIAB\", \"geo\": \"ES\", \"na_item\": \"F\", \"sector\": \"S14_S15\", \"unit\": \"PC_GDP\"}, 1.0]",
   "source_name": "Financial balance sheets - annual data",
   "source_updated": "2026-10-30T11:00:00+0100"
+ },
+ "household_liabilities_q": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T10:06:46+00:00",
+  "first_date": "1999-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 110,
+  "signature": "[\"eurostat\", \"nasq_10_f_bs\", {\"finpos\": \"LIAB\", \"geo\": \"ES\", \"na_item\": \"F\", \"sector\": \"S14_S15\", \"unit\": \"PC_GDP\"}, 1.0]",
+  "source_name": "Financial balance sheets - quarterly data",
+  "source_updated": "2026-10-28T11:00:00+0100"
  },
  "household_saving_rate_annual": {
   "status": "ok",

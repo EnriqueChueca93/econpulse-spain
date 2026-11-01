@@ -3541,6 +3541,237 @@
    "display": "41.6% of GDP",
    "period": "Q2 2026",
    "flash": false
+  },
+  "gg_q_revenue": {
+   "date": "2026-04-01",
+   "raw": 185332.0,
+   "display": "€185,332 mn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "gg_q_spending": {
+   "date": "2026-04-01",
+   "raw": 217334.0,
+   "display": "€217,334 mn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "gg_q_balance": {
+   "date": "2026-04-01",
+   "raw": -32002.0,
+   "display": "−€32,002 mn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "gg_q_taxes_production": {
+   "date": "2026-04-01",
+   "raw": 49363.0,
+   "display": "€49,363 mn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "gg_q_vat": {
+   "date": "2026-04-01",
+   "raw": 30628.0,
+   "display": "€30,628 mn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "gg_q_taxes_income": {
+   "date": "2026-04-01",
+   "raw": 52502.0,
+   "display": "€52,502 mn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "gg_q_capital_taxes": {
+   "date": "2026-04-01",
+   "raw": 1595.0,
+   "display": "€1,595 mn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "gg_q_social_contributions": {
+   "date": "2026-04-01",
+   "raw": 59050.0,
+   "display": "€59,050 mn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "gg_q_compensation": {
+   "date": "2026-04-01",
+   "raw": 50158.0,
+   "display": "€50,158 mn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "gg_q_goods_services": {
+   "date": "2026-04-01",
+   "raw": 25146.0,
+   "display": "€25,146 mn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "gg_q_capital_formation": {
+   "date": "2026-04-01",
+   "raw": 13558.0,
+   "display": "€13,558 mn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "gg_q_capital_transfers": {
+   "date": "2026-04-01",
+   "raw": 6529.0,
+   "display": "€6,529 mn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "gg_q_interest_paid": {
+   "date": "2026-04-01",
+   "raw": 13216.0,
+   "display": "€13,216 mn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "gg_q_interest_received": {
+   "date": "2026-04-01",
+   "raw": 2440.0,
+   "display": "€2,440 mn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "gg_q_social_benefits": {
+   "date": "2026-04-01",
+   "raw": 96712.0,
+   "display": "€96,712 mn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "gg_q_subsidies": {
+   "date": "2026-04-01",
+   "raw": 4852.0,
+   "display": "€4,852 mn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "gg_q_nonproduced": {
+   "date": "2026-04-01",
+   "raw": -1.0,
+   "display": "−€1 mn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "gg_q_debt": {
+   "date": "2026-04-01",
+   "raw": 1762936.0,
+   "display": "€1,762,936 mn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "fsi_q_regulatory_capital": {
+   "date": "2026-04-01",
+   "raw": 310569800000.0,
+   "display": "310,569,800,000",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "fsi_q_tier1_capital": {
+   "date": "2026-04-01",
+   "raw": 266607610000.0,
+   "display": "266,607,610,000",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "fsi_q_rwa": {
+   "date": "2026-04-01",
+   "raw": 1694670740000.0,
+   "display": "1,694,670,740,000",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "fsi_q_leverage_exposure": {
+   "date": "2026-04-01",
+   "raw": 4734980890000.0,
+   "display": "4,734,980,890,000",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "fsi_q_total_assets": {
+   "date": "2026-04-01",
+   "raw": 4535368220000.0,
+   "display": "4,535,368,220,000",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "fsi_q_npl": {
+   "date": "2026-04-01",
+   "raw": 76555480000.0,
+   "display": "76,555,480,000",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "fsi_q_gross_loans": {
+   "date": "2026-04-01",
+   "raw": 3099627380000.0,
+   "display": "3,099,627,380,000",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "fsi_q_specific_provisions": {
+   "date": "2026-04-01",
+   "raw": 35838440000.0,
+   "display": "35,838,440,000",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "fsi_q_income_before_tax": {
+   "date": "2026-04-01",
+   "raw": 32120510000.0,
+   "display": "32,120,510,000",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "fsi_q_average_assets": {
+   "date": "2026-04-01",
+   "raw": 4414901580000.0,
+   "display": "4,414,901,580,000",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "fsi_q_income_after_tax": {
+   "date": "2026-04-01",
+   "raw": 47747950000.0,
+   "display": "47,747,950,000",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "fsi_q_average_capital": {
+   "date": "2026-04-01",
+   "raw": 298963000000.0,
+   "display": "298,963,000,000",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "fsi_q_nfc_debt": {
+   "date": "2026-01-01",
+   "raw": 1989860722000.0,
+   "display": "1,989,860,722,000",
+   "period": "Q1 2026",
+   "flash": false
+  },
+  "fsi_q_nfc_balance_sheet": {
+   "date": "2026-01-01",
+   "raw": 5914594506000.0,
+   "display": "5,914,594,506,000",
+   "period": "Q1 2026",
+   "flash": false
+  },
+  "household_liabilities_q": {
+   "date": "2026-04-01",
+   "raw": 47.9,
+   "display": "47.9% of GDP",
+   "period": "Q2 2026",
+   "flash": false
   }
  },
  "notes": [
@@ -3566,6 +3797,6 @@
    "at": "2026-11-01T02:50:46+00:00"
   }
  ],
- "updated_at": "2026-11-01T09:57:38+00:00",
+ "updated_at": "2026-11-01T10:06:51+00:00",
  "started_at": "2026-10-31T23:31:49+00:00"
 }

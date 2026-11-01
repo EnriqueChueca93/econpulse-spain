@@ -440,3 +440,32 @@ def test_quarterly_external_tables(store):
 
 def t_cols(table):
     return table["columns"]
+
+
+def test_quarterly_government_and_soundness(store):
+    q = pd.date_range("2023-01-01", "2026-04-01", freq="QS")
+    store.save_series("gdp_nominal", pd.Series([400000.0] * len(q), index=q))
+    for code, v in [("revenue", 160000.0), ("spending", 170000.0), ("balance", -10000.0), ("interest_paid", 10000.0),
+                    ("interest_received", 2000.0), ("nonproduced", 0.0), ("debt", 1600000.0)]:
+        store.save_series(f"gg_q_{code}", pd.Series([v] * len(q), index=q))
+    # FSI: income before tax is year to date (10, 20, 30, 40 bn); after tax already annual.
+    store.save_series("fsi_q_income_before_tax", pd.Series([1e10 * ((d.month - 1) // 3 + 1) for d in q], index=q))
+    store.save_series("fsi_q_average_assets", pd.Series([4e12] * len(q), index=q))
+    store.save_series("fsi_q_income_after_tax", pd.Series([3e10] * len(q), index=q))
+    store.save_series("fsi_q_average_capital", pd.Series([3e11] * len(q), index=q))
+    m = pd.date_range("2006-01-01", "2026-09-01", freq="MS")
+    store.save_series("home_sales", pd.Series([60000.0 if d.year == 2007 else 45000.0 for d in m], index=m))
+    data = Data(load_registry(), store)
+    cell = lambda t, label: next(r for r in t["rows"] if r["label"] == label)["cells"][-1]
+    gg_a, gg_g = st.web_table(st.FISCAL_Q[0], data), st.web_table(st.FISCAL_Q[1], data)
+    assert gg_a["columns"][-1] == "Q2 2026"                        # not stretched by the GDP memo line
+    assert cell(gg_a, "Revenue") == "160.0" and cell(gg_g, "Revenue") == "40.0"   # of the quarter's GDP
+    assert cell(gg_a, "Primary balance 3/") == "−2.0"               # −10 + 10 − 2
+    assert cell(gg_g, "General government gross debt (Maastricht) 4/") == "100.0"   # of four quarters' GDP
+    fsi = st.web_table(st.FINANCIAL_SOUNDNESS_Q[1], data)
+    # Home sales run to September, so the table reaches Q3 2026; the banks' figures show "…" until published.
+    assert fsi["columns"][-2:] == ["Q2 2026", "Q3 2026"]
+    at_q2 = lambda label: next(r for r in fsi["rows"] if r["label"] == label)["cells"][-2]
+    assert at_q2("Return on assets 2/") == "1.0"                     # 20 bn by Q2, annualised to 40, over 4,000
+    assert at_q2("Return on equity 2/") == "10.0" and cell(fsi, "Return on equity 2/") == st.NA
+    assert cell(fsi, "Home sales (2007 average = 100) 8/") == "75.0"   # 135,000 a quarter against 180,000

@@ -4616,3 +4616,391 @@ indicators:
     freq: Q
     unit: "% of GDP"
     change_unit: "pp"
+
+  # ---------------------------------------------------------------- Quarterly government accounts
+  # (the quarterly view of Table 2): Eurostat, general government, millions of euros, not seasonally adjusted.
+
+  - id: gg_q_revenue
+    label: Government revenue, quarterly
+    label_es: Ingresos de las AAPP, trimestral
+    section: fiscal
+    source: eurostat
+    key: gov_10q_ggnfa
+    params: {geo: ES, unit: MIO_EUR, s_adj: NSA, sector: S13, na_item: TR}
+    freq: Q
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: gg_q_spending
+    label: Government expenditure, quarterly
+    label_es: Gastos de las AAPP, trimestral
+    section: fiscal
+    source: eurostat
+    key: gov_10q_ggnfa
+    params: {geo: ES, unit: MIO_EUR, s_adj: NSA, sector: S13, na_item: TE}
+    freq: Q
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: gg_q_balance
+    label: Government net lending or borrowing, quarterly
+    label_es: Capacidad o necesidad de financiación de las AAPP, trimestral
+    section: fiscal
+    source: eurostat
+    key: gov_10q_ggnfa
+    params: {geo: ES, unit: MIO_EUR, s_adj: NSA, sector: S13, na_item: B9}
+    freq: Q
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: gg_q_taxes_production
+    label: Taxes on production and imports, quarterly
+    label_es: Impuestos sobre la producción y las importaciones, trimestral
+    section: fiscal
+    source: eurostat
+    key: gov_10q_ggnfa
+    params: {geo: ES, unit: MIO_EUR, s_adj: NSA, sector: S13, na_item: D2REC}
+    freq: Q
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: gg_q_vat
+    label: Value added tax, quarterly
+    label_es: Impuesto sobre el valor añadido, trimestral
+    section: fiscal
+    source: eurostat
+    key: gov_10q_ggnfa
+    params: {geo: ES, unit: MIO_EUR, s_adj: NSA, sector: S13, na_item: D211REC}
+    freq: Q
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: gg_q_taxes_income
+    label: Current taxes on income and wealth, quarterly
+    label_es: Impuestos corrientes sobre la renta y el patrimonio, trimestral
+    section: fiscal
+    source: eurostat
+    key: gov_10q_ggnfa
+    params: {geo: ES, unit: MIO_EUR, s_adj: NSA, sector: S13, na_item: D5REC}
+    freq: Q
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: gg_q_capital_taxes
+    label: Capital taxes, quarterly
+    label_es: Impuestos sobre el capital, trimestral
+    section: fiscal
+    source: eurostat
+    key: gov_10q_ggnfa
+    params: {geo: ES, unit: MIO_EUR, s_adj: NSA, sector: S13, na_item: D91REC}
+    freq: Q
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: gg_q_social_contributions
+    label: Social contributions received, quarterly
+    label_es: Cotizaciones sociales, trimestral
+    section: fiscal
+    source: eurostat
+    key: gov_10q_ggnfa
+    params: {geo: ES, unit: MIO_EUR, s_adj: NSA, sector: S13, na_item: D61REC}
+    freq: Q
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: gg_q_compensation
+    label: Compensation of government employees, quarterly
+    label_es: Remuneración de asalariados de las AAPP, trimestral
+    section: fiscal
+    source: eurostat
+    key: gov_10q_ggnfa
+    params: {geo: ES, unit: MIO_EUR, s_adj: NSA, sector: S13, na_item: D1PAY}
+    freq: Q
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: gg_q_goods_services
+    label: Government intermediate consumption, quarterly
+    label_es: Consumos intermedios de las AAPP, trimestral
+    section: fiscal
+    source: eurostat
+    key: gov_10q_ggnfa
+    params: {geo: ES, unit: MIO_EUR, s_adj: NSA, sector: S13, na_item: P2}
+    freq: Q
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: gg_q_capital_formation
+    label: Government gross capital formation, quarterly
+    label_es: Formación bruta de capital de las AAPP, trimestral
+    section: fiscal
+    source: eurostat
+    key: gov_10q_ggnfa
+    params: {geo: ES, unit: MIO_EUR, s_adj: NSA, sector: S13, na_item: P5}
+    freq: Q
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: gg_q_capital_transfers
+    label: Capital transfers paid by government, quarterly
+    label_es: Transferencias de capital pagadas por las AAPP, trimestral
+    section: fiscal
+    source: eurostat
+    key: gov_10q_ggnfa
+    params: {geo: ES, unit: MIO_EUR, s_adj: NSA, sector: S13, na_item: D9PAY}
+    freq: Q
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: gg_q_interest_paid
+    label: Interest paid by government, quarterly
+    label_es: Intereses pagados por las AAPP, trimestral
+    section: fiscal
+    source: eurostat
+    key: gov_10q_ggnfa
+    params: {geo: ES, unit: MIO_EUR, s_adj: NSA, sector: S13, na_item: D41PAY}
+    freq: Q
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: gg_q_interest_received
+    label: Interest received by government, quarterly
+    label_es: Intereses recibidos por las AAPP, trimestral
+    section: fiscal
+    source: eurostat
+    key: gov_10q_ggnfa
+    params: {geo: ES, unit: MIO_EUR, s_adj: NSA, sector: S13, na_item: D41REC}
+    freq: Q
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: gg_q_social_benefits
+    label: Social benefits paid by government, quarterly
+    label_es: Prestaciones sociales de las AAPP, trimestral
+    section: fiscal
+    source: eurostat
+    key: gov_10q_ggnfa
+    params: {geo: ES, unit: MIO_EUR, s_adj: NSA, sector: S13, na_item: D62_D632PAY}
+    freq: Q
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: gg_q_subsidies
+    label: Subsidies paid by government, quarterly
+    label_es: Subvenciones pagadas por las AAPP, trimestral
+    section: fiscal
+    source: eurostat
+    key: gov_10q_ggnfa
+    params: {geo: ES, unit: MIO_EUR, s_adj: NSA, sector: S13, na_item: D3PAY}
+    freq: Q
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: gg_q_nonproduced
+    label: Government net acquisition of nonproduced assets, quarterly
+    label_es: Adquisiciones netas de activos no producidos, trimestral
+    section: fiscal
+    source: eurostat
+    key: gov_10q_ggnfa
+    params: {geo: ES, unit: MIO_EUR, s_adj: NSA, sector: S13, na_item: NP}
+    freq: Q
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: gg_q_debt
+    label: Government gross debt, quarterly
+    label_es: Deuda pública bruta, trimestral
+    section: fiscal
+    source: eurostat
+    key: gov_10q_ggdebt
+    params: {geo: ES, unit: MIO_EUR, sector: S13, na_item: GD}
+    freq: Q
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  # Quarterly financial soundness items (the quarterly view of Table 3): IMF FSI database, euros.
+
+  - id: fsi_q_regulatory_capital
+    label: Banks' regulatory capital (FSI), quarterly
+    label_es: Banks' regulatory capital (FSI), trimestral
+    section: financial
+    source: imf
+    key: "IMF.STA,FSIBSIS/ESP.S12CFSI.TREGK_EUR.Q"
+    freq: Q
+    unit: "index"
+    change_unit: "%"
+    decimals: 0
+
+  - id: fsi_q_tier1_capital
+    label: Banks' Tier 1 capital (FSI), quarterly
+    label_es: Banks' Tier 1 capital (FSI), trimestral
+    section: financial
+    source: imf
+    key: "IMF.STA,FSIBSIS/ESP.S12CFSI.T1KXCSD_EUR.Q"
+    freq: Q
+    unit: "index"
+    change_unit: "%"
+    decimals: 0
+
+  - id: fsi_q_rwa
+    label: Banks' risk-weighted assets (FSI), quarterly
+    label_es: Banks' risk-weighted assets (FSI), trimestral
+    section: financial
+    source: imf
+    key: "IMF.STA,FSIBSIS/ESP.S12CFSI.RWA_EUR.Q"
+    freq: Q
+    unit: "index"
+    change_unit: "%"
+    decimals: 0
+
+  - id: fsi_q_leverage_exposure
+    label: Banks' leverage exposure measure (FSI), quarterly
+    label_es: Banks' leverage exposure measure (FSI), trimestral
+    section: financial
+    source: imf
+    key: "IMF.STA,FSIBSIS/ESP.S12CFSI.B3TXM_EUR.Q"
+    freq: Q
+    unit: "index"
+    change_unit: "%"
+    decimals: 0
+
+  - id: fsi_q_total_assets
+    label: Banks' total assets (FSI), quarterly
+    label_es: Banks' total assets (FSI), trimestral
+    section: financial
+    source: imf
+    key: "IMF.STA,FSIBSIS/ESP.S12CFSI.TA_A_EUR.Q"
+    freq: Q
+    unit: "index"
+    change_unit: "%"
+    decimals: 0
+
+  - id: fsi_q_npl
+    label: Banks' nonperforming loans (FSI), quarterly
+    label_es: Banks' nonperforming loans (FSI), trimestral
+    section: financial
+    source: imf
+    key: "IMF.STA,FSIBSIS/ESP.S12CFSI.NPF4_EUR.Q"
+    freq: Q
+    unit: "index"
+    change_unit: "%"
+    decimals: 0
+
+  - id: fsi_q_gross_loans
+    label: Banks' gross loans (FSI), quarterly
+    label_es: Banks' gross loans (FSI), trimestral
+    section: financial
+    source: imf
+    key: "IMF.STA,FSIBSIS/ESP.S12CFSI.GF4_A_EUR.Q"
+    freq: Q
+    unit: "index"
+    change_unit: "%"
+    decimals: 0
+
+  - id: fsi_q_specific_provisions
+    label: Banks' specific provisions (FSI), quarterly
+    label_es: Banks' specific provisions (FSI), trimestral
+    section: financial
+    source: imf
+    key: "IMF.STA,FSIBSIS/ESP.S12CFSI.SP_A_EUR.Q"
+    freq: Q
+    unit: "index"
+    change_unit: "%"
+    decimals: 0
+
+  - id: fsi_q_income_before_tax
+    label: Banks' net income before tax, year to date (FSI), quarterly
+    label_es: Banks' net income before tax, year to date (FSI), trimestral
+    section: financial
+    source: imf
+    key: "IMF.STA,FSIBSIS/ESP.S12CFSI.NINCBTX_EUR.Q"
+    freq: Q
+    unit: "index"
+    change_unit: "%"
+    decimals: 0
+
+  - id: fsi_q_average_assets
+    label: Banks' average total assets (FSI), quarterly
+    label_es: Banks' average total assets (FSI), trimestral
+    section: financial
+    source: imf
+    key: "IMF.STA,FSIBSIS/ESP.S12CFSI.ATA_EUR.Q"
+    freq: Q
+    unit: "index"
+    change_unit: "%"
+    decimals: 0
+
+  - id: fsi_q_income_after_tax
+    label: Banks' net income after tax, annualised (FSI), quarterly
+    label_es: Banks' net income after tax, annualised (FSI), trimestral
+    section: financial
+    source: imf
+    key: "IMF.STA,FSIBSIS/ESP.S12CFSI.ANIAT_EUR.Q"
+    freq: Q
+    unit: "index"
+    change_unit: "%"
+    decimals: 0
+
+  - id: fsi_q_average_capital
+    label: Banks' average capital and reserves (FSI), quarterly
+    label_es: Banks' average capital and reserves (FSI), trimestral
+    section: financial
+    source: imf
+    key: "IMF.STA,FSIBSIS/ESP.S12CFSI.ACR_EUR.Q"
+    freq: Q
+    unit: "index"
+    change_unit: "%"
+    decimals: 0
+
+  - id: fsi_q_nfc_debt
+    label: Nonfinancial corporations' debt (FSI), quarterly
+    label_es: Nonfinancial corporations' debt (FSI), trimestral
+    section: financial
+    source: imf
+    key: "IMF.STA,FSIBSIS/ESP.S11.DEBT_L_EUR.Q"
+    freq: Q
+    unit: "index"
+    change_unit: "%"
+    decimals: 0
+    max_age_days: 365
+
+  - id: fsi_q_nfc_balance_sheet
+    label: Nonfinancial corporations' balance sheet total (FSI), quarterly
+    label_es: Nonfinancial corporations' balance sheet total (FSI), trimestral
+    section: financial
+    source: imf
+    key: "IMF.STA,FSIBSIS/ESP.S11.BST_EUR.Q"
+    freq: Q
+    unit: "index"
+    change_unit: "%"
+    decimals: 0
+    max_age_days: 365
+
+  - id: household_liabilities_q
+    label: Household liabilities, quarterly
+    label_es: Pasivos de los hogares, trimestral
+    section: financial
+    source: eurostat
+    key: nasq_10_f_bs
+    params: {geo: ES, sector: S14_S15, finpos: LIAB, na_item: F, unit: PC_GDP}
+    freq: Q
+    unit: "% of GDP"
+    change_unit: "pp"

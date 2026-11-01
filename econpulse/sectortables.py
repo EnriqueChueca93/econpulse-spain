@@ -1525,7 +1525,7 @@ def at(ind_id: str, to: str, how: str = "last") -> Expr:
             return None   # no finer data to show
         periods = s.index.to_period(to)
         grouped = s.groupby(periods)
-        out = grouped.last() if how == "last" else grouped.mean()
+        out = {"last": grouped.last, "mean": grouped.mean, "sum": grouped.sum}[how]()   # a mean or sum needs every month
         last_seen = s.groupby(periods).apply(lambda g: g.index.max())
         ends = out.index.to_timestamp(how="end").normalize()
         if source == "M":   # a quarter is complete when its last month is in
@@ -1580,7 +1580,13 @@ def _amount_of(e: Expr, gdp: Expr) -> Expr:
 def period_web_table(table: SectorTable, data: Data) -> dict | None:
     """A quarterly or monthly table: the latest periods, leaving out lines with no data at that frequency."""
     computed = [(r, r.actual(data) if isinstance(r, Line) and r.actual else None) for r in table.rows]
-    lasts = [s.dropna().index.max() for _, s in computed if s is not None and not s.dropna().empty]
+    # The table runs to the latest period of its main lines (memo items, such as GDP, can run further).
+    lasts, in_memo = [], False
+    for r, s in computed:
+        if isinstance(r, Group):
+            in_memo = r.label.startswith("Memo")
+        elif not in_memo and s is not None and not s.dropna().empty:
+            lasts.append(s.dropna().index.max())
     if not lasts:
         return None
     through = max(lasts)
@@ -1802,6 +1808,167 @@ def _ext_quarterly(in_gdp: bool) -> SectorTable:
     )
 
 
+def _gg_quarterly(in_gdp: bool) -> SectorTable:
+    """Table 2 by quarter: flows in euros or as a share of the quarter's GDP; debt at the end of the quarter."""
+    g = lambda code: at(f"gg_q_{code}", "Q")
+    gdp_q, gdp_year = GDP_QUARTER, _gdp_year_to("Q")
+    flow = (lambda e: _per_gdp(e, gdp_q)) if in_gdp else (lambda e: scaled(e, 1e-3))
+    tr, te, b9, np_ = g("revenue"), g("spending"), g("balance"), g("nonproduced")
+    d2, d5, d91, d61 = g("taxes_production"), g("taxes_income"), g("capital_taxes"), g("social_contributions")
+    d1, p2, p5, d9 = g("compensation"), g("goods_services"), g("capital_formation"), g("capital_transfers")
+    paid, received, benefits, subsidies = g("interest_paid"), g("interest_received"), g("social_benefits"), g("subsidies")
+    taxes, expense, capital = total(d2, d5, d91), less(te, np_), total(p5, d9)
+    other_expense = less(expense, d1, p2, capital, paid, benefits)
+    lines = [
+        ("Revenue", 0, tr, "gg_q_revenue"), ("Taxes", 1, taxes, None),
+        ("Indirect taxes", 2, d2, "gg_q_taxes_production"), ("o.w. VAT", 3, g("vat"), "gg_q_vat"),
+        ("Direct taxes", 2, d5, "gg_q_taxes_income"), ("Capital tax", 2, d91, "gg_q_capital_taxes"),
+        ("Social contributions", 1, d61, "gg_q_social_contributions"), ("Other revenue", 1, less(tr, taxes, d61), None),
+        ("Expenditure", 0, te, "gg_q_spending"), ("Expense", 1, expense, None),
+        ("Compensation of employees", 2, d1, "gg_q_compensation"), ("Use of goods and services", 2, p2, "gg_q_goods_services"),
+        ("Capital 2/", 2, capital, None), ("o.w. Gross capital formation", 3, p5, "gg_q_capital_formation"),
+        ("o.w. Capital transfers and investment aid", 3, d9, "gg_q_capital_transfers"),
+        ("Interest", 2, paid, "gg_q_interest_paid"), ("Social benefits", 2, benefits, "gg_q_social_benefits"),
+        ("Other expense", 2, other_expense, None), ("Subsidies", 3, subsidies, "gg_q_subsidies"),
+        ("Other", 3, less(other_expense, subsidies), None),
+        ("Net acquisition of nonfinancial assets 2/", 1, np_, "gg_q_nonproduced"),
+        ("Gross operating balance", 0, less(tr, expense), None), ("Net lending / borrowing", 0, b9, "gg_q_balance"),
+    ]
+    rows = [Line(label, flow(e), indent=indent, source=f"{ESTAT}, quarterly government accounts", link=link)
+            for label, indent, e, link in lines]
+    debt = g("debt")
+    rows += [Group("Memorandum items"),
+             Line("Primary balance 3/", flow(combine(lambda b, p, r: b + p - r, b9, paid, received)), source=ESTAT,
+                  link="gg_q_interest_received"),
+             Line("General government gross debt (Maastricht) 4/", _per_gdp(debt, gdp_year) if in_gdp else scaled(debt, 1e-3),
+                  source=f"{ESTAT}, end of quarter", link="gg_q_debt"),
+             Line("Nominal GDP (billions of euros, the quarter)", scaled(gdp_q, 1e-3), source=INE, link="gdp_nominal")]
+    return replace(
+        FISCAL_GDP if in_gdp else FISCAL_EUR, id=f"fiscal-q-{'gdp' if in_gdp else 'amounts'}", freq="Q",
+        unit="Percent of the quarter's GDP, unless otherwise indicated" if in_gdp
+        else "Billions of euros, unless otherwise indicated", rows=rows,
+        footnotes=[
+            "1/ General government, quarterly accrual accounts (Eurostat), each quarter's flows, not seasonally adjusted"
+            + (", as a share of that quarter's GDP." if in_gdp else ".") + " Excise and the split of income taxes are "
+            "published only once a year.",
+            "2/ As in the IMF's table, capital spending is gross capital formation plus capital transfers, and net "
+            "acquisition of nonfinancial assets covers nonproduced assets only.",
+            "3/ Excludes interest earnings as well as interest payments, as in the World Economic Outlook.",
+            "4/ End of quarter" + ("; as a share of GDP over the past four quarters." if in_gdp else "."),
+        ],
+    )
+
+
+def _fsi_quarterly(in_amounts: bool) -> SectorTable:
+    """Table 3 by quarter: stocks at the end of the quarter, profitability annualised."""
+    f = lambda code: at(f"fsi_q_{code}", "Q")
+    b = lambda ind: at(ind, "Q")      # the Banco de España's quarter-end figures
+    gdp_year = _gdp_year_to("Q")
+    pct = lambda num, den, scale=100: combine(lambda a, c: a / c * scale, num, den)
+
+    def leverage(data):
+        t1, exposure, assets = f("tier1_capital")(data), f("leverage_exposure")(data), f("total_assets")(data)
+        if t1 is None or assets is None:
+            return None
+        base = assets if exposure is None else exposure.reindex(assets.index).fillna(assets)
+        return (t1 / base * 100).dropna()
+
+    def annualised(e: Expr) -> Expr:
+        """A year-to-date figure at an annual rate."""
+        return combine(lambda v, q: v * 4 / q, e, _expr(lambda data: _quarter_numbers(e(data)), e.ids))
+
+    # amounts in euros (FSI: euros; BdE: thousands) -> € bn, or % of GDP over the past four quarters
+    def size(e: Expr, per_euro: float) -> Expr:
+        return scaled(e, per_euro * 1e-9) if in_amounts else _per_gdp(scaled(e, per_euro * 1e-6), gdp_year)
+
+    construction = total(b("bank_credit_construction"), b("bank_credit_real_estate"))
+    construction_npl = total(b("bank_npl_construction"), b("bank_npl_real_estate"))
+    other_business = less(b("bank_credit_business"), construction)
+    other_business_npl = less(b("bank_npl_business"), construction_npl)
+    other_household = less(b("bank_credit_osr"), b("bank_credit_business"), b("bank_credit_housing"))
+    other_household_npl = less(b("bank_npl_domestic"), b("bank_npl_business"), b("bank_npl_housing"))
+    unit = "(billions of euros)" if in_amounts else "(percent of GDP)"
+    household = b("household_liabilities_q")
+    rows = [
+        Group("Deposit takers: consolidated basis"),
+        Line("Regulatory capital to risk-weighted assets", pct(f("regulatory_capital"), f("rwa")), source=FSI,
+             link="fsi_q_regulatory_capital"),
+        Line("Regulatory Tier 1 capital to risk-weighted assets", pct(f("tier1_capital"), f("rwa")), source=FSI,
+             link="fsi_q_tier1_capital"),
+        Line("Tier 1 capital to total assets 1/", _expr(leverage, {"fsi_q_tier1_capital"}), source=FSI,
+             link="fsi_q_leverage_exposure"),
+        Line(f"Nonperforming loans {unit}", size(f("npl"), 1), source=FSI, link="fsi_q_npl"),
+        Line("Nonperforming loans to total gross loans", pct(f("npl"), f("gross_loans")), source=FSI,
+             link="fsi_q_gross_loans"),
+        Line("Specific provisions to nonperforming loans", pct(f("specific_provisions"), f("npl")), source=FSI,
+             link="fsi_q_specific_provisions"),
+        Line("Return on assets 2/", pct(annualised(f("income_before_tax")), f("average_assets")), source=FSI,
+             link="fsi_q_income_before_tax"),
+        Line("Return on equity 2/", pct(f("income_after_tax"), f("average_capital")), source=FSI,
+             link="fsi_q_income_after_tax"),
+        Group("Deposit takers: domestic operations"),
+        Line(f"Nonperforming loans {unit}", size(b("bank_npl_domestic"), 1e3), source=BDE, link="bank_npl_domestic"),
+        Line("Nonperforming loans to total loans", pct(b("bank_npl_domestic"), b("bank_credit_osr")), source=BDE,
+             link="bank_credit_osr"),
+        Line("Specific provisions to nonperforming loans 3/", pct(b("bank_provisions_osr"), b("bank_npl_osr_all")),
+             source=BDE, link="bank_provisions_osr"),
+        Line(f"Exposure to businesses: construction and real estate {unit}", size(construction, 1e3), source=BDE,
+             link="bank_credit_construction"),
+        Line("o/w nonperforming (percent)", pct(construction_npl, construction), indent=1, source=BDE),
+        Line(f"Exposure to businesses: other {unit}", size(other_business, 1e3), source=BDE, link="bank_credit_business"),
+        Line("o/w nonperforming (percent)", pct(other_business_npl, other_business), indent=1, source=BDE),
+        Line(f"Exposure to households: home purchase {unit}", size(b("bank_credit_housing"), 1e3), source=BDE,
+             link="bank_credit_housing"),
+        Line("o/w nonperforming (percent)", pct(b("bank_npl_housing"), b("bank_credit_housing")), indent=1, source=BDE),
+        Line(f"Exposure to households: other {unit} 4/", size(other_household, 1e3), source=BDE),
+        Line("o/w nonperforming (percent)", pct(other_household_npl, other_household), indent=1, source=BDE),
+        Line("Loans to deposits 5/", pct(b("bank_loans_osr"), b("bank_deposits_osr"), 1e5), source=BDE,
+             link="bank_deposits_osr"),
+        Group("Corporate sector"),
+        Line(f"Debt {unit}", size(f("nfc_debt"), 1), source=FSI, link="fsi_q_nfc_debt"),
+        Line("Debt to total assets 6/", pct(f("nfc_debt"), f("nfc_balance_sheet")), source=FSI,
+             link="fsi_q_nfc_balance_sheet"),
+        Group("Household sector"),
+        Line(f"Debt {unit} 7/", _amount_of(household, gdp_year) if in_amounts else household, source=ESTAT,
+             link="household_liabilities_q"),
+        Group("Real estate market"),
+        Line("House prices (percentage change on a year earlier)", yoy(b("house_prices")), source=INE, link="house_prices"),
+        Line("Home sales (2007 average = 100) 8/", _expr(_home_sales_q, {"home_sales"}), source=INE, link="home_sales"),
+    ]
+    return replace(
+        FINANCIAL_SOUNDNESS, id=f"financial-soundness-q-{'amounts' if in_amounts else 'gdp'}", freq="Q",
+        unit="Percent, unless otherwise indicated; end of quarter", rows=rows,
+        footnotes=[
+            "1/ Tier 1 capital over the Basel III leverage exposure measure where reported, otherwise over total assets.",
+            "2/ Annualised: net income before tax for the year to date over average assets, and net income after tax "
+            "over average capital and reserves (IMF FSI database).",
+            "3/ Impairment allowances over nonperforming credit to other resident sectors.",
+            "4/ Credit to households other than for house purchase, to nonprofit institutions, and unclassified credit.",
+            "5/ Loans to and deposits from other resident sectors.",
+            "6/ Debt over the balance sheet total of nonfinancial corporations.",
+            "7/ Total financial liabilities of households" + (", in euros." if in_amounts
+                                                             else ", as a share of GDP over the past four quarters."),
+            "8/ Homes sold in the quarter, against the 2007 quarterly average." + (
+                "" if in_amounts else " Amounts in euros are shares of GDP over the past four quarters."),
+        ],
+    )
+
+
+def _quarter_numbers(s: pd.Series | None) -> pd.Series | None:
+    """1 to 4: the quarter of the year of each date."""
+    return None if s is None else pd.Series(((s.index.month - 1) // 3 + 1).astype(float), index=s.index)
+
+
+def _home_sales_q(data: Data):
+    sales = at("home_sales", "Q", "sum")(data)
+    year = annual_sum("home_sales")(data)
+    if sales is None or year is None or 2007 not in year.index:
+        return None
+    return sales / (year[2007] / 4) * 100
+
+
+FISCAL_Q = (_gg_quarterly(False), _gg_quarterly(True))
+FINANCIAL_SOUNDNESS_Q = (_fsi_quarterly(True), _fsi_quarterly(False))
 BOP_Q = (_bop_quarterly(False), _bop_quarterly(True))
 EXT_Q = (_ext_quarterly(False), _ext_quarterly(True))
 REAL_SECTOR_Q = (_real_sector_quarterly(True), _real_sector_quarterly(False))
@@ -1821,7 +1988,7 @@ PAGE = [
      [chart_growth, chart_saving]),
     ("fiscal", "Government operations",
      "Revenue, spending and the balances of the general government, from Eurostat's accounts.",
-     [(FISCAL_EUR, FISCAL_GDP)], [chart_fiscal]),
+     [{"A": (FISCAL_EUR, FISCAL_GDP), "Q": FISCAL_Q}], [chart_fiscal]),
     ("debt-sustainability", "Debt sustainability",
      "What changes the debt, in the IMF's layout, and how it fares under the European Commission's stress tests. In "
      "percent of GDP, DSA 1 splits the change in the debt ratio, growth and inflation included; in euros, the change "
@@ -1830,7 +1997,8 @@ PAGE = [
      [chart_debt_dynamics, dsa_fan_chart, dsa_stress_chart]),
     ("financial-soundness", "Financial soundness",
      "Bank capital, asset quality and profitability, banks' exposures at home, and the debt of firms and households.",
-     [(convert(FINANCIAL_SOUNDNESS, "amounts"), convert(FINANCIAL_SOUNDNESS, "gdp"))], [chart_capital, chart_bad_loans]),
+     [{"A": (convert(FINANCIAL_SOUNDNESS, "amounts"), convert(FINANCIAL_SOUNDNESS, "gdp")), "Q": FINANCIAL_SOUNDNESS_Q}],
+     [chart_capital, chart_bad_loans]),
     ("balance-of-payments", "Balance of payments",
      "Spain's transactions with the rest of the world, and the investment position they build up.",
      [{"A": (BOP_AMOUNTS, BOP_GDP), "Q": BOP_Q}], [chart_current_account]),
