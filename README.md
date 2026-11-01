@@ -46,7 +46,9 @@ Because the workflow commits data every day, run `git pull` before working local
 - **Fiscal, Activity, Housing, International, Regions**: the public finances, activity and tourism, the housing
   market and household debt, Spain against its peers, and the 17 autonomous communities.
 - **Tools**: Economy vs pre-COVID trend, an interactive Taylor rule and an interest rate decomposer; change a
-  setting and the numbers and charts recompute in the browser.
+  setting and the numbers and charts recompute in the browser. **Global central bank stance**
+  (`site/stance.html`): Econvitals' Global Central Bank Stance Matrix for twelve central banks, shown natively
+  and credited (Econvitals places its own work in the public domain, CC0 1.0).
 - **Analysis**: EconPulse's own calculations, each explained on the page: activity and inflation composites,
   data surprises (the latest figures against a simple statistical forecast), a GDP nowcast with its track record,
   what forecasters expect for this year and next, the 10-year yield split into Bund and prima de riesgo, and
@@ -105,6 +107,7 @@ econpulse/            Python package
   schedule.py         release calendar: INE's iCal, the Social Security rule, ECB decisions
   changes.py          "what changed": notes on new releases, revisions and big market moves
   feed.py             the RSS feed of those notes (site/feed.xml; absolute links use config.SITE_URL)
+  stance.py           the central bank stance page, from Econvitals' public data (saved to data/stance.json)
   build.py            renders every page into site/ (chart data goes in site/data/*.js)
 templates/            Jinja2 pages: base layout, home, section pages, data page
 static/               style.css (light/dark tokens), app.js (theme toggle, Plotly charts)

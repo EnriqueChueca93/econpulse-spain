@@ -77,3 +77,13 @@ def test_underlying_inflation_from_detailed_hicp():
     r = hicpdist.fetch("ES/median")
     assert recent(r.series, 120) and r.meta["distribution"]["items"] >= 150
     assert abs(sum(share for _, share in r.meta["distribution"]["bands"]) - 100) < 0.5
+
+
+def test_econvitals_stance_data(tmp_path):
+    """Econvitals' stance files still have the shape the page reads."""
+    from econpulse import stance
+    from econpulse.store import Store
+    store = Store(tmp_path / "data")
+    assert "central banks" in stance.refresh(store)
+    page = stance.page(store)
+    assert any(r["code"] == "XM" for r in page["rows"]) and page["diffusion"]["n"] > 20

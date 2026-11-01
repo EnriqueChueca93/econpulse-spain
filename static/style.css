@@ -273,6 +273,36 @@ code { font-size: 13px; background: var(--hover); padding: 1px 5px; border-radiu
 .tool-button:hover { background: var(--hover); }
 .tool-result { font: 17px/1.45 var(--serif); color: var(--text); max-width: 820px; margin: 0 0 14px; min-height: 1.45em; }
 .tool-table { margin-bottom: 16px; max-width: 560px; }
+.tool-button[aria-pressed="true"] { background: var(--text); color: var(--page); border-color: var(--text); }
+.tool-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin: 0 0 24px; }
+.tool-list a { display: block; padding: 12px 14px; text-decoration: none; color: var(--text); }
+.tool-list a span { display: block; color: var(--text-2); font-size: 13px; margin-top: 2px; }
+
+/* Central bank stance */
+.back-link { margin: 0 0 4px; font-size: 14px; }
+.credit-box { max-width: 900px; margin-bottom: 18px; }
+.credit-box p { margin: 0 0 6px; }
+.stance-upcoming { line-height: 1.6; }
+.stance-table { min-width: 1100px; }
+.stance-table td, .stance-table th { vertical-align: top; text-align: left; }
+.stance-table .secondary { display: block; font-size: 12px; }
+.stance-bank { font-weight: 600; white-space: nowrap; }
+.stance-rate { font: 600 17px var(--serif); white-space: nowrap; }
+.stance-decision { min-width: 260px; max-width: 340px; }
+.stance-decision p { margin: 4px 0 0; font-size: 13px; }
+.stance-desk { min-width: 180px; max-width: 260px; }
+.stance-desk details summary { cursor: pointer; font-size: 12px; color: var(--text-2); }
+.stance-desk ul { margin: 6px 0 0; padding-left: 16px; font-size: 12px; }
+.stance-market { min-width: 170px; }
+.badge.phase { font-weight: 600; }
+.phase-hiking { background: var(--warn-bg); color: var(--warn-text); }
+.phase-cutting { background: var(--info-bg); color: var(--info-text); }
+.phase-hold, .phase-paused { background: var(--hover); color: var(--text-2); }
+.tilt-hawkish { background: var(--warn-bg); color: var(--warn-text); }
+.tilt-dovish { background: var(--info-bg); color: var(--info-text); }
+.tilt-neutral { background: var(--hover); color: var(--text-2); }
+.stance-lists { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; font-size: 14px; }
+blockquote.note { margin: 8px 0; padding-left: 12px; border-left: 3px solid var(--border); }
 
 .site-footer { margin-top: 48px; padding: 18px 0 36px; border-top: 1px solid var(--border); color: var(--text-2); font-size: 12px; }
 .site-footer p { margin: 0 0 4px; }

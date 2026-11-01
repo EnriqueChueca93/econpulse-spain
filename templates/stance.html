@@ -1,0 +1,153 @@
+{% extends "base.html" %}
+{% from "macros.html" import chart_card %}
+
+{% block title %}Central bank stance · EconPulse Spain{% endblock %}
+
+{% macro phase_badge(r) -%}<span class="badge phase phase-{{ r.phase_class }}">{{ r.phase }}</span>{%- endmacro %}
+{% macro tilt_badge(t) -%}{% if t %}<span class="badge tilt tilt-{{ t | lower }}">{{ t | upper }}</span>{% endif %}{%- endmacro %}
+
+{% block content %}
+  <p class="back-link"><a href="tools.html">← Tools</a></p>
+  <h1>Global central bank stance</h1>
+  <p class="lede">For twelve central banks: what each did, what it said, where it is in its cycle, when it meets next,
+    what bank economists expect and what markets price, and how the world's central banks are leaning.</p>
+
+  <div class="notice credit-box">
+    <p><strong>From Econvitals.</strong> This page shows the
+      <a href="{{ econvitals_page }}" target="_blank" rel="noopener">Global Central Bank Stance Matrix</a> built by
+      Econvitals (econvitals.org, by Jason Furman), which places its own text, charts and estimates in the public domain
+      (<a href="{{ econvitals_terms }}" target="_blank" rel="noopener">CC0 1.0</a>). EconPulse Spain takes its data once a
+      day and lays it out here, with thanks. The underlying data remain their publishers': policy rates from the BIS and
+      the central banks, desk calls from the named banks' research, market odds from the markets named in each row.</p>
+    {% if s %}<p class="secondary">Data through {{ s.as_of }} · built by Econvitals {{ s.built[:10] }} ·
+      fetched by EconPulse {{ s.fetched_at[:16] | replace("T", " ") }} UTC</p>{% endif %}
+  </div>
+
+  {% if not s %}
+    <p class="notice">The stance data have not been fetched yet; they arrive with the next data update.</p>
+  {% else %}
+  {% if s.error %}<p class="notice">The last refresh failed ({{ s.error }}); this is the copy from the update before.</p>{% endif %}
+
+  <div class="facts stance-counts">
+    <div class="fact"><span class="fact-label">Cutting</span><span class="fact-value">{{ s.counts.cutting }}</span></div>
+    <div class="fact"><span class="fact-label">On hold</span><span class="fact-value">{{ s.counts.hold }}</span></div>
+    <div class="fact"><span class="fact-label">Hiking</span><span class="fact-value">{{ s.counts.hiking }}</span></div>
+    {% if s.upcoming %}
+    <div class="fact"><span class="fact-label">Next decisions</span>
+      <span class="fact-sub stance-upcoming">{% for r in s.upcoming %}{{ r.flag }} {{ r.name }} · {{ r.meeting }} · in {{ r.days }} day{{ "s" if r.days != 1 }}{% if not loop.last %}<br>{% endif %}{% endfor %}</span>
+    </div>
+    {% endif %}
+  </div>
+  <p class="block-intro">{{ s.counts.hiking }} tightening, {{ s.counts.cutting }} still cutting and {{ s.counts.hold }} on hold
+    ({{ s.counts.paused }} long-paused) across the {{ s.counts.total }} majors.</p>
+
+  <section class="block" aria-labelledby="matrix">
+    <h2 id="matrix">The matrix</h2>
+    <div class="tool-controls stance-sort" role="group" aria-label="Sort the matrix">
+      <span class="secondary">Sort by</span>
+      <button type="button" class="tool-button" data-sort="order" aria-pressed="true">Default</button>
+      <button type="button" class="tool-button" data-sort="days" aria-pressed="false">Next meeting</button>
+      <button type="button" class="tool-button" data-sort="rate" aria-pressed="false">Rate</button>
+      <button type="button" class="tool-button" data-sort="country" aria-pressed="false">Country</button>
+    </div>
+    <div class="table-scroll">
+      <table class="data-table stance-table" id="stance-table">
+        <thead><tr>
+          <th scope="col">Bank</th><th scope="col">Rate</th><th scope="col">Last decision</th><th scope="col">Cycle phase</th>
+          <th scope="col">Next meeting</th><th scope="col">Desks expect</th><th scope="col">Markets price</th>
+        </tr></thead>
+        <tbody>
+        {% for r in s.rows %}
+          <tr id="bank-{{ r.code | lower }}"{% if r.spain %} class="highlight-row"{% endif %} data-order="{{ r.order }}"
+              data-days="{{ r.days if r.days is not none else 9999 }}" data-rate="{{ r.rate if r.rate is not none else -99 }}"
+              data-country="{{ r.country }}">
+            <th scope="row"><span class="stance-bank">{{ r.flag }} {{ r.name }}</span>
+              <span class="secondary">{{ r.country }} · {{ r.instrument }}</span></th>
+            <td><span class="stance-rate">{{ r.rate_display }}</span><span class="secondary">through {{ r.through }}</span>
+              <span class="secondary">YTD {{ r.ytd }}</span></td>
+            <td class="stance-decision"><span class="secondary">{{ r.last_move }}</span>
+              {% if r.decision.summary %}<p>{{ r.decision.summary }} {{ tilt_badge(r.decision.tilt) }}</p>
+              {% if r.decision.vote %}<p class="secondary">Vote: {{ r.decision.vote }}</p>{% endif %}{% endif %}
+              {% if r.decision.title %}<p class="secondary">{% if r.decision.url %}<a href="{{ r.decision.url }}" target="_blank" rel="noopener">{{ r.decision.title }}</a>{% else %}{{ r.decision.title }}{% endif %} · {{ r.decision.date }}
+                {% if not r.decision.summary %}<br>summary pending{% endif %}</p>{% endif %}</td>
+            <td>{{ phase_badge(r) }}<span class="secondary">{{ r.next_move }} <span class="badge badge-info">{{ r.next_kind | upper }}</span></span></td>
+            <td>{% if r.meeting %}{% if r.meeting_url %}<a href="{{ r.meeting_url }}" target="_blank" rel="noopener">{{ r.meeting }}</a>{% else %}{{ r.meeting }}{% endif %}
+              <span class="secondary">in {{ r.days }} day{{ "s" if r.days != 1 }}{% if r.meeting_rule %} · RULE{% endif %}</span>{% endif %}</td>
+            <td class="stance-desk">{% if r.desk.tally %}<strong>{{ r.desk.consensus }}</strong>
+              <span class="secondary">{{ r.desk.tally }}</span>
+              <details><summary>the call{{ "s" if r.desk.calls | length != 1 }}</summary>
+                <ul>{% for c in r.desk.calls %}<li><strong>{{ c.house }}</strong>{% if c.person %} ({{ c.person }}){% endif %}: {{ c.call }}{% if c.size %} {{ c.size }} bp{% endif %}{% if c.text %}; {{ c.text }}{% endif %} <span class="secondary">({{ c.as_of }})</span></li>{% endfor %}
+                {% for q in r.desk.quotes %}<li><strong>{{ q.house }}</strong>: “{{ q.text }}” <span class="secondary">({{ q.as_of }})</span></li>{% endfor %}</ul>
+              </details>{% else %}<span class="secondary">No desk calls in the window</span>{% endif %}</td>
+            <td class="stance-market">{% if r.market and r.market.lead %}<strong>{{ r.market.lead.p }} {{ r.market.lead.move }}</strong>
+              <span class="secondary">{{ r.market.lead.detail }}</span>
+              <span class="secondary">for {{ r.market.lead.for }} · {% if r.market.lead.url %}<a href="{{ r.market.lead.url }}" target="_blank" rel="noopener">{{ r.market.lead.source }}</a>{% else %}{{ r.market.lead.source }}{% endif %}{% if r.market.lead.thin %} <span class="badge badge-warn">THIN MARKET</span>{% endif %}</span>
+              {% for a in r.market.agree %}<span class="secondary">{{ a.source }} {{ "agrees" if a.agrees else "differs" }}: {{ a.text }}{% if a.thin %} (thin){% endif %}</span>{% endfor %}{% endif %}
+              {% if r.market %}{% for p in r.market.paths %}<span class="secondary">{{ p.source }} path: {{ p.text }}</span>{% endfor %}{% endif %}
+              {% if not r.market %}<span class="secondary">No free market read</span>{% endif %}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <p class="note">The euro area row (the ECB, which sets rates for Spain) is highlighted. Market odds: probability of each
+      outcome at the next meeting; the deepest market leads and the others say whether they agree, as on Econvitals.</p>
+  </section>
+
+  <section class="block" aria-labelledby="diffusion">
+    <h2 id="diffusion">How the world's central banks are leaning</h2>
+    <p class="block-intro">{{ s.diffusion.n }} banks in {{ s.diffusion.month }}: {{ s.diffusion.hiking | length }} hiking,
+      {{ s.diffusion.cutting | length }} cutting, {{ s.diffusion.hold }} on hold. Index {{ "%+.1f" | format(s.diffusion.index) }},
+      {% if s.diffusion.previous is not none %}{{ "above" if s.diffusion.index > s.diffusion.previous else "below" }} last month's {{ "%+.1f" | format(s.diffusion.previous) }}{% endif %}.</p>
+    <div class="charts">{% for c in charts if c.id == "diffusion" %}{{ chart_card(c) }}{% endfor %}</div>
+    <div class="stance-lists">
+      <p><strong>Hiking this month ({{ s.diffusion.hiking | length }})</strong><br>{{ s.diffusion.hiking | join(", ") or "None" }}</p>
+      <p><strong>Cutting this month ({{ s.diffusion.cutting | length }})</strong><br>{{ s.diffusion.cutting | join(", ") or "None" }}</p>
+    </div>
+    <p class="note">{{ s.diffusion.note }}</p>
+  </section>
+
+  <section class="block" aria-labelledby="diary">
+    <h2 id="diary">Decision diary</h2>
+    <p class="block-intro">The latest decision release from each bank's own feed, newest first.</p>
+    <ul class="news-list stance-diary">
+      {% for r in s.diary %}<li><span class="news-day">{{ r.decision.date }}</span> {{ r.flag }} {{ r.name }}:
+        {% if r.decision.url %}<a href="{{ r.decision.url }}" target="_blank" rel="noopener">{{ r.decision.title }}</a>{% else %}{{ r.decision.title }}{% endif %}
+        {{ tilt_badge(r.decision.tilt) }}</li>{% endfor %}
+    </ul>
+  </section>
+
+  <section class="block" aria-labelledby="ranked">
+    <h2 id="ranked">Policy rates ranked</h2>
+    <p class="block-intro">Each bank's policy rate, highest to lowest: nominal, and real after adjusting for the country's
+      core inflation over the last 12 months, (1 + rate) ÷ (1 + inflation) − 1.</p>
+    <div class="charts">{% for c in charts if c.id.startswith("ranked") %}{{ chart_card(c) }}{% endfor %}</div>
+    <p class="note">The Fed's bar is the midpoint of its target range; the euro area is the deposit facility rate; China is
+      the one-year Loan Prime Rate. {{ s.core_note }}</p>
+  </section>
+
+  <section class="block" aria-labelledby="method">
+    <h2 id="method">Method and sources</h2>
+    <div class="prose">
+      <p>Everything on this page is Econvitals' work, shown as published; EconPulse Spain only arranges it. Econvitals'
+        own description of its method (public domain):</p>
+      <blockquote class="note">{{ s.method }}</blockquote>
+      <p class="note">Desk calls: {{ s.desk_source }}. Market odds: {{ s.market_sources | join(", ") }}. Policy rates:
+        {{ s.source }}{% if s.fast_sources %}, topped up from {{ s.fast_sources | join("; ") }}{% endif %}.</p>
+      <p class="note">Full method: <a href="https://econvitals.org/methods/" target="_blank" rel="noopener">Econvitals' Methods page</a>.
+        For the euro area in more depth, see this site's <a href="ecb.html">ECB page</a>.</p>
+    </div>
+  </section>
+  {% endif %}
+{% endblock %}
+
+{% block scripts %}
+  {% if charts_file %}
+  <script src="assets/plotly.min.js?v={{ build_id }}"></script>
+  <script src="{{ charts_file }}?v={{ build_id }}"></script>
+  {% endif %}
+{% endblock %}
+
+{% block after_scripts %}
+  <script src="assets/stance.js?v={{ build_id }}"></script>
+{% endblock %}

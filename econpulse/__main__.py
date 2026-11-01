@@ -16,7 +16,7 @@ import argparse
 import sys
 import time
 
-from . import changes, forecasts, schedule
+from . import changes, forecasts, schedule, stance
 from .build import build_site
 from .fetch import fetch_all
 from .registry import load_registry
@@ -142,6 +142,7 @@ def main(argv: list[str] | None = None) -> int:
         ok = sum(1 for i in targets if catalog.get(i, {}).get("status") == "ok")
         print(f"Fetched {ok}/{len(targets)} indicators in {time.monotonic() - started:.1f}s")
         print(f"Release calendar: {schedule.refresh(store)} INE releases saved")
+        print(f"Central bank stance (Econvitals): {stance.refresh(store)}")
         notes = changes.record(indicators, store)
         print(f"What changed: {len(notes)} new note(s)")
         for n in notes:

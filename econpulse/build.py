@@ -14,7 +14,7 @@ from pathlib import Path
 import pandas as pd
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
-from . import __version__, analytics, changes, feed, schedule, surprises, tools
+from . import __version__, analytics, changes, feed, schedule, stance, surprises, tools
 from .charts import build_home_charts
 from .config import SITE_DIR, STATIC_DIR, TEMPLATES_DIR
 from .pages import build_page
@@ -118,7 +118,8 @@ def build_site(indicators: list[Indicator], store: Store | None = None, site_dir
 
     def render(template: str, filename: str, **context) -> Path:
         path = site_dir / filename
-        html = env.get_template(template).render(**common, active=filename, **context)
+        active = context.pop("active", filename)   # a tool page highlights "Tools" in the navigation
+        html = env.get_template(template).render(**common, active=active, **context)
         path.write_text(html, encoding="utf-8")
         return path
 
@@ -152,4 +153,10 @@ def build_site(indicators: list[Indicator], store: Store | None = None, site_dir
     (site_dir / feed.FEED_FILE).write_text(feed.build_feed(store), encoding="utf-8", newline="\n")
     write_data_js(data_dir / "tools.js", "tools", tools.tools_data(Data(indicators, store)))
     render("tools.html", "tools.html", taylor_defaults={"r_star": analytics.R_STAR})
+    stance_charts = stance.charts(store)
+    if stance_charts:
+        write_data_js(data_dir / "charts-stance.js", "charts", stance_charts)
+    render("stance.html", "stance.html", active="tools.html", s=stance.page(store), charts=stance_charts,
+           charts_file="data/charts-stance.js" if stance_charts else None,
+           econvitals_page=stance.PAGE, econvitals_terms=stance.TERMS)
     return index
