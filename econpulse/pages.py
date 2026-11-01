@@ -8,7 +8,7 @@ lists the indicators those functions read. Sections without blocks yet show thei
 (see build.SECTION_PAGES for the batch that fills them).
 """
 
-from . import analytics, forecasts, policy, sectortables, surprises, underlying
+from . import analytics, demography, forecasts, policy, sectortables, surprises, underlying
 from .charts import build_chart, build_curve, build_ranking, build_xy
 from .registry import Indicator
 from .snapshot import fmt_value, period_label
@@ -391,6 +391,89 @@ PAGES: dict[str, list[dict]] = {
                  "subtitle": "% of employees; the 2022 labour reform took effect that spring",
                  "kind": "line", "unit": "%", "decimals": 1, "start": "2015-01-01",
                  "series": [("temporary_rate", "level", "Temporary contracts")]},
+            ],
+        },
+        {
+            "id": "groups",
+            "title": "Who works: age, sex, citizenship and education",
+            "intro": ("The labour force survey by group, from Eurostat. Employment rates have risen for every "
+                      "group since 2019, most for women and people aged 55–64, and prime-age employment "
+                      "(25–54) is closing in on the euro area's. Charts show averages of the past four quarters, "
+                      "as the figures are not seasonally adjusted."),
+            "tables": [demography.GROUPS],
+            "charts": [
+                {"id": "prime-employment", "title": "Prime-age employment: Spain and the euro area",
+                 "subtitle": "Employment rate, ages 25–54, %, average of the past four quarters",
+                 "kind": "line", "unit": "%", "decimals": 1, "start": "2005-01-01",
+                 "series": [("lfs_emp_prime", "avg_1y", "Spain"),
+                            ("lfs_emp_prime_ea", "avg_1y", "Euro area", {"color": "ink"})]},
+                {"id": "employment-age", "title": "Employment rate by age",
+                 "subtitle": "%, average of the past four quarters",
+                 "kind": "line", "unit": "%", "decimals": 1, "start": "2005-01-01",
+                 "series": [("lfs_emp_young", "avg_1y", "15–24"), ("lfs_emp_prime", "avg_1y", "25–54"),
+                            ("lfs_emp_older", "avg_1y", "55–64")]},
+                {"id": "employment-sex", "title": "Women and men at prime age",
+                 "subtitle": "Employment rate, ages 25–54, %, average of the past four quarters",
+                 "kind": "line", "unit": "%", "decimals": 1, "start": "2005-01-01",
+                 "series": [("lfs_emp_prime_men", "avg_1y", "Men"), ("lfs_emp_prime_women", "avg_1y", "Women")]},
+                {"id": "unemployment-citizenship", "title": "Unemployment by citizenship",
+                 "subtitle": "Ages 15–64, % of the labour force, average of the past four quarters",
+                 "kind": "line", "unit": "%", "decimals": 1, "start": "2005-01-01",
+                 "series": [("lfs_une_spanish", "avg_1y", "Spanish"), ("lfs_une_eu", "avg_1y", "Other EU"),
+                            ("lfs_une_noneu", "avg_1y", "Non-EU")]},
+                {"id": "unemployment-education", "title": "Unemployment by education",
+                 "subtitle": "Ages 25–64, % of the labour force, average of the past four quarters",
+                 "kind": "line", "unit": "%", "decimals": 1, "start": "2005-01-01",
+                 "series": [("lfs_une_edu_low", "avg_1y", "Lower secondary"),
+                            ("lfs_une_edu_mid", "avg_1y", "Upper secondary"),
+                            ("lfs_une_edu_high", "avg_1y", "Tertiary")]},
+            ],
+        },
+        {
+            "id": "ageing",
+            "title": "Participation and an ageing population",
+            "intro": ("As the baby-boom generations reach retirement, a growing share of adults are past working "
+                      "age, which pulls down the participation and employment rates of everyone aged 15 and over "
+                      "even when each age group works as much as before. EconPulse holds the population's mix by "
+                      "sex and five-year age group at its 2008 shares, letting each group's own rate move, to show "
+                      "how much of the change comes from ageing."),
+            "facts": demography.ageing_facts,
+            "callout": demography.ageing_callout,
+            "tables": [Table(
+                title="Ages 15 and over",
+                caption="% of the population aged 15 and over, average of the past four quarters",
+                columns=LEVELS,
+                rows=[Row("lfs_participation", "Participation rate", transform="avg_1y", flow=False),
+                      Row("lfs_participation_aged", "At the 2008 age mix", indent=1, transform="avg_1y", flow=False),
+                      Row("lfs_epop", "Employment rate", transform="avg_1y", flow=False),
+                      Row("lfs_epop_aged", "At the 2008 age mix", indent=1, transform="avg_1y", flow=False),
+                      Row("lfs_share_65plus", "Aged 65 and over, % of people 15 and over", transform="avg_1y",
+                          flow=False)],
+                note=("EconPulse calculation from Eurostat's labour force survey: the rates of men and women in 13 age "
+                      "groups (15–19 to 70–74, and 75 and over), weighted by each group's share of the population, "
+                      "actual or as in 2008. People in private households only."),
+            )],
+            "charts": [
+                {"id": "participation-ageing", "title": "Participation and ageing",
+                 "subtitle": "Participation rate, ages 15 and over, %, average of the past four quarters",
+                 "kind": "line", "unit": "%", "decimals": 1, "start": "2000-01-01",
+                 "series": [("lfs_participation", "avg_1y", "Actual"),
+                            ("lfs_participation_aged", "avg_1y", "At the 2008 age mix",
+                             {"color": "ink", "dash": "dot"})]},
+                {"id": "employment-ageing", "title": "Employment and ageing",
+                 "subtitle": "Employment rate, ages 15 and over, %, average of the past four quarters",
+                 "kind": "line", "unit": "%", "decimals": 1, "start": "2000-01-01",
+                 "series": [("lfs_epop", "avg_1y", "Actual"),
+                            ("lfs_epop_aged", "avg_1y", "At the 2008 age mix", {"color": "ink", "dash": "dot"})]},
+                {"id": "participation-age", "title": "Participation by age",
+                 "subtitle": "%, average of the past four quarters",
+                 "kind": "line", "unit": "%", "decimals": 1, "start": "2005-01-01",
+                 "series": [("lfs_act_young", "avg_1y", "15–24"), ("lfs_act_prime", "avg_1y", "25–54"),
+                            ("lfs_act_older", "avg_1y", "55–64")]},
+                {"id": "share-65", "title": "An older population",
+                 "subtitle": "Aged 65 and over, % of people aged 15 and over, average of the past four quarters",
+                 "kind": "line", "unit": "%", "decimals": 1, "start": "2000-01-01",
+                 "series": [("lfs_share_65plus", "avg_1y", "Aged 65 and over")]},
             ],
         },
         {

@@ -4914,6 +4914,481 @@
   "source_name": "Labour cost index by NACE Rev. 2 activity - nominal value, quarterly data",
   "source_updated": "2026-09-16T11:00:00+0200"
  },
+ "lfs_act_all": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:05:40+00:00",
+  "first_date": "1998-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 114,
+  "signature": "[\"eurostat\", \"lfsq_argan\", {\"age\": \"Y15-64\", \"citizen\": \"TOTAL\", \"geo\": \"ES\", \"sex\": \"T\", \"unit\": \"PC\"}, 1.0]",
+  "source_name": "Labour force participation rates by citizenship - quarterly data",
+  "source_updated": "2026-09-11T11:00:00+0200"
+ },
+ "lfs_act_edu_high": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:05:47+00:00",
+  "first_date": "1998-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 114,
+  "signature": "[\"eurostat\", \"lfsq_argaed\", {\"age\": \"Y25-64\", \"geo\": \"ES\", \"isced11\": \"ED5-8\", \"sex\": \"T\", \"unit\": \"PC\"}, 1.0]",
+  "source_name": "Labour force participation rates by educational attainment level - quarterly data",
+  "source_updated": "2026-09-11T11:00:00+0200"
+ },
+ "lfs_act_edu_low": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:05:47+00:00",
+  "first_date": "1998-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 114,
+  "signature": "[\"eurostat\", \"lfsq_argaed\", {\"age\": \"Y25-64\", \"geo\": \"ES\", \"isced11\": \"ED0-2\", \"sex\": \"T\", \"unit\": \"PC\"}, 1.0]",
+  "source_name": "Labour force participation rates by educational attainment level - quarterly data",
+  "source_updated": "2026-09-11T11:00:00+0200"
+ },
+ "lfs_act_edu_mid": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:05:47+00:00",
+  "first_date": "1998-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 114,
+  "signature": "[\"eurostat\", \"lfsq_argaed\", {\"age\": \"Y25-64\", \"geo\": \"ES\", \"isced11\": \"ED3_4\", \"sex\": \"T\", \"unit\": \"PC\"}, 1.0]",
+  "source_name": "Labour force participation rates by educational attainment level - quarterly data",
+  "source_updated": "2026-09-11T11:00:00+0200"
+ },
+ "lfs_act_eu": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:05:42+00:00",
+  "first_date": "1998-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 114,
+  "signature": "[\"eurostat\", \"lfsq_argan\", {\"age\": \"Y15-64\", \"citizen\": \"EU27_2020_FOR\", \"geo\": \"ES\", \"sex\": \"T\", \"unit\": \"PC\"}, 1.0]",
+  "source_name": "Labour force participation rates by citizenship - quarterly data",
+  "source_updated": "2026-09-11T11:00:00+0200"
+ },
+ "lfs_act_men": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:05:41+00:00",
+  "first_date": "1998-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 114,
+  "signature": "[\"eurostat\", \"lfsq_argan\", {\"age\": \"Y15-64\", \"citizen\": \"TOTAL\", \"geo\": \"ES\", \"sex\": \"M\", \"unit\": \"PC\"}, 1.0]",
+  "source_name": "Labour force participation rates by citizenship - quarterly data",
+  "source_updated": "2026-09-11T11:00:00+0200"
+ },
+ "lfs_act_noneu": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:05:43+00:00",
+  "first_date": "1998-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 114,
+  "signature": "[\"eurostat\", \"lfsq_argan\", {\"age\": \"Y15-64\", \"citizen\": \"NEU27_2020_FOR\", \"geo\": \"ES\", \"sex\": \"T\", \"unit\": \"PC\"}, 1.0]",
+  "source_name": "Labour force participation rates by citizenship - quarterly data",
+  "source_updated": "2026-09-11T11:00:00+0200"
+ },
+ "lfs_act_older": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:05:41+00:00",
+  "first_date": "1998-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 114,
+  "signature": "[\"eurostat\", \"lfsq_argan\", {\"age\": \"Y55-64\", \"citizen\": \"TOTAL\", \"geo\": \"ES\", \"sex\": \"T\", \"unit\": \"PC\"}, 1.0]",
+  "source_name": "Labour force participation rates by citizenship - quarterly data",
+  "source_updated": "2026-09-11T11:00:00+0200"
+ },
+ "lfs_act_prime": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:05:41+00:00",
+  "first_date": "1998-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 114,
+  "signature": "[\"eurostat\", \"lfsq_argan\", {\"age\": \"Y25-54\", \"citizen\": \"TOTAL\", \"geo\": \"ES\", \"sex\": \"T\", \"unit\": \"PC\"}, 1.0]",
+  "source_name": "Labour force participation rates by citizenship - quarterly data",
+  "source_updated": "2026-09-11T11:00:00+0200"
+ },
+ "lfs_act_prime_men": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:05:41+00:00",
+  "first_date": "1998-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 114,
+  "signature": "[\"eurostat\", \"lfsq_argan\", {\"age\": \"Y25-54\", \"citizen\": \"TOTAL\", \"geo\": \"ES\", \"sex\": \"M\", \"unit\": \"PC\"}, 1.0]",
+  "source_name": "Labour force participation rates by citizenship - quarterly data",
+  "source_updated": "2026-09-11T11:00:00+0200"
+ },
+ "lfs_act_prime_women": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:05:41+00:00",
+  "first_date": "1998-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 114,
+  "signature": "[\"eurostat\", \"lfsq_argan\", {\"age\": \"Y25-54\", \"citizen\": \"TOTAL\", \"geo\": \"ES\", \"sex\": \"F\", \"unit\": \"PC\"}, 1.0]",
+  "source_name": "Labour force participation rates by citizenship - quarterly data",
+  "source_updated": "2026-09-11T11:00:00+0200"
+ },
+ "lfs_act_spanish": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:05:42+00:00",
+  "first_date": "1998-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 114,
+  "signature": "[\"eurostat\", \"lfsq_argan\", {\"age\": \"Y15-64\", \"citizen\": \"NAT\", \"geo\": \"ES\", \"sex\": \"T\", \"unit\": \"PC\"}, 1.0]",
+  "source_name": "Labour force participation rates by citizenship - quarterly data",
+  "source_updated": "2026-09-11T11:00:00+0200"
+ },
+ "lfs_act_women": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:05:41+00:00",
+  "first_date": "1998-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 114,
+  "signature": "[\"eurostat\", \"lfsq_argan\", {\"age\": \"Y15-64\", \"citizen\": \"TOTAL\", \"geo\": \"ES\", \"sex\": \"F\", \"unit\": \"PC\"}, 1.0]",
+  "source_name": "Labour force participation rates by citizenship - quarterly data",
+  "source_updated": "2026-09-11T11:00:00+0200"
+ },
+ "lfs_act_young": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:05:41+00:00",
+  "first_date": "1998-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 114,
+  "signature": "[\"eurostat\", \"lfsq_argan\", {\"age\": \"Y15-24\", \"citizen\": \"TOTAL\", \"geo\": \"ES\", \"sex\": \"T\", \"unit\": \"PC\"}, 1.0]",
+  "source_name": "Labour force participation rates by citizenship - quarterly data",
+  "source_updated": "2026-09-11T11:00:00+0200"
+ },
+ "lfs_emp_all": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:05:43+00:00",
+  "first_date": "1998-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 114,
+  "signature": "[\"eurostat\", \"lfsq_ergan\", {\"age\": \"Y15-64\", \"citizen\": \"TOTAL\", \"geo\": \"ES\", \"sex\": \"T\", \"unit\": \"PC\"}, 1.0]",
+  "source_name": "Employment rates by citizenship - quarterly data",
+  "source_updated": "2026-09-11T11:00:00+0200"
+ },
+ "lfs_emp_edu_high": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:05:47+00:00",
+  "first_date": "1998-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 114,
+  "signature": "[\"eurostat\", \"lfsq_ergaed\", {\"age\": \"Y25-64\", \"geo\": \"ES\", \"isced11\": \"ED5-8\", \"sex\": \"T\", \"unit\": \"PC\"}, 1.0]",
+  "source_name": "Employment rates by educational attainment level - quarterly data",
+  "source_updated": "2026-09-11T11:00:00+0200"
+ },
+ "lfs_emp_edu_low": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:05:47+00:00",
+  "first_date": "1998-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 114,
+  "signature": "[\"eurostat\", \"lfsq_ergaed\", {\"age\": \"Y25-64\", \"geo\": \"ES\", \"isced11\": \"ED0-2\", \"sex\": \"T\", \"unit\": \"PC\"}, 1.0]",
+  "source_name": "Employment rates by educational attainment level - quarterly data",
+  "source_updated": "2026-09-11T11:00:00+0200"
+ },
+ "lfs_emp_edu_mid": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:05:47+00:00",
+  "first_date": "1998-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 114,
+  "signature": "[\"eurostat\", \"lfsq_ergaed\", {\"age\": \"Y25-64\", \"geo\": \"ES\", \"isced11\": \"ED3_4\", \"sex\": \"T\", \"unit\": \"PC\"}, 1.0]",
+  "source_name": "Employment rates by educational attainment level - quarterly data",
+  "source_updated": "2026-09-11T11:00:00+0200"
+ },
+ "lfs_emp_eu": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:05:44+00:00",
+  "first_date": "1998-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 114,
+  "signature": "[\"eurostat\", \"lfsq_ergan\", {\"age\": \"Y15-64\", \"citizen\": \"EU27_2020_FOR\", \"geo\": \"ES\", \"sex\": \"T\", \"unit\": \"PC\"}, 1.0]",
+  "source_name": "Employment rates by citizenship - quarterly data",
+  "source_updated": "2026-09-11T11:00:00+0200"
+ },
+ "lfs_emp_men": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:05:43+00:00",
+  "first_date": "1998-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 114,
+  "signature": "[\"eurostat\", \"lfsq_ergan\", {\"age\": \"Y15-64\", \"citizen\": \"TOTAL\", \"geo\": \"ES\", \"sex\": \"M\", \"unit\": \"PC\"}, 1.0]",
+  "source_name": "Employment rates by citizenship - quarterly data",
+  "source_updated": "2026-09-11T11:00:00+0200"
+ },
+ "lfs_emp_noneu": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:05:45+00:00",
+  "first_date": "1998-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 114,
+  "signature": "[\"eurostat\", \"lfsq_ergan\", {\"age\": \"Y15-64\", \"citizen\": \"NEU27_2020_FOR\", \"geo\": \"ES\", \"sex\": \"T\", \"unit\": \"PC\"}, 1.0]",
+  "source_name": "Employment rates by citizenship - quarterly data",
+  "source_updated": "2026-09-11T11:00:00+0200"
+ },
+ "lfs_emp_older": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:05:43+00:00",
+  "first_date": "1998-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 114,
+  "signature": "[\"eurostat\", \"lfsq_ergan\", {\"age\": \"Y55-64\", \"citizen\": \"TOTAL\", \"geo\": \"ES\", \"sex\": \"T\", \"unit\": \"PC\"}, 1.0]",
+  "source_name": "Employment rates by citizenship - quarterly data",
+  "source_updated": "2026-09-11T11:00:00+0200"
+ },
+ "lfs_emp_prime": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:05:43+00:00",
+  "first_date": "1998-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 114,
+  "signature": "[\"eurostat\", \"lfsq_ergan\", {\"age\": \"Y25-54\", \"citizen\": \"TOTAL\", \"geo\": \"ES\", \"sex\": \"T\", \"unit\": \"PC\"}, 1.0]",
+  "source_name": "Employment rates by citizenship - quarterly data",
+  "source_updated": "2026-09-11T11:00:00+0200"
+ },
+ "lfs_emp_prime_ea": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:05:48+00:00",
+  "first_date": "2002-04-01",
+  "last_date": "2026-04-01",
+  "n_obs": 89,
+  "signature": "[\"eurostat\", \"lfsq_ergan\", {\"age\": \"Y25-54\", \"citizen\": \"TOTAL\", \"geo\": \"EA21\", \"sex\": \"T\", \"unit\": \"PC\"}, 1.0]",
+  "source_name": "Employment rates by citizenship - quarterly data",
+  "source_updated": "2026-09-11T11:00:00+0200"
+ },
+ "lfs_emp_prime_men": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:05:44+00:00",
+  "first_date": "1998-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 114,
+  "signature": "[\"eurostat\", \"lfsq_ergan\", {\"age\": \"Y25-54\", \"citizen\": \"TOTAL\", \"geo\": \"ES\", \"sex\": \"M\", \"unit\": \"PC\"}, 1.0]",
+  "source_name": "Employment rates by citizenship - quarterly data",
+  "source_updated": "2026-09-11T11:00:00+0200"
+ },
+ "lfs_emp_prime_women": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:05:44+00:00",
+  "first_date": "1998-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 114,
+  "signature": "[\"eurostat\", \"lfsq_ergan\", {\"age\": \"Y25-54\", \"citizen\": \"TOTAL\", \"geo\": \"ES\", \"sex\": \"F\", \"unit\": \"PC\"}, 1.0]",
+  "source_name": "Employment rates by citizenship - quarterly data",
+  "source_updated": "2026-09-11T11:00:00+0200"
+ },
+ "lfs_emp_spanish": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:05:44+00:00",
+  "first_date": "1998-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 114,
+  "signature": "[\"eurostat\", \"lfsq_ergan\", {\"age\": \"Y15-64\", \"citizen\": \"NAT\", \"geo\": \"ES\", \"sex\": \"T\", \"unit\": \"PC\"}, 1.0]",
+  "source_name": "Employment rates by citizenship - quarterly data",
+  "source_updated": "2026-09-11T11:00:00+0200"
+ },
+ "lfs_emp_women": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:05:44+00:00",
+  "first_date": "1998-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 114,
+  "signature": "[\"eurostat\", \"lfsq_ergan\", {\"age\": \"Y15-64\", \"citizen\": \"TOTAL\", \"geo\": \"ES\", \"sex\": \"F\", \"unit\": \"PC\"}, 1.0]",
+  "source_name": "Employment rates by citizenship - quarterly data",
+  "source_updated": "2026-09-11T11:00:00+0200"
+ },
+ "lfs_emp_young": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:05:43+00:00",
+  "first_date": "1998-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 114,
+  "signature": "[\"eurostat\", \"lfsq_ergan\", {\"age\": \"Y15-24\", \"citizen\": \"TOTAL\", \"geo\": \"ES\", \"sex\": \"T\", \"unit\": \"PC\"}, 1.0]",
+  "source_name": "Employment rates by citizenship - quarterly data",
+  "source_updated": "2026-09-11T11:00:00+0200"
+ },
+ "lfs_epop": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:05:50+00:00",
+  "first_date": "1998-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 114,
+  "signature": "[\"ageing\", \"employment\", {}, 1.0]",
+  "base_year": 2008
+ },
+ "lfs_epop_aged": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:05:50+00:00",
+  "first_date": "1998-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 114,
+  "signature": "[\"ageing\", \"employment_adjusted\", {}, 1.0]",
+  "base_year": 2008
+ },
+ "lfs_participation": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:07:53+00:00",
+  "first_date": "1998-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 114,
+  "signature": "[\"ageing\", \"participation\", {}, 1.0]",
+  "base_year": 2008
+ },
+ "lfs_participation_aged": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:05:50+00:00",
+  "first_date": "1998-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 114,
+  "signature": "[\"ageing\", \"participation_adjusted\", {}, 1.0]",
+  "base_year": 2008
+ },
+ "lfs_share_65plus": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:07:53+00:00",
+  "first_date": "1998-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 114,
+  "signature": "[\"ageing\", \"share_65plus\", {}, 1.0]",
+  "base_year": 2008
+ },
+ "lfs_une_all": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:05:45+00:00",
+  "first_date": "1998-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 114,
+  "signature": "[\"eurostat\", \"lfsq_urgan\", {\"age\": \"Y15-64\", \"citizen\": \"TOTAL\", \"geo\": \"ES\", \"sex\": \"T\", \"unit\": \"PC\"}, 1.0]",
+  "source_name": "Unemployment rates by citizenship - quarterly data",
+  "source_updated": "2026-09-11T11:00:00+0200"
+ },
+ "lfs_une_edu_high": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:05:48+00:00",
+  "first_date": "1998-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 114,
+  "signature": "[\"eurostat\", \"lfsq_urgaed\", {\"age\": \"Y25-64\", \"geo\": \"ES\", \"isced11\": \"ED5-8\", \"sex\": \"T\", \"unit\": \"PC\"}, 1.0]",
+  "source_name": "Unemployment rates by educational attainment level - quarterly data",
+  "source_updated": "2026-09-11T11:00:00+0200"
+ },
+ "lfs_une_edu_low": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:05:48+00:00",
+  "first_date": "1998-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 114,
+  "signature": "[\"eurostat\", \"lfsq_urgaed\", {\"age\": \"Y25-64\", \"geo\": \"ES\", \"isced11\": \"ED0-2\", \"sex\": \"T\", \"unit\": \"PC\"}, 1.0]",
+  "source_name": "Unemployment rates by educational attainment level - quarterly data",
+  "source_updated": "2026-09-11T11:00:00+0200"
+ },
+ "lfs_une_edu_mid": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:05:48+00:00",
+  "first_date": "1998-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 114,
+  "signature": "[\"eurostat\", \"lfsq_urgaed\", {\"age\": \"Y25-64\", \"geo\": \"ES\", \"isced11\": \"ED3_4\", \"sex\": \"T\", \"unit\": \"PC\"}, 1.0]",
+  "source_name": "Unemployment rates by educational attainment level - quarterly data",
+  "source_updated": "2026-09-11T11:00:00+0200"
+ },
+ "lfs_une_eu": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:05:46+00:00",
+  "first_date": "1998-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 114,
+  "signature": "[\"eurostat\", \"lfsq_urgan\", {\"age\": \"Y15-64\", \"citizen\": \"EU27_2020_FOR\", \"geo\": \"ES\", \"sex\": \"T\", \"unit\": \"PC\"}, 1.0]",
+  "source_name": "Unemployment rates by citizenship - quarterly data",
+  "source_updated": "2026-09-11T11:00:00+0200"
+ },
+ "lfs_une_men": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:05:45+00:00",
+  "first_date": "1998-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 114,
+  "signature": "[\"eurostat\", \"lfsq_urgan\", {\"age\": \"Y15-64\", \"citizen\": \"TOTAL\", \"geo\": \"ES\", \"sex\": \"M\", \"unit\": \"PC\"}, 1.0]",
+  "source_name": "Unemployment rates by citizenship - quarterly data",
+  "source_updated": "2026-09-11T11:00:00+0200"
+ },
+ "lfs_une_noneu": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:05:46+00:00",
+  "first_date": "1998-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 114,
+  "signature": "[\"eurostat\", \"lfsq_urgan\", {\"age\": \"Y15-64\", \"citizen\": \"NEU27_2020_FOR\", \"geo\": \"ES\", \"sex\": \"T\", \"unit\": \"PC\"}, 1.0]",
+  "source_name": "Unemployment rates by citizenship - quarterly data",
+  "source_updated": "2026-09-11T11:00:00+0200"
+ },
+ "lfs_une_older": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:05:45+00:00",
+  "first_date": "1998-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 114,
+  "signature": "[\"eurostat\", \"lfsq_urgan\", {\"age\": \"Y55-64\", \"citizen\": \"TOTAL\", \"geo\": \"ES\", \"sex\": \"T\", \"unit\": \"PC\"}, 1.0]",
+  "source_name": "Unemployment rates by citizenship - quarterly data",
+  "source_updated": "2026-09-11T11:00:00+0200"
+ },
+ "lfs_une_prime": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:05:45+00:00",
+  "first_date": "1998-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 114,
+  "signature": "[\"eurostat\", \"lfsq_urgan\", {\"age\": \"Y25-54\", \"citizen\": \"TOTAL\", \"geo\": \"ES\", \"sex\": \"T\", \"unit\": \"PC\"}, 1.0]",
+  "source_name": "Unemployment rates by citizenship - quarterly data",
+  "source_updated": "2026-09-11T11:00:00+0200"
+ },
+ "lfs_une_prime_men": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:05:45+00:00",
+  "first_date": "1998-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 114,
+  "signature": "[\"eurostat\", \"lfsq_urgan\", {\"age\": \"Y25-54\", \"citizen\": \"TOTAL\", \"geo\": \"ES\", \"sex\": \"M\", \"unit\": \"PC\"}, 1.0]",
+  "source_name": "Unemployment rates by citizenship - quarterly data",
+  "source_updated": "2026-09-11T11:00:00+0200"
+ },
+ "lfs_une_prime_women": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:05:45+00:00",
+  "first_date": "1998-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 114,
+  "signature": "[\"eurostat\", \"lfsq_urgan\", {\"age\": \"Y25-54\", \"citizen\": \"TOTAL\", \"geo\": \"ES\", \"sex\": \"F\", \"unit\": \"PC\"}, 1.0]",
+  "source_name": "Unemployment rates by citizenship - quarterly data",
+  "source_updated": "2026-09-11T11:00:00+0200"
+ },
+ "lfs_une_spanish": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:05:46+00:00",
+  "first_date": "1998-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 114,
+  "signature": "[\"eurostat\", \"lfsq_urgan\", {\"age\": \"Y15-64\", \"citizen\": \"NAT\", \"geo\": \"ES\", \"sex\": \"T\", \"unit\": \"PC\"}, 1.0]",
+  "source_name": "Unemployment rates by citizenship - quarterly data",
+  "source_updated": "2026-09-11T11:00:00+0200"
+ },
+ "lfs_une_women": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:05:45+00:00",
+  "first_date": "1998-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 114,
+  "signature": "[\"eurostat\", \"lfsq_urgan\", {\"age\": \"Y15-64\", \"citizen\": \"TOTAL\", \"geo\": \"ES\", \"sex\": \"F\", \"unit\": \"PC\"}, 1.0]",
+  "source_name": "Unemployment rates by citizenship - quarterly data",
+  "source_updated": "2026-09-11T11:00:00+0200"
+ },
+ "lfs_une_young": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:05:45+00:00",
+  "first_date": "1998-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 114,
+  "signature": "[\"eurostat\", \"lfsq_urgan\", {\"age\": \"Y15-24\", \"citizen\": \"TOTAL\", \"geo\": \"ES\", \"sex\": \"T\", \"unit\": \"PC\"}, 1.0]",
+  "source_name": "Unemployment rates by citizenship - quarterly data",
+  "source_updated": "2026-09-11T11:00:00+0200"
+ },
  "loans_households_growth": {
   "status": "ok",
   "fetched_at": "2026-11-01T08:26:58+00:00",

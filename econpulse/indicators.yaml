@@ -8,6 +8,7 @@
 #   source       ine | eurostat | ecb | bde | segsocial | ree | oecd | bis | bls | dbnomics | eia | worldbank |
 #                bundesbank | imf | bdeproj (Banco de España projections) | funcas |
 #                hicpdist (underlying inflation from Eurostat's detailed HICP items) |
+#                ageing (participation adjusted for the population's ageing, from Eurostat's LFS) |
 #                fred | derived  (FRED does not answer GitHub's servers, so the online site avoids it)
 #   key, params  what to ask the source for (see econpulse/sources/<source>.py)
 #   freq         D | M | Q | A
@@ -79,6 +80,25 @@ government_measures: &government_measures
   - {m: gdp, name: real GDP growth, name_es: crecimiento del PIB real, unit: "%"}
   - {m: unemployment, name: unemployment rate, name_es: tasa de paro, unit: "%"}
   - {m: balance, name: government budget balance, name_es: saldo de las AA. PP., unit: "% of GDP"}
+
+# Groups for the labour-force rates by group (Eurostat LFS, quarterly, not seasonally adjusted):
+# by sex, age and citizenship, and, for ages 25-64, by educational attainment.
+lfs_groups: &lfs_groups
+  - {slug: all, name: "ages 15-64", name_es: "15 a 64 años", sex: T, age: Y15-64, citizen: TOTAL}
+  - {slug: young, name: "ages 15-24", name_es: "15 a 24 años", sex: T, age: Y15-24, citizen: TOTAL}
+  - {slug: prime, name: "ages 25-54", name_es: "25 a 54 años", sex: T, age: Y25-54, citizen: TOTAL}
+  - {slug: older, name: "ages 55-64", name_es: "55 a 64 años", sex: T, age: Y55-64, citizen: TOTAL}
+  - {slug: men, name: "men 15-64", name_es: "hombres de 15 a 64 años", sex: M, age: Y15-64, citizen: TOTAL}
+  - {slug: women, name: "women 15-64", name_es: "mujeres de 15 a 64 años", sex: F, age: Y15-64, citizen: TOTAL}
+  - {slug: prime_men, name: "men 25-54", name_es: "hombres de 25 a 54 años", sex: M, age: Y25-54, citizen: TOTAL}
+  - {slug: prime_women, name: "women 25-54", name_es: "mujeres de 25 a 54 años", sex: F, age: Y25-54, citizen: TOTAL}
+  - {slug: spanish, name: "Spanish citizens 15-64", name_es: "españoles de 15 a 64 años", sex: T, age: Y15-64, citizen: NAT}
+  - {slug: eu, name: "citizens of other EU countries 15-64", name_es: "ciudadanos de otros países de la UE, 15 a 64 años", sex: T, age: Y15-64, citizen: EU27_2020_FOR}
+  - {slug: noneu, name: "citizens of non-EU countries 15-64", name_es: "ciudadanos de países de fuera de la UE, 15 a 64 años", sex: T, age: Y15-64, citizen: NEU27_2020_FOR}
+lfs_education: &lfs_education
+  - {slug: edu_low, name: "lower secondary education at most, 25-64", name_es: "hasta primera etapa de secundaria, 25 a 64 años", isced: ED0-2}
+  - {slug: edu_mid, name: "upper secondary education, 25-64", name_es: "segunda etapa de secundaria, 25 a 64 años", isced: ED3_4}
+  - {slug: edu_high, name: "tertiary education, 25-64", name_es: "educación superior, 25 a 64 años", isced: ED5-8}
 
 indicators:
 
@@ -5802,3 +5822,171 @@ indicators:
     unit: "thousands"
     scale: 0.001
     notes: Not linked across the 2026 classification change; used to estimate the moves.
+
+  # ---------------------------------------------------------------- Labour market by group (Batch 25c)
+  # Eurostat labour force survey (EPA), quarterly rates, not seasonally adjusted: by sex, age and
+  # citizenship (lfsq_*rgan) and, for ages 25-64, by educational attainment (lfsq_*rgaed).
+  - id: lfs_act_{slug}
+    for_each: *lfs_groups
+    label: "Participation rate, {name}"
+    label_es: "Tasa de actividad, {name_es}"
+    section: labour
+    source: eurostat
+    key: lfsq_argan
+    params: {geo: ES, unit: PC, sex: "{sex}", age: "{age}", citizen: "{citizen}"}
+    freq: Q
+    unit: "%"
+    change_unit: pp
+    transforms: [level, diff_yoy]
+    max_age_days: 300
+
+  - id: lfs_emp_{slug}
+    for_each: *lfs_groups
+    label: "Employment rate, {name}"
+    label_es: "Tasa de empleo, {name_es}"
+    section: labour
+    source: eurostat
+    key: lfsq_ergan
+    params: {geo: ES, unit: PC, sex: "{sex}", age: "{age}", citizen: "{citizen}"}
+    freq: Q
+    unit: "%"
+    change_unit: pp
+    transforms: [level, diff_yoy]
+    max_age_days: 300
+
+  - id: lfs_une_{slug}
+    for_each: *lfs_groups
+    label: "Unemployment rate, {name}"
+    label_es: "Tasa de paro, {name_es}"
+    section: labour
+    source: eurostat
+    key: lfsq_urgan
+    params: {geo: ES, unit: PC, sex: "{sex}", age: "{age}", citizen: "{citizen}"}
+    freq: Q
+    unit: "%"
+    change_unit: pp
+    transforms: [level, diff_yoy]
+    max_age_days: 300
+
+  - id: lfs_act_{slug}
+    for_each: *lfs_education
+    label: "Participation rate, {name}"
+    label_es: "Tasa de actividad, {name_es}"
+    section: labour
+    source: eurostat
+    key: lfsq_argaed
+    params: {geo: ES, unit: PC, sex: T, age: Y25-64, isced11: "{isced}"}
+    freq: Q
+    unit: "%"
+    change_unit: pp
+    transforms: [level, diff_yoy]
+    max_age_days: 300
+
+  - id: lfs_emp_{slug}
+    for_each: *lfs_education
+    label: "Employment rate, {name}"
+    label_es: "Tasa de empleo, {name_es}"
+    section: labour
+    source: eurostat
+    key: lfsq_ergaed
+    params: {geo: ES, unit: PC, sex: T, age: Y25-64, isced11: "{isced}"}
+    freq: Q
+    unit: "%"
+    change_unit: pp
+    transforms: [level, diff_yoy]
+    max_age_days: 300
+
+  - id: lfs_une_{slug}
+    for_each: *lfs_education
+    label: "Unemployment rate, {name}"
+    label_es: "Tasa de paro, {name_es}"
+    section: labour
+    source: eurostat
+    key: lfsq_urgaed
+    params: {geo: ES, unit: PC, sex: T, age: Y25-64, isced11: "{isced}"}
+    freq: Q
+    unit: "%"
+    change_unit: pp
+    transforms: [level, diff_yoy]
+    max_age_days: 300
+
+  - id: lfs_emp_prime_ea
+    label: "Employment rate, ages 25-54, euro area"
+    label_es: "Tasa de empleo, 25 a 54 años, zona euro"
+    section: labour
+    source: eurostat
+    key: lfsq_ergan
+    params: {geo: EA21, unit: PC, sex: T, age: Y25-54, citizen: TOTAL}
+    freq: Q
+    unit: "%"
+    change_unit: pp
+    transforms: [level, diff_yoy]
+    max_age_days: 300
+    notes: Euro area of 21 countries (Bulgaria joined in 2026).
+
+  # Participation and employment of everyone aged 15 and over, actual and at the 2008 age mix:
+  # EconPulse calculation from Eurostat's population counts by sex, age and labour status (sources/ageing.py).
+  - id: lfs_participation
+    label: "Participation rate, ages 15 and over"
+    label_es: "Tasa de actividad, 15 años y más"
+    section: labour
+    source: ageing
+    key: participation
+    freq: Q
+    unit: "%"
+    change_unit: pp
+    transforms: [avg_1y, level]
+    max_age_days: 300
+    notes: Recombined from the rates of men and women in 13 age groups; matches Eurostat's published rate within 0.1 points.
+
+  - id: lfs_participation_aged
+    label: "Participation rate at the 2008 age mix, ages 15 and over"
+    label_es: "Tasa de actividad con la estructura por edades de 2008, 15 años y más"
+    section: labour
+    source: ageing
+    key: participation_adjusted
+    freq: Q
+    unit: "%"
+    change_unit: pp
+    transforms: [avg_1y, level]
+    max_age_days: 300
+    notes: Each sex and age group's own rate, weighted by its 2008 share of the population; the gap to the actual rate is the effect of ageing.
+
+  - id: lfs_epop
+    label: "Employment rate, ages 15 and over"
+    label_es: "Tasa de empleo, 15 años y más"
+    section: labour
+    source: ageing
+    key: employment
+    freq: Q
+    unit: "%"
+    change_unit: pp
+    transforms: [avg_1y, level]
+    max_age_days: 300
+    notes: Employed people as a share of the population aged 15 and over, recombined from 26 sex and age groups.
+
+  - id: lfs_epop_aged
+    label: "Employment rate at the 2008 age mix, ages 15 and over"
+    label_es: "Tasa de empleo con la estructura por edades de 2008, 15 años y más"
+    section: labour
+    source: ageing
+    key: employment_adjusted
+    freq: Q
+    unit: "%"
+    change_unit: pp
+    transforms: [avg_1y, level]
+    max_age_days: 300
+    notes: Each sex and age group's own employment rate, weighted by its 2008 share of the population.
+
+  - id: lfs_share_65plus
+    label: "People aged 65 and over, share of the population aged 15 and over"
+    label_es: "Población de 65 años y más, % de la población de 15 años y más"
+    section: labour
+    source: ageing
+    key: share_65plus
+    freq: Q
+    unit: "%"
+    change_unit: pp
+    transforms: [avg_1y, level]
+    max_age_days: 300
+    notes: People in private households, from Eurostat's labour force survey; it leaves out care homes.

@@ -434,6 +434,7 @@ class PanelRow:
     label: str
     ids: dict                         # column key -> indicator id, or (indicator id, transform)
     highlight: bool = False           # e.g. Spain among its peers
+    indent: int = 0
 
 
 @dataclass
@@ -441,11 +442,12 @@ class Panel:
     title: str
     caption: str
     columns: list
-    rows: list
+    rows: list                        # PanelRow, or Heading to start a group of rows
     note: str = ""
 
     def indicator_ids(self) -> set[str]:
-        return {(v[0] if isinstance(v, tuple) else v) for row in self.rows for v in row.ids.values()}
+        return {(v[0] if isinstance(v, tuple) else v) for row in self.rows if isinstance(row, PanelRow)
+                for v in row.ids.values()}
 
 
 def build_panel(panel: Panel, data: Data) -> dict | None:
@@ -454,6 +456,9 @@ def build_panel(panel: Panel, data: Data) -> dict | None:
     grid = []
     for row in panel.rows:
         cells = []
+        if isinstance(row, Heading):
+            grid.append(cells)
+            continue
         for col in panel.columns:
             ref = row.ids.get(col.key)
             if ref is None:
@@ -467,7 +472,7 @@ def build_panel(panel: Panel, data: Data) -> dict | None:
 
     periods = []
     for j in range(len(panel.columns)):
-        dated = [cells[j] for cells in grid if cells[j] is not None and cells[j].date is not None]
+        dated = [cells[j] for cells in grid if cells and cells[j] is not None and cells[j].date is not None]
         if not dated:
             periods.append(None)
             continue
@@ -477,6 +482,10 @@ def build_panel(panel: Panel, data: Data) -> dict | None:
 
     rows = []
     for row, cells in zip(panel.rows, grid):
+        if isinstance(row, Heading):
+            rows.append({"heading": True, "label": row.label, "label_es": "", "indent": 0, "period_note": "",
+                         "url": None, "cells": [], "highlight": False})
+            continue
         out = []
         for col, calc, period in zip(panel.columns, cells, periods):
             if calc is None or calc.date is None:
@@ -487,7 +496,7 @@ def build_panel(panel: Panel, data: Data) -> dict | None:
                 out.append({"value": value, "note": period_label(calc.date, calc.freq)})
             else:
                 out.append(value)
-        rows.append({"heading": False, "label": row.label, "label_es": "", "indent": 0, "period_note": "",
+        rows.append({"heading": False, "label": row.label, "label_es": "", "indent": row.indent, "period_note": "",
                      "url": None, "cells": out, "highlight": row.highlight})
     return {
         "title": panel.title,

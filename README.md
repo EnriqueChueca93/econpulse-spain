@@ -48,6 +48,8 @@ Because the workflow commits data every day, run `git pull` before working local
   seasonal adjustment), registered unemployment by sector, and contracts by type, tracking the 2022 labour reform.
   **Every industry** (`site/industry-detail.html`): monthly registrations in 36 industries, after Econvitals'
   industry employment detail, linked across the 2026 change of activity classification (CNAE-2025).
+  **Who works**: participation, employment and unemployment by age, sex, citizenship and education (Eurostat's
+  labour force survey), and participation and employment at the 2008 age mix, to show the effect of ageing.
 - **GDP, Labour market, Wages, Inflation**: econvitals-style tables (1-, 3-, 6- and 12-month changes; latest,
   a month ago, a year ago; contributions to growth) and 25 charts, each with a data table and PNG download.
   The Inflation page also measures underlying inflation across the ~180 detailed HICP items: weighted median,
@@ -116,7 +118,8 @@ econpulse/            Python package
   sources/            one client per data provider: ine, eurostat, ecb, bde (Banco de España),
                       segsocial (Seguridad Social), ree (Red Eléctrica), oecd, bis, bls,
                       dbnomics, eia, worldbank, bundesbank, imf, bdeproj (Banco de España
-                      projections), funcas, fred (local use only), derived; webtables.py reads
+                      projections), funcas, hicpdist and ageing (EconPulse calculations from
+                      Eurostat data), fred (local use only), derived; webtables.py reads
                       the HTML tables of the sources that publish web pages
   transforms.py       y/y, m/m, q/q, 3-month annualised, changes
   store.py            data/series/<id>.csv + data/catalog.json
@@ -144,6 +147,7 @@ econpulse/            Python package
   speechscore.py      the hawkish/dovish word lists and the score
   fiscal_baseline.json  the Commission's Spain baseline, extracted by scripts/extract_fiscal_baseline.py
   industries.py       the Every industry page: registrations by group of activities, charts and table
+  demography.py       the Labour page's rates by group and the ageing figures (from sources/ageing.py)
   sectortables.py     IMF-style sector tables: their lines, the section-page tables and the Excel workbook
   serve.py            serves site/ on this computer for `python -m econpulse serve` (what EconPulse.exe runs)
   build.py            renders every page into site/ (chart data goes in site/data/*.js)

@@ -4262,6 +4262,342 @@
    "display": "252.4k",
    "period": "Sep 2026",
    "flash": false
+  },
+  "lfs_act_all": {
+   "date": "2026-04-01",
+   "raw": 75.4,
+   "display": "75.4%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "lfs_act_young": {
+   "date": "2026-04-01",
+   "raw": 35.1,
+   "display": "35.1%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "lfs_act_prime": {
+   "date": "2026-04-01",
+   "raw": 88.3,
+   "display": "88.3%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "lfs_act_older": {
+   "date": "2026-04-01",
+   "raw": 69.8,
+   "display": "69.8%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "lfs_act_men": {
+   "date": "2026-04-01",
+   "raw": 79.1,
+   "display": "79.1%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "lfs_act_women": {
+   "date": "2026-04-01",
+   "raw": 71.6,
+   "display": "71.6%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "lfs_act_prime_men": {
+   "date": "2026-04-01",
+   "raw": 91.8,
+   "display": "91.8%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "lfs_act_prime_women": {
+   "date": "2026-04-01",
+   "raw": 84.7,
+   "display": "84.7%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "lfs_act_spanish": {
+   "date": "2026-04-01",
+   "raw": 75.4,
+   "display": "75.4%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "lfs_act_eu": {
+   "date": "2026-04-01",
+   "raw": 79.9,
+   "display": "79.9%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "lfs_act_noneu": {
+   "date": "2026-04-01",
+   "raw": 73.8,
+   "display": "73.8%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "lfs_emp_all": {
+   "date": "2026-04-01",
+   "raw": 67.9,
+   "display": "67.9%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "lfs_emp_young": {
+   "date": "2026-04-01",
+   "raw": 26.8,
+   "display": "26.8%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "lfs_emp_prime": {
+   "date": "2026-04-01",
+   "raw": 80.7,
+   "display": "80.7%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "lfs_emp_older": {
+   "date": "2026-04-01",
+   "raw": 63.3,
+   "display": "63.3%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "lfs_emp_men": {
+   "date": "2026-04-01",
+   "raw": 72.1,
+   "display": "72.1%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "lfs_emp_women": {
+   "date": "2026-04-01",
+   "raw": 63.6,
+   "display": "63.6%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "lfs_emp_prime_men": {
+   "date": "2026-04-01",
+   "raw": 85.0,
+   "display": "85.0%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "lfs_emp_prime_women": {
+   "date": "2026-04-01",
+   "raw": 76.3,
+   "display": "76.3%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "lfs_emp_spanish": {
+   "date": "2026-04-01",
+   "raw": 68.6,
+   "display": "68.6%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "lfs_emp_eu": {
+   "date": "2026-04-01",
+   "raw": 73.3,
+   "display": "73.3%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "lfs_emp_noneu": {
+   "date": "2026-04-01",
+   "raw": 61.8,
+   "display": "61.8%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "lfs_une_all": {
+   "date": "2026-04-01",
+   "raw": 10.0,
+   "display": "10.0%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "lfs_une_young": {
+   "date": "2026-04-01",
+   "raw": 23.8,
+   "display": "23.8%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "lfs_une_prime": {
+   "date": "2026-04-01",
+   "raw": 8.6,
+   "display": "8.6%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "lfs_une_older": {
+   "date": "2026-04-01",
+   "raw": 9.4,
+   "display": "9.4%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "lfs_une_men": {
+   "date": "2026-04-01",
+   "raw": 8.9,
+   "display": "8.9%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "lfs_une_women": {
+   "date": "2026-04-01",
+   "raw": 11.1,
+   "display": "11.1%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "lfs_une_prime_men": {
+   "date": "2026-04-01",
+   "raw": 7.5,
+   "display": "7.5%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "lfs_une_prime_women": {
+   "date": "2026-04-01",
+   "raw": 9.9,
+   "display": "9.9%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "lfs_une_spanish": {
+   "date": "2026-04-01",
+   "raw": 9.1,
+   "display": "9.1%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "lfs_une_eu": {
+   "date": "2026-04-01",
+   "raw": 8.3,
+   "display": "8.3%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "lfs_une_noneu": {
+   "date": "2026-04-01",
+   "raw": 16.2,
+   "display": "16.2%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "lfs_act_edu_low": {
+   "date": "2026-04-01",
+   "raw": 74.5,
+   "display": "74.5%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "lfs_act_edu_mid": {
+   "date": "2026-04-01",
+   "raw": 83.5,
+   "display": "83.5%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "lfs_act_edu_high": {
+   "date": "2026-04-01",
+   "raw": 90.5,
+   "display": "90.5%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "lfs_emp_edu_low": {
+   "date": "2026-04-01",
+   "raw": 64.5,
+   "display": "64.5%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "lfs_emp_edu_mid": {
+   "date": "2026-04-01",
+   "raw": 76.0,
+   "display": "76.0%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "lfs_emp_edu_high": {
+   "date": "2026-04-01",
+   "raw": 85.4,
+   "display": "85.4%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "lfs_une_edu_low": {
+   "date": "2026-04-01",
+   "raw": 13.4,
+   "display": "13.4%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "lfs_une_edu_mid": {
+   "date": "2026-04-01",
+   "raw": 9.0,
+   "display": "9.0%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "lfs_une_edu_high": {
+   "date": "2026-04-01",
+   "raw": 5.6,
+   "display": "5.6%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "lfs_emp_prime_ea": {
+   "date": "2026-04-01",
+   "raw": 82.4,
+   "display": "82.4%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "lfs_participation": {
+   "date": "2026-04-01",
+   "raw": 58.533,
+   "display": "58.3% 4-qtr avg.",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "lfs_participation_aged": {
+   "date": "2026-04-01",
+   "raw": 63.403,
+   "display": "63.1% 4-qtr avg.",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "lfs_epop": {
+   "date": "2026-04-01",
+   "raw": 52.754,
+   "display": "52.3% 4-qtr avg.",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "lfs_epop_aged": {
+   "date": "2026-04-01",
+   "raw": 57.086,
+   "display": "56.5% 4-qtr avg.",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "lfs_share_65plus": {
+   "date": "2026-04-01",
+   "raw": 23.95,
+   "display": "23.9% 4-qtr avg.",
+   "period": "Q2 2026",
+   "flash": false
   }
  },
  "notes": [
@@ -4287,6 +4623,6 @@
    "at": "2026-11-01T02:50:46+00:00"
   }
  ],
- "updated_at": "2026-11-01T11:50:03+00:00",
+ "updated_at": "2026-11-01T12:07:58+00:00",
  "started_at": "2026-10-31T23:31:49+00:00"
 }
