@@ -1,7 +1,7 @@
 {
  "aaa_10y": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:13+00:00",
+  "fetched_at": "2026-11-01T01:30:06+00:00",
   "first_date": "2004-09-06",
   "last_date": "2026-10-29",
   "n_obs": 5663,
@@ -9,7 +9,7 @@
  },
  "aaa_15y": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:13+00:00",
+  "fetched_at": "2026-11-01T01:30:06+00:00",
   "first_date": "2004-09-06",
   "last_date": "2026-10-29",
   "n_obs": 5663,
@@ -17,7 +17,7 @@
  },
  "aaa_1y": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:13+00:00",
+  "fetched_at": "2026-11-01T01:30:05+00:00",
   "first_date": "2004-09-06",
   "last_date": "2026-10-29",
   "n_obs": 5663,
@@ -25,7 +25,7 @@
  },
  "aaa_30y": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:13+00:00",
+  "fetched_at": "2026-11-01T01:30:06+00:00",
   "first_date": "2004-09-06",
   "last_date": "2026-10-29",
   "n_obs": 5663,
@@ -33,7 +33,7 @@
  },
  "aaa_3y": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:13+00:00",
+  "fetched_at": "2026-11-01T01:30:05+00:00",
   "first_date": "2004-09-06",
   "last_date": "2026-10-29",
   "n_obs": 5663,
@@ -41,7 +41,7 @@
  },
  "aaa_5y": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:13+00:00",
+  "fetched_at": "2026-11-01T01:30:06+00:00",
   "first_date": "2004-09-06",
   "last_date": "2026-10-29",
   "n_obs": 5663,
@@ -49,7 +49,7 @@
  },
  "aaa_fwd_1y": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:12+00:00",
+  "fetched_at": "2026-11-01T01:30:04+00:00",
   "first_date": "2004-09-06",
   "last_date": "2026-10-29",
   "n_obs": 5663,
@@ -57,7 +57,7 @@
  },
  "aaa_fwd_2y": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:12+00:00",
+  "fetched_at": "2026-11-01T01:30:04+00:00",
   "first_date": "2004-09-06",
   "last_date": "2026-10-29",
   "n_obs": 5663,
@@ -65,7 +65,7 @@
  },
  "aaa_fwd_3m": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:12+00:00",
+  "fetched_at": "2026-11-01T01:30:04+00:00",
   "first_date": "2004-09-06",
   "last_date": "2026-10-29",
   "n_obs": 5663,
@@ -73,7 +73,7 @@
  },
  "aaa_fwd_3y": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:12+00:00",
+  "fetched_at": "2026-11-01T01:30:05+00:00",
   "first_date": "2004-09-06",
   "last_date": "2026-10-29",
   "n_obs": 5663,
@@ -81,7 +81,7 @@
  },
  "aaa_fwd_6m": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:12+00:00",
+  "fetched_at": "2026-11-01T01:30:04+00:00",
   "first_date": "2004-09-06",
   "last_date": "2026-10-29",
   "n_obs": 5663,
@@ -89,7 +89,7 @@
  },
  "aaa_fwd_9m": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:12+00:00",
+  "fetched_at": "2026-11-01T01:30:04+00:00",
   "first_date": "2004-09-06",
   "last_date": "2026-10-29",
   "n_obs": 5663,
@@ -97,7 +97,7 @@
  },
  "activity_rate": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:05+00:00",
+  "fetched_at": "2026-11-01T01:29:58+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-07-01",
   "n_obs": 99,
@@ -107,7 +107,7 @@
  },
  "afiliados": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:05+00:00",
+  "fetched_at": "2026-11-01T01:29:58+00:00",
   "first_date": "2001-01-01",
   "last_date": "2026-09-01",
   "n_obs": 309,
@@ -116,7 +116,7 @@
  },
  "average_mortgage": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:18+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "2003-01-01",
   "last_date": "2026-08-01",
   "n_obs": 284,
@@ -124,7 +124,7 @@
  },
  "bond10_fr": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:15+00:00",
+  "fetched_at": "2026-11-01T01:34:15+00:00",
   "first_date": "1986-01-01",
   "last_date": "2026-09-01",
   "n_obs": 489,
@@ -132,7 +132,7 @@
  },
  "bond10_it": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:15+00:00",
+  "fetched_at": "2026-11-01T01:34:15+00:00",
   "first_date": "1991-03-01",
   "last_date": "2026-09-01",
   "n_obs": 427,
@@ -140,7 +140,7 @@
  },
  "bond10_nl": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:15+00:00",
+  "fetched_at": "2026-11-01T01:34:15+00:00",
   "first_date": "1986-04-01",
   "last_date": "2026-09-01",
   "n_obs": 486,
@@ -148,7 +148,7 @@
  },
  "bond10_pt": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:15+00:00",
+  "fetched_at": "2026-11-01T01:34:15+00:00",
   "first_date": "1993-07-01",
   "last_date": "2026-09-01",
   "n_obs": 399,
@@ -156,23 +156,25 @@
  },
  "brent_eur": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:18+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "1999-01-04",
   "last_date": "2026-10-27",
   "n_obs": 6669,
   "signature": "[\"derived\", \"divide\", {\"a\": \"brent_usd\", \"b\": \"eurusd\", \"fill\": 5}, 1.0]"
  },
  "brent_usd": {
-  "status": "ok",
+  "status": "stale",
   "fetched_at": "2026-10-31T23:32:13+00:00",
   "first_date": "1987-05-20",
   "last_date": "2026-10-27",
   "n_obs": 9117,
-  "signature": "[\"fred\", \"DCOILBRENTEU\", {}, 1.0]"
+  "signature": "[\"fred\", \"DCOILBRENTEU\", {}, 1.0]",
+  "error": "ConnectionError: HTTPSConnectionPool(host='fred.stlouisfed.org', port=443): Max retries exceeded with url: /graph/fredgraph.csv?id=DCOILBRENTEU (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='fred.stlouisfed.org', port=443): Read timed out. (read timeout=60)\"))",
+  "failed_at": "2026-11-01T01:34:15+00:00"
  },
  "car_sales": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:10+00:00",
+  "fetched_at": "2026-11-01T01:30:01+00:00",
   "first_date": "1988-05-01",
   "last_date": "2026-09-01",
   "n_obs": 461,
@@ -181,7 +183,7 @@
  },
  "compensation_per_employee": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:05+00:00",
+  "fetched_at": "2026-11-01T01:29:58+00:00",
   "first_date": "1996-01-01",
   "last_date": "2026-07-01",
   "n_obs": 123,
@@ -191,7 +193,7 @@
  },
  "construction_confidence": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:10+00:00",
+  "fetched_at": "2026-11-01T01:30:01+00:00",
   "first_date": "1989-01-01",
   "last_date": "2026-10-01",
   "n_obs": 454,
@@ -201,7 +203,7 @@
  },
  "consumer_confidence": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:10+00:00",
+  "fetched_at": "2026-11-01T01:30:01+00:00",
   "first_date": "1986-06-01",
   "last_date": "2026-10-01",
   "n_obs": 485,
@@ -211,7 +213,7 @@
  },
  "consumption_government": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:03+00:00",
+  "fetched_at": "2026-11-01T01:29:56+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
@@ -221,7 +223,7 @@
  },
  "consumption_households": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:03+00:00",
+  "fetched_at": "2026-11-01T01:29:56+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
@@ -231,7 +233,7 @@
  },
  "contrib_domestic_qq": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:04+00:00",
+  "fetched_at": "2026-11-01T01:29:56+00:00",
   "first_date": "1997-01-01",
   "last_date": "2026-07-01",
   "n_obs": 119,
@@ -241,7 +243,7 @@
  },
  "contrib_domestic_yy": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:04+00:00",
+  "fetched_at": "2026-11-01T01:29:56+00:00",
   "first_date": "1997-01-01",
   "last_date": "2026-07-01",
   "n_obs": 119,
@@ -251,7 +253,7 @@
  },
  "contrib_external_qq": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:04+00:00",
+  "fetched_at": "2026-11-01T01:29:56+00:00",
   "first_date": "1997-01-01",
   "last_date": "2026-07-01",
   "n_obs": 119,
@@ -261,7 +263,7 @@
  },
  "contrib_external_yy": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:04+00:00",
+  "fetched_at": "2026-11-01T01:29:56+00:00",
   "first_date": "1997-01-01",
   "last_date": "2026-07-01",
   "n_obs": 119,
@@ -271,7 +273,7 @@
  },
  "core_cpi": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:08+00:00",
+  "fetched_at": "2026-11-01T01:29:58+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-10-01",
   "n_obs": 298,
@@ -281,7 +283,7 @@
  },
  "core_cpi_index": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:08+00:00",
+  "fetched_at": "2026-11-01T01:29:58+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-09-01",
   "n_obs": 297,
@@ -291,7 +293,7 @@
  },
  "cpi": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:08+00:00",
+  "fetched_at": "2026-11-01T01:29:58+00:00",
   "first_date": "1962-01-01",
   "last_date": "2026-10-01",
   "n_obs": 778,
@@ -301,7 +303,7 @@
  },
  "cpi_andalucia": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:17+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "1979-01-01",
   "last_date": "2026-09-01",
   "n_obs": 573,
@@ -311,7 +313,7 @@
  },
  "cpi_aragon": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:17+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "1979-01-01",
   "last_date": "2026-09-01",
   "n_obs": 573,
@@ -321,7 +323,7 @@
  },
  "cpi_asturias": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:17+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "1979-01-01",
   "last_date": "2026-09-01",
   "n_obs": 573,
@@ -331,7 +333,7 @@
  },
  "cpi_baleares": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:17+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "1979-01-01",
   "last_date": "2026-09-01",
   "n_obs": 573,
@@ -341,7 +343,7 @@
  },
  "cpi_canarias": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:17+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "1979-01-01",
   "last_date": "2026-09-01",
   "n_obs": 573,
@@ -351,7 +353,7 @@
  },
  "cpi_cantabria": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:17+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "1979-01-01",
   "last_date": "2026-09-01",
   "n_obs": 573,
@@ -361,7 +363,7 @@
  },
  "cpi_castilla_leon": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:17+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "1979-01-01",
   "last_date": "2026-09-01",
   "n_obs": 573,
@@ -371,7 +373,7 @@
  },
  "cpi_castilla_mancha": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:17+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "1979-01-01",
   "last_date": "2026-09-01",
   "n_obs": 573,
@@ -381,7 +383,7 @@
  },
  "cpi_cataluna": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:17+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "1979-01-01",
   "last_date": "2026-09-01",
   "n_obs": 573,
@@ -391,7 +393,7 @@
  },
  "cpi_energy_index": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:08+00:00",
+  "fetched_at": "2026-11-01T01:29:58+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-09-01",
   "n_obs": 297,
@@ -401,7 +403,7 @@
  },
  "cpi_extremadura": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:17+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "1979-01-01",
   "last_date": "2026-09-01",
   "n_obs": 573,
@@ -411,7 +413,7 @@
  },
  "cpi_galicia": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:17+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "1979-01-01",
   "last_date": "2026-09-01",
   "n_obs": 573,
@@ -421,7 +423,7 @@
  },
  "cpi_goods_index": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:08+00:00",
+  "fetched_at": "2026-11-01T01:29:58+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-09-01",
   "n_obs": 297,
@@ -431,7 +433,7 @@
  },
  "cpi_index": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:08+00:00",
+  "fetched_at": "2026-11-01T01:29:58+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-09-01",
   "n_obs": 297,
@@ -441,7 +443,7 @@
  },
  "cpi_madrid": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:17+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "1979-01-01",
   "last_date": "2026-09-01",
   "n_obs": 573,
@@ -451,7 +453,7 @@
  },
  "cpi_murcia": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:18+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "1979-01-01",
   "last_date": "2026-09-01",
   "n_obs": 573,
@@ -461,7 +463,7 @@
  },
  "cpi_navarra": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:18+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "1979-01-01",
   "last_date": "2026-09-01",
   "n_obs": 573,
@@ -471,7 +473,7 @@
  },
  "cpi_pais_vasco": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:18+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "1979-01-01",
   "last_date": "2026-09-01",
   "n_obs": 573,
@@ -481,7 +483,7 @@
  },
  "cpi_processed_food_index": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:08+00:00",
+  "fetched_at": "2026-11-01T01:29:58+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-09-01",
   "n_obs": 297,
@@ -491,7 +493,7 @@
  },
  "cpi_rent_index": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:08+00:00",
+  "fetched_at": "2026-11-01T01:29:58+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-09-01",
   "n_obs": 297,
@@ -501,7 +503,7 @@
  },
  "cpi_rioja": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:18+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "1979-01-01",
   "last_date": "2026-09-01",
   "n_obs": 573,
@@ -511,7 +513,7 @@
  },
  "cpi_services_index": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:08+00:00",
+  "fetched_at": "2026-11-01T01:29:58+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-09-01",
   "n_obs": 297,
@@ -521,7 +523,7 @@
  },
  "cpi_unprocessed_food_index": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:08+00:00",
+  "fetched_at": "2026-11-01T01:29:58+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-09-01",
   "n_obs": 297,
@@ -531,7 +533,7 @@
  },
  "cpi_valenciana": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:17+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "1979-01-01",
   "last_date": "2026-09-01",
   "n_obs": 573,
@@ -541,7 +543,7 @@
  },
  "current_account": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:10+00:00",
+  "fetched_at": "2026-11-01T01:30:01+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-04-01",
   "n_obs": 126,
@@ -551,7 +553,7 @@
  },
  "current_account_monthly": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:10+00:00",
+  "fetched_at": "2026-11-01T01:30:01+00:00",
   "first_date": "1993-01-01",
   "last_date": "2026-08-01",
   "n_obs": 404,
@@ -560,7 +562,7 @@
  },
  "de_10y": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:13+00:00",
+  "fetched_at": "2026-11-01T01:30:05+00:00",
   "first_date": "2000-01-03",
   "last_date": "2026-10-29",
   "n_obs": 6582,
@@ -569,7 +571,7 @@
  },
  "de_10y_monthly": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:14+00:00",
+  "fetched_at": "2026-11-01T01:34:15+00:00",
   "first_date": "1990-01-01",
   "last_date": "2026-09-01",
   "n_obs": 441,
@@ -577,7 +579,7 @@
  },
  "debt_annual": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:10+00:00",
+  "fetched_at": "2026-11-01T01:30:01+00:00",
   "first_date": "1995-01-01",
   "last_date": "2025-01-01",
   "n_obs": 31,
@@ -587,7 +589,7 @@
  },
  "deficit_annual": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:10+00:00",
+  "fetched_at": "2026-11-01T01:30:01+00:00",
   "first_date": "1995-01-01",
   "last_date": "2025-01-01",
   "n_obs": 31,
@@ -597,7 +599,7 @@
  },
  "domestic_demand": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:03+00:00",
+  "fetched_at": "2026-11-01T01:29:56+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
@@ -607,7 +609,7 @@
  },
  "ecb_deposit_rate": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:11+00:00",
+  "fetched_at": "2026-11-01T01:30:03+00:00",
   "first_date": "1999-01-01",
   "last_date": "2026-10-31",
   "n_obs": 10166,
@@ -615,7 +617,7 @@
  },
  "ecb_mlf_rate": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:11+00:00",
+  "fetched_at": "2026-11-01T01:30:03+00:00",
   "first_date": "1999-01-01",
   "last_date": "2026-10-31",
   "n_obs": 10166,
@@ -623,7 +625,7 @@
  },
  "ecb_mro_rate": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:11+00:00",
+  "fetched_at": "2026-11-01T01:30:03+00:00",
   "first_date": "1999-01-01",
   "last_date": "2026-10-31",
   "n_obs": 7135,
@@ -631,7 +633,7 @@
  },
  "economic_sentiment": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:10+00:00",
+  "fetched_at": "2026-11-01T01:30:01+00:00",
   "first_date": "1987-04-01",
   "last_date": "2026-10-01",
   "n_obs": 475,
@@ -641,7 +643,7 @@
  },
  "electricity_demand": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:10+00:00",
+  "fetched_at": "2026-11-01T01:30:01+00:00",
   "first_date": "2015-01-01",
   "last_date": "2026-10-30",
   "n_obs": 4321,
@@ -649,7 +651,7 @@
  },
  "electricity_demand_monthly": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:18+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "2015-01-01",
   "last_date": "2026-09-01",
   "n_obs": 141,
@@ -657,7 +659,7 @@
  },
  "electricity_price": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:10+00:00",
+  "fetched_at": "2026-11-01T01:30:01+00:00",
   "first_date": "2025-01-01",
   "last_date": "2026-11-01",
   "n_obs": 670,
@@ -665,7 +667,7 @@
  },
  "employment_epa": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:05+00:00",
+  "fetched_at": "2026-11-01T01:29:58+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-07-01",
   "n_obs": 99,
@@ -675,7 +677,7 @@
  },
  "employment_rate": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:05+00:00",
+  "fetched_at": "2026-11-01T01:29:58+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-07-01",
   "n_obs": 99,
@@ -685,7 +687,7 @@
  },
  "es_10y": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:13+00:00",
+  "fetched_at": "2026-11-01T01:30:05+00:00",
   "first_date": "2000-01-03",
   "last_date": "2026-10-28",
   "n_obs": 6827,
@@ -694,7 +696,7 @@
  },
  "es_10y_monthly": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:14+00:00",
+  "fetched_at": "2026-11-01T01:34:15+00:00",
   "first_date": "1991-11-01",
   "last_date": "2026-09-01",
   "n_obs": 419,
@@ -702,7 +704,7 @@
  },
  "es_12m_bill": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:12+00:00",
+  "fetched_at": "2026-11-01T01:30:05+00:00",
   "first_date": "2000-01-03",
   "last_date": "2026-10-28",
   "n_obs": 4287,
@@ -711,7 +713,7 @@
  },
  "es_15y": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:13+00:00",
+  "fetched_at": "2026-11-01T01:30:05+00:00",
   "first_date": "2000-01-03",
   "last_date": "2026-10-28",
   "n_obs": 5529,
@@ -720,7 +722,7 @@
  },
  "es_30y": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:13+00:00",
+  "fetched_at": "2026-11-01T01:30:05+00:00",
   "first_date": "2000-01-03",
   "last_date": "2026-10-28",
   "n_obs": 6082,
@@ -729,7 +731,7 @@
  },
  "es_3y": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:13+00:00",
+  "fetched_at": "2026-11-01T01:30:05+00:00",
   "first_date": "2000-01-03",
   "last_date": "2026-10-28",
   "n_obs": 6736,
@@ -738,7 +740,7 @@
  },
  "es_5y": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:13+00:00",
+  "fetched_at": "2026-11-01T01:30:05+00:00",
   "first_date": "2000-01-03",
   "last_date": "2026-10-28",
   "n_obs": 6719,
@@ -747,7 +749,7 @@
  },
  "estr": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:12+00:00",
+  "fetched_at": "2026-11-01T01:30:03+00:00",
   "first_date": "2019-10-01",
   "last_date": "2026-10-29",
   "n_obs": 1814,
@@ -755,7 +757,7 @@
  },
  "eurchf": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:13+00:00",
+  "fetched_at": "2026-11-01T01:30:06+00:00",
   "first_date": "1999-01-04",
   "last_date": "2026-10-30",
   "n_obs": 7126,
@@ -763,7 +765,7 @@
  },
  "eurgbp": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:13+00:00",
+  "fetched_at": "2026-11-01T01:30:06+00:00",
   "first_date": "1999-01-04",
   "last_date": "2026-10-30",
   "n_obs": 7126,
@@ -771,7 +773,7 @@
  },
  "euribor_12m": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:12+00:00",
+  "fetched_at": "2026-11-01T01:30:05+00:00",
   "first_date": "2000-01-03",
   "last_date": "2026-10-29",
   "n_obs": 6861,
@@ -780,7 +782,7 @@
  },
  "euribor_3m": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:12+00:00",
+  "fetched_at": "2026-11-01T01:30:05+00:00",
   "first_date": "2000-01-03",
   "last_date": "2026-10-29",
   "n_obs": 6860,
@@ -789,7 +791,7 @@
  },
  "eurjpy": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:13+00:00",
+  "fetched_at": "2026-11-01T01:30:06+00:00",
   "first_date": "1999-01-04",
   "last_date": "2026-10-30",
   "n_obs": 7126,
@@ -797,7 +799,7 @@
  },
  "eurusd": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:13+00:00",
+  "fetched_at": "2026-11-01T01:30:06+00:00",
   "first_date": "1999-01-04",
   "last_date": "2026-10-30",
   "n_obs": 7126,
@@ -805,7 +807,7 @@
  },
  "exports": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:03+00:00",
+  "fetched_at": "2026-11-01T01:29:56+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
@@ -815,7 +817,7 @@
  },
  "exports_goods": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:04+00:00",
+  "fetched_at": "2026-11-01T01:29:56+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
@@ -825,7 +827,7 @@
  },
  "exports_services": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:04+00:00",
+  "fetched_at": "2026-11-01T01:29:56+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
@@ -834,16 +836,18 @@
   "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. Exportaciones de servicios. Dato base. Índices de volumen encadenados."
  },
  "gas_eu": {
-  "status": "ok",
+  "status": "stale",
   "fetched_at": "2026-10-31T23:32:13+00:00",
   "first_date": "1992-01-01",
   "last_date": "2026-09-01",
   "n_obs": 417,
-  "signature": "[\"fred\", \"PNGASEUUSDM\", {}, 1.0]"
+  "signature": "[\"fred\", \"PNGASEUUSDM\", {}, 1.0]",
+  "error": "ConnectionError: HTTPSConnectionPool(host='fred.stlouisfed.org', port=443): Max retries exceeded with url: /graph/fredgraph.csv?id=PNGASEUUSDM (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='fred.stlouisfed.org', port=443): Read timed out. (read timeout=60)\"))",
+  "failed_at": "2026-11-01T01:34:15+00:00"
  },
  "gdp": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:03+00:00",
+  "fetched_at": "2026-11-01T01:29:56+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
@@ -853,7 +857,7 @@
  },
  "gdp_deflator": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:18+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
@@ -861,7 +865,7 @@
  },
  "gdp_growth_de": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:14+00:00",
+  "fetched_at": "2026-11-01T01:34:15+00:00",
   "first_date": "1992-01-01",
   "last_date": "2026-07-01",
   "n_obs": 139,
@@ -871,7 +875,7 @@
  },
  "gdp_growth_ea": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:15+00:00",
+  "fetched_at": "2026-11-01T01:34:15+00:00",
   "first_date": "1996-01-01",
   "last_date": "2026-07-01",
   "n_obs": 123,
@@ -881,7 +885,7 @@
  },
  "gdp_growth_fr": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:14+00:00",
+  "fetched_at": "2026-11-01T01:34:15+00:00",
   "first_date": "1981-01-01",
   "last_date": "2026-07-01",
   "n_obs": 183,
@@ -891,7 +895,7 @@
  },
  "gdp_growth_it": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:14+00:00",
+  "fetched_at": "2026-11-01T01:34:15+00:00",
   "first_date": "1997-01-01",
   "last_date": "2026-07-01",
   "n_obs": 119,
@@ -901,7 +905,7 @@
  },
  "gdp_growth_nl": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:14+00:00",
+  "fetched_at": "2026-11-01T01:34:15+00:00",
   "first_date": "1997-01-01",
   "last_date": "2026-07-01",
   "n_obs": 119,
@@ -911,7 +915,7 @@
  },
  "gdp_growth_pt": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:14+00:00",
+  "fetched_at": "2026-11-01T01:34:15+00:00",
   "first_date": "1996-01-01",
   "last_date": "2026-07-01",
   "n_obs": 123,
@@ -921,7 +925,7 @@
  },
  "gdp_nominal": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:04+00:00",
+  "fetched_at": "2026-11-01T01:29:56+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
@@ -931,7 +935,7 @@
  },
  "gdp_per_head_andalucia": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:18+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "2000-01-01",
   "last_date": "2025-01-01",
   "n_obs": 26,
@@ -941,7 +945,7 @@
  },
  "gdp_per_head_aragon": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:18+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "2000-01-01",
   "last_date": "2025-01-01",
   "n_obs": 26,
@@ -951,7 +955,7 @@
  },
  "gdp_per_head_asturias": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:18+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "2000-01-01",
   "last_date": "2025-01-01",
   "n_obs": 26,
@@ -961,7 +965,7 @@
  },
  "gdp_per_head_baleares": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:18+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "2000-01-01",
   "last_date": "2025-01-01",
   "n_obs": 26,
@@ -971,7 +975,7 @@
  },
  "gdp_per_head_canarias": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:18+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "2000-01-01",
   "last_date": "2025-01-01",
   "n_obs": 26,
@@ -981,7 +985,7 @@
  },
  "gdp_per_head_cantabria": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:18+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "2000-01-01",
   "last_date": "2025-01-01",
   "n_obs": 26,
@@ -991,7 +995,7 @@
  },
  "gdp_per_head_castilla_leon": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:18+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "2000-01-01",
   "last_date": "2025-01-01",
   "n_obs": 26,
@@ -1001,7 +1005,7 @@
  },
  "gdp_per_head_castilla_mancha": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:18+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "2000-01-01",
   "last_date": "2025-01-01",
   "n_obs": 26,
@@ -1011,7 +1015,7 @@
  },
  "gdp_per_head_cataluna": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:18+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "2000-01-01",
   "last_date": "2025-01-01",
   "n_obs": 26,
@@ -1021,7 +1025,7 @@
  },
  "gdp_per_head_extremadura": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:18+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "2000-01-01",
   "last_date": "2025-01-01",
   "n_obs": 26,
@@ -1031,7 +1035,7 @@
  },
  "gdp_per_head_galicia": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:18+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "2000-01-01",
   "last_date": "2025-01-01",
   "n_obs": 26,
@@ -1041,7 +1045,7 @@
  },
  "gdp_per_head_madrid": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:18+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "2000-01-01",
   "last_date": "2025-01-01",
   "n_obs": 26,
@@ -1051,7 +1055,7 @@
  },
  "gdp_per_head_murcia": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:18+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "2000-01-01",
   "last_date": "2025-01-01",
   "n_obs": 26,
@@ -1061,7 +1065,7 @@
  },
  "gdp_per_head_navarra": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:18+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "2000-01-01",
   "last_date": "2025-01-01",
   "n_obs": 26,
@@ -1071,7 +1075,7 @@
  },
  "gdp_per_head_pais_vasco": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:18+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "2000-01-01",
   "last_date": "2025-01-01",
   "n_obs": 26,
@@ -1081,7 +1085,7 @@
  },
  "gdp_per_head_rioja": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:18+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "2000-01-01",
   "last_date": "2025-01-01",
   "n_obs": 26,
@@ -1091,7 +1095,7 @@
  },
  "gdp_per_head_spain": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:18+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "2000-01-01",
   "last_date": "2025-01-01",
   "n_obs": 26,
@@ -1101,7 +1105,7 @@
  },
  "gdp_per_head_valenciana": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:18+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "2000-01-01",
   "last_date": "2025-01-01",
   "n_obs": 26,
@@ -1111,7 +1115,7 @@
  },
  "government_balance": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:10+00:00",
+  "fetched_at": "2026-11-01T01:30:01+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-04-01",
   "n_obs": 126,
@@ -1121,7 +1125,7 @@
  },
  "government_debt": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:10+00:00",
+  "fetched_at": "2026-11-01T01:30:01+00:00",
   "first_date": "1995-10-01",
   "last_date": "2026-04-01",
   "n_obs": 123,
@@ -1131,7 +1135,7 @@
  },
  "gva_agriculture": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:04+00:00",
+  "fetched_at": "2026-11-01T01:29:56+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
@@ -1141,7 +1145,7 @@
  },
  "gva_construction": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:04+00:00",
+  "fetched_at": "2026-11-01T01:29:56+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
@@ -1151,7 +1155,7 @@
  },
  "gva_industry": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:04+00:00",
+  "fetched_at": "2026-11-01T01:29:56+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
@@ -1161,7 +1165,7 @@
  },
  "gva_services": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:04+00:00",
+  "fetched_at": "2026-11-01T01:29:56+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
@@ -1171,7 +1175,7 @@
  },
  "hicp": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:08+00:00",
+  "fetched_at": "2026-11-01T01:29:59+00:00",
   "first_date": "1997-01-01",
   "last_date": "2026-09-01",
   "n_obs": 357,
@@ -1181,7 +1185,7 @@
  },
  "hicp_core": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:08+00:00",
+  "fetched_at": "2026-11-01T01:29:59+00:00",
   "first_date": "2001-12-01",
   "last_date": "2026-09-01",
   "n_obs": 298,
@@ -1191,7 +1195,7 @@
  },
  "hicp_core_de": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:15+00:00",
+  "fetched_at": "2026-11-01T01:34:15+00:00",
   "first_date": "1997-01-01",
   "last_date": "2026-09-01",
   "n_obs": 357,
@@ -1201,7 +1205,7 @@
  },
  "hicp_core_euro_area": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:14+00:00",
+  "fetched_at": "2026-11-01T01:34:15+00:00",
   "first_date": "2000-12-01",
   "last_date": "2026-09-01",
   "n_obs": 310,
@@ -1211,7 +1215,7 @@
  },
  "hicp_core_fr": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:15+00:00",
+  "fetched_at": "2026-11-01T01:34:15+00:00",
   "first_date": "1997-01-01",
   "last_date": "2026-09-01",
   "n_obs": 357,
@@ -1221,7 +1225,7 @@
  },
  "hicp_core_index": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:08+00:00",
+  "fetched_at": "2026-11-01T01:29:59+00:00",
   "first_date": "2000-12-01",
   "last_date": "2026-09-01",
   "n_obs": 310,
@@ -1231,7 +1235,7 @@
  },
  "hicp_core_it": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:15+00:00",
+  "fetched_at": "2026-11-01T01:34:15+00:00",
   "first_date": "2000-12-01",
   "last_date": "2026-09-01",
   "n_obs": 310,
@@ -1241,7 +1245,7 @@
  },
  "hicp_core_nl": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:15+00:00",
+  "fetched_at": "2026-11-01T01:34:15+00:00",
   "first_date": "2000-12-01",
   "last_date": "2026-09-01",
   "n_obs": 310,
@@ -1251,7 +1255,7 @@
  },
  "hicp_core_pt": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:15+00:00",
+  "fetched_at": "2026-11-01T01:34:15+00:00",
   "first_date": "2000-12-01",
   "last_date": "2026-09-01",
   "n_obs": 310,
@@ -1261,7 +1265,7 @@
  },
  "hicp_de": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:14+00:00",
+  "fetched_at": "2026-11-01T01:34:15+00:00",
   "first_date": "1997-01-01",
   "last_date": "2026-09-01",
   "n_obs": 357,
@@ -1271,7 +1275,7 @@
  },
  "hicp_euro_area": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:14+00:00",
+  "fetched_at": "2026-11-01T01:34:15+00:00",
   "first_date": "1997-01-01",
   "last_date": "2026-09-01",
   "n_obs": 357,
@@ -1281,7 +1285,7 @@
  },
  "hicp_fr": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:15+00:00",
+  "fetched_at": "2026-11-01T01:34:15+00:00",
   "first_date": "1997-01-01",
   "last_date": "2026-09-01",
   "n_obs": 357,
@@ -1291,7 +1295,7 @@
  },
  "hicp_index": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:08+00:00",
+  "fetched_at": "2026-11-01T01:29:59+00:00",
   "first_date": "1996-01-01",
   "last_date": "2026-09-01",
   "n_obs": 369,
@@ -1301,7 +1305,7 @@
  },
  "hicp_it": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:15+00:00",
+  "fetched_at": "2026-11-01T01:34:15+00:00",
   "first_date": "1997-01-01",
   "last_date": "2026-09-01",
   "n_obs": 357,
@@ -1311,7 +1315,7 @@
  },
  "hicp_nl": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:15+00:00",
+  "fetched_at": "2026-11-01T01:34:15+00:00",
   "first_date": "1997-01-01",
   "last_date": "2026-09-01",
   "n_obs": 357,
@@ -1321,7 +1325,7 @@
  },
  "hicp_pt": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:15+00:00",
+  "fetched_at": "2026-11-01T01:34:15+00:00",
   "first_date": "1997-01-01",
   "last_date": "2026-09-01",
   "n_obs": 357,
@@ -1331,7 +1335,7 @@
  },
  "home_permits": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:10+00:00",
+  "fetched_at": "2026-11-01T01:30:01+00:00",
   "first_date": "1991-11-01",
   "last_date": "2026-05-01",
   "n_obs": 415,
@@ -1340,7 +1344,7 @@
  },
  "home_sales": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:10+00:00",
+  "fetched_at": "2026-11-01T01:30:01+00:00",
   "first_date": "2007-01-01",
   "last_date": "2026-08-01",
   "n_obs": 236,
@@ -1350,7 +1354,7 @@
  },
  "hotel_nights_foreign": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:10+00:00",
+  "fetched_at": "2026-11-01T01:30:01+00:00",
   "first_date": "2003-01-01",
   "last_date": "2026-09-01",
   "n_obs": 283,
@@ -1359,7 +1363,7 @@
  },
  "house_prices": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:10+00:00",
+  "fetched_at": "2026-11-01T01:30:01+00:00",
   "first_date": "2007-01-01",
   "last_date": "2026-04-01",
   "n_obs": 78,
@@ -1369,7 +1373,7 @@
  },
  "house_prices_andalucia": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:16+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "2007-01-01",
   "last_date": "2026-04-01",
   "n_obs": 78,
@@ -1379,7 +1383,7 @@
  },
  "house_prices_aragon": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:16+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "2007-01-01",
   "last_date": "2026-04-01",
   "n_obs": 78,
@@ -1389,7 +1393,7 @@
  },
  "house_prices_asturias": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:16+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "2007-01-01",
   "last_date": "2026-04-01",
   "n_obs": 78,
@@ -1399,7 +1403,7 @@
  },
  "house_prices_baleares": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:16+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "2007-01-01",
   "last_date": "2026-04-01",
   "n_obs": 78,
@@ -1409,7 +1413,7 @@
  },
  "house_prices_canarias": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:16+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "2007-01-01",
   "last_date": "2026-04-01",
   "n_obs": 78,
@@ -1419,7 +1423,7 @@
  },
  "house_prices_cantabria": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:16+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "2007-01-01",
   "last_date": "2026-04-01",
   "n_obs": 78,
@@ -1429,7 +1433,7 @@
  },
  "house_prices_castilla_leon": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:16+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "2007-01-01",
   "last_date": "2026-04-01",
   "n_obs": 78,
@@ -1439,7 +1443,7 @@
  },
  "house_prices_castilla_mancha": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:16+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "2007-01-01",
   "last_date": "2026-04-01",
   "n_obs": 78,
@@ -1449,7 +1453,7 @@
  },
  "house_prices_cataluna": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:16+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "2007-01-01",
   "last_date": "2026-04-01",
   "n_obs": 78,
@@ -1459,7 +1463,7 @@
  },
  "house_prices_extremadura": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:16+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "2007-01-01",
   "last_date": "2026-04-01",
   "n_obs": 78,
@@ -1469,7 +1473,7 @@
  },
  "house_prices_galicia": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:16+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "2007-01-01",
   "last_date": "2026-04-01",
   "n_obs": 78,
@@ -1479,7 +1483,7 @@
  },
  "house_prices_madrid": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:16+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "2007-01-01",
   "last_date": "2026-04-01",
   "n_obs": 78,
@@ -1489,7 +1493,7 @@
  },
  "house_prices_murcia": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:16+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "2007-01-01",
   "last_date": "2026-04-01",
   "n_obs": 78,
@@ -1499,7 +1503,7 @@
  },
  "house_prices_navarra": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:17+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "2007-01-01",
   "last_date": "2026-04-01",
   "n_obs": 78,
@@ -1509,7 +1513,7 @@
  },
  "house_prices_new": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:10+00:00",
+  "fetched_at": "2026-11-01T01:30:01+00:00",
   "first_date": "2007-01-01",
   "last_date": "2026-04-01",
   "n_obs": 78,
@@ -1519,7 +1523,7 @@
  },
  "house_prices_pais_vasco": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:17+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "2007-01-01",
   "last_date": "2026-04-01",
   "n_obs": 78,
@@ -1529,7 +1533,7 @@
  },
  "house_prices_rioja": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:17+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "2007-01-01",
   "last_date": "2026-04-01",
   "n_obs": 78,
@@ -1539,7 +1543,7 @@
  },
  "house_prices_used": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:10+00:00",
+  "fetched_at": "2026-11-01T01:30:01+00:00",
   "first_date": "2007-01-01",
   "last_date": "2026-04-01",
   "n_obs": 78,
@@ -1549,7 +1553,7 @@
  },
  "house_prices_valenciana": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:16+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "2007-01-01",
   "last_date": "2026-04-01",
   "n_obs": 78,
@@ -1559,7 +1563,7 @@
  },
  "household_debt_gdp": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:13+00:00",
+  "fetched_at": "2026-11-01T01:34:15+00:00",
   "first_date": "1999-01-01",
   "last_date": "2026-04-01",
   "n_obs": 110,
@@ -1567,7 +1571,7 @@
  },
  "household_debt_income": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:13+00:00",
+  "fetched_at": "2026-11-01T01:34:15+00:00",
   "first_date": "1999-10-01",
   "last_date": "2026-04-01",
   "n_obs": 107,
@@ -1575,7 +1579,7 @@
  },
  "housing_loans_growth": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:13+00:00",
+  "fetched_at": "2026-11-01T01:34:15+00:00",
   "first_date": "2004-01-01",
   "last_date": "2026-09-01",
   "n_obs": 273,
@@ -1583,7 +1587,7 @@
  },
  "ibex35": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:13+00:00",
+  "fetched_at": "2026-11-01T01:30:06+00:00",
   "first_date": "2000-01-03",
   "last_date": "2026-10-29",
   "n_obs": 6827,
@@ -1592,7 +1596,7 @@
  },
  "imports": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:03+00:00",
+  "fetched_at": "2026-11-01T01:29:56+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
@@ -1602,7 +1606,7 @@
  },
  "industrial_production": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:10+00:00",
+  "fetched_at": "2026-11-01T01:30:01+00:00",
   "first_date": "1992-01-01",
   "last_date": "2026-08-01",
   "n_obs": 416,
@@ -1612,7 +1616,7 @@
  },
  "industry_confidence": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:10+00:00",
+  "fetched_at": "2026-11-01T01:30:01+00:00",
   "first_date": "1987-04-01",
   "last_date": "2026-10-01",
   "n_obs": 475,
@@ -1622,7 +1626,7 @@
  },
  "interest_annual": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:10+00:00",
+  "fetched_at": "2026-11-01T01:30:01+00:00",
   "first_date": "1995-01-01",
   "last_date": "2025-01-01",
   "n_obs": 31,
@@ -1632,7 +1636,7 @@
  },
  "investment": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:03+00:00",
+  "fetched_at": "2026-11-01T01:29:56+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
@@ -1642,7 +1646,7 @@
  },
  "investment_construction": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:03+00:00",
+  "fetched_at": "2026-11-01T01:29:56+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
@@ -1652,7 +1656,7 @@
  },
  "investment_equipment": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:04+00:00",
+  "fetched_at": "2026-11-01T01:29:56+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
@@ -1662,7 +1666,7 @@
  },
  "investment_housing": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:03+00:00",
+  "fetched_at": "2026-11-01T01:29:56+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
@@ -1672,7 +1676,7 @@
  },
  "jobs_fte": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:04+00:00",
+  "fetched_at": "2026-11-01T01:29:56+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
@@ -1682,7 +1686,7 @@
  },
  "labour_cost": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:05+00:00",
+  "fetched_at": "2026-11-01T01:29:58+00:00",
   "first_date": "2008-01-01",
   "last_date": "2026-04-01",
   "n_obs": 74,
@@ -1692,7 +1696,7 @@
  },
  "lci_wages": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:05+00:00",
+  "fetched_at": "2026-11-01T01:29:58+00:00",
   "first_date": "2000-01-01",
   "last_date": "2026-04-01",
   "n_obs": 106,
@@ -1702,7 +1706,7 @@
  },
  "long_term_unemployment": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:05+00:00",
+  "fetched_at": "2026-11-01T01:29:58+00:00",
   "first_date": "2009-01-01",
   "last_date": "2026-04-01",
   "n_obs": 70,
@@ -1712,7 +1716,7 @@
  },
  "mortgage_lending_homes": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:10+00:00",
+  "fetched_at": "2026-11-01T01:30:01+00:00",
   "first_date": "2003-01-01",
   "last_date": "2026-08-01",
   "n_obs": 284,
@@ -1722,7 +1726,7 @@
  },
  "mortgage_rate": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:13+00:00",
+  "fetched_at": "2026-11-01T01:34:15+00:00",
   "first_date": "2000-01-01",
   "last_date": "2026-08-01",
   "n_obs": 320,
@@ -1730,7 +1734,7 @@
  },
  "mortgages_homes": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:10+00:00",
+  "fetched_at": "2026-11-01T01:30:01+00:00",
   "first_date": "2003-01-01",
   "last_date": "2026-08-01",
   "n_obs": 284,
@@ -1740,7 +1744,7 @@
  },
  "new_mortgage_lending": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:13+00:00",
+  "fetched_at": "2026-11-01T01:34:15+00:00",
   "first_date": "2003-01-01",
   "last_date": "2026-08-01",
   "n_obs": 284,
@@ -1748,7 +1752,7 @@
  },
  "paro_registrado": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:05+00:00",
+  "fetched_at": "2026-11-01T01:29:58+00:00",
   "first_date": "1943-06-01",
   "last_date": "2026-09-01",
   "n_obs": 1000,
@@ -1757,7 +1761,7 @@
  },
  "ppi": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:08+00:00",
+  "fetched_at": "2026-11-01T01:29:59+00:00",
   "first_date": "1975-01-01",
   "last_date": "2026-09-01",
   "n_obs": 621,
@@ -1767,7 +1771,7 @@
  },
  "price_expectations": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:08+00:00",
+  "fetched_at": "2026-11-01T01:29:59+00:00",
   "first_date": "1986-06-01",
   "last_date": "2026-10-01",
   "n_obs": 485,
@@ -1777,7 +1781,7 @@
  },
  "primary_balance": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:18+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "1995-01-01",
   "last_date": "2025-01-01",
   "n_obs": 31,
@@ -1785,7 +1789,7 @@
  },
  "productivity_fte": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:04+00:00",
+  "fetched_at": "2026-11-01T01:29:56+00:00",
   "first_date": "1996-01-01",
   "last_date": "2026-07-01",
   "n_obs": 123,
@@ -1795,7 +1799,7 @@
  },
  "productivity_hour": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:04+00:00",
+  "fetched_at": "2026-11-01T01:29:56+00:00",
   "first_date": "1996-01-01",
   "last_date": "2026-07-01",
   "n_obs": 123,
@@ -1805,7 +1809,7 @@
  },
  "real_house_prices": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:18+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "2007-01-01",
   "last_date": "2026-04-01",
   "n_obs": 78,
@@ -1813,7 +1817,7 @@
  },
  "real_wage": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:18+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "2008-01-01",
   "last_date": "2026-04-01",
   "n_obs": 74,
@@ -1821,7 +1825,7 @@
  },
  "retail_sales": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:10+00:00",
+  "fetched_at": "2026-11-01T01:30:01+00:00",
   "first_date": "2000-01-01",
   "last_date": "2026-09-01",
   "n_obs": 321,
@@ -1831,7 +1835,7 @@
  },
  "revenue_annual": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:10+00:00",
+  "fetched_at": "2026-11-01T01:30:01+00:00",
   "first_date": "1995-01-01",
   "last_date": "2025-01-01",
   "n_obs": 31,
@@ -1841,7 +1845,7 @@
  },
  "risk_premium": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:13+00:00",
+  "fetched_at": "2026-11-01T01:30:06+00:00",
   "first_date": "2000-01-03",
   "last_date": "2026-10-29",
   "n_obs": 6571,
@@ -1850,7 +1854,7 @@
  },
  "risk_premium_monthly": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:18+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "1991-11-01",
   "last_date": "2026-09-01",
   "n_obs": 419,
@@ -1858,7 +1862,7 @@
  },
  "spending_annual": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:10+00:00",
+  "fetched_at": "2026-11-01T01:30:01+00:00",
   "first_date": "1995-01-01",
   "last_date": "2025-01-01",
   "n_obs": 31,
@@ -1868,7 +1872,7 @@
  },
  "spread10_fr": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:18+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "1990-01-01",
   "last_date": "2026-09-01",
   "n_obs": 441,
@@ -1876,7 +1880,7 @@
  },
  "spread10_it": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:18+00:00",
+  "fetched_at": "2026-11-01T01:38:25+00:00",
   "first_date": "1991-03-01",
   "last_date": "2026-09-01",
   "n_obs": 427,
@@ -1884,7 +1888,7 @@
  },
  "spread10_nl": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:18+00:00",
+  "fetched_at": "2026-11-01T01:38:25+00:00",
   "first_date": "1990-01-01",
   "last_date": "2026-09-01",
   "n_obs": 441,
@@ -1892,7 +1896,7 @@
  },
  "spread10_pt": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:18+00:00",
+  "fetched_at": "2026-11-01T01:38:25+00:00",
   "first_date": "1993-07-01",
   "last_date": "2026-09-01",
   "n_obs": 399,
@@ -1900,7 +1904,7 @@
  },
  "temporary_rate": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:05+00:00",
+  "fetched_at": "2026-11-01T01:29:58+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-07-01",
   "n_obs": 99,
@@ -1910,7 +1914,7 @@
  },
  "tourism_receipts": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:10+00:00",
+  "fetched_at": "2026-11-01T01:30:01+00:00",
   "first_date": "1993-01-01",
   "last_date": "2026-08-01",
   "n_obs": 404,
@@ -1919,7 +1923,7 @@
  },
  "tourist_arrivals": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:10+00:00",
+  "fetched_at": "2026-11-01T01:30:01+00:00",
   "first_date": "2015-10-01",
   "last_date": "2026-08-01",
   "n_obs": 131,
@@ -1929,7 +1933,7 @@
  },
  "tourist_spending": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:10+00:00",
+  "fetched_at": "2026-11-01T01:30:01+00:00",
   "first_date": "2015-10-01",
   "last_date": "2026-08-01",
   "n_obs": 131,
@@ -1939,7 +1943,7 @@
  },
  "unemployment_andalucia": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:16+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-07-01",
   "n_obs": 99,
@@ -1949,7 +1953,7 @@
  },
  "unemployment_aragon": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:16+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-07-01",
   "n_obs": 99,
@@ -1959,7 +1963,7 @@
  },
  "unemployment_asturias": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:16+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-07-01",
   "n_obs": 99,
@@ -1969,7 +1973,7 @@
  },
  "unemployment_baleares": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:16+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-07-01",
   "n_obs": 99,
@@ -1979,7 +1983,7 @@
  },
  "unemployment_canarias": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:16+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-07-01",
   "n_obs": 99,
@@ -1989,7 +1993,7 @@
  },
  "unemployment_cantabria": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:16+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-07-01",
   "n_obs": 99,
@@ -1999,7 +2003,7 @@
  },
  "unemployment_castilla_leon": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:16+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-07-01",
   "n_obs": 99,
@@ -2009,7 +2013,7 @@
  },
  "unemployment_castilla_mancha": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:16+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-07-01",
   "n_obs": 99,
@@ -2019,7 +2023,7 @@
  },
  "unemployment_cataluna": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:16+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-07-01",
   "n_obs": 99,
@@ -2029,7 +2033,7 @@
  },
  "unemployment_de": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:15+00:00",
+  "fetched_at": "2026-11-01T01:34:15+00:00",
   "first_date": "1991-01-01",
   "last_date": "2026-09-01",
   "n_obs": 429,
@@ -2039,7 +2043,7 @@
  },
  "unemployment_ea": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:15+00:00",
+  "fetched_at": "2026-11-01T01:34:15+00:00",
   "first_date": "2000-01-01",
   "last_date": "2026-09-01",
   "n_obs": 321,
@@ -2049,7 +2053,7 @@
  },
  "unemployment_epa": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:05+00:00",
+  "fetched_at": "2026-11-01T01:29:58+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-07-01",
   "n_obs": 99,
@@ -2059,7 +2063,7 @@
  },
  "unemployment_extremadura": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:16+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-07-01",
   "n_obs": 99,
@@ -2069,7 +2073,7 @@
  },
  "unemployment_fr": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:15+00:00",
+  "fetched_at": "2026-11-01T01:34:15+00:00",
   "first_date": "1983-01-01",
   "last_date": "2026-09-01",
   "n_obs": 525,
@@ -2079,7 +2083,7 @@
  },
  "unemployment_galicia": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:16+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-07-01",
   "n_obs": 99,
@@ -2089,7 +2093,7 @@
  },
  "unemployment_it": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:15+00:00",
+  "fetched_at": "2026-11-01T01:34:15+00:00",
   "first_date": "1983-01-01",
   "last_date": "2026-09-01",
   "n_obs": 525,
@@ -2099,7 +2103,7 @@
  },
  "unemployment_madrid": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:16+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-07-01",
   "n_obs": 99,
@@ -2109,7 +2113,7 @@
  },
  "unemployment_monthly": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:05+00:00",
+  "fetched_at": "2026-11-01T01:29:58+00:00",
   "first_date": "1986-04-01",
   "last_date": "2026-09-01",
   "n_obs": 486,
@@ -2119,7 +2123,7 @@
  },
  "unemployment_murcia": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:16+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-07-01",
   "n_obs": 99,
@@ -2129,7 +2133,7 @@
  },
  "unemployment_navarra": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:16+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-07-01",
   "n_obs": 99,
@@ -2139,7 +2143,7 @@
  },
  "unemployment_nl": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:15+00:00",
+  "fetched_at": "2026-11-01T01:34:15+00:00",
   "first_date": "1983-01-01",
   "last_date": "2026-09-01",
   "n_obs": 525,
@@ -2149,7 +2153,7 @@
  },
  "unemployment_pais_vasco": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:16+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-07-01",
   "n_obs": 99,
@@ -2159,7 +2163,7 @@
  },
  "unemployment_pt": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:15+00:00",
+  "fetched_at": "2026-11-01T01:34:15+00:00",
   "first_date": "1983-01-01",
   "last_date": "2026-09-01",
   "n_obs": 525,
@@ -2169,7 +2173,7 @@
  },
  "unemployment_rioja": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:16+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-07-01",
   "n_obs": 99,
@@ -2179,7 +2183,7 @@
  },
  "unemployment_valenciana": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:16+00:00",
+  "fetched_at": "2026-11-01T01:38:24+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-07-01",
   "n_obs": 99,
@@ -2189,7 +2193,7 @@
  },
  "unit_labour_cost": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:04+00:00",
+  "fetched_at": "2026-11-01T01:29:56+00:00",
   "first_date": "1996-01-01",
   "last_date": "2026-07-01",
   "n_obs": 123,
@@ -2198,56 +2202,68 @@
   "source_name": "Coste laboral unitario. Datos ajustados de estacionalidad y calendario. Variación anual. Total Nacional."
  },
  "us_10y": {
-  "status": "ok",
+  "status": "stale",
   "fetched_at": "2026-10-31T23:32:16+00:00",
   "first_date": "1962-01-02",
   "last_date": "2026-10-29",
   "n_obs": 16192,
-  "signature": "[\"fred\", \"DGS10\", {}, 1.0]"
+  "signature": "[\"fred\", \"DGS10\", {}, 1.0]",
+  "error": "ConnectionError: HTTPSConnectionPool(host='fred.stlouisfed.org', port=443): Max retries exceeded with url: /graph/fredgraph.csv?id=DGS10 (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='fred.stlouisfed.org', port=443): Read timed out. (read timeout=60)\"))",
+  "failed_at": "2026-11-01T01:38:24+00:00"
  },
  "us_core_cpi_index": {
-  "status": "ok",
+  "status": "stale",
   "fetched_at": "2026-10-31T23:32:15+00:00",
   "first_date": "1957-01-01",
   "last_date": "2026-09-01",
   "n_obs": 836,
-  "signature": "[\"fred\", \"CPILFESL\", {}, 1.0]"
+  "signature": "[\"fred\", \"CPILFESL\", {}, 1.0]",
+  "error": "ConnectionError: HTTPSConnectionPool(host='fred.stlouisfed.org', port=443): Max retries exceeded with url: /graph/fredgraph.csv?id=CPILFESL (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='fred.stlouisfed.org', port=443): Read timed out. (read timeout=60)\"))",
+  "failed_at": "2026-11-01T01:34:17+00:00"
  },
  "us_cpi_index": {
-  "status": "ok",
+  "status": "stale",
   "fetched_at": "2026-10-31T23:32:15+00:00",
   "first_date": "1947-01-01",
   "last_date": "2026-09-01",
   "n_obs": 956,
-  "signature": "[\"fred\", \"CPIAUCSL\", {}, 1.0]"
+  "signature": "[\"fred\", \"CPIAUCSL\", {}, 1.0]",
+  "error": "ConnectionError: HTTPSConnectionPool(host='fred.stlouisfed.org', port=443): Max retries exceeded with url: /graph/fredgraph.csv?id=CPIAUCSL (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='fred.stlouisfed.org', port=443): Read timed out. (read timeout=60)\"))",
+  "failed_at": "2026-11-01T01:34:17+00:00"
  },
  "us_fed_funds": {
-  "status": "ok",
+  "status": "stale",
   "fetched_at": "2026-10-31T23:32:16+00:00",
   "first_date": "2008-12-16",
   "last_date": "2026-10-31",
   "n_obs": 6529,
-  "signature": "[\"fred\", \"DFEDTARU\", {}, 1.0]"
+  "signature": "[\"fred\", \"DFEDTARU\", {}, 1.0]",
+  "error": "ConnectionError: HTTPSConnectionPool(host='fred.stlouisfed.org', port=443): Max retries exceeded with url: /graph/fredgraph.csv?id=DFEDTARU (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='fred.stlouisfed.org', port=443): Read timed out. (read timeout=60)\"))",
+  "failed_at": "2026-11-01T01:38:24+00:00"
  },
  "us_gdp_growth": {
-  "status": "ok",
+  "status": "stale",
   "fetched_at": "2026-10-31T23:32:15+00:00",
   "first_date": "1948-01-01",
   "last_date": "2026-07-01",
   "n_obs": 315,
-  "signature": "[\"fred\", \"A191RO1Q156NBEA\", {}, 1.0]"
+  "signature": "[\"fred\", \"A191RO1Q156NBEA\", {}, 1.0]",
+  "error": "ConnectionError: HTTPSConnectionPool(host='fred.stlouisfed.org', port=443): Max retries exceeded with url: /graph/fredgraph.csv?id=A191RO1Q156NBEA (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='fred.stlouisfed.org', port=443): Read timed out. (read timeout=60)\"))",
+  "failed_at": "2026-11-01T01:34:17+00:00"
  },
  "us_unemployment": {
-  "status": "ok",
+  "status": "stale",
   "fetched_at": "2026-10-31T23:32:15+00:00",
   "first_date": "1948-01-01",
   "last_date": "2026-09-01",
   "n_obs": 944,
-  "signature": "[\"fred\", \"UNRATE\", {}, 1.0]"
+  "signature": "[\"fred\", \"UNRATE\", {}, 1.0]",
+  "error": "ConnectionError: HTTPSConnectionPool(host='fred.stlouisfed.org', port=443): Max retries exceeded with url: /graph/fredgraph.csv?id=UNRATE (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='fred.stlouisfed.org', port=443): Read timed out. (read timeout=60)\"))",
+  "failed_at": "2026-11-01T01:34:17+00:00"
  },
  "wage_agreements": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:06+00:00",
+  "fetched_at": "2026-11-01T01:29:58+00:00",
   "first_date": "1983-02-01",
   "last_date": "2026-09-01",
   "n_obs": 524,
@@ -2256,7 +2272,7 @@
  },
  "wage_cost": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:05+00:00",
+  "fetched_at": "2026-11-01T01:29:58+00:00",
   "first_date": "2008-01-01",
   "last_date": "2026-04-01",
   "n_obs": 74,
@@ -2266,7 +2282,7 @@
  },
  "wage_cost_hour": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:05+00:00",
+  "fetched_at": "2026-11-01T01:29:58+00:00",
   "first_date": "2008-01-01",
   "last_date": "2026-04-01",
   "n_obs": 74,
@@ -2276,7 +2292,7 @@
  },
  "wage_cost_ordinary": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:05+00:00",
+  "fetched_at": "2026-11-01T01:29:58+00:00",
   "first_date": "2008-01-01",
   "last_date": "2026-04-01",
   "n_obs": 74,
@@ -2286,7 +2302,7 @@
  },
  "youth_unemployment": {
   "status": "ok",
-  "fetched_at": "2026-10-31T23:32:05+00:00",
+  "fetched_at": "2026-11-01T01:29:58+00:00",
   "first_date": "1986-04-01",
   "last_date": "2026-09-01",
   "n_obs": 486,
