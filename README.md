@@ -169,7 +169,9 @@ econpulse/            Python package
   serve.py            serves site/ on this computer for `python -m econpulse serve` (what EconPulse.exe runs)
   build.py            renders every page into site/ (chart data goes in site/data/*.js)
 templates/            Jinja2 pages: base layout, home, section pages, data page
-static/               style.css (light/dark tokens), app.js (theme toggle, Plotly charts)
+static/               style.css (light/dark tokens), app.js (theme toggle, Plotly charts, search),
+                      plotly-basic.min.js (plotly.js 4.1.1, basic edition, MIT; from npm's
+                      plotly.js-basic-dist-min, checked against its published sha512)
 data/                 fetched history, the release calendar (calendar.json) and the log of
                       what changed (releases.json), all tracked in git
 site/                 build output, open site/index.html (not tracked)

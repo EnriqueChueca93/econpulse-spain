@@ -6,7 +6,6 @@ numpy==2.5.4
 pyyaml==6.0.3
 jinja2==3.1.6
 pytest==9.2.0
-plotly==7.1.0
 statsmodels==0.15.0
 scipy==1.18.1
 openpyxl==3.1.5

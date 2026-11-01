@@ -105,13 +105,10 @@ def _source_summary(items: list[dict]) -> list[dict]:
 
 
 def _copy_assets(site_dir: Path) -> None:
+    # static/ holds Plotly's basic bundle (line, bar and pie charts, all the site draws), so the site works
+    # offline with no CDN; it replaced the full bundle in Batch U4. Remove a full one left by older builds.
     shutil.copytree(STATIC_DIR, site_dir / "assets", dirs_exist_ok=True)
-    # Plotly ships inside the Python package, so the site works offline with no CDN.
-    import plotly
-    bundle = Path(plotly.__file__).parent / "package_data" / "plotly.min.js"
-    target = site_dir / "assets" / "plotly.min.js"
-    if bundle.exists() and (not target.exists() or target.stat().st_size != bundle.stat().st_size):
-        shutil.copyfile(bundle, target)
+    (site_dir / "assets" / "plotly.min.js").unlink(missing_ok=True)
 
 
 def build_site(indicators: list[Indicator], store: Store | None = None, site_dir: Path = SITE_DIR) -> Path:

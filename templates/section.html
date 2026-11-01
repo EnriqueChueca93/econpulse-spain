@@ -57,7 +57,7 @@
 
 {% block scripts %}
   {% if charts_file %}
-  <script src="assets/plotly.min.js?v={{ build_id }}"></script>
+  <script src="assets/plotly-basic.min.js?v={{ build_id }}"></script>
   <script src="{{ charts_file }}?v={{ build_id }}"></script>
   {% endif %}
 {% endblock %}

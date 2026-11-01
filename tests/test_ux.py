@@ -69,3 +69,23 @@ def test_series_link_to_their_own_page():
     built = {"gdp": {"blocks": [{"id": "real-sector"}]}, "labour": {"blocks": [{"id": "epa"}]}}
     anchors = indicator_anchors(built, {"unemployment_epa": "labour"})
     assert anchors["unemployment_epa"] == "labour.html#epa"   # shown on GDP's IMF table too, but its home is Labour
+
+
+def test_charts_only_use_what_the_basic_bundle_has(tmp_path):
+    """Batch U4: the site ships Plotly's basic bundle (scatter, bar and pie traces); a chart of any other
+    type would fail to draw, so none may appear in the scripts or templates."""
+    import re
+    from pathlib import Path
+
+    root = Path(__file__).resolve().parent.parent
+    sources = [p for p in list((root / "static").glob("*.js")) + list((root / "templates").glob("*.html"))
+               if not p.name.endswith(".min.js")]
+    used = {t for p in sources for t in re.findall(r'type:\s*["\'](\w+)["\']', p.read_text(encoding="utf-8"))}
+    axes_and_shapes = {"date", "category", "linear", "log", "line", "rect", "circle", "path"}
+    assert used - axes_and_shapes <= {"scatter", "bar", "pie"} and {"scatter", "bar"} <= used
+    bundle = (root / "static" / "plotly-basic.min.js").read_text(encoding="utf-8")
+    assert "plotly.js (basic - minified) v4.1.1" in bundle[:120] and "MIT license" in bundle[:200]
+    build_site(load_registry(), full_store(tmp_path), site_dir=tmp_path / "site")
+    site = tmp_path / "site"
+    assert 'src="assets/plotly-basic.min.js?v=' in (site / "trade.html").read_text(encoding="utf-8")
+    assert not (site / "assets" / "plotly.min.js").exists()
