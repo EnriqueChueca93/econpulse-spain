@@ -4,7 +4,8 @@
 #   id           unique name, also the CSV file name in data/series/
 #   label        English name;  label_es: official Spanish name
 #   section      gdp | labour | wages | inflation | financial | ecb | fiscal | activity | housing | international
-#   source       ine | eurostat | ecb | bde | segsocial | fred | ree | derived
+#   source       ine | eurostat | ecb | bde | segsocial | ree | oecd | bis | bls | dbnomics | eia | worldbank |
+#                fred | derived  (FRED does not answer GitHub's servers, so the online site avoids it)
 #   key, params  what to ask the source for (see econpulse/sources/<source>.py)
 #   freq         D | M | Q | A
 #   unit         unit of the stored series: "%", "% of GDP", "bp", "pp", "thousands", "$/bbl", "€/MWh",
@@ -30,6 +31,16 @@ countries: &countries
   - {slug: it, geo: IT, name: Italy, name_es: Italia}
   - {slug: pt, geo: PT, name: Portugal, name_es: Portugal}
   - {slug: nl, geo: NL, name: Netherlands, name_es: Países Bajos}
+
+# Other economies, from the OECD (CPI, unemployment, GDP, 10-year yields) and the BIS (policy rates).
+# Japan's CPI comes from the BIS: the OECD's stops in 2021.
+peers: &peers
+  - {slug: uk, oecd: GBR, bis: GB, name: United Kingdom, name_es: Reino Unido,
+     cpi_source: oecd, cpi_key: "OECD.SDD.TPS,DSD_PRICES@DF_PRICES_ALL,1.0/GBR.M.N.CPI.PA._T.N.GY"}
+  - {slug: jp, oecd: JPN, bis: JP, name: Japan, name_es: Japón,
+     cpi_source: bis, cpi_key: "WS_LONG_CPI/M.JP.771"}
+  - {slug: ca, oecd: CAN, bis: CA, name: Canada, name_es: Canadá,
+     cpi_source: oecd, cpi_key: "OECD.SDD.TPS,DSD_PRICES@DF_PRICES_ALL,1.0/CAN.M.N.CPI.PA._T.N.GY"}
 
 # The 17 autonomous communities with their INE series codes: unemployment rate (EPA),
 # house price index (IPV), CPI annual rate (IPC) and GDP per head, Spain = 100 (CRE).
@@ -441,6 +452,30 @@ indicators:
     unit: "%"
     change_unit: pp
     notes: Unemployed for 12 months or more, % of the labour force aged 15-74 (Eurostat, from the EPA).
+
+  - id: labour_slack
+    label: Labour market slack
+    label_es: Holgura del mercado laboral
+    section: labour
+    source: eurostat
+    key: lfsi_sla_q
+    params: {geo: ES, wstatus: SLACK, unit: PC_ELF, s_adj: SA, sex: T, age: Y15-74}
+    freq: Q
+    unit: "%"
+    change_unit: pp
+    notes: Unemployed people, part-timers who want more hours and people available but not looking, % of the extended labour force (Eurostat).
+
+  - id: vacancies
+    label: Job vacancies
+    label_es: Puestos de trabajo vacantes (ETCL)
+    section: labour
+    source: ine
+    key: ETCL2925
+    freq: Q
+    unit: thousands
+    scale: 0.001
+    transforms: [level, yoy]
+    notes: Posts firms are trying to fill, from INE's labour cost survey; not seasonally adjusted.
 
   # ---------------------------------------------------------------- Wages
   - id: wage_cost
@@ -1451,13 +1486,13 @@ indicators:
     label: Brent crude
     label_es: Petróleo Brent
     section: financial
-    source: fred
-    key: DCOILBRENTEU
+    source: eia
+    key: RBRTE
     freq: D
     unit: "$/bbl"
     change_unit: "%"
     tile: 14
-    notes: Europe Brent spot price (US EIA, via FRED); published with a few days' lag.
+    notes: Europe Brent spot price (US Energy Information Administration); published with a few days' lag.
 
   - id: brent_eur
     label: Brent crude in euros
@@ -1474,12 +1509,82 @@ indicators:
     label: European natural gas
     label_es: Gas natural europeo
     section: financial
-    source: fred
-    key: PNGASEUUSDM
+    source: worldbank
+    key: "Natural gas, Europe"
     freq: M
     unit: "$/MMBtu"
     change_unit: "%"
-    notes: Monthly average (IMF primary commodity prices, via FRED).
+    notes: Monthly average of the Dutch TTF price (World Bank commodity prices).
+
+  - id: gold
+    label: Gold
+    label_es: Oro
+    section: financial
+    source: worldbank
+    key: Gold
+    freq: M
+    unit: "$/oz"
+    decimals: 0
+    change_unit: "%"
+    notes: Monthly average, US dollars per troy ounce (World Bank commodity prices).
+
+  - id: copper
+    label: Copper
+    label_es: Cobre
+    section: financial
+    source: worldbank
+    key: Copper
+    freq: M
+    unit: "$/t"
+    decimals: 0
+    change_unit: "%"
+    notes: Monthly average, US dollars per metric ton (World Bank commodity prices); a gauge of global industry.
+
+  - id: euro_stoxx50
+    label: Euro Stoxx 50
+    label_es: Euro Stoxx 50
+    section: financial
+    source: ecb
+    key: FM/M.U2.EUR.DS.EI.DJES50I.HSTA
+    freq: M
+    unit: index
+    decimals: 0
+    change_unit: "%"
+    notes: Monthly average of the euro-area blue-chip share index (ECB).
+
+  # Financial stress and banks.
+  - id: ciss_es
+    label: Financial stress, Spain (CISS)
+    label_es: Indicador de estrés sistémico, España
+    section: financial
+    source: ecb
+    key: CISS/D.ES.Z0Z.4F.EC.SS_CIN.IDX
+    freq: D
+    unit: index
+    decimals: 3
+    notes: ECB composite indicator of systemic stress, from 0 (calm) to 1 (crisis).
+
+  - id: ciss_ea
+    label: Financial stress, euro area (CISS)
+    label_es: Indicador de estrés sistémico, zona euro
+    section: financial
+    source: ecb
+    key: CISS/D.U2.Z0Z.4F.EC.SS_CIN.IDX
+    freq: D
+    unit: index
+    decimals: 3
+
+  - id: npl_ratio
+    label: Bad-loan ratio
+    label_es: Ratio de dudosidad del crédito a otros sectores residentes
+    section: financial
+    source: bde
+    key: D_BEEA2020
+    freq: M
+    unit: "%"
+    decimals: 2
+    change_unit: pp
+    notes: Doubtful loans as a share of lending to Spanish households and firms (credit institutions and credit finance companies).
 
   - id: mortgage_rate
     label: New mortgage rate
@@ -1535,6 +1640,29 @@ indicators:
     freq: Q
     unit: "%"
     change_unit: pp
+
+  - id: saving_rate
+    label: Household saving rate
+    label_es: Tasa de ahorro de los hogares
+    section: housing
+    source: ine
+    key: CTNFSI11270
+    freq: Q
+    unit: "%"
+    change_unit: pp
+    notes: Saving as a share of disposable income, households and non-profits, seasonally adjusted (INE).
+
+  - id: debt_service_ratio
+    label: Household debt service
+    label_es: Ratio de servicio de la deuda de los hogares
+    section: housing
+    source: bis
+    key: WS_DSR/Q.ES.H
+    freq: Q
+    unit: "%"
+    change_unit: pp
+    max_age_days: 400
+    notes: Interest and principal paid, % of disposable income (BIS); published about six months after the quarter.
 
   # ---------------------------------------------------------------- International comparisons
   - id: hicp_euro_area
@@ -1699,13 +1827,13 @@ indicators:
     change_unit: pp
     notes: Euro area of 21 countries (Bulgaria joined in 2026).
 
-  # United States, from FRED.
+  # United States: BLS (prices, jobs), BEA via DBnomics (GDP), BIS (Fed rate), OECD (10-year).
   - id: us_gdp_growth
     label: Real GDP growth, United States
     label_es: PIB real, tasa interanual, Estados Unidos
     section: international
-    source: fred
-    key: A191RO1Q156NBEA
+    source: dbnomics
+    key: BEA/NIPA-T10111/A191RO-Q
     freq: Q
     unit: "%"
     change_unit: pp
@@ -1714,18 +1842,19 @@ indicators:
     label: CPI, United States
     label_es: IPC, Estados Unidos
     section: international
-    source: fred
-    key: CPIAUCSL
+    source: bls
+    key: CUUR0000SA0
     freq: M
     unit: index
     transforms: [yoy]
+    notes: CPI for all urban consumers, not seasonally adjusted (BLS); the API gives the past 10 years.
 
   - id: us_core_cpi_index
     label: Core CPI, United States
     label_es: IPC subyacente, Estados Unidos
     section: international
-    source: fred
-    key: CPILFESL
+    source: bls
+    key: CUUR0000SA0L1E
     freq: M
     unit: index
     transforms: [yoy]
@@ -1734,29 +1863,101 @@ indicators:
     label: Unemployment rate, United States
     label_es: Tasa de paro, Estados Unidos
     section: international
-    source: fred
-    key: UNRATE
+    source: bls
+    key: LNS14000000
     freq: M
     unit: "%"
     change_unit: pp
 
   - id: us_10y
-    label: 10-year yield, United States
+    label: 10-year yield, United States (monthly avg.)
     label_es: Rendimiento del bono a 10 años, Estados Unidos
     section: international
-    source: fred
-    key: DGS10
-    freq: D
+    source: oecd
+    key: "OECD.SDD.STES,DSD_STES@DF_FINMARK,/USA.M.IRLT.PA....."
+    freq: M
     unit: "%"
     decimals: 2
     change_unit: bp
 
   - id: us_fed_funds
-    label: Federal funds target (upper bound)
-    label_es: Tipo objetivo de la Reserva Federal (límite superior)
+    label: Fed funds target rate (mid-point)
+    label_es: Tipo objetivo de la Reserva Federal (punto medio)
     section: international
-    source: fred
-    key: DFEDTARU
+    source: bis
+    key: WS_CBPOL/D.US
+    freq: D
+    unit: "%"
+    decimals: 3
+    change_unit: bp
+    notes: Mid-point of the Federal Reserve's target range (BIS central bank policy rates).
+
+  # United Kingdom, Japan, Canada: one entry per country in the `peers` list at the top.
+  - id: gdp_growth_{slug}
+    for_each: *peers
+    label: Real GDP growth, {name}
+    label_es: PIB real, tasa interanual, {name_es}
+    section: international
+    source: oecd
+    key: "OECD.SDD.NAD,DSD_NAMAIN1@DF_QNA_EXPENDITURE_GROWTH_OECD,/Q..{oecd}.S1..B1GQ......GY."
+    freq: Q
+    unit: "%"
+    change_unit: pp
+
+  - id: cpi_{slug}
+    for_each: *peers
+    label: CPI inflation, {name}
+    label_es: IPC, tasa interanual, {name_es}
+    section: international
+    source: "{cpi_source}"
+    key: "{cpi_key}"
+    freq: M
+    unit: "%"
+    change_unit: pp
+
+  - id: core_cpi_uk
+    label: Core CPI inflation, United Kingdom
+    label_es: IPC subyacente, Reino Unido
+    section: international
+    source: oecd
+    key: "OECD.SDD.TPS,DSD_PRICES@DF_PRICES_ALL,1.0/GBR.M.N.CPI.PA._TXCP01_NRG.N.GY"
+    freq: M
+    unit: "%"
+    change_unit: pp
+    notes: CPI excluding food and energy (OECD).
+
+  - id: unemployment_{slug}
+    for_each: *peers
+    label: Unemployment rate, {name}
+    label_es: Tasa de paro, {name_es}
+    section: international
+    source: oecd
+    key: "OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/{oecd}..._Z.Y._T.Y_GE15..M"
+    freq: M
+    unit: "%"
+    change_unit: pp
+    max_age_days: 160
+    notes: The OECD's harmonised monthly rate, which lags national releases by a month or two.
+
+  - id: bond10_{slug}
+    for_each: *peers
+    label: 10-year yield, {name} (monthly avg.)
+    label_es: Rendimiento del bono a 10 años, {name_es}
+    section: international
+    source: oecd
+    key: "OECD.SDD.STES,DSD_STES@DF_FINMARK,/{oecd}.M.IRLT.PA....."
+    freq: M
+    unit: "%"
+    decimals: 2
+    change_unit: bp
+
+  - id: policy_rate_{slug}
+    for_each: *peers
+    label: Policy rate, {name}
+    label_es: Tipo de interés oficial, {name_es}
+    section: international
+    source: bis
+    key: "WS_CBPOL/D.{bis}"
     freq: D
     unit: "%"
     decimals: 2

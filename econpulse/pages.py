@@ -9,7 +9,7 @@ lists the indicators those functions read. Sections without blocks yet show thei
 """
 
 from . import analytics, policy
-from .charts import build_chart, build_curve, build_ranking
+from .charts import build_chart, build_curve, build_ranking, build_xy
 from .registry import Indicator
 from .snapshot import fmt_value, period_label
 from .store import Store
@@ -52,8 +52,11 @@ PEERS = [
     _peer("Italy", "gdp_growth_it", "hicp_it", "hicp_core_it", "unemployment_it", "bond10_it", "ecb_deposit_rate"),
     _peer("Portugal", "gdp_growth_pt", "hicp_pt", "hicp_core_pt", "unemployment_pt", "bond10_pt", "ecb_deposit_rate"),
     _peer("Netherlands", "gdp_growth_nl", "hicp_nl", "hicp_core_nl", "unemployment_nl", "bond10_nl", "ecb_deposit_rate"),
+    _peer("United Kingdom", "gdp_growth_uk", "cpi_uk", "core_cpi_uk", "unemployment_uk", "bond10_uk", "policy_rate_uk"),
     _peer("United States", "us_gdp_growth", ("us_cpi_index", "yoy"), ("us_core_cpi_index", "yoy"), "us_unemployment",
           "us_10y", "us_fed_funds"),
+    _peer("Japan", "gdp_growth_jp", "cpi_jp", None, "unemployment_jp", "bond10_jp", "policy_rate_jp"),
+    _peer("Canada", "gdp_growth_ca", "cpi_ca", None, "unemployment_ca", "bond10_ca", "policy_rate_ca"),
 ]
 
 
@@ -241,6 +244,36 @@ PAGES: dict[str, list[dict]] = {
                  "series": [("temporary_rate", "level", "Temporary contracts")]},
             ],
         },
+        {
+            "id": "slack",
+            "title": "Slack and vacancies",
+            "intro": ("Unemployment understates how much spare labour there is. Eurostat's measure of slack adds "
+                      "part-timers who want more hours and people who could work but are not looking. Vacancies show "
+                      "the other side: the posts firms are trying to fill."),
+            "tables": [Table(
+                title="Labour market",
+                caption="% unless stated",
+                columns=LEVELS,
+                rows=[
+                    Row("labour_slack", "Labour market slack, % of the extended labour force"),
+                    Row("unemployment_epa", "Unemployment rate (EPA)"),
+                    Row("vacancies", "Job vacancies, thousands"),
+                    Row("vacancies", "Job vacancies, average of the past four quarters", transform="avg_1y"),
+                ],
+                note="Vacancies are not seasonally adjusted, so the four-quarter average shows the trend.",
+            )],
+            "charts": [
+                {"id": "slack", "title": "Slack and unemployment",
+                 "subtitle": "% of the labour force; slack also counts the underemployed and people not looking",
+                 "kind": "line", "unit": "%", "decimals": 1, "start": "2009-01-01",
+                 "series": [("labour_slack", "level", "Slack (SA)"), ("unemployment_epa", "level", "Unemployment (EPA)")]},
+                {"id": "beveridge", "kind": "xy", "title": "Beveridge curve",
+                 "subtitle": "Each point is a quarter: unemployment against vacancies (four-quarter average)",
+                 "start": "2014-04-01",
+                 "x": ("unemployment_epa", "level", "Unemployment rate", "%"),
+                 "y": ("vacancies", "avg_1y", "Vacancies", "k")},
+            ],
+        },
     ],
     # ------------------------------------------------------------------ Wages
     "wages": [
@@ -407,19 +440,22 @@ PAGES: dict[str, list[dict]] = {
                     Row("euribor_12m", "12-month Euribor"),
                     Heading("Shares"),
                     Row("ibex35", "IBEX 35"),
+                    Row("euro_stoxx50", "Euro Stoxx 50 (monthly average)"),
                     Heading("The euro, per euro"),
                     Row("eurusd", "US dollars"),
                     Row("eurgbp", "British pounds"),
                     Row("eurchf", "Swiss francs"),
                     Row("eurjpy", "Japanese yen"),
-                    Heading("Energy"),
+                    Heading("Energy and metals"),
                     Row("brent_usd", "Brent crude, dollars"),
                     Row("brent_eur", "Brent crude, euros"),
                     Row("gas_eu", "European natural gas (monthly)"),
                     Row("electricity_price", "Electricity, day-ahead"),
+                    Row("gold", "Gold (monthly)"),
+                    Row("copper", "Copper (monthly)"),
                 ],
                 note=("Each row is the latest close its source has published; a date next to a row means it differs "
-                      "from the rest. For the euro, a rise means a stronger euro."),
+                      "from the rest. Monthly rows are monthly averages. For the euro, a rise means a stronger euro."),
             )],
             "charts": [
                 {"id": "ibex", "title": "IBEX 35", "subtitle": "Index, daily close",
@@ -476,6 +512,31 @@ PAGES: dict[str, list[dict]] = {
                  "subtitle": "%, daily; the gap between the lines is the prima de riesgo",
                  "kind": "line", "unit": "%", "decimals": 2, "start": "2022-01-01", "date_format": DAILY,
                  "series": [("es_10y", "level", "Spain"), ("de_10y", "level", "Germany")]},
+            ],
+        },
+        {
+            "id": "stress",
+            "title": "Financial stress and banks",
+            "intro": ("The ECB's composite indicator of systemic stress (CISS) combines tension in money, bond, share "
+                      "and currency markets and among banks into one number, from 0 (calm) to 1 (crisis). The bad-loan "
+                      "ratio shows how much bank lending is not being repaid."),
+            "tables": [Table(
+                title="Indicator",
+                caption="Index (0 to 1) or %",
+                columns=LEVELS,
+                rows=[
+                    Row("ciss_es", "Financial stress, Spain"),
+                    Row("ciss_ea", "Financial stress, euro area"),
+                    Row("npl_ratio", "Bad-loan ratio, %"),
+                ],
+            )],
+            "charts": [
+                {"id": "ciss", "title": "Financial stress", "subtitle": "ECB composite indicator of systemic stress, 0 to 1, daily",
+                 "kind": "line", "unit": "", "decimals": 2, "start": "2007-01-01", "date_format": DAILY,
+                 "series": [("ciss_es", "level", "Spain"), ("ciss_ea", "level", "Euro area")]},
+                {"id": "npl", "title": "Bad loans", "subtitle": "Doubtful loans, % of lending to households and firms",
+                 "kind": "line", "unit": "%", "decimals": 2, "start": "2000-01-01",
+                 "series": [("npl_ratio", "level", "Bad-loan ratio")]},
             ],
         },
         {
@@ -760,7 +821,7 @@ PAGES: dict[str, list[dict]] = {
         },
         {
             "id": "debt",
-            "title": "Household debt and mortgage rates",
+            "title": "Household finances",
             "intro": ("Spanish households have paid down much of the debt they took on in the boom; most mortgages "
                       "are variable-rate, so rates matter quickly."),
             "tables": [Table(
@@ -770,14 +831,21 @@ PAGES: dict[str, list[dict]] = {
                 rows=[
                     Row("household_debt_gdp", "Household debt, % of GDP"),
                     Row("household_debt_income", "Household debt, % of disposable income"),
+                    Row("debt_service_ratio", "Debt service, % of disposable income"),
+                    Row("saving_rate", "Saving rate, % of disposable income (SA)"),
                     Row("housing_loans_growth", "Housing loans, growth on a year earlier"),
                     Row("mortgage_rate", "New mortgages, average rate"),
                 ],
+                note=("Debt service is what households pay in interest and principal (BIS). The saving rate is "
+                      "the share of disposable income not spent (INE)."),
             )],
             "charts": [
                 {"id": "household-debt", "title": "Household debt", "subtitle": "% of GDP",
                  "kind": "line", "unit": "%", "decimals": 1, "start": "2003-01-01",
                  "series": [("household_debt_gdp", "level", "Household debt")]},
+                {"id": "saving", "title": "Household saving rate", "subtitle": "% of disposable income, seasonally adjusted",
+                 "kind": "line", "unit": "%", "decimals": 1, "start": "2000-01-01",
+                 "series": [("saving_rate", "level", "Saving rate")]},
                 {"id": "housing-loans", "title": "Housing loans and mortgage rates",
                  "subtitle": "%: growth of housing loans on a year earlier, and the rate on new mortgages",
                  "kind": "line", "unit": "%", "decimals": 1, "start": "2010-01-01",
@@ -841,7 +909,7 @@ PAGES: dict[str, list[dict]] = {
         {
             "id": "peers",
             "title": "Spain and its peers",
-            "intro": "Spain next to the euro area, the other large euro economies, Portugal and the United States.",
+            "intro": "Spain next to the euro area, the other large euro economies, Portugal, and the UK, US, Japan and Canada.",
             "tables": [Panel(
                 title="Country",
                 caption="%",
@@ -849,9 +917,11 @@ PAGES: dict[str, list[dict]] = {
                          PanelColumn("core", "Core inflation"), PanelColumn("unemp", "Unemployment"),
                          PanelColumn("y10", "10-year yield"), PanelColumn("policy", "Policy rate")],
                 rows=PEERS,
-                note=("Inflation is the harmonised index (HICP) in Europe and the CPI in the United States. "
-                      "European 10-year yields are monthly averages; the US one is the latest day. Euro-area "
-                      "countries share the ECB's deposit rate; the US rate is the top of the Fed's target range."),
+                note=("Inflation is the harmonised index (HICP) in the euro area and each country's CPI elsewhere; "
+                      "core inflation leaves out food and energy, and is not shown where no current measure is "
+                      "available. 10-year yields are monthly averages. Euro-area countries share the ECB's deposit "
+                      "rate; the US rate is the mid-point of the Fed's target range. Sources: Eurostat, ECB, OECD, "
+                      "BIS, US BLS and BEA."),
             )],
             "charts": [
                 {"id": "inflation-ranking", "kind": "hbar", "title": "Inflation", "subtitle": "% change on a year earlier",
@@ -994,6 +1064,8 @@ def page_indicator_ids(section: str) -> set[str]:
                 ids |= {i for line in c["lines"] for i, _ in line["points"]}
             elif c.get("kind") == "hbar":
                 ids |= {item[0] for item in c["items"]}
+            elif c.get("kind") == "xy":
+                ids |= {c["x"][0], c["y"][0]}
             else:
                 ids |= {s[0] for s in c["series"]}
         ids |= {i for i, _ in block.get("flash", [])} | set(block.get("uses", []))
@@ -1032,6 +1104,8 @@ def _chart_builder(definition: dict):
         return build_curve
     if definition.get("kind") == "hbar":
         return build_ranking
+    if definition.get("kind") == "xy":
+        return build_xy
     return build_chart
 
 

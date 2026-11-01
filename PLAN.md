@@ -70,7 +70,7 @@ One Python codebase. Its output is a plain static website that opens by double-c
 
 ## 3. Data sources
 
-Status after Batch 6 (31 Oct 2026): 242 indicators. All sources are official or public and are accessed with an honest `EconPulseSpain` User-Agent:
+Status after Batch 10 (1 Nov 2026): 268 indicators. All sources are official or public and are accessed with an honest `EconPulseSpain` User-Agent:
 
 | Provider | Access | Status | Covers |
 |---|---|---|---|
@@ -80,7 +80,13 @@ Status after Batch 6 (31 Oct 2026): 242 indicators. All sources are official or 
 | **Banco de España** | REST API `app.bde.es/bierest` | ✅ in use (18) | building permits; daily Spanish yield curve (12-month bill, 3, 5, 10, 15 and 30 years), German 10y, prima de riesgo, Euribor, IBEX 35; registered unemployment, pay rises agreed in collective agreements, car sales, hotel nights, balance of payments |
 | **Seguridad Social** | spreadsheet linked from its statistics page | ✅ in use (1) | average registrations (*afiliados*), total system, since 2001 |
 | **Red Eléctrica (REE)** | REData API `apidatos.ree.es` | ✅ in use (2) | day-ahead electricity price (daily average of 15-minute prices), daily demand |
-| **FRED** | public CSV, no key | ✅ in use (8) | Brent spot (US EIA), European gas (IMF); US GDP, CPI, core CPI, unemployment, 10-year yield, Fed funds target |
+| **OECD** | SDMX REST, CSV | ✅ in use (13) | UK, Japan and Canada: GDP growth, CPI, unemployment; 10-year yields for them and the US |
+| **BIS** | SDMX REST, CSV | ✅ in use (6) | policy rates (US, UK, Japan, Canada), Japan's CPI, Spanish households' debt-service ratio |
+| **US BLS** | public API v1, no key (25 requests a day) | ✅ in use (3) | US CPI, core CPI, unemployment |
+| **DBnomics** | open mirror (Banque de France, CEPREMAP) | ✅ in use (1) | US GDP growth (BEA) |
+| **US EIA** | public history pages | ✅ in use (1) | daily Brent spot price |
+| **World Bank** | monthly commodity prices spreadsheet | ✅ in use (3) | European gas (TTF), gold, copper |
+| ~~FRED~~ | public CSV | ❌ replaced in Batch 10 | does not answer GitHub's servers; the client stays for local use |
 | **EconPulse calculations** | from the series above | ✅ in use (12) | Brent in euros, 10-year spreads over Germany, GDP deflator, real wages, real house prices, average mortgage, primary balance, monthly electricity demand |
 | ~~Yahoo Finance~~ | unofficial API | ❌ dropped | IBEX 35 now comes from Banco de España and Brent from FRED |
 | **INE release calendar** | iCal file `ine.es/dynt3/Calendario/calendario.ics` | ✅ in use | dates and times of every INE release; saved to `data/calendar.json` at each fetch |
@@ -99,7 +105,9 @@ Status after Batch 6 (31 Oct 2026): 242 indicators. All sources are official or 
 - Banco de España table CSVs (`www.bde.es/webbe/es/estadisticas/compartido/datos/csv/be24NN.csv`) are a good way to find series codes: the level of registered unemployment (`D_1JA0D000`) and agreed pay rises came from tables 24.15 and 24.22.
 - Banco de España has no daily Spanish 2-year yield or 3- and 6-month bills in its API; the curve uses the 12-month bill and the 3, 5, 10, 15 and 30-year bonds.
 - No free feed of €STR swap rates exists, so "what markets expect" uses the ECB's AAA euro-area forward rates. They include a term premium; the page says so.
-- Euro high-yield credit spreads are on FRED, but they are ICE's proprietary data and FRED only keeps three years, so they are left out. Euro Stoxx 50 and gold still have no clean free source.
+- Euro high-yield credit spreads are on FRED, but they are ICE's proprietary data and FRED only keeps three years, so they are left out. Euro Stoxx 50 (ECB, monthly average) and gold (World Bank, monthly) arrived in Batch 10.
+- FRED's download does not answer GitHub's servers, so everything it supplied now comes from the original agencies: Brent from the EIA, gas from the World Bank, US data from the BLS, BEA (via DBnomics), BIS and OECD. The OECD's US figures lag by about three months, so it is used for the other countries. The OECD's Japanese CPI stops in 2021 (the BIS carries it), and no current core CPI is available for Japan or Canada.
+- The World Bank moves its price spreadsheet to a new address every month; the client finds the current link on the commodity-markets page.
 - INE publishes its whole release calendar as an iCal file (about 1,100 events, past and future). The site keeps the releases that feed it and maps their titles ("Índice de Precios de Consumo. Avance. Noviembre 2026") to its own names and periods. Social Security registrations have no published calendar: they are expected on the second working day of the month (national holidays and Good Friday excluded).
 - The ECB meeting calendar is a list in `econpulse/policy.py`, taken from the ECB's published schedule and running to December 2028. After the last date, the page links to the ECB calendar.
 - The tourism series picked in Batch 2 (`FREG287`) was all visitors, including same-day visitors (144 million in 2025), not tourists. It now uses `FREG286`, tourists only (96.8 million in 2025); the home tile changed from 18.5 to 12.3 million for August.
@@ -210,6 +218,9 @@ Each batch is sized for one working session, ends with something you can open or
 - Release calendar (INE calendar, Social Security, ECB meetings) and the "Today / Coming up" bar
 - Automatic "what changed since the last update" notes, rule-based
 - About and methodology page, data-freshness page
+
+### Batch 10 — Data gaps ✅ done 1 Nov 2026
+*Result: FRED replaced by six new clients (OECD, BIS, US BLS, DBnomics, US EIA, World Bank), so all series can update from GitHub. New: labour market slack and job vacancies, with a Beveridge curve; household saving rate and debt-service ratio; the ECB's financial stress index (CISS) for Spain and the euro area; the bad-loan ratio; Euro Stoxx 50, gold and copper; and the UK, Japan and Canada in the international comparison (11 economies). 268 indicators, 131 offline tests.*
 
 ### Batch 9 — Go online ✅ done 1 Nov 2026
 *Result: the site is live at https://enriquechueca93.github.io/econpulse-spain/, from the public repository EnriqueChueca93/econpulse-spain. A GitHub Actions workflow runs once a day at 17:30 UTC: offline tests, `update`, a commit of the new data back to the repository, and a Pages deploy. Code pushes rebuild and redeploy from the saved data, and the workflow can be run by hand. `requirements.txt` pins the versions tested locally. Before the first push, the commit history was rewritten to use the GitHub noreply address instead of a personal email. No custom domain.*

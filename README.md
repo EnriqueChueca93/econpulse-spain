@@ -73,7 +73,8 @@ After that, only recent observations are downloaded and merged in (about 10 seco
 econpulse/            Python package
   indicators.yaml     the indicator registry: every series the site tracks
   sources/            one client per data provider: ine, eurostat, ecb, bde (Banco de España),
-                      segsocial (Seguridad Social), ree (Red Eléctrica), fred, derived
+                      segsocial (Seguridad Social), ree (Red Eléctrica), oecd, bis, bls,
+                      dbnomics, eia, worldbank, fred (local use only), derived
   transforms.py       y/y, m/m, q/q, 3-month annualised, changes
   store.py            data/series/<id>.csv + data/catalog.json
   fetch.py            fetches everything; one failing source never stops the rest
@@ -109,7 +110,10 @@ To show it in a section table or chart, add a `Row` or a chart series to that pa
 - **Eurostat:** dataset code plus `params` that fix every dimension except time.
 - **ECB:** `FLOW/SERIES_KEY`, as shown on data.ecb.europa.eu.
 - **Banco de España:** the series code from the first row of any table's CSV download (e.g. `DPUG0B1F0ZP`).
-- **FRED:** the series id (e.g. `DCOILBRENTEU`).
+- **OECD:** `dataflow/series key` as in the OECD Data Explorer; empty key positions are wildcards that must match one series.
+- **BIS:** `dataflow/series key`, e.g. `WS_CBPOL/D.GB` (Bank of England rate).
+- **World Bank:** the column header in the monthly prices sheet, e.g. `Gold`.
+- **FRED:** the series id (e.g. `DCOILBRENTEU`). FRED does not answer GitHub's servers, so the online site avoids it.
 - **Derived:** `subtract`, `add` or `divide` two indicators defined earlier in the file, `deflate` one by a
   price index, or `average` a daily series over complete months.
 

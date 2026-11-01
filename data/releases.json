@@ -884,8 +884,8 @@
   },
   "gas_eu": {
    "date": "2026-09-01",
-   "raw": 25.494,
-   "display": "25.5 $/MMBtu",
+   "raw": 25.42,
+   "display": "25.4 $/MMBtu",
    "period": "Sep 2026",
    "flash": false
   },
@@ -1178,14 +1178,14 @@
   },
   "us_cpi_index": {
    "date": "2026-09-01",
-   "raw": 336.298,
+   "raw": 336.94,
    "display": "3.7% y/y",
    "period": "Sep 2026",
    "flash": false
   },
   "us_core_cpi_index": {
    "date": "2026-09-01",
-   "raw": 338.896,
+   "raw": 339.287,
    "display": "2.6% y/y",
    "period": "Sep 2026",
    "flash": false
@@ -1198,17 +1198,17 @@
    "flash": false
   },
   "us_10y": {
-   "date": "2026-10-29",
-   "raw": 4.98,
-   "display": "4.98%",
-   "period": "29 Oct 2026",
+   "date": "2026-09-01",
+   "raw": 4.99,
+   "display": "4.99%",
+   "period": "Sep 2026",
    "flash": false
   },
   "us_fed_funds": {
-   "date": "2026-10-31",
-   "raw": 4.0,
-   "display": "4.00%",
-   "period": "31 Oct 2026",
+   "date": "2026-10-27",
+   "raw": 3.875,
+   "display": "3.875%",
+   "period": "27 Oct 2026",
    "flash": false
   },
   "unemployment_andalucia": {
@@ -1693,9 +1693,213 @@
    "display": "104",
    "period": "2025",
    "flash": true
+  },
+  "labour_slack": {
+   "date": "2026-04-01",
+   "raw": 17.7,
+   "display": "17.7%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "vacancies": {
+   "date": "2026-04-01",
+   "raw": 151.736,
+   "display": "151.7k",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "gold": {
+   "date": "2026-09-01",
+   "raw": 4319.0,
+   "display": "4,319 $/oz",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "copper": {
+   "date": "2026-09-01",
+   "raw": 14474.0,
+   "display": "14,474 $/t",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "euro_stoxx50": {
+   "date": "2026-09-01",
+   "raw": 6316.389,
+   "display": "6,316",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "ciss_es": {
+   "date": "2026-10-29",
+   "raw": 0.002452103673,
+   "display": "0.002",
+   "period": "29 Oct 2026",
+   "flash": false
+  },
+  "ciss_ea": {
+   "date": "2026-10-29",
+   "raw": 0.01276523037,
+   "display": "0.013",
+   "period": "29 Oct 2026",
+   "flash": false
+  },
+  "npl_ratio": {
+   "date": "2026-08-01",
+   "raw": 2.53,
+   "display": "2.53%",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "saving_rate": {
+   "date": "2026-04-01",
+   "raw": 11.0,
+   "display": "11.0%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "debt_service_ratio": {
+   "date": "2026-01-01",
+   "raw": 5.1,
+   "display": "5.1%",
+   "period": "Q1 2026",
+   "flash": false
+  },
+  "gdp_growth_uk": {
+   "date": "2026-04-01",
+   "raw": 1.372599483,
+   "display": "1.4%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "gdp_growth_jp": {
+   "date": "2026-04-01",
+   "raw": 0.726654038,
+   "display": "0.7%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "gdp_growth_ca": {
+   "date": "2026-07-01",
+   "raw": 0.954838473,
+   "display": "1.0%",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "cpi_uk": {
+   "date": "2026-09-01",
+   "raw": 3.6,
+   "display": "3.6%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "cpi_jp": {
+   "date": "2026-09-01",
+   "raw": 2.097902,
+   "display": "2.1%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "cpi_ca": {
+   "date": "2026-09-01",
+   "raw": 3.092783,
+   "display": "3.1%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "core_cpi_uk": {
+   "date": "2026-09-01",
+   "raw": 3.1,
+   "display": "3.1%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "unemployment_uk": {
+   "date": "2026-07-01",
+   "raw": 4.7,
+   "display": "4.7%",
+   "period": "Jul 2026",
+   "flash": false
+  },
+  "unemployment_jp": {
+   "date": "2026-08-01",
+   "raw": 2.5,
+   "display": "2.5%",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "unemployment_ca": {
+   "date": "2026-09-01",
+   "raw": 6.5,
+   "display": "6.5%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "bond10_uk": {
+   "date": "2026-09-01",
+   "raw": 5.2421,
+   "display": "5.24%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "bond10_jp": {
+   "date": "2026-09-01",
+   "raw": 3.05,
+   "display": "3.05%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "bond10_ca": {
+   "date": "2026-09-01",
+   "raw": 3.8825,
+   "display": "3.88%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "policy_rate_uk": {
+   "date": "2026-10-26",
+   "raw": 3.75,
+   "display": "3.75%",
+   "period": "26 Oct 2026",
+   "flash": false
+  },
+  "policy_rate_jp": {
+   "date": "2026-10-27",
+   "raw": 1.25,
+   "display": "1.25%",
+   "period": "27 Oct 2026",
+   "flash": false
+  },
+  "policy_rate_ca": {
+   "date": "2026-10-26",
+   "raw": 2.25,
+   "display": "2.25%",
+   "period": "26 Oct 2026",
+   "flash": false
   }
  },
- "notes": [],
- "updated_at": "2026-11-01T01:38:26+00:00",
+ "notes": [
+  {
+   "kind": "revision",
+   "id": "gas_eu",
+   "page": "financial.html",
+   "text": "European natural gas for Sep 2026 revised to 25.4 $/MMBtu, from 25.5 $/MMBtu.",
+   "at": "2026-11-01T02:50:46+00:00"
+  },
+  {
+   "kind": "revision",
+   "id": "us_cpi_index",
+   "page": "international.html",
+   "text": "CPI, United States for Sep 2026 revised to 3.7% y/y, from 3.7% y/y.",
+   "at": "2026-11-01T02:50:46+00:00"
+  },
+  {
+   "kind": "revision",
+   "id": "us_core_cpi_index",
+   "page": "international.html",
+   "text": "Core CPI, United States for Sep 2026 revised to 2.6% y/y, from 2.6% y/y.",
+   "at": "2026-11-01T02:50:46+00:00"
+  }
+ ],
+ "updated_at": "2026-11-01T02:50:46+00:00",
  "started_at": "2026-10-31T23:31:49+00:00"
 }

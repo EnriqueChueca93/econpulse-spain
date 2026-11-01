@@ -94,10 +94,45 @@
     window.Plotly.react(el, traces, layout, config);
   }
 
+  // One measure against another over time (a Beveridge curve): a path of dated points,
+  // the first and latest labelled.
+  function drawXY(el, spec) {
+    var s = spec.series[0], n = s.x.length;
+    var surface = token("--surface"), ink = token("--text"), ink2 = token("--text-2");
+    var muted = token("--muted"), grid = token("--grid"), axis = token("--axis"), color = token("--series-1");
+    var unit = function (u) { return u === "%" || u === "k" ? u : (u ? " " + u : ""); };
+    var hover = "<b>%{text}</b><br>" + spec.x_label + " %{x:.1f}" + unit(spec.x_unit) + "<br>" +
+      spec.y_label + " %{y:.0f}" + unit(spec.y_unit) + "<extra></extra>";
+    var traces = [
+      { type: "scatter", mode: "lines+markers", x: s.x, y: s.y, text: s.text, hovertemplate: hover, showlegend: false,
+        line: { color: color, width: 1.5 }, marker: { size: 6, color: color, line: { width: 1, color: surface } } },
+      { type: "scatter", mode: "markers", x: [s.x[n - 1]], y: [s.y[n - 1]], hoverinfo: "skip", showlegend: false,
+        marker: { size: 11, color: color, line: { width: 2, color: surface } } }
+    ];
+    var label = function (i, anchor) {
+      return { x: s.x[i], y: s.y[i], text: s.text[i], showarrow: false, xanchor: anchor, xshift: anchor === "left" ? 9 : -9,
+        font: { size: 11, color: ink2 } };
+    };
+    var layout = {
+      paper_bgcolor: surface, plot_bgcolor: surface,
+      font: { family: token("--sans") || "system-ui, sans-serif", size: 12, color: ink2 },
+      margin: { l: 56, r: 18, t: 10, b: 44 }, hovermode: "closest", showlegend: false,
+      hoverlabel: { bgcolor: surface, bordercolor: grid, font: { color: ink, size: 12 } },
+      xaxis: { title: { text: spec.x_label + (spec.x_unit ? " (" + spec.x_unit + ")" : ""), font: { size: 12, color: ink2 } },
+        gridcolor: grid, zeroline: false, linecolor: axis, fixedrange: true, tickfont: { color: muted } },
+      yaxis: { title: { text: spec.y_label + (spec.y_unit ? " (" + spec.y_unit + ")" : ""), font: { size: 12, color: ink2 } },
+        gridcolor: grid, zeroline: false, fixedrange: true, tickfont: { color: muted }, automargin: true },
+      annotations: [label(0, "right"), label(n - 1, "left")]
+    };
+    var config = Object.assign({ toImageButtonOptions: { filename: "econpulse-" + spec.id, scale: 2 } }, CONFIG_BASE);
+    window.Plotly.react(el, traces, layout, config);
+  }
+
   function draw(spec) {
     var el = document.getElementById("chart-" + spec.id);
     if (!el || !window.Plotly) return;
     if (spec.kind === "hbar") return drawRanking(el, spec);
+    if (spec.kind === "xy") return drawXY(el, spec);
     // Fixed slot order, never cycled: a spec has at most three palette series.
     var colors = [token("--series-1"), token("--series-2"), token("--series-3")];
     var surface = token("--surface"), ink = token("--text"), ink2 = token("--text-2");
@@ -230,6 +265,7 @@
     var table = document.createElement("table");
     var category = spec.x_kind === "category";
     var head = table.createTHead().insertRow();
+    if (spec.kind === "xy") return fillXYTable(spec, holder, table, head);
     [spec.x_title || "Date"].concat(spec.series.map(function (s) { return s.name; })).forEach(function (h) {
       var th = document.createElement("th"); th.scope = "col"; th.textContent = h; head.appendChild(th);
     });
@@ -252,6 +288,24 @@
     var caption = document.createElement("p");
     caption.className = "note";
     caption.textContent = category ? "All points." : "Latest " + dates.length + " dates.";
+    holder.appendChild(table);
+    holder.appendChild(caption);
+  }
+
+  function fillXYTable(spec, holder, table, head) {
+    [spec.x_title, spec.x_label, spec.y_label].forEach(function (h) {
+      var th = document.createElement("th"); th.scope = "col"; th.textContent = h; head.appendChild(th);
+    });
+    var s = spec.series[0], body = table.createTBody();
+    for (var i = s.x.length - 1; i >= Math.max(0, s.x.length - 12); i--) {
+      var row = body.insertRow();
+      row.insertCell().textContent = s.text[i];
+      row.insertCell().textContent = s.x[i].toFixed(1) + (spec.x_unit === "%" ? "%" : "");
+      row.insertCell().textContent = s.y[i].toFixed(0) + (spec.y_unit === "k" ? "k" : "");
+    }
+    var caption = document.createElement("p");
+    caption.className = "note";
+    caption.textContent = "Latest 12 periods.";
     holder.appendChild(table);
     holder.appendChild(caption);
   }

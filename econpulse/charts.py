@@ -19,6 +19,10 @@ A curve definition ("curve": True) draws one line per date across maturities
 instead: "lines" [{"at", "name", "points"}], where points are (indicator id, label)
 and "at" is latest, month (a month earlier), yearend or year (a year earlier).
 
+An XY definition ("kind": "xy") plots one measure against another over time, e.g. a
+Beveridge curve: "x" and "y" are (indicator id, transform, axis label, unit) and each
+point is labelled with its period.
+
 A ranking definition ("kind": "hbar") draws horizontal bars, one per item (region,
 country), sorted by the latest value: "items" [(indicator id, label[, transform])], a
 default "transform", "ref_from" [(indicator id, label[, transform])] for a reference
@@ -207,4 +211,31 @@ def build_ranking(definition: dict, by_id: dict[str, Indicator], store: Store) -
                 series=[{"name": definition.get("name", definition["title"]),
                          "x": [r[0] for r in rows], "y": [r[1] for r in rows]}],
                 ref_lines=ref_lines, freq=None, source=sources)
+    return spec
+
+
+def build_xy(definition: dict, by_id: dict[str, Indicator], store: Store) -> dict | None:
+    """One measure against another, period by period (both on the same frequency)."""
+    start = pd.Timestamp(definition["start"])
+    parts = []
+    for ind_id, transform, _, _ in (definition["x"], definition["y"]):
+        raw = store.load_series(ind_id)
+        if raw is None:
+            return None
+        try:
+            parts.append(transforms.apply(transform, raw, by_id[ind_id].freq))
+        except ValueError:
+            return None
+    both = pd.DataFrame({"x": parts[0], "y": parts[1]}).dropna()
+    both = both[both.index >= start].round(4)
+    if len(both) < 2:
+        return None
+    freq = by_id[definition["x"][0]].freq
+    inds = [by_id[definition["x"][0]], by_id[definition["y"][0]]]
+    spec = {k: v for k, v in definition.items() if k not in ("x", "y", "start")}
+    spec.update(kind="xy", x_label=definition["x"][2], x_unit=definition["x"][3], y_label=definition["y"][2],
+                y_unit=definition["y"][3], freq=freq, x_kind="xy", x_title="Period",
+                series=[{"name": definition["title"], "x": both["x"].tolist(), "y": both["y"].tolist(),
+                         "text": [period_label(d, freq) for d in both.index]}],
+                ref_lines=[], source=_sources(inds, by_id))
     return spec
