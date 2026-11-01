@@ -34,7 +34,7 @@ SECTION_PAGES = {
     "inflation": ("Inflation", "Consumer prices on Spain's own index (IPC) and the harmonised index the ECB targets (IPCA), underlying inflation across the basket, and energy prices.", 4),
     "financial": ("Financial", "Spanish bond yields and the prima de riesgo, Euribor, the IBEX 35, the euro and commodities.", 5),
     "ecb": ("ECB", "Spain has no monetary policy of its own: the European Central Bank sets rates for the whole euro area.", 5),
-    "fiscal": ("Fiscal", "Government deficit and debt.", 6),
+    "fiscal": ("Fiscal", "Government deficit and debt, the IMF-style fiscal tables, and debt sustainability.", 6),
     "activity": ("Activity", "Industry, retail, sentiment surveys, tourism, electricity demand and the external accounts.", 6),
     "housing": ("Housing", "House prices, home sales and mortgage rates.", 6),
     "international": ("International", "Spain next to the euro area and its peers.", 6),
@@ -169,7 +169,7 @@ def build_site(indicators: list[Indicator], store: Store | None = None, site_dir
     workbook = sectortables.write_workbook(readings_data, data_dir / sectortables.WORKBOOK, built=common["built"])
     render("data.html", "data.html", source_summary=_source_summary(items), groups=[g for g in groups if g["items"]],
            attention=attention, total=len(items), workbook=f"data/{sectortables.WORKBOOK}" if workbook else None,
-           sector_tables=[(f"{t.section}.html#{t.id}", f"Table {t.number}. {t.title}") for t in sectortables.TABLES])
+           sector_tables=[(f"{t.section}.html#{t.block}", f"{t.label}. {t.title}") for t in sectortables.TABLES])
     render("calendar.html", "calendar.html", days=schedule.window(store, today), recent=recent,
            calendar_page=schedule.INE_CALENDAR_PAGE)
     counts = {}

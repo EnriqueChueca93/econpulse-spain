@@ -58,7 +58,9 @@ Because the workflow commits data every day, run `git pull` before working local
 - **IMF-style sector tables**: the tables of the IMF's 2026 Article IV report for Spain, rebuilt from public
   data (actual years from INE, Eurostat and the ECB, projections from the IMF's World Economic Outlook; "…" where
   the WEO does not publish a line). Each is on its section page (Table 1, main economic indicators, on the GDP
-  page) and all are in one Excel workbook, `site/data/econpulse-spain-sector-tables.xlsx`, with history from 2015.
+  page; Tables 2a and 2b, government operations, and the debt sustainability tables on the Fiscal page, the
+  stress tests from the European Commission's Debt Sustainability Monitor) and all are in one Excel workbook,
+  `site/data/econpulse-spain-sector-tables.xlsx`, with history from 2015.
 - **Analysis**: EconPulse's own calculations, each explained on the page: activity and inflation composites,
   data surprises (the latest figures against a simple statistical forecast), a GDP nowcast with its track record,
   what forecasters expect for this year and next, the 10-year yield split into Bund and prima de riesgo, and

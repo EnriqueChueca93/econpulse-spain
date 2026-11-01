@@ -117,7 +117,8 @@ def test_the_workbook_and_the_gdp_page(store, tmp_path):
     site = tmp_path / "site"
     build_site(load_registry(), store, site_dir=site)
     wb = load_workbook(site / "data" / st.WORKBOOK)
-    assert wb.sheetnames == ["Contents", "T1 Real sector"]
+    assert wb.sheetnames == ["Contents", "T1 Real sector", "T2a Fiscal EUR bn", "T2b Fiscal % GDP", "DSA1 Baseline",
+                             "DSA2 EC stress tests"]
     ws = wb["T1 Real sector"]
     assert ws["A1"].value == "Table 1. Spain: Main Economic Indicators" and ws.freeze_panes == "B5"
     header = [c.value for c in ws[4]]
@@ -131,3 +132,77 @@ def test_the_workbook_and_the_gdp_page(store, tmp_path):
     assert 'href="gdp.html#real-sector"' in html            # in the GDP tab's dropdown
     data_page = (site / "data.html").read_text(encoding="utf-8")
     assert f'href="data/{st.WORKBOOK}" download' in data_page
+    fiscal_page = (site / "fiscal.html").read_text(encoding="utf-8")
+    assert '<h2 id="government-operations">' in fiscal_page and '<h2 id="debt-sustainability">' in fiscal_page
+    assert 'id="fig-dsa-fan"' in fiscal_page and "DSA 2. Public Debt: European Commission" in fiscal_page
+
+
+@pytest.fixture
+def fiscal_store(store):
+    n = len(YEARS)
+    gdp = [1000.0 * 1.04 ** k for k in range(n)]
+    for ind_id, share_of_gdp in [("gg_revenue_eur", 0.42), ("gg_spending_eur", 0.45), ("gg_taxes_production_eur", 0.11),
+                                 ("gg_taxes_income_eur", 0.12), ("gg_capital_taxes_eur", 0.004),
+                                 ("gg_social_contributions_eur", 0.13), ("gg_nonproduced_eur", 0.0002),
+                                 ("gg_interest_paid_eur", 0.024), ("gg_interest_received_eur", 0.005)]:
+        store.save_series(ind_id, annual([g * share_of_gdp for g in gdp]))
+    store.save_series("gg_balance_eur", annual([g * -0.03 for g in gdp]))
+    # Debt: 100% of GDP, then 99%...; the real growth (2%) and deflator (2%) series.
+    store.save_series("gg_debt_eur", annual([g * (1.0 - 0.01 * k) for k, g in enumerate(gdp)]))
+    store.save_series("gdp_deflator_growth_annual", annual([2.0] * n))
+    store.save_series("fc_imf_revenue", annual([5e11] * len(WEO), WEO))
+    store.save_series("fc_imf_revenue_gdp", annual([43.0] * len(WEO), WEO))
+    return store
+
+
+def by_label(table, store, first=2015, last=2031):
+    data = Data(load_registry(), store)
+    return {r["label"]: dict(zip(range(first, last + 1), r["cells"]))
+            for r in st.values(table, data, first, last, 2025) if not r["heading"]}
+
+
+def test_government_operations(fiscal_store):
+    eur, gdp = by_label(st.FISCAL_EUR, fiscal_store), by_label(st.FISCAL_GDP, fiscal_store)
+    y = 2020
+    nominal = 1000.0 * 1.04 ** (y - 2015)
+    assert eur["Taxes"][y] == pytest.approx(nominal * (0.11 + 0.12 + 0.004) / 1000)    # € bn from € mn
+    assert eur["Expense"][y] == pytest.approx(nominal * (0.45 - 0.0002) / 1000)       # TE less nonproduced assets
+    assert gdp["Revenue"][y] == pytest.approx(42.0) and gdp["Social contributions"][y] == pytest.approx(13.0)
+    assert gdp["Primary balance 4/"][y] == pytest.approx(-3.0 + 2.4 - 0.5)
+    # Projections: the WEO's totals only.
+    assert eur["Revenue"][2026] == pytest.approx(500.0) and gdp["Revenue"][2026] == 43.0
+    assert eur["Taxes"][2026] is None
+
+
+def test_debt_dynamics_add_up(fiscal_store):
+    dsa = by_label(st.DSA_BASELINE, fiscal_store)
+    y = 2020
+    d_prev = 100.0 - 0.01 * 100 * (y - 1 - 2015)
+    assert dsa["Public debt"][y] == pytest.approx(d_prev - 1.0)
+    # Effective rate: interest paid over last year's debt; r and g effects as in the IMF's template.
+    i = 0.024 * 1.04 / (d_prev / 100) * 100   # 2.4% of this year's GDP over last year's debt (GDP grows 4%)
+    assert dsa["Effective interest rate (percent) 4/"][y] == pytest.approx(i)
+    r = (1 + i / 100) / 1.02 - 1
+    assert dsa["Real interest rate"][y] == pytest.approx(r / 1.02 * d_prev)
+    assert dsa["Real growth rate"][y] == pytest.approx(-0.02 / 1.02 * d_prev)
+    # The parts add up to the change in debt.
+    flows = (dsa["Primary deficit"][y] + dsa["Automatic debt dynamics"][y]
+             + dsa["Other identified flows: (minus) interest revenues 2/"][y])
+    assert dsa["Contribution of identified flows 1/"][y] == pytest.approx(flows)
+    assert dsa["Change in public debt"][y] == pytest.approx(flows + dsa["Contribution of residual 3/"][y])
+
+
+def test_commission_stress_tests_come_from_the_dsm_file(tmp_path):
+    data = Data(load_registry(), Store(tmp_path / "data"))
+    raw = st.fiscal.load()["dsm"]
+    assert st.span(st.DSA_STRESS, data) == (int(max(raw["history"])), int(max(raw["baseline"]["debt"])))
+    t = st.web_table(st.DSA_STRESS, data)
+    assert t["columns"][0] == max(raw["history"]) and t["column_notes"][0] == "" and t["column_notes"][1] == "proj."
+    assert "European Commission projections" in t["caption"] and "Debt Sustainability Monitor" in t["note"]
+    base = next(r for r in t["rows"] if r.get("label") == "Baseline (no policy change)")
+    assert base["cells"][-1] == st.fmt(raw["baseline"]["debt"][max(raw["baseline"]["debt"])])
+    fan = st.dsa_fan_chart(data)
+    assert [s["name"] for s in fan["series"]] == ["Commission baseline", "90th percentile", "10th percentile"]
+    assert fan["series"][1]["slot"] == fan["series"][2]["slot"] == 1
+    facts = st.dsa_facts(data)
+    assert any(f["label"].startswith("Sustainability gap S1") for f in facts)

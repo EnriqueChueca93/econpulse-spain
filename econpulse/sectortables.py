@@ -6,7 +6,11 @@ the statistical agencies (INE, Eurostat, the ECB); projection years from the IMF
 Economic Outlook database, which publishes a subset of the staff report's lines. A line the
 WEO does not publish shows "…" in the projection years, the IMF's own mark for data that are
 not available. A few lines are IMF staff estimates in every year (potential output, the output
-gap, the structural balance), because no statistical agency publishes them.
+gap, the structural balance, net debt), because no statistical agency publishes them.
+
+The debt sustainability analysis has two tables: the IMF's baseline debt decomposition, on the
+same sources, and the European Commission's baseline and stress tests from its Debt Sustainability
+Monitor (econpulse/fiscal_baseline.json), because the IMF's own stress tests are not published as data.
 
 The section pages show the last three actual years and the projections, as the IMF does;
 the workbook (site/data/econpulse-spain-sector-tables.xlsx) has every table from 2015.
@@ -19,6 +23,7 @@ from typing import Callable
 
 import pandas as pd
 
+from . import fiscal
 from .config import SITE_URL
 from .snapshot import MINUS
 from .tables import Data
@@ -112,6 +117,41 @@ def scaled(e: Expr, factor: float) -> Expr:
     return combine(lambda a: a * factor, e)
 
 
+def total(*exprs: Expr) -> Expr:
+    return combine(lambda *xs: sum(xs), *exprs)
+
+
+def less(e: Expr, *exprs: Expr) -> Expr:
+    """The first expression less the others."""
+    return combine(lambda a, *xs: a - sum(xs), e, *exprs)
+
+
+def lag(e: Expr) -> Expr:
+    """The previous year's value."""
+    def fn(data):
+        s = e(data)
+        return None if s is None else pd.Series(s.values, index=s.index + 1)
+    return _expr(fn, e.ids)
+
+
+def diff(e: Expr) -> Expr:
+    return less(e, lag(e))
+
+
+def dsm(*path: str) -> Expr:
+    """A series from the Commission's Debt Sustainability Monitor (econpulse/fiscal_baseline.json)."""
+    def fn(data):
+        if "fiscal_baseline" not in data.cache:
+            data.cache["fiscal_baseline"] = fiscal.load() if fiscal.BASELINE_FILE.exists() else {}
+        node = data.cache["fiscal_baseline"].get("dsm")
+        for key in path:
+            node = node.get(key) if isinstance(node, dict) else None
+        if not node:
+            return None
+        return pd.Series({int(y): float(v) for y, v in node.items() if v is not None}, dtype=float).sort_index()
+    return _expr(fn, [])
+
+
 # ---------------------------------------------------------------- table definitions
 
 @dataclass(frozen=True)
@@ -133,15 +173,19 @@ class Group:
 
 @dataclass(frozen=True)
 class SectorTable:
-    id: str                               # the block id on its section page
-    number: str                           # "1", "2a"...
+    id: str
+    label: str                            # "Table 1", "Table 2a", "DSA 1"...
     title: str                            # as in the IMF's report, without "Spain:"
     unit: str                             # the table's default unit
     section: str                          # the section page that shows it
+    block: str                            # the block on that page
     sheet: str                            # workbook sheet name (31 characters at most)
     imf_table: str                        # the Article IV table it follows
     rows: list = field(default_factory=list)
     footnotes: list[str] = field(default_factory=list)
+    kind: str = "weo"                     # "weo": statistics then WEO projections; "dsm": the Commission's DSM
+    web_actual: int = WEB_ACTUAL_YEARS    # actual years shown on the page
+    first_year: int = FIRST_YEAR          # first year in the workbook
 
     def indicator_ids(self) -> set[str]:
         ids = set()
@@ -170,8 +214,8 @@ ESTAT, INE, ECB, WEO = "Eurostat", "INE", "ECB", "IMF WEO"
 WEO_ESTIMATE = "IMF WEO (staff estimate)"
 
 REAL_SECTOR = SectorTable(
-    id="real-sector", number="1", title="Main Economic Indicators", unit="Percent change unless otherwise indicated",
-    section="gdp", sheet="T1 Real sector", imf_table="Table 1. Spain: Main Economic Indicators",
+    id="real-sector", label="Table 1", title="Main Economic Indicators", unit="Percent change unless otherwise indicated",
+    section="gdp", block="real-sector", sheet="T1 Real sector", imf_table="Table 1. Spain: Main Economic Indicators",
     rows=[
         Group("Demand and supply in constant prices"),
         Line("Gross domestic product", published("gdp_growth_annual"), published("fc_imf_gdp"),
@@ -278,7 +322,246 @@ REAL_SECTOR = SectorTable(
     ],
 )
 
-TABLES = [REAL_SECTOR]
+# ---------------------------------------------------------------- general government operations (Tables 2a, 2b)
+# Eurostat's ESA 2010 accounts for the general government, in millions of euros; Table 2a shows them in
+# billions, Table 2b in % of GDP. The WEO projects only the totals.
+
+def _gg(code: str) -> Expr:
+    return published(code)
+
+
+TR, TE, B9 = _gg("gg_revenue_eur"), _gg("gg_spending_eur"), _gg("gg_balance_eur")
+D2, D5, D91, D61 = _gg("gg_taxes_production_eur"), _gg("gg_taxes_income_eur"), _gg("gg_capital_taxes_eur"), \
+    _gg("gg_social_contributions_eur")
+D1, P2, P5, D9 = _gg("gg_compensation_eur"), _gg("gg_goods_services_eur"), _gg("gg_capital_formation_eur"), \
+    _gg("gg_capital_transfers_eur")
+INTEREST_PAID, INTEREST_RECEIVED = _gg("gg_interest_paid_eur"), _gg("gg_interest_received_eur")
+BENEFITS, SUBSIDIES, NONPRODUCED = _gg("gg_social_benefits_eur"), _gg("gg_subsidies_eur"), _gg("gg_nonproduced_eur")
+TAXES = total(D2, D5, D91)
+EXPENSE = less(TE, NONPRODUCED)
+CAPITAL = total(P5, D9)
+OTHER_EXPENSE = less(EXPENSE, D1, P2, CAPITAL, INTEREST_PAID, BENEFITS)
+PRIMARY_EUR = combine(lambda b, paid, rec: b + paid - rec, B9, INTEREST_PAID, INTEREST_RECEIVED)
+DEBT_EUR = _gg("gg_debt_eur")
+
+# label, indent, Eurostat (€ mn), WEO in euros, WEO in % of GDP, source note, linked indicator
+GG_LINES = [
+    ("Revenue", 0, TR, "fc_imf_revenue", "fc_imf_revenue_gdp", "TR", "gg_revenue_eur"),
+    ("Taxes", 1, TAXES, None, None, "D2 + D5 + D91", None),
+    ("Indirect taxes", 2, D2, None, None, "D2", "gg_taxes_production_eur"),
+    ("o.w. VAT", 3, _gg("gg_vat_eur"), None, None, "D211", "gg_vat_eur"),
+    ("o.w. Excise", 3, _gg("gg_excise_eur"), None, None, "D214", "gg_excise_eur"),
+    ("Direct taxes", 2, D5, None, None, "D5", "gg_taxes_income_eur"),
+    ("o.w. Private households 2/", 3, _gg("gg_tax_households_eur"), None, None, "D51A", "gg_tax_households_eur"),
+    ("o.w. Corporate 2/", 3, _gg("gg_tax_corporate_eur"), None, None, "D51B", "gg_tax_corporate_eur"),
+    ("Capital tax", 2, D91, None, None, "D91", "gg_capital_taxes_eur"),
+    ("Social contributions", 1, D61, None, None, "D61", "gg_social_contributions_eur"),
+    ("Other revenue", 1, less(TR, TAXES, D61), None, None, "TR less taxes and social contributions", None),
+    ("Expenditure", 0, TE, "fc_imf_spending", "fc_imf_spending_gdp", "TE", "gg_spending_eur"),
+    ("Expense", 1, EXPENSE, None, None, "TE less NP", None),
+    ("Compensation of employees", 2, D1, None, None, "D1", "gg_compensation_eur"),
+    ("Use of goods and services", 2, P2, None, None, "P2", "gg_goods_services_eur"),
+    ("Capital 3/", 2, CAPITAL, None, None, "P5 + D9", None),
+    ("o.w. Gross capital formation", 3, P5, None, None, "P5", "gg_capital_formation_eur"),
+    ("o.w. Capital transfers and investment aid", 3, D9, None, None, "D9", "gg_capital_transfers_eur"),
+    ("Interest", 2, INTEREST_PAID, None, None, "D41", "gg_interest_paid_eur"),
+    ("Social benefits", 2, BENEFITS, None, None, "D62 + D632", "gg_social_benefits_eur"),
+    ("Other expense", 2, OTHER_EXPENSE, None, None, "Expense less the lines above", None),
+    ("Subsidies", 3, SUBSIDIES, None, None, "D3", "gg_subsidies_eur"),
+    ("Other", 3, less(OTHER_EXPENSE, SUBSIDIES), None, None, "Other expense less subsidies", None),
+    ("Net acquisition of nonfinancial assets 3/", 1, NONPRODUCED, None, None, "NP", "gg_nonproduced_eur"),
+    ("Gross operating balance", 0, less(TR, EXPENSE), None, None, "Revenue less expense", None),
+    ("Net lending / borrowing", 0, B9, "fc_imf_balance_eur", "fc_imf_balance", "B9", "gg_balance_eur"),
+]
+
+
+def _gg_rows(in_gdp: bool) -> list:
+    rows = []
+    for label, indent, expr, weo_eur, weo_gdp, code, link in GG_LINES:
+        actual = share(expr, GDP) if in_gdp else scaled(expr, 1e-3)
+        weo = weo_gdp if in_gdp else weo_eur
+        proj = (published(weo) if in_gdp else scaled(published(weo), 1e-9)) if weo else None
+        rows.append(Line(label, actual, proj, indent=indent, source=f"{ESTAT}, ESA 2010: {code}",
+                         proj_source=WEO if weo else "", link=link))
+    return rows
+
+
+GG_FOOTNOTES = [
+    "1/ General government, ESA 2010 accrual accounts (Eurostat), with the IMF's grouping. The World Economic "
+    "Outlook projects only revenue, expenditure, the balances and debt.",
+    "2/ Eurostat's detailed tax receipts. The IMF's two sub-lines come from another source: they add up to more "
+    "than its direct taxes.",
+    "3/ As in the IMF's table, capital spending is gross capital formation plus capital transfers, and net "
+    "acquisition of nonfinancial assets covers nonproduced assets (land, licences) only.",
+    "4/ Following the World Economic Outlook, the primary balance excludes interest earnings as well as interest "
+    "payments.",
+]
+
+FISCAL_EUR = SectorTable(
+    id="fiscal-eur", label="Table 2a", title="General Government Operations",
+    unit="Billions of euros, unless otherwise indicated", section="fiscal", block="government-operations",
+    sheet="T2a Fiscal EUR bn", imf_table="Table 2a. Spain: General Government Operations (billions of euros)",
+    rows=_gg_rows(False) + [
+        Group("Memorandum items"),
+        Line("Primary balance 4/", scaled(PRIMARY_EUR, 1e-3), scaled(published("fc_imf_primary_balance_eur"), 1e-9),
+             source=f"{ESTAT}; B9 plus D41 paid less D41 received", proj_source=WEO, link="gg_interest_received_eur"),
+        Line("General government gross debt (Maastricht)", scaled(DEBT_EUR, 1e-3),
+             scaled(published("fc_imf_debt_eur"), 1e-9), source=ESTAT, proj_source=WEO, link="gg_debt_eur"),
+        Line("Nominal GDP", scaled(GDP, 1e-3), scaled(published("fc_imf_nominal_gdp"), 1e-9), source=ESTAT,
+             proj_source=WEO, link="gdp_nominal_annual"),
+    ],
+    footnotes=GG_FOOTNOTES,
+)
+
+FISCAL_GDP = SectorTable(
+    id="fiscal-gdp", label="Table 2b", title="General Government Operations",
+    unit="Percent of GDP, unless otherwise indicated", section="fiscal", block="government-operations",
+    sheet="T2b Fiscal % GDP", imf_table="Table 2b. Spain: General Government Operations (percent of GDP)",
+    rows=_gg_rows(True) + [
+        Group("Memorandum items"),
+        Line("Primary balance 4/", share(PRIMARY_EUR, GDP), published("fc_imf_primary_balance"),
+             source=f"{ESTAT}; B9 plus D41 paid less D41 received", proj_source=WEO, link="gg_interest_received_eur"),
+        Line("Primary structural balance 5/", combine(lambda s, i: s + i, WEO_STRUCTURAL, share(INTEREST_PAID, GDP)),
+             source=f"{WEO_ESTIMATE} plus interest paid ({ESTAT})"),
+        Line("Structural balance 5/", WEO_STRUCTURAL, WEO_STRUCTURAL, source=WEO_ESTIMATE, proj_source=WEO),
+        Line("General government gross debt (Maastricht)", share(DEBT_EUR, GDP), published("fc_imf_debt"),
+             source=ESTAT, proj_source=WEO, link="gg_debt_eur"),
+        Line("Net debt 5/", published("fc_imf_net_debt"), published("fc_imf_net_debt"), source=WEO_ESTIMATE,
+             proj_source=WEO),
+        Line("Central government net lending", share(published("cg_balance_eur"), GDP), source=ESTAT,
+             link="cg_balance_eur"),
+        Line("Output gap 5/", WEO_OUTPUT_GAP, WEO_OUTPUT_GAP, source=WEO_ESTIMATE, proj_source=WEO),
+    ],
+    footnotes=GG_FOOTNOTES + ["5/ IMF staff estimates in every year (World Economic Outlook). The primary structural "
+                              "balance adds interest paid (Eurostat) to the structural balance."],
+)
+
+# ---------------------------------------------------------------- debt sustainability (DSA 1, DSA 2)
+# The IMF's baseline debt decomposition: d(t) - d(t-1) = primary deficit + (r - g)/(1 + g) x d(t-1)
+# + other identified flows + residual, with r the real effective interest rate and g real growth.
+# Actual years use interest paid (gross) and show interest earnings as another flow, as the IMF does;
+# the WEO publishes interest only net of earnings, so projection years use the net figure.
+
+DEBT = share(DEBT_EUR, GDP)
+REAL_GROWTH = published("gdp_growth_annual")
+DEFLATOR = published("gdp_deflator_growth_annual")
+EFFECTIVE_RATE = share(INTEREST_PAID, lag(DEBT_EUR))
+W_DEBT = published("fc_imf_debt")
+W_GROWTH = published("fc_imf_gdp")
+W_DEFLATOR = growth(published("fc_imf_deflator"))
+W_NET_INTEREST = less(published("fc_imf_primary_balance_eur"), published("fc_imf_balance_eur"))
+W_EFFECTIVE_RATE = share(W_NET_INTEREST, lag(published("fc_imf_debt_eur")))
+
+
+def _real_interest(rate: Expr, deflator: Expr, real_growth: Expr, debt: Expr) -> Expr:
+    """r / (1 + g) x d(t-1), with r = (1 + i) / (1 + inflation) - 1."""
+    return combine(lambda i, p, g, d: ((1 + i / 100) / (1 + p / 100) - 1) / (1 + g / 100) * d,
+                   rate, deflator, real_growth, lag(debt))
+
+
+def _real_growth(real_growth: Expr, debt: Expr) -> Expr:
+    """-g / (1 + g) x d(t-1)."""
+    return combine(lambda g, d: -g / 100 / (1 + g / 100) * d, real_growth, lag(debt))
+
+
+PRIMARY_DEFICIT = scaled(share(PRIMARY_EUR, GDP), -1)
+W_PRIMARY_DEFICIT = scaled(published("fc_imf_primary_balance"), -1)
+REAL_INTEREST = _real_interest(EFFECTIVE_RATE, DEFLATOR, REAL_GROWTH, DEBT)
+W_REAL_INTEREST = _real_interest(W_EFFECTIVE_RATE, W_DEFLATOR, W_GROWTH, W_DEBT)
+REAL_GROWTH_EFFECT = _real_growth(REAL_GROWTH, DEBT)
+W_REAL_GROWTH_EFFECT = _real_growth(W_GROWTH, W_DEBT)
+AUTOMATIC = total(REAL_INTEREST, REAL_GROWTH_EFFECT)
+W_AUTOMATIC = total(W_REAL_INTEREST, W_REAL_GROWTH_EFFECT)
+INTEREST_EARNINGS = scaled(share(INTEREST_RECEIVED, GDP), -1)
+IDENTIFIED = total(PRIMARY_DEFICIT, AUTOMATIC, INTEREST_EARNINGS)
+W_IDENTIFIED = total(W_PRIMARY_DEFICIT, W_AUTOMATIC)
+
+DSA_BASELINE = SectorTable(
+    id="dsa-baseline", label="DSA 1", title="Public Debt Dynamics: Baseline Scenario",
+    unit="Percent of GDP unless otherwise indicated", section="fiscal", block="debt-sustainability",
+    sheet="DSA1 Baseline", imf_table="Annex III. Figure 4. Spain: Baseline Scenario",
+    rows=[
+        Line("Public debt", DEBT, W_DEBT, source=f"{ESTAT}; Maastricht debt over GDP", proj_source=WEO,
+             link="gg_debt_eur"),
+        Line("Change in public debt", diff(DEBT), diff(W_DEBT), source=ESTAT, proj_source=WEO),
+        Line("Contribution of identified flows 1/", IDENTIFIED, W_IDENTIFIED, indent=1, source="EconPulse calculation",
+             proj_source="EconPulse calculation from the WEO"),
+        Line("Primary deficit", PRIMARY_DEFICIT, W_PRIMARY_DEFICIT, indent=2,
+             source=f"{ESTAT}; minus the primary balance", proj_source=WEO),
+        Line("Noninterest revenues", share(less(TR, INTEREST_RECEIVED), GDP), indent=3, source=f"{ESTAT}; TR less D41"),
+        Line("Noninterest expenditures", share(less(TE, INTEREST_PAID), GDP), indent=3, source=f"{ESTAT}; TE less D41"),
+        Line("Automatic debt dynamics", AUTOMATIC, W_AUTOMATIC, indent=2, source="EconPulse calculation",
+             proj_source="EconPulse calculation from the WEO"),
+        Line("Real interest rate", REAL_INTEREST, W_REAL_INTEREST, indent=3, source="EconPulse calculation",
+             proj_source="EconPulse calculation from the WEO"),
+        Line("Real growth rate", REAL_GROWTH_EFFECT, W_REAL_GROWTH_EFFECT, indent=3, source="EconPulse calculation",
+             proj_source="EconPulse calculation from the WEO"),
+        Line("Other identified flows: (minus) interest revenues 2/", INTEREST_EARNINGS, indent=2,
+             source=f"{ESTAT}; D41 received", link="gg_interest_received_eur"),
+        Line("Contribution of residual 3/", less(diff(DEBT), IDENTIFIED), less(diff(W_DEBT), W_IDENTIFIED), indent=1,
+             source="EconPulse calculation", proj_source="EconPulse calculation from the WEO"),
+        Group("Memo items"),
+        Line("Real GDP growth (percent)", REAL_GROWTH, W_GROWTH, source=ESTAT, proj_source=WEO,
+             link="gdp_growth_annual"),
+        Line("Inflation (GDP deflator; percent)", DEFLATOR, W_DEFLATOR, source=ESTAT, proj_source=WEO,
+             link="gdp_deflator_growth_annual"),
+        Line("Nominal GDP growth (percent)", growth(GDP), growth(published("fc_imf_nominal_gdp")), source=ESTAT,
+             proj_source=WEO, link="gdp_nominal_annual"),
+        Line("Effective interest rate (percent) 4/", EFFECTIVE_RATE, W_EFFECTIVE_RATE,
+             source=f"{ESTAT}; interest paid over the previous year's debt", proj_source=f"{WEO}; net interest"),
+    ],
+    footnotes=[
+        "1/ Primary deficit, automatic debt dynamics and other identified flows. Automatic debt dynamics are "
+        "(r - g)/(1 + g) times the previous year's debt ratio, split into the real effective interest rate r and real "
+        "GDP growth g. Spain's debt is in euros, so exchange rates play no part.",
+        "2/ The primary balance excludes interest earnings, as in the World Economic Outlook, so they count as "
+        "another flow.",
+        "3/ Includes stock-flow adjustments (changes in government deposits and other financial assets), which the "
+        "IMF shows separately as other transactions.",
+        "4/ Interest paid over the previous year's debt. The World Economic Outlook publishes interest only net of "
+        "interest earnings, so in projection years the rate and the real interest rate effect are net, and interest "
+        "earnings are not shown separately.",
+    ],
+)
+
+DSM_SOURCE = "European Commission"
+DSA_STRESS = SectorTable(
+    id="dsa-stress", label="DSA 2", title="Public Debt: European Commission Baseline and Stress Tests",
+    unit="Percent of GDP", section="fiscal", block="debt-sustainability", sheet="DSA2 EC stress tests",
+    imf_table="(the IMF's stress tests are not published as data; the Commission's are)", kind="dsm",
+    web_actual=1, first_year=2024,
+    rows=[
+        Group("Gross public debt"),
+        Line("Baseline (no policy change)", dsm("baseline", "debt"), dsm("baseline", "debt"), source=DSM_SOURCE,
+             proj_source=DSM_SOURCE),
+        *[Line(name, dsm("scenarios", name), dsm("scenarios", name), indent=1, source=DSM_SOURCE,
+               proj_source=DSM_SOURCE)
+          for name in ("Lower structural primary balance", "Adverse interest-growth differential", "Financial stress",
+                       "Historical structural primary balance")],
+        Group("Stochastic projections around the baseline 1/"),
+        *[Line(f"{p}th percentile", dsm("percentiles", f"p{p}"), dsm("percentiles", f"p{p}"), indent=1,
+               source=DSM_SOURCE, proj_source=DSM_SOURCE) for p in (90, 80, 20, 10)],
+        Group("Baseline"),
+        Line("Primary balance", dsm("baseline", "primary_balance"), dsm("baseline", "primary_balance"),
+             source=DSM_SOURCE, proj_source=DSM_SOURCE),
+        Line("Structural primary balance", dsm("baseline", "structural_primary_balance"),
+             dsm("baseline", "structural_primary_balance"), source=DSM_SOURCE, proj_source=DSM_SOURCE),
+        Line("Interest expenditure", dsm("baseline", "interest"), dsm("baseline", "interest"), source=DSM_SOURCE,
+             proj_source=DSM_SOURCE),
+        Line("Gross financing needs", dsm("baseline", "gross_financing_needs"),
+             dsm("baseline", "gross_financing_needs"), source=DSM_SOURCE, proj_source=DSM_SOURCE),
+    ],
+    footnotes=[
+        "1/ The range of debt paths the Commission simulates from past shocks to growth, interest rates and the "
+        "primary balance: four in five paths lie between the 10th and 90th percentiles.",
+        "The baseline assumes no change in policy after the Commission's forecast years: the structural primary "
+        "balance then moves only with the cost of ageing. The stress tests are the Commission's: a lower structural primary "
+        "balance, a higher interest-growth differential, a temporary rise in market interest rates (financial "
+        "stress) and a return of the structural primary balance to its historical average.",
+    ],
+)
+
+TABLES = [REAL_SECTOR, FISCAL_EUR, FISCAL_GDP, DSA_BASELINE, DSA_STRESS]
 BY_ID = {t.id: t for t in TABLES}
 
 
@@ -295,6 +578,16 @@ def years(data: Data) -> tuple[int, int] | None:
     return last_actual, max(last_actual, last_proj)
 
 
+def span(table: SectorTable, data: Data) -> tuple[int, int] | None:
+    """The table's last actual year and last projection year."""
+    if table.kind == "dsm":
+        history, debt = dsm("history")(data), dsm("baseline", "debt")(data)
+        if history is None or debt is None:
+            return None
+        return int(history.index.max()), int(debt.index.max())
+    return years(data)
+
+
 def weo_edition(data: Data) -> str:
     """'October 2026', from the publication date the IMF's data service reports."""
     published_on = data.store.load_catalog().get("fc_imf_gdp", {}).get("published")
@@ -302,6 +595,26 @@ def weo_edition(data: Data) -> str:
         return ""
     d = date.fromisoformat(published_on)
     return f"{d:%B %Y}"
+
+
+def dsm_edition(data: Data) -> str:
+    dsm("history")(data)   # loads the file into the cache
+    return data.cache.get("fiscal_baseline", {}).get("dsm_source", {}).get("edition", "the Debt Sustainability Monitor")
+
+
+def projections_phrase(table: SectorTable, data: Data) -> str:
+    if table.kind == "dsm":
+        return "European Commission projections"
+    edition = weo_edition(data)
+    return f"IMF projections (World Economic Outlook{', ' + edition if edition else ''})"
+
+
+def sources_line(table: SectorTable, data: Data) -> str:
+    if table.kind == "dsm":
+        return f"Source: {dsm_edition(data)}, Spain's country fiche."
+    edition = weo_edition(data)
+    return ("Sources: INE, Eurostat and the ECB for actual years; IMF World Economic Outlook"
+            + (f" ({edition})" if edition else "") + " for projections; EconPulse calculations.")
 
 
 def values(table: SectorTable, data: Data, first: int, last: int, last_actual: int) -> list[dict]:
@@ -330,12 +643,12 @@ def fmt(v: float | None, decimals: int = 1) -> str:
 
 
 def web_table(table: SectorTable, data: Data) -> dict | None:
-    """The table for its section page: the last actual years and the WEO projections."""
-    span = years(data)
-    if not span:
+    """The table for its section page: the last actual years and the projections."""
+    years_ = span(table, data)
+    if not years_:
         return None
-    last_actual, last = span
-    first = last_actual - WEB_ACTUAL_YEARS + 1
+    last_actual, last = years_
+    first = last_actual - table.web_actual + 1
     rows = []
     for r in values(table, data, first, last, last_actual):
         if r["heading"]:
@@ -345,20 +658,22 @@ def web_table(table: SectorTable, data: Data) -> dict | None:
         rows.append({"heading": False, "label": r["label"], "label_es": "", "indent": line.indent, "period_note": "",
                      "url": data.by_id[line.link].source_url() if line.link in data.by_id else None,
                      "cells": [fmt(v, line.decimals) for v in r["cells"]]})
-    edition = weo_edition(data)
     n_proj = last - last_actual
+    if table.kind == "dsm":
+        note = " ".join(table.footnotes) + " " + sources_line(table, data)
+    else:
+        note = (" ".join(table.footnotes) + f" {NA} not available: the IMF's database does not publish the line. "
+                f"After the {REPORT_PREFIX}; past years differ where the data have been revised since.")
     return {
-        "title": f"Table {table.number}. {table.title}",
+        "title": f"{table.label}. {table.title}",
         "caption": (f"{table.unit} · actual data to {last_actual}"
-                    + (f", IMF projections (World Economic Outlook, {edition}) from {last_actual + 1}" if n_proj else "")),
+                    + (f", {projections_phrase(table, data)} from {last_actual + 1}" if n_proj else "")),
         "through": str(last_actual),
         "columns": [str(y) for y in range(first, last + 1)],
-        "column_notes": [""] * WEB_ACTUAL_YEARS + ["proj."] * n_proj,
+        "column_notes": [""] * table.web_actual + ["proj."] * n_proj,
         "rows": rows,
-        "note": " ".join(table.footnotes) + f" {NA} not available: the IMF's database does not publish the line. "
-                f"After the {REPORT_PREFIX}; past years differ where the data have been revised since.",
+        "note": note,
     }
-
 
 
 def table_function(table_id: str):
@@ -378,6 +693,73 @@ def facts(data: Data) -> list[dict]:
     ]
 
 
+def dsa_facts(data: Data) -> list[dict]:
+    out = []
+    weo = published("fc_imf_debt")(data)
+    if weo is not None and not weo.empty:
+        y = int(weo.index.max())
+        out.append({"label": f"Debt in {y}, IMF", "value": f"{fmt(weo[y])}% of GDP",
+                    "sub": f"World Economic Outlook{', ' + weo_edition(data) if weo_edition(data) else ''}"})
+    base = dsm("baseline", "debt")(data)
+    if base is not None:
+        y = int(base.index.max())
+        out.append({"label": f"Debt in {y}, European Commission", "value": f"{fmt(base[y])}% of GDP",
+                    "sub": "No-policy-change baseline"})
+    s1 = data.cache.get("fiscal_baseline", {}).get("dsm", {}).get("gaps", {}).get("S1")
+    if s1 is not None:
+        out.append({"label": "Sustainability gap S1, Commission", "value": f"{fmt(s1)}% of GDP",
+                    "sub": "Adjustment from 2027 that brings debt to 60% of GDP by 2070", "url": "fiscal-explorer.html"})
+    return out
+
+
+def _line(name: str, s: pd.Series, **style) -> dict:
+    return {"name": name, "x": [f"{y}-01-01" for y in s.index], "y": [round(float(v), 3) for v in s.values], **style}
+
+
+def _debt_path(data: Data, start: int) -> pd.Series | None:
+    """The Commission's debt history joined to its baseline."""
+    history, base = dsm("history")(data), dsm("baseline", "debt")(data)
+    if history is None or base is None:
+        return None
+    return pd.concat([history[history.index >= start], base[base.index > history.index.max()]])
+
+
+def dsa_fan_chart(data: Data) -> dict | None:
+    path = _debt_path(data, 2010)
+    if path is None:
+        return None
+    series = [_line("Commission baseline", path, color="ink")]
+    p90, p10 = dsm("percentiles", "p90")(data), dsm("percentiles", "p10")(data)
+    if p90 is not None and p10 is not None:
+        series += [_line("90th percentile", p90, slot=1, dash="dash"), _line("10th percentile", p10, slot=1, dash="dash")]
+    weo, years_ = published("fc_imf_debt")(data), span(DSA_STRESS, data)
+    if weo is not None and years_:
+        series.append(_line("IMF (WEO)", weo[weo.index >= years_[0]], slot=2))
+    return {"id": "dsa-fan", "title": "Public debt: baselines and fan chart",
+            "subtitle": "% of GDP; the Commission's baseline with the 10th and 90th percentiles of its stochastic "
+                        "projections, and the IMF's projection",
+            "kind": "line", "unit": "%", "decimals": 1, "freq": "A", "ref_lines": [], "series": series,
+            "source": "European Commission (Debt Sustainability Monitor 2025); IMF World Economic Outlook"}
+
+
+def dsa_stress_chart(data: Data) -> dict | None:
+    path = _debt_path(data, 2015)
+    if path is None:
+        return None
+    series = [_line("Baseline", path, color="ink")]
+    # Short names, so the end labels fit beside the plot; DSA 2 gives the Commission's full names.
+    for slot, (name, short) in enumerate((("Lower structural primary balance", "Lower primary balance"),
+                                          ("Adverse interest-growth differential", "Adverse r − g"),
+                                          ("Financial stress", "Financial stress")), start=1):
+        s = dsm("scenarios", name)(data)
+        if s is not None:
+            series.append(_line(short, s, slot=slot))
+    return {"id": "dsa-stress", "title": "Public debt under the Commission's stress tests",
+            "subtitle": "% of GDP; baseline and three of the Commission's four stress tests (all four are in DSA 2)",
+            "kind": "line", "unit": "%", "decimals": 1, "freq": "A", "ref_lines": [], "series": series,
+            "source": "European Commission (Debt Sustainability Monitor 2025)"}
+
+
 # ---------------------------------------------------------------- the workbook
 
 def write_workbook(data: Data, path: Path, built: str = "") -> bool:
@@ -385,15 +767,14 @@ def write_workbook(data: Data, path: Path, built: str = "") -> bool:
     from openpyxl import Workbook
     from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
 
-    span = years(data)
-    if not span:
+    main = years(data)
+    if not main:
         return False
-    last_actual, last = span
+    last_actual, last = main
     edition = weo_edition(data)
     bold, title_font, muted = Font(bold=True), Font(bold=True, size=13), Font(italic=True, color="595959")
     proj_fill = PatternFill("solid", fgColor="EEF2F7")
     rule = Border(bottom=Side(style="thin", color="7F7F7F"))
-    year_list = list(range(FIRST_YEAR, last + 1))
 
     wb = Workbook()
     contents = wb.active
@@ -406,13 +787,14 @@ def write_workbook(data: Data, path: Path, built: str = "") -> bool:
     contents.cell(row, 1, "Table").font = bold
     contents.cell(row, 2, "Follows").font = bold
     contents.cell(row, 3, "Shown on").font = bold
-    for t in TABLES:
+    tables = [t for t in TABLES if span(t, data)]
+    for t in tables:
         row += 1
-        c = contents.cell(row, 1, f"Table {t.number}. {t.title}")
+        c = contents.cell(row, 1, f"{t.label}. {t.title}")
         c.hyperlink = f"#'{t.sheet}'!A1"
         c.font = Font(color="1F4E79", underline="single")
         contents.cell(row, 2, t.imf_table)
-        contents.cell(row, 3, f"{SITE_URL}{t.section}.html#{t.id}")
+        contents.cell(row, 3, f"{SITE_URL}{t.section}.html#{t.block}")
     row += 2
     notes = [
         f"Lines follow the tables in the {REPORT}, where public data allow.",
@@ -421,7 +803,9 @@ def write_workbook(data: Data, path: Path, built: str = "") -> bool:
         + (f" ({edition} edition)." if edition else "."),
         f"{NA} means not available: the WEO database does not publish the line (the staff report's own projections "
         "are only in the report), or the statistics do not go back that far.",
-        "Potential output, the output gap and the structural balance are IMF staff estimates in every year.",
+        "Potential output, the output gap, the structural balance and net debt are IMF staff estimates in every year.",
+        f"DSA 2 is the European Commission's: {dsm_edition(data)}. The IMF's own stress tests are not published "
+        "as data.",
         "Past years can differ from the staff report's because the data have been revised since it was written.",
         "Figures are as published by each source; anything derived is computed by EconPulse from published series.",
         f"IMF staff report: {REPORT_URL}",
@@ -435,15 +819,16 @@ def write_workbook(data: Data, path: Path, built: str = "") -> bool:
     contents.column_dimensions["B"].width = 48
     contents.column_dimensions["C"].width = 60
 
-    for t in TABLES:
+    for t in tables:
+        t_actual, t_last = span(t, data)
+        year_list = list(range(t.first_year, t_last + 1))
         ws = wb.create_sheet(t.sheet)
-        ws["A1"] = f"Table {t.number}. Spain: {t.title}"
+        ws["A1"] = f"{t.label}. Spain: {t.title}"
         ws["A1"].font = title_font
         ws["A2"] = f"({t.unit})"
         ws["A2"].font = muted
-        first_proj_col = 2 + (last_actual + 1 - FIRST_YEAR)
-        if last > last_actual:
-            ws.cell(3, first_proj_col, "Projections").font = bold
+        if t_last > t_actual:
+            ws.cell(3, 2 + (t_actual + 1 - t.first_year), "Projections").font = bold
         header = [""] + [str(y) for y in year_list] + ["Source, actual years", "Source, projections"]
         for col, h in enumerate(header, start=1):
             c = ws.cell(4, col, int(h) if h.isdigit() else h)
@@ -451,7 +836,7 @@ def write_workbook(data: Data, path: Path, built: str = "") -> bool:
             c.border = rule
             c.alignment = Alignment(horizontal="right" if h.isdigit() else "left")
         r_idx = 4
-        for r in values(t, data, FIRST_YEAR, last, last_actual):
+        for r in values(t, data, t.first_year, t_last, t_actual):
             r_idx += 1
             label = ws.cell(r_idx, 1, r["label"])
             if r["heading"]:
@@ -463,13 +848,12 @@ def write_workbook(data: Data, path: Path, built: str = "") -> bool:
                 c = ws.cell(r_idx, 2 + k, NA if v is None else v)
                 c.number_format = "#,##0." + "0" * line.decimals if line.decimals else "#,##0"
                 c.alignment = Alignment(horizontal="right")
-                if year_list[k] > last_actual:
+                if year_list[k] > t_actual:
                     c.fill = proj_fill
             ws.cell(r_idx, 2 + len(year_list), line.source if line.actual else NA)
             ws.cell(r_idx, 3 + len(year_list), line.proj_source if line.proj else NA)
         r_idx += 2
-        ws.cell(r_idx, 1, "Sources: INE, Eurostat and the ECB for actual years; IMF World Economic Outlook"
-                + (f" ({edition})" if edition else "") + " for projections; EconPulse calculations.").font = muted
+        ws.cell(r_idx, 1, sources_line(t, data)).font = muted
         for n in t.footnotes + [f"{NA} not available."]:
             r_idx += 1
             ws.cell(r_idx, 1, n).font = muted

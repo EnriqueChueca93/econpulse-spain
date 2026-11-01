@@ -2498,6 +2498,216 @@
    "display": "3.1% y/y",
    "period": "Sep 2026",
    "flash": false
+  },
+  "gg_revenue_eur": {
+   "date": "2025-01-01",
+   "raw": 725655.0,
+   "display": "€725,655 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "gg_spending_eur": {
+   "date": "2025-01-01",
+   "raw": 766296.0,
+   "display": "€766,296 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "gg_balance_eur": {
+   "date": "2025-01-01",
+   "raw": -40641.0,
+   "display": "−€40,641 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "gg_taxes_production_eur": {
+   "date": "2025-01-01",
+   "raw": 191558.0,
+   "display": "€191,558 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "gg_taxes_income_eur": {
+   "date": "2025-01-01",
+   "raw": 220653.0,
+   "display": "€220,653 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "gg_capital_taxes_eur": {
+   "date": "2025-01-01",
+   "raw": 6047.0,
+   "display": "€6,047 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "gg_social_contributions_eur": {
+   "date": "2025-01-01",
+   "raw": 223230.0,
+   "display": "€223,230 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "gg_compensation_eur": {
+   "date": "2025-01-01",
+   "raw": 181502.0,
+   "display": "€181,502 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "gg_goods_services_eur": {
+   "date": "2025-01-01",
+   "raw": 96321.0,
+   "display": "€96,321 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "gg_capital_formation_eur": {
+   "date": "2025-01-01",
+   "raw": 50608.0,
+   "display": "€50,608 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "gg_capital_transfers_eur": {
+   "date": "2025-01-01",
+   "raw": 19428.0,
+   "display": "€19,428 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "gg_interest_paid_eur": {
+   "date": "2025-01-01",
+   "raw": 40432.0,
+   "display": "€40,432 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "gg_interest_received_eur": {
+   "date": "2025-01-01",
+   "raw": 9064.0,
+   "display": "€9,064 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "gg_social_benefits_eur": {
+   "date": "2025-01-01",
+   "raw": 330751.0,
+   "display": "€330,751 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "gg_subsidies_eur": {
+   "date": "2025-01-01",
+   "raw": 19903.0,
+   "display": "€19,903 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "gg_nonproduced_eur": {
+   "date": "2025-01-01",
+   "raw": -945.0,
+   "display": "−€945 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "gg_vat_eur": {
+   "date": "2025-01-01",
+   "raw": 114428.0,
+   "display": "€114,428 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "gg_excise_eur": {
+   "date": "2025-01-01",
+   "raw": 52189.0,
+   "display": "€52,189 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "gg_tax_households_eur": {
+   "date": "2025-01-01",
+   "raw": 161400.0,
+   "display": "€161,400 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "gg_tax_corporate_eur": {
+   "date": "2025-01-01",
+   "raw": 53623.0,
+   "display": "€53,623 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "gg_debt_eur": {
+   "date": "2025-01-01",
+   "raw": 1698354.8,
+   "display": "€1,698,355 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "cg_balance_eur": {
+   "date": "2025-01-01",
+   "raw": -33452.0,
+   "display": "−€33,452 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "fc_imf_revenue": {
+   "date": "2031-01-01",
+   "raw": 988713854000.0,
+   "display": "988,713,854,000",
+   "period": "2031",
+   "flash": false
+  },
+  "fc_imf_spending": {
+   "date": "2031-01-01",
+   "raw": 1034974710000.0,
+   "display": "1,034,974,710,000",
+   "period": "2031",
+   "flash": false
+  },
+  "fc_imf_balance_eur": {
+   "date": "2031-01-01",
+   "raw": -46260856000.0,
+   "display": "−46,260,856,000",
+   "period": "2031",
+   "flash": false
+  },
+  "fc_imf_primary_balance_eur": {
+   "date": "2031-01-01",
+   "raw": 5394393000.0,
+   "display": "5,394,393,000",
+   "period": "2031",
+   "flash": false
+  },
+  "fc_imf_debt_eur": {
+   "date": "2031-01-01",
+   "raw": 1998930618000.0,
+   "display": "1,998,930,618,000",
+   "period": "2031",
+   "flash": false
+  },
+  "fc_imf_revenue_gdp": {
+   "date": "2031-01-01",
+   "raw": 44.215067,
+   "display": "44.2% of GDP",
+   "period": "2031",
+   "flash": false
+  },
+  "fc_imf_spending_gdp": {
+   "date": "2031-01-01",
+   "raw": 46.283842,
+   "display": "46.3% of GDP",
+   "period": "2031",
+   "flash": false
+  },
+  "fc_imf_net_debt": {
+   "date": "2031-01-01",
+   "raw": 75.836841,
+   "display": "75.8% of GDP",
+   "period": "2031",
+   "flash": false
   }
  },
  "notes": [
@@ -2523,6 +2733,6 @@
    "at": "2026-11-01T02:50:46+00:00"
   }
  ],
- "updated_at": "2026-11-01T07:29:13+00:00",
+ "updated_at": "2026-11-01T07:48:49+00:00",
  "started_at": "2026-10-31T23:31:49+00:00"
 }

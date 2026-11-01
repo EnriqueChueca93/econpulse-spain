@@ -2824,3 +2824,365 @@ indicators:
     unit: "%"
     change_unit: pp
     notes: IMF World Economic Outlook, from the IMF's data service; history then projections.
+
+  # ---------------------------------------------------------------- General government operations in euros
+  # (the IMF-style fiscal tables, econpulse/sectortables.py). Eurostat, ESA 2010, general government (S13).
+
+  - id: gg_revenue_eur
+    label: Government revenue
+    label_es: Ingresos de las AAPP
+    section: fiscal
+    source: eurostat
+    key: gov_10a_main
+    params: {geo: ES, unit: MIO_EUR, sector: S13, na_item: TR}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: gg_spending_eur
+    label: Government expenditure
+    label_es: Gastos de las AAPP
+    section: fiscal
+    source: eurostat
+    key: gov_10a_main
+    params: {geo: ES, unit: MIO_EUR, sector: S13, na_item: TE}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: gg_balance_eur
+    label: Government net lending or borrowing
+    label_es: Capacidad o necesidad de financiación de las AAPP
+    section: fiscal
+    source: eurostat
+    key: gov_10a_main
+    params: {geo: ES, unit: MIO_EUR, sector: S13, na_item: B9}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: gg_taxes_production_eur
+    label: Taxes on production and imports
+    label_es: Impuestos sobre la producción y las importaciones
+    section: fiscal
+    source: eurostat
+    key: gov_10a_main
+    params: {geo: ES, unit: MIO_EUR, sector: S13, na_item: D2REC}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: gg_taxes_income_eur
+    label: Current taxes on income and wealth
+    label_es: Impuestos corrientes sobre la renta y el patrimonio
+    section: fiscal
+    source: eurostat
+    key: gov_10a_main
+    params: {geo: ES, unit: MIO_EUR, sector: S13, na_item: D5REC}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: gg_capital_taxes_eur
+    label: Capital taxes
+    label_es: Impuestos sobre el capital
+    section: fiscal
+    source: eurostat
+    key: gov_10a_main
+    params: {geo: ES, unit: MIO_EUR, sector: S13, na_item: D91REC}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: gg_social_contributions_eur
+    label: Social contributions received
+    label_es: Cotizaciones sociales
+    section: fiscal
+    source: eurostat
+    key: gov_10a_main
+    params: {geo: ES, unit: MIO_EUR, sector: S13, na_item: D61REC}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: gg_compensation_eur
+    label: Compensation of government employees
+    label_es: Remuneración de asalariados de las AAPP
+    section: fiscal
+    source: eurostat
+    key: gov_10a_main
+    params: {geo: ES, unit: MIO_EUR, sector: S13, na_item: D1PAY}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: gg_goods_services_eur
+    label: Government intermediate consumption
+    label_es: Consumos intermedios de las AAPP
+    section: fiscal
+    source: eurostat
+    key: gov_10a_main
+    params: {geo: ES, unit: MIO_EUR, sector: S13, na_item: P2}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: gg_capital_formation_eur
+    label: Government gross capital formation
+    label_es: Formación bruta de capital de las AAPP
+    section: fiscal
+    source: eurostat
+    key: gov_10a_main
+    params: {geo: ES, unit: MIO_EUR, sector: S13, na_item: P5}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: gg_capital_transfers_eur
+    label: Capital transfers paid by government
+    label_es: Transferencias de capital pagadas por las AAPP
+    section: fiscal
+    source: eurostat
+    key: gov_10a_main
+    params: {geo: ES, unit: MIO_EUR, sector: S13, na_item: D9PAY}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: gg_interest_paid_eur
+    label: Interest paid by government
+    label_es: Intereses pagados por las AAPP
+    section: fiscal
+    source: eurostat
+    key: gov_10a_main
+    params: {geo: ES, unit: MIO_EUR, sector: S13, na_item: D41PAY}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: gg_interest_received_eur
+    label: Interest received by government
+    label_es: Intereses recibidos por las AAPP
+    section: fiscal
+    source: eurostat
+    key: gov_10a_main
+    params: {geo: ES, unit: MIO_EUR, sector: S13, na_item: D41REC}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: gg_social_benefits_eur
+    label: Social benefits paid by government
+    label_es: Prestaciones sociales de las AAPP
+    section: fiscal
+    source: eurostat
+    key: gov_10a_main
+    params: {geo: ES, unit: MIO_EUR, sector: S13, na_item: D62_D632PAY}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: gg_subsidies_eur
+    label: Subsidies paid by government
+    label_es: Subvenciones pagadas por las AAPP
+    section: fiscal
+    source: eurostat
+    key: gov_10a_main
+    params: {geo: ES, unit: MIO_EUR, sector: S13, na_item: D3PAY}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: gg_nonproduced_eur
+    label: Government net acquisition of nonproduced assets
+    label_es: Adquisiciones netas de activos no producidos de las AAPP
+    section: fiscal
+    source: eurostat
+    key: gov_10a_main
+    params: {geo: ES, unit: MIO_EUR, sector: S13, na_item: NP}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: gg_vat_eur
+    label: Value added tax
+    label_es: Impuesto sobre el valor añadido
+    section: fiscal
+    source: eurostat
+    key: gov_10a_taxag
+    params: {geo: ES, unit: MIO_EUR, sector: S13, na_item: D211}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: gg_excise_eur
+    label: Taxes on products other than VAT and import duties
+    label_es: Impuestos especiales y otros sobre productos
+    section: fiscal
+    source: eurostat
+    key: gov_10a_taxag
+    params: {geo: ES, unit: MIO_EUR, sector: S13, na_item: D214}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: gg_tax_households_eur
+    label: Taxes on household income
+    label_es: Impuestos sobre la renta de los hogares
+    section: fiscal
+    source: eurostat
+    key: gov_10a_taxag
+    params: {geo: ES, unit: MIO_EUR, sector: S13, na_item: D51A_C1}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: gg_tax_corporate_eur
+    label: Taxes on corporate income
+    label_es: Impuestos sobre la renta de las sociedades
+    section: fiscal
+    source: eurostat
+    key: gov_10a_taxag
+    params: {geo: ES, unit: MIO_EUR, sector: S13, na_item: D51B_C2}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: gg_debt_eur
+    label: Government gross debt (Maastricht)
+    label_es: Deuda pública bruta (PDE)
+    section: fiscal
+    source: eurostat
+    key: gov_10dd_edpt1
+    params: {geo: ES, unit: MIO_EUR, sector: S13, na_item: GD}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: cg_balance_eur
+    label: Central government net lending or borrowing
+    label_es: Capacidad o necesidad de financiación de la Administración Central
+    section: fiscal
+    source: eurostat
+    key: gov_10a_main
+    params: {geo: ES, unit: MIO_EUR, sector: S1311, na_item: B9}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  # IMF World Economic Outlook, government finance (the fiscal tables' projection columns).
+
+  - id: fc_imf_revenue
+    label: IMF WEO, government revenue
+    label_es: FMI, ingresos de las AAPP
+    section: fiscal
+    source: imf
+    key: "IMF.RES,WEO/ESP.GGR.A"
+    freq: A
+    unit: "index"
+    change_unit: "%"
+    decimals: 0
+    notes: IMF World Economic Outlook, from the IMF's data service; history then projections (euros).
+
+  - id: fc_imf_spending
+    label: IMF WEO, government expenditure
+    label_es: FMI, gastos de las AAPP
+    section: fiscal
+    source: imf
+    key: "IMF.RES,WEO/ESP.GGX.A"
+    freq: A
+    unit: "index"
+    change_unit: "%"
+    decimals: 0
+    notes: IMF World Economic Outlook, from the IMF's data service; history then projections (euros).
+
+  - id: fc_imf_balance_eur
+    label: IMF WEO, government net lending or borrowing
+    label_es: FMI, saldo de las AAPP
+    section: fiscal
+    source: imf
+    key: "IMF.RES,WEO/ESP.GGXCNL.A"
+    freq: A
+    unit: "index"
+    change_unit: "%"
+    decimals: 0
+    notes: IMF World Economic Outlook, from the IMF's data service; history then projections (euros).
+
+  - id: fc_imf_primary_balance_eur
+    label: IMF WEO, primary balance
+    label_es: FMI, saldo primario
+    section: fiscal
+    source: imf
+    key: "IMF.RES,WEO/ESP.GGXONLB.A"
+    freq: A
+    unit: "index"
+    change_unit: "%"
+    decimals: 0
+    notes: IMF World Economic Outlook, from the IMF's data service; history then projections (euros).
+
+  - id: fc_imf_debt_eur
+    label: IMF WEO, government gross debt
+    label_es: FMI, deuda pública bruta
+    section: fiscal
+    source: imf
+    key: "IMF.RES,WEO/ESP.GGXWDG.A"
+    freq: A
+    unit: "index"
+    change_unit: "%"
+    decimals: 0
+    notes: IMF World Economic Outlook, from the IMF's data service; history then projections (euros).
+
+  - id: fc_imf_revenue_gdp
+    label: IMF WEO, government revenue
+    label_es: FMI, ingresos de las AAPP
+    section: fiscal
+    source: imf
+    key: "IMF.RES,WEO/ESP.GGR_NGDP.A"
+    freq: A
+    unit: "% of GDP"
+    change_unit: "pp"
+    notes: IMF World Economic Outlook, from the IMF's data service; history then projections.
+
+  - id: fc_imf_spending_gdp
+    label: IMF WEO, government expenditure
+    label_es: FMI, gastos de las AAPP
+    section: fiscal
+    source: imf
+    key: "IMF.RES,WEO/ESP.GGX_NGDP.A"
+    freq: A
+    unit: "% of GDP"
+    change_unit: "pp"
+    notes: IMF World Economic Outlook, from the IMF's data service; history then projections.
+
+  - id: fc_imf_net_debt
+    label: IMF WEO, government net debt
+    label_es: FMI, deuda pública neta
+    section: fiscal
+    source: imf
+    key: "IMF.RES,WEO/ESP.GGXWDN_NGDP.A"
+    freq: A
+    unit: "% of GDP"
+    change_unit: "pp"
+    notes: IMF World Economic Outlook, from the IMF's data service; history then projections.

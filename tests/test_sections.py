@@ -194,5 +194,6 @@ def test_section_page_build_degrades_with_partial_data(tmp_path):
     assert "GDP and its components" in gdp_html and 'class="data-table stat-table"' in gdp_html
     assert 'src="data/charts-gdp.js?v=' in gdp_html
     assert (tmp_path / "site" / "data" / "charts-gdp.js").exists()
-    fiscal_html = (tmp_path / "site" / "fiscal.html").read_text(encoding="utf-8")
-    assert "arrive in Batch 6" in fiscal_html and "plotly" not in fiscal_html
+    # A page with no data shows the placeholder (Fiscal always has the Commission's shipped DSA figures).
+    housing_html = (tmp_path / "site" / "housing.html").read_text(encoding="utf-8")
+    assert "arrive in Batch 6" in housing_html and "plotly" not in housing_html

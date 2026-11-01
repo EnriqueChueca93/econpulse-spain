@@ -256,8 +256,8 @@
     var annotations = [];
     var slot = 0;
     spec.series.forEach(function (s) {
-      // A total drawn in text colour takes no palette slot.
-      var color = s.color === "ink" ? ink : colors[slot++];
+      // A total drawn in text colour takes no palette slot; a series can share a slot (a fan chart's bounds).
+      var color = s.color === "ink" ? ink : s.slot ? colors[s.slot - 1] : colors[slot++];
       var kind = s.kind || spec.kind;
       // Value leads, name follows; the colored key comes from Plotly's swatch.
       var template = "<b>%{y" + valueFormat + "</b>  " + s.name + "<extra></extra>";

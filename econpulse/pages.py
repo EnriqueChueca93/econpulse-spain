@@ -965,6 +965,28 @@ PAGES: dict[str, list[dict]] = {
                  "series": [("interest_annual", "level", "Interest")]},
             ],
         },
+        {
+            "id": "government-operations",
+            "title": "IMF-style government operations",
+            "intro": ("Tables 2a and 2b of the IMF's 2026 Article IV report for Spain: revenue, spending and the "
+                      "balances in euros and in % of GDP, from Eurostat's accounts for the general government. The "
+                      "World Economic Outlook projects only the totals, so the other lines show … in the projection "
+                      "years."),
+            "uses": sorted(sectortables.FISCAL_EUR.indicator_ids() | sectortables.FISCAL_GDP.indicator_ids()),
+            "tables": [sectortables.table_function("fiscal-eur"), sectortables.table_function("fiscal-gdp")],
+        },
+        {
+            "id": "debt-sustainability",
+            "title": "Debt sustainability",
+            "intro": ("What drives the debt ratio, in the IMF's layout (DSA 1: Eurostat for past years, the World "
+                      "Economic Outlook for projections), and how it fares under stress, from the European "
+                      "Commission's Debt Sustainability Monitor (DSA 2), since the IMF does not publish its own "
+                      "stress tests as data. The Fiscal Explorer runs the Commission's baseline to 2070."),
+            "facts": sectortables.dsa_facts,
+            "uses": sorted(sectortables.DSA_BASELINE.indicator_ids()),
+            "tables": [sectortables.table_function("dsa-baseline"), sectortables.table_function("dsa-stress")],
+            "charts": [sectortables.dsa_fan_chart, sectortables.dsa_stress_chart],
+        },
     ],
     # ------------------------------------------------------------------ International
     "international": [

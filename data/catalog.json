@@ -203,6 +203,16 @@
   "signature": "[\"bde\", \"D_1KN31000\", {}, 1.0]",
   "source_name": "Estadísticas Generales. Ventas de automóviles"
  },
+ "cg_balance_eur": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:48:43+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 31,
+  "signature": "[\"eurostat\", \"gov_10a_main\", {\"geo\": \"ES\", \"na_item\": \"B9\", \"sector\": \"S1311\", \"unit\": \"MIO_EUR\"}, 1.0]",
+  "source_name": "Government revenue, expenditure and main aggregates",
+  "source_updated": "2026-10-21T11:00:00+0200"
+ },
  "ciss_ea": {
   "status": "ok",
   "fetched_at": "2026-11-01T06:28:27+00:00",
@@ -1282,6 +1292,15 @@
   "signature": "[\"imf\", \"IMF.RES,WEO/ESP.GGXCNL_NGDP.A\", {}, 1.0]",
   "published": "2026-10-13"
  },
+ "fc_imf_balance_eur": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:48:44+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/ESP.GGXCNL.A\", {}, 1.0]",
+  "published": "2026-10-13"
+ },
  "fc_imf_current_account": {
   "status": "ok",
   "fetched_at": "2026-11-01T07:26:43+00:00",
@@ -1298,6 +1317,15 @@
   "last_date": "2031-01-01",
   "n_obs": 42,
   "signature": "[\"imf\", \"IMF.RES,WEO/ESP.GGXWDG_NGDP.A\", {}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "fc_imf_debt_eur": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:48:44+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/ESP.GGXWDG.A\", {}, 1.0]",
   "published": "2026-10-13"
  },
  "fc_imf_deflator": {
@@ -1381,6 +1409,15 @@
   "signature": "[\"imf\", \"IMF.RES,WEO/ESP.NID_NGDP.A\", {}, 1.0]",
   "published": "2026-10-13"
  },
+ "fc_imf_net_debt": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:48:45+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/ESP.GGXWDN_NGDP.A\", {}, 1.0]",
+  "published": "2026-10-13"
+ },
  "fc_imf_nominal_gdp": {
   "status": "ok",
   "fetched_at": "2026-11-01T07:26:44+00:00",
@@ -1408,6 +1445,15 @@
   "signature": "[\"imf\", \"IMF.RES,WEO/ESP.GGXONLB_NGDP.A\", {}, 1.0]",
   "published": "2026-10-13"
  },
+ "fc_imf_primary_balance_eur": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:48:44+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/ESP.GGXONLB.A\", {}, 1.0]",
+  "published": "2026-10-13"
+ },
  "fc_imf_real_gdp": {
   "status": "ok",
   "fetched_at": "2026-11-01T07:26:42+00:00",
@@ -1417,6 +1463,24 @@
   "signature": "[\"imf\", \"IMF.RES,WEO/ESP.NGDP_R.A\", {}, 1.0]",
   "published": "2026-10-13"
  },
+ "fc_imf_revenue": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:48:44+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/ESP.GGR.A\", {}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "fc_imf_revenue_gdp": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:48:45+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/ESP.GGR_NGDP.A\", {}, 1.0]",
+  "published": "2026-10-13"
+ },
  "fc_imf_saving": {
   "status": "ok",
   "fetched_at": "2026-11-01T07:26:42+00:00",
@@ -1424,6 +1488,24 @@
   "last_date": "2031-01-01",
   "n_obs": 42,
   "signature": "[\"imf\", \"IMF.RES,WEO/ESP.NGSD_NGDP.A\", {}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "fc_imf_spending": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:48:44+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/ESP.GGX.A\", {}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "fc_imf_spending_gdp": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:48:45+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/ESP.GGX_NGDP.A\", {}, 1.0]",
   "published": "2026-10-13"
  },
  "fc_imf_structural_balance": {
@@ -1829,6 +1911,216 @@
   "signature": "[\"eurostat\", \"nama_10_gdp\", {\"geo\": \"ES\", \"na_item\": \"B1GQ\", \"unit\": \"CLV20_MEUR\"}, 1.0]",
   "source_name": "Gross domestic product (GDP) and main components (output, expenditure and income) - annual data",
   "source_updated": "2026-10-22T23:00:00+0200"
+ },
+ "gg_balance_eur": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:48:40+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 31,
+  "signature": "[\"eurostat\", \"gov_10a_main\", {\"geo\": \"ES\", \"na_item\": \"B9\", \"sector\": \"S13\", \"unit\": \"MIO_EUR\"}, 1.0]",
+  "source_name": "Government revenue, expenditure and main aggregates",
+  "source_updated": "2026-10-21T11:00:00+0200"
+ },
+ "gg_capital_formation_eur": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:48:41+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 31,
+  "signature": "[\"eurostat\", \"gov_10a_main\", {\"geo\": \"ES\", \"na_item\": \"P5\", \"sector\": \"S13\", \"unit\": \"MIO_EUR\"}, 1.0]",
+  "source_name": "Government revenue, expenditure and main aggregates",
+  "source_updated": "2026-10-21T11:00:00+0200"
+ },
+ "gg_capital_taxes_eur": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:48:41+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 31,
+  "signature": "[\"eurostat\", \"gov_10a_main\", {\"geo\": \"ES\", \"na_item\": \"D91REC\", \"sector\": \"S13\", \"unit\": \"MIO_EUR\"}, 1.0]",
+  "source_name": "Government revenue, expenditure and main aggregates",
+  "source_updated": "2026-10-21T11:00:00+0200"
+ },
+ "gg_capital_transfers_eur": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:48:42+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 31,
+  "signature": "[\"eurostat\", \"gov_10a_main\", {\"geo\": \"ES\", \"na_item\": \"D9PAY\", \"sector\": \"S13\", \"unit\": \"MIO_EUR\"}, 1.0]",
+  "source_name": "Government revenue, expenditure and main aggregates",
+  "source_updated": "2026-10-21T11:00:00+0200"
+ },
+ "gg_compensation_eur": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:48:41+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 31,
+  "signature": "[\"eurostat\", \"gov_10a_main\", {\"geo\": \"ES\", \"na_item\": \"D1PAY\", \"sector\": \"S13\", \"unit\": \"MIO_EUR\"}, 1.0]",
+  "source_name": "Government revenue, expenditure and main aggregates",
+  "source_updated": "2026-10-21T11:00:00+0200"
+ },
+ "gg_debt_eur": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:48:43+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 31,
+  "signature": "[\"eurostat\", \"gov_10dd_edpt1\", {\"geo\": \"ES\", \"na_item\": \"GD\", \"sector\": \"S13\", \"unit\": \"MIO_EUR\"}, 1.0]",
+  "source_name": "Government deficit/surplus, debt and associated data",
+  "source_updated": "2026-10-21T11:00:00+0200"
+ },
+ "gg_excise_eur": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:48:43+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 31,
+  "signature": "[\"eurostat\", \"gov_10a_taxag\", {\"geo\": \"ES\", \"na_item\": \"D214\", \"sector\": \"S13\", \"unit\": \"MIO_EUR\"}, 1.0]",
+  "source_name": "Main national accounts tax aggregates",
+  "source_updated": "2026-10-28T11:00:00+0100"
+ },
+ "gg_goods_services_eur": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:48:41+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 31,
+  "signature": "[\"eurostat\", \"gov_10a_main\", {\"geo\": \"ES\", \"na_item\": \"P2\", \"sector\": \"S13\", \"unit\": \"MIO_EUR\"}, 1.0]",
+  "source_name": "Government revenue, expenditure and main aggregates",
+  "source_updated": "2026-10-21T11:00:00+0200"
+ },
+ "gg_interest_paid_eur": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:48:42+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 31,
+  "signature": "[\"eurostat\", \"gov_10a_main\", {\"geo\": \"ES\", \"na_item\": \"D41PAY\", \"sector\": \"S13\", \"unit\": \"MIO_EUR\"}, 1.0]",
+  "source_name": "Government revenue, expenditure and main aggregates",
+  "source_updated": "2026-10-21T11:00:00+0200"
+ },
+ "gg_interest_received_eur": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:48:42+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 31,
+  "signature": "[\"eurostat\", \"gov_10a_main\", {\"geo\": \"ES\", \"na_item\": \"D41REC\", \"sector\": \"S13\", \"unit\": \"MIO_EUR\"}, 1.0]",
+  "source_name": "Government revenue, expenditure and main aggregates",
+  "source_updated": "2026-10-21T11:00:00+0200"
+ },
+ "gg_nonproduced_eur": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:48:43+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 31,
+  "signature": "[\"eurostat\", \"gov_10a_main\", {\"geo\": \"ES\", \"na_item\": \"NP\", \"sector\": \"S13\", \"unit\": \"MIO_EUR\"}, 1.0]",
+  "source_name": "Government revenue, expenditure and main aggregates",
+  "source_updated": "2026-10-21T11:00:00+0200"
+ },
+ "gg_revenue_eur": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:48:40+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 31,
+  "signature": "[\"eurostat\", \"gov_10a_main\", {\"geo\": \"ES\", \"na_item\": \"TR\", \"sector\": \"S13\", \"unit\": \"MIO_EUR\"}, 1.0]",
+  "source_name": "Government revenue, expenditure and main aggregates",
+  "source_updated": "2026-10-21T11:00:00+0200"
+ },
+ "gg_social_benefits_eur": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:48:43+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 31,
+  "signature": "[\"eurostat\", \"gov_10a_main\", {\"geo\": \"ES\", \"na_item\": \"D62_D632PAY\", \"sector\": \"S13\", \"unit\": \"MIO_EUR\"}, 1.0]",
+  "source_name": "Government revenue, expenditure and main aggregates",
+  "source_updated": "2026-10-21T11:00:00+0200"
+ },
+ "gg_social_contributions_eur": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:48:41+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 31,
+  "signature": "[\"eurostat\", \"gov_10a_main\", {\"geo\": \"ES\", \"na_item\": \"D61REC\", \"sector\": \"S13\", \"unit\": \"MIO_EUR\"}, 1.0]",
+  "source_name": "Government revenue, expenditure and main aggregates",
+  "source_updated": "2026-10-21T11:00:00+0200"
+ },
+ "gg_spending_eur": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:48:40+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 31,
+  "signature": "[\"eurostat\", \"gov_10a_main\", {\"geo\": \"ES\", \"na_item\": \"TE\", \"sector\": \"S13\", \"unit\": \"MIO_EUR\"}, 1.0]",
+  "source_name": "Government revenue, expenditure and main aggregates",
+  "source_updated": "2026-10-21T11:00:00+0200"
+ },
+ "gg_subsidies_eur": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:48:43+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 31,
+  "signature": "[\"eurostat\", \"gov_10a_main\", {\"geo\": \"ES\", \"na_item\": \"D3PAY\", \"sector\": \"S13\", \"unit\": \"MIO_EUR\"}, 1.0]",
+  "source_name": "Government revenue, expenditure and main aggregates",
+  "source_updated": "2026-10-21T11:00:00+0200"
+ },
+ "gg_tax_corporate_eur": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:48:43+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 31,
+  "signature": "[\"eurostat\", \"gov_10a_taxag\", {\"geo\": \"ES\", \"na_item\": \"D51B_C2\", \"sector\": \"S13\", \"unit\": \"MIO_EUR\"}, 1.0]",
+  "source_name": "Main national accounts tax aggregates",
+  "source_updated": "2026-10-28T11:00:00+0100"
+ },
+ "gg_tax_households_eur": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:48:43+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 31,
+  "signature": "[\"eurostat\", \"gov_10a_taxag\", {\"geo\": \"ES\", \"na_item\": \"D51A_C1\", \"sector\": \"S13\", \"unit\": \"MIO_EUR\"}, 1.0]",
+  "source_name": "Main national accounts tax aggregates",
+  "source_updated": "2026-10-28T11:00:00+0100"
+ },
+ "gg_taxes_income_eur": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:48:41+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 31,
+  "signature": "[\"eurostat\", \"gov_10a_main\", {\"geo\": \"ES\", \"na_item\": \"D5REC\", \"sector\": \"S13\", \"unit\": \"MIO_EUR\"}, 1.0]",
+  "source_name": "Government revenue, expenditure and main aggregates",
+  "source_updated": "2026-10-21T11:00:00+0200"
+ },
+ "gg_taxes_production_eur": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:48:41+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 31,
+  "signature": "[\"eurostat\", \"gov_10a_main\", {\"geo\": \"ES\", \"na_item\": \"D2REC\", \"sector\": \"S13\", \"unit\": \"MIO_EUR\"}, 1.0]",
+  "source_name": "Government revenue, expenditure and main aggregates",
+  "source_updated": "2026-10-21T11:00:00+0200"
+ },
+ "gg_vat_eur": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:48:43+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 31,
+  "signature": "[\"eurostat\", \"gov_10a_taxag\", {\"geo\": \"ES\", \"na_item\": \"D211\", \"sector\": \"S13\", \"unit\": \"MIO_EUR\"}, 1.0]",
+  "source_name": "Main national accounts tax aggregates",
+  "source_updated": "2026-10-28T11:00:00+0100"
  },
  "gold": {
   "status": "ok",
