@@ -165,7 +165,7 @@
       }
       traces.push({
         type: "scatter", mode: category ? "lines+markers" : "lines", x: s.x, y: s.y, name: s.name,
-        line: { color: color, width: 2, shape: s.shape || "linear" }, hovertemplate: template,
+        line: { color: color, width: 2, shape: s.shape || "linear", dash: s.dash || "solid" }, hovertemplate: template,
         // A curve has few points: mark each one (with a surface ring), as on a line with sparse data.
         marker: { size: 7, color: color, line: { width: 1.5, color: surface } }
       });
@@ -316,6 +316,18 @@
 
   specs.forEach(fillTable);
   drawAll();
+
+  // For pages that build charts in the browser (the tools): draw a spec now, and again
+  // whenever the theme or the window size changes, like the charts written by the build.
+  window.EP = window.EP || {};
+  window.EP.render = function (spec) {
+    for (var i = 0; i < specs.length; i++) {
+      if (specs[i].id === spec.id) { specs[i] = spec; draw(spec); return; }
+    }
+    specs.push(spec);
+    draw(spec);
+  };
+  window.EP.fmt = fmt;
 
   // Redraw after a resize settles: whether end labels fit depends on the chart's width.
   var resizeTimer;

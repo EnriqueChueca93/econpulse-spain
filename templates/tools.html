@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+
+{% block title %}Tools · EconPulse Spain{% endblock %}
+
+{% macro figure(id, title, subtitle, source) -%}
+  <figure class="card chart-card">
+    <figcaption>
+      <span class="chart-title">{{ title }}</span>
+      <span class="chart-subtitle">{{ subtitle }}</span>
+    </figcaption>
+    <div class="chart" id="chart-{{ id }}" role="img" aria-label="{{ title }}: {{ subtitle }}"></div>
+    <div class="chart-foot"><span class="secondary">Source: {{ source }}</span></div>
+  </figure>
+{%- endmacro %}
+
+{% block content %}
+  <h1>Tools</h1>
+  <p class="lede">Ask your own questions of the data: change a setting and every number and chart recomputes in your browser.</p>
+  <nav class="on-page" aria-label="On this page">
+    <a href="#trend">Economy vs pre-COVID trend</a><a href="#taylor">Taylor rule</a><a href="#rates">Interest rate decomposer</a>
+  </nav>
+
+  <section class="block" aria-labelledby="trend">
+    <h2 id="trend">Economy vs pre-COVID trend</h2>
+    <p class="block-intro">Where output, jobs and prices stand against the path they were on before the pandemic.
+      The trend is fitted to the years you choose, up to the last reading before COVID, and extended to today.</p>
+    <div class="tool-controls">
+      <label>Series <select id="trend-series"></select></label>
+      <label>Trend from
+        <select id="trend-start">
+          <option value="2010">2010</option><option value="2013">2013</option>
+          <option value="2015" selected>2015</option><option value="2017">2017</option>
+        </select>
+        to 2019</label>
+    </div>
+    <p class="tool-result" id="trend-result" aria-live="polite"></p>
+    <div class="charts">
+      {{ figure("trend-line", "Actual and pre-COVID trend", "Index, last pre-COVID reading of the trend = 100", "INE, Seguridad Social; EconPulse calculation") }}
+      {{ figure("trend-gaps", "Gap with the pre-COVID trend", "Every series, same trend years; % above or below", "INE, Seguridad Social; EconPulse calculation") }}
+    </div>
+    <p class="note">The trend is a straight line through the logarithm of each series (constant growth), fitted from
+      January of the start year to December 2019 (the fourth quarter for quarterly series). Registrations and consumer prices
+      are seasonally adjusted by EconPulse; the others are adjusted by INE. A gap shows how far the economy is from where the
+      old trend pointed, not where it should be: the start year matters, which is why you can change it.</p>
+  </section>
+
+  <section class="block" aria-labelledby="taylor">
+    <h2 id="taylor">Taylor rule</h2>
+    <p class="block-intro">The policy rate a simple rule suggests, given inflation and slack. Change the assumptions and
+      compare the result with what the ECB actually did, for the euro area as a whole and for Spain on its own.</p>
+    <div class="tool-controls">
+      <label>Economy
+        <select id="taylor-region">
+          <option value="both" selected>Euro area and Spain</option><option value="ea">Euro area</option><option value="es">Spain</option>
+        </select></label>
+      <label>Inflation measure
+        <select id="taylor-measure"><option value="headline" selected>Headline HICP</option><option value="core">Core HICP</option></select></label>
+      <label>Neutral real rate <input type="range" id="taylor-rstar" min="-1" max="3" step="0.25" value="{{ taylor_defaults.r_star }}">
+        <output id="taylor-rstar-out" for="taylor-rstar"></output></label>
+      <label>Weight on inflation <input type="range" id="taylor-a" min="0" max="1.5" step="0.1" value="0.5">
+        <output id="taylor-a-out" for="taylor-a"></output></label>
+      <label>Weight on unemployment <input type="range" id="taylor-b" min="0" max="2" step="0.1" value="1">
+        <output id="taylor-b-out" for="taylor-b"></output></label>
+      <button type="button" class="tool-button" id="taylor-reset">Reset</button>
+    </div>
+    <p class="tool-result" id="taylor-result" aria-live="polite"></p>
+    <div class="charts">
+      {{ figure("taylor-tool", "The ECB rate and the rule", "%, monthly", "Eurostat, ECB; EconPulse calculation") }}
+    </div>
+    <p class="note">Rule: neutral real rate + inflation + (weight on inflation) × (inflation − 2%) − (weight on unemployment) ×
+      (unemployment − its trend). Taylor's 1993 rule is 0.5 on inflation and, with an output gap of twice the unemployment gap,
+      1.0 on unemployment. Trend unemployment is a statistical trend (Hodrick–Prescott filter), least reliable for the latest
+      months. The same assumptions are used on the <a href="analysis.html#taylor">Analysis</a> page.</p>
+  </section>
+
+  <section class="block" aria-labelledby="rates">
+    <h2 id="rates">Interest rate decomposer</h2>
+    <p class="block-intro">Pick two dates and see what moved Spain's 10-year yield: euro-wide rates or Spain-specific risk,
+      and, within euro-wide rates, near-term policy or the longer run.</p>
+    <div class="tool-controls">
+      <label>From <input type="date" id="rates-start"></label>
+      <label>To <input type="date" id="rates-end"></label>
+      <span class="tool-presets">
+        <button type="button" class="tool-button" data-rates-preset="ytd">Year to date</button>
+        <button type="button" class="tool-button" data-rates-preset="year">Past year</button>
+        <button type="button" class="tool-button" data-rates-preset="2022-07-20">Since the ECB's first hike of 2022</button>
+        <button type="button" class="tool-button" data-rates-preset="2019-12-31">Since end-2019</button>
+      </span>
+    </div>
+    <p class="tool-result" id="rates-result" aria-live="polite"></p>
+    <div class="table-scroll tool-table">
+      <table class="data-table stat-table" id="rates-table">
+        <thead><tr><th scope="col">Part of the move</th><th scope="col" class="num">Change</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <div class="charts">
+      {{ figure("rates-parts", "The move against the AAA curve", "Basis points", "Banco de España, ECB; EconPulse calculation") }}
+      {{ figure("rates-levels", "10-year yields over the period", "%, daily", "Banco de España, ECB") }}
+    </div>
+    <p class="note">Pure arithmetic, no model: Spain's yield is the German yield plus the prima de riesgo, and also the AAA
+      euro-area 10-year yield plus Spain's spread over it. The AAA 10-year is one tenth of today's 1-year rate plus nine
+      tenths of the rate implied for years 1 to 10 (the forward rate); the first moves with expected ECB policy, the second
+      with the longer-run outlook and the term premium. AAA yields are the ECB's curve estimate; dates without data use the
+      last day before.</p>
+  </section>
+{% endblock %}
+
+{% block scripts %}
+  <script src="assets/plotly.min.js?v={{ build_id }}"></script>
+  <script src="data/tools.js?v={{ build_id }}"></script>
+{% endblock %}
+
+{% block after_scripts %}
+  <script src="assets/tools.js?v={{ build_id }}"></script>
+{% endblock %}

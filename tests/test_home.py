@@ -105,7 +105,7 @@ def test_build_writes_every_page(tmp_path):
     assert 'src="assets/app.js?v=' in html
     for href, _ in NAV:
         assert (site / href).exists(), href
-    assert len(NAV) == len(SECTION_PAGES) + 3  # Home, Calendar and Data besides the sections
+    assert len(NAV) == len(SECTION_PAGES) + 4  # Home, Tools, Calendar and Data besides the sections
     assert 'aria-current="page"' in (site / "financial.html").read_text(encoding="utf-8")
     snap_js = (site / "data" / "snapshot.js").read_text(encoding="utf-8")
     payload = json.loads(snap_js.split("window.EP.snapshot = ", 1)[1].rstrip().rstrip(";"))

@@ -5,6 +5,7 @@
 #   label        English name;  label_es: official Spanish name
 #   section      gdp | labour | wages | inflation | financial | ecb | fiscal | activity | housing | international
 #   source       ine | eurostat | ecb | bde | segsocial | ree | oecd | bis | bls | dbnomics | eia | worldbank |
+#                bundesbank |
 #                fred | derived  (FRED does not answer GitHub's servers, so the online site avoids it)
 #   key, params  what to ask the source for (see econpulse/sources/<source>.py)
 #   freq         D | M | Q | A
@@ -1333,12 +1334,13 @@ indicators:
     label: Germany 10-year yield
     label_es: Bono alemán a 10 años
     section: financial
-    source: bde
-    key: DPUDNBBN308
+    source: bundesbank
+    key: BBSIS/D.I.ZST.ZI.EUR.S1311.B.A604.R10XX.R.A.A._Z._Z.A
     freq: D
     unit: "%"
     decimals: 2
     change_unit: bp
+    notes: Bundesbank yield curve for federal securities at 10 years (Banco de España's copy has gaps since 2020).
 
   - id: aaa_1y
     label: Euro area AAA 1-year yield

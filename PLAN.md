@@ -86,6 +86,7 @@ Status after Batch 10 (1 Nov 2026): 268 indicators. All sources are official or 
 | **DBnomics** | open mirror (Banque de France, CEPREMAP) | ✅ in use (1) | US GDP growth (BEA) |
 | **US EIA** | public history pages | ✅ in use (1) | daily Brent spot price |
 | **World Bank** | monthly commodity prices spreadsheet | ✅ in use (3) | European gas (TTF), gold, copper |
+| **Bundesbank** | SDMX REST, CSV | ✅ in use (1) | German 10-year yield, daily (Banco de España's copy has gaps since 2020) |
 | ~~FRED~~ | public CSV | ❌ replaced in Batch 10 | does not answer GitHub's servers; the client stays for local use |
 | **EconPulse calculations** | from the series above | ✅ in use (12) | Brent in euros, 10-year spreads over Germany, GDP deflator, real wages, real house prices, average mortgage, primary balance, monthly electricity demand |
 | ~~Yahoo Finance~~ | unofficial API | ❌ dropped | IBEX 35 now comes from Banco de España and Brent from FRED |
@@ -218,6 +219,9 @@ Each batch is sized for one working session, ends with something you can open or
 - Release calendar (INE calendar, Social Security, ECB meetings) and the "Today / Coming up" bar
 - Automatic "what changed since the last update" notes, rule-based
 - About and methodology page, data-freshness page
+
+### Batch 11 — Interactive tools ✅ done 1 Nov 2026
+*Result: a Tools page (`templates/tools.html`, `static/tools.js`, data from `econpulse/tools.py`) where every number recomputes in the browser. Economy vs pre-COVID trend: ten series against a log-linear trend fitted from a chosen year (2010–2017) to 2019, with the gap for all of them (real GDP is 5.8% below its 2015–19 trend; consumer prices 17.5% above). Taylor rule: sliders for the neutral rate and the two weights, headline or core inflation, euro area and/or Spain; the defaults reproduce the Analysis page. Interest rate decomposer: any two dates, Spain's 10-year move split into German yield plus prima de riesgo, and into AAA 1-year, AAA 1-to-10-year forward and spread over AAA. Building it showed that Banco de España's German 10-year series has gaps since 2020 (one day in July 2022), so `de_10y` now comes from the Bundesbank. 135 offline tests.*
 
 ### Batch 10 — Data gaps ✅ done 1 Nov 2026
 *Result: FRED replaced by six new clients (OECD, BIS, US BLS, DBnomics, US EIA, World Bank), so all series can update from GitHub. New: labour market slack and job vacancies, with a Beveridge curve; household saving rate and debt-service ratio; the ECB's financial stress index (CISS) for Spain and the euro area; the bad-loan ratio; Euro Stoxx 50, gold and copper; and the UK, Japan and Canada in the international comparison (11 economies). 268 indicators, 131 offline tests.*

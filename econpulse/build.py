@@ -14,7 +14,7 @@ from pathlib import Path
 import pandas as pd
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
-from . import __version__, analytics, changes, schedule
+from . import __version__, analytics, changes, schedule, tools
 from .charts import build_home_charts
 from .config import SITE_DIR, STATIC_DIR, TEMPLATES_DIR
 from .pages import build_page
@@ -44,7 +44,7 @@ SECTION_PAGES = {
 }
 
 NAV = ([("index.html", "Home")] + [(f"{s}.html", t) for s, (t, _, _) in SECTION_PAGES.items()]
-       + [("calendar.html", "Calendar"), ("data.html", "Data")])
+       + [("tools.html", "Tools"), ("calendar.html", "Calendar"), ("data.html", "Data")])
 
 
 def write_data_js(path: Path, name: str, data) -> None:
@@ -149,4 +149,6 @@ def build_site(indicators: list[Indicator], store: Store | None = None, site_dir
     for i in items:
         counts[i["source"]] = counts.get(i["source"], 0) + 1
     render("about.html", "about.html", total=len(items), source_counts=sorted(counts.items(), key=lambda kv: -kv[1]))
+    write_data_js(data_dir / "tools.js", "tools", tools.tools_data(Data(indicators, store)))
+    render("tools.html", "tools.html", taylor_defaults={"r_star": analytics.R_STAR})
     return index

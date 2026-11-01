@@ -249,6 +249,26 @@ code { font-size: 13px; background: var(--hover); padding: 1px 5px; border-radiu
 .prose p, .prose li { color: var(--text-2); }
 .prose a { color: var(--text); }
 
+/* Tools: controls above the charts, a live sentence with the result */
+.tool-controls {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px 22px; margin: 0 0 12px; padding: 12px 14px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 8px; font-size: 14px; color: var(--text-2);
+}
+.tool-controls label { display: inline-flex; align-items: center; gap: 8px; }
+.tool-controls select, .tool-controls input[type="date"] {
+  font: inherit; color: var(--text); background: var(--page); border: 1px solid var(--border); border-radius: 6px; padding: 4px 8px;
+}
+.tool-controls input[type="range"] { width: 120px; accent-color: var(--series-1); }
+.tool-controls output { min-width: 42px; color: var(--text); font-variant-numeric: tabular-nums; }
+.tool-presets { display: inline-flex; flex-wrap: wrap; gap: 6px; }
+.tool-button {
+  font: inherit; font-size: 13px; color: var(--text); background: var(--page); border: 1px solid var(--border);
+  border-radius: 6px; padding: 4px 10px; cursor: pointer;
+}
+.tool-button:hover { background: var(--hover); }
+.tool-result { font: 17px/1.45 var(--serif); color: var(--text); max-width: 820px; margin: 0 0 14px; min-height: 1.45em; }
+.tool-table { margin-bottom: 16px; max-width: 560px; }
+
 .site-footer { margin-top: 48px; padding: 18px 0 36px; border-top: 1px solid var(--border); color: var(--text-2); font-size: 12px; }
 .site-footer p { margin: 0 0 4px; }
 

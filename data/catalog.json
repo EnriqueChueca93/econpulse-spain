@@ -640,12 +640,11 @@
  },
  "de_10y": {
   "status": "ok",
-  "fetched_at": "2026-11-01T02:56:02+00:00",
-  "first_date": "2000-01-03",
-  "last_date": "2026-10-29",
-  "n_obs": 6582,
-  "signature": "[\"bde\", \"DPUDNBBN308\", {}, 1.0]",
-  "source_name": "Tipos de interés. Alemania. Mercados de deuda pública. Bono alemán. A 10 años"
+  "fetched_at": "2026-11-01T03:03:19+00:00",
+  "first_date": "1997-08-07",
+  "last_date": "2026-10-30",
+  "n_obs": 7421,
+  "signature": "[\"bundesbank\", \"BBSIS/D.I.ZST.ZI.EUR.S1311.B.A604.R10XX.R.A.A._Z._Z.A\", {}, 1.0]"
  },
  "de_10y_monthly": {
   "status": "ok",

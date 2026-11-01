@@ -42,6 +42,8 @@ Because the workflow commits data every day, run `git pull` before working local
   ECB meeting and a market-implied rate path.
 - **Fiscal, Activity, Housing, International, Regions**: the public finances, activity and tourism, the housing
   market and household debt, Spain against its peers, and the 17 autonomous communities.
+- **Tools**: Economy vs pre-COVID trend, an interactive Taylor rule and an interest rate decomposer; change a
+  setting and the numbers and charts recompute in the browser.
 - **Analysis**: EconPulse's own calculations, each explained on the page: activity and inflation composites,
   a GDP nowcast with its track record, the 10-year yield split into Bund and prima de riesgo, and Taylor rules
   for the euro area and Spain.
@@ -74,7 +76,7 @@ econpulse/            Python package
   indicators.yaml     the indicator registry: every series the site tracks
   sources/            one client per data provider: ine, eurostat, ecb, bde (Banco de España),
                       segsocial (Seguridad Social), ree (Red Eléctrica), oecd, bis, bls,
-                      dbnomics, eia, worldbank, fred (local use only), derived
+                      dbnomics, eia, worldbank, bundesbank, fred (local use only), derived
   transforms.py       y/y, m/m, q/q, 3-month annualised, changes
   store.py            data/series/<id>.csv + data/catalog.json
   fetch.py            fetches everything; one failing source never stops the rest
@@ -87,6 +89,7 @@ econpulse/            Python package
   pages.py            what each section page shows: blocks of tables and charts
   policy.py           ECB meeting calendar, rate decisions, the mortgage check
   analytics.py        composites, GDP nowcast, 10-year decomposition, Taylor rules
+  tools.py            data for the interactive tools (the browser does the arithmetic, static/tools.js)
   schedule.py         release calendar: INE's iCal, the Social Security rule, ECB decisions
   changes.py          "what changed": notes on new releases, revisions and big market moves
   build.py            renders every page into site/ (chart data goes in site/data/*.js)
