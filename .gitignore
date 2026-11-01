@@ -6,6 +6,8 @@ __pycache__/
 
 # Build output: regenerate with `python -m econpulse build`
 site/
+# The launcher: rebuild with `python scripts/build_launcher.py`
+EconPulse.exe
 
 # Editors / OS
 .vscode/

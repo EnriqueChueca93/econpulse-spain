@@ -10,13 +10,16 @@
     confirm <id> [<id> ...] [--against TEXT] [--note TEXT] [--by NAME]
             record that an AI checked those forecasters' current figures against the
             publisher's own document (see econpulse/forecasts.py)
+    serve [--update] [--no-build] [--port N] [--no-browser]
+            build the site from the saved data (or fetch fresh data first with --update),
+            serve it on this computer and open it in the browser; EconPulse.exe runs this
 """
 
 import argparse
 import sys
 import time
 
-from . import changes, ecbspeak, forecasts, schedule, stance
+from . import changes, ecbspeak, forecasts, schedule, serve, stance
 from .build import build_site
 from .fetch import fetch_all
 from .registry import load_registry
@@ -121,12 +124,17 @@ def main(argv: list[str] | None = None) -> int:
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
     parser = argparse.ArgumentParser(prog="econpulse", description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("command", choices=["fetch", "build", "update", "list", "status", "forecasts", "confirm"])
+    parser.add_argument("command", choices=["fetch", "build", "update", "list", "status", "forecasts", "confirm",
+                                            "serve"])
     parser.add_argument("ids", nargs="*", help="forecaster ids, for confirm")
     parser.add_argument("--only", help="comma-separated indicator ids to fetch (default: all)")
     parser.add_argument("--against", default="", help="confirm: what the figures were compared with")
     parser.add_argument("--note", default="", help="confirm: a note shown under the forecasts table")
     parser.add_argument("--by", default="AI check (Claude)", help="confirm: who checked the figures")
+    parser.add_argument("--update", action="store_true", help="serve: fetch fresh data before building")
+    parser.add_argument("--no-build", action="store_true", help="serve: serve site/ as it is, without building")
+    parser.add_argument("--port", type=int, help="serve: the port (default: the first free one from 8765)")
+    parser.add_argument("--no-browser", action="store_true", help="serve: do not open the browser")
     args = parser.parse_args(argv)
 
     indicators = load_registry()
@@ -135,7 +143,9 @@ def main(argv: list[str] | None = None) -> int:
     if only and (unknown := only - {i.id for i in indicators}):
         parser.error(f"unknown indicator id(s): {', '.join(sorted(unknown))}")
 
-    if args.command in ("fetch", "update"):
+    fetching = args.command in ("fetch", "update") or (args.command == "serve" and args.update)
+    building = args.command in ("build", "update") or (args.command == "serve" and not args.no_build)
+    if fetching:
         started = time.monotonic()
         catalog = fetch_all(indicators, store, only)
         targets = [i.id for i in indicators if only is None or i.id in only]
@@ -173,9 +183,16 @@ def main(argv: list[str] | None = None) -> int:
                 parser.error(str(e))
             print(f"Confirmed {forecaster_id}: edition of {record['published']}, fingerprint {record['fingerprint']}")
 
-    if args.command in ("build", "update"):
+    if building:
         index = build_site(indicators, store)
         print(f"Site built: {index}")
+
+    if args.command == "serve":
+        try:
+            serve.serve(port=args.port, open_browser=not args.no_browser)
+        except (FileNotFoundError, OSError) as e:
+            print(f"Cannot serve the site: {e}")
+            return 1
 
     return 0
 

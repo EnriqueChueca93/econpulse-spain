@@ -6,8 +6,16 @@ and can later be hosted anywhere. See [PLAN.md](PLAN.md) for the roadmap.
 
 ## Quick start (Windows)
 
-Double-click **`update.bat`**. The first run sets up a Python environment; every run fetches the latest
-data, rebuilds the site and opens `site/index.html` in your browser.
+Double-click **`EconPulse.exe`** in the project folder. It builds the site from the data already saved
+(a few seconds), serves it on this computer only and opens it in your browser at `http://localhost:8765/`
+(or the next free port); close its window to stop it. Run `EconPulse.exe --update` to fetch the latest data
+first (a few minutes). It runs the project's own Python (`.venv`), so it always shows the current code and
+data; it is a 6 KB launcher for `python -m econpulse serve`, built from `scripts/launcher/EconPulse.cs` with
+the C# compiler that comes with Windows (`.venv\Scripts\python.exe scripts\build_launcher.py`; the .exe is
+not kept in git). The data in a local copy are as fresh as the last `git pull` or `--update`.
+
+**`update.bat`** also sets up the Python environment on a first run, then fetches the latest data, rebuilds
+the site and opens `site/index.html` from disk.
 
 Or from a terminal:
 
@@ -131,6 +139,7 @@ econpulse/            Python package
   speechscore.py      the hawkish/dovish word lists and the score
   fiscal_baseline.json  the Commission's Spain baseline, extracted by scripts/extract_fiscal_baseline.py
   sectortables.py     IMF-style sector tables: their lines, the section-page tables and the Excel workbook
+  serve.py            serves site/ on this computer for `python -m econpulse serve` (what EconPulse.exe runs)
   build.py            renders every page into site/ (chart data goes in site/data/*.js)
 templates/            Jinja2 pages: base layout, home, section pages, data page
 static/               style.css (light/dark tokens), app.js (theme toggle, Plotly charts)
