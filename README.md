@@ -53,6 +53,8 @@ Because the workflow commits data every day, run `git pull` before working local
   **Flows, hours and layoffs**: Eurostat's worker flows, hours worked (national accounts and INE's labour cost
   survey, with hours lost to sick leave), vacancies by activity, and the workers affected by collective
   dismissals and temporary layoffs (ERE/ERTE, Ministry of Labour). The Wages page ranks pay by activity.
+- **Trade** (`site/trade.html`): goods exports and imports by product group (18 groups of HS chapters, Eurostat
+  Comext), totals over the past 12 months, rankings, the balance with and without energy, and every group since 2008.
 - **GDP, Labour market, Wages, Inflation**: econvitals-style tables (1-, 3-, 6- and 12-month changes; latest,
   a month ago, a year ago; contributions to growth) and 25 charts, each with a data table and PNG download.
   The Inflation page also measures underlying inflation across the ~180 detailed HICP items: weighted median,
@@ -122,7 +124,8 @@ econpulse/            Python package
                       segsocial (Seguridad Social), ree (Red Eléctrica), oecd, bis, bls,
                       dbnomics, eia, worldbank, bundesbank, imf, bdeproj (Banco de España
                       projections), funcas, hicpdist and ageing (EconPulse calculations from
-                      Eurostat data), reg (Ministry of Labour layoffs), fred (local use only),
+                      Eurostat data), reg (Ministry of Labour layoffs), comext (Eurostat's
+                      trade by product), fred (local use only),
                       derived; webtables.py reads
                       the HTML tables of the sources that publish web pages
   transforms.py       y/y, m/m, q/q, 3-month annualised, changes
@@ -153,6 +156,7 @@ econpulse/            Python package
   industries.py       the Every industry page: registrations by group of activities, charts and table
   demography.py       the Labour page's rates by group and the ageing figures (from sources/ageing.py)
   workstats.py        hours, vacancies and pay by activity, and layoffs (Labour and Wages pages)
+  trade.py            the Trade page: goods trade by product group, table, rankings and charts
   certs/              intermediate certificates some servers leave out (see http.py)
   sectortables.py     IMF-style sector tables: their lines, the section-page tables and the Excel workbook
   serve.py            serves site/ on this computer for `python -m econpulse serve` (what EconPulse.exe runs)

@@ -10,6 +10,7 @@
 #                hicpdist (underlying inflation from Eurostat's detailed HICP items) |
 #                ageing (participation adjusted for the population's ageing, from Eurostat's LFS) |
 #                reg (Ministry of Labour: collective dismissals and temporary layoffs) |
+#                comext (Eurostat Comext: goods trade by HS chapter) |
 #                fred | derived  (FRED does not answer GitHub's servers, so the online site avoids it)
 #   key, params  what to ask the source for (see econpulse/sources/<source>.py)
 #   freq         D | M | Q | A
@@ -139,6 +140,28 @@ etcl_vacancies: &etcl_vacancies
   - {slug: health, name: "health and social work", name_es: "actividades sanitarias y de servicios sociales", pay: ETCL1683, hours: ETCL2428, vac: ETCL2928}
   - {slug: arts, name: "arts, entertainment and recreation", name_es: "actividades artísticas, recreativas y de entretenimiento", pay: ETCL1679, hours: ETCL2421, vac: ETCL2927}
   - {slug: other_services, name: "other services", name_es: "otros servicios", pay: ETCL1675, hours: ETCL2414, vac: ETCL2926}
+# Product groups for the Trade page: chapters of the Harmonised System (HS2) in Eurostat's Comext.
+# Together they cover every chapter (01-99; 77 and 98 are not used).
+trade_groups: &trade_groups
+  - {slug: meat_fish, name: "meat, fish and dairy", name_es: "carne, pescado y lácteos", hs: "01-05,16"}
+  - {slug: fruit_veg, name: "fruit and vegetables", name_es: "frutas y hortalizas", hs: "06-08,20"}
+  - {slug: fats, name: "olive oil and other fats", name_es: "aceite de oliva y otras grasas", hs: "15"}
+  - {slug: drinks, name: "drinks and tobacco", name_es: "bebidas y tabaco", hs: "22,24"}
+  - {slug: other_food, name: "other food and feed", name_es: "otros alimentos y piensos", hs: "09-14,17-19,21,23"}
+  - {slug: energy, name: "energy products", name_es: "productos energéticos", hs: "27"}
+  - {slug: minerals, name: "stone, ceramics and glass", name_es: "piedra, cerámica y vidrio", hs: "25,68-70"}
+  - {slug: metals, name: "metals and ores", name_es: "metales y minerales metálicos", hs: "26,72-83"}
+  - {slug: wood_paper, name: "leather, wood and paper", name_es: "cuero, madera y papel", hs: "41-49"}
+  - {slug: chemicals, name: "chemicals", name_es: "productos químicos", hs: "28-29,31-38"}
+  - {slug: pharma, name: "pharmaceuticals", name_es: "productos farmacéuticos", hs: "30"}
+  - {slug: plastics, name: "plastics and rubber", name_es: "plásticos y caucho", hs: "39-40"}
+  - {slug: textiles, name: "textiles, clothing and footwear", name_es: "textiles, confección y calzado", hs: "50-67"}
+  - {slug: machinery, name: "machinery", name_es: "maquinaria", hs: "84"}
+  - {slug: electrical, name: "electrical equipment and electronics", name_es: "material eléctrico y electrónico", hs: "85"}
+  - {slug: vehicles, name: "vehicles and parts", name_es: "vehículos y sus partes", hs: "87"}
+  - {slug: other_transport, name: "aircraft, ships and trains", name_es: "aeronaves, barcos y material ferroviario", hs: "86,88-89"}
+  - {slug: other, name: "other goods", name_es: "otras mercancías", hs: "71,90-99"}
+
 indicators:
 
   # ---------------------------------------------------------------- GDP (INE CNTR)
@@ -6248,3 +6271,77 @@ indicators:
     unit: thousands
     scale: 0.001
     transforms: [sum_1y, level]
+
+  # ---------------------------------------------------------------- Trade by product (Batch 26a)
+  # Spain's goods exports and imports by product group, monthly, Eurostat Comext (sources/comext.py).
+  - id: trade_exp_total
+    label: "Goods exports (Comext)"
+    label_es: "Exportaciones de bienes (Comext)"
+    section: international
+    source: comext
+    key: TOTAL
+    params: {flow: exports, partner: WORLD}
+    freq: M
+    unit: "€ mn"
+    scale: 0.000001
+    decimals: 0
+    transforms: [sum_1y, yoy]
+    max_age_days: 150
+    notes: All goods, community concept, not seasonally adjusted.
+
+  - id: trade_imp_total
+    label: "Goods imports (Comext)"
+    label_es: "Importaciones de bienes (Comext)"
+    section: international
+    source: comext
+    key: TOTAL
+    params: {flow: imports, partner: WORLD}
+    freq: M
+    unit: "€ mn"
+    scale: 0.000001
+    decimals: 0
+    transforms: [sum_1y, yoy]
+    max_age_days: 150
+    notes: All goods, community concept, not seasonally adjusted.
+
+  - id: trade_bal_total
+    label: "Goods trade balance (Comext)"
+    label_es: "Saldo comercial de bienes (Comext)"
+    section: international
+    source: derived
+    key: subtract
+    params: {a: trade_exp_total, b: trade_imp_total}
+    freq: M
+    unit: "€ mn"
+    decimals: 0
+    transforms: [sum_1y, level]
+
+  - id: trade_exp_{slug}
+    for_each: *trade_groups
+    label: "Goods exports, {name}"
+    label_es: "Exportaciones, {name_es} (Comext, capítulos {hs})"
+    section: international
+    source: comext
+    key: "{hs}"
+    params: {flow: exports, partner: WORLD}
+    freq: M
+    unit: "€ mn"
+    scale: 0.000001
+    decimals: 0
+    transforms: [sum_1y, yoy]
+    max_age_days: 150
+
+  - id: trade_imp_{slug}
+    for_each: *trade_groups
+    label: "Goods imports, {name}"
+    label_es: "Importaciones, {name_es} (Comext, capítulos {hs})"
+    section: international
+    source: comext
+    key: "{hs}"
+    params: {flow: imports, partner: WORLD}
+    freq: M
+    unit: "€ mn"
+    scale: 0.000001
+    decimals: 0
+    transforms: [sum_1y, yoy]
+    max_age_days: 150

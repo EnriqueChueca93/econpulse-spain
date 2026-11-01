@@ -6530,15 +6530,327 @@
   "flash": false,
   "source_name": "Gasto total. Total Nacional. Turista. Dato base."
  },
+ "trade_bal_total": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:54:24+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"derived\", \"subtract\", {\"a\": \"trade_exp_total\", \"b\": \"trade_imp_total\"}, 1.0]"
+ },
  "trade_balance_annual": {
   "status": "ok",
-  "fetched_at": "2026-11-01T07:26:41+00:00",
+  "fetched_at": "2026-11-01T12:54:11+00:00",
   "first_date": "1993-01-01",
   "last_date": "2025-01-01",
   "n_obs": 33,
   "signature": "[\"eurostat\", \"bop_c6_a\", {\"bop_item\": \"GS\", \"currency\": \"MIO_EUR\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S1\", \"sectpart\": \"S1\", \"stk_flow\": \"BAL\"}, 1.0]",
   "source_name": "Balance of payments by country - annual data (BPM6)",
   "source_updated": "2026-10-02T11:00:00+0200"
+ },
+ "trade_exp_chemicals": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:54:24+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"28-29,31-38\", {\"flow\": \"exports\", \"partner\": \"WORLD\"}, 1e-06]"
+ },
+ "trade_exp_drinks": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:54:24+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"22,24\", {\"flow\": \"exports\", \"partner\": \"WORLD\"}, 1e-06]"
+ },
+ "trade_exp_electrical": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:54:24+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"85\", {\"flow\": \"exports\", \"partner\": \"WORLD\"}, 1e-06]"
+ },
+ "trade_exp_energy": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:54:24+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"27\", {\"flow\": \"exports\", \"partner\": \"WORLD\"}, 1e-06]"
+ },
+ "trade_exp_fats": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:54:24+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"15\", {\"flow\": \"exports\", \"partner\": \"WORLD\"}, 1e-06]"
+ },
+ "trade_exp_fruit_veg": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:54:24+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"06-08,20\", {\"flow\": \"exports\", \"partner\": \"WORLD\"}, 1e-06]"
+ },
+ "trade_exp_machinery": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:54:24+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"84\", {\"flow\": \"exports\", \"partner\": \"WORLD\"}, 1e-06]"
+ },
+ "trade_exp_meat_fish": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:54:24+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"01-05,16\", {\"flow\": \"exports\", \"partner\": \"WORLD\"}, 1e-06]"
+ },
+ "trade_exp_metals": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:54:24+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"26,72-83\", {\"flow\": \"exports\", \"partner\": \"WORLD\"}, 1e-06]"
+ },
+ "trade_exp_minerals": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:54:24+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"25,68-70\", {\"flow\": \"exports\", \"partner\": \"WORLD\"}, 1e-06]"
+ },
+ "trade_exp_other": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:54:24+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"71,90-99\", {\"flow\": \"exports\", \"partner\": \"WORLD\"}, 1e-06]"
+ },
+ "trade_exp_other_food": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:54:24+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"09-14,17-19,21,23\", {\"flow\": \"exports\", \"partner\": \"WORLD\"}, 1e-06]"
+ },
+ "trade_exp_other_transport": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:54:24+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"86,88-89\", {\"flow\": \"exports\", \"partner\": \"WORLD\"}, 1e-06]"
+ },
+ "trade_exp_pharma": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:54:24+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"30\", {\"flow\": \"exports\", \"partner\": \"WORLD\"}, 1e-06]"
+ },
+ "trade_exp_plastics": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:54:24+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"39-40\", {\"flow\": \"exports\", \"partner\": \"WORLD\"}, 1e-06]"
+ },
+ "trade_exp_textiles": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:54:24+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"50-67\", {\"flow\": \"exports\", \"partner\": \"WORLD\"}, 1e-06]"
+ },
+ "trade_exp_total": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:54:13+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"TOTAL\", {\"flow\": \"exports\", \"partner\": \"WORLD\"}, 1e-06]"
+ },
+ "trade_exp_vehicles": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:54:24+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"87\", {\"flow\": \"exports\", \"partner\": \"WORLD\"}, 1e-06]"
+ },
+ "trade_exp_wood_paper": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:54:24+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"41-49\", {\"flow\": \"exports\", \"partner\": \"WORLD\"}, 1e-06]"
+ },
+ "trade_imp_chemicals": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:54:24+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"28-29,31-38\", {\"flow\": \"imports\", \"partner\": \"WORLD\"}, 1e-06]"
+ },
+ "trade_imp_drinks": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:54:24+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"22,24\", {\"flow\": \"imports\", \"partner\": \"WORLD\"}, 1e-06]"
+ },
+ "trade_imp_electrical": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:54:24+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"85\", {\"flow\": \"imports\", \"partner\": \"WORLD\"}, 1e-06]"
+ },
+ "trade_imp_energy": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:54:24+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"27\", {\"flow\": \"imports\", \"partner\": \"WORLD\"}, 1e-06]"
+ },
+ "trade_imp_fats": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:54:24+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"15\", {\"flow\": \"imports\", \"partner\": \"WORLD\"}, 1e-06]"
+ },
+ "trade_imp_fruit_veg": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:54:24+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"06-08,20\", {\"flow\": \"imports\", \"partner\": \"WORLD\"}, 1e-06]"
+ },
+ "trade_imp_machinery": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:54:24+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"84\", {\"flow\": \"imports\", \"partner\": \"WORLD\"}, 1e-06]"
+ },
+ "trade_imp_meat_fish": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:54:24+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"01-05,16\", {\"flow\": \"imports\", \"partner\": \"WORLD\"}, 1e-06]"
+ },
+ "trade_imp_metals": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:54:24+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"26,72-83\", {\"flow\": \"imports\", \"partner\": \"WORLD\"}, 1e-06]"
+ },
+ "trade_imp_minerals": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:54:24+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"25,68-70\", {\"flow\": \"imports\", \"partner\": \"WORLD\"}, 1e-06]"
+ },
+ "trade_imp_other": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:54:24+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"71,90-99\", {\"flow\": \"imports\", \"partner\": \"WORLD\"}, 1e-06]"
+ },
+ "trade_imp_other_food": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:54:24+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"09-14,17-19,21,23\", {\"flow\": \"imports\", \"partner\": \"WORLD\"}, 1e-06]"
+ },
+ "trade_imp_other_transport": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:54:24+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"86,88-89\", {\"flow\": \"imports\", \"partner\": \"WORLD\"}, 1e-06]"
+ },
+ "trade_imp_pharma": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:54:24+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"30\", {\"flow\": \"imports\", \"partner\": \"WORLD\"}, 1e-06]"
+ },
+ "trade_imp_plastics": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:54:24+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"39-40\", {\"flow\": \"imports\", \"partner\": \"WORLD\"}, 1e-06]"
+ },
+ "trade_imp_textiles": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:54:24+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"50-67\", {\"flow\": \"imports\", \"partner\": \"WORLD\"}, 1e-06]"
+ },
+ "trade_imp_total": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:54:24+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"TOTAL\", {\"flow\": \"imports\", \"partner\": \"WORLD\"}, 1e-06]"
+ },
+ "trade_imp_vehicles": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:54:24+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"87\", {\"flow\": \"imports\", \"partner\": \"WORLD\"}, 1e-06]"
+ },
+ "trade_imp_wood_paper": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:54:24+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"41-49\", {\"flow\": \"imports\", \"partner\": \"WORLD\"}, 1e-06]"
  },
  "unemployment_andalucia": {
   "status": "ok",

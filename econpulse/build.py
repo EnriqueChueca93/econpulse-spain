@@ -14,7 +14,7 @@ from pathlib import Path
 import pandas as pd
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
-from . import __version__, analytics, changes, ecbspeak, feed, fiscal, industries, schedule, sectortables, stance, surprises, tools
+from . import __version__, analytics, changes, ecbspeak, feed, fiscal, industries, schedule, sectortables, stance, surprises, tools, trade
 from .charts import build_home_charts
 from .config import SITE_DIR, STATIC_DIR, TEMPLATES_DIR
 from .pages import build_page
@@ -43,7 +43,7 @@ SECTION_PAGES = {
 }
 
 NAV = ([("index.html", "Home")] + [(f"{s}.html", t) for s, (t, _, _) in SECTION_PAGES.items()]
-       + [("sector-tables.html", "Sector tables"), ("tools.html", "Tools"), ("calendar.html", "Calendar"),
+       + [("trade.html", "Trade"), ("sector-tables.html", "Sector tables"), ("tools.html", "Tools"), ("calendar.html", "Calendar"),
           ("data.html", "Data")])
 # What each tab's dropdown lists besides the sections of a section page (anchors or other pages).
 NAV_EXTRA = {
@@ -54,6 +54,7 @@ NAV_EXTRA = {
                    ("stance.html", "Global central bank stance")],
     "calendar.html": [("#recent", "Released in the past week"), ("#upcoming", "The next two months")],
     "sector-tables.html": [(f"#{section_id}", title) for section_id, title, *_ in sectortables.PAGE],
+    "trade.html": [(f"#{section_id}", title) for section_id, title in trade.PAGE],
 }
 # Pages a section tab's dropdown lists after that page's own sections.
 NAV_SUBPAGES = {"labour.html": [("industry-detail.html", "Every industry")]}
@@ -177,6 +178,12 @@ def build_site(indicators: list[Indicator], store: Store | None = None, site_dir
     render("industry-detail.html", "industry-detail.html", active="labour.html", table=detail["table"],
            sections=detail["sections"], moves=detail["moves"],
            charts_file="data/charts-industries.js" if detail["charts"] else None)
+    goods = trade.page(readings_data)
+    if goods["charts"]:
+        write_data_js(data_dir / "charts-trade.js", "charts", goods["charts"])
+    render("trade.html", "trade.html", facts=goods["facts"], table=goods["table"], overview=goods["overview"],
+           rankings=goods["rankings"], sections=goods["sections"], chapters=goods["chapters"], page_nav=trade.PAGE,
+           charts_file="data/charts-trade.js" if goods["charts"] else None)
     sector = sectortables.page(readings_data)
     if sector["charts"]:
         write_data_js(data_dir / "charts-sectortables.js", "charts", sector["charts"])

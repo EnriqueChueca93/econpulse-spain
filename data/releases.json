@@ -5081,6 +5081,279 @@
    "display": "6.3k 12-mo total",
    "period": "Aug 2026",
    "flash": false
+  },
+  "trade_exp_total": {
+   "date": "2026-08-01",
+   "raw": 26754.37828,
+   "display": "€401,843 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_imp_total": {
+   "date": "2026-08-01",
+   "raw": 35118.73863,
+   "display": "€477,055 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_bal_total": {
+   "date": "2026-08-01",
+   "raw": -8364.36035,
+   "display": "−€75,212 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_exp_meat_fish": {
+   "date": "2026-08-01",
+   "raw": 1586.524798,
+   "display": "€20,666 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_exp_fruit_veg": {
+   "date": "2026-08-01",
+   "raw": 1508.484901,
+   "display": "€28,162 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_exp_fats": {
+   "date": "2026-08-01",
+   "raw": 528.875514,
+   "display": "€7,587 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_exp_drinks": {
+   "date": "2026-08-01",
+   "raw": 498.126861,
+   "display": "€6,619 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_exp_other_food": {
+   "date": "2026-08-01",
+   "raw": 1155.672872,
+   "display": "€15,823 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_exp_energy": {
+   "date": "2026-08-01",
+   "raw": 3018.741816,
+   "display": "€29,275 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_exp_minerals": {
+   "date": "2026-08-01",
+   "raw": 714.055726,
+   "display": "€10,178 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_exp_metals": {
+   "date": "2026-08-01",
+   "raw": 2079.472001,
+   "display": "€36,111 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_exp_wood_paper": {
+   "date": "2026-08-01",
+   "raw": 769.044974,
+   "display": "€11,161 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_exp_chemicals": {
+   "date": "2026-08-01",
+   "raw": 2365.63181,
+   "display": "€33,137 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_exp_pharma": {
+   "date": "2026-08-01",
+   "raw": 1562.564058,
+   "display": "€18,949 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_exp_plastics": {
+   "date": "2026-08-01",
+   "raw": 1245.831023,
+   "display": "€18,926 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_exp_textiles": {
+   "date": "2026-08-01",
+   "raw": 1938.549583,
+   "display": "€23,996 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_exp_machinery": {
+   "date": "2026-08-01",
+   "raw": 1866.894342,
+   "display": "€29,646 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_exp_electrical": {
+   "date": "2026-08-01",
+   "raw": 1525.71143,
+   "display": "€23,745 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_exp_vehicles": {
+   "date": "2026-08-01",
+   "raw": 2302.616262,
+   "display": "€54,933 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_exp_other_transport": {
+   "date": "2026-08-01",
+   "raw": 415.185912,
+   "display": "€8,094 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_exp_other": {
+   "date": "2026-08-01",
+   "raw": 1672.399685,
+   "display": "€24,832 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_imp_meat_fish": {
+   "date": "2026-08-01",
+   "raw": 1508.934624,
+   "display": "€18,660 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_imp_fruit_veg": {
+   "date": "2026-08-01",
+   "raw": 771.52211,
+   "display": "€10,959 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_imp_fats": {
+   "date": "2026-08-01",
+   "raw": 520.343131,
+   "display": "€6,016 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_imp_drinks": {
+   "date": "2026-08-01",
+   "raw": 401.648546,
+   "display": "€4,804 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_imp_other_food": {
+   "date": "2026-08-01",
+   "raw": 1894.916059,
+   "display": "€22,211 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_imp_energy": {
+   "date": "2026-08-01",
+   "raw": 5908.12082,
+   "display": "€59,724 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_imp_minerals": {
+   "date": "2026-08-01",
+   "raw": 364.878411,
+   "display": "€5,557 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_imp_metals": {
+   "date": "2026-08-01",
+   "raw": 2730.395241,
+   "display": "€38,675 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_imp_wood_paper": {
+   "date": "2026-08-01",
+   "raw": 851.516178,
+   "display": "€12,146 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_imp_chemicals": {
+   "date": "2026-08-01",
+   "raw": 2304.525018,
+   "display": "€33,345 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_imp_pharma": {
+   "date": "2026-08-01",
+   "raw": 1789.609148,
+   "display": "€23,427 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_imp_plastics": {
+   "date": "2026-08-01",
+   "raw": 1502.891609,
+   "display": "€22,302 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_imp_textiles": {
+   "date": "2026-08-01",
+   "raw": 2871.500823,
+   "display": "€35,603 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_imp_machinery": {
+   "date": "2026-08-01",
+   "raw": 2980.165986,
+   "display": "€46,729 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_imp_electrical": {
+   "date": "2026-08-01",
+   "raw": 3074.47098,
+   "display": "€45,228 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_imp_vehicles": {
+   "date": "2026-08-01",
+   "raw": 3351.616487,
+   "display": "€53,562 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_imp_other_transport": {
+   "date": "2026-08-01",
+   "raw": 266.731567,
+   "display": "€6,215 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_imp_other": {
+   "date": "2026-08-01",
+   "raw": 2024.953762,
+   "display": "€31,892 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
   }
  },
  "notes": [
@@ -5106,6 +5379,6 @@
    "at": "2026-11-01T02:50:46+00:00"
   }
  ],
- "updated_at": "2026-11-01T12:31:12+00:00",
+ "updated_at": "2026-11-01T12:54:28+00:00",
  "started_at": "2026-10-31T23:31:49+00:00"
 }
