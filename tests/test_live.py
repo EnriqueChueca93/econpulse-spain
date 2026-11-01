@@ -3,7 +3,7 @@
 import pandas as pd
 import pytest
 
-from econpulse.sources import bde, ecb, eurostat, fred, ine, ree, segsocial
+from econpulse.sources import bde, dbnomics, ecb, eurostat, fred, ine, oecd, ree, segsocial
 
 pytestmark = pytest.mark.live
 
@@ -50,3 +50,11 @@ def test_fred_brent():
 def test_ree_price_recent_window():
     s = ree.fetch("spot_price", since=pd.Timestamp.today() - pd.Timedelta(days=5)).series
     assert len(s) >= 3 and recent(s, 3)
+
+
+def test_forecast_feeds():
+    """The OECD Economic Outlook names its edition; AMECO runs past this year and says when it changed."""
+    r = oecd.fetch("OECD.ECO.MAD,DSD_EO@DF_EO,/ESP.GDPV_ANNPCT.A", {"edition": True})
+    assert r.meta["edition"].startswith("Economic Outlook") and r.series.index[-1].year > pd.Timestamp.now().year
+    r = dbnomics.fetch("AMECO/ZUTN/ESP.1.0.0.0.ZUTN")
+    assert r.series.index[-1].year > pd.Timestamp.now().year and len(r.meta["source_updated"]) == 10

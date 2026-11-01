@@ -14,14 +14,13 @@ from pathlib import Path
 import pandas as pd
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
-from . import __version__, analytics, changes, schedule, tools
+from . import __version__, analytics, changes, schedule, surprises, tools
 from .charts import build_home_charts
 from .config import SITE_DIR, STATIC_DIR, TEMPLATES_DIR
 from .pages import build_page
 from .questions import four_questions
 from .registry import Indicator
 from .snapshot import build_snapshot
-from .sources import SOURCE_NAMES
 from .sources.base import MADRID, madrid_today
 from .store import Store
 from .tables import Data
@@ -40,7 +39,7 @@ SECTION_PAGES = {
     "housing": ("Housing", "House prices, home sales and mortgage rates.", 6),
     "international": ("International", "Spain next to the euro area and its peers.", 6),
     "regions": ("Regions", "The 17 autonomous communities: unemployment, house prices, inflation and income per head.", 6),
-    "analysis": ("Analysis", "EconPulse's own readings: the economy against its history, a GDP nowcast, the 10-year yield split in two, and Taylor rules.", 7),
+    "analysis": ("Analysis", "EconPulse's own readings: the economy against its history, data surprises, a GDP nowcast, what forecasters expect, the 10-year yield split in two, and Taylor rules.", 7),
 }
 
 NAV = ([("index.html", "Home")] + [(f"{s}.html", t) for s, (t, _, _) in SECTION_PAGES.items()]
@@ -93,7 +92,8 @@ def build_site(indicators: list[Indicator], store: Store | None = None, site_dir
     by_id = {i["id"]: i for i in items}
     charts = build_home_charts(indicators, store)
     snapshot["questions"] = four_questions(indicators, store)
-    snapshot["readings"] = analytics.home_facts(Data(indicators, store))
+    readings_data = Data(indicators, store)
+    snapshot["readings"] = analytics.home_facts(readings_data) + surprises.surprise_facts(readings_data)
 
     data_dir = site_dir / "data"
     data_dir.mkdir(parents=True, exist_ok=True)
@@ -111,7 +111,7 @@ def build_site(indicators: list[Indicator], store: Store | None = None, site_dir
         "build_id": build_id,
         "built": _madrid_time(snapshot["generated_at"]),
         "as_of": _madrid_time(snapshot["data_as_of"]).replace(" Madrid time", ""),
-        "sources": list(dict.fromkeys(SOURCE_NAMES.get(i.source, i.source) for i in indicators if not i.is_derived)),
+        "sources": list(dict.fromkeys(i.source_name for i in indicators if not i.is_derived)),
         "nav": NAV,
         "coming_up": schedule.coming_up(store),
     }

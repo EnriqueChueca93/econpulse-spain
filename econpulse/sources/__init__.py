@@ -38,9 +38,19 @@ SOURCE_NAMES = {
     "oecd": "OECD",
     "bis": "BIS",
     "bls": "US BLS",
-    "dbnomics": "US BEA (via DBnomics)",
+    "dbnomics": "DBnomics",
     "eia": "US EIA",
     "worldbank": "World Bank",
     "bundesbank": "Bundesbank",
     DERIVED: "EconPulse calculation",
 }
+
+# DBnomics mirrors several agencies; credit the one behind the series (the key's first part).
+DBNOMICS_PROVIDERS = {"BEA": "US BEA (via DBnomics)", "AMECO": "European Commission (via DBnomics)"}
+
+
+def source_name(source: str, key: str = "") -> str:
+    """Who publishes an indicator's data, as shown on the site."""
+    if source == "dbnomics":
+        return DBNOMICS_PROVIDERS.get(key.split("/", 1)[0], SOURCE_NAMES[source])
+    return SOURCE_NAMES.get(source, source)

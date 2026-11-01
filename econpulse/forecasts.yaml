@@ -1,0 +1,77 @@
+# Forecasts for Spain that no API provides: update by hand when a new edition comes out.
+# The OECD and the European Commission are fetched automatically (fc_* in indicators.yaml).
+#
+# Per forecaster:
+#   name, url     shown in the table; url is the page the numbers come from
+#   short         a short name for the chart
+#   group         spain or international
+#   published     date of the edition (YYYY-MM-DD)
+#   inflation     what their inflation figure measures: HICP or CPI
+#   note          optional, shown under the table
+#   values        per year: gdp (real growth, %), inflation (annual average, %),
+#                 unemployment (annual average, % of the labour force) and balance
+#                 (general government budget balance, % of GDP; negative = deficit).
+#                 Leave out what the forecaster does not publish.
+#
+# Usual timing: Banco de España in March, June, September/October and December; FUNCAS
+# Panel every two months (January, March, May, July, September, November); AIReF with
+# its reports (spring, July, October); the government with its budget plans; the IMF
+# World Economic Outlook in April and October (its website blocks automated downloads).
+
+forecasters:
+  - id: bde
+    name: Banco de España
+    short: BdE
+    group: spain
+    url: https://www.bde.es/wbe/en/publicaciones/analisis-economico-investigacion/proyecciones-macro-informe-trimestral/proyecciones-e-informe-trimestral-de-la-economia-espanola-tercer-trimestre-2026.html
+    published: 2026-10-09
+    inflation: HICP
+    values:
+      2026: {gdp: 2.6, inflation: 3.9, unemployment: 10.0, balance: -2.6}
+      2027: {gdp: 2.2, inflation: 3.7, unemployment: 9.7, balance: -2.2}
+
+  - id: funcas
+    name: FUNCAS Panel (consensus)
+    short: FUNCAS
+    group: spain
+    url: https://www.funcas.es/textointegro/panel-de-previsiones-de-la-economia-espanola-septiembre-2026/
+    published: 2026-09-16
+    inflation: CPI
+    note: The FUNCAS Panel is the average of 19 forecasters (banks, research institutes, consultancies).
+    values:
+      2026: {gdp: 2.5, inflation: 3.4, unemployment: 9.9, balance: -2.5}
+      2027: {gdp: 2.0, inflation: 2.5, unemployment: 9.6, balance: -2.3}
+
+  - id: airef
+    name: AIReF
+    short: AIReF
+    group: spain
+    url: https://www.airef.es/wp-content/uploads/2026/07/Informes-ejecuci%C3%B3n-2026/Informe-Ejecucion-Presupuestaria-2026.pdf
+    published: 2026-07-15
+    inflation: CPI
+    values:
+      2026: {gdp: 2.5, inflation: 3.3, unemployment: 10.2, balance: -2.6}
+      2027: {gdp: 2.1, inflation: 2.4, unemployment: 10.1}
+
+  - id: government
+    name: Government
+    short: Government
+    group: spain
+    url: https://portal.mineco.gob.es/es-es/comunicacion/Paginas/Gobierno-eleva-cuatro-decimas-2-6-por-ciento-prevision-crecimiento-economico-2026.aspx
+    published: 2026-06-29
+    inflation: CPI
+    note: The government's deficit figures leave out the extraordinary spending after the DANA floods.
+    values:
+      2026: {gdp: 2.6, unemployment: 9.9, balance: -2.1}
+      2027: {gdp: 2.2, unemployment: 9.4, balance: -1.8}
+
+  - id: imf
+    name: IMF
+    short: IMF
+    group: international
+    url: https://www.imf.org/en/Publications/WEO/Issues/2026/10/13/world-economic-outlook-october-2026
+    published: 2026-10-13
+    inflation: HICP
+    values:
+      2026: {gdp: 2.5, inflation: 3.7}
+      2027: {gdp: 1.8, inflation: 2.7}

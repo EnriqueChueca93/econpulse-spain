@@ -20,7 +20,8 @@ def parse(payload: dict) -> FetchResult:
         raise ValueError("DBnomics returned no series")
     doc = docs[0]
     pairs = [(p, v) for p, v in zip(doc["period"], doc["value"]) if v not in (None, "NA")]
-    return FetchResult(make_series((parse_period(p) for p, _ in pairs), (v for _, v in pairs)))
+    meta = {"source_updated": doc["indexed_at"][:10]} if doc.get("indexed_at") else {}  # when DBnomics last saw a change
+    return FetchResult(make_series((parse_period(p) for p, _ in pairs), (v for _, v in pairs)), meta)
 
 
 def fetch(key: str, params: dict | None = None, **_) -> FetchResult:

@@ -78,7 +78,7 @@ INFLATION = [
 ]
 
 
-def _component_series(data: Data, c: Component) -> pd.Series | None:
+def _component_series(data: Data, c: Component, smooth: bool = True) -> pd.Series | None:
     raw = data.store.load_series(c.id)
     if raw is None or c.id not in data.by_id:
         return None
@@ -87,7 +87,7 @@ def _component_series(data: Data, c: Component) -> pd.Series | None:
         s = transforms.apply(c.transform, raw, freq)
     except ValueError:
         return None
-    if c.smooth > 1:
+    if smooth and c.smooth > 1:
         window = s.rolling(c.smooth, min_periods=c.smooth)
         s = window.sum() if c.how == "sum" else window.mean()
     return s.dropna()
@@ -109,12 +109,31 @@ def _monthly(s: pd.Series, freq: str) -> pd.Series:
     return s
 
 
-def composite(data: Data, components: list[Component], key: str) -> dict | None:
-    """z-scores of each component against its own history, and their weighted average by month.
+def weighted_by_age(scores: dict[str, pd.Series], end: pd.Timestamp) -> pd.Series:
+    """Monthly weighted average of several monthly score series, from 2013 to ``end``.
 
-    A reading keeps full weight in its own month and loses a quarter of it for each month it
-    ages; after three months it drops out. So the latest value leans on the newest data.
+    At each month every series contributes its newest reading so far, at full weight in its
+    own month and a quarter less for each month it ages; after three months it drops out.
     """
+    months = pd.date_range(HISTORY_START, end, freq="MS")
+    weighted = pd.Series(0.0, index=months)
+    weights = pd.Series(0.0, index=months)
+    for z in scores.values():
+        z = z.groupby(z.index).last()
+        # At each month: the newest reading so far, and how many months old it is.
+        value = z.reindex(months, method="ffill")
+        seen = pd.Series(z.index, index=z.index).reindex(months, method="ffill")
+        age = pd.Series([_months_between(s, m) if pd.notna(s) else 99 for s, m in zip(seen, months)], index=months)
+        w = (1 - age / 4).clip(lower=0)
+        use = value.notna() & (w > 0)
+        weighted[use] += w[use] * value[use]
+        weights[use] += w[use]
+    return (weighted / weights.replace(0, np.nan)).dropna()
+
+
+def composite(data: Data, components: list[Component], key: str) -> dict | None:
+    """z-scores of each component against its own history, and their weighted average by month
+    (see weighted_by_age: the latest value leans on the newest data)."""
     def compute():
         rows, zs = [], {}
         for c in components:
@@ -132,20 +151,7 @@ def composite(data: Data, components: list[Component], key: str) -> dict | None:
         if not zs:
             return None
         end = max(z.index[-1] for z in zs.values())
-        months = pd.date_range(HISTORY_START, end, freq="MS")
-        weighted = pd.Series(0.0, index=months)
-        weights = pd.Series(0.0, index=months)
-        for z in zs.values():
-            z = z.groupby(z.index).last()
-            # At each month: the newest reading so far, and how many months old it is.
-            value = z.reindex(months, method="ffill")
-            seen = pd.Series(z.index, index=z.index).reindex(months, method="ffill")
-            age = pd.Series([_months_between(s, m) if pd.notna(s) else 99 for s, m in zip(seen, months)], index=months)
-            w = (1 - age / 4).clip(lower=0)
-            use = value.notna() & (w > 0)
-            weighted[use] += w[use] * value[use]
-            weights[use] += w[use]
-        series = (weighted / weights.replace(0, np.nan)).dropna()
+        series = weighted_by_age(zs, end)
         for row in rows:
             row["age"] = _months_between(row["date"] + pd.DateOffset(months=2 if row["freq"] == "Q" else 0), end)
         return {"series": series, "rows": rows, "end": end}

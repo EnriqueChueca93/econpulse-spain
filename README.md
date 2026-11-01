@@ -34,7 +34,8 @@ Because the workflow commits data every day, run `git pull` before working local
 ## The site
 
 - **Home** (`site/index.html`): 16 key-indicator tiles, EconPulse readings (activity and inflation against their
-  history, the GDP nowcast, the ECB rate against a Taylor rule), "The economy in four questions" and three charts.
+  history and against a simple forecast, the GDP nowcast, the ECB rate against a Taylor rule), "The economy in four
+  questions" and three charts.
 - **GDP, Labour market, Wages, Inflation**: econvitals-style tables (1-, 3-, 6- and 12-month changes; latest,
   a month ago, a year ago; contributions to growth) and 25 charts, each with a data table and PNG download.
 - **Financial, ECB**: a markets table (1-day, 1-week, YTD, 1-year moves), the Spanish yield curve against the
@@ -45,8 +46,9 @@ Because the workflow commits data every day, run `git pull` before working local
 - **Tools**: Economy vs pre-COVID trend, an interactive Taylor rule and an interest rate decomposer; change a
   setting and the numbers and charts recompute in the browser.
 - **Analysis**: EconPulse's own calculations, each explained on the page: activity and inflation composites,
-  a GDP nowcast with its track record, the 10-year yield split into Bund and prima de riesgo, and Taylor rules
-  for the euro area and Spain.
+  data surprises (the latest figures against a simple statistical forecast), a GDP nowcast with its track record,
+  what forecasters expect for this year and next, the 10-year yield split into Bund and prima de riesgo, and
+  Taylor rules for the euro area and Spain.
 - **Calendar** (`site/calendar.html`): releases in the past week and the next two months; every page has a
   "Coming up" bar.
 - **Data** (`site/data.html`): a freshness summary, then every series, its source and whether it is up to date.
@@ -89,6 +91,9 @@ econpulse/            Python package
   pages.py            what each section page shows: blocks of tables and charts
   policy.py           ECB meeting calendar, rate decisions, the mortgage check
   analytics.py        composites, GDP nowcast, 10-year decomposition, Taylor rules
+  surprises.py        data surprises: each figure against a one-step AR(1) forecast
+  forecasts.py        the forecasters' table: OECD and Commission (fetched) plus forecasts.yaml
+  forecasts.yaml      forecasts entered by hand (Banco de España, AIReF, FUNCAS, government, IMF)
   tools.py            data for the interactive tools (the browser does the arithmetic, static/tools.js)
   schedule.py         release calendar: INE's iCal, the Social Security rule, ECB decisions
   changes.py          "what changed": notes on new releases, revisions and big market moves
@@ -114,11 +119,19 @@ To show it in a section table or chart, add a `Row` or a chart series to that pa
 - **ECB:** `FLOW/SERIES_KEY`, as shown on data.ecb.europa.eu.
 - **Banco de España:** the series code from the first row of any table's CSV download (e.g. `DPUG0B1F0ZP`).
 - **OECD:** `dataflow/series key` as in the OECD Data Explorer; empty key positions are wildcards that must match one series.
+- **DBnomics:** `provider/dataset/series` as on db.nomics.world, e.g. `AMECO/ZUTN/ESP.1.0.0.0.ZUTN`.
 - **BIS:** `dataflow/series key`, e.g. `WS_CBPOL/D.GB` (Bank of England rate).
 - **World Bank:** the column header in the monthly prices sheet, e.g. `Gold`.
 - **FRED:** the series id (e.g. `DCOILBRENTEU`). FRED does not answer GitHub's servers, so the online site avoids it.
 - **Derived:** `subtract`, `add` or `divide` two indicators defined earlier in the file, `deflate` one by a
   price index, or `average` a daily series over complete months.
+
+## Updating the forecasts
+
+The OECD and European Commission forecasts update themselves. The others are in `econpulse/forecasts.yaml`:
+when a forecaster publishes a new edition, change its `published` date, `url` and `values`, then run
+`python -m econpulse build` (or push, and the site rebuilds). The comment at the top of the file lists each
+field and when the forecasters usually publish.
 
 ## Tests
 

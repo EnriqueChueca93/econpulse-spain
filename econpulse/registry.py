@@ -12,7 +12,7 @@ from .sources import derived
 
 SECTIONS = (
     "gdp", "labour", "wages", "inflation", "financial", "ecb",
-    "fiscal", "activity", "housing", "international", "regions",
+    "fiscal", "activity", "housing", "international", "regions", "analysis",
 )
 
 # How old the latest observation may get before we flag the series as not updating.
@@ -51,6 +51,10 @@ class Indicator:
     @property
     def is_derived(self) -> bool:
         return self.source == sources.DERIVED
+
+    @property
+    def source_name(self) -> str:
+        return sources.source_name(self.source, self.key)
 
     def source_url(self) -> str | None:
         client = sources.CLIENTS.get(self.source)

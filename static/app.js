@@ -282,7 +282,7 @@
       row.insertCell().textContent = category ? d : dateLabel(d, spec.freq);
       spec.series.forEach(function (s) {
         var j = s.x.indexOf(d);
-        row.insertCell().textContent = j >= 0 ? fmt(s.y[j], spec, spec.signed) : "–";
+        row.insertCell().textContent = j >= 0 && s.y[j] !== null ? fmt(s.y[j], spec, spec.signed) : "–";
       });
     });
     var caption = document.createElement("p");

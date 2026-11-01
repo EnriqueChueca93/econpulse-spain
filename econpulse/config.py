@@ -6,6 +6,7 @@ ROOT = Path(__file__).resolve().parent.parent
 PACKAGE_DIR = ROOT / "econpulse"
 
 REGISTRY_FILE = PACKAGE_DIR / "indicators.yaml"
+FORECASTS_FILE = PACKAGE_DIR / "forecasts.yaml"  # forecasts entered by hand
 
 DATA_DIR = ROOT / "data"
 SERIES_DIR = DATA_DIR / "series"

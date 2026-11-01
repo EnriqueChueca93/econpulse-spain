@@ -8,7 +8,7 @@ lists the indicators those functions read. Sections without blocks yet show thei
 (see build.SECTION_PAGES for the batch that fills them).
 """
 
-from . import analytics, policy
+from . import analytics, forecasts, policy, surprises
 from .charts import build_chart, build_curve, build_ranking, build_xy
 from .registry import Indicator
 from .snapshot import fmt_value, period_label
@@ -1008,6 +1008,19 @@ PAGES: dict[str, list[dict]] = {
             "charts": [analytics.composite_chart],
         },
         {
+            "id": "surprises",
+            "title": "Data surprises",
+            "intro": ("Did the latest figures beat or miss expectations? Analysts' forecasts for Spanish data are not "
+                      "freely available, so each figure is compared with a simple statistical forecast: what the "
+                      "indicator's own past predicted. Above zero, the data came in stronger (or inflation hotter) "
+                      "than that forecast. EconPulse calculation, not a survey of forecasters."),
+            "facts": surprises.surprise_facts,
+            "uses": [c.id for c in analytics.ACTIVITY + analytics.INFLATION],
+            "tables": [lambda data: surprises.surprise_table(data, "activity"),
+                       lambda data: surprises.surprise_table(data, "inflation")],
+            "charts": [surprises.surprise_chart],
+        },
+        {
             "id": "nowcast",
             "title": "GDP nowcast",
             "intro": ("An estimate of this quarter's GDP growth before INE publishes it, from Social Security "
@@ -1017,6 +1030,19 @@ PAGES: dict[str, list[dict]] = {
             "uses": ["gdp"] + [i.id for i in analytics.NOWCAST_INPUTS],
             "tables": [analytics.nowcast_inputs_table, analytics.nowcast_record_table],
             "charts": [analytics.nowcast_chart],
+        },
+        {
+            "id": "forecasts",
+            "title": "What forecasters expect",
+            "intro": ("The latest forecasts for Spain this year and next, with EconPulse's own figure for this year's "
+                      "GDP. Each forecaster's row shows when it was published: forecasts made months apart saw "
+                      "different data, so differences are partly about timing."),
+            "facts": forecasts.forecast_facts,
+            "callout": forecasts.forecast_callout,
+            "uses": forecasts.INDICATORS + ["gdp"] + [i.id for i in analytics.NOWCAST_INPUTS],
+            "tables": [lambda data: forecasts.forecast_table(data, forecasts.years()[0]),
+                       lambda data: forecasts.forecast_table(data, forecasts.years()[1])],
+            "charts": [forecasts.forecast_chart],
         },
         {
             "id": "yields",

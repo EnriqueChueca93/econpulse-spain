@@ -18,9 +18,9 @@ econvitals.org today has:
 | Key indicators strip | **Keep**, with Spanish equivalents (section 4) |
 | Four questions | **Keep**, reworded for Spain |
 | Composite vs. its own history (z-scores) | **Keep** (Batch 7) |
-| Composite vs. forecasts (surprise index) | **Stretch goal**: needs consensus forecasts for each release, which aren't freely available for Spain |
+| Composite vs. forecasts (surprise index) | **Adapted** (Batch 12): consensus forecasts for each release aren't freely available for Spain, so each release is compared with a simple statistical forecast, and the page says so |
 | Fed section, CME FedWatch | **Becomes the ECB section.** Spain has no monetary policy of its own. The market-implied rate path is approximated, because no free €STR OIS feed exists |
-| GDP nowcasts (GDPNow, Goldman, Kalshi) | **Replaced** by our own bridge-equation nowcast with a published track record (Batch 7). AIReF, Banco de España and FUNCAS publish as web pages and PDFs, not data feeds, so their panel is left out for now |
+| GDP nowcasts (GDPNow, Goldman, Kalshi) | **Replaced** by our own bridge-equation nowcast with a published track record (Batch 7). AIReF, Banco de España, FUNCAS, the government and the IMF publish as web pages and PDFs, so their forecasts go in a hand-updated file; the OECD and the Commission are fetched (Batch 12) |
 | Sell-side commentary | **Drop** (paid and copyrighted) |
 | ISM / PMI | **Replace** with the European Commission sentiment surveys, which are free. HCOB PMI is proprietary |
 | Email briefings, AI blogs | **After launch** (Batch 9+) |
@@ -70,7 +70,7 @@ One Python codebase. Its output is a plain static website that opens by double-c
 
 ## 3. Data sources
 
-Status after Batch 10 (1 Nov 2026): 268 indicators. All sources are official or public and are accessed with an honest `EconPulseSpain` User-Agent:
+Status after Batch 12 (1 Nov 2026): 276 indicators. All sources are official or public and are accessed with an honest `EconPulseSpain` User-Agent:
 
 | Provider | Access | Status | Covers |
 |---|---|---|---|
@@ -80,10 +80,10 @@ Status after Batch 10 (1 Nov 2026): 268 indicators. All sources are official or 
 | **Banco de España** | REST API `app.bde.es/bierest` | ✅ in use (18) | building permits; daily Spanish yield curve (12-month bill, 3, 5, 10, 15 and 30 years), German 10y, prima de riesgo, Euribor, IBEX 35; registered unemployment, pay rises agreed in collective agreements, car sales, hotel nights, balance of payments |
 | **Seguridad Social** | spreadsheet linked from its statistics page | ✅ in use (1) | average registrations (*afiliados*), total system, since 2001 |
 | **Red Eléctrica (REE)** | REData API `apidatos.ree.es` | ✅ in use (2) | day-ahead electricity price (daily average of 15-minute prices), daily demand |
-| **OECD** | SDMX REST, CSV | ✅ in use (13) | UK, Japan and Canada: GDP growth, CPI, unemployment; 10-year yields for them and the US |
+| **OECD** | SDMX REST, CSV | ✅ in use (17) | UK, Japan and Canada: GDP growth, CPI, unemployment; 10-year yields for them and the US; Economic Outlook forecasts for Spain |
 | **BIS** | SDMX REST, CSV | ✅ in use (6) | policy rates (US, UK, Japan, Canada), Japan's CPI, Spanish households' debt-service ratio |
 | **US BLS** | public API v1, no key (25 requests a day) | ✅ in use (3) | US CPI, core CPI, unemployment |
-| **DBnomics** | open mirror (Banque de France, CEPREMAP) | ✅ in use (1) | US GDP growth (BEA) |
+| **DBnomics** | open mirror (Banque de France, CEPREMAP) | ✅ in use (5) | US GDP growth (BEA); the European Commission's forecasts for Spain (AMECO) |
 | **US EIA** | public history pages | ✅ in use (1) | daily Brent spot price |
 | **World Bank** | monthly commodity prices spreadsheet | ✅ in use (3) | European gas (TTF), gold, copper |
 | **Bundesbank** | SDMX REST, CSV | ✅ in use (1) | German 10-year yield, daily (Banco de España's copy has gaps since 2020) |
@@ -91,7 +91,7 @@ Status after Batch 10 (1 Nov 2026): 268 indicators. All sources are official or 
 | **EconPulse calculations** | from the series above | ✅ in use (12) | Brent in euros, 10-year spreads over Germany, GDP deflator, real wages, real house prices, average mortgage, primary balance, monthly electricity demand |
 | ~~Yahoo Finance~~ | unofficial API | ❌ dropped | IBEX 35 now comes from Banco de España and Brent from FRED |
 | **INE release calendar** | iCal file `ine.es/dynt3/Calendario/calendario.ics` | ✅ in use | dates and times of every INE release; saved to `data/calendar.json` at each fetch |
-| **AIReF · FUNCAS · BdE projections** | web pages / PDF | ⏸ not automated | GDP nowcast, forecaster consensus, official projections: no stable data feed (AIReF's MIPred page has moved); a hand-updated file is an option |
+| **AIReF · FUNCAS · BdE · government · IMF forecasts** | web pages / PDF | ✍ by hand (Batch 12) | `econpulse/forecasts.yaml`: no data feed (the IMF's site blocks automated downloads, and DBnomics' copy of its outlook is a year old) |
 
 **Gotchas found already:**
 - INE's CPI table 50902 stops at Dec 2025, because CPI moved to new tables in 2026. The registry pins INE *series* codes rather than table IDs, and a freshness check flags any series that stops updating.
@@ -219,6 +219,9 @@ Each batch is sized for one working session, ends with something you can open or
 - Release calendar (INE calendar, Social Security, ECB meetings) and the "Today / Coming up" bar
 - Automatic "what changed since the last update" notes, rule-based
 - About and methodology page, data-freshness page
+
+### Batch 12 — Forecasts and surprises ✅ done 1 Nov 2026
+*Result: two new blocks on the Analysis page. "What forecasters expect": GDP growth, inflation, unemployment and the budget balance for 2026 and 2027 from seven forecasters, each with its publication month and a link. The OECD Economic Outlook and the European Commission (AMECO, via DBnomics) are fetched as indicators (`fc_*`, edition read from the data); the Banco de España, AIReF, the FUNCAS Panel, the government and the IMF are in `econpulse/forecasts.yaml`, updated by hand. They average 2.5% for 2026 and 2.0% for 2027; EconPulse's own 2026 figure, INE's first three quarters plus the Q4 nowcast, is 2.6%, and 2.4% is already banked even with a flat Q4. "Data surprises": each figure behind the composites against a one-step AR(1) forecast fitted only on earlier data, in units of the model's typical error, averaged over the past four months (weights 1, ¾, ½, ¼). Activity is +0.3 (in line) and inflation +0.8 (above expectations); both are also on the home page. DBnomics series are now credited to their real publisher. 276 indicators, 144 offline tests.*
 
 ### Batch 11 — Interactive tools ✅ done 1 Nov 2026
 *Result: a Tools page (`templates/tools.html`, `static/tools.js`, data from `econpulse/tools.py`) where every number recomputes in the browser. Economy vs pre-COVID trend: ten series against a log-linear trend fitted from a chosen year (2010–2017) to 2019, with the gap for all of them (real GDP is 5.8% below its 2015–19 trend; consumer prices 17.5% above). Taylor rule: sliders for the neutral rate and the two weights, headline or core inflation, euro area and/or Spain; the defaults reproduce the Analysis page. Interest rate decomposer: any two dates, Spain's 10-year move split into German yield plus prima de riesgo, and into AAA 1-year, AAA 1-to-10-year forward and spread over AAA. Building it showed that Banco de España's German 10-year series has gaps since 2020 (one day in July 2022), so `de_10y` now comes from the Bundesbank. 135 offline tests.*

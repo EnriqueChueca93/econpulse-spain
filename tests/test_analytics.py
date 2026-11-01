@@ -133,6 +133,7 @@ def test_analysis_page_builds_with_partial_data(tmp_path):
     store.save_series("es_10y", pd.Series(np.linspace(3.0, 4.0, len(days)), index=days))
     store.save_series("de_10y", pd.Series(np.linspace(2.6, 3.3, len(days)), index=days))
     page = pages.build_page("analysis", load_registry(), store)
-    assert [b["id"] for b in page["blocks"]] == ["yields"]  # the other blocks have no data: dropped
-    assert page["blocks"][0]["tables"][0]["rows"][0]["label"] == "Spain 10-year yield"
+    # The other blocks have no data and are dropped; the forecasts entered by hand always show.
+    assert [b["id"] for b in page["blocks"]] == ["forecasts", "yields"]
+    assert page["blocks"][1]["tables"][0]["rows"][0]["label"] == "Spain 10-year yield"
     assert analytics.home_facts(Data(load_registry(), store)) == []

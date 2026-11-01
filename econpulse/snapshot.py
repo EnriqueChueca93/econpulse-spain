@@ -9,7 +9,7 @@ from datetime import datetime, timezone
 
 import pandas as pd
 
-from . import sources, transforms
+from . import transforms
 from .fetch import is_out_of_date
 from .registry import Indicator
 from .store import Store
@@ -159,7 +159,7 @@ def summarize(ind: Indicator, series: pd.Series | None, entry: dict) -> dict:
         "freq": ind.freq,
         "tile": ind.tile,
         "notes": ind.notes,
-        "source": sources.SOURCE_NAMES.get(ind.source, ind.source),
+        "source": ind.source_name,
         "source_url": ind.source_url(),
         "status": status,
         "out_of_date": is_out_of_date(last_date, ind.max_age),

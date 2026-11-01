@@ -3,7 +3,8 @@
 # One entry per series. Fields:
 #   id           unique name, also the CSV file name in data/series/
 #   label        English name;  label_es: official Spanish name
-#   section      gdp | labour | wages | inflation | financial | ecb | fiscal | activity | housing | international
+#   section      gdp | labour | wages | inflation | financial | ecb | fiscal | activity | housing | international |
+#                regions | analysis
 #   source       ine | eurostat | ecb | bde | segsocial | ree | oecd | bis | bls | dbnomics | eia | worldbank |
 #                bundesbank |
 #                fred | derived  (FRED does not answer GitHub's servers, so the online site avoids it)
@@ -2021,3 +2022,100 @@ indicators:
     unit: index
     decimals: 0
     notes: GDP per head at current prices, Spain = 100 (INE regional accounts).
+
+  # ---------------------------------------------------------------- Forecasts (Analysis page)
+  # Each series runs through the latest forecast year: the last two values are the forecasts
+  # for this year and next, and they change with each edition. Forecasts not available from
+  # an API (Banco de España, AIReF, FUNCAS, the government, the IMF) are in forecasts.yaml.
+  - id: fc_oecd_gdp
+    label: OECD forecast, real GDP growth
+    label_es: Previsión de la OCDE, crecimiento del PIB real
+    section: analysis
+    source: oecd
+    key: "OECD.ECO.MAD,DSD_EO@DF_EO,/ESP.GDPV_ANNPCT.A"
+    params: {edition: true}
+    freq: A
+    unit: "%"
+    change_unit: pp
+    notes: OECD Economic Outlook, published in June and December; history then forecasts.
+
+  - id: fc_oecd_inflation
+    label: OECD forecast, HICP inflation
+    label_es: Previsión de la OCDE, inflación (IPCA)
+    section: analysis
+    source: oecd
+    key: "OECD.ECO.MAD,DSD_EO@DF_EO,/ESP.CPIH_YTYPCT.A"
+    params: {edition: true}
+    freq: A
+    unit: "%"
+    change_unit: pp
+    notes: OECD Economic Outlook, published in June and December; history then forecasts.
+
+  - id: fc_oecd_unemployment
+    label: OECD forecast, unemployment rate
+    label_es: Previsión de la OCDE, tasa de paro
+    section: analysis
+    source: oecd
+    key: "OECD.ECO.MAD,DSD_EO@DF_EO,/ESP.UNR.A"
+    params: {edition: true}
+    freq: A
+    unit: "%"
+    change_unit: pp
+    notes: OECD Economic Outlook, published in June and December; history then forecasts.
+
+  - id: fc_oecd_balance
+    label: OECD forecast, government budget balance
+    label_es: Previsión de la OCDE, capacidad (+) o necesidad (−) de financiación de las AA. PP.
+    section: analysis
+    source: oecd
+    key: "OECD.ECO.MAD,DSD_EO@DF_EO,/ESP.NLGQ.A"
+    params: {edition: true}
+    freq: A
+    unit: "% of GDP"
+    change_unit: pp
+    notes: OECD Economic Outlook, published in June and December; history then forecasts. Negative = deficit.
+
+  - id: fc_ec_gdp_volume
+    label: European Commission forecast, real GDP
+    label_es: Previsión de la Comisión Europea, PIB en volumen
+    section: analysis
+    source: dbnomics
+    key: AMECO/OVGD/ESP.1.1.0.0.OVGD
+    freq: A
+    unit: "€ bn"
+    transforms: [yoy, level]
+    notes: AMECO, the Commission's annual database, updated with its spring and autumn forecasts; 2020 prices.
+
+  - id: fc_ec_hicp_index
+    label: European Commission forecast, HICP
+    label_es: Previsión de la Comisión Europea, IPCA (índice)
+    section: analysis
+    source: dbnomics
+    key: AMECO/ZCPIH/ESP.1.0.0.0.ZCPIH
+    freq: A
+    unit: index
+    transforms: [yoy, level]
+    change_unit: "%"
+    notes: AMECO, updated with the Commission's spring and autumn forecasts.
+
+  - id: fc_ec_unemployment
+    label: European Commission forecast, unemployment rate
+    label_es: Previsión de la Comisión Europea, tasa de paro
+    section: analysis
+    source: dbnomics
+    key: AMECO/ZUTN/ESP.1.0.0.0.ZUTN
+    freq: A
+    unit: "%"
+    change_unit: pp
+    notes: AMECO, updated with the Commission's spring and autumn forecasts.
+
+  - id: fc_ec_balance
+    label: European Commission forecast, government budget balance
+    label_es: Previsión de la Comisión Europea, capacidad (+) o necesidad (−) de financiación de las AA. PP.
+    section: analysis
+    source: dbnomics
+    key: AMECO/UBLGE/ESP.1.0.319.0.UBLGE
+    freq: A
+    unit: "% of GDP"
+    change_unit: pp
+    notes: AMECO, updated with the Commission's spring and autumn forecasts. Negative = deficit.
