@@ -10,6 +10,7 @@
     try { var t = localStorage.getItem("ep-theme"); if (t) document.documentElement.setAttribute("data-theme", t); } catch (e) {}
   </script>
   <link rel="stylesheet" href="assets/style.css?v={{ build_id }}">
+  <link rel="alternate" type="application/rss+xml" title="EconPulse Spain: what changed" href="feed.xml">
 </head>
 <body>
   <a class="skip-link" href="#content">Skip to content</a>
@@ -54,7 +55,8 @@
       <p>Data from {{ sources | join(", ") }}. Figures are as published by each source unless marked
         <abbr title="seasonally adjusted by EconPulse">SA</abbr> or labelled as an EconPulse calculation.</p>
       <p>EconPulse Spain v{{ version }} · built {{ built }} · <a href="about.html">About and methods</a> ·
-        <a href="calendar.html">Release calendar</a> · <a href="data.html">Data and freshness</a></p>
+        <a href="calendar.html">Release calendar</a> · <a href="data.html">Data and freshness</a> ·
+        <a href="feed.xml">RSS feed</a></p>
     </div>
   </footer>
 

@@ -314,8 +314,37 @@
     specs.forEach(draw);
   }
 
+  // ---------------------------------------------------------------- chart links
+  // "Copy link" puts this page's address with the chart's anchor (#fig-<id>) on the clipboard.
+  function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
+    return new Promise(function (resolve, reject) {
+      var area = document.createElement("textarea");
+      area.value = text; area.setAttribute("readonly", ""); area.style.position = "fixed"; area.style.opacity = "0";
+      document.body.appendChild(area); area.select();
+      try { document.execCommand("copy") ? resolve() : reject(); } catch (e) { reject(e); }
+      document.body.removeChild(area);
+    });
+  }
+  document.addEventListener("click", function (event) {
+    var button = event.target.closest && event.target.closest(".chart-link");
+    if (!button) return;
+    var url = location.href.split(/[?#]/)[0] + "#" + button.getAttribute("data-figure");
+    var label = button.textContent;
+    function show(text) {
+      button.textContent = text;
+      setTimeout(function () { button.textContent = label; }, 2000);
+    }
+    copyText(url).then(function () { show("Link copied"); }, function () { window.prompt("Copy this link:", url); });
+  });
+
   specs.forEach(fillTable);
   drawAll();
+  // Charts are drawn after the page loads; bring a linked chart (#fig-<id>) back into view.
+  if (location.hash.indexOf("#fig-") === 0) {
+    var linked = document.getElementById(location.hash.slice(1));
+    if (linked) linked.scrollIntoView();
+  }
 
   // For pages that build charts in the browser (the tools): draw a spec now, and again
   // whenever the theme or the window size changes, like the charts written by the build.

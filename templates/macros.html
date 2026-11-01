@@ -98,7 +98,7 @@
 
 {# A chart: the plot is drawn by assets/app.js from the page's data/charts*.js. #}
 {% macro chart_card(c) -%}
-  <figure class="card chart-card">
+  <figure class="card chart-card" id="fig-{{ c.id }}">
     <figcaption>
       <span class="chart-title">{{ c.title }}</span>
       <span class="chart-subtitle">{{ c.subtitle }}</span>
@@ -106,7 +106,10 @@
     <div class="chart" id="chart-{{ c.id }}" role="img" aria-label="{{ c.title }}: {{ c.subtitle }}"></div>
     <div class="chart-foot">
       <span class="secondary">Source: {{ c.source }}</span>
-      {% if c.link %}<a class="more" href="{{ c.link }}">More <span aria-hidden="true">&rarr;</span></a>{% endif %}
+      <span class="chart-actions">
+        <button type="button" class="chart-link" data-figure="fig-{{ c.id }}" aria-label="Copy a link to the chart {{ c.title }}">Copy link</button>
+        {%- if c.link %} <a class="more" href="{{ c.link }}">More <span aria-hidden="true">&rarr;</span></a>{% endif %}
+      </span>
     </div>
     <details class="chart-data" data-chart="{{ c.id }}"><summary>Show data</summary></details>
   </figure>

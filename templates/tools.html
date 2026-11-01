@@ -3,13 +3,14 @@
 {% block title %}Tools · EconPulse Spain{% endblock %}
 
 {% macro figure(id, title, subtitle, source) -%}
-  <figure class="card chart-card">
+  <figure class="card chart-card" id="fig-{{ id }}">
     <figcaption>
       <span class="chart-title">{{ title }}</span>
       <span class="chart-subtitle">{{ subtitle }}</span>
     </figcaption>
     <div class="chart" id="chart-{{ id }}" role="img" aria-label="{{ title }}: {{ subtitle }}"></div>
-    <div class="chart-foot"><span class="secondary">Source: {{ source }}</span></div>
+    <div class="chart-foot"><span class="secondary">Source: {{ source }}</span>
+      <button type="button" class="chart-link" data-figure="fig-{{ id }}" aria-label="Copy a link to the chart {{ title }}">Copy link</button></div>
   </figure>
 {%- endmacro %}
 

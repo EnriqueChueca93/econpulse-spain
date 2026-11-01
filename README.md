@@ -57,7 +57,9 @@ Because the workflow commits data every day, run `git pull` before working local
 - **About** (`site/about.html`): sources, how the numbers are made, and limits.
 
 Pages are plain HTML and work offline: Plotly is copied from the Python package, with no CDN. Light/dark
-follows the system setting, and the moon button switches it.
+follows the system setting, and the moon button switches it. Every chart has a "Copy link" button that copies
+the page address with the chart's anchor (`#fig-<chart id>`), and `site/feed.xml` is an RSS feed of what
+each update changed (linked in every page's footer).
 
 ## Commands
 
@@ -102,6 +104,7 @@ econpulse/            Python package
   tools.py            data for the interactive tools (the browser does the arithmetic, static/tools.js)
   schedule.py         release calendar: INE's iCal, the Social Security rule, ECB decisions
   changes.py          "what changed": notes on new releases, revisions and big market moves
+  feed.py             the RSS feed of those notes (site/feed.xml; absolute links use config.SITE_URL)
   build.py            renders every page into site/ (chart data goes in site/data/*.js)
 templates/            Jinja2 pages: base layout, home, section pages, data page
 static/               style.css (light/dark tokens), app.js (theme toggle, Plotly charts)

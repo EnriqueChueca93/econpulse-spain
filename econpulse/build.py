@@ -14,7 +14,7 @@ from pathlib import Path
 import pandas as pd
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
-from . import __version__, analytics, changes, schedule, surprises, tools
+from . import __version__, analytics, changes, feed, schedule, surprises, tools
 from .charts import build_home_charts
 from .config import SITE_DIR, STATIC_DIR, TEMPLATES_DIR
 from .pages import build_page
@@ -149,6 +149,7 @@ def build_site(indicators: list[Indicator], store: Store | None = None, site_dir
     for i in items:
         counts[i["source"]] = counts.get(i["source"], 0) + 1
     render("about.html", "about.html", total=len(items), source_counts=sorted(counts.items(), key=lambda kv: -kv[1]))
+    (site_dir / feed.FEED_FILE).write_text(feed.build_feed(store), encoding="utf-8", newline="\n")
     write_data_js(data_dir / "tools.js", "tools", tools.tools_data(Data(indicators, store)))
     render("tools.html", "tools.html", taylor_defaults={"r_star": analytics.R_STAR})
     return index

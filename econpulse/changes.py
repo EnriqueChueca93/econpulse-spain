@@ -12,6 +12,7 @@ the log never fills with "new" data that was simply fetched for the first time. 
 kept for 60 days.
 """
 
+import re
 from datetime import datetime, timedelta, timezone
 
 import pandas as pd
@@ -79,7 +80,9 @@ def record(indicators: list[Indicator], store: Store, now: datetime | None = Non
             notes.append({"kind": "release", "id": ind.id, "page": page,
                           "text": f"{ind.label}: {current['display']} in {current['period']}{flash}, "
                                   f"after {before['display']} in {before['period']}."})
-        elif current["date"] == before["date"] and abs(current["raw"] - before["raw"]) > 1e-9 * max(1, abs(before["raw"])):
+        elif (current["date"] == before["date"] and current["display"] != before["display"]
+              and abs(current["raw"] - before["raw"]) > 1e-9 * max(1, abs(before["raw"]))):
+            # Only revisions that change the figure as shown: an index revised in its fourth decimal is no news.
             notes.append({"kind": "revision", "id": ind.id, "page": page,
                           "text": f"{ind.label} for {current['period']} revised to {current['display']}, "
                                   f"from {before['display']}."})
@@ -95,10 +98,19 @@ def record(indicators: list[Indicator], store: Store, now: datetime | None = Non
     return notes
 
 
+_NO_CHANGE = re.compile(r"revised to (.+), from \1\.$")
+
+
+def shown_notes(saved: dict) -> list[dict]:
+    """The logged notes worth showing: not revisions whose figure, as shown, did not change
+    (logged before such revisions were left out)."""
+    return [n for n in saved.get("notes", []) if not (n["kind"] == "revision" and _NO_CHANGE.search(n["text"]))]
+
+
 def latest_notes(store: Store, max_age_days: int = 7) -> dict:
     """Notes from the most recent update that found something, if it was recent."""
     saved = store.load_json("releases", None) or {}
-    notes = saved.get("notes", [])
+    notes = shown_notes(saved)
     out = {"updated_at": saved.get("updated_at"), "started_at": saved.get("started_at"), "at": None, "notes": []}
     if not notes:
         return out

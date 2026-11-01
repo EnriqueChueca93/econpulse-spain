@@ -39,6 +39,7 @@
           {% for n in whats_new.notes[:10] %}<li class="news-{{ n.kind }}"><a href="{{ n.page }}">{{ n.text }}</a></li>{% endfor %}
         </ul>
         {% if whats_new.notes | length > 10 %}<p class="note">And {{ whats_new.notes | length - 10 }} more.</p>{% endif %}
+        <p class="note">Follow every change in a feed reader: <a href="feed.xml">RSS feed</a>.</p>
       </div>
       {% endif %}
       {% if whats_new.recent %}
