@@ -36,14 +36,18 @@ countries: &countries
   - {slug: fr, geo: FR, name: France, name_es: Francia}
   - {slug: it, geo: IT, name: Italy, name_es: Italia}
   - {slug: pt, geo: PT, name: Portugal, name_es: Portugal}
+  - {slug: nl, geo: NL, name: Netherlands, name_es: Países Bajos}
   - {slug: pl, geo: PL, name: Poland, name_es: Polonia}
 
 # Other economies, from the OECD (CPI, unemployment, GDP, 10-year yields) and the BIS (policy rates).
+# Japan's CPI comes from the BIS: the OECD's stops in 2021.
 peers: &peers
   - {slug: uk, oecd: GBR, bis: GB, name: United Kingdom, name_es: Reino Unido,
      cpi_source: oecd, cpi_key: "OECD.SDD.TPS,DSD_PRICES@DF_PRICES_ALL,1.0/GBR.M.N.CPI.PA._T.N.GY"}
   - {slug: ca, oecd: CAN, bis: CA, name: Canada, name_es: Canadá,
      cpi_source: oecd, cpi_key: "OECD.SDD.TPS,DSD_PRICES@DF_PRICES_ALL,1.0/CAN.M.N.CPI.PA._T.N.GY"}
+  - {slug: jp, oecd: JPN, bis: JP, name: Japan, name_es: Japón,
+     cpi_source: bis, cpi_key: "WS_LONG_CPI/M.JP.771"}
 
 # Spain and its comparators on the International page (Batch 27a), for the measures taken from one
 # source for all of them: the OECD's labour statistics (youth unemployment, employment rate) and the
@@ -53,11 +57,13 @@ comparators: &comparators
   - {slug: fr, oecd: FRA, name: France, name_es: Francia}
   - {slug: de, oecd: DEU, name: Germany, name_es: Alemania}
   - {slug: it, oecd: ITA, name: Italy, name_es: Italia}
+  - {slug: nl, oecd: NLD, name: Netherlands, name_es: Países Bajos}
   - {slug: pt, oecd: PRT, name: Portugal, name_es: Portugal}
   - {slug: pl, oecd: POL, name: Poland, name_es: Polonia}
   - {slug: uk, oecd: GBR, name: United Kingdom, name_es: Reino Unido}
   - {slug: us, oecd: USA, name: United States, name_es: Estados Unidos}
   - {slug: ca, oecd: CAN, name: Canada, name_es: Canadá}
+  - {slug: jp, oecd: JPN, name: Japan, name_es: Japón}
 
 # The 17 autonomous communities with their INE series codes: unemployment rate (EPA),
 # house price index (IPV), CPI annual rate (IPC) and GDP per head, Spain = 100 (CRE).
@@ -222,6 +228,53 @@ trade_prices: &trade_prices
   - {slug: capital, name: "capital goods", name_es: "bienes de equipo", exp: MIG_CAG, imp: CPA_MIG_CAG}
   - {slug: consumer, name: "consumer goods", name_es: "bienes de consumo", exp: MIG_COG, imp: CPA_MIG_COG}
   - {slug: energy, name: "energy", name_es: "energía", exp: MIG_NRG, imp: CPA_MIG_NRG_X_E}
+
+# The same series for several countries come in one request, shared by their entries (params batch):
+# the OECD limits how often it may be called, and it spares the IMF too.
+comparator_areas: &comparator_areas "ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN"
+oecd_peer_areas: &oecd_peer_areas "GBR+CAN+JPN"
+oecd_yield_areas: &oecd_yield_areas "GBR+CAN+JPN+USA"
+oecd_gdp_areas: &oecd_gdp_areas "GBR+USA+CAN+JPN"
+weo_area_codes: &weo_area_codes "ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163"
+# Spain, its comparators and the euro area (G163) in the IMF's World Economic Outlook.
+weo_areas: &weo_areas
+  - {slug: es, imf: ESP, area_name: Spain, area_name_es: España}
+  - {slug: ea, imf: G163, area_name: euro area, area_name_es: zona euro}
+  - {slug: fr, imf: FRA, area_name: France, area_name_es: Francia}
+  - {slug: de, imf: DEU, area_name: Germany, area_name_es: Alemania}
+  - {slug: it, imf: ITA, area_name: Italy, area_name_es: Italia}
+  - {slug: nl, imf: NLD, area_name: Netherlands, area_name_es: Países Bajos}
+  - {slug: pt, imf: PRT, area_name: Portugal, area_name_es: Portugal}
+  - {slug: pl, imf: POL, area_name: Poland, area_name_es: Polonia}
+  - {slug: uk, imf: GBR, area_name: United Kingdom, area_name_es: Reino Unido}
+  - {slug: us, imf: USA, area_name: United States, area_name_es: Estados Unidos}
+  - {slug: ca, imf: CAN, area_name: Canada, area_name_es: Canadá}
+  - {slug: jp, imf: JPN, area_name: Japan, area_name_es: Japón}
+# The IMF's measures on the International page: id prefix, WEO code, names, unit.
+weo_measures: &weo_measures
+  - {m: growth, code: NGDP_RPCH, name: real GDP growth, name_es: crecimiento del PIB real, unit: "%"}
+  - {m: inflation, code: PCPIPCH, name: inflation (average CPI), name_es: inflación (IPC medio), unit: "%"}
+  - {m: unemp, code: LUR, name: unemployment rate, name_es: tasa de paro, unit: "%"}
+  - {m: deficit, code: GGXCNL_NGDP, name: government net lending, name_es: capacidad de financiación de las AAPP, unit: "% of GDP"}
+  - {m: debt, code: GGXWDG_NGDP, name: government gross debt, name_es: deuda bruta de las AAPP, unit: "% of GDP"}
+  - {m: primary, code: GGXONLB_NGDP, name: government primary balance, name_es: saldo primario de las AAPP, unit: "% of GDP"}
+  - {m: ca, code: BCA_NGDPD, name: current account balance, name_es: saldo por cuenta corriente, unit: "% of GDP"}
+
+# The same countries in the European Commission's AMECO database (via DBnomics), which has the euro area as EA20.
+# Canada is left out: its AMECO figures stop in 2024.
+ameco_area_codes: &ameco_area_codes "ESP+EA20+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+JPN"
+ameco_areas: &ameco_areas
+  - {slug: es, code: ESP, area_name: Spain, area_name_es: España}
+  - {slug: ea, code: EA20, area_name: euro area, area_name_es: zona euro}
+  - {slug: fr, code: FRA, area_name: France, area_name_es: Francia}
+  - {slug: de, code: DEU, area_name: Germany, area_name_es: Alemania}
+  - {slug: it, code: ITA, area_name: Italy, area_name_es: Italia}
+  - {slug: nl, code: NLD, area_name: Netherlands, area_name_es: Países Bajos}
+  - {slug: pt, code: PRT, area_name: Portugal, area_name_es: Portugal}
+  - {slug: pl, code: POL, area_name: Poland, area_name_es: Polonia}
+  - {slug: uk, code: GBR, area_name: United Kingdom, area_name_es: Reino Unido}
+  - {slug: us, code: USA, area_name: United States, area_name_es: Estados Unidos}
+  - {slug: jp, code: JPN, area_name: Japan, area_name_es: Japón}
 
 indicators:
 
@@ -2130,6 +2183,7 @@ indicators:
       - {slug: fr, geo: FR, cur: EUR, name: France, name_es: Francia}
       - {slug: it, geo: IT, cur: EUR, name: Italy, name_es: Italia}
       - {slug: pt, geo: PT, cur: EUR, name: Portugal, name_es: Portugal}
+      - {slug: nl, geo: NL, cur: EUR, name: Netherlands, name_es: Países Bajos}
       - {slug: pl, geo: PL, cur: PLN, name: Poland, name_es: Polonia}
     label: 10-year yield, {name} (monthly avg.)
     label_es: Rendimiento a largo plazo, {name_es} (convergencia)
@@ -2146,6 +2200,7 @@ indicators:
       - {slug: fr, name: France}
       - {slug: it, name: Italy}
       - {slug: pt, name: Portugal}
+      - {slug: nl, name: Netherlands}
     label: 10-year spread over Germany, {name}
     label_es: Diferencial con el bund, {name}
     section: international
@@ -2228,6 +2283,7 @@ indicators:
     section: international
     source: oecd
     key: "OECD.SDD.STES,DSD_STES@DF_FINMARK,/USA.M.IRLT.PA....."
+    params: {batch: *oecd_yield_areas}
     freq: M
     unit: "%"
     decimals: 2
@@ -2245,7 +2301,7 @@ indicators:
     change_unit: bp
     notes: Mid-point of the Federal Reserve's target range (BIS central bank policy rates).
 
-  # United Kingdom and Canada: one entry per country in the `peers` list at the top.
+  # United Kingdom, Canada and Japan: one entry per country in the `peers` list at the top.
   - id: gdp_growth_{slug}
     for_each: *peers
     label: Real GDP growth, {name}
@@ -2253,6 +2309,7 @@ indicators:
     section: international
     source: oecd
     key: "OECD.SDD.NAD,DSD_NAMAIN1@DF_QNA_EXPENDITURE_GROWTH_OECD,/Q..{oecd}.S1..B1GQ......GY."
+    params: {batch: *oecd_peer_areas}
     freq: Q
     unit: "%"
     change_unit: pp
@@ -2286,6 +2343,7 @@ indicators:
     section: international
     source: oecd
     key: "OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/{oecd}..._Z.Y._T.Y_GE15..M"
+    params: {batch: *oecd_peer_areas}
     freq: M
     unit: "%"
     change_unit: pp
@@ -2299,6 +2357,7 @@ indicators:
     section: international
     source: oecd
     key: "OECD.SDD.STES,DSD_STES@DF_FINMARK,/{oecd}.M.IRLT.PA....."
+    params: {batch: *oecd_yield_areas}
     freq: M
     unit: "%"
     decimals: 2
@@ -2360,11 +2419,13 @@ indicators:
       - {slug: uk, oecd: GBR, name: United Kingdom, name_es: Reino Unido}
       - {slug: us, oecd: USA, name: United States, name_es: Estados Unidos}
       - {slug: ca, oecd: CAN, name: Canada, name_es: Canadá}
+      - {slug: jp, oecd: JPN, name: Japan, name_es: Japón}
     label: Real GDP, {name}
     label_es: PIB real, volumen, {name_es}
     section: international
     source: oecd
     key: "OECD.SDD.NAD,DSD_NAMAIN1@DF_QNA,/Q.Y.{oecd}.S1..B1GQ._Z._Z._Z.XDC.LR.LA.T0102"
+    params: {batch: *oecd_gdp_areas}
     freq: Q
     unit: bn
     scale: 0.001
@@ -2379,6 +2440,7 @@ indicators:
     section: international
     source: oecd
     key: "OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/{oecd}..._Z.Y._T.Y15T24..M"
+    params: {batch: *comparator_areas}
     freq: M
     unit: "%"
     change_unit: pp
@@ -2403,6 +2465,7 @@ indicators:
     section: international
     source: oecd
     key: "OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/{oecd}..._Z.Y._T.Y15T64..Q"
+    params: {batch: *comparator_areas}
     freq: Q
     unit: "%"
     change_unit: pp
@@ -2427,12 +2490,60 @@ indicators:
     section: international
     source: imf
     key: "IMF.RES,WEO/{oecd}.PPPPC.A"
+    params: {batch: *comparator_areas}
     freq: A
     unit: "$"
     decimals: 0
     transforms: [level, yoy]
     max_age_days: 900
     notes: International dollars at current prices (IMF World Economic Outlook), history, estimates and projections.
+
+  # ---------------------------------------------------------------- The IMF's view of the comparators (Batch 27b)
+  # Seven World Economic Outlook measures for Spain, its comparators and the euro area: history, the IMF's
+  # estimate for the latest year and its projections, from one request per measure.
+  - id: weo_{m}_{slug}
+    for_each: [*weo_measures, *weo_areas]
+    label: "IMF WEO, {name}, {area_name}"
+    label_es: "FMI WEO, {name_es}, {area_name_es}"
+    section: international
+    source: imf
+    key: "IMF.RES,WEO/{imf}.{code}.A"
+    params: {batch: *weo_area_codes}
+    freq: A
+    unit: "{unit}"
+    change_unit: pp
+    max_age_days: 900
+    notes: IMF World Economic Outlook (April and October editions); history, then the IMF's estimates and projections.
+
+  # Real pay and productivity (Batch 27b), from the European Commission's AMECO database: history, then the
+  # Commission's estimates and forecasts.
+  - id: real_pay_{slug}
+    for_each: *ameco_areas
+    label: "Real compensation per employee, {area_name}"
+    label_es: "Remuneración real por asalariado, {area_name_es}"
+    section: international
+    source: dbnomics
+    key: "AMECO/RWCDC/{code}.3.1.0.0.RWCDC"
+    params: {batch: *ameco_area_codes}
+    freq: A
+    unit: index
+    transforms: [yoy, level]
+    max_age_days: 900
+    notes: Compensation per employee deflated by the private consumption deflator, 2020 = 100 (AMECO).
+
+  - id: productivity_{slug}
+    for_each: *ameco_areas
+    label: "Real GDP per person employed, {area_name}"
+    label_es: "PIB real por ocupado, {area_name_es}"
+    section: international
+    source: dbnomics
+    key: "AMECO/RVGDE/{code}.1.1.0.0.RVGDE"
+    params: {batch: *ameco_area_codes}
+    freq: A
+    unit: thousands
+    transforms: [yoy, level]
+    max_age_days: 900
+    notes: GDP at 2015 prices per person employed, thousands of national currency (AMECO); compare its growth, not its level.
 
   # ---------------------------------------------------------------- Regions (one entry per autonomous community)
   - id: unemployment_{slug}

@@ -6404,6 +6404,846 @@
    "display": "83,005 $",
    "period": "2031",
    "flash": false
+  },
+  "gdp_growth_nl": {
+   "date": "2026-07-01",
+   "raw": 2.1,
+   "display": "2.1%",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "hicp_nl": {
+   "date": "2026-09-01",
+   "raw": 3.0,
+   "display": "3.0%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "hicp_core_nl": {
+   "date": "2026-09-01",
+   "raw": 2.9,
+   "display": "2.9%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "unemployment_nl": {
+   "date": "2026-09-01",
+   "raw": 4.0,
+   "display": "4.0%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "bond10_nl": {
+   "date": "2026-09-01",
+   "raw": 3.564,
+   "display": "3.56%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "spread10_nl": {
+   "date": "2026-09-01",
+   "raw": 9.1,
+   "display": "9 bp",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "cpi_jp": {
+   "date": "2026-09-01",
+   "raw": 2.097902,
+   "display": "2.1%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "bond10_jp": {
+   "date": "2026-09-01",
+   "raw": 3.05,
+   "display": "3.05%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "policy_rate_jp": {
+   "date": "2026-10-27",
+   "raw": 1.25,
+   "display": "1.25%",
+   "period": "27 Oct 2026",
+   "flash": false
+  },
+  "gdp_level_nl": {
+   "date": "2026-07-01",
+   "raw": 116.339,
+   "display": "2.1% y/y",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "gdp_pc_ppp_nl": {
+   "date": "2031-01-01",
+   "raw": 102281.8746,
+   "display": "102,282 $",
+   "period": "2031",
+   "flash": false
+  },
+  "gdp_pc_ppp_jp": {
+   "date": "2031-01-01",
+   "raw": 70427.22353,
+   "display": "70,427 $",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_growth_es": {
+   "date": "2031-01-01",
+   "raw": 1.702901,
+   "display": "1.7%",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_growth_ea": {
+   "date": "2031-01-01",
+   "raw": 1.083786,
+   "display": "1.1%",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_growth_fr": {
+   "date": "2031-01-01",
+   "raw": 1.090192,
+   "display": "1.1%",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_growth_de": {
+   "date": "2031-01-01",
+   "raw": 0.60848,
+   "display": "0.6%",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_growth_it": {
+   "date": "2031-01-01",
+   "raw": 0.635001,
+   "display": "0.6%",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_growth_nl": {
+   "date": "2031-01-01",
+   "raw": 1.190081,
+   "display": "1.2%",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_growth_pt": {
+   "date": "2031-01-01",
+   "raw": 1.6,
+   "display": "1.6%",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_growth_pl": {
+   "date": "2031-01-01",
+   "raw": 2.475028,
+   "display": "2.5%",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_growth_uk": {
+   "date": "2031-01-01",
+   "raw": 1.426371,
+   "display": "1.4%",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_growth_us": {
+   "date": "2031-01-01",
+   "raw": 1.755,
+   "display": "1.8%",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_growth_ca": {
+   "date": "2031-01-01",
+   "raw": 1.789861,
+   "display": "1.8%",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_growth_jp": {
+   "date": "2031-01-01",
+   "raw": 0.595993,
+   "display": "0.6%",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_inflation_es": {
+   "date": "2031-01-01",
+   "raw": 2.0,
+   "display": "2.0%",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_inflation_ea": {
+   "date": "2031-01-01",
+   "raw": 1.989681,
+   "display": "2.0%",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_inflation_fr": {
+   "date": "2031-01-01",
+   "raw": 1.813523,
+   "display": "1.8%",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_inflation_de": {
+   "date": "2031-01-01",
+   "raw": 2.062127,
+   "display": "2.1%",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_inflation_it": {
+   "date": "2031-01-01",
+   "raw": 2.0,
+   "display": "2.0%",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_inflation_nl": {
+   "date": "2031-01-01",
+   "raw": 2.0,
+   "display": "2.0%",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_inflation_pt": {
+   "date": "2031-01-01",
+   "raw": 1.926898,
+   "display": "1.9%",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_inflation_pl": {
+   "date": "2031-01-01",
+   "raw": 2.5,
+   "display": "2.5%",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_inflation_uk": {
+   "date": "2031-01-01",
+   "raw": 2.0,
+   "display": "2.0%",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_inflation_us": {
+   "date": "2031-01-01",
+   "raw": 1.916353,
+   "display": "1.9%",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_inflation_ca": {
+   "date": "2031-01-01",
+   "raw": 1.968246,
+   "display": "2.0%",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_inflation_jp": {
+   "date": "2031-01-01",
+   "raw": 1.986153,
+   "display": "2.0%",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_unemp_es": {
+   "date": "2031-01-01",
+   "raw": 9.962198,
+   "display": "10.0%",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_unemp_ea": {
+   "date": "2031-01-01",
+   "raw": 5.894811,
+   "display": "5.9%",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_unemp_fr": {
+   "date": "2031-01-01",
+   "raw": 7.459283,
+   "display": "7.5%",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_unemp_de": {
+   "date": "2031-01-01",
+   "raw": 2.873821,
+   "display": "2.9%",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_unemp_it": {
+   "date": "2031-01-01",
+   "raw": 5.863407,
+   "display": "5.9%",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_unemp_nl": {
+   "date": "2031-01-01",
+   "raw": 4.4,
+   "display": "4.4%",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_unemp_pt": {
+   "date": "2031-01-01",
+   "raw": 5.679755,
+   "display": "5.7%",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_unemp_pl": {
+   "date": "2031-01-01",
+   "raw": 2.979421,
+   "display": "3.0%",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_unemp_uk": {
+   "date": "2031-01-01",
+   "raw": 4.5,
+   "display": "4.5%",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_unemp_us": {
+   "date": "2031-01-01",
+   "raw": 3.877923,
+   "display": "3.9%",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_unemp_ca": {
+   "date": "2031-01-01",
+   "raw": 6.00446,
+   "display": "6.0%",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_unemp_jp": {
+   "date": "2031-01-01",
+   "raw": 2.533333,
+   "display": "2.5%",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_deficit_es": {
+   "date": "2031-01-01",
+   "raw": -2.068775,
+   "display": "−2.1% of GDP",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_deficit_ea": {
+   "date": "2031-01-01",
+   "raw": -3.19745,
+   "display": "−3.2% of GDP",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_deficit_fr": {
+   "date": "2031-01-01",
+   "raw": -3.873846,
+   "display": "−3.9% of GDP",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_deficit_de": {
+   "date": "2031-01-01",
+   "raw": -3.950663,
+   "display": "−4.0% of GDP",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_deficit_it": {
+   "date": "2031-01-01",
+   "raw": -2.699156,
+   "display": "−2.7% of GDP",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_deficit_nl": {
+   "date": "2031-01-01",
+   "raw": -2.434843,
+   "display": "−2.4% of GDP",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_deficit_pt": {
+   "date": "2031-01-01",
+   "raw": -1.3426,
+   "display": "−1.3% of GDP",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_deficit_pl": {
+   "date": "2031-01-01",
+   "raw": -5.664342,
+   "display": "−5.7% of GDP",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_deficit_uk": {
+   "date": "2031-01-01",
+   "raw": -1.425471,
+   "display": "−1.4% of GDP",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_deficit_us": {
+   "date": "2031-01-01",
+   "raw": -8.383971,
+   "display": "−8.4% of GDP",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_deficit_ca": {
+   "date": "2031-01-01",
+   "raw": -1.717699,
+   "display": "−1.7% of GDP",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_deficit_jp": {
+   "date": "2031-01-01",
+   "raw": -3.969669,
+   "display": "−4.0% of GDP",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_debt_es": {
+   "date": "2031-01-01",
+   "raw": 89.391738,
+   "display": "89.4% of GDP",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_debt_ea": {
+   "date": "2031-01-01",
+   "raw": 90.41751,
+   "display": "90.4% of GDP",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_debt_fr": {
+   "date": "2031-01-01",
+   "raw": 123.629065,
+   "display": "123.6% of GDP",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_debt_de": {
+   "date": "2031-01-01",
+   "raw": 75.589582,
+   "display": "75.6% of GDP",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_debt_it": {
+   "date": "2031-01-01",
+   "raw": 135.575787,
+   "display": "135.6% of GDP",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_debt_nl": {
+   "date": "2031-01-01",
+   "raw": 48.016815,
+   "display": "48.0% of GDP",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_debt_pt": {
+   "date": "2031-01-01",
+   "raw": 71.972295,
+   "display": "72.0% of GDP",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_debt_pl": {
+   "date": "2031-01-01",
+   "raw": 82.016772,
+   "display": "82.0% of GDP",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_debt_uk": {
+   "date": "2031-01-01",
+   "raw": 100.195164,
+   "display": "100.2% of GDP",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_debt_us": {
+   "date": "2031-01-01",
+   "raw": 145.032981,
+   "display": "145.0% of GDP",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_debt_ca": {
+   "date": "2031-01-01",
+   "raw": 106.984102,
+   "display": "107.0% of GDP",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_debt_jp": {
+   "date": "2031-01-01",
+   "raw": 188.88134,
+   "display": "188.9% of GDP",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_primary_es": {
+   "date": "2031-01-01",
+   "raw": 0.241236,
+   "display": "0.2% of GDP",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_primary_ea": {
+   "date": "2031-01-01",
+   "raw": -0.742097,
+   "display": "−0.7% of GDP",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_primary_fr": {
+   "date": "2031-01-01",
+   "raw": -0.199739,
+   "display": "−0.2% of GDP",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_primary_de": {
+   "date": "2031-01-01",
+   "raw": -2.393562,
+   "display": "−2.4% of GDP",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_primary_it": {
+   "date": "2031-01-01",
+   "raw": 1.889829,
+   "display": "1.9% of GDP",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_primary_nl": {
+   "date": "2031-01-01",
+   "raw": -1.30094,
+   "display": "−1.3% of GDP",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_primary_pt": {
+   "date": "2031-01-01",
+   "raw": 0.654141,
+   "display": "0.7% of GDP",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_primary_pl": {
+   "date": "2031-01-01",
+   "raw": -2.422709,
+   "display": "−2.4% of GDP",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_primary_uk": {
+   "date": "2031-01-01",
+   "raw": 1.512588,
+   "display": "1.5% of GDP",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_primary_us": {
+   "date": "2031-01-01",
+   "raw": -3.376142,
+   "display": "−3.4% of GDP",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_primary_ca": {
+   "date": "2031-01-01",
+   "raw": -1.394168,
+   "display": "−1.4% of GDP",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_primary_jp": {
+   "date": "2031-01-01",
+   "raw": -2.086191,
+   "display": "−2.1% of GDP",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_ca_es": {
+   "date": "2031-01-01",
+   "raw": 1.608664,
+   "display": "1.6% of GDP",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_ca_ea": {
+   "date": "2031-01-01",
+   "raw": 1.660613,
+   "display": "1.7% of GDP",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_ca_fr": {
+   "date": "2031-01-01",
+   "raw": 0.321789,
+   "display": "0.3% of GDP",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_ca_de": {
+   "date": "2031-01-01",
+   "raw": 3.853811,
+   "display": "3.9% of GDP",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_ca_it": {
+   "date": "2031-01-01",
+   "raw": 2.385711,
+   "display": "2.4% of GDP",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_ca_nl": {
+   "date": "2031-01-01",
+   "raw": 7.060992,
+   "display": "7.1% of GDP",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_ca_pt": {
+   "date": "2031-01-01",
+   "raw": 0.311964,
+   "display": "0.3% of GDP",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_ca_pl": {
+   "date": "2031-01-01",
+   "raw": -1.105601,
+   "display": "−1.1% of GDP",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_ca_uk": {
+   "date": "2031-01-01",
+   "raw": -2.035031,
+   "display": "−2.0% of GDP",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_ca_us": {
+   "date": "2031-01-01",
+   "raw": -3.464956,
+   "display": "−3.5% of GDP",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_ca_ca": {
+   "date": "2031-01-01",
+   "raw": 0.268768,
+   "display": "0.3% of GDP",
+   "period": "2031",
+   "flash": false
+  },
+  "weo_ca_jp": {
+   "date": "2031-01-01",
+   "raw": 4.215756,
+   "display": "4.2% of GDP",
+   "period": "2031",
+   "flash": false
+  },
+  "real_pay_es": {
+   "date": "2027-01-01",
+   "raw": 103.77903,
+   "display": "0.2% y/y",
+   "period": "2027",
+   "flash": false
+  },
+  "real_pay_ea": {
+   "date": "2027-01-01",
+   "raw": 103.62812,
+   "display": "0.8% y/y",
+   "period": "2027",
+   "flash": false
+  },
+  "real_pay_fr": {
+   "date": "2027-01-01",
+   "raw": 104.52483,
+   "display": "1.2% y/y",
+   "period": "2027",
+   "flash": false
+  },
+  "real_pay_de": {
+   "date": "2027-01-01",
+   "raw": 103.43776,
+   "display": "0.5% y/y",
+   "period": "2027",
+   "flash": false
+  },
+  "real_pay_it": {
+   "date": "2027-01-01",
+   "raw": 103.48606,
+   "display": "0.6% y/y",
+   "period": "2027",
+   "flash": false
+  },
+  "real_pay_nl": {
+   "date": "2027-01-01",
+   "raw": 101.90597,
+   "display": "1.1% y/y",
+   "period": "2027",
+   "flash": false
+  },
+  "real_pay_pt": {
+   "date": "2027-01-01",
+   "raw": 117.264,
+   "display": "1.4% y/y",
+   "period": "2027",
+   "flash": false
+  },
+  "real_pay_pl": {
+   "date": "2027-01-01",
+   "raw": 123.59377,
+   "display": "3.3% y/y",
+   "period": "2027",
+   "flash": false
+  },
+  "real_pay_uk": {
+   "date": "2027-01-01",
+   "raw": 103.04783,
+   "display": "0.4% y/y",
+   "period": "2027",
+   "flash": false
+  },
+  "real_pay_us": {
+   "date": "2027-01-01",
+   "raw": 102.72795,
+   "display": "1.2% y/y",
+   "period": "2027",
+   "flash": false
+  },
+  "real_pay_ca": {
+   "date": "2024-01-01",
+   "raw": 96.67022,
+   "display": "1.2% y/y",
+   "period": "2024",
+   "flash": false
+  },
+  "real_pay_jp": {
+   "date": "2027-01-01",
+   "raw": 99.45988,
+   "display": "0.8% y/y",
+   "period": "2027",
+   "flash": false
+  },
+  "productivity_es": {
+   "date": "2027-01-01",
+   "raw": 62.17861,
+   "display": "0.5% y/y",
+   "period": "2027",
+   "flash": false
+  },
+  "productivity_ea": {
+   "date": "2027-01-01",
+   "raw": 77.41658,
+   "display": "0.8% y/y",
+   "period": "2027",
+   "flash": false
+  },
+  "productivity_fr": {
+   "date": "2027-01-01",
+   "raw": 87.62874,
+   "display": "1.1% y/y",
+   "period": "2027",
+   "flash": false
+  },
+  "productivity_de": {
+   "date": "2027-01-01",
+   "raw": 79.6762,
+   "display": "0.8% y/y",
+   "period": "2027",
+   "flash": false
+  },
+  "productivity_it": {
+   "date": "2027-01-01",
+   "raw": 73.24305,
+   "display": "0.4% y/y",
+   "period": "2027",
+   "flash": false
+  },
+  "productivity_nl": {
+   "date": "2027-01-01",
+   "raw": 91.89237,
+   "display": "0.9% y/y",
+   "period": "2027",
+   "flash": false
+  },
+  "productivity_pt": {
+   "date": "2027-01-01",
+   "raw": 45.83599,
+   "display": "0.9% y/y",
+   "period": "2027",
+   "flash": false
+  },
+  "productivity_pl": {
+   "date": "2027-01-01",
+   "raw": 173.42854,
+   "display": "2.6% y/y",
+   "period": "2027",
+   "flash": false
+  },
+  "productivity_uk": {
+   "date": "2027-01-01",
+   "raw": 74.23977,
+   "display": "0.9% y/y",
+   "period": "2027",
+   "flash": false
+  },
+  "productivity_us": {
+   "date": "2027-01-01",
+   "raw": 150.45665,
+   "display": "1.7% y/y",
+   "period": "2027",
+   "flash": false
+  },
+  "productivity_ca": {
+   "date": "2024-01-01",
+   "raw": 121.15334,
+   "display": "0.2% y/y",
+   "period": "2024",
+   "flash": false
+  },
+  "productivity_jp": {
+   "date": "2027-01-01",
+   "raw": 8547.93209,
+   "display": "0.4% y/y",
+   "period": "2027",
+   "flash": false
   }
  },
  "notes": [
@@ -6429,6 +7269,6 @@
    "at": "2026-11-01T02:50:46+00:00"
   }
  ],
- "updated_at": "2026-11-01T22:25:35+00:00",
+ "updated_at": "2026-11-01T22:52:31+00:00",
  "started_at": "2026-10-31T23:31:49+00:00"
 }

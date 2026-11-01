@@ -1,11 +1,14 @@
-"""Spain and its comparators, for the International page: France, Germany, Italy, Portugal, Poland, the
-United Kingdom, the United States and Canada, with the euro area as the benchmark.
+"""Spain and its comparators, for the International page: France, Germany, Italy, the Netherlands, Portugal,
+Poland, the United Kingdom, the United States, Canada and Japan, with the euro area as the benchmark.
 
 IDS says which series stands for each country on each measure (an indicator id, or (id, transform)).
 Most measures go straight into the usual tables and rankings (pages.py); this module adds what needs a
 calculation: real GDP against its level at the end of 2019, GDP per head at purchasing power relative to
-Spain (the IMF's figure for last year), and where Spain ranks among the nine countries.
+Spain, the IMF's figures for a given year (the public finances, the current account, the outlook), and
+where Spain ranks among the eleven countries.
 """
+
+from datetime import date
 
 import pandas as pd
 
@@ -14,30 +17,37 @@ from .snapshot import fmt_change, fmt_value, period_label
 from .sources.base import madrid_today
 from .tables import Data, PanelRow
 
-# (slug, label): Spain, the euro area as the benchmark, then the eight comparators.
+# (slug, label): Spain, the euro area as the benchmark, then the ten comparators.
 COUNTRIES = [("es", "Spain"), ("ea", "Euro area"), ("fr", "France"), ("de", "Germany"), ("it", "Italy"),
-             ("pt", "Portugal"), ("pl", "Poland"), ("uk", "United Kingdom"), ("us", "United States"),
-             ("ca", "Canada")]
+             ("nl", "Netherlands"), ("pt", "Portugal"), ("pl", "Poland"), ("uk", "United Kingdom"),
+             ("us", "United States"), ("ca", "Canada"), ("jp", "Japan")]
 ECB = "ecb_deposit_rate"
-_EU = ("fr", "de", "it", "pt", "pl")
+_EU = ("fr", "de", "it", "nl", "pt", "pl")
+_OTHERS = ("uk", "ca", "jp")
+# The IMF's World Economic Outlook measures (weo_<measure>_<slug>, every country and the euro area).
+WEO = ("growth", "inflation", "unemp", "deficit", "debt", "primary", "ca")
 IDS: dict[str, dict] = {
-    "gdp": {"es": ("gdp", "yoy"), "ea": "gdp_growth_ea", **{s: f"gdp_growth_{s}" for s in _EU},
-            "uk": "gdp_growth_uk", "us": "us_gdp_growth", "ca": "gdp_growth_ca"},
-    "level": {"es": "gdp", "ea": "gdp_level_ea", **{s: f"gdp_level_{s}" for s in _EU + ("uk", "us", "ca")}},
+    "gdp": {"es": ("gdp", "yoy"), "ea": "gdp_growth_ea", **{s: f"gdp_growth_{s}" for s in _EU + _OTHERS},
+            "us": "us_gdp_growth"},
+    "level": {"es": "gdp", "ea": "gdp_level_ea", **{s: f"gdp_level_{s}" for s in _EU + _OTHERS + ("us",)}},
     "ppp": {s: f"gdp_pc_ppp_{s}" for s, _ in COUNTRIES if s != "ea"},
     "hicp": {"es": "hicp", "ea": "hicp_euro_area", **{s: f"hicp_{s}" for s in _EU},
-             "uk": "cpi_uk", "us": ("us_cpi_index", "yoy"), "ca": "cpi_ca"},
+             **{s: f"cpi_{s}" for s in _OTHERS}, "us": ("us_cpi_index", "yoy")},
     "core": {"es": "hicp_core", "ea": "hicp_core_euro_area", **{s: f"hicp_core_{s}" for s in _EU},
              "uk": "core_cpi_uk", "us": ("us_core_cpi_index", "yoy")},
-    "unemp": {"es": "unemployment_monthly", "ea": "unemployment_ea", **{s: f"unemployment_{s}" for s in _EU},
-              "uk": "unemployment_uk", "us": "us_unemployment", "ca": "unemployment_ca"},
+    "unemp": {"es": "unemployment_monthly", "ea": "unemployment_ea",
+              **{s: f"unemployment_{s}" for s in _EU + _OTHERS}, "us": "us_unemployment"},
     "youth": {s: f"youth_unemp_{s}" for s, _ in COUNTRIES},
     "emp": {s: f"emp_rate_{s}" for s, _ in COUNTRIES},
-    "y10": {"es": "es_10y_monthly", "de": "de_10y_monthly", **{s: f"bond10_{s}" for s in ("fr", "it", "pt", "pl")},
-            "uk": "bond10_uk", "us": "us_10y", "ca": "bond10_ca"},
-    "policy": {**{s: ECB for s in ("es", "ea", "fr", "de", "it", "pt")}, "pl": "policy_rate_pl",
-               "uk": "policy_rate_uk", "us": "us_fed_funds", "ca": "policy_rate_ca"},
-    "spread": {"es": "risk_premium_monthly", "fr": "spread10_fr", "it": "spread10_it", "pt": "spread10_pt"},
+    "y10": {"es": "es_10y_monthly", "de": "de_10y_monthly", **{s: f"bond10_{s}" for s in ("fr", "it", "nl", "pt", "pl")},
+            **{s: f"bond10_{s}" for s in _OTHERS}, "us": "us_10y"},
+    "policy": {**{s: ECB for s in ("es", "ea", "fr", "de", "it", "nl", "pt")}, "pl": "policy_rate_pl",
+               **{s: f"policy_rate_{s}" for s in _OTHERS}, "us": "us_fed_funds"},
+    "spread": {"es": "risk_premium_monthly", **{s: f"spread10_{s}" for s in ("fr", "it", "nl", "pt")}},
+    **{f"weo_{m}": {s: f"weo_{m}_{s}" for s, _ in COUNTRIES} for m in WEO},
+    # AMECO (annual): real compensation per employee and real GDP per person employed; no Canada (it stops in 2024)
+    "real_pay": {s: f"real_pay_{s}" for s, _ in COUNTRIES if s != "ca"},
+    "productivity": {s: f"productivity_{s}" for s, _ in COUNTRIES if s != "ca"},
 }
 BASE = pd.Timestamp("2019-10-01")            # the last quarter before the pandemic
 LABELS = dict(COUNTRIES)
@@ -218,3 +228,188 @@ def recovery_chart(data: Data) -> dict | None:
     return {"id": "gdp-since-2019", "title": "Real GDP since 2019", "subtitle": "Fourth quarter of 2019 = 100",
             "kind": "line", "unit": "", "decimals": 1, "freq": "Q", "series": series,
             "ref_lines": [{"y": 100, "label": "Q4 2019"}], "source": "INE, Eurostat, OECD"}
+
+
+# ---------------------------------------------------------------- the IMF's figures (Batch 27b)
+# The World Economic Outlook gives each country's history, the IMF's estimate for the latest year and its
+# projections, all in one series; the page picks years: last year (mostly outturns), this year and next.
+
+def weo(data: Data, measure: str, slug: str, year: int) -> float | None:
+    s = data.raw(IDS[f"weo_{measure}"].get(slug, ""))
+    v = None if s is None else s.get(pd.Timestamp(f"{year}-01-01"))
+    return None if v is None or pd.isna(v) else float(v)
+
+
+def weo_last_year(data: Data) -> int | None:
+    s = data.raw(IDS["weo_debt"]["es"])
+    return None if s is None else int(s.dropna().index[-1].year)
+
+
+def weo_edition(data: Data) -> str:
+    """'October 2026' (the IMF publishes the WEO in April and October), from the date recorded at fetch."""
+    published = data.store.load_catalog().get(IDS["weo_growth"]["es"], {}).get("published")
+    return f"{date.fromisoformat(published):%B %Y}" if published else "the latest edition"
+
+
+def _cells(values: list[float | None], signed: list[bool]) -> list[str]:
+    return ["–" if v is None else (fmt_change(v, "", 1) if sign else fmt_value(v, "", 1)).strip()
+            for v, sign in zip(values, signed)]
+
+
+def _row(slug: str, label: str, cells: list[str]) -> dict:
+    return {"heading": False, "label": label, "label_es": "", "indent": 0, "period_note": "", "url": None,
+            "highlight": slug == "es", "cells": cells}
+
+
+def interest(data: Data, slug: str, year: int) -> float | None:
+    """Net interest paid (interest paid less interest received), % of GDP: the primary balance less the
+    overall balance. Negative where a government earns more on its assets than it pays on its debt."""
+    primary, overall = weo(data, "primary", slug, year), weo(data, "deficit", slug, year)
+    return None if primary is None or overall is None else primary - overall
+
+
+def finances_table(data: Data) -> dict | None:
+    year, last = ppp_year(), weo_last_year(data)
+    if last is None:
+        return None
+    rows = []
+    for slug, label in COUNTRIES:
+        debt, debt19 = weo(data, "debt", slug, year), weo(data, "debt", slug, 2019)
+        values = [weo(data, "deficit", slug, year), weo(data, "primary", slug, year), interest(data, slug, year), debt,
+                  None if debt is None or debt19 is None else debt - debt19, weo(data, "debt", slug, last)]
+        rows.append(_row(slug, label, _cells(values, [True, True, False, False, True, False])))
+    return {"title": "Country", "caption": f"% of GDP · IMF, {weo_edition(data)}", "through": str(year),
+            "columns": [f"Budget balance {year}", f"Primary balance {year}", f"Net interest {year}", f"Debt {year}",
+                        "Debt since 2019, pp", f"Debt {last} (projected)"],
+            "column_notes": [], "rows": rows,
+            "note": (f"General government, from the IMF's World Economic Outlook ({weo_edition(data)}): {year} is "
+                     "mostly outturn, and the IMF's estimate where the year's accounts are not final. The budget "
+                     "balance is net lending (a negative figure is a deficit); the primary balance leaves out interest, "
+                     "so net interest (paid less received) is the gap between the two. Debt is gross debt; the last "
+                     "column is the IMF's "
+                     f"projection for {last}.")}
+
+
+def outlook_table(data: Data) -> dict | None:
+    year = madrid_today().year
+    if weo(data, "growth", "es", year) is None:
+        return None
+    rows = []
+    for slug, label in COUNTRIES:
+        values = [weo(data, m, slug, y) for m in ("growth", "inflation", "unemp") for y in (year, year + 1)]
+        rows.append(_row(slug, label, _cells(values, [True, True, False, False, False, False])))
+    return {"title": "Country", "caption": f"% · IMF World Economic Outlook, {weo_edition(data)}", "through": str(year),
+            "columns": [f"GDP growth {year}", str(year + 1), f"Inflation {year}", str(year + 1),
+                        f"Unemployment {year}", str(year + 1)],
+            "column_notes": [], "rows": rows,
+            "note": ("The IMF's projections: real GDP growth and average consumer price inflation over the year, and the "
+                     "unemployment rate on each country's own definition (so the levels compare less well than the "
+                     "changes). The IMF updates them in April and October. The forecasters followed for Spain alone "
+                     "are on the Analysis page.")}
+
+
+def weo_ranking(data: Data, measure: str, year: int, id_, title, subtitle, unit="%", value=None,
+                source: str | None = None) -> dict | None:
+    """A ranking of the IMF's figure for one year (or of `value(slug)`), the euro area as a reference line."""
+    get = value or (lambda slug: weo(data, measure, slug, year))
+    points = {slug: v for slug, _ in COUNTRIES if (v := get(slug)) is not None}
+    if "es" not in points:
+        return None
+    return _hbar(id_, title, subtitle, unit, 1, pd.Timestamp(f"{year}-01-01"), "A",
+                 [(LABELS[s], v) for s, v in points.items() if s != "ea"], points.get("ea"),
+                 source or f"IMF World Economic Outlook, {weo_edition(data)}")
+
+
+def debt_ranking(data: Data) -> dict | None:
+    return weo_ranking(data, "debt", ppp_year(), "debt-ranking", "Government debt", "Gross debt, % of GDP", "%")
+
+
+def balance_ranking(data: Data) -> dict | None:
+    return weo_ranking(data, "deficit", ppp_year(), "balance-ranking", "Budget balance",
+                       "General government net lending, % of GDP (negative = deficit)", "%")
+
+
+def interest_ranking(data: Data) -> dict | None:
+    year = ppp_year()
+    return weo_ranking(data, "", year, "interest-ranking", "Net interest paid by governments",
+                       "Interest paid less interest received, % of GDP", "%",
+                       value=lambda slug: interest(data, slug, year))
+
+
+def current_account_ranking(data: Data) -> dict | None:
+    return weo_ranking(data, "ca", ppp_year(), "current-account-ranking", "Current account",
+                       "Balance with the rest of the world, % of GDP", "%")
+
+
+def growth_outlook_ranking(data: Data) -> dict | None:
+    year = madrid_today().year
+    return weo_ranking(data, "growth", year, "growth-outlook-ranking", f"GDP growth in {year}",
+                       "IMF projection, %", "%")
+
+
+def growth_outlook_next(data: Data) -> dict | None:
+    year = madrid_today().year + 1
+    return weo_ranking(data, "growth", year, "growth-outlook-next", f"GDP growth in {year}",
+                       "IMF projection, %", "%")
+
+
+def outlook_facts(data: Data) -> list[dict]:
+    """Where the IMF's projections put Spain among the eleven countries."""
+    year = madrid_today().year
+    out = []
+    for measure, y, label, word in (("growth", year, f"Growth in {year}", "fastest"),
+                                    ("growth", year + 1, f"Growth in {year + 1}", "fastest"),
+                                    ("unemp", year + 1, f"Unemployment in {year + 1}", "highest"),
+                                    ("debt", weo_last_year(data) or year, "Debt in {last}", "highest")):
+        values = {slug: v for slug, _ in COUNTRIES if slug != "ea" and (v := weo(data, measure, slug, y)) is not None}
+        if "es" in values:
+            text = fmt_change(values["es"], "%", 1) if measure == "growth" else fmt_value(values["es"], "%", 1)
+            fact = _rank_fact(label.format(last=y), values, word, text, f"IMF, {weo_edition(data)}")
+            if measure == "debt" and fact:
+                fact["value"] = f"{values['es']:.0f}% of GDP"
+            out.append(fact)
+    return [f for f in out if f]
+
+
+# ---------------------------------------------------------------- pay and productivity (Batch 27b, AMECO)
+
+def annual_change(data: Data, measure: str, slug: str, start: int, end: int) -> float | None:
+    """% change of an annual series between two years."""
+    s = data.raw(IDS[measure].get(slug, ""))
+    if s is None:
+        return None
+    a, b = s.get(pd.Timestamp(f"{start}-01-01")), s.get(pd.Timestamp(f"{end}-01-01"))
+    return None if a is None or b is None or pd.isna(a) or pd.isna(b) or not a else (float(b) / float(a) - 1) * 100
+
+
+def pay_table(data: Data) -> dict | None:
+    year = ppp_year()
+    if annual_change(data, "real_pay", "es", 2019, year) is None:
+        return None
+    rows = []
+    for slug, label in COUNTRIES:
+        values = [annual_change(data, m, slug, a, year) for m in ("real_pay", "productivity") for a in (year - 1, 2019)]
+        rows.append(_row(slug, label, _cells(values, [True] * 4)))
+    return {"title": "Country", "caption": f"% change · European Commission (AMECO), {year}", "through": str(year),
+            "columns": [f"Real pay, {year}", "Real pay since 2019", f"Productivity, {year}", "Productivity since 2019"],
+            "column_notes": [], "rows": rows,
+            "note": ("Real pay is compensation per employee (wages and employers' social contributions) deflated by "
+                     "consumer prices; productivity is real GDP per person employed. Annual figures from the European "
+                     f"Commission's AMECO database: {year} is partly the Commission's estimate. Not available for Canada, "
+                     "whose AMECO figures stop in 2024.")}
+
+
+def real_pay_ranking(data: Data) -> dict | None:
+    year = ppp_year()
+    return weo_ranking(data, "", year, "real-pay-peers", "Real pay since 2019",
+                       "Compensation per employee after consumer prices, % change on 2019", "%",
+                       value=lambda slug: annual_change(data, "real_pay", slug, 2019, year),
+                       source="European Commission (AMECO)")
+
+
+def productivity_ranking(data: Data) -> dict | None:
+    year = ppp_year()
+    return weo_ranking(data, "", year, "productivity-peers", "Productivity since 2019",
+                       "Real GDP per person employed, % change on 2019", "%",
+                       value=lambda slug: annual_change(data, "productivity", slug, 2019, year),
+                       source="European Commission (AMECO)")

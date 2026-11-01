@@ -1377,9 +1377,10 @@ PAGES: dict[str, list[dict]] = {
         {
             "id": "peers",
             "title": "Spain and its comparators",
-            "intro": ("Spain next to the euro area and eight comparators: France, Germany, Italy, Portugal and Poland in "
-                      "the EU, and the United Kingdom, the United States and Canada. The sections below take growth, "
-                      "jobs, and prices and interest rates in turn."),
+            "intro": ("Spain next to the euro area and ten comparators: France, Germany, Italy, the Netherlands, Portugal "
+                      "and Poland in the EU, and the United Kingdom, the United States, Canada and Japan. The sections "
+                      "below take growth, jobs, prices and interest rates, the public finances, the current account and "
+                      "the IMF's outlook in turn."),
             "facts": peers.facts,
             "uses": sorted(peers.IDS["level"].values()),
             "tables": [Panel(
@@ -1449,8 +1450,9 @@ PAGES: dict[str, list[dict]] = {
         {
             "id": "prices-rates",
             "title": "Prices and interest rates",
-            "intro": ("Inflation, policy rates and what governments pay to borrow for ten years. Spain, France, "
-                      "Germany, Italy and Portugal share the ECB's rates; Poland, the UK, the US and Canada set their own."),
+            "intro": ("Inflation, policy rates and what governments pay to borrow for ten years. Spain, France, Germany, "
+                      "Italy, the Netherlands and Portugal share the ECB's rates; Poland, the UK, the US, Canada and Japan "
+                      "set their own."),
             "tables": [Panel(
                 title="Country",
                 caption="% · spread in basis points",
@@ -1483,6 +1485,61 @@ PAGES: dict[str, list[dict]] = {
                  "series": [("risk_premium_monthly", "level", "Spain"), ("spread10_it", "level", "Italy"),
                             ("spread10_pt", "level", "Portugal")]},
             ],
+        },
+        {
+            "id": "pay-productivity",
+            "title": "Pay and productivity",
+            "intro": ("Real pay, compensation per employee after consumer prices, and productivity, output per person "
+                      "employed, over the past year and since 2019, from the European Commission's AMECO database."),
+            "uses": sorted(set(peers.IDS["real_pay"].values()) | set(peers.IDS["productivity"].values())),
+            "tables": [peers.pay_table],
+            "charts": [peers.real_pay_ranking, peers.productivity_ranking],
+        },
+        {
+            "id": "public-finances",
+            "title": "Public finances",
+            "intro": ("Budget balances, the interest governments pay and their debt, all as a share of GDP, from the "
+                      "IMF's World Economic Outlook, with where it expects debt to be by the end of its projections."),
+            "uses": sorted(i for m in ('debt', 'deficit', 'primary') for i in peers.IDS["weo_" + m].values()),
+            "tables": [peers.finances_table],
+            "charts": [
+                peers.debt_ranking,
+                peers.balance_ranking,
+                peers.interest_ranking,
+                {"id": "debt-peers", "title": "Government debt",
+                 "subtitle": "Gross debt, % of GDP; the latest years are the IMF's projections",
+                 "kind": "line", "unit": "%", "decimals": 1, "start": "2007-01-01",
+                 "series": [("weo_debt_es", "level", "Spain"), ("weo_debt_ea", "level", "Euro area"),
+                            ("weo_debt_us", "level", "United States")]},
+            ],
+        },
+        {
+            "id": "external",
+            "title": "The current account",
+            "intro": ("What each economy earns from the rest of the world, less what it pays: trade in goods and services, "
+                      "income and transfers. Spain has run a surplus every year since 2012, after a deficit of 9.4% of "
+                      "GDP in 2007, before the financial crisis."),
+            "uses": sorted(i for m in ('ca',) for i in peers.IDS["weo_" + m].values()),
+            "tables": [],
+            "charts": [
+                peers.current_account_ranking,
+                {"id": "current-account-peers", "title": "Current account",
+                 "subtitle": "% of GDP; the latest years are the IMF's projections",
+                 "kind": "line", "unit": "%", "decimals": 1, "start": "2000-01-01",
+                 "series": [("weo_ca_es", "level", "Spain"), ("weo_ca_ea", "level", "Euro area"),
+                            ("weo_ca_de", "level", "Germany")]},
+            ],
+        },
+        {
+            "id": "outlook",
+            "title": "The IMF's outlook",
+            "intro": ("What the IMF expects for growth, inflation and unemployment this year and next, from its latest "
+                      "World Economic Outlook. Its forecasts for Spain sit next to the other forecasters' on the "
+                      "Analysis page."),
+            "facts": peers.outlook_facts,
+            "uses": sorted(i for m in ('growth', 'inflation', 'unemp', 'debt') for i in peers.IDS["weo_" + m].values()),
+            "tables": [peers.outlook_table],
+            "charts": [peers.growth_outlook_ranking, peers.growth_outlook_next],
         },
     ],
     # ------------------------------------------------------------------ Regions

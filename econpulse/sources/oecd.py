@@ -12,6 +12,7 @@ params: {edition: true} also asks for the dataflow's name and records it, e.g.
 import csv
 import io
 import re
+import threading
 
 from .. import http
 from .base import FetchResult, make_series, parse_period
@@ -39,7 +40,54 @@ def parse(text: str) -> FetchResult:
     return FetchResult(make_series((parse_period(r["TIME_PERIOD"]) for r in rows), (r["OBS_VALUE"] for r in rows)), meta)
 
 
+def parse_by_area(text: str) -> dict[str, FetchResult]:
+    """One result per reference area of a query that names several ("ESP+FRA..."); each area must
+    still match exactly one series."""
+    rows = list(csv.DictReader(io.StringIO(text.lstrip("﻿"))))
+    if not rows:
+        raise ValueError("OECD returned no observations")
+    dims = [k for k in rows[0] if k not in NON_KEY and _CODE_COLUMN.match(k)]
+    by_area: dict[str, list[dict]] = {}
+    for r in rows:
+        by_area.setdefault(r["REF_AREA"], []).append(r)
+    out = {}
+    for area, group in by_area.items():
+        if len({tuple(r[d] for d in dims) for r in group}) > 1:
+            raise ValueError(f"OECD query matches several series for {area}; fix the wildcards in the key")
+        out[area] = FetchResult(make_series((parse_period(r["TIME_PERIOD"]) for r in group),
+                                            (r["OBS_VALUE"] for r in group)), {})
+    return out
+
+
+_lock = threading.Lock()
+_cache: dict[str, object] = {}
+
+
+def clear_cache() -> None:
+    with _lock:
+        _cache.clear()
+
+
 def fetch(key: str, params: dict | None = None, **_) -> FetchResult:
+    """params {batch: "ESP+FRA+..."} asks for those areas together, once per run (the OECD limits how
+    often it may be called), and returns this key's area (the first part of the series key)."""
+    params = params or {}
     flow, series = key.split("/", 1)
-    fmt = "csvfilewithlabels" if (params or {}).get("edition") else "csv"
-    return parse(http.get(f"{BASE}/{flow}/{series}", params={"format": fmt, "startPeriod": "1990"}).text)
+    fmt = "csvfilewithlabels" if params.get("edition") else "csv"
+    if not params.get("batch"):
+        return parse(http.get(f"{BASE}/{flow}/{series}", params={"format": fmt, "startPeriod": "1990"}).text)
+    area, rest = series.split(".", 1)
+    url = f"{BASE}/{flow}/{params['batch']}.{rest}"
+    with _lock:
+        entry = _cache.get(url)
+        if entry is None:
+            try:
+                entry = parse_by_area(http.get(url, params={"format": "csv", "startPeriod": "1990"}).text)
+            except Exception as e:
+                entry = e
+            _cache[url] = entry
+    if isinstance(entry, Exception):
+        raise entry
+    if area not in entry:
+        raise ValueError(f"OECD returned no {area} series for {rest}")
+    return entry[area]

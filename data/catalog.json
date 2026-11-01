@@ -299,15 +299,15 @@
  },
  "bond10_ca": {
   "status": "ok",
-  "fetched_at": "2026-11-01T21:22:41+00:00",
+  "fetched_at": "2026-11-01T22:43:59+00:00",
   "first_date": "1990-01-01",
   "last_date": "2026-09-01",
   "n_obs": 441,
-  "signature": "[\"oecd\", \"OECD.SDD.STES,DSD_STES@DF_FINMARK,/CAN.M.IRLT.PA.....\", {}, 1.0]"
+  "signature": "[\"oecd\", \"OECD.SDD.STES,DSD_STES@DF_FINMARK,/CAN.M.IRLT.PA.....\", {\"batch\": \"GBR+CAN+JPN+USA\"}, 1.0]"
  },
  "bond10_fr": {
   "status": "ok",
-  "fetched_at": "2026-11-01T21:22:39+00:00",
+  "fetched_at": "2026-11-01T22:43:17+00:00",
   "first_date": "1986-01-01",
   "last_date": "2026-09-01",
   "n_obs": 489,
@@ -315,15 +315,31 @@
  },
  "bond10_it": {
   "status": "ok",
-  "fetched_at": "2026-11-01T21:22:40+00:00",
+  "fetched_at": "2026-11-01T22:43:17+00:00",
   "first_date": "1991-03-01",
   "last_date": "2026-09-01",
   "n_obs": 427,
   "signature": "[\"ecb\", \"IRS/M.IT.L.L40.CI.0000.EUR.N.Z\", {}, 1.0]"
  },
+ "bond10_jp": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:43:59+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 441,
+  "signature": "[\"oecd\", \"OECD.SDD.STES,DSD_STES@DF_FINMARK,/JPN.M.IRLT.PA.....\", {\"batch\": \"GBR+CAN+JPN+USA\"}, 1.0]"
+ },
+ "bond10_nl": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:43:19+00:00",
+  "first_date": "1986-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 486,
+  "signature": "[\"ecb\", \"IRS/M.NL.L.L40.CI.0000.EUR.N.Z\", {}, 1.0]"
+ },
  "bond10_pl": {
   "status": "ok",
-  "fetched_at": "2026-11-01T22:25:27+00:00",
+  "fetched_at": "2026-11-01T22:43:19+00:00",
   "first_date": "2001-01-01",
   "last_date": "2026-09-01",
   "n_obs": 309,
@@ -331,7 +347,7 @@
  },
  "bond10_pt": {
   "status": "ok",
-  "fetched_at": "2026-11-01T21:22:40+00:00",
+  "fetched_at": "2026-11-01T22:43:19+00:00",
   "first_date": "1993-07-01",
   "last_date": "2026-09-01",
   "n_obs": 399,
@@ -339,11 +355,11 @@
  },
  "bond10_uk": {
   "status": "ok",
-  "fetched_at": "2026-11-01T21:22:41+00:00",
+  "fetched_at": "2026-11-01T22:43:59+00:00",
   "first_date": "1990-01-01",
   "last_date": "2026-09-01",
   "n_obs": 441,
-  "signature": "[\"oecd\", \"OECD.SDD.STES,DSD_STES@DF_FINMARK,/GBR.M.IRLT.PA.....\", {}, 1.0]"
+  "signature": "[\"oecd\", \"OECD.SDD.STES,DSD_STES@DF_FINMARK,/GBR.M.IRLT.PA.....\", {\"batch\": \"GBR+CAN+JPN+USA\"}, 1.0]"
  },
  "bop_capital_account": {
   "status": "ok",
@@ -1344,6 +1360,14 @@
   "flash": false,
   "source_name": "Nacional. Índice general. Índice."
  },
+ "cpi_jp": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:43:49+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 441,
+  "signature": "[\"bis\", \"WS_LONG_CPI/M.JP.771\", {}, 1.0]"
+ },
  "cpi_madrid": {
   "status": "ok",
   "fetched_at": "2026-11-01T21:22:44+00:00",
@@ -1652,24 +1676,28 @@
   "signature": "[\"ree\", \"spot_price\", {}, 1.0]"
  },
  "emp_rate_ca": {
-  "status": "ok",
+  "status": "stale",
   "fetched_at": "2026-11-01T22:25:29+00:00",
   "first_date": "1990-01-01",
   "last_date": "2026-07-01",
   "n_obs": 147,
-  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/CAN..._Z.Y._T.Y15T64..Q\", {}, 1.0]"
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/CAN..._Z.Y._T.Y15T64..Q\", {}, 1.0]",
+  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN..._Z.Y._T.Y15T64..Q?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
+  "failed_at": "2026-11-01T22:50:04+00:00"
  },
  "emp_rate_de": {
-  "status": "ok",
+  "status": "stale",
   "fetched_at": "2026-11-01T22:25:29+00:00",
   "first_date": "2005-01-01",
   "last_date": "2026-04-01",
   "n_obs": 86,
-  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/DEU..._Z.Y._T.Y15T64..Q\", {}, 1.0]"
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/DEU..._Z.Y._T.Y15T64..Q\", {}, 1.0]",
+  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN..._Z.Y._T.Y15T64..Q?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
+  "failed_at": "2026-11-01T22:50:04+00:00"
  },
  "emp_rate_ea": {
   "status": "ok",
-  "fetched_at": "2026-11-01T22:25:29+00:00",
+  "fetched_at": "2026-11-01T22:45:00+00:00",
   "first_date": "2009-01-01",
   "last_date": "2026-04-01",
   "n_obs": 70,
@@ -1678,60 +1706,84 @@
   "source_updated": "2026-10-26T23:00:00+0100"
  },
  "emp_rate_es": {
-  "status": "ok",
+  "status": "stale",
   "fetched_at": "2026-11-01T22:25:28+00:00",
   "first_date": "1999-01-01",
   "last_date": "2026-04-01",
   "n_obs": 110,
-  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/ESP..._Z.Y._T.Y15T64..Q\", {}, 1.0]"
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/ESP..._Z.Y._T.Y15T64..Q\", {}, 1.0]",
+  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN..._Z.Y._T.Y15T64..Q?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
+  "failed_at": "2026-11-01T22:50:04+00:00"
  },
  "emp_rate_fr": {
-  "status": "ok",
+  "status": "stale",
   "fetched_at": "2026-11-01T22:25:29+00:00",
   "first_date": "2003-01-01",
   "last_date": "2026-04-01",
   "n_obs": 94,
-  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/FRA..._Z.Y._T.Y15T64..Q\", {}, 1.0]"
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/FRA..._Z.Y._T.Y15T64..Q\", {}, 1.0]",
+  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN..._Z.Y._T.Y15T64..Q?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
+  "failed_at": "2026-11-01T22:50:04+00:00"
  },
  "emp_rate_it": {
-  "status": "ok",
+  "status": "stale",
   "fetched_at": "2026-11-01T22:25:29+00:00",
   "first_date": "1998-01-01",
   "last_date": "2026-04-01",
   "n_obs": 114,
-  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/ITA..._Z.Y._T.Y15T64..Q\", {}, 1.0]"
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/ITA..._Z.Y._T.Y15T64..Q\", {}, 1.0]",
+  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN..._Z.Y._T.Y15T64..Q?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
+  "failed_at": "2026-11-01T22:50:04+00:00"
+ },
+ "emp_rate_jp": {
+  "status": "error",
+  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN..._Z.Y._T.Y15T64..Q?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
+  "failed_at": "2026-11-01T22:50:04+00:00"
+ },
+ "emp_rate_nl": {
+  "status": "error",
+  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN..._Z.Y._T.Y15T64..Q?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
+  "failed_at": "2026-11-01T22:50:04+00:00"
  },
  "emp_rate_pl": {
-  "status": "ok",
+  "status": "stale",
   "fetched_at": "2026-11-01T22:25:29+00:00",
   "first_date": "2000-01-01",
   "last_date": "2026-04-01",
   "n_obs": 106,
-  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/POL..._Z.Y._T.Y15T64..Q\", {}, 1.0]"
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/POL..._Z.Y._T.Y15T64..Q\", {}, 1.0]",
+  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN..._Z.Y._T.Y15T64..Q?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
+  "failed_at": "2026-11-01T22:50:04+00:00"
  },
  "emp_rate_pt": {
-  "status": "ok",
+  "status": "stale",
   "fetched_at": "2026-11-01T22:25:29+00:00",
   "first_date": "1998-01-01",
   "last_date": "2026-04-01",
   "n_obs": 114,
-  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/PRT..._Z.Y._T.Y15T64..Q\", {}, 1.0]"
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/PRT..._Z.Y._T.Y15T64..Q\", {}, 1.0]",
+  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN..._Z.Y._T.Y15T64..Q?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
+  "failed_at": "2026-11-01T22:50:04+00:00"
  },
  "emp_rate_uk": {
-  "status": "ok",
+  "status": "stale",
   "fetched_at": "2026-11-01T22:25:29+00:00",
   "first_date": "1990-01-01",
   "last_date": "2026-04-01",
   "n_obs": 146,
-  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/GBR..._Z.Y._T.Y15T64..Q\", {}, 1.0]"
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/GBR..._Z.Y._T.Y15T64..Q\", {}, 1.0]",
+  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN..._Z.Y._T.Y15T64..Q?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
+  "failed_at": "2026-11-01T22:50:04+00:00"
  },
  "emp_rate_us": {
-  "status": "ok",
+  "status": "stale",
   "fetched_at": "2026-11-01T22:25:29+00:00",
   "first_date": "1990-01-01",
   "last_date": "2026-07-01",
   "n_obs": 146,
-  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/USA..._Z.Y._T.Y15T64..Q\", {}, 1.0]"
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/USA..._Z.Y._T.Y15T64..Q\", {}, 1.0]",
+  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN..._Z.Y._T.Y15T64..Q?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
+  "failed_at": "2026-11-01T22:50:04+00:00"
  },
  "employment_epa": {
   "status": "ok",
@@ -3156,12 +3208,14 @@
   "source_updated": "2026-10-22T23:00:00+0200"
  },
  "gdp_growth_ca": {
-  "status": "ok",
+  "status": "stale",
   "fetched_at": "2026-11-01T21:22:40+00:00",
   "first_date": "1990-01-01",
   "last_date": "2026-07-01",
   "n_obs": 147,
-  "signature": "[\"oecd\", \"OECD.SDD.NAD,DSD_NAMAIN1@DF_QNA_EXPENDITURE_GROWTH_OECD,/Q..CAN.S1..B1GQ......GY.\", {}, 1.0]"
+  "signature": "[\"oecd\", \"OECD.SDD.NAD,DSD_NAMAIN1@DF_QNA_EXPENDITURE_GROWTH_OECD,/Q..CAN.S1..B1GQ......GY.\", {}, 1.0]",
+  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.NAD,DSD_NAMAIN1@DF_QNA_EXPENDITURE_GROWTH_OECD,/GBR+CAN+JPN..CAN.S1..B1GQ......GY.?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
+  "failed_at": "2026-11-01T22:48:43+00:00"
  },
  "gdp_growth_de": {
   "status": "ok",
@@ -3203,6 +3257,21 @@
   "source_name": "Gross domestic product (GDP) and main components (output, expenditure and income) - quarterly data",
   "source_updated": "2026-10-30T23:00:00+0100"
  },
+ "gdp_growth_jp": {
+  "status": "error",
+  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.NAD,DSD_NAMAIN1@DF_QNA_EXPENDITURE_GROWTH_OECD,/GBR+CAN+JPN..JPN.S1..B1GQ......GY.?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
+  "failed_at": "2026-11-01T22:48:53+00:00"
+ },
+ "gdp_growth_nl": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:43:17+00:00",
+  "first_date": "1997-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 119,
+  "signature": "[\"eurostat\", \"namq_10_gdp\", {\"geo\": \"NL\", \"na_item\": \"B1GQ\", \"s_adj\": \"SCA\", \"unit\": \"CLV_PCH_SM\"}, 1.0]",
+  "source_name": "Gross domestic product (GDP) and main components (output, expenditure and income) - quarterly data",
+  "source_updated": "2026-10-30T23:00:00+0100"
+ },
  "gdp_growth_pl": {
   "status": "ok",
   "fetched_at": "2026-11-01T22:25:26+00:00",
@@ -3224,24 +3293,28 @@
   "source_updated": "2026-10-30T23:00:00+0100"
  },
  "gdp_growth_uk": {
-  "status": "ok",
+  "status": "stale",
   "fetched_at": "2026-11-01T21:22:40+00:00",
   "first_date": "1990-01-01",
   "last_date": "2026-04-01",
   "n_obs": 146,
-  "signature": "[\"oecd\", \"OECD.SDD.NAD,DSD_NAMAIN1@DF_QNA_EXPENDITURE_GROWTH_OECD,/Q..GBR.S1..B1GQ......GY.\", {}, 1.0]"
+  "signature": "[\"oecd\", \"OECD.SDD.NAD,DSD_NAMAIN1@DF_QNA_EXPENDITURE_GROWTH_OECD,/Q..GBR.S1..B1GQ......GY.\", {}, 1.0]",
+  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.NAD,DSD_NAMAIN1@DF_QNA_EXPENDITURE_GROWTH_OECD,/GBR+CAN+JPN..GBR.S1..B1GQ......GY.?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
+  "failed_at": "2026-11-01T22:48:33+00:00"
  },
  "gdp_level_ca": {
-  "status": "ok",
+  "status": "stale",
   "fetched_at": "2026-11-01T22:25:27+00:00",
   "first_date": "1990-01-01",
   "last_date": "2026-07-01",
   "n_obs": 147,
-  "signature": "[\"oecd\", \"OECD.SDD.NAD,DSD_NAMAIN1@DF_QNA,/Q.Y.CAN.S1..B1GQ._Z._Z._Z.XDC.LR.LA.T0102\", {}, 0.001]"
+  "signature": "[\"oecd\", \"OECD.SDD.NAD,DSD_NAMAIN1@DF_QNA,/Q.Y.CAN.S1..B1GQ._Z._Z._Z.XDC.LR.LA.T0102\", {}, 0.001]",
+  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.NAD,DSD_NAMAIN1@DF_QNA,/GBR+USA+CAN+JPN.Y.CAN.S1..B1GQ._Z._Z._Z.XDC.LR.LA.T0102?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
+  "failed_at": "2026-11-01T22:49:34+00:00"
  },
  "gdp_level_de": {
   "status": "ok",
-  "fetched_at": "2026-11-01T22:25:27+00:00",
+  "fetched_at": "2026-11-01T22:44:01+00:00",
   "first_date": "1991-01-01",
   "last_date": "2026-07-01",
   "n_obs": 143,
@@ -3251,7 +3324,7 @@
  },
  "gdp_level_ea": {
   "status": "ok",
-  "fetched_at": "2026-11-01T22:25:27+00:00",
+  "fetched_at": "2026-11-01T22:44:01+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-07-01",
   "n_obs": 127,
@@ -3261,7 +3334,7 @@
  },
  "gdp_level_fr": {
   "status": "ok",
-  "fetched_at": "2026-11-01T22:25:27+00:00",
+  "fetched_at": "2026-11-01T22:44:01+00:00",
   "first_date": "1980-01-01",
   "last_date": "2026-07-01",
   "n_obs": 187,
@@ -3271,7 +3344,7 @@
  },
  "gdp_level_it": {
   "status": "ok",
-  "fetched_at": "2026-11-01T22:25:27+00:00",
+  "fetched_at": "2026-11-01T22:44:01+00:00",
   "first_date": "1996-01-01",
   "last_date": "2026-07-01",
   "n_obs": 123,
@@ -3279,9 +3352,24 @@
   "source_name": "Gross domestic product (GDP) and main components (output, expenditure and income) - quarterly data",
   "source_updated": "2026-10-30T23:00:00+0100"
  },
+ "gdp_level_jp": {
+  "status": "error",
+  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.NAD,DSD_NAMAIN1@DF_QNA,/GBR+USA+CAN+JPN.Y.JPN.S1..B1GQ._Z._Z._Z.XDC.LR.LA.T0102?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
+  "failed_at": "2026-11-01T22:49:44+00:00"
+ },
+ "gdp_level_nl": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:44:01+00:00",
+  "first_date": "1996-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 123,
+  "signature": "[\"eurostat\", \"namq_10_gdp\", {\"geo\": \"NL\", \"na_item\": \"B1GQ\", \"s_adj\": \"SCA\", \"unit\": \"CLV_I20\"}, 1.0]",
+  "source_name": "Gross domestic product (GDP) and main components (output, expenditure and income) - quarterly data",
+  "source_updated": "2026-10-30T23:00:00+0100"
+ },
  "gdp_level_pl": {
   "status": "ok",
-  "fetched_at": "2026-11-01T22:25:27+00:00",
+  "fetched_at": "2026-11-01T22:44:01+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-04-01",
   "n_obs": 126,
@@ -3291,7 +3379,7 @@
  },
  "gdp_level_pt": {
   "status": "ok",
-  "fetched_at": "2026-11-01T22:25:27+00:00",
+  "fetched_at": "2026-11-01T22:44:01+00:00",
   "first_date": "1995-01-01",
   "last_date": "2026-04-01",
   "n_obs": 126,
@@ -3300,20 +3388,24 @@
   "source_updated": "2026-10-30T23:00:00+0100"
  },
  "gdp_level_uk": {
-  "status": "ok",
+  "status": "stale",
   "fetched_at": "2026-11-01T22:25:27+00:00",
   "first_date": "1990-01-01",
   "last_date": "2026-04-01",
   "n_obs": 146,
-  "signature": "[\"oecd\", \"OECD.SDD.NAD,DSD_NAMAIN1@DF_QNA,/Q.Y.GBR.S1..B1GQ._Z._Z._Z.XDC.LR.LA.T0102\", {}, 0.001]"
+  "signature": "[\"oecd\", \"OECD.SDD.NAD,DSD_NAMAIN1@DF_QNA,/Q.Y.GBR.S1..B1GQ._Z._Z._Z.XDC.LR.LA.T0102\", {}, 0.001]",
+  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.NAD,DSD_NAMAIN1@DF_QNA,/GBR+USA+CAN+JPN.Y.GBR.S1..B1GQ._Z._Z._Z.XDC.LR.LA.T0102?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
+  "failed_at": "2026-11-01T22:49:14+00:00"
  },
  "gdp_level_us": {
-  "status": "ok",
+  "status": "stale",
   "fetched_at": "2026-11-01T22:25:27+00:00",
   "first_date": "1990-01-01",
   "last_date": "2026-07-01",
   "n_obs": 147,
-  "signature": "[\"oecd\", \"OECD.SDD.NAD,DSD_NAMAIN1@DF_QNA,/Q.Y.USA.S1..B1GQ._Z._Z._Z.XDC.LR.LA.T0102\", {}, 0.001]"
+  "signature": "[\"oecd\", \"OECD.SDD.NAD,DSD_NAMAIN1@DF_QNA,/Q.Y.USA.S1..B1GQ._Z._Z._Z.XDC.LR.LA.T0102\", {}, 0.001]",
+  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.NAD,DSD_NAMAIN1@DF_QNA,/GBR+USA+CAN+JPN.Y.USA.S1..B1GQ._Z._Z._Z.XDC.LR.LA.T0102?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
+  "failed_at": "2026-11-01T22:49:24+00:00"
  },
  "gdp_nominal": {
   "status": "ok",
@@ -3337,83 +3429,101 @@
  },
  "gdp_pc_ppp_ca": {
   "status": "ok",
-  "fetched_at": "2026-11-01T22:25:30+00:00",
+  "fetched_at": "2026-11-01T22:45:01+00:00",
   "first_date": "1990-01-01",
   "last_date": "2031-01-01",
   "n_obs": 42,
-  "signature": "[\"imf\", \"IMF.RES,WEO/CAN.PPPPC.A\", {}, 1.0]",
+  "signature": "[\"imf\", \"IMF.RES,WEO/CAN.PPPPC.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]",
   "published": "2026-10-13"
  },
  "gdp_pc_ppp_de": {
   "status": "ok",
-  "fetched_at": "2026-11-01T22:25:30+00:00",
+  "fetched_at": "2026-11-01T22:45:00+00:00",
   "first_date": "1990-01-01",
   "last_date": "2031-01-01",
   "n_obs": 42,
-  "signature": "[\"imf\", \"IMF.RES,WEO/DEU.PPPPC.A\", {}, 1.0]",
+  "signature": "[\"imf\", \"IMF.RES,WEO/DEU.PPPPC.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]",
   "published": "2026-10-13"
  },
  "gdp_pc_ppp_es": {
   "status": "ok",
-  "fetched_at": "2026-11-01T22:25:29+00:00",
+  "fetched_at": "2026-11-01T22:45:00+00:00",
   "first_date": "1990-01-01",
   "last_date": "2031-01-01",
   "n_obs": 42,
-  "signature": "[\"imf\", \"IMF.RES,WEO/ESP.PPPPC.A\", {}, 1.0]",
+  "signature": "[\"imf\", \"IMF.RES,WEO/ESP.PPPPC.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]",
   "published": "2026-10-13"
  },
  "gdp_pc_ppp_fr": {
   "status": "ok",
-  "fetched_at": "2026-11-01T22:25:30+00:00",
+  "fetched_at": "2026-11-01T22:45:00+00:00",
   "first_date": "1990-01-01",
   "last_date": "2031-01-01",
   "n_obs": 42,
-  "signature": "[\"imf\", \"IMF.RES,WEO/FRA.PPPPC.A\", {}, 1.0]",
+  "signature": "[\"imf\", \"IMF.RES,WEO/FRA.PPPPC.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]",
   "published": "2026-10-13"
  },
  "gdp_pc_ppp_it": {
   "status": "ok",
-  "fetched_at": "2026-11-01T22:25:30+00:00",
+  "fetched_at": "2026-11-01T22:45:00+00:00",
   "first_date": "1990-01-01",
   "last_date": "2031-01-01",
   "n_obs": 42,
-  "signature": "[\"imf\", \"IMF.RES,WEO/ITA.PPPPC.A\", {}, 1.0]",
+  "signature": "[\"imf\", \"IMF.RES,WEO/ITA.PPPPC.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "gdp_pc_ppp_jp": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:01+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/JPN.PPPPC.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "gdp_pc_ppp_nl": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:00+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/NLD.PPPPC.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]",
   "published": "2026-10-13"
  },
  "gdp_pc_ppp_pl": {
   "status": "ok",
-  "fetched_at": "2026-11-01T22:25:30+00:00",
+  "fetched_at": "2026-11-01T22:45:01+00:00",
   "first_date": "1990-01-01",
   "last_date": "2031-01-01",
   "n_obs": 42,
-  "signature": "[\"imf\", \"IMF.RES,WEO/POL.PPPPC.A\", {}, 1.0]",
+  "signature": "[\"imf\", \"IMF.RES,WEO/POL.PPPPC.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]",
   "published": "2026-10-13"
  },
  "gdp_pc_ppp_pt": {
   "status": "ok",
-  "fetched_at": "2026-11-01T22:25:30+00:00",
+  "fetched_at": "2026-11-01T22:45:00+00:00",
   "first_date": "1990-01-01",
   "last_date": "2031-01-01",
   "n_obs": 42,
-  "signature": "[\"imf\", \"IMF.RES,WEO/PRT.PPPPC.A\", {}, 1.0]",
+  "signature": "[\"imf\", \"IMF.RES,WEO/PRT.PPPPC.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]",
   "published": "2026-10-13"
  },
  "gdp_pc_ppp_uk": {
   "status": "ok",
-  "fetched_at": "2026-11-01T22:25:30+00:00",
+  "fetched_at": "2026-11-01T22:45:01+00:00",
   "first_date": "1990-01-01",
   "last_date": "2031-01-01",
   "n_obs": 42,
-  "signature": "[\"imf\", \"IMF.RES,WEO/GBR.PPPPC.A\", {}, 1.0]",
+  "signature": "[\"imf\", \"IMF.RES,WEO/GBR.PPPPC.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]",
   "published": "2026-10-13"
  },
  "gdp_pc_ppp_us": {
   "status": "ok",
-  "fetched_at": "2026-11-01T22:25:30+00:00",
+  "fetched_at": "2026-11-01T22:45:01+00:00",
   "first_date": "1990-01-01",
   "last_date": "2031-01-01",
   "n_obs": 42,
-  "signature": "[\"imf\", \"IMF.RES,WEO/USA.PPPPC.A\", {}, 1.0]",
+  "signature": "[\"imf\", \"IMF.RES,WEO/USA.PPPPC.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]",
   "published": "2026-10-13"
  },
  "gdp_per_capita_growth_annual": {
@@ -4144,6 +4254,16 @@
   "source_name": "Harmonised index of consumer prices (HICP) - ECOICOP ver.2 - indices and rates of change, monthly data",
   "source_updated": "2026-10-16T23:00:00+0200"
  },
+ "hicp_core_nl": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:43:17+00:00",
+  "first_date": "2000-12-01",
+  "last_date": "2026-09-01",
+  "n_obs": 310,
+  "signature": "[\"eurostat\", \"prc_hicp_minr\", {\"coicop18\": \"TOT_X_NRG_FOOD\", \"geo\": \"NL\", \"unit\": \"RCH_A\"}, 1.0]",
+  "source_name": "Harmonised index of consumer prices (HICP) - ECOICOP ver.2 - indices and rates of change, monthly data",
+  "source_updated": "2026-10-16T23:00:00+0200"
+ },
  "hicp_core_np_index": {
   "status": "ok",
   "fetched_at": "2026-11-01T21:22:31+00:00",
@@ -4221,6 +4341,16 @@
   "last_date": "2026-09-01",
   "n_obs": 357,
   "signature": "[\"eurostat\", \"prc_hicp_minr\", {\"coicop18\": \"TOTAL\", \"geo\": \"IT\", \"unit\": \"RCH_A\"}, 1.0]",
+  "source_name": "Harmonised index of consumer prices (HICP) - ECOICOP ver.2 - indices and rates of change, monthly data",
+  "source_updated": "2026-10-16T23:00:00+0200"
+ },
+ "hicp_nl": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:43:17+00:00",
+  "first_date": "1997-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 357,
+  "signature": "[\"eurostat\", \"prc_hicp_minr\", {\"coicop18\": \"TOTAL\", \"geo\": \"NL\", \"unit\": \"RCH_A\"}, 1.0]",
   "source_name": "Harmonised index of consumer prices (HICP) - ECOICOP ver.2 - indices and rates of change, monthly data",
   "source_updated": "2026-10-16T23:00:00+0200"
  },
@@ -6833,6 +6963,14 @@
   "n_obs": 9547,
   "signature": "[\"bis\", \"WS_CBPOL/D.CA\", {}, 1.0]"
  },
+ "policy_rate_jp": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:44:01+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2026-10-27",
+  "n_obs": 8843,
+  "signature": "[\"bis\", \"WS_CBPOL/D.JP\", {}, 1.0]"
+ },
  "policy_rate_pl": {
   "status": "ok",
   "fetched_at": "2026-11-01T22:25:27+00:00",
@@ -6885,9 +7023,45 @@
   "n_obs": 337,
   "signature": "[\"ecb\", \"BSI/M.ES.N.A.A20.A.I.U2.2200.Z01.A\", {}, 1.0]"
  },
+ "productivity_de": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:52:27+00:00",
+  "first_date": "1991-01-01",
+  "last_date": "2027-01-01",
+  "n_obs": 37,
+  "signature": "[\"dbnomics\", \"AMECO/RVGDE/DEU.1.1.0.0.RVGDE\", {\"batch\": \"ESP+EA20+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]",
+  "source_updated": "2026-05-22"
+ },
+ "productivity_ea": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:52:27+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2027-01-01",
+  "n_obs": 33,
+  "signature": "[\"dbnomics\", \"AMECO/RVGDE/EA20.1.1.0.0.RVGDE\", {\"batch\": \"ESP+EA20+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]",
+  "source_updated": "2026-05-22"
+ },
+ "productivity_es": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:52:27+00:00",
+  "first_date": "1960-01-01",
+  "last_date": "2027-01-01",
+  "n_obs": 68,
+  "signature": "[\"dbnomics\", \"AMECO/RVGDE/ESP.1.1.0.0.RVGDE\", {\"batch\": \"ESP+EA20+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]",
+  "source_updated": "2026-05-22"
+ },
+ "productivity_fr": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:52:27+00:00",
+  "first_date": "1960-01-01",
+  "last_date": "2027-01-01",
+  "n_obs": 68,
+  "signature": "[\"dbnomics\", \"AMECO/RVGDE/FRA.1.1.0.0.RVGDE\", {\"batch\": \"ESP+EA20+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]",
+  "source_updated": "2026-05-22"
+ },
  "productivity_fte": {
   "status": "ok",
-  "fetched_at": "2026-11-01T21:22:22+00:00",
+  "fetched_at": "2026-11-01T22:52:26+00:00",
   "first_date": "1996-01-01",
   "last_date": "2026-07-01",
   "n_obs": 123,
@@ -6897,13 +7071,76 @@
  },
  "productivity_hour": {
   "status": "ok",
-  "fetched_at": "2026-11-01T21:22:22+00:00",
+  "fetched_at": "2026-11-01T22:52:27+00:00",
   "first_date": "1996-01-01",
   "last_date": "2026-07-01",
   "n_obs": 123,
   "signature": "[\"ine\", \"CNTR8242\", {}, 1.0]",
   "flash": false,
   "source_name": "Productividad por hora efectivamente trabajada. Datos ajustados de estacionalidad y calendario. Variación anual. Total Nacional."
+ },
+ "productivity_it": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:52:27+00:00",
+  "first_date": "1960-01-01",
+  "last_date": "2027-01-01",
+  "n_obs": 68,
+  "signature": "[\"dbnomics\", \"AMECO/RVGDE/ITA.1.1.0.0.RVGDE\", {\"batch\": \"ESP+EA20+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]",
+  "source_updated": "2026-05-22"
+ },
+ "productivity_jp": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:52:27+00:00",
+  "first_date": "1960-01-01",
+  "last_date": "2027-01-01",
+  "n_obs": 68,
+  "signature": "[\"dbnomics\", \"AMECO/RVGDE/JPN.1.1.0.0.RVGDE\", {\"batch\": \"ESP+EA20+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]",
+  "source_updated": "2026-05-22"
+ },
+ "productivity_nl": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:52:27+00:00",
+  "first_date": "1960-01-01",
+  "last_date": "2027-01-01",
+  "n_obs": 68,
+  "signature": "[\"dbnomics\", \"AMECO/RVGDE/NLD.1.1.0.0.RVGDE\", {\"batch\": \"ESP+EA20+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]",
+  "source_updated": "2026-05-22"
+ },
+ "productivity_pl": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:52:27+00:00",
+  "first_date": "1992-01-01",
+  "last_date": "2027-01-01",
+  "n_obs": 36,
+  "signature": "[\"dbnomics\", \"AMECO/RVGDE/POL.1.1.0.0.RVGDE\", {\"batch\": \"ESP+EA20+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]",
+  "source_updated": "2026-05-22"
+ },
+ "productivity_pt": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:52:27+00:00",
+  "first_date": "1960-01-01",
+  "last_date": "2027-01-01",
+  "n_obs": 68,
+  "signature": "[\"dbnomics\", \"AMECO/RVGDE/PRT.1.1.0.0.RVGDE\", {\"batch\": \"ESP+EA20+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]",
+  "source_updated": "2026-05-22"
+ },
+ "productivity_uk": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:52:27+00:00",
+  "first_date": "1960-01-01",
+  "last_date": "2027-01-01",
+  "n_obs": 68,
+  "signature": "[\"dbnomics\", \"AMECO/RVGDE/GBR.1.1.0.0.RVGDE\", {\"batch\": \"ESP+EA20+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]",
+  "source_updated": "2026-05-22"
+ },
+ "productivity_us": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:52:27+00:00",
+  "first_date": "1960-01-01",
+  "last_date": "2027-01-01",
+  "n_obs": 68,
+  "signature": "[\"dbnomics\", \"AMECO/RVGDE/USA.1.1.0.0.RVGDE\", {\"batch\": \"ESP+EA20+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]",
+  "source_updated": "2026-05-22"
  },
  "public_investment_annual": {
   "status": "ok",
@@ -6932,6 +7169,105 @@
   "last_date": "2026-04-01",
   "n_obs": 78,
   "signature": "[\"derived\", \"deflate\", {\"a\": \"house_prices\", \"b\": \"cpi_index\", \"period\": \"Q\"}, 1.0]"
+ },
+ "real_pay_de": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:52:27+00:00",
+  "first_date": "1960-01-01",
+  "last_date": "2027-01-01",
+  "n_obs": 68,
+  "signature": "[\"dbnomics\", \"AMECO/RWCDC/DEU.3.1.0.0.RWCDC\", {\"batch\": \"ESP+EA20+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]",
+  "source_updated": "2026-05-22"
+ },
+ "real_pay_ea": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:52:27+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2027-01-01",
+  "n_obs": 33,
+  "signature": "[\"dbnomics\", \"AMECO/RWCDC/EA20.3.1.0.0.RWCDC\", {\"batch\": \"ESP+EA20+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]",
+  "source_updated": "2026-05-22"
+ },
+ "real_pay_es": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:52:27+00:00",
+  "first_date": "1960-01-01",
+  "last_date": "2027-01-01",
+  "n_obs": 68,
+  "signature": "[\"dbnomics\", \"AMECO/RWCDC/ESP.3.1.0.0.RWCDC\", {\"batch\": \"ESP+EA20+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]",
+  "source_updated": "2026-05-22"
+ },
+ "real_pay_fr": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:52:27+00:00",
+  "first_date": "1960-01-01",
+  "last_date": "2027-01-01",
+  "n_obs": 68,
+  "signature": "[\"dbnomics\", \"AMECO/RWCDC/FRA.3.1.0.0.RWCDC\", {\"batch\": \"ESP+EA20+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]",
+  "source_updated": "2026-05-22"
+ },
+ "real_pay_it": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:52:27+00:00",
+  "first_date": "1960-01-01",
+  "last_date": "2027-01-01",
+  "n_obs": 68,
+  "signature": "[\"dbnomics\", \"AMECO/RWCDC/ITA.3.1.0.0.RWCDC\", {\"batch\": \"ESP+EA20+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]",
+  "source_updated": "2026-05-22"
+ },
+ "real_pay_jp": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:52:27+00:00",
+  "first_date": "1980-01-01",
+  "last_date": "2027-01-01",
+  "n_obs": 48,
+  "signature": "[\"dbnomics\", \"AMECO/RWCDC/JPN.3.1.0.0.RWCDC\", {\"batch\": \"ESP+EA20+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]",
+  "source_updated": "2026-05-22"
+ },
+ "real_pay_nl": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:52:27+00:00",
+  "first_date": "1960-01-01",
+  "last_date": "2027-01-01",
+  "n_obs": 68,
+  "signature": "[\"dbnomics\", \"AMECO/RWCDC/NLD.3.1.0.0.RWCDC\", {\"batch\": \"ESP+EA20+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]",
+  "source_updated": "2026-05-22"
+ },
+ "real_pay_pl": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:52:27+00:00",
+  "first_date": "1991-01-01",
+  "last_date": "2027-01-01",
+  "n_obs": 37,
+  "signature": "[\"dbnomics\", \"AMECO/RWCDC/POL.3.1.0.0.RWCDC\", {\"batch\": \"ESP+EA20+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]",
+  "source_updated": "2026-05-22"
+ },
+ "real_pay_pt": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:52:27+00:00",
+  "first_date": "1960-01-01",
+  "last_date": "2027-01-01",
+  "n_obs": 68,
+  "signature": "[\"dbnomics\", \"AMECO/RWCDC/PRT.3.1.0.0.RWCDC\", {\"batch\": \"ESP+EA20+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]",
+  "source_updated": "2026-05-22"
+ },
+ "real_pay_uk": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:52:27+00:00",
+  "first_date": "1960-01-01",
+  "last_date": "2027-01-01",
+  "n_obs": 68,
+  "signature": "[\"dbnomics\", \"AMECO/RWCDC/GBR.3.1.0.0.RWCDC\", {\"batch\": \"ESP+EA20+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]",
+  "source_updated": "2026-05-22"
+ },
+ "real_pay_us": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:52:27+00:00",
+  "first_date": "1960-01-01",
+  "last_date": "2027-01-01",
+  "n_obs": 68,
+  "signature": "[\"dbnomics\", \"AMECO/RWCDC/USA.3.1.0.0.RWCDC\", {\"batch\": \"ESP+EA20+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]",
+  "source_updated": "2026-05-22"
  },
  "real_wage": {
   "status": "ok",
@@ -7189,6 +7525,14 @@
   "last_date": "2026-09-01",
   "n_obs": 427,
   "signature": "[\"derived\", \"subtract\", {\"a\": \"bond10_it\", \"b\": \"de_10y_monthly\", \"scale\": 100}, 1.0]"
+ },
+ "spread10_nl": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:06+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 441,
+  "signature": "[\"derived\", \"subtract\", {\"a\": \"bond10_nl\", \"b\": \"de_10y_monthly\", \"scale\": 100}, 1.0]"
  },
  "spread10_pt": {
   "status": "ok",
@@ -8188,12 +8532,14 @@
   "source_name": "Tasa de paro de la población. Ambos sexos. Balears, Illes. Total."
  },
  "unemployment_ca": {
-  "status": "ok",
+  "status": "stale",
   "fetched_at": "2026-11-01T21:22:41+00:00",
   "first_date": "1990-01-01",
   "last_date": "2026-09-01",
   "n_obs": 441,
-  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/CAN..._Z.Y._T.Y_GE15..M\", {}, 1.0]"
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/CAN..._Z.Y._T.Y_GE15..M\", {}, 1.0]",
+  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/GBR+CAN+JPN..._Z.Y._T.Y_GE15..M?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
+  "failed_at": "2026-11-01T22:49:03+00:00"
  },
  "unemployment_canarias": {
   "status": "ok",
@@ -8315,6 +8661,11 @@
   "source_name": "Unemployment by sex and age - monthly data",
   "source_updated": "2026-10-30T11:00:00+0100"
  },
+ "unemployment_jp": {
+  "status": "error",
+  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/GBR+CAN+JPN..._Z.Y._T.Y_GE15..M?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
+  "failed_at": "2026-11-01T22:49:03+00:00"
+ },
  "unemployment_madrid": {
   "status": "ok",
   "fetched_at": "2026-11-01T21:22:43+00:00",
@@ -8354,6 +8705,16 @@
   "signature": "[\"ine\", \"EPA452552\", {}, 1.0]",
   "flash": false,
   "source_name": "Tasa de paro de la población. Ambos sexos. Navarra, Comunidad Foral de. Total."
+ },
+ "unemployment_nl": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:43:17+00:00",
+  "first_date": "1983-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 525,
+  "signature": "[\"eurostat\", \"une_rt_m\", {\"age\": \"TOTAL\", \"geo\": \"NL\", \"s_adj\": \"SA\", \"sex\": \"T\", \"unit\": \"PC_ACT\"}, 1.0]",
+  "source_name": "Unemployment by sex and age - monthly data",
+  "source_updated": "2026-10-30T11:00:00+0100"
  },
  "unemployment_pais_vasco": {
   "status": "ok",
@@ -8396,12 +8757,14 @@
   "source_name": "Tasa de paro de la población. Ambos sexos. Rioja, La. Total."
  },
  "unemployment_uk": {
-  "status": "ok",
+  "status": "stale",
   "fetched_at": "2026-11-01T21:22:41+00:00",
   "first_date": "1990-01-01",
   "last_date": "2026-07-01",
   "n_obs": 439,
-  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/GBR..._Z.Y._T.Y_GE15..M\", {}, 1.0]"
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/GBR..._Z.Y._T.Y_GE15..M\", {}, 1.0]",
+  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/GBR+CAN+JPN..._Z.Y._T.Y_GE15..M?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
+  "failed_at": "2026-11-01T22:49:03+00:00"
  },
  "unemployment_valenciana": {
   "status": "ok",
@@ -8425,11 +8788,11 @@
  },
  "us_10y": {
   "status": "ok",
-  "fetched_at": "2026-11-01T21:22:40+00:00",
+  "fetched_at": "2026-11-01T22:43:19+00:00",
   "first_date": "1990-01-01",
   "last_date": "2026-09-01",
   "n_obs": 441,
-  "signature": "[\"oecd\", \"OECD.SDD.STES,DSD_STES@DF_FINMARK,/USA.M.IRLT.PA.....\", {}, 1.0]"
+  "signature": "[\"oecd\", \"OECD.SDD.STES,DSD_STES@DF_FINMARK,/USA.M.IRLT.PA.....\", {\"batch\": \"GBR+CAN+JPN+USA\"}, 1.0]"
  },
  "us_core_cpi_index": {
   "status": "ok",
@@ -8661,25 +9024,785 @@
   "flash": false,
   "source_name": "Industria, construcción y servicios (excepto actividades de los hogares como empleadores y de organizaciones y organismos extraterritoriales). Coste salarial ordinario. Total. Total Nacional. Costes laborales. Euros."
  },
- "youth_unemp_ca": {
+ "weo_ca_ca": {
   "status": "ok",
+  "fetched_at": "2026-11-01T22:45:06+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/CAN.BCA_NGDPD.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_ca_de": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:06+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/DEU.BCA_NGDPD.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_ca_ea": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:06+00:00",
+  "first_date": "1997-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 34,
+  "signature": "[\"imf\", \"IMF.RES,WEO/G163.BCA_NGDPD.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_ca_es": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:06+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/ESP.BCA_NGDPD.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_ca_fr": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:06+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/FRA.BCA_NGDPD.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_ca_it": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:06+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/ITA.BCA_NGDPD.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_ca_jp": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:06+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/JPN.BCA_NGDPD.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_ca_nl": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:06+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/NLD.BCA_NGDPD.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_ca_pl": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:06+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/POL.BCA_NGDPD.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_ca_pt": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:06+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/PRT.BCA_NGDPD.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_ca_uk": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:06+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/GBR.BCA_NGDPD.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_ca_us": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:06+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/USA.BCA_NGDPD.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_debt_ca": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:05+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/CAN.GGXWDG_NGDP.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_debt_de": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:05+00:00",
+  "first_date": "1991-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 41,
+  "signature": "[\"imf\", \"IMF.RES,WEO/DEU.GGXWDG_NGDP.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_debt_ea": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:05+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 37,
+  "signature": "[\"imf\", \"IMF.RES,WEO/G163.GGXWDG_NGDP.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_debt_es": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:05+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/ESP.GGXWDG_NGDP.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_debt_fr": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:05+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/FRA.GGXWDG_NGDP.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_debt_it": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:05+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/ITA.GGXWDG_NGDP.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_debt_jp": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:05+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/JPN.GGXWDG_NGDP.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_debt_nl": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:05+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/NLD.GGXWDG_NGDP.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_debt_pl": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:05+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 37,
+  "signature": "[\"imf\", \"IMF.RES,WEO/POL.GGXWDG_NGDP.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_debt_pt": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:05+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/PRT.GGXWDG_NGDP.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_debt_uk": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:05+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/GBR.GGXWDG_NGDP.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_debt_us": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:05+00:00",
+  "first_date": "2001-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 31,
+  "signature": "[\"imf\", \"IMF.RES,WEO/USA.GGXWDG_NGDP.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_deficit_ca": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:05+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/CAN.GGXCNL_NGDP.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_deficit_de": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:05+00:00",
+  "first_date": "1991-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 41,
+  "signature": "[\"imf\", \"IMF.RES,WEO/DEU.GGXCNL_NGDP.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_deficit_ea": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:05+00:00",
+  "first_date": "1991-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 41,
+  "signature": "[\"imf\", \"IMF.RES,WEO/G163.GGXCNL_NGDP.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_deficit_es": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:04+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/ESP.GGXCNL_NGDP.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_deficit_fr": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:05+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/FRA.GGXCNL_NGDP.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_deficit_it": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:05+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/ITA.GGXCNL_NGDP.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_deficit_jp": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:05+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/JPN.GGXCNL_NGDP.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_deficit_nl": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:05+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/NLD.GGXCNL_NGDP.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_deficit_pl": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:05+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 37,
+  "signature": "[\"imf\", \"IMF.RES,WEO/POL.GGXCNL_NGDP.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_deficit_pt": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:05+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/PRT.GGXCNL_NGDP.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_deficit_uk": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:05+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/GBR.GGXCNL_NGDP.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_deficit_us": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:05+00:00",
+  "first_date": "2001-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 31,
+  "signature": "[\"imf\", \"IMF.RES,WEO/USA.GGXCNL_NGDP.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_growth_ca": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:02+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/CAN.NGDP_RPCH.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_growth_de": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:02+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/DEU.NGDP_RPCH.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_growth_ea": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:02+00:00",
+  "first_date": "1992-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 40,
+  "signature": "[\"imf\", \"IMF.RES,WEO/G163.NGDP_RPCH.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_growth_es": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:01+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/ESP.NGDP_RPCH.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_growth_fr": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:02+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/FRA.NGDP_RPCH.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_growth_it": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:02+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/ITA.NGDP_RPCH.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_growth_jp": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:02+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/JPN.NGDP_RPCH.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_growth_nl": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:02+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/NLD.NGDP_RPCH.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_growth_pl": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:02+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/POL.NGDP_RPCH.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_growth_pt": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:02+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/PRT.NGDP_RPCH.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_growth_uk": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:02+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/GBR.NGDP_RPCH.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_growth_us": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:02+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/USA.NGDP_RPCH.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_inflation_ca": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:03+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/CAN.PCPIPCH.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_inflation_de": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:03+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/DEU.PCPIPCH.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_inflation_ea": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:03+00:00",
+  "first_date": "1991-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 41,
+  "signature": "[\"imf\", \"IMF.RES,WEO/G163.PCPIPCH.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_inflation_es": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:02+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/ESP.PCPIPCH.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_inflation_fr": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:03+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/FRA.PCPIPCH.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_inflation_it": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:03+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/ITA.PCPIPCH.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_inflation_jp": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:03+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/JPN.PCPIPCH.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_inflation_nl": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:03+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/NLD.PCPIPCH.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_inflation_pl": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:03+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 41,
+  "signature": "[\"imf\", \"IMF.RES,WEO/POL.PCPIPCH.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_inflation_pt": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:03+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/PRT.PCPIPCH.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_inflation_uk": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:03+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/GBR.PCPIPCH.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_inflation_us": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:03+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/USA.PCPIPCH.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_primary_ca": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:06+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/CAN.GGXONLB_NGDP.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_primary_de": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:06+00:00",
+  "first_date": "1991-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 41,
+  "signature": "[\"imf\", \"IMF.RES,WEO/DEU.GGXONLB_NGDP.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_primary_ea": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:06+00:00",
+  "first_date": "1991-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 41,
+  "signature": "[\"imf\", \"IMF.RES,WEO/G163.GGXONLB_NGDP.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_primary_es": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:05+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/ESP.GGXONLB_NGDP.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_primary_fr": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:06+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/FRA.GGXONLB_NGDP.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_primary_it": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:06+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/ITA.GGXONLB_NGDP.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_primary_jp": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:06+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/JPN.GGXONLB_NGDP.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_primary_nl": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:06+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 37,
+  "signature": "[\"imf\", \"IMF.RES,WEO/NLD.GGXONLB_NGDP.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_primary_pl": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:06+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 37,
+  "signature": "[\"imf\", \"IMF.RES,WEO/POL.GGXONLB_NGDP.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_primary_pt": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:06+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/PRT.GGXONLB_NGDP.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_primary_uk": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:06+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/GBR.GGXONLB_NGDP.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_primary_us": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:06+00:00",
+  "first_date": "2001-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 31,
+  "signature": "[\"imf\", \"IMF.RES,WEO/USA.GGXONLB_NGDP.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_unemp_ca": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:04+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/CAN.LUR.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_unemp_de": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:04+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/DEU.LUR.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_unemp_ea": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:04+00:00",
+  "first_date": "1991-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 41,
+  "signature": "[\"imf\", \"IMF.RES,WEO/G163.LUR.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_unemp_es": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:03+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/ESP.LUR.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_unemp_fr": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:04+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/FRA.LUR.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_unemp_it": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:04+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/ITA.LUR.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_unemp_jp": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:04+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/JPN.LUR.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_unemp_nl": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:04+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/NLD.LUR.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_unemp_pl": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:04+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/POL.LUR.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_unemp_pt": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:04+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/PRT.LUR.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_unemp_uk": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:04+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/GBR.LUR.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "weo_unemp_us": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T22:45:04+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/USA.LUR.A\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN+G163\"}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "youth_unemp_ca": {
+  "status": "stale",
   "fetched_at": "2026-11-01T22:25:28+00:00",
   "first_date": "1990-01-01",
   "last_date": "2026-09-01",
   "n_obs": 441,
-  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/CAN..._Z.Y._T.Y15T24..M\", {}, 1.0]"
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/CAN..._Z.Y._T.Y15T24..M\", {}, 1.0]",
+  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN..._Z.Y._T.Y15T24..M?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
+  "failed_at": "2026-11-01T22:50:04+00:00"
  },
  "youth_unemp_de": {
-  "status": "ok",
+  "status": "stale",
   "fetched_at": "2026-11-01T22:25:28+00:00",
   "first_date": "1991-01-01",
   "last_date": "2026-08-01",
   "n_obs": 428,
-  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/DEU..._Z.Y._T.Y15T24..M\", {}, 1.0]"
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/DEU..._Z.Y._T.Y15T24..M\", {}, 1.0]",
+  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN..._Z.Y._T.Y15T24..M?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
+  "failed_at": "2026-11-01T22:49:54+00:00"
  },
  "youth_unemp_ea": {
   "status": "ok",
-  "fetched_at": "2026-11-01T22:25:28+00:00",
+  "fetched_at": "2026-11-01T22:44:59+00:00",
   "first_date": "2000-01-01",
   "last_date": "2026-09-01",
   "n_obs": 321,
@@ -8688,60 +9811,84 @@
   "source_updated": "2026-10-30T11:00:00+0100"
  },
  "youth_unemp_es": {
-  "status": "ok",
+  "status": "stale",
   "fetched_at": "2026-11-01T22:25:27+00:00",
   "first_date": "1990-01-01",
   "last_date": "2026-08-01",
   "n_obs": 440,
-  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/ESP..._Z.Y._T.Y15T24..M\", {}, 1.0]"
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/ESP..._Z.Y._T.Y15T24..M\", {}, 1.0]",
+  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN..._Z.Y._T.Y15T24..M?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
+  "failed_at": "2026-11-01T22:49:54+00:00"
  },
  "youth_unemp_fr": {
-  "status": "ok",
+  "status": "stale",
   "fetched_at": "2026-11-01T22:25:28+00:00",
   "first_date": "1990-01-01",
   "last_date": "2026-08-01",
   "n_obs": 440,
-  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/FRA..._Z.Y._T.Y15T24..M\", {}, 1.0]"
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/FRA..._Z.Y._T.Y15T24..M\", {}, 1.0]",
+  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN..._Z.Y._T.Y15T24..M?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
+  "failed_at": "2026-11-01T22:49:54+00:00"
  },
  "youth_unemp_it": {
-  "status": "ok",
+  "status": "stale",
   "fetched_at": "2026-11-01T22:25:28+00:00",
   "first_date": "1990-01-01",
   "last_date": "2026-08-01",
   "n_obs": 440,
-  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/ITA..._Z.Y._T.Y15T24..M\", {}, 1.0]"
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/ITA..._Z.Y._T.Y15T24..M\", {}, 1.0]",
+  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN..._Z.Y._T.Y15T24..M?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
+  "failed_at": "2026-11-01T22:49:54+00:00"
+ },
+ "youth_unemp_jp": {
+  "status": "error",
+  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN..._Z.Y._T.Y15T24..M?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
+  "failed_at": "2026-11-01T22:50:04+00:00"
+ },
+ "youth_unemp_nl": {
+  "status": "error",
+  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN..._Z.Y._T.Y15T24..M?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
+  "failed_at": "2026-11-01T22:49:54+00:00"
  },
  "youth_unemp_pl": {
-  "status": "ok",
+  "status": "stale",
   "fetched_at": "2026-11-01T22:25:28+00:00",
   "first_date": "1997-01-01",
   "last_date": "2026-08-01",
   "n_obs": 356,
-  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/POL..._Z.Y._T.Y15T24..M\", {}, 1.0]"
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/POL..._Z.Y._T.Y15T24..M\", {}, 1.0]",
+  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN..._Z.Y._T.Y15T24..M?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
+  "failed_at": "2026-11-01T22:50:04+00:00"
  },
  "youth_unemp_pt": {
-  "status": "ok",
+  "status": "stale",
   "fetched_at": "2026-11-01T22:25:28+00:00",
   "first_date": "1990-01-01",
   "last_date": "2026-08-01",
   "n_obs": 440,
-  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/PRT..._Z.Y._T.Y15T24..M\", {}, 1.0]"
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/PRT..._Z.Y._T.Y15T24..M\", {}, 1.0]",
+  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN..._Z.Y._T.Y15T24..M?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
+  "failed_at": "2026-11-01T22:49:54+00:00"
  },
  "youth_unemp_uk": {
-  "status": "ok",
+  "status": "stale",
   "fetched_at": "2026-11-01T22:25:28+00:00",
   "first_date": "1990-01-01",
   "last_date": "2026-07-01",
   "n_obs": 439,
-  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/GBR..._Z.Y._T.Y15T24..M\", {}, 1.0]"
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/GBR..._Z.Y._T.Y15T24..M\", {}, 1.0]",
+  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN..._Z.Y._T.Y15T24..M?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
+  "failed_at": "2026-11-01T22:50:04+00:00"
  },
  "youth_unemp_us": {
-  "status": "ok",
+  "status": "stale",
   "fetched_at": "2026-11-01T22:25:28+00:00",
   "first_date": "1990-01-01",
   "last_date": "2026-09-01",
   "n_obs": 440,
-  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/USA..._Z.Y._T.Y15T24..M\", {}, 1.0]"
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/USA..._Z.Y._T.Y15T24..M\", {}, 1.0]",
+  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN..._Z.Y._T.Y15T24..M?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
+  "failed_at": "2026-11-01T22:50:04+00:00"
  },
  "youth_unemployment": {
   "status": "ok",

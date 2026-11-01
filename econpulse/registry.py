@@ -1,5 +1,6 @@
 """The indicator registry: every series the site tracks, defined in indicators.yaml."""
 
+import itertools
 import json
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -77,10 +78,15 @@ def _fill(value, item: dict):
 
 
 def expand(entry: dict) -> list[dict]:
-    """One entry, or one per item of its `for_each` list (a country or region, say)."""
+    """One entry, or one per item of its `for_each` list (a country or region, say). A `for_each` of
+    several lists ([*measures, *countries]) gives one entry per combination, each item's fields merged."""
     entry = dict(entry)
     items = entry.pop("for_each", None)
-    return [entry] if items is None else [_fill(entry, item) for item in items]
+    if items is None:
+        return [entry]
+    if items and all(isinstance(x, list) for x in items):
+        items = [{k: v for part in combo for k, v in part.items()} for combo in itertools.product(*items)]
+    return [_fill(entry, item) for item in items]
 
 
 def load_registry(path: Path = REGISTRY_FILE) -> list[Indicator]:
