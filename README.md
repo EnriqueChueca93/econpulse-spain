@@ -60,7 +60,9 @@ Because the workflow commits data every day, run `git pull` before working local
   the WEO does not publish a line). Each is on its section page (Table 1, main economic indicators, on the GDP
   page; Tables 2a and 2b, government operations, and the debt sustainability tables on the Fiscal page, the
   stress tests from the European Commission's Debt Sustainability Monitor; Tables 4 and 5, the balance of payments
-  and external debt, on the Activity page) and all are in one Excel workbook,
+  and external debt, on the Activity page; Table 3, financial soundness, on the Financial page, from the IMF's own
+  FSI database and the Banco de España; Table 6, monetary and credit indicators, on the ECB page) and all are in
+  one Excel workbook,
   `site/data/econpulse-spain-sector-tables.xlsx`, with history from 2015.
 - **Analysis**: EconPulse's own calculations, each explained on the page: activity and inflation composites,
   data surprises (the latest figures against a simple statistical forecast), a GDP nowcast with its track record,

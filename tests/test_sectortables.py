@@ -246,3 +246,56 @@ def test_balance_of_payments_and_external_debt(store, tmp_path):
     t = st.web_table(st.EXTERNAL_DEBT, data)
     assert t["columns"] == ["2021", "2022", "2023", "2024", "2025"] and "proj." not in t["column_notes"]
     assert "projections" not in t["caption"]
+
+
+def test_financial_soundness_and_monetary(store):
+    n = len(YEARS)
+    # FSI items (euros): leverage exposure reported from 2022 only, so earlier years use total assets.
+    for ind_id, v in [("fsi_regulatory_capital", 18e10), ("fsi_tier1_capital", 15e10), ("fsi_rwa", 1e12),
+                      ("fsi_total_assets", 3e12), ("fsi_npl", 3e10), ("fsi_gross_loans", 1.5e12),
+                      ("fsi_specific_provisions", 1.5e10), ("fsi_income_before_tax", 3e10), ("fsi_average_assets", 3e12),
+                      ("fsi_income_after_tax", 2e10), ("fsi_average_capital", 2e11)]:
+        store.save_series(ind_id, annual([v] * n))
+    store.save_series("fsi_leverage_exposure", annual([2.5e12] * 4, YEARS[-4:]))
+    # BdE: quarterly values dated on the quarter's last month, stored in a monthly series.
+    q_end = pd.date_range("2014-03-01", "2026-06-01", freq="3MS")
+    for ind_id, v in [("bank_npl_domestic", 30e6), ("bank_credit_osr", 1200e6), ("bank_credit_business", 550e6),
+                      ("bank_npl_business", 17e6), ("bank_credit_housing", 490e6), ("bank_npl_housing", 8e6)]:
+        store.save_series(ind_id, pd.Series([v] * len(q_end), index=q_end))
+    m = pd.date_range("2014-01-01", "2026-08-01", freq="MS")
+    store.save_series("bank_loans_osr", pd.Series([1200e3] * len(m), index=m))         # € mn
+    store.save_series("bank_deposits_osr", pd.Series([1500e6] * len(m), index=m))      # € thousand
+    monthly = pd.date_range("2006-01-01", "2026-09-01", freq="MS")
+    store.save_series("home_sales", pd.Series([50000.0 if d.year == 2007 else 40000.0 for d in monthly], index=monthly))
+    q = pd.date_range("2014-01-01", "2026-04-01", freq="QS")
+    store.save_series("house_prices", pd.Series([100 * 1.01 ** k for k in range(len(q))], index=q))
+    store.save_series("target_balance", pd.Series([-400e3] * len(m), index=m))
+    d = pd.date_range("2019-01-01", "2026-10-30", freq="D")
+    store.save_series("ecb_deposit_rate", pd.Series([2.0 if x.year >= 2025 else -0.5 for x in d], index=d))
+    fsi, mon = by_label(st.FINANCIAL_SOUNDNESS, store, 2015, 2025), by_label(st.MONETARY, store, 2015, 2025)
+    assert fsi["Regulatory capital to risk-weighted assets"][2020] == pytest.approx(18.0)
+    assert fsi["Tier 1 capital to total assets 1/"][2020] == pytest.approx(5.0)      # over total assets
+    assert fsi["Tier 1 capital to total assets 1/"][2023] == pytest.approx(6.0)      # over the leverage exposure
+    assert fsi["Nonperforming loans (billions of euros)"][2020] == pytest.approx(30.0)
+    assert fsi["Return on assets 2/"][2020] == pytest.approx(1.0) and fsi["Return on equity 2/"][2020] == pytest.approx(10.0)
+    assert fsi["Nonperforming loans to total loans"][2020] == pytest.approx(2.5)      # December of a quarterly series
+    assert fsi["Exposure to households: other (billions of euros) 4/"][2020] == pytest.approx(160.0)
+    assert fsi["Loans to deposits 5/"][2020] == pytest.approx(80.0)                   # € mn over € thousand
+    assert fsi["Home sales (2007 = 100)"][2020] == pytest.approx(80.0)
+    assert fsi["House prices (percentage change, end of period)"][2020] == pytest.approx((1.01 ** 4 - 1) * 100)
+    assert mon["TARGET balance 1/"][2020] == pytest.approx(-400.0)
+    assert mon["ECB deposit facility rate (end of year)"][2025] == 2.0
+    assert mon["ECB deposit facility rate (end of year)"][2024] == -0.5
+    # A table without projections ends where its first line ends; here the BdE's assets have no data.
+    assert st.span(st.MONETARY, Data(load_registry(), store)) is None
+
+
+def test_year_end_skips_incomplete_years(store):
+    m = pd.date_range("2024-01-01", "2026-06-01", freq="MS")
+    store.save_series("bank_deposits_osr", pd.Series(range(len(m)), index=m, dtype=float))
+    data = Data(load_registry(), store)
+    assert list(st.december("bank_deposits_osr")(data).index) == [2024, 2025]
+    q = pd.date_range("2024-01-01", "2026-04-01", freq="QS")
+    store.save_series("household_debt_gdp", pd.Series(range(len(q)), index=q, dtype=float))
+    data = Data(load_registry(), store)
+    assert st.year_end("household_debt_gdp")(data).to_dict() == {2024: 3.0, 2025: 7.0}

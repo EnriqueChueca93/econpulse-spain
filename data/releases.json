@@ -2981,6 +2981,279 @@
    "display": "€1,041,870 mn",
    "period": "2025",
    "flash": false
+  },
+  "fsi_regulatory_capital": {
+   "date": "2025-01-01",
+   "raw": 302667010000.0,
+   "display": "302,667,010,000",
+   "period": "2025",
+   "flash": false
+  },
+  "fsi_tier1_capital": {
+   "date": "2025-01-01",
+   "raw": 259503510000.0,
+   "display": "259,503,510,000",
+   "period": "2025",
+   "flash": false
+  },
+  "fsi_rwa": {
+   "date": "2025-01-01",
+   "raw": 1666997250000.0,
+   "display": "1,666,997,250,000",
+   "period": "2025",
+   "flash": false
+  },
+  "fsi_leverage_exposure": {
+   "date": "2025-01-01",
+   "raw": 4519185710000.0,
+   "display": "4,519,185,710,000",
+   "period": "2025",
+   "flash": false
+  },
+  "fsi_total_assets": {
+   "date": "2025-01-01",
+   "raw": 4329278200000.0,
+   "display": "4,329,278,200,000",
+   "period": "2025",
+   "flash": false
+  },
+  "fsi_npl": {
+   "date": "2025-01-01",
+   "raw": 72960800000.0,
+   "display": "72,960,800,000",
+   "period": "2025",
+   "flash": false
+  },
+  "fsi_gross_loans": {
+   "date": "2025-01-01",
+   "raw": 2823658230000.0,
+   "display": "2,823,658,230,000",
+   "period": "2025",
+   "flash": false
+  },
+  "fsi_specific_provisions": {
+   "date": "2025-01-01",
+   "raw": 34153850000.0,
+   "display": "34,153,850,000",
+   "period": "2025",
+   "flash": false
+  },
+  "fsi_income_before_tax": {
+   "date": "2025-01-01",
+   "raw": 56331760000.0,
+   "display": "56,331,760,000",
+   "period": "2025",
+   "flash": false
+  },
+  "fsi_average_assets": {
+   "date": "2025-01-01",
+   "raw": 4221071710000.0,
+   "display": "4,221,071,710,000",
+   "period": "2025",
+   "flash": false
+  },
+  "fsi_income_after_tax": {
+   "date": "2025-01-01",
+   "raw": 41017340000.0,
+   "display": "41,017,340,000",
+   "period": "2025",
+   "flash": false
+  },
+  "fsi_average_capital": {
+   "date": "2025-01-01",
+   "raw": 291040850000.0,
+   "display": "291,040,850,000",
+   "period": "2025",
+   "flash": false
+  },
+  "fsi_nfc_debt": {
+   "date": "2025-01-01",
+   "raw": 1931698101000.0,
+   "display": "1,931,698,101,000",
+   "period": "2025",
+   "flash": false
+  },
+  "fsi_nfc_balance_sheet": {
+   "date": "2025-01-01",
+   "raw": 5773344843000.0,
+   "display": "5,773,344,843,000",
+   "period": "2025",
+   "flash": false
+  },
+  "bank_npl_domestic": {
+   "date": "2026-06-01",
+   "raw": 29228416.0,
+   "display": "29,228,416 € thousand",
+   "period": "Jun 2026",
+   "flash": false
+  },
+  "bank_credit_osr": {
+   "date": "2026-06-01",
+   "raw": 1192072902.0,
+   "display": "1,192,072,902 € thousand",
+   "period": "Jun 2026",
+   "flash": false
+  },
+  "bank_provisions_osr": {
+   "date": "2026-06-01",
+   "raw": 17275043.0,
+   "display": "17,275,043 € thousand",
+   "period": "Jun 2026",
+   "flash": false
+  },
+  "bank_npl_osr_all": {
+   "date": "2026-06-01",
+   "raw": 31696656.0,
+   "display": "31,696,656 € thousand",
+   "period": "Jun 2026",
+   "flash": false
+  },
+  "bank_credit_construction": {
+   "date": "2026-06-01",
+   "raw": 22781503.0,
+   "display": "22,781,503 € thousand",
+   "period": "Jun 2026",
+   "flash": false
+  },
+  "bank_credit_real_estate": {
+   "date": "2026-06-01",
+   "raw": 74327551.0,
+   "display": "74,327,551 € thousand",
+   "period": "Jun 2026",
+   "flash": false
+  },
+  "bank_npl_construction": {
+   "date": "2026-06-01",
+   "raw": 1430962.0,
+   "display": "1,430,962 € thousand",
+   "period": "Jun 2026",
+   "flash": false
+  },
+  "bank_npl_real_estate": {
+   "date": "2026-06-01",
+   "raw": 1117356.0,
+   "display": "1,117,356 € thousand",
+   "period": "Jun 2026",
+   "flash": false
+  },
+  "bank_credit_business": {
+   "date": "2026-06-01",
+   "raw": 550074998.0,
+   "display": "550,074,998 € thousand",
+   "period": "Jun 2026",
+   "flash": false
+  },
+  "bank_npl_business": {
+   "date": "2026-06-01",
+   "raw": 16926221.0,
+   "display": "16,926,221 € thousand",
+   "period": "Jun 2026",
+   "flash": false
+  },
+  "bank_credit_housing": {
+   "date": "2026-06-01",
+   "raw": 499845812.0,
+   "display": "499,845,812 € thousand",
+   "period": "Jun 2026",
+   "flash": false
+  },
+  "bank_npl_housing": {
+   "date": "2026-06-01",
+   "raw": 6527258.0,
+   "display": "6,527,258 € thousand",
+   "period": "Jun 2026",
+   "flash": false
+  },
+  "bank_loans_osr": {
+   "date": "2026-08-01",
+   "raw": 1245452.0,
+   "display": "€1,245,452 mn",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "bank_deposits_osr": {
+   "date": "2026-08-01",
+   "raw": 1600815106.0,
+   "display": "1,600,815,106 € thousand",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "bde_total_assets": {
+   "date": "2026-08-01",
+   "raw": 826220.8989,
+   "display": "€826,221 mn",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "bde_mp_securities": {
+   "date": "2026-08-01",
+   "raw": 454184.9534,
+   "display": "€454,185 mn",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "bde_mp_lending": {
+   "date": "2026-08-01",
+   "raw": 103.0,
+   "display": "€103 mn",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "bde_mp_liabilities": {
+   "date": "2026-08-01",
+   "raw": 117480.4757,
+   "display": "€117,480 mn",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "bde_banknotes": {
+   "date": "2026-08-01",
+   "raw": 175520.3423,
+   "display": "€175,520 mn",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "target_balance": {
+   "date": "2026-08-01",
+   "raw": -442554.69,
+   "display": "−€442,555 mn",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "loans_households_growth": {
+   "date": "2026-09-01",
+   "raw": 4.981170981,
+   "display": "5.0%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "loans_nfc_growth": {
+   "date": "2026-09-01",
+   "raw": 5.549261042,
+   "display": "5.5%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "nfc_loan_rate": {
+   "date": "2026-08-01",
+   "raw": 3.57,
+   "display": "3.6%",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "deposit_rate_households": {
+   "date": "2026-08-01",
+   "raw": 2.01,
+   "display": "2.0%",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "household_liabilities_gdp": {
+   "date": "2025-01-01",
+   "raw": 47.3,
+   "display": "47.3% of GDP",
+   "period": "2025",
+   "flash": false
   }
  },
  "notes": [
@@ -3006,6 +3279,6 @@
    "at": "2026-11-01T02:50:46+00:00"
   }
  ],
- "updated_at": "2026-11-01T08:11:55+00:00",
+ "updated_at": "2026-11-01T08:29:46+00:00",
  "started_at": "2026-10-31T23:31:49+00:00"
 }

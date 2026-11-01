@@ -3660,3 +3660,465 @@ indicators:
     unit: "€ mn"
     change_unit: "%"
     decimals: 0
+
+  # ---------------------------------------------------------------- Financial soundness indicators
+  # (the IMF-style Table 3, econpulse/sectortables.py). IMF FSI database: the balance sheet and income
+  # statement items behind the core indicators, in euros, for deposit takers (S12CFSI) and firms (S11).
+
+  - id: fsi_regulatory_capital
+    label: Banks' regulatory capital (FSI)
+    label_es: Capital regulatorio de los bancos (FSI)
+    section: financial
+    source: imf
+    key: "IMF.STA,FSIBSIS/ESP.S12CFSI.TREGK_EUR.A"
+    freq: A
+    unit: "index"
+    change_unit: "%"
+    decimals: 0
+    notes: IMF Financial Soundness Indicators database (euros), consolidated basis.
+
+  - id: fsi_tier1_capital
+    label: Banks' Tier 1 capital (FSI)
+    label_es: Capital de nivel 1 de los bancos (FSI)
+    section: financial
+    source: imf
+    key: "IMF.STA,FSIBSIS/ESP.S12CFSI.T1KXCSD_EUR.A"
+    freq: A
+    unit: "index"
+    change_unit: "%"
+    decimals: 0
+    notes: IMF Financial Soundness Indicators database (euros), consolidated basis.
+
+  - id: fsi_rwa
+    label: Banks' risk-weighted assets (FSI)
+    label_es: Activos ponderados por riesgo (FSI)
+    section: financial
+    source: imf
+    key: "IMF.STA,FSIBSIS/ESP.S12CFSI.RWA_EUR.A"
+    freq: A
+    unit: "index"
+    change_unit: "%"
+    decimals: 0
+    notes: IMF Financial Soundness Indicators database (euros), consolidated basis.
+
+  - id: fsi_leverage_exposure
+    label: Banks' leverage exposure measure (FSI)
+    label_es: Exposición total de apalancamiento (FSI)
+    section: financial
+    source: imf
+    key: "IMF.STA,FSIBSIS/ESP.S12CFSI.B3TXM_EUR.A"
+    freq: A
+    unit: "index"
+    change_unit: "%"
+    decimals: 0
+    notes: IMF Financial Soundness Indicators database (euros), consolidated basis.
+
+  - id: fsi_total_assets
+    label: Banks' total assets (FSI)
+    label_es: Activos totales de los bancos (FSI)
+    section: financial
+    source: imf
+    key: "IMF.STA,FSIBSIS/ESP.S12CFSI.TA_A_EUR.A"
+    freq: A
+    unit: "index"
+    change_unit: "%"
+    decimals: 0
+    notes: IMF Financial Soundness Indicators database (euros), consolidated basis.
+
+  - id: fsi_npl
+    label: Banks' nonperforming loans (FSI)
+    label_es: Préstamos dudosos de los bancos (FSI)
+    section: financial
+    source: imf
+    key: "IMF.STA,FSIBSIS/ESP.S12CFSI.NPF4_EUR.A"
+    freq: A
+    unit: "index"
+    change_unit: "%"
+    decimals: 0
+    notes: IMF Financial Soundness Indicators database (euros), consolidated basis.
+
+  - id: fsi_gross_loans
+    label: Banks' gross loans (FSI)
+    label_es: Préstamos brutos de los bancos (FSI)
+    section: financial
+    source: imf
+    key: "IMF.STA,FSIBSIS/ESP.S12CFSI.GF4_A_EUR.A"
+    freq: A
+    unit: "index"
+    change_unit: "%"
+    decimals: 0
+    notes: IMF Financial Soundness Indicators database (euros), consolidated basis.
+
+  - id: fsi_specific_provisions
+    label: Banks' specific provisions (FSI)
+    label_es: Provisiones específicas de los bancos (FSI)
+    section: financial
+    source: imf
+    key: "IMF.STA,FSIBSIS/ESP.S12CFSI.SP_A_EUR.A"
+    freq: A
+    unit: "index"
+    change_unit: "%"
+    decimals: 0
+    notes: IMF Financial Soundness Indicators database (euros), consolidated basis.
+
+  - id: fsi_income_before_tax
+    label: Banks' net income before tax (FSI)
+    label_es: Beneficio antes de impuestos de los bancos (FSI)
+    section: financial
+    source: imf
+    key: "IMF.STA,FSIBSIS/ESP.S12CFSI.NINCBTX_EUR.A"
+    freq: A
+    unit: "index"
+    change_unit: "%"
+    decimals: 0
+    notes: IMF Financial Soundness Indicators database (euros), consolidated basis.
+
+  - id: fsi_average_assets
+    label: Banks' average total assets (FSI)
+    label_es: Activos totales medios de los bancos (FSI)
+    section: financial
+    source: imf
+    key: "IMF.STA,FSIBSIS/ESP.S12CFSI.ATA_EUR.A"
+    freq: A
+    unit: "index"
+    change_unit: "%"
+    decimals: 0
+    notes: IMF Financial Soundness Indicators database (euros), consolidated basis.
+
+  - id: fsi_income_after_tax
+    label: Banks' net income after tax (FSI)
+    label_es: Beneficio después de impuestos de los bancos (FSI)
+    section: financial
+    source: imf
+    key: "IMF.STA,FSIBSIS/ESP.S12CFSI.ANIAT_EUR.A"
+    freq: A
+    unit: "index"
+    change_unit: "%"
+    decimals: 0
+    notes: IMF Financial Soundness Indicators database (euros), consolidated basis.
+
+  - id: fsi_average_capital
+    label: Banks' average capital and reserves (FSI)
+    label_es: Capital y reservas medios de los bancos (FSI)
+    section: financial
+    source: imf
+    key: "IMF.STA,FSIBSIS/ESP.S12CFSI.ACR_EUR.A"
+    freq: A
+    unit: "index"
+    change_unit: "%"
+    decimals: 0
+    notes: IMF Financial Soundness Indicators database (euros), consolidated basis.
+
+  - id: fsi_nfc_debt
+    label: Nonfinancial corporations' debt (FSI)
+    label_es: Deuda de las sociedades no financieras (FSI)
+    section: financial
+    source: imf
+    key: "IMF.STA,FSIBSIS/ESP.S11.DEBT_L_EUR.A"
+    freq: A
+    unit: "index"
+    change_unit: "%"
+    decimals: 0
+    notes: IMF Financial Soundness Indicators database (euros), consolidated basis.
+
+  - id: fsi_nfc_balance_sheet
+    label: Nonfinancial corporations' balance sheet total (FSI)
+    label_es: Balance total de las sociedades no financieras (FSI)
+    section: financial
+    source: imf
+    key: "IMF.STA,FSIBSIS/ESP.S11.BST_EUR.A"
+    freq: A
+    unit: "index"
+    change_unit: "%"
+    decimals: 0
+    notes: IMF Financial Soundness Indicators database (euros), consolidated basis.
+
+  - id: household_liabilities_gdp
+    label: Household liabilities
+    label_es: Pasivos de los hogares
+    section: financial
+    source: eurostat
+    key: nasa_10_f_bs
+    params: {geo: ES, sector: S14_S15, finpos: LIAB, na_item: F, co_nco: CO, unit: PC_GDP}
+    freq: A
+    unit: "% of GDP"
+    change_unit: "pp"
+    notes: Total financial liabilities of households and nonprofit institutions (loans, trade credit and other accounts payable).
+
+  # Banco de España: deposit institutions' business with other resident sectors (Boletín Estadístico,
+  # chapter 4), thousands of euros unless noted. Most are quarterly, dated on the quarter's last month.
+
+  - id: bank_npl_domestic
+    label: Banks' nonperforming loans, domestic
+    label_es: Crédito dudoso a otros sectores residentes
+    section: financial
+    source: bde
+    key: D_MDBEADU000
+    freq: M
+    unit: "€ thousand"
+    change_unit: "%"
+    decimals: 0
+    max_age_days: 270
+
+  - id: bank_credit_osr
+    label: Banks' credit to other resident sectors
+    label_es: Crédito a otros sectores residentes
+    section: financial
+    source: bde
+    key: D_MDTEE60000
+    freq: M
+    unit: "€ thousand"
+    change_unit: "%"
+    decimals: 0
+    max_age_days: 270
+
+  - id: bank_provisions_osr
+    label: Impairment allowances on credit
+    label_es: Correcciones de valor por deterioro de créditos
+    section: financial
+    source: bde
+    key: D_MEACV000
+    freq: M
+    unit: "€ thousand"
+    change_unit: "%"
+    decimals: 0
+    max_age_days: 270
+
+  - id: bank_npl_osr_all
+    label: Nonperforming loans, credit institutions and EFCs
+    label_es: Crédito dudoso, entidades de crédito y EFC
+    section: financial
+    source: bde
+    key: D_MEADU000
+    freq: M
+    unit: "€ thousand"
+    change_unit: "%"
+    decimals: 0
+    max_age_days: 270
+
+  - id: bank_credit_construction
+    label: Credit to construction
+    label_es: Crédito a la construcción
+    section: financial
+    source: bde
+    key: D_MDTEE61010
+    freq: M
+    unit: "€ thousand"
+    change_unit: "%"
+    decimals: 0
+    max_age_days: 270
+
+  - id: bank_credit_real_estate
+    label: Credit to real estate activities
+    label_es: Crédito a actividades inmobiliarias
+    section: financial
+    source: bde
+    key: D_MDTEE61013
+    freq: M
+    unit: "€ thousand"
+    change_unit: "%"
+    decimals: 0
+    max_age_days: 270
+
+  - id: bank_npl_construction
+    label: Nonperforming credit to construction
+    label_es: Crédito dudoso a la construcción
+    section: financial
+    source: bde
+    key: D_MDBEADU103
+    freq: M
+    unit: "€ thousand"
+    change_unit: "%"
+    decimals: 0
+    max_age_days: 270
+
+  - id: bank_npl_real_estate
+    label: Nonperforming credit to real estate activities
+    label_es: Crédito dudoso a actividades inmobiliarias
+    section: financial
+    source: bde
+    key: D_MDBEADU109
+    freq: M
+    unit: "€ thousand"
+    change_unit: "%"
+    decimals: 0
+    max_age_days: 270
+
+  - id: bank_credit_business
+    label: Credit to productive activities
+    label_es: Crédito a actividades productivas
+    section: financial
+    source: bde
+    key: D_MDTEE61000
+    freq: M
+    unit: "€ thousand"
+    change_unit: "%"
+    decimals: 0
+    max_age_days: 270
+
+  - id: bank_npl_business
+    label: Nonperforming credit to productive activities
+    label_es: Crédito dudoso a actividades productivas
+    section: financial
+    source: bde
+    key: D_MDBEADU100
+    freq: M
+    unit: "€ thousand"
+    change_unit: "%"
+    decimals: 0
+    max_age_days: 270
+
+  - id: bank_credit_housing
+    label: Credit to households for house purchase
+    label_es: Crédito a hogares para adquisición de vivienda
+    section: financial
+    source: bde
+    key: D_MDTEE62100
+    freq: M
+    unit: "€ thousand"
+    change_unit: "%"
+    decimals: 0
+    max_age_days: 270
+
+  - id: bank_npl_housing
+    label: Nonperforming credit for house purchase
+    label_es: Crédito dudoso para adquisición de vivienda
+    section: financial
+    source: bde
+    key: D_MDBEADU210
+    freq: M
+    unit: "€ thousand"
+    change_unit: "%"
+    decimals: 0
+    max_age_days: 270
+
+  - id: bank_loans_osr
+    label: Loans to other resident sectors
+    label_es: Préstamos y créditos a otros sectores residentes
+    section: financial
+    source: bde
+    key: D_BEEA1000
+    freq: M
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: bank_deposits_osr
+    label: Deposits of other resident sectors
+    label_es: Depósitos de otros sectores residentes
+    section: financial
+    source: bde
+    key: D_BEEP0000N
+    freq: M
+    unit: "€ thousand"
+    change_unit: "%"
+    decimals: 0
+
+  # Monetary indicators (the IMF-style monetary table): the Banco de España's balance sheet in the Eurosystem,
+  # TARGET, bank lending and interest rates (ECB), millions of euros or percent.
+
+  - id: bde_total_assets
+    label: Banco de España, total assets
+    label_es: Banco de España, activo total
+    section: ecb
+    source: ecb
+    key: ILM/M.ES.N.T000000.Z5.Z01
+    freq: M
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: bde_mp_securities
+    label: Banco de España, securities held for monetary policy
+    label_es: Banco de España, valores de política monetaria
+    section: ecb
+    source: ecb
+    key: ILM/M.ES.N.A070100.U2.EUR
+    freq: M
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: bde_mp_lending
+    label: Banco de España, lending to banks (monetary policy)
+    label_es: Banco de España, préstamos a entidades (política monetaria)
+    section: ecb
+    source: ecb
+    key: ILM/M.ES.N.A050000.U2.EUR
+    freq: M
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: bde_mp_liabilities
+    label: Banco de España, banks' reserves and deposits
+    label_es: Banco de España, reservas y depósitos de las entidades
+    section: ecb
+    source: ecb
+    key: ILM/M.ES.N.L020000.U2.EUR
+    freq: M
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: bde_banknotes
+    label: Banco de España, banknotes in circulation
+    label_es: Banco de España, billetes en circulación
+    section: ecb
+    source: ecb
+    key: ILM/M.ES.N.L010000.Z5.EUR
+    freq: M
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: target_balance
+    label: TARGET balance, Banco de España
+    label_es: Saldo TARGET del Banco de España
+    section: ecb
+    source: ecb
+    key: TGB/M.ES.N.A094T.U2.EUR.E
+    freq: M
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: loans_households_growth
+    label: Loans to households, y/y
+    label_es: Préstamos a hogares, tasa interanual
+    section: ecb
+    source: ecb
+    key: BSI/M.ES.N.A.A20.A.I.U2.2250.Z01.A
+    freq: M
+    unit: "%"
+    change_unit: "pp"
+
+  - id: loans_nfc_growth
+    label: Loans to non-financial corporations, y/y
+    label_es: Préstamos a sociedades no financieras, tasa interanual
+    section: ecb
+    source: ecb
+    key: BSI/M.ES.N.A.A20.A.I.U2.2240.Z01.A
+    freq: M
+    unit: "%"
+    change_unit: "pp"
+
+  - id: nfc_loan_rate
+    label: New loans to non-financial corporations, interest rate
+    label_es: Tipo de interés de nuevos préstamos a empresas
+    section: ecb
+    source: ecb
+    key: MIR/M.ES.B.A2A.A.R.A.2240.EUR.N
+    freq: M
+    unit: "%"
+    change_unit: "pp"
+
+  - id: deposit_rate_households
+    label: New household time deposits, interest rate
+    label_es: Tipo de interés de nuevos depósitos a plazo de hogares
+    section: ecb
+    source: ecb
+    key: MIR/M.ES.B.L22.F.R.A.2250.EUR.N
+    freq: M
+    unit: "%"
+    change_unit: "pp"

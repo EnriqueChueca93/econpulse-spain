@@ -87,6 +87,40 @@ def december(ind_id: str) -> Expr:
     return _expr(fn, [ind_id])
 
 
+def year_end(ind_id: str) -> Expr:
+    """The last observation of each complete year (December, or the fourth quarter)."""
+    def fn(data):
+        s = data.raw(ind_id)
+        if s is None:
+            return None
+        s = s.dropna()
+        last = s.groupby(s.index.year).tail(1)
+        last = last[last.index.month == (10 if data.by_id[ind_id].freq == "Q" else 12)]
+        return pd.Series(last.values, index=last.index.year, dtype=float)
+    return _expr(fn, [ind_id])
+
+
+def annual_sum(ind_id: str) -> Expr:
+    """The total of each complete calendar year of a monthly or quarterly series."""
+    def fn(data):
+        s = data.raw(ind_id)
+        if s is None:
+            return None
+        s = s.dropna()
+        g = s.groupby(s.index.year)
+        full = g.count() == PERIODS[data.by_id[ind_id].freq]
+        return g.sum()[full].astype(float)
+    return _expr(fn, [ind_id])
+
+
+def indexed(e: Expr, base: int) -> Expr:
+    """The series with the base year = 100."""
+    def fn(data):
+        s = e(data)
+        return None if s is None or base not in s.index else s / s[base] * 100
+    return _expr(fn, e.ids)
+
+
 def growth(e: Expr) -> Expr:
     """% change on the previous year (consecutive years only)."""
     def fn(data):
@@ -183,9 +217,11 @@ class SectorTable:
     imf_table: str                        # the Article IV table it follows
     rows: list = field(default_factory=list)
     footnotes: list[str] = field(default_factory=list)
-    kind: str = "weo"                     # "weo": statistics then WEO projections; "dsm": the Commission's DSM
+    kind: str = "weo"                     # "weo": statistics then WEO projections; "dsm": the Commission's DSM;
+                                          # "actual": no projections
     web_actual: int = WEB_ACTUAL_YEARS    # actual years shown on the page
     first_year: int = FIRST_YEAR          # first year in the workbook
+    sources: str = ""                     # the sources line, where the kind's default does not fit
 
     def indicator_ids(self) -> set[str]:
         ids = set()
@@ -684,7 +720,173 @@ EXTERNAL_DEBT = SectorTable(
     ],
 )
 
-TABLES = [REAL_SECTOR, FISCAL_EUR, FISCAL_GDP, DSA_BASELINE, DSA_STRESS, BALANCE_OF_PAYMENTS, EXTERNAL_DEBT]
+# ---------------------------------------------------------------- financial soundness (Table 3)
+# Consolidated indicators from the IMF's FSI database (its balance sheet and income items, so the ratios are
+# the IMF's own), domestic business from the Banco de España, households from the ECB, housing from INE.
+
+FSI = "IMF FSI database"
+BDE = "Banco de España"
+
+
+def _ratio(num: str, den: str) -> Expr:
+    return share(published(num), published(den))
+
+
+TIER1 = published("fsi_tier1_capital")
+
+
+def _leverage(data: Data):
+    """Tier 1 over the Basel III leverage exposure where reported, otherwise over total assets."""
+    t1, exposure, assets = TIER1(data), published("fsi_leverage_exposure")(data), published("fsi_total_assets")(data)
+    if t1 is None or assets is None:
+        return None
+    base = assets if exposure is None else exposure.reindex(assets.index).fillna(assets)
+    return (t1 / base * 100).dropna()
+
+
+LEVERAGE = _expr(_leverage, {"fsi_tier1_capital", "fsi_leverage_exposure", "fsi_total_assets"})
+CONSTRUCTION = total(december("bank_credit_construction"), december("bank_credit_real_estate"))
+CONSTRUCTION_NPL = total(december("bank_npl_construction"), december("bank_npl_real_estate"))
+OTHER_BUSINESS = less(december("bank_credit_business"), CONSTRUCTION)
+OTHER_BUSINESS_NPL = less(december("bank_npl_business"), CONSTRUCTION_NPL)
+OTHER_HOUSEHOLD = less(december("bank_credit_osr"), december("bank_credit_business"), december("bank_credit_housing"))
+OTHER_HOUSEHOLD_NPL = less(december("bank_npl_domestic"), december("bank_npl_business"), december("bank_npl_housing"))
+
+FINANCIAL_SOUNDNESS = SectorTable(
+    id="financial-soundness", label="Table 3", title="Selected Financial Soundness Indicators",
+    unit="Percent, unless otherwise indicated; end of year", section="financial", block="soundness-table",
+    sheet="T3 Financial soundness", imf_table="Table 3. Spain: Selected Financial Soundness Indicators",
+    kind="actual", web_actual=6,
+    sources=("Sources: IMF Financial Soundness Indicators database (consolidated basis); Banco de España (domestic "
+             "operations); Eurostat (household debt); INE (house prices and sales); EconPulse calculations."),
+    rows=[
+        Group("Deposit takers: consolidated basis"),
+        Line("Regulatory capital to risk-weighted assets", _ratio("fsi_regulatory_capital", "fsi_rwa"), source=FSI,
+             link="fsi_regulatory_capital"),
+        Line("Regulatory Tier 1 capital to risk-weighted assets", _ratio("fsi_tier1_capital", "fsi_rwa"), source=FSI,
+             link="fsi_tier1_capital"),
+        Line("Tier 1 capital to total assets 1/", LEVERAGE, source=FSI, link="fsi_leverage_exposure"),
+        Line("Nonperforming loans (billions of euros)", scaled(published("fsi_npl"), 1e-9), source=FSI, link="fsi_npl"),
+        Line("Nonperforming loans to total gross loans", _ratio("fsi_npl", "fsi_gross_loans"), source=FSI,
+             link="fsi_gross_loans"),
+        Line("Specific provisions to nonperforming loans", _ratio("fsi_specific_provisions", "fsi_npl"), source=FSI,
+             link="fsi_specific_provisions"),
+        Line("Return on assets 2/", _ratio("fsi_income_before_tax", "fsi_average_assets"), source=FSI,
+             link="fsi_income_before_tax"),
+        Line("Return on equity 2/", _ratio("fsi_income_after_tax", "fsi_average_capital"), source=FSI,
+             link="fsi_income_after_tax"),
+        Group("Deposit takers: domestic operations"),
+        Line("Nonperforming loans (billions of euros)", scaled(december("bank_npl_domestic"), 1e-6), source=BDE,
+             link="bank_npl_domestic"),
+        Line("Nonperforming loans to total loans", share(december("bank_npl_domestic"), december("bank_credit_osr")),
+             source=BDE, link="bank_credit_osr"),
+        Line("Specific provisions to nonperforming loans 3/",
+             share(december("bank_provisions_osr"), december("bank_npl_osr_all")), source=BDE, link="bank_provisions_osr"),
+        Line("Exposure to businesses: construction and real estate (billions of euros)", scaled(CONSTRUCTION, 1e-6),
+             source=BDE, link="bank_credit_construction"),
+        Line("o/w nonperforming (percent)", share(CONSTRUCTION_NPL, CONSTRUCTION), indent=1, source=BDE,
+             link="bank_npl_construction"),
+        Line("Exposure to businesses: other (billions of euros)", scaled(OTHER_BUSINESS, 1e-6), source=BDE,
+             link="bank_credit_business"),
+        Line("o/w nonperforming (percent)", share(OTHER_BUSINESS_NPL, OTHER_BUSINESS), indent=1, source=BDE,
+             link="bank_npl_business"),
+        Line("Exposure to households: home purchase (billions of euros)", scaled(december("bank_credit_housing"), 1e-6),
+             source=BDE, link="bank_credit_housing"),
+        Line("o/w nonperforming (percent)", share(december("bank_npl_housing"), december("bank_credit_housing")),
+             indent=1, source=BDE, link="bank_npl_housing"),
+        Line("Exposure to households: other (billions of euros) 4/", scaled(OTHER_HOUSEHOLD, 1e-6), source=BDE),
+        Line("o/w nonperforming (percent)", share(OTHER_HOUSEHOLD_NPL, OTHER_HOUSEHOLD), indent=1, source=BDE),
+        Line("Loans to deposits 5/", share(december("bank_loans_osr"), december("bank_deposits_osr"), 1e5), source=BDE,
+             link="bank_deposits_osr"),
+        Group("Corporate sector"),
+        Line("Debt (percent of GDP)", share(published("fsi_nfc_debt"), GDP, 1e-4), source=f"{FSI}; GDP from Eurostat",
+             link="fsi_nfc_debt"),
+        Line("Debt to total assets 6/", _ratio("fsi_nfc_debt", "fsi_nfc_balance_sheet"), source=FSI,
+             link="fsi_nfc_balance_sheet"),
+        Group("Household sector"),
+        Line("Debt (percent of GDP) 7/", published("household_liabilities_gdp"), source=f"{ESTAT}, financial accounts",
+             link="household_liabilities_gdp"),
+        Group("Real estate market"),
+        Line("House prices (percentage change, end of period)", growth(year_end("house_prices")),
+             source="INE, fourth quarter on a year earlier", link="house_prices"),
+        Line("Home sales (2007 = 100)", indexed(annual_sum("home_sales"), 2007), source="INE, sales of homes in the year",
+             link="home_sales"),
+    ],
+    footnotes=[
+        "1/ Tier 1 capital over the Basel III leverage exposure measure where reported (from 2022), otherwise over "
+        "total assets.",
+        "2/ As in the IMF's database: net income before tax over average total assets, and net income after tax "
+        "over average capital and reserves.",
+        "3/ Impairment allowances over nonperforming credit to other resident sectors (credit institutions and "
+        "specialised lenders).",
+        "4/ Credit to households other than for house purchase, to nonprofit institutions, and unclassified credit.",
+        "5/ Based on loans to and deposits from other resident sectors, as in the IMF's table.",
+        "6/ Debt over the balance sheet total (debt, equity and other liabilities) of nonfinancial corporations.",
+        "7/ Total financial liabilities of households (loans, trade credit and other accounts payable), which is "
+        "what the IMF's figures match; loans alone are about 4 points of GDP lower.",
+        "Home sales are INE's count from the property registers; the IMF's index, from another source, runs a little "
+        "lower.",
+    ],
+)
+
+# ---------------------------------------------------------------- monetary (Table 6)
+# Not in the Article IV for Spain, which as a euro area member has no monetary table: built in the IMF's style
+# from the ECB's data on the Banco de España's balance sheet, bank lending and interest rates.
+
+MONETARY = SectorTable(
+    id="monetary", label="Table 6", title="Monetary and Credit Indicators",
+    unit="End of year, unless otherwise indicated", section="ecb", block="monetary-table",
+    sheet="T6 Monetary", imf_table="(none: the Article IV for Spain has no monetary table)",
+    kind="actual", web_actual=6,
+    sources="Sources: ECB (Eurosystem balance sheets, TARGET balances, bank balance sheets and interest rates); "
+            "Banco de España; EconPulse calculations.",
+    rows=[
+        Group("Banco de España (billions of euros)"),
+        Line("Total assets", scaled(december("bde_total_assets"), 1e-3), source="ECB, Eurosystem balance sheets",
+             link="bde_total_assets"),
+        Line("Securities held for monetary policy purposes", scaled(december("bde_mp_securities"), 1e-3), indent=1,
+             source="ECB", link="bde_mp_securities"),
+        Line("Lending to credit institutions (monetary policy operations)", scaled(december("bde_mp_lending"), 1e-3),
+             indent=1, source="ECB", link="bde_mp_lending"),
+        Line("Banknotes in circulation", scaled(december("bde_banknotes"), 1e-3), indent=1, source="ECB",
+             link="bde_banknotes"),
+        Line("Credit institutions' reserves and deposits", scaled(december("bde_mp_liabilities"), 1e-3), indent=1,
+             source="ECB", link="bde_mp_liabilities"),
+        Line("TARGET balance 1/", scaled(december("target_balance"), 1e-3), source="ECB, end of December",
+             link="target_balance"),
+        Group("Credit and deposits (annual percent change, December)"),
+        Line("Credit to the private sector 2/", december("private_credit_growth"), source="ECB",
+             link="private_credit_growth"),
+        Line("Loans to households", december("loans_households_growth"), indent=1, source="ECB",
+             link="loans_households_growth"),
+        Line("o.w. for house purchase", december("housing_loans_growth"), indent=2, source="ECB",
+             link="housing_loans_growth"),
+        Line("Loans to non-financial corporations", december("loans_nfc_growth"), indent=1, source="ECB",
+             link="loans_nfc_growth"),
+        Line("Deposits of other resident sectors 3/", growth(december("bank_deposits_osr")), source=BDE,
+             link="bank_deposits_osr"),
+        Group("Interest rates (percent)"),
+        Line("ECB deposit facility rate (end of year)", year_end("ecb_deposit_rate"), source="ECB",
+             link="ecb_deposit_rate"),
+        Line("3-month Euribor (end of year)", year_end("euribor_3m"), source=BDE, link="euribor_3m"),
+        Line("10-year government bond yield (end of year)", year_end("es_10y"), source=BDE, link="es_10y"),
+        Line("New loans to households for house purchase (December)", december("mortgage_rate"), source="ECB",
+             link="mortgage_rate"),
+        Line("New loans to non-financial corporations (December)", december("nfc_loan_rate"), source="ECB",
+             link="nfc_loan_rate"),
+        Line("New household time deposits (December)", december("deposit_rate_households"), source="ECB",
+             link="deposit_rate_households"),
+    ],
+    footnotes=[
+        "1/ The Banco de España's net position in the Eurosystem's payment system; negative is a liability.",
+        "2/ Bank loans to households, firms and non-bank financial corporations, adjusted for loan sales and "
+        "securitisation.",
+        "3/ Deposits held at credit institutions and specialised lenders, unadjusted.",
+    ],
+)
+
+TABLES = [REAL_SECTOR, FISCAL_EUR, FISCAL_GDP, DSA_BASELINE, DSA_STRESS, FINANCIAL_SOUNDNESS, BALANCE_OF_PAYMENTS,
+          EXTERNAL_DEBT, MONETARY]
 BY_ID = {t.id: t for t in TABLES}
 
 
@@ -738,6 +940,8 @@ def projections_phrase(table: SectorTable, data: Data) -> str:
 
 
 def sources_line(table: SectorTable, data: Data) -> str:
+    if table.sources:
+        return table.sources
     if table.kind == "dsm":
         return f"Source: {dsm_edition(data)}, Spain's country fiche."
     if table.kind == "actual":

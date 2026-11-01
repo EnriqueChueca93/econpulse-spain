@@ -632,6 +632,15 @@ PAGES: dict[str, list[dict]] = {
                             ("euribor_3m", "level", "3-month Euribor"), ("euribor_12m", "level", "12-month Euribor")]},
             ],
         },
+        {
+            "id": "soundness-table",
+            "title": "IMF-style financial soundness indicators",
+            "intro": ("Table 3 of the IMF's 2026 Article IV report for Spain: bank capital, asset quality and "
+                      "profitability from the IMF's own Financial Soundness Indicators database, banks' domestic "
+                      "exposures from the Banco de España, and corporate, household and housing indicators."),
+            "uses": sorted(sectortables.FINANCIAL_SOUNDNESS.indicator_ids()),
+            "tables": [sectortables.table_function("financial-soundness")],
+        },
     ],
     # ------------------------------------------------------------------ ECB
     "ecb": [
@@ -705,6 +714,15 @@ PAGES: dict[str, list[dict]] = {
                  "series": [("aaa_fwd_1y", "level", "1 year ahead"),
                             ("ecb_deposit_rate", "level", "Deposit rate", {"shape": "hv"})]},
             ],
+        },
+        {
+            "id": "monetary-table",
+            "title": "IMF-style monetary and credit indicators",
+            "intro": ("The Banco de España's balance sheet in the Eurosystem, bank lending and deposits, and interest "
+                      "rates, at the end of each year. The Article IV report for Spain has no monetary table, since "
+                      "the ECB sets policy for the euro area; this one follows the IMF's layout for other countries."),
+            "uses": sorted(sectortables.MONETARY.indicator_ids()),
+            "tables": [sectortables.table_function("monetary")],
         },
     ],
     # ------------------------------------------------------------------ Activity

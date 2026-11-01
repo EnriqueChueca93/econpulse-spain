@@ -122,6 +122,172 @@
   "n_obs": 284,
   "signature": "[\"derived\", \"divide\", {\"a\": \"mortgage_lending_homes\", \"b\": \"mortgages_homes\", \"scale\": 1000000}, 1.0]"
  },
+ "bank_credit_business": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:26:57+00:00",
+  "first_date": "1998-12-01",
+  "last_date": "2026-06-01",
+  "n_obs": 111,
+  "signature": "[\"bde\", \"D_MDTEE61000\", {}, 1.0]",
+  "source_name": "Entidades de depósito. Créditos a otros sectores residentes por finalidades. Financiación actividades productivas. Total"
+ },
+ "bank_credit_construction": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:26:56+00:00",
+  "first_date": "1998-12-01",
+  "last_date": "2026-06-01",
+  "n_obs": 111,
+  "signature": "[\"bde\", \"D_MDTEE61010\", {}, 1.0]",
+  "source_name": "Entidades de depósito. Créditos a otros sectores residentes por finalidades. Financiación actividades productivas. Construcción"
+ },
+ "bank_credit_housing": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:26:57+00:00",
+  "first_date": "1998-12-01",
+  "last_date": "2026-06-01",
+  "n_obs": 111,
+  "signature": "[\"bde\", \"D_MDTEE62100\", {}, 1.0]",
+  "source_name": "Entidades de depósito. Créditos a otros sectores residentes por finalidades. Otras financiaciones a hogares por funciones de gasto. Adquisición vivienda. Total"
+ },
+ "bank_credit_osr": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:26:56+00:00",
+  "first_date": "1998-12-01",
+  "last_date": "2026-06-01",
+  "n_obs": 111,
+  "signature": "[\"bde\", \"D_MDTEE60000\", {}, 1.0]",
+  "source_name": "Entidades de depósito. Créditos a otros sectores residentes por finalidades. Financiación actividades productivas y detalle por funciones de gasto. Total"
+ },
+ "bank_credit_real_estate": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:26:56+00:00",
+  "first_date": "1998-12-01",
+  "last_date": "2026-06-01",
+  "n_obs": 111,
+  "signature": "[\"bde\", \"D_MDTEE61013\", {}, 1.0]",
+  "source_name": "Entidades de depósito. Créditos a otros sectores residentes por finalidades. Financiación actividades productivas. Actividades inmobiliarias"
+ },
+ "bank_deposits_osr": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:26:57+00:00",
+  "first_date": "1962-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 776,
+  "signature": "[\"bde\", \"D_BEEP0000N\", {}, 1.0]",
+  "source_name": "Entidades de crédito y EFC. Balance agregado estados supervisión. Pasivo. Depósitos. Residentes en España. Otros sectores residentes"
+ },
+ "bank_loans_osr": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:26:57+00:00",
+  "first_date": "1962-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 776,
+  "signature": "[\"bde\", \"D_BEEA1000\", {}, 1.0]",
+  "source_name": "Total créditos al sector privado residente"
+ },
+ "bank_npl_business": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:26:57+00:00",
+  "first_date": "1998-12-01",
+  "last_date": "2026-06-01",
+  "n_obs": 111,
+  "signature": "[\"bde\", \"D_MDBEADU100\", {}, 1.0]",
+  "source_name": "Entidades de depósito. Créditos dudosos a otros sectores residentes por finalidades. Financiación actividades productivas"
+ },
+ "bank_npl_construction": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:26:56+00:00",
+  "first_date": "1998-12-01",
+  "last_date": "2026-06-01",
+  "n_obs": 111,
+  "signature": "[\"bde\", \"D_MDBEADU103\", {}, 1.0]",
+  "source_name": "Entidades de depósito. Créditos dudosos a otros sectores residentes por finalidades. Financiación actividades productivas. Construcción"
+ },
+ "bank_npl_domestic": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:26:56+00:00",
+  "first_date": "1998-12-01",
+  "last_date": "2026-06-01",
+  "n_obs": 111,
+  "signature": "[\"bde\", \"D_MDBEADU000\", {}, 1.0]",
+  "source_name": "Entidades de depósito. Créditos dudosos a otros sectores residentes por finalidades. Financiación actividades productivas y detalle funciones gasto. Total"
+ },
+ "bank_npl_housing": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:26:57+00:00",
+  "first_date": "1998-12-01",
+  "last_date": "2026-06-01",
+  "n_obs": 111,
+  "signature": "[\"bde\", \"D_MDBEADU210\", {}, 1.0]",
+  "source_name": "Entidades de depósito. Créditos dudosos a otros sectores residentes por finalidades. Otras financiaciones a hogares por funciones gasto. Adquisición vivienda. Total"
+ },
+ "bank_npl_osr_all": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:26:56+00:00",
+  "first_date": "1998-12-01",
+  "last_date": "2026-06-01",
+  "n_obs": 111,
+  "signature": "[\"bde\", \"D_MEADU000\", {}, 1.0]",
+  "source_name": "Entidades de crédito y EFC. Créditos dudosos a otros sectores residentes por finalidades. Total para financiar actividades productivas y detalle funciones gasto"
+ },
+ "bank_npl_real_estate": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:26:56+00:00",
+  "first_date": "1998-12-01",
+  "last_date": "2026-06-01",
+  "n_obs": 111,
+  "signature": "[\"bde\", \"D_MDBEADU109\", {}, 1.0]",
+  "source_name": "Entidades de depósito. Créditos dudosos a otros sectores residentes por finalidades. Financiación actividades productivas. Servicios. Actividades inmobiliarias"
+ },
+ "bank_provisions_osr": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:26:56+00:00",
+  "first_date": "1996-12-01",
+  "last_date": "2026-06-01",
+  "n_obs": 119,
+  "signature": "[\"bde\", \"D_MEACV000\", {}, 1.0]",
+  "source_name": "Entidades de crédito y EFC. Balance agregado estados supervisión. Patrimonio neto. Ajustes y correcciones de valor. Correcciones deterioro activos. Para créditos"
+ },
+ "bde_banknotes": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:26:58+00:00",
+  "first_date": "2016-06-01",
+  "last_date": "2026-08-01",
+  "n_obs": 123,
+  "signature": "[\"ecb\", \"ILM/M.ES.N.L010000.Z5.EUR\", {}, 1.0]"
+ },
+ "bde_mp_lending": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:26:58+00:00",
+  "first_date": "2016-06-01",
+  "last_date": "2026-08-01",
+  "n_obs": 123,
+  "signature": "[\"ecb\", \"ILM/M.ES.N.A050000.U2.EUR\", {}, 1.0]"
+ },
+ "bde_mp_liabilities": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:26:58+00:00",
+  "first_date": "2016-06-01",
+  "last_date": "2026-08-01",
+  "n_obs": 123,
+  "signature": "[\"ecb\", \"ILM/M.ES.N.L020000.U2.EUR\", {}, 1.0]"
+ },
+ "bde_mp_securities": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:26:58+00:00",
+  "first_date": "2016-06-01",
+  "last_date": "2026-08-01",
+  "n_obs": 123,
+  "signature": "[\"ecb\", \"ILM/M.ES.N.A070100.U2.EUR\", {}, 1.0]"
+ },
+ "bde_total_assets": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:26:58+00:00",
+  "first_date": "2016-06-01",
+  "last_date": "2026-08-01",
+  "n_obs": 123,
+  "signature": "[\"ecb\", \"ILM/M.ES.N.T000000.Z5.Z01\", {}, 1.0]"
+ },
  "bond10_ca": {
   "status": "ok",
   "fetched_at": "2026-11-01T06:28:30+00:00",
@@ -981,6 +1147,14 @@
   "signature": "[\"eurostat\", \"gov_10dd_edpt1\", {\"geo\": \"ES\", \"na_item\": \"B9\", \"sector\": \"S13\", \"unit\": \"PC_GDP\"}, 1.0]",
   "source_name": "Government deficit/surplus, debt and associated data",
   "source_updated": "2026-10-21T11:00:00+0200"
+ },
+ "deposit_rate_households": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:26:58+00:00",
+  "first_date": "2000-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 320,
+  "signature": "[\"ecb\", \"MIR/M.ES.B.L22.F.R.A.2250.EUR.N\", {}, 1.0]"
  },
  "domestic_demand": {
   "status": "ok",
@@ -1931,6 +2105,132 @@
   "n_obs": 38,
   "signature": "[\"oecd\", \"OECD.ECO.MAD,DSD_EO@DF_EO,/ESP.UNR.A\", {\"edition\": true}, 1.0]",
   "edition": "Economic Outlook 119"
+ },
+ "fsi_average_assets": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:26:55+00:00",
+  "first_date": "2012-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 14,
+  "signature": "[\"imf\", \"IMF.STA,FSIBSIS/ESP.S12CFSI.ATA_EUR.A\", {}, 1.0]",
+  "published": "2026-10-31"
+ },
+ "fsi_average_capital": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:26:55+00:00",
+  "first_date": "2005-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 21,
+  "signature": "[\"imf\", \"IMF.STA,FSIBSIS/ESP.S12CFSI.ACR_EUR.A\", {}, 1.0]",
+  "published": "2026-10-31"
+ },
+ "fsi_gross_loans": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:26:55+00:00",
+  "first_date": "2012-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 14,
+  "signature": "[\"imf\", \"IMF.STA,FSIBSIS/ESP.S12CFSI.GF4_A_EUR.A\", {}, 1.0]",
+  "published": "2026-10-31"
+ },
+ "fsi_income_after_tax": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:26:55+00:00",
+  "first_date": "2005-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 21,
+  "signature": "[\"imf\", \"IMF.STA,FSIBSIS/ESP.S12CFSI.ANIAT_EUR.A\", {}, 1.0]",
+  "published": "2026-10-31"
+ },
+ "fsi_income_before_tax": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:26:55+00:00",
+  "first_date": "2010-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 16,
+  "signature": "[\"imf\", \"IMF.STA,FSIBSIS/ESP.S12CFSI.NINCBTX_EUR.A\", {}, 1.0]",
+  "published": "2026-10-31"
+ },
+ "fsi_leverage_exposure": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:26:55+00:00",
+  "first_date": "2022-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 4,
+  "signature": "[\"imf\", \"IMF.STA,FSIBSIS/ESP.S12CFSI.B3TXM_EUR.A\", {}, 1.0]",
+  "published": "2026-10-31"
+ },
+ "fsi_nfc_balance_sheet": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:26:55+00:00",
+  "first_date": "1999-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 27,
+  "signature": "[\"imf\", \"IMF.STA,FSIBSIS/ESP.S11.BST_EUR.A\", {}, 1.0]",
+  "published": "2026-10-31"
+ },
+ "fsi_nfc_debt": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:26:55+00:00",
+  "first_date": "1999-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 27,
+  "signature": "[\"imf\", \"IMF.STA,FSIBSIS/ESP.S11.DEBT_L_EUR.A\", {}, 1.0]",
+  "published": "2026-10-31"
+ },
+ "fsi_npl": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:26:55+00:00",
+  "first_date": "2005-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 21,
+  "signature": "[\"imf\", \"IMF.STA,FSIBSIS/ESP.S12CFSI.NPF4_EUR.A\", {}, 1.0]",
+  "published": "2026-10-31"
+ },
+ "fsi_regulatory_capital": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:26:55+00:00",
+  "first_date": "2005-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 21,
+  "signature": "[\"imf\", \"IMF.STA,FSIBSIS/ESP.S12CFSI.TREGK_EUR.A\", {}, 1.0]",
+  "published": "2026-10-31"
+ },
+ "fsi_rwa": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:26:55+00:00",
+  "first_date": "2005-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 21,
+  "signature": "[\"imf\", \"IMF.STA,FSIBSIS/ESP.S12CFSI.RWA_EUR.A\", {}, 1.0]",
+  "published": "2026-10-31"
+ },
+ "fsi_specific_provisions": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:26:55+00:00",
+  "first_date": "2012-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 14,
+  "signature": "[\"imf\", \"IMF.STA,FSIBSIS/ESP.S12CFSI.SP_A_EUR.A\", {}, 1.0]",
+  "published": "2026-10-31"
+ },
+ "fsi_tier1_capital": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:26:55+00:00",
+  "first_date": "2005-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 21,
+  "signature": "[\"imf\", \"IMF.STA,FSIBSIS/ESP.S12CFSI.T1KXCSD_EUR.A\", {}, 1.0]",
+  "published": "2026-10-31"
+ },
+ "fsi_total_assets": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:26:55+00:00",
+  "first_date": "2012-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 14,
+  "signature": "[\"imf\", \"IMF.STA,FSIBSIS/ESP.S12CFSI.TA_A_EUR.A\", {}, 1.0]",
+  "published": "2026-10-31"
  },
  "gas_eu": {
   "status": "ok",
@@ -3246,6 +3546,16 @@
   "n_obs": 107,
   "signature": "[\"ecb\", \"QSA/Q.N.ES.W0.S1M.S1.N.L.LE.F4.T._Z.XDC_R_B6GA_CY._T.S.V.N._T\", {}, 1.0]"
  },
+ "household_liabilities_gdp": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:29:42+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 31,
+  "signature": "[\"eurostat\", \"nasa_10_f_bs\", {\"co_nco\": \"CO\", \"finpos\": \"LIAB\", \"geo\": \"ES\", \"na_item\": \"F\", \"sector\": \"S14_S15\", \"unit\": \"PC_GDP\"}, 1.0]",
+  "source_name": "Financial balance sheets - annual data",
+  "source_updated": "2026-10-30T11:00:00+0100"
+ },
  "household_saving_rate_annual": {
   "status": "ok",
   "fetched_at": "2026-11-01T07:26:41+00:00",
@@ -3443,6 +3753,22 @@
   "source_name": "Labour cost index by NACE Rev. 2 activity - nominal value, quarterly data",
   "source_updated": "2026-09-16T11:00:00+0200"
  },
+ "loans_households_growth": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:26:58+00:00",
+  "first_date": "2004-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 273,
+  "signature": "[\"ecb\", \"BSI/M.ES.N.A.A20.A.I.U2.2250.Z01.A\", {}, 1.0]"
+ },
+ "loans_nfc_growth": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:26:58+00:00",
+  "first_date": "2004-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 273,
+  "signature": "[\"ecb\", \"BSI/M.ES.N.A.A20.A.I.U2.2240.Z01.A\", {}, 1.0]"
+ },
  "long_term_unemployment": {
   "status": "ok",
   "fetched_at": "2026-11-01T06:28:15+00:00",
@@ -3508,6 +3834,14 @@
   "last_date": "2026-08-01",
   "n_obs": 284,
   "signature": "[\"ecb\", \"MIR/M.ES.B.A2C.A.B.A.2250.EUR.N\", {}, 1.0]"
+ },
+ "nfc_loan_rate": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:26:58+00:00",
+  "first_date": "2000-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 320,
+  "signature": "[\"ecb\", \"MIR/M.ES.B.A2A.A.R.A.2240.EUR.N\", {}, 1.0]"
  },
  "niip_eur_annual": {
   "status": "ok",
@@ -3801,6 +4135,14 @@
   "last_date": "2026-09-01",
   "n_obs": 399,
   "signature": "[\"derived\", \"subtract\", {\"a\": \"bond10_pt\", \"b\": \"de_10y_monthly\", \"scale\": 100}, 1.0]"
+ },
+ "target_balance": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T08:26:58+00:00",
+  "first_date": "2008-05-01",
+  "last_date": "2026-08-01",
+  "n_obs": 220,
+  "signature": "[\"ecb\", \"TGB/M.ES.N.A094T.U2.EUR.E\", {}, 1.0]"
  },
  "taxes_income_annual": {
   "status": "ok",
