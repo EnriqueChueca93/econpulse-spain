@@ -55,16 +55,21 @@ Because the workflow commits data every day, run `git pull` before working local
   EconPulse's published word lists rather than an AI; after Econvitals' Fedspeak Tracker. **Global central bank stance**
   (`site/stance.html`): Econvitals' Global Central Bank Stance Matrix for twelve central banks, shown natively
   and credited (Econvitals places its own work in the public domain, CC0 1.0).
+- **IMF-style sector tables**: the tables of the IMF's 2026 Article IV report for Spain, rebuilt from public
+  data (actual years from INE, Eurostat and the ECB, projections from the IMF's World Economic Outlook; "…" where
+  the WEO does not publish a line). Each is on its section page (Table 1, main economic indicators, on the GDP
+  page) and all are in one Excel workbook, `site/data/econpulse-spain-sector-tables.xlsx`, with history from 2015.
 - **Analysis**: EconPulse's own calculations, each explained on the page: activity and inflation composites,
   data surprises (the latest figures against a simple statistical forecast), a GDP nowcast with its track record,
   what forecasters expect for this year and next, the 10-year yield split into Bund and prima de riesgo, and
   Taylor rules for the euro area and Spain.
 - **Calendar** (`site/calendar.html`): releases in the past week and the next two months; every page has a
   "Coming up" bar.
-- **Data** (`site/data.html`): a freshness summary, then every series, its source and whether it is up to date.
+- **Data** (`site/data.html`): a freshness summary, a link to the sector tables workbook, then every series,
+  its source and whether it is up to date.
 - **About** (`site/about.html`): sources, how the numbers are made, and limits.
 
-Pages are plain HTML and work offline: Plotly is copied from the Python package, with no CDN. Light/dark
+Each tab in the navigation has a dropdown of its page's sections. Pages are plain HTML and work offline: Plotly is copied from the Python package, with no CDN. Light/dark
 follows the system setting, and the moon button switches it. Every chart has a "Copy link" button that copies
 the page address with the chart's anchor (`#fig-<chart id>`), and `site/feed.xml` is an RSS feed of what
 each update changed (linked in every page's footer).
@@ -118,6 +123,7 @@ econpulse/            Python package
   ecbspeak.py         ECB-speak: collects the Governing Council's speeches (data/ecbspeak.json) and analyses them
   speechscore.py      the hawkish/dovish word lists and the score
   fiscal_baseline.json  the Commission's Spain baseline, extracted by scripts/extract_fiscal_baseline.py
+  sectortables.py     IMF-style sector tables: their lines, the section-page tables and the Excel workbook
   build.py            renders every page into site/ (chart data goes in site/data/*.js)
 templates/            Jinja2 pages: base layout, home, section pages, data page
 static/               style.css (light/dark tokens), app.js (theme toggle, Plotly charts)

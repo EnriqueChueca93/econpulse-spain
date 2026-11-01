@@ -37,6 +37,15 @@
       monthly, 8–9 months for quarterly). Run <code>python -m econpulse status</code> for details.</p>
   </section>
 
+  {% if workbook %}
+  <section aria-labelledby="sector-tables">
+    <h2 id="sector-tables">IMF-style sector tables</h2>
+    <p>The tables of the IMF's 2026 Article IV report for Spain, rebuilt from public data, with history from 2015:
+      <a href="{{ workbook }}" download>download the Excel workbook</a>. Each table is also on its section page:
+      {% for href, title in sector_tables %}<a href="{{ href }}">{{ title }}</a>{% if not loop.last %}, {% endif %}{% endfor %}.</p>
+  </section>
+  {% endif %}
+
   {% for group in groups %}
   <section aria-labelledby="sec-{{ group.id }}">
     <h2 id="sec-{{ group.id }}">{{ group.title }}</h2>

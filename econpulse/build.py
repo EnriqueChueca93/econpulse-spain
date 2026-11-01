@@ -14,7 +14,7 @@ from pathlib import Path
 import pandas as pd
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
-from . import __version__, analytics, changes, ecbspeak, feed, fiscal, schedule, stance, surprises, tools
+from . import __version__, analytics, changes, ecbspeak, feed, fiscal, schedule, sectortables, stance, surprises, tools
 from .charts import build_home_charts
 from .config import SITE_DIR, STATIC_DIR, TEMPLATES_DIR
 from .pages import build_page
@@ -166,8 +166,10 @@ def build_site(indicators: list[Indicator], store: Store | None = None, site_dir
                items=[i for i in items if i["section"] == section])
     groups = [{"id": s, "title": t, "items": [i for i in items if i["section"] == s]} for s, (t, _, _) in SECTION_PAGES.items()]
     attention = [i for i in items if i["status"] != "ok" or i["out_of_date"]]
+    workbook = sectortables.write_workbook(readings_data, data_dir / sectortables.WORKBOOK, built=common["built"])
     render("data.html", "data.html", source_summary=_source_summary(items), groups=[g for g in groups if g["items"]],
-           attention=attention, total=len(items))
+           attention=attention, total=len(items), workbook=f"data/{sectortables.WORKBOOK}" if workbook else None,
+           sector_tables=[(f"{t.section}.html#{t.id}", f"Table {t.number}. {t.title}") for t in sectortables.TABLES])
     render("calendar.html", "calendar.html", days=schedule.window(store, today), recent=recent,
            calendar_page=schedule.INE_CALENDAR_PAGE)
     counts = {}

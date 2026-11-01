@@ -8,7 +8,7 @@ lists the indicators those functions read. Sections without blocks yet show thei
 (see build.SECTION_PAGES for the batch that fills them).
 """
 
-from . import analytics, forecasts, policy, surprises, underlying
+from . import analytics, forecasts, policy, sectortables, surprises, underlying
 from .charts import build_chart, build_curve, build_ranking, build_xy
 from .registry import Indicator
 from .snapshot import fmt_value, period_label
@@ -162,6 +162,17 @@ PAGES: dict[str, list[dict]] = {
                             ("compensation_per_employee", "level", "Pay"),
                             ("unit_labour_cost", "level", "Unit labour cost")]},
             ],
+        },
+        {
+            "id": "real-sector",
+            "title": "IMF-style main indicators",
+            "intro": ("Table 1 of the IMF's 2026 Article IV report for Spain, rebuilt from public data: actual years "
+                      "from INE, Eurostat and the ECB, projections from the IMF's World Economic Outlook database. "
+                      "That database publishes only some of the report's lines, so the others show … in the "
+                      "projection years."),
+            "facts": sectortables.facts,
+            "uses": sorted(sectortables.REAL_SECTOR.indicator_ids()),
+            "tables": [sectortables.table_function("real-sector")],
         },
     ],
     # ------------------------------------------------------------------ Labour

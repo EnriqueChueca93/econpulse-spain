@@ -2232,6 +2232,272 @@
    "display": "4.1% of GDP",
    "period": "2024",
    "flash": false
+  },
+  "gdp_growth_annual": {
+   "date": "2025-01-01",
+   "raw": 2.6,
+   "display": "2.6%",
+   "period": "2025",
+   "flash": false
+  },
+  "consumption_private_growth_annual": {
+   "date": "2025-01-01",
+   "raw": 3.1,
+   "display": "3.1%",
+   "period": "2025",
+   "flash": false
+  },
+  "consumption_public_growth_annual": {
+   "date": "2025-01-01",
+   "raw": 2.4,
+   "display": "2.4%",
+   "period": "2025",
+   "flash": false
+  },
+  "investment_growth_annual": {
+   "date": "2025-01-01",
+   "raw": 5.4,
+   "display": "5.4%",
+   "period": "2025",
+   "flash": false
+  },
+  "domestic_demand_growth_annual": {
+   "date": "2025-01-01",
+   "raw": 3.6,
+   "display": "3.6%",
+   "period": "2025",
+   "flash": false
+  },
+  "exports_growth_annual": {
+   "date": "2025-01-01",
+   "raw": 2.6,
+   "display": "2.6%",
+   "period": "2025",
+   "flash": false
+  },
+  "imports_growth_annual": {
+   "date": "2025-01-01",
+   "raw": 5.5,
+   "display": "5.5%",
+   "period": "2025",
+   "flash": false
+  },
+  "exports_contribution_annual": {
+   "date": "2025-01-01",
+   "raw": 0.96,
+   "display": "1.0 pp",
+   "period": "2025",
+   "flash": false
+  },
+  "imports_contribution_annual": {
+   "date": "2025-01-01",
+   "raw": -1.8,
+   "display": "−1.8 pp",
+   "period": "2025",
+   "flash": false
+  },
+  "gdp_per_capita_growth_annual": {
+   "date": "2025-01-01",
+   "raw": 1.6,
+   "display": "1.6%",
+   "period": "2025",
+   "flash": false
+  },
+  "investment_gdp_annual": {
+   "date": "2025-01-01",
+   "raw": 21.7,
+   "display": "21.7% of GDP",
+   "period": "2025",
+   "flash": false
+  },
+  "gdp_deflator_growth_annual": {
+   "date": "2025-01-01",
+   "raw": 3.0,
+   "display": "3.0%",
+   "period": "2025",
+   "flash": false
+  },
+  "gdp_nominal_annual": {
+   "date": "2025-01-01",
+   "raw": 1690012.0,
+   "display": "€1,690,012 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "gdp_real_annual": {
+   "date": "2025-01-01",
+   "raw": 1395075.0,
+   "display": "€1,395,075 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "national_saving_annual": {
+   "date": "2025-01-01",
+   "raw": 422280.0,
+   "display": "€422,280 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "government_saving_annual": {
+   "date": "2025-01-01",
+   "raw": 4414.0,
+   "display": "€4,414 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "household_saving_rate_annual": {
+   "date": "2025-01-01",
+   "raw": 11.92,
+   "display": "11.9%",
+   "period": "2025",
+   "flash": false
+  },
+  "current_account_annual": {
+   "date": "2025-01-01",
+   "raw": 54829.0,
+   "display": "€54,829 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "trade_balance_annual": {
+   "date": "2025-01-01",
+   "raw": 65105.0,
+   "display": "€65,105 mn",
+   "period": "2025",
+   "flash": false
+  },
+  "niip_gdp_annual": {
+   "date": "2025-01-01",
+   "raw": -42.7,
+   "display": "−42.7% of GDP",
+   "period": "2025",
+   "flash": false
+  },
+  "interest_received_annual": {
+   "date": "2025-01-01",
+   "raw": 0.5,
+   "display": "0.5% of GDP",
+   "period": "2025",
+   "flash": false
+  },
+  "private_credit_growth": {
+   "date": "2026-09-01",
+   "raw": 6.176463818,
+   "display": "6.2%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "fc_imf_gdp_per_capita": {
+   "date": "2031-01-01",
+   "raw": 29998.62251,
+   "display": "29,999",
+   "period": "2031",
+   "flash": false
+  },
+  "fc_imf_investment": {
+   "date": "2031-01-01",
+   "raw": 21.421048,
+   "display": "21.4% of GDP",
+   "period": "2031",
+   "flash": false
+  },
+  "fc_imf_saving": {
+   "date": "2031-01-01",
+   "raw": 22.988493,
+   "display": "23.0% of GDP",
+   "period": "2031",
+   "flash": false
+  },
+  "fc_imf_output_gap": {
+   "date": "2027-01-01",
+   "raw": 0.335031,
+   "display": "0.3%",
+   "period": "2027",
+   "flash": false
+  },
+  "fc_imf_real_gdp": {
+   "date": "2031-01-01",
+   "raw": 1558950286000.0,
+   "display": "1,558,950,286,000",
+   "period": "2031",
+   "flash": false
+  },
+  "fc_imf_deflator": {
+   "date": "2031-01-01",
+   "raw": 143.439272,
+   "display": "143.4",
+   "period": "2031",
+   "flash": false
+  },
+  "fc_imf_inflation_eop": {
+   "date": "2031-01-01",
+   "raw": 2.0,
+   "display": "2.0%",
+   "period": "2031",
+   "flash": false
+  },
+  "fc_imf_employment": {
+   "date": "2027-01-01",
+   "raw": 22697620.0,
+   "display": "22,697,620",
+   "period": "2027",
+   "flash": false
+  },
+  "fc_imf_current_account": {
+   "date": "2031-01-01",
+   "raw": 1.608664,
+   "display": "1.6% of GDP",
+   "period": "2031",
+   "flash": false
+  },
+  "fc_imf_primary_balance": {
+   "date": "2031-01-01",
+   "raw": 0.241236,
+   "display": "0.2% of GDP",
+   "period": "2031",
+   "flash": false
+  },
+  "fc_imf_structural_balance": {
+   "date": "2031-01-01",
+   "raw": -2.001696,
+   "display": "−2.0% of GDP",
+   "period": "2031",
+   "flash": false
+  },
+  "fc_imf_debt": {
+   "date": "2031-01-01",
+   "raw": 89.391738,
+   "display": "89.4% of GDP",
+   "period": "2031",
+   "flash": false
+  },
+  "fc_imf_nominal_gdp": {
+   "date": "2031-01-01",
+   "raw": 2236146934000.0,
+   "display": "2,236,146,934,000",
+   "period": "2031",
+   "flash": false
+  },
+  "fc_imf_exports_volume": {
+   "date": "2031-01-01",
+   "raw": 2.497737,
+   "display": "2.5%",
+   "period": "2031",
+   "flash": false
+  },
+  "fc_imf_imports_volume": {
+   "date": "2031-01-01",
+   "raw": 2.185782,
+   "display": "2.2%",
+   "period": "2031",
+   "flash": false
+  },
+  "hicp_core_np_index": {
+   "date": "2026-09-01",
+   "raw": 103.85,
+   "display": "3.1% y/y",
+   "period": "Sep 2026",
+   "flash": false
   }
  },
  "notes": [
@@ -2257,6 +2523,6 @@
    "at": "2026-11-01T02:50:46+00:00"
   }
  ],
- "updated_at": "2026-11-01T06:29:42+00:00",
+ "updated_at": "2026-11-01T07:29:13+00:00",
  "started_at": "2026-10-31T23:31:49+00:00"
 }

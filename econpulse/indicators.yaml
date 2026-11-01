@@ -831,6 +831,18 @@ indicators:
     unit: index
     transforms: [yoy, pop]
 
+  - id: hicp_core_np_index
+    label: HICP excluding energy and unprocessed food, index
+    label_es: IPCA sin energía ni alimentos no elaborados, índice
+    section: inflation
+    source: eurostat
+    key: prc_hicp_minr
+    params: {geo: ES, unit: I25, coicop18: TOT_X_NRG_FOOD_NP}
+    freq: M
+    unit: index
+    transforms: [yoy, pop]
+    notes: The IMF's core inflation measure for Spain (and close to INE's inflación subyacente).
+
   - id: price_expectations
     label: Consumers' price expectations
     label_es: Expectativas de precios de los consumidores (CE)
@@ -2399,3 +2411,416 @@ indicators:
     unit: "{unit}"
     change_unit: pp
     notes: As listed in the FUNCAS Panel's reference table, which gives the month of AIReF's forecast; inflation is the CPI.
+
+  # ---------------------------------------------------------------- Annual series for the IMF-style sector tables
+  # (econpulse/sectortables.py): national accounts, saving, the external accounts and credit, by year.
+
+  - id: gdp_growth_annual
+    label: Real GDP growth, annual
+    label_es: PIB, volumen, tasa anual
+    section: gdp
+    source: eurostat
+    key: nama_10_gdp
+    params: {geo: ES, unit: CLV_PCH_PRE, na_item: B1GQ}
+    freq: A
+    unit: "%"
+    change_unit: pp
+
+  - id: consumption_private_growth_annual
+    label: Private consumption growth, annual
+    label_es: Consumo de hogares e ISFLSH, volumen, tasa anual
+    section: gdp
+    source: eurostat
+    key: nama_10_gdp
+    params: {geo: ES, unit: CLV_PCH_PRE, na_item: P31_S14_S15}
+    freq: A
+    unit: "%"
+    change_unit: pp
+
+  - id: consumption_public_growth_annual
+    label: Public consumption growth, annual
+    label_es: Consumo de las AAPP, volumen, tasa anual
+    section: gdp
+    source: eurostat
+    key: nama_10_gdp
+    params: {geo: ES, unit: CLV_PCH_PRE, na_item: P3_S13}
+    freq: A
+    unit: "%"
+    change_unit: pp
+
+  - id: investment_growth_annual
+    label: Gross fixed investment growth, annual
+    label_es: Formación bruta de capital fijo, volumen, tasa anual
+    section: gdp
+    source: eurostat
+    key: nama_10_gdp
+    params: {geo: ES, unit: CLV_PCH_PRE, na_item: P51G}
+    freq: A
+    unit: "%"
+    change_unit: pp
+
+  - id: domestic_demand_growth_annual
+    label: Domestic demand growth, annual
+    label_es: Demanda nacional, volumen, tasa anual
+    section: gdp
+    source: eurostat
+    key: nama_10_gdp
+    params: {geo: ES, unit: CLV_PCH_PRE, na_item: P3_P5}
+    freq: A
+    unit: "%"
+    change_unit: pp
+
+  - id: exports_growth_annual
+    label: Exports of goods and services growth, annual
+    label_es: Exportaciones, volumen, tasa anual
+    section: gdp
+    source: eurostat
+    key: nama_10_gdp
+    params: {geo: ES, unit: CLV_PCH_PRE, na_item: P6}
+    freq: A
+    unit: "%"
+    change_unit: pp
+
+  - id: imports_growth_annual
+    label: Imports of goods and services growth, annual
+    label_es: Importaciones, volumen, tasa anual
+    section: gdp
+    source: eurostat
+    key: nama_10_gdp
+    params: {geo: ES, unit: CLV_PCH_PRE, na_item: P7}
+    freq: A
+    unit: "%"
+    change_unit: pp
+
+  - id: exports_contribution_annual
+    label: Contribution of exports to GDP growth
+    label_es: Contribución de las exportaciones al crecimiento
+    section: gdp
+    source: eurostat
+    key: nama_10_gdp
+    params: {geo: ES, unit: CON_PPCH_PRE, na_item: P6}
+    freq: A
+    unit: "pp"
+    change_unit: pp
+    notes: Percentage points of GDP growth (imports subtract).
+
+  - id: imports_contribution_annual
+    label: Contribution of imports to GDP growth
+    label_es: Contribución de las importaciones al crecimiento
+    section: gdp
+    source: eurostat
+    key: nama_10_gdp
+    params: {geo: ES, unit: CON_PPCH_PRE, na_item: P7}
+    freq: A
+    unit: "pp"
+    change_unit: pp
+    notes: Percentage points of GDP growth (imports subtract).
+
+  - id: gdp_per_capita_growth_annual
+    label: Real GDP per capita growth
+    label_es: PIB per cápita, volumen, tasa anual
+    section: gdp
+    source: eurostat
+    key: nama_10_pc
+    params: {geo: ES, unit: CLV_PCH_PRE_HAB, na_item: B1GQ}
+    freq: A
+    unit: "%"
+    change_unit: pp
+
+  - id: investment_gdp_annual
+    label: Gross domestic investment
+    label_es: Formación bruta de capital (% PIB)
+    section: gdp
+    source: eurostat
+    key: nama_10_gdp
+    params: {geo: ES, unit: PC_GDP, na_item: P5G}
+    freq: A
+    unit: "% of GDP"
+    change_unit: pp
+
+  - id: gdp_deflator_growth_annual
+    label: GDP deflator, annual change
+    label_es: Deflactor del PIB, tasa anual
+    section: gdp
+    source: eurostat
+    key: nama_10_gdp
+    params: {geo: ES, unit: PD_PCH_PRE_EUR, na_item: B1GQ}
+    freq: A
+    unit: "%"
+    change_unit: pp
+
+  - id: gdp_nominal_annual
+    label: Nominal GDP, annual
+    label_es: PIB a precios corrientes
+    section: gdp
+    source: eurostat
+    key: nama_10_gdp
+    params: {geo: ES, unit: CP_MEUR, na_item: B1GQ}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: gdp_real_annual
+    label: Real GDP, annual (2020 prices)
+    label_es: PIB, volumen encadenado (2020)
+    section: gdp
+    source: eurostat
+    key: nama_10_gdp
+    params: {geo: ES, unit: CLV20_MEUR, na_item: B1GQ}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: national_saving_annual
+    label: Gross national saving
+    label_es: Ahorro nacional bruto
+    section: gdp
+    source: eurostat
+    key: nasa_10_nf_tr
+    params: {geo: ES, unit: CP_MEUR, direct: PAID, na_item: B8G, sector: S1}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: household_saving_rate_annual
+    label: Household saving rate, annual
+    label_es: Tasa de ahorro de los hogares
+    section: gdp
+    source: eurostat
+    key: nasa_10_ki
+    params: {geo: ES, unit: PC, na_item: SRG_S14_S15, sector: S14_S15}
+    freq: A
+    unit: "%"
+    change_unit: pp
+    notes: Gross saving, % of gross disposable income.
+
+  - id: current_account_annual
+    label: Current account balance, annual
+    label_es: Saldo por cuenta corriente
+    section: activity
+    source: eurostat
+    key: bop_c6_a
+    params: {geo: ES, currency: MIO_EUR, bop_item: CA, stk_flow: BAL, partner: WRL_REST, sector10: S1, sectpart: S1}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: trade_balance_annual
+    label: Trade balance, goods and services, annual
+    label_es: Saldo de bienes y servicios
+    section: activity
+    source: eurostat
+    key: bop_c6_a
+    params: {geo: ES, currency: MIO_EUR, bop_item: GS, stk_flow: BAL, partner: WRL_REST, sector10: S1, sectpart: S1}
+    freq: A
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+
+  - id: niip_gdp_annual
+    label: Net international investment position
+    label_es: Posición de inversión internacional neta
+    section: activity
+    source: eurostat
+    key: tipsii10
+    params: {geo: ES, unit: PC_GDP, partner: WRL_REST}
+    freq: A
+    unit: "% of GDP"
+    change_unit: pp
+
+  - id: interest_received_annual
+    label: Interest received by government
+    label_es: Intereses recibidos por las AAPP
+    section: fiscal
+    source: eurostat
+    key: gov_10a_main
+    params: {geo: ES, unit: PC_GDP, sector: S13, na_item: D41REC}
+    freq: A
+    unit: "% of GDP"
+    change_unit: pp
+
+  - id: private_credit_growth
+    label: Credit to the private sector, y/y
+    label_es: Préstamos al sector privado, tasa interanual
+    section: financial
+    source: ecb
+    key: BSI/M.ES.N.A.A20.A.I.U2.2200.Z01.A
+    freq: M
+    unit: "%"
+    change_unit: pp
+    notes: Annual growth of bank loans to residents other than banks and government, adjusted for sales and write-offs.
+
+  # IMF World Economic Outlook, for the sector tables' projection columns (history then projections).
+
+  - id: fc_imf_gdp_per_capita
+    label: IMF WEO, real GDP per capita
+    label_es: FMI, PIB real per cápita
+    section: analysis
+    source: imf
+    key: "IMF.RES,WEO/ESP.NGDPRPC.A"
+    freq: A
+    unit: "index"
+    change_unit: "%"
+    decimals: 0
+    notes: IMF World Economic Outlook, from the IMF's data service; history then projections.
+
+  - id: fc_imf_investment
+    label: IMF WEO, total investment
+    label_es: FMI, inversión total
+    section: analysis
+    source: imf
+    key: "IMF.RES,WEO/ESP.NID_NGDP.A"
+    freq: A
+    unit: "% of GDP"
+    change_unit: pp
+    notes: IMF World Economic Outlook, from the IMF's data service; history then projections.
+
+  - id: fc_imf_saving
+    label: IMF WEO, gross national saving
+    label_es: FMI, ahorro nacional bruto
+    section: analysis
+    source: imf
+    key: "IMF.RES,WEO/ESP.NGSD_NGDP.A"
+    freq: A
+    unit: "% of GDP"
+    change_unit: pp
+    notes: IMF World Economic Outlook, from the IMF's data service; history then projections.
+
+  - id: fc_imf_output_gap
+    label: IMF WEO, output gap
+    label_es: FMI, brecha de producción
+    section: analysis
+    source: imf
+    key: "IMF.RES,WEO/ESP.NGAP_NPGDP.A"
+    freq: A
+    unit: "%"
+    change_unit: pp
+    notes: IMF World Economic Outlook, from the IMF's data service; history then projections.
+
+  - id: fc_imf_real_gdp
+    label: IMF WEO, real GDP
+    label_es: FMI, PIB real
+    section: analysis
+    source: imf
+    key: "IMF.RES,WEO/ESP.NGDP_R.A"
+    freq: A
+    unit: "index"
+    change_unit: "%"
+    decimals: 0
+    notes: IMF World Economic Outlook, from the IMF's data service; history then projections.
+
+  - id: fc_imf_deflator
+    label: IMF WEO, GDP deflator
+    label_es: FMI, deflactor del PIB
+    section: analysis
+    source: imf
+    key: "IMF.RES,WEO/ESP.NGDP_D.A"
+    freq: A
+    unit: "index"
+    change_unit: "%"
+    notes: IMF World Economic Outlook, from the IMF's data service; history then projections.
+
+  - id: fc_imf_inflation_eop
+    label: IMF WEO, inflation, end of period
+    label_es: FMI, inflación a final de año
+    section: analysis
+    source: imf
+    key: "IMF.RES,WEO/ESP.PCPIEPCH.A"
+    freq: A
+    unit: "%"
+    change_unit: pp
+    notes: IMF World Economic Outlook, from the IMF's data service; history then projections.
+
+  - id: fc_imf_employment
+    label: IMF WEO, employment
+    label_es: FMI, empleo
+    section: analysis
+    source: imf
+    key: "IMF.RES,WEO/ESP.LE.A"
+    freq: A
+    unit: "index"
+    change_unit: "%"
+    decimals: 0
+    notes: IMF World Economic Outlook, from the IMF's data service; history then projections.
+
+  - id: fc_imf_current_account
+    label: IMF WEO, current account balance
+    label_es: FMI, saldo por cuenta corriente
+    section: analysis
+    source: imf
+    key: "IMF.RES,WEO/ESP.BCA_NGDPD.A"
+    freq: A
+    unit: "% of GDP"
+    change_unit: pp
+    notes: IMF World Economic Outlook, from the IMF's data service; history then projections.
+
+  - id: fc_imf_primary_balance
+    label: IMF WEO, primary balance
+    label_es: FMI, saldo primario
+    section: analysis
+    source: imf
+    key: "IMF.RES,WEO/ESP.GGXONLB_NGDP.A"
+    freq: A
+    unit: "% of GDP"
+    change_unit: pp
+    notes: IMF World Economic Outlook, from the IMF's data service; history then projections.
+
+  - id: fc_imf_structural_balance
+    label: IMF WEO, structural balance
+    label_es: FMI, saldo estructural
+    section: analysis
+    source: imf
+    key: "IMF.RES,WEO/ESP.GGSB_NPGDP.A"
+    freq: A
+    unit: "% of GDP"
+    change_unit: pp
+    notes: IMF World Economic Outlook, from the IMF's data service; history then projections.
+
+  - id: fc_imf_debt
+    label: IMF WEO, general government gross debt
+    label_es: FMI, deuda pública bruta
+    section: analysis
+    source: imf
+    key: "IMF.RES,WEO/ESP.GGXWDG_NGDP.A"
+    freq: A
+    unit: "% of GDP"
+    change_unit: pp
+    notes: IMF World Economic Outlook, from the IMF's data service; history then projections.
+
+  - id: fc_imf_nominal_gdp
+    label: IMF WEO, nominal GDP
+    label_es: FMI, PIB nominal
+    section: analysis
+    source: imf
+    key: "IMF.RES,WEO/ESP.NGDP.A"
+    freq: A
+    unit: "index"
+    change_unit: "%"
+    decimals: 0
+    notes: IMF World Economic Outlook, from the IMF's data service; history then projections.
+
+  - id: fc_imf_exports_volume
+    label: IMF WEO, volume of exports of goods and services
+    label_es: FMI, volumen de exportaciones
+    section: analysis
+    source: imf
+    key: "IMF.RES,WEO/ESP.TX_RPCH.A"
+    freq: A
+    unit: "%"
+    change_unit: pp
+    notes: IMF World Economic Outlook, from the IMF's data service; history then projections.
+
+  - id: fc_imf_imports_volume
+    label: IMF WEO, volume of imports of goods and services
+    label_es: FMI, volumen de importaciones
+    section: analysis
+    source: imf
+    key: "IMF.RES,WEO/ESP.TM_RPCH.A"
+    freq: A
+    unit: "%"
+    change_unit: pp
+    notes: IMF World Economic Outlook, from the IMF's data service; history then projections.

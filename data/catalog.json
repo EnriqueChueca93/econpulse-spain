@@ -269,6 +269,26 @@
   "flash": false,
   "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. Gasto en consumo final de los hogares. Dato base. Índices de volumen encadenados."
  },
+ "consumption_private_growth_annual": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:26:38+00:00",
+  "first_date": "1996-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 30,
+  "signature": "[\"eurostat\", \"nama_10_gdp\", {\"geo\": \"ES\", \"na_item\": \"P31_S14_S15\", \"unit\": \"CLV_PCH_PRE\"}, 1.0]",
+  "source_name": "Gross domestic product (GDP) and main components (output, expenditure and income) - annual data",
+  "source_updated": "2026-10-22T23:00:00+0200"
+ },
+ "consumption_public_growth_annual": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:26:39+00:00",
+  "first_date": "1996-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 30,
+  "signature": "[\"eurostat\", \"nama_10_gdp\", {\"geo\": \"ES\", \"na_item\": \"P3_S13\", \"unit\": \"CLV_PCH_PRE\"}, 1.0]",
+  "source_name": "Gross domestic product (GDP) and main components (output, expenditure and income) - annual data",
+  "source_updated": "2026-10-22T23:00:00+0200"
+ },
  "contrib_domestic_qq": {
   "status": "ok",
   "fetched_at": "2026-11-01T06:28:14+00:00",
@@ -629,6 +649,16 @@
   "source_name": "Main Balance of Payments and International Investment Position items as share of GDP (BPM6)",
   "source_updated": "2026-10-29T11:00:00+0100"
  },
+ "current_account_annual": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:26:41+00:00",
+  "first_date": "1993-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 33,
+  "signature": "[\"eurostat\", \"bop_c6_a\", {\"bop_item\": \"CA\", \"currency\": \"MIO_EUR\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S1\", \"sectpart\": \"S1\", \"stk_flow\": \"BAL\"}, 1.0]",
+  "source_name": "Balance of payments by country - annual data (BPM6)",
+  "source_updated": "2026-10-02T11:00:00+0200"
+ },
  "current_account_monthly": {
   "status": "ok",
   "fetched_at": "2026-11-01T06:28:21+00:00",
@@ -691,6 +721,16 @@
   "signature": "[\"ine\", \"CNTR7146\", {}, 1.0]",
   "flash": false,
   "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. Demanda nacional. Dato base. Índices de volumen encadenados."
+ },
+ "domestic_demand_growth_annual": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:26:39+00:00",
+  "first_date": "1996-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 30,
+  "signature": "[\"eurostat\", \"nama_10_gdp\", {\"geo\": \"ES\", \"na_item\": \"P3_P5\", \"unit\": \"CLV_PCH_PRE\"}, 1.0]",
+  "source_name": "Gross domestic product (GDP) and main components (output, expenditure and income) - annual data",
+  "source_updated": "2026-10-22T23:00:00+0200"
  },
  "ecb_deposit_rate": {
   "status": "ok",
@@ -908,6 +948,16 @@
   "flash": false,
   "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. Exportaciones de bienes y servicios. Dato base. Índices de volumen encadenados."
  },
+ "exports_contribution_annual": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:26:39+00:00",
+  "first_date": "1996-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 30,
+  "signature": "[\"eurostat\", \"nama_10_gdp\", {\"geo\": \"ES\", \"na_item\": \"P6\", \"unit\": \"CON_PPCH_PRE\"}, 1.0]",
+  "source_name": "Gross domestic product (GDP) and main components (output, expenditure and income) - annual data",
+  "source_updated": "2026-10-22T23:00:00+0200"
+ },
  "exports_goods": {
   "status": "ok",
   "fetched_at": "2026-11-01T06:28:14+00:00",
@@ -917,6 +967,16 @@
   "signature": "[\"ine\", \"CNTR7270\", {}, 1.0]",
   "flash": false,
   "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. Exportaciones de bienes. Dato base. Índices de volumen encadenados."
+ },
+ "exports_growth_annual": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:26:39+00:00",
+  "first_date": "1996-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 30,
+  "signature": "[\"eurostat\", \"nama_10_gdp\", {\"geo\": \"ES\", \"na_item\": \"P6\", \"unit\": \"CLV_PCH_PRE\"}, 1.0]",
+  "source_name": "Gross domestic product (GDP) and main components (output, expenditure and income) - annual data",
+  "source_updated": "2026-10-22T23:00:00+0200"
  },
  "exports_services": {
   "status": "ok",
@@ -1222,6 +1282,51 @@
   "signature": "[\"imf\", \"IMF.RES,WEO/ESP.GGXCNL_NGDP.A\", {}, 1.0]",
   "published": "2026-10-13"
  },
+ "fc_imf_current_account": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:26:43+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/ESP.BCA_NGDPD.A\", {}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "fc_imf_debt": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:26:44+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/ESP.GGXWDG_NGDP.A\", {}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "fc_imf_deflator": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:26:43+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/ESP.NGDP_D.A\", {}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "fc_imf_employment": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:26:43+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2027-01-01",
+  "n_obs": 38,
+  "signature": "[\"imf\", \"IMF.RES,WEO/ESP.LE.A\", {}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "fc_imf_exports_volume": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:26:44+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/ESP.TX_RPCH.A\", {}, 1.0]",
+  "published": "2026-10-13"
+ },
  "fc_imf_gdp": {
   "status": "ok",
   "fetched_at": "2026-11-01T06:28:53+00:00",
@@ -1231,6 +1336,24 @@
   "signature": "[\"imf\", \"IMF.RES,WEO/ESP.NGDP_RPCH.A\", {}, 1.0]",
   "published": "2026-10-13"
  },
+ "fc_imf_gdp_per_capita": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:26:42+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/ESP.NGDPRPC.A\", {}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "fc_imf_imports_volume": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:26:44+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/ESP.TM_RPCH.A\", {}, 1.0]",
+  "published": "2026-10-13"
+ },
  "fc_imf_inflation": {
   "status": "ok",
   "fetched_at": "2026-11-01T06:28:53+00:00",
@@ -1238,6 +1361,78 @@
   "last_date": "2031-01-01",
   "n_obs": 42,
   "signature": "[\"imf\", \"IMF.RES,WEO/ESP.PCPIPCH.A\", {}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "fc_imf_inflation_eop": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:26:43+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/ESP.PCPIEPCH.A\", {}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "fc_imf_investment": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:26:42+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/ESP.NID_NGDP.A\", {}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "fc_imf_nominal_gdp": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:26:44+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/ESP.NGDP.A\", {}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "fc_imf_output_gap": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:26:42+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2027-01-01",
+  "n_obs": 38,
+  "signature": "[\"imf\", \"IMF.RES,WEO/ESP.NGAP_NPGDP.A\", {}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "fc_imf_primary_balance": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:26:44+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/ESP.GGXONLB_NGDP.A\", {}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "fc_imf_real_gdp": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:26:42+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/ESP.NGDP_R.A\", {}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "fc_imf_saving": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:26:42+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 42,
+  "signature": "[\"imf\", \"IMF.RES,WEO/ESP.NGSD_NGDP.A\", {}, 1.0]",
+  "published": "2026-10-13"
+ },
+ "fc_imf_structural_balance": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:26:44+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2031-01-01",
+  "n_obs": 37,
+  "signature": "[\"imf\", \"IMF.RES,WEO/ESP.GGSB_NPGDP.A\", {}, 1.0]",
   "published": "2026-10-13"
  },
  "fc_imf_unemployment": {
@@ -1310,6 +1505,26 @@
   "last_date": "2026-07-01",
   "n_obs": 127,
   "signature": "[\"derived\", \"divide\", {\"a\": \"gdp_nominal\", \"b\": \"gdp\"}, 1.0]"
+ },
+ "gdp_deflator_growth_annual": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:26:40+00:00",
+  "first_date": "1996-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 30,
+  "signature": "[\"eurostat\", \"nama_10_gdp\", {\"geo\": \"ES\", \"na_item\": \"B1GQ\", \"unit\": \"PD_PCH_PRE_EUR\"}, 1.0]",
+  "source_name": "Gross domestic product (GDP) and main components (output, expenditure and income) - annual data",
+  "source_updated": "2026-10-22T23:00:00+0200"
+ },
+ "gdp_growth_annual": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:26:38+00:00",
+  "first_date": "1996-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 30,
+  "signature": "[\"eurostat\", \"nama_10_gdp\", {\"geo\": \"ES\", \"na_item\": \"B1GQ\", \"unit\": \"CLV_PCH_PRE\"}, 1.0]",
+  "source_name": "Gross domestic product (GDP) and main components (output, expenditure and income) - annual data",
+  "source_updated": "2026-10-22T23:00:00+0200"
  },
  "gdp_growth_ca": {
   "status": "ok",
@@ -1404,6 +1619,26 @@
   "signature": "[\"ine\", \"CNTR6597\", {}, 1.0]",
   "flash": false,
   "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. Producto interior bruto a precios de mercado. Dato base. Precios corrientes."
+ },
+ "gdp_nominal_annual": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:26:40+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 31,
+  "signature": "[\"eurostat\", \"nama_10_gdp\", {\"geo\": \"ES\", \"na_item\": \"B1GQ\", \"unit\": \"CP_MEUR\"}, 1.0]",
+  "source_name": "Gross domestic product (GDP) and main components (output, expenditure and income) - annual data",
+  "source_updated": "2026-10-22T23:00:00+0200"
+ },
+ "gdp_per_capita_growth_annual": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:26:39+00:00",
+  "first_date": "1996-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 30,
+  "signature": "[\"eurostat\", \"nama_10_pc\", {\"geo\": \"ES\", \"na_item\": \"B1GQ\", \"unit\": \"CLV_PCH_PRE_HAB\"}, 1.0]",
+  "source_name": "Gross domestic product (GDP) and main components per capita - annual data",
+  "source_updated": "2026-10-22T23:00:00+0200"
  },
  "gdp_per_head_andalucia": {
   "status": "ok",
@@ -1585,6 +1820,16 @@
   "flash": true,
   "source_name": "Comunitat Valenciana. Índice. Producto interior bruto a precios de mercado per capita. Precios corrientes."
  },
+ "gdp_real_annual": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:26:40+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 31,
+  "signature": "[\"eurostat\", \"nama_10_gdp\", {\"geo\": \"ES\", \"na_item\": \"B1GQ\", \"unit\": \"CLV20_MEUR\"}, 1.0]",
+  "source_name": "Gross domestic product (GDP) and main components (output, expenditure and income) - annual data",
+  "source_updated": "2026-10-22T23:00:00+0200"
+ },
  "gold": {
   "status": "ok",
   "fetched_at": "2026-11-01T06:28:26+00:00",
@@ -1730,6 +1975,16 @@
   "last_date": "2026-09-01",
   "n_obs": 310,
   "signature": "[\"eurostat\", \"prc_hicp_minr\", {\"coicop18\": \"TOT_X_NRG_FOOD\", \"geo\": \"NL\", \"unit\": \"RCH_A\"}, 1.0]",
+  "source_name": "Harmonised index of consumer prices (HICP) - ECOICOP ver.2 - indices and rates of change, monthly data",
+  "source_updated": "2026-10-16T23:00:00+0200"
+ },
+ "hicp_core_np_index": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:29:09+00:00",
+  "first_date": "2000-12-01",
+  "last_date": "2026-09-01",
+  "n_obs": 310,
+  "signature": "[\"eurostat\", \"prc_hicp_minr\", {\"coicop18\": \"TOT_X_NRG_FOOD_NP\", \"geo\": \"ES\", \"unit\": \"I25\"}, 1.0]",
   "source_name": "Harmonised index of consumer prices (HICP) - ECOICOP ver.2 - indices and rates of change, monthly data",
   "source_updated": "2026-10-16T23:00:00+0200"
  },
@@ -2329,6 +2584,16 @@
   "n_obs": 107,
   "signature": "[\"ecb\", \"QSA/Q.N.ES.W0.S1M.S1.N.L.LE.F4.T._Z.XDC_R_B6GA_CY._T.S.V.N._T\", {}, 1.0]"
  },
+ "household_saving_rate_annual": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:26:41+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 31,
+  "signature": "[\"eurostat\", \"nasa_10_ki\", {\"geo\": \"ES\", \"na_item\": \"SRG_S14_S15\", \"sector\": \"S14_S15\", \"unit\": \"PC\"}, 1.0]",
+  "source_name": "Key indicators for sector accounts - annual data",
+  "source_updated": "2026-10-28T11:00:00+0100"
+ },
  "housing_loans_growth": {
   "status": "ok",
   "fetched_at": "2026-11-01T06:28:27+00:00",
@@ -2355,6 +2620,26 @@
   "signature": "[\"ine\", \"CNTR7285\", {}, 1.0]",
   "flash": false,
   "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. Importaciones de bienes y servicios. Dato base. Índices de volumen encadenados."
+ },
+ "imports_contribution_annual": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:26:39+00:00",
+  "first_date": "1996-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 30,
+  "signature": "[\"eurostat\", \"nama_10_gdp\", {\"geo\": \"ES\", \"na_item\": \"P7\", \"unit\": \"CON_PPCH_PRE\"}, 1.0]",
+  "source_name": "Gross domestic product (GDP) and main components (output, expenditure and income) - annual data",
+  "source_updated": "2026-10-22T23:00:00+0200"
+ },
+ "imports_growth_annual": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:26:39+00:00",
+  "first_date": "1996-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 30,
+  "signature": "[\"eurostat\", \"nama_10_gdp\", {\"geo\": \"ES\", \"na_item\": \"P7\", \"unit\": \"CLV_PCH_PRE\"}, 1.0]",
+  "source_name": "Gross domestic product (GDP) and main components (output, expenditure and income) - annual data",
+  "source_updated": "2026-10-22T23:00:00+0200"
  },
  "industrial_production": {
   "status": "ok",
@@ -2383,6 +2668,16 @@
   "last_date": "2025-01-01",
   "n_obs": 31,
   "signature": "[\"eurostat\", \"gov_10a_main\", {\"geo\": \"ES\", \"na_item\": \"D41PAY\", \"sector\": \"S13\", \"unit\": \"PC_GDP\"}, 1.0]",
+  "source_name": "Government revenue, expenditure and main aggregates",
+  "source_updated": "2026-10-21T11:00:00+0200"
+ },
+ "interest_received_annual": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:26:41+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 31,
+  "signature": "[\"eurostat\", \"gov_10a_main\", {\"geo\": \"ES\", \"na_item\": \"D41REC\", \"sector\": \"S13\", \"unit\": \"PC_GDP\"}, 1.0]",
   "source_name": "Government revenue, expenditure and main aggregates",
   "source_updated": "2026-10-21T11:00:00+0200"
  },
@@ -2415,6 +2710,26 @@
   "signature": "[\"ine\", \"CNTR7236\", {}, 1.0]",
   "flash": false,
   "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. FBCF. Activos fijos materiales. Maquinaria, bienes de equipo y sistemas de armamento. Dato base. Índices de volumen encadenados."
+ },
+ "investment_gdp_annual": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:26:39+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 31,
+  "signature": "[\"eurostat\", \"nama_10_gdp\", {\"geo\": \"ES\", \"na_item\": \"P5G\", \"unit\": \"PC_GDP\"}, 1.0]",
+  "source_name": "Gross domestic product (GDP) and main components (output, expenditure and income) - annual data",
+  "source_updated": "2026-10-22T23:00:00+0200"
+ },
+ "investment_growth_annual": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:26:39+00:00",
+  "first_date": "1996-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 30,
+  "signature": "[\"eurostat\", \"nama_10_gdp\", {\"geo\": \"ES\", \"na_item\": \"P51G\", \"unit\": \"CLV_PCH_PRE\"}, 1.0]",
+  "source_name": "Gross domestic product (GDP) and main components (output, expenditure and income) - annual data",
+  "source_updated": "2026-10-22T23:00:00+0200"
  },
  "investment_housing": {
   "status": "ok",
@@ -2504,6 +2819,16 @@
   "flash": false,
   "source_name": "Viviendas. Número de hipotecas. Total Nacional. Base nueva. Mensual."
  },
+ "national_saving_annual": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:26:41+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 31,
+  "signature": "[\"eurostat\", \"nasa_10_nf_tr\", {\"direct\": \"PAID\", \"geo\": \"ES\", \"na_item\": \"B8G\", \"sector\": \"S1\", \"unit\": \"CP_MEUR\"}, 1.0]",
+  "source_name": "Non-financial transactions - annual data",
+  "source_updated": "2026-10-29T23:00:00+0100"
+ },
  "new_mortgage_lending": {
   "status": "ok",
   "fetched_at": "2026-11-01T06:28:27+00:00",
@@ -2511,6 +2836,16 @@
   "last_date": "2026-08-01",
   "n_obs": 284,
   "signature": "[\"ecb\", \"MIR/M.ES.B.A2C.A.B.A.2250.EUR.N\", {}, 1.0]"
+ },
+ "niip_gdp_annual": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:26:41+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 31,
+  "signature": "[\"eurostat\", \"tipsii10\", {\"geo\": \"ES\", \"partner\": \"WRL_REST\", \"unit\": \"PC_GDP\"}, 1.0]",
+  "source_name": "Net international investment position - annual data",
+  "source_updated": "2026-10-28T23:00:00+0100"
  },
  "npl_ratio": {
   "status": "ok",
@@ -2581,6 +2916,14 @@
   "last_date": "2025-01-01",
   "n_obs": 31,
   "signature": "[\"derived\", \"add\", {\"a\": \"deficit_annual\", \"b\": \"interest_annual\"}, 1.0]"
+ },
+ "private_credit_growth": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:26:42+00:00",
+  "first_date": "1998-09-01",
+  "last_date": "2026-09-01",
+  "n_obs": 337,
+  "signature": "[\"ecb\", \"BSI/M.ES.N.A.A20.A.I.U2.2200.Z01.A\", {}, 1.0]"
  },
  "productivity_fte": {
   "status": "ok",
@@ -2835,6 +3178,16 @@
   "signature": "[\"ine\", \"FREG375\", {}, 1.0]",
   "flash": false,
   "source_name": "Gasto total. Total Nacional. Turista. Dato base."
+ },
+ "trade_balance_annual": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T07:26:41+00:00",
+  "first_date": "1993-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 33,
+  "signature": "[\"eurostat\", \"bop_c6_a\", {\"bop_item\": \"GS\", \"currency\": \"MIO_EUR\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S1\", \"sectpart\": \"S1\", \"stk_flow\": \"BAL\"}, 1.0]",
+  "source_name": "Balance of payments by country - annual data (BPM6)",
+  "source_updated": "2026-10-02T11:00:00+0200"
  },
  "unemployment_andalucia": {
   "status": "ok",
