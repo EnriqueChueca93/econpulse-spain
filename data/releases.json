@@ -3254,6 +3254,293 @@
    "display": "47.3% of GDP",
    "period": "2025",
    "flash": false
+  },
+  "bop_q_current_account": {
+   "date": "2026-04-01",
+   "raw": 8748.0,
+   "display": "€8,748 mn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "bop_q_trade_balance": {
+   "date": "2026-04-01",
+   "raw": 15003.0,
+   "display": "€15,003 mn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "bop_q_exports_gs": {
+   "date": "2026-04-01",
+   "raw": 168012.0,
+   "display": "€168,012 mn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "bop_q_exports_goods": {
+   "date": "2026-04-01",
+   "raw": 105073.0,
+   "display": "€105,073 mn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "bop_q_exports_services": {
+   "date": "2026-04-01",
+   "raw": 62939.0,
+   "display": "€62,939 mn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "bop_q_imports_gs": {
+   "date": "2026-04-01",
+   "raw": 153009.0,
+   "display": "€153,009 mn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "bop_q_imports_goods": {
+   "date": "2026-04-01",
+   "raw": 123097.0,
+   "display": "€123,097 mn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "bop_q_imports_services": {
+   "date": "2026-04-01",
+   "raw": 29912.0,
+   "display": "€29,912 mn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "bop_q_goods_balance": {
+   "date": "2026-04-01",
+   "raw": -18024.0,
+   "display": "−€18,024 mn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "bop_q_services_balance": {
+   "date": "2026-04-01",
+   "raw": 33027.0,
+   "display": "€33,027 mn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "bop_q_travel_balance": {
+   "date": "2026-04-01",
+   "raw": 21328.0,
+   "display": "€21,328 mn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "bop_q_travel_credit": {
+   "date": "2026-04-01",
+   "raw": 30274.0,
+   "display": "€30,274 mn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "bop_q_travel_debit": {
+   "date": "2026-04-01",
+   "raw": 8946.0,
+   "display": "€8,946 mn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "bop_q_primary_income": {
+   "date": "2026-04-01",
+   "raw": -2093.0,
+   "display": "−€2,093 mn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "bop_q_secondary_income": {
+   "date": "2026-04-01",
+   "raw": -4162.0,
+   "display": "−€4,162 mn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "bop_q_secondary_income_gov": {
+   "date": "2026-04-01",
+   "raw": -1331.0,
+   "display": "−€1,331 mn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "bop_q_secondary_income_other": {
+   "date": "2026-04-01",
+   "raw": -2831.0,
+   "display": "−€2,831 mn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "bop_q_capital_account": {
+   "date": "2026-04-01",
+   "raw": 5031.0,
+   "display": "€5,031 mn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "bop_q_financial_account": {
+   "date": "2026-04-01",
+   "raw": 21151.0,
+   "display": "€21,151 mn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "bop_q_fdi_net": {
+   "date": "2026-04-01",
+   "raw": 1114.0,
+   "display": "€1,114 mn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "bop_q_fdi_abroad": {
+   "date": "2026-04-01",
+   "raw": 4351.0,
+   "display": "€4,351 mn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "bop_q_fdi_inward": {
+   "date": "2026-04-01",
+   "raw": 3236.0,
+   "display": "€3,236 mn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "bop_q_portfolio": {
+   "date": "2026-04-01",
+   "raw": -21853.0,
+   "display": "−€21,853 mn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "bop_q_derivatives": {
+   "date": "2026-04-01",
+   "raw": 4116.0,
+   "display": "€4,116 mn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "bop_q_other_investment": {
+   "date": "2026-04-01",
+   "raw": 38107.0,
+   "display": "€38,107 mn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "bop_q_other_investment_bde": {
+   "date": "2026-04-01",
+   "raw": 10897.0,
+   "display": "€10,897 mn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "bop_q_reserves": {
+   "date": "2026-04-01",
+   "raw": -333.0,
+   "display": "−€333 mn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "bop_q_errors": {
+   "date": "2026-04-01",
+   "raw": 7373.0,
+   "display": "€7,373 mn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "ext_q_securities_gov": {
+   "date": "2026-04-01",
+   "raw": 772856.0,
+   "display": "€772,856 mn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "ext_q_other_gov": {
+   "date": "2026-04-01",
+   "raw": 88696.0,
+   "display": "€88,696 mn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "ext_q_other_bde": {
+   "date": "2026-04-01",
+   "raw": 599821.0,
+   "display": "€599,821 mn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "ext_q_securities_mfi": {
+   "date": "2026-04-01",
+   "raw": 278599.0,
+   "display": "€278,599 mn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "ext_q_other_mfi": {
+   "date": "2026-04-01",
+   "raw": 544104.0,
+   "display": "€544,104 mn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "ext_q_securities_other": {
+   "date": "2026-04-01",
+   "raw": 149293.0,
+   "display": "€149,293 mn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "ext_q_other_other": {
+   "date": "2026-04-01",
+   "raw": 165749.0,
+   "display": "€165,749 mn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "ext_q_direct_investment": {
+   "date": "2026-04-01",
+   "raw": 326417.0,
+   "display": "€326,417 mn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "ext_q_securities": {
+   "date": "2026-04-01",
+   "raw": 1200748.0,
+   "display": "€1,200,748 mn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "ext_q_other": {
+   "date": "2026-04-01",
+   "raw": 1398370.0,
+   "display": "€1,398,370 mn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "ext_q_deposits": {
+   "date": "2026-04-01",
+   "raw": 1124565.0,
+   "display": "€1,124,565 mn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "niip_q_eur": {
+   "date": "2026-04-01",
+   "raw": -707348.0,
+   "display": "−€707,348 mn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "net_external_debt_q": {
+   "date": "2026-04-01",
+   "raw": 41.6,
+   "display": "41.6% of GDP",
+   "period": "Q2 2026",
+   "flash": false
   }
  },
  "notes": [
@@ -3279,6 +3566,6 @@
    "at": "2026-11-01T02:50:46+00:00"
   }
  ],
- "updated_at": "2026-11-01T08:29:46+00:00",
+ "updated_at": "2026-11-01T09:57:38+00:00",
  "started_at": "2026-10-31T23:31:49+00:00"
 }

@@ -1725,6 +1725,85 @@ def _monetary_periodic(to: str, in_gdp: bool) -> SectorTable:
     )
 
 
+def previous(e: Expr, months: int) -> Expr:
+    """The value the given number of months earlier."""
+    def fn(data):
+        s = e(data)
+        return None if s is None else pd.Series(s.values, index=s.index + pd.DateOffset(months=months))
+    return _expr(fn, e.ids)
+
+
+def _quarterly_id(annual_id: str) -> str:
+    """The quarterly twin of an annual balance of payments or investment position series."""
+    return {"current_account_annual": "bop_q_current_account", "trade_balance_annual": "bop_q_trade_balance",
+            "niip_eur_annual": "niip_q_eur", "net_external_debt_gdp": "net_external_debt_q"}.get(
+        annual_id, annual_id.replace("bop_", "bop_q_", 1).replace("ext_", "ext_q_", 1))
+
+
+def _bop_quarterly(in_gdp: bool) -> SectorTable:
+    gdp_q, gdp_year = GDP_QUARTER, _gdp_year_to("Q")
+    flow = (lambda e: _per_gdp(e, gdp_q)) if in_gdp else (lambda e: scaled(e, 1e-3))
+    rows = []
+    for label, indent, ind, _ in BOP_LINES:
+        qid = _quarterly_id(ind)
+        rows.append(Line(label, scaled(flow(at(qid, "Q")), -1 if ind == "bop_travel_debit" else 1), indent=indent,
+                         source=f"{BPM6}, quarterly", link=qid))
+    niip = at("niip_q_eur", "Q")
+    unexplained = less(niip, previous(niip, 3), at("bop_q_financial_account", "Q"))
+    rows += [Line("Net international investment position 3/", _per_gdp(niip, gdp_year) if in_gdp else scaled(niip, 1e-3),
+                  source=f"{ESTAT}, end of quarter", link="niip_q_eur"),
+             Line("Valuation changes 2/", flow(unexplained),
+                  source=f"{ESTAT}; change in the position less the financial account")]
+    return replace(
+        BALANCE_OF_PAYMENTS, id=f"bop-q-{'gdp' if in_gdp else 'amounts'}", freq="Q",
+        unit="Percent of the quarter's GDP" if in_gdp else "Billions of euros", rows=rows,
+        footnotes=[
+            "Eurostat, BPM6: each quarter's flows, not seasonally adjusted" + (", as a share of that quarter's GDP."
+                                                                                 if in_gdp else "."),
+            "1/ Net lending to the rest of the world: net acquisition of foreign assets less net incurrence of liabilities.",
+            "2/ The change in the net international investment position over the quarter not explained by the "
+            "financial account: changes in prices and exchange rates, and other changes.",
+            "3/ End of quarter" + ("; as a share of GDP over the past four quarters." if in_gdp else "."),
+        ],
+    )
+
+
+def _ext_quarterly(in_gdp: bool) -> SectorTable:
+    gdp_year = _gdp_year_to("Q")
+    q = lambda ind: at(ind, "Q")
+    stock = (lambda e: _per_gdp(e, gdp_year)) if in_gdp else (lambda e: scaled(e, 1e-3))
+    lines = [
+        ("Gross external debt 1/", 0, total(q("ext_q_securities"), q("ext_q_other"), q("ext_q_direct_investment")), None),
+        ("General government", 1, total(q("ext_q_securities_gov"), q("ext_q_other_gov")), "ext_q_securities_gov"),
+        ("Bank of Spain", 1, q("ext_q_other_bde"), "ext_q_other_bde"),
+        ("Other monetary financial institutions", 1, total(q("ext_q_securities_mfi"), q("ext_q_other_mfi")),
+         "ext_q_securities_mfi"),
+        ("Other resident sectors", 1, total(q("ext_q_securities_other"), q("ext_q_other_other")), "ext_q_securities_other"),
+        ("Debt securities", 1, q("ext_q_securities"), "ext_q_securities"),
+        ("Loans, trade credits and other liabilities", 1, less(q("ext_q_other"), q("ext_q_deposits")), None),
+        ("Deposits", 1, q("ext_q_deposits"), "ext_q_deposits"),
+        ("Direct investment debt liabilities", 1, q("ext_q_direct_investment"), "ext_q_direct_investment"),
+    ]
+    net = q("net_external_debt_q")
+    rows = [Line(label, stock(e), indent=indent, source=f"{IIP}, end of quarter", link=link) for label, indent, e, link in lines]
+    rows.append(Line("Net external debt 2/", net if in_gdp else _amount_of(net, gdp_year), source=f"{ESTAT}, end of quarter",
+                     link="net_external_debt_q"))
+    return replace(
+        EXTERNAL_DEBT, id=f"ext-q-{'gdp' if in_gdp else 'amounts'}", freq="Q",
+        unit="End of quarter; percent of GDP over the past four quarters" if in_gdp else "End of quarter; billions of euros",
+        rows=rows,
+        footnotes=[
+            "1/ Liabilities to non-residents in debt instruments at the end of the quarter, from Eurostat's international "
+            "investment position (BPM6). The sectors, with direct investment debt, add up to the total; so do the "
+            "instruments.",
+            "2/ Gross external debt less external assets in debt instruments (Eurostat)"
+            + ("." if in_gdp else "; in euros, its share of GDP over the past four quarters times that GDP."),
+        ],
+    )
+
+
+BOP_Q = (_bop_quarterly(False), _bop_quarterly(True))
+EXT_Q = (_ext_quarterly(False), _ext_quarterly(True))
 REAL_SECTOR_Q = (_real_sector_quarterly(True), _real_sector_quarterly(False))
 MONETARY_Q = (_monetary_periodic("Q", False), _monetary_periodic("Q", True))
 MONETARY_M = (_monetary_periodic("M", False), _monetary_periodic("M", True))
@@ -1754,10 +1833,10 @@ PAGE = [
      [(convert(FINANCIAL_SOUNDNESS, "amounts"), convert(FINANCIAL_SOUNDNESS, "gdp"))], [chart_capital, chart_bad_loans]),
     ("balance-of-payments", "Balance of payments",
      "Spain's transactions with the rest of the world, and the investment position they build up.",
-     [(BOP_AMOUNTS, BOP_GDP)], [chart_current_account]),
+     [{"A": (BOP_AMOUNTS, BOP_GDP), "Q": BOP_Q}], [chart_current_account]),
     ("external-debt", "External debt",
      "What Spanish residents owe to non-residents, by sector and instrument.",
-     [(EXT_AMOUNTS, EXT_GDP)], [chart_external]),
+     [{"A": (EXT_AMOUNTS, EXT_GDP), "Q": EXT_Q}], [chart_external]),
     ("monetary", "Monetary and credit",
      "The Banco de España's balance sheet in the Eurosystem, bank lending and deposits, and interest rates.",
      [{"A": (MONETARY, MONETARY_GDP), "Q": MONETARY_Q, "M": MONETARY_M}], [chart_credit, chart_central_bank]),

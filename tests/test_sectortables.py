@@ -410,3 +410,33 @@ def test_period_views_on_the_page(store):
     assert debt["cells"][-1] == "1,200.0"                    # 100% of four quarters of €300 bn
     sections = {s["id"]: s for s in st.page(data)["sections"]}
     assert [v["freq"] for v in sections["real-sector"]["tables"][0]["views"]] == ["A", "Q"]
+
+
+def test_quarterly_external_tables(store):
+    q = pd.date_range("2023-01-01", "2026-04-01", freq="QS")
+    store.save_series("gdp_nominal", pd.Series([400000.0] * len(q), index=q))           # € mn a quarter
+    store.save_series("bop_q_current_account", pd.Series([10000.0] * len(q), index=q))
+    store.save_series("bop_q_travel_debit", pd.Series([8000.0] * len(q), index=q))
+    store.save_series("bop_q_financial_account", pd.Series([20000.0] * len(q), index=q))
+    store.save_series("niip_q_eur", pd.Series([-700000.0 + 5000 * k for k in range(len(q))], index=q))
+    for ind_id, v in [("ext_q_securities", 1000e3), ("ext_q_other", 1300e3), ("ext_q_direct_investment", 300e3),
+                      ("ext_q_deposits", 1000e3)]:
+        store.save_series(ind_id, pd.Series([v] * len(q), index=q))
+    store.save_series("net_external_debt_q", pd.Series([45.0] * len(q), index=q))
+    data = Data(load_registry(), store)
+    amounts, gdp = st.web_table(st.BOP_Q[0], data), st.web_table(st.BOP_Q[1], data)
+    cell = lambda t, label: next(r for r in t["rows"] if r["label"] == label)["cells"][-1]
+    assert t_cols(amounts) == ["Q3 2024", "Q4 2024", "Q1 2025", "Q2 2025", "Q3 2025", "Q4 2025", "Q1 2026", "Q2 2026"]
+    assert cell(amounts, "Current account") == "10.0" and cell(gdp, "Current account") == "2.5"   # of the quarter's GDP
+    assert cell(amounts, "Tourism payments") == "−8.0"
+    assert cell(amounts, "Valuation changes 2/") == "−15.0"            # +5 bn in the position less 20 bn of flows
+    assert cell(gdp, "Net international investment position 3/") == "−39.7"   # −635 bn over four quarters of 400 bn
+    ext_a, ext_g = st.web_table(st.EXT_Q[0], data), st.web_table(st.EXT_Q[1], data)
+    assert cell(ext_a, "Gross external debt 1/") == "2,600.0" and cell(ext_g, "Gross external debt 1/") == "162.5"
+    assert cell(ext_a, "Net external debt 2/") == "720.0"             # 45% of €1,600 bn
+    sections = {s["id"]: s for s in st.page(data)["sections"]}
+    assert [v["freq"] for v in sections["balance-of-payments"]["tables"][0]["views"]] == ["A", "Q"]
+
+
+def t_cols(table):
+    return table["columns"]
