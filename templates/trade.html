@@ -2,13 +2,14 @@
 {% from "macros.html" import stat_table, chart_card %}
 
 {% block title %}Trade · EconPulse Spain{% endblock %}
-{% block description %}Spain's exports and imports of goods by product group: totals over the past 12 months, the balance with and without energy, and every group since 2008.{% endblock %}
+{% block description %}Spain's trade: goods by product group and partner, services by type, and export and import prices, with the balance with and without energy.{% endblock %}
 
 {% block content %}
   <h1>Trade</h1>
-  <p class="lede">Spain's exports and imports of goods by product group, from Eurostat's Comext. Figures are totals over
-    the past 12 months, which smooth out the seasons and the noise of single months. The external accounts as a whole
-    (services, income and the current account) are on the <a href="activity.html">Activity</a> page.</p>
+  <p class="lede">Spain's exports and imports of goods by product group and partner, its trade in services by type, and
+    export and import prices. Flows are totals over the past 12 months (four quarters for services), which smooth out
+    the seasons and the noise of single months. The current account as a whole is on the
+    <a href="activity.html">Activity</a> page.</p>
   {% if table %}
   <nav class="on-page" aria-label="On this page">
     {% for id, title in page_nav %}<a href="#{{ id }}">{{ title }}</a>{% endfor %}
@@ -35,11 +36,32 @@
     {{ stat_table(table) }}
   </section>
   <section class="block" aria-labelledby="rankings">
-    <h2 id="rankings">Rankings</h2>
+    <h2 id="rankings">Rankings by product</h2>
     <div class="charts">
       {% for c in rankings %}{{ chart_card(c) }}{% endfor %}
     </div>
   </section>
+  {% for x in extras %}
+  <section class="block" aria-labelledby="{{ x.id }}">
+    <h2 id="{{ x.id }}">{{ x.title }}</h2>
+    <p class="block-intro">{{ x.intro }}</p>
+    {% if x.facts %}
+    <div class="facts">
+      {% for f in x.facts %}
+      <div class="fact">
+        <span class="fact-label">{{ f.label }}</span>
+        <span class="fact-value">{{ f.value }}</span>
+        {% if f.sub %}<span class="fact-sub">{{ f.sub }}</span>{% endif %}
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+    {% if x.table %}{{ stat_table(x.table) }}{% endif %}
+    <div class="charts">
+      {% for c in x.charts %}{{ chart_card(c) }}{% endfor %}
+    </div>
+  </section>
+  {% endfor %}
   {% for s in sections %}
   <section class="block" aria-labelledby="{{ s.id }}">
     <h2 id="{{ s.id }}">{{ s.title }}</h2>
@@ -53,9 +75,14 @@
     <p class="note">Monthly exports and imports of goods in euros from Eurostat's Comext database (DS-045409), by chapter
       of the Harmonised System, summed into product groups. Comext follows the EU's community concept, so its figures
       differ slightly from those of Spain's customs and the Ministry of Economy: in 2023 Comext counted €391 billion of
-      exports and €435 billion of imports, a little more than the national figures on both sides. Services, tourism
-      and the current account are in the balance of payments, on the Activity page. Not seasonally adjusted; the latest
-      months are provisional.</p>
+      exports and €435 billion of imports, a little more than the national figures on both sides. Trade by partner
+      uses the same source, by country of destination for exports and of origin for imports. Not seasonally adjusted;
+      the latest months are provisional.</p>
+    <p class="note">Services by type come from Eurostat's quarterly balance of payments (BPM6); tourism and travel is
+      what visitors spend in Spain and what Spaniards spend abroad. Export and import prices of industrial goods come
+      from Eurostat's short-term business statistics (non-domestic producer prices and import prices, which INE compiles
+      for Spain), 2021 = 100, by main industrial grouping. The terms of trade in the chart divide the national accounts'
+      export deflator by the import deflator, for goods and services and for goods alone.</p>
     <p class="note">Chapters in each group: {% for label, hs in chapters %}{{ label }} ({{ hs }}){% if not loop.last %}; {% endif %}{% endfor %}.</p>
   </section>
   {% else %}

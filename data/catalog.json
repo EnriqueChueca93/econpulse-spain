@@ -1541,6 +1541,46 @@
   "source_name": "Government deficit/surplus, debt and associated data",
   "source_updated": "2026-10-21T11:00:00+0200"
  },
+ "deflator_exports": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:22+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"eurostat\", \"namq_10_gdp\", {\"geo\": \"ES\", \"na_item\": \"P6\", \"s_adj\": \"SCA\", \"unit\": \"PD15_EUR\"}, 1.0]",
+  "source_name": "Gross domestic product (GDP) and main components (output, expenditure and income) - quarterly data",
+  "source_updated": "2026-10-30T23:00:00+0100"
+ },
+ "deflator_exports_goods": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:22+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"eurostat\", \"namq_10_gdp\", {\"geo\": \"ES\", \"na_item\": \"P61\", \"s_adj\": \"SCA\", \"unit\": \"PD15_EUR\"}, 1.0]",
+  "source_name": "Gross domestic product (GDP) and main components (output, expenditure and income) - quarterly data",
+  "source_updated": "2026-10-30T23:00:00+0100"
+ },
+ "deflator_imports": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:22+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"eurostat\", \"namq_10_gdp\", {\"geo\": \"ES\", \"na_item\": \"P7\", \"s_adj\": \"SCA\", \"unit\": \"PD15_EUR\"}, 1.0]",
+  "source_name": "Gross domestic product (GDP) and main components (output, expenditure and income) - quarterly data",
+  "source_updated": "2026-10-30T23:00:00+0100"
+ },
+ "deflator_imports_goods": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:22+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"eurostat\", \"namq_10_gdp\", {\"geo\": \"ES\", \"na_item\": \"P71\", \"s_adj\": \"SCA\", \"unit\": \"PD15_EUR\"}, 1.0]",
+  "source_name": "Gross domestic product (GDP) and main components (output, expenditure and income) - quarterly data",
+  "source_updated": "2026-10-30T23:00:00+0100"
+ },
  "deposit_rate_households": {
   "status": "ok",
   "fetched_at": "2026-11-01T08:26:58+00:00",
@@ -1806,6 +1846,66 @@
   "last_date": "2026-10-30",
   "n_obs": 7126,
   "signature": "[\"ecb\", \"EXR/D.USD.EUR.SP00.A\", {}, 1.0]"
+ },
+ "export_prices_all": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:22+00:00",
+  "first_date": "2005-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 261,
+  "signature": "[\"eurostat\", \"sts_inppnd_m\", {\"geo\": \"ES\", \"indic_bt\": \"PRC_PRR_NDOM\", \"nace_r2\": \"B-D\", \"s_adj\": \"NSA\", \"unit\": \"I21\"}, 1.0]",
+  "source_name": "Producer prices in industry, non domestic market - monthly data",
+  "source_updated": "2026-10-31T11:00:00+0100"
+ },
+ "export_prices_capital": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:22+00:00",
+  "first_date": "2000-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 321,
+  "signature": "[\"eurostat\", \"sts_inppnd_m\", {\"geo\": \"ES\", \"indic_bt\": \"PRC_PRR_NDOM\", \"nace_r2\": \"MIG_CAG\", \"s_adj\": \"NSA\", \"unit\": \"I21\"}, 1.0]",
+  "source_name": "Producer prices in industry, non domestic market - monthly data",
+  "source_updated": "2026-10-31T11:00:00+0100"
+ },
+ "export_prices_consumer": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:22+00:00",
+  "first_date": "2000-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 321,
+  "signature": "[\"eurostat\", \"sts_inppnd_m\", {\"geo\": \"ES\", \"indic_bt\": \"PRC_PRR_NDOM\", \"nace_r2\": \"MIG_COG\", \"s_adj\": \"NSA\", \"unit\": \"I21\"}, 1.0]",
+  "source_name": "Producer prices in industry, non domestic market - monthly data",
+  "source_updated": "2026-10-31T11:00:00+0100"
+ },
+ "export_prices_energy": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:22+00:00",
+  "first_date": "2000-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 321,
+  "signature": "[\"eurostat\", \"sts_inppnd_m\", {\"geo\": \"ES\", \"indic_bt\": \"PRC_PRR_NDOM\", \"nace_r2\": \"MIG_NRG\", \"s_adj\": \"NSA\", \"unit\": \"I21\"}, 1.0]",
+  "source_name": "Producer prices in industry, non domestic market - monthly data",
+  "source_updated": "2026-10-31T11:00:00+0100"
+ },
+ "export_prices_ex_energy": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:22+00:00",
+  "first_date": "2000-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 321,
+  "signature": "[\"eurostat\", \"sts_inppnd_m\", {\"geo\": \"ES\", \"indic_bt\": \"PRC_PRR_NDOM\", \"nace_r2\": \"B_C_X_MIG_NRG\", \"s_adj\": \"NSA\", \"unit\": \"I21\"}, 1.0]",
+  "source_name": "Producer prices in industry, non domestic market - monthly data",
+  "source_updated": "2026-10-31T11:00:00+0100"
+ },
+ "export_prices_intermediate": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:22+00:00",
+  "first_date": "2000-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 321,
+  "signature": "[\"eurostat\", \"sts_inppnd_m\", {\"geo\": \"ES\", \"indic_bt\": \"PRC_PRR_NDOM\", \"nace_r2\": \"MIG_ING\", \"s_adj\": \"NSA\", \"unit\": \"I21\"}, 1.0]",
+  "source_name": "Producer prices in industry, non domestic market - monthly data",
+  "source_updated": "2026-10-31T11:00:00+0100"
  },
  "exports": {
   "status": "ok",
@@ -4712,6 +4812,66 @@
   "signature": "[\"bde\", \"DBLEESI100000000IBDI.B\", {}, 1.0]",
   "source_name": "IBEX-35"
  },
+ "import_prices_all": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:22+00:00",
+  "first_date": "2005-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 261,
+  "signature": "[\"eurostat\", \"sts_inpi_m\", {\"cpa2_1\": \"CPA_B-D\", \"geo\": \"ES\", \"indic_bt\": \"PRC_IMP\", \"s_adj\": \"NSA\", \"unit\": \"I21\"}, 1.0]",
+  "source_name": "Import prices in industry - monthly data",
+  "source_updated": "2026-10-31T11:00:00+0100"
+ },
+ "import_prices_capital": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:22+00:00",
+  "first_date": "2005-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 261,
+  "signature": "[\"eurostat\", \"sts_inpi_m\", {\"cpa2_1\": \"CPA_MIG_CAG\", \"geo\": \"ES\", \"indic_bt\": \"PRC_IMP\", \"s_adj\": \"NSA\", \"unit\": \"I21\"}, 1.0]",
+  "source_name": "Import prices in industry - monthly data",
+  "source_updated": "2026-10-31T11:00:00+0100"
+ },
+ "import_prices_consumer": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:22+00:00",
+  "first_date": "2005-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 261,
+  "signature": "[\"eurostat\", \"sts_inpi_m\", {\"cpa2_1\": \"CPA_MIG_COG\", \"geo\": \"ES\", \"indic_bt\": \"PRC_IMP\", \"s_adj\": \"NSA\", \"unit\": \"I21\"}, 1.0]",
+  "source_name": "Import prices in industry - monthly data",
+  "source_updated": "2026-10-31T11:00:00+0100"
+ },
+ "import_prices_energy": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:22+00:00",
+  "first_date": "2005-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 261,
+  "signature": "[\"eurostat\", \"sts_inpi_m\", {\"cpa2_1\": \"CPA_MIG_NRG_X_E\", \"geo\": \"ES\", \"indic_bt\": \"PRC_IMP\", \"s_adj\": \"NSA\", \"unit\": \"I21\"}, 1.0]",
+  "source_name": "Import prices in industry - monthly data",
+  "source_updated": "2026-10-31T11:00:00+0100"
+ },
+ "import_prices_ex_energy": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:22+00:00",
+  "first_date": "2005-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 261,
+  "signature": "[\"eurostat\", \"sts_inpi_m\", {\"cpa2_1\": \"CPA_B_C_X_MIG_NRG\", \"geo\": \"ES\", \"indic_bt\": \"PRC_IMP\", \"s_adj\": \"NSA\", \"unit\": \"I21\"}, 1.0]",
+  "source_name": "Import prices in industry - monthly data",
+  "source_updated": "2026-10-31T11:00:00+0100"
+ },
+ "import_prices_intermediate": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:22+00:00",
+  "first_date": "2005-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 261,
+  "signature": "[\"eurostat\", \"sts_inpi_m\", {\"cpa2_1\": \"CPA_MIG_ING\", \"geo\": \"ES\", \"indic_bt\": \"PRC_IMP\", \"s_adj\": \"NSA\", \"unit\": \"I21\"}, 1.0]",
+  "source_name": "Import prices in industry - monthly data",
+  "source_updated": "2026-10-31T11:00:00+0100"
+ },
  "imports": {
   "status": "ok",
   "fetched_at": "2026-11-01T06:28:13+00:00",
@@ -6463,6 +6623,206 @@
   "n_obs": 399,
   "signature": "[\"derived\", \"subtract\", {\"a\": \"bond10_pt\", \"b\": \"de_10y_monthly\", \"scale\": 100}, 1.0]"
  },
+ "svc_exp_business": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:21+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"eurostat\", \"bop_c6_q\", {\"bop_item\": \"SJ\", \"currency\": \"MIO_EUR\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S1\", \"sectpart\": \"S1\", \"stk_flow\": \"CRE\"}, 1.0]",
+  "source_name": "Balance of payments by country - quarterly data (BPM6)",
+  "source_updated": "2026-10-02T23:00:00+0200"
+ },
+ "svc_exp_construction": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:21+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"eurostat\", \"bop_c6_q\", {\"bop_item\": \"SE\", \"currency\": \"MIO_EUR\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S1\", \"sectpart\": \"S1\", \"stk_flow\": \"CRE\"}, 1.0]",
+  "source_name": "Balance of payments by country - quarterly data (BPM6)",
+  "source_updated": "2026-10-02T23:00:00+0200"
+ },
+ "svc_exp_consulting": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:21+00:00",
+  "first_date": "2013-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 54,
+  "signature": "[\"eurostat\", \"bop_c6_q\", {\"bop_item\": \"SJ2\", \"currency\": \"MIO_EUR\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S1\", \"sectpart\": \"S1\", \"stk_flow\": \"CRE\"}, 1.0]",
+  "source_name": "Balance of payments by country - quarterly data (BPM6)",
+  "source_updated": "2026-10-02T23:00:00+0200"
+ },
+ "svc_exp_financial": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:21+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"eurostat\", \"bop_c6_q\", {\"bop_item\": \"SG\", \"currency\": \"MIO_EUR\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S1\", \"sectpart\": \"S1\", \"stk_flow\": \"CRE\"}, 1.0]",
+  "source_name": "Balance of payments by country - quarterly data (BPM6)",
+  "source_updated": "2026-10-02T23:00:00+0200"
+ },
+ "svc_exp_ict": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:21+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"eurostat\", \"bop_c6_q\", {\"bop_item\": \"SI\", \"currency\": \"MIO_EUR\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S1\", \"sectpart\": \"S1\", \"stk_flow\": \"CRE\"}, 1.0]",
+  "source_name": "Balance of payments by country - quarterly data (BPM6)",
+  "source_updated": "2026-10-02T23:00:00+0200"
+ },
+ "svc_exp_insurance": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:21+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"eurostat\", \"bop_c6_q\", {\"bop_item\": \"SF\", \"currency\": \"MIO_EUR\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S1\", \"sectpart\": \"S1\", \"stk_flow\": \"CRE\"}, 1.0]",
+  "source_name": "Balance of payments by country - quarterly data (BPM6)",
+  "source_updated": "2026-10-02T23:00:00+0200"
+ },
+ "svc_exp_ip": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:21+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"eurostat\", \"bop_c6_q\", {\"bop_item\": \"SH\", \"currency\": \"MIO_EUR\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S1\", \"sectpart\": \"S1\", \"stk_flow\": \"CRE\"}, 1.0]",
+  "source_name": "Balance of payments by country - quarterly data (BPM6)",
+  "source_updated": "2026-10-02T23:00:00+0200"
+ },
+ "svc_exp_rd": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:21+00:00",
+  "first_date": "2013-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 54,
+  "signature": "[\"eurostat\", \"bop_c6_q\", {\"bop_item\": \"SJ1\", \"currency\": \"MIO_EUR\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S1\", \"sectpart\": \"S1\", \"stk_flow\": \"CRE\"}, 1.0]",
+  "source_name": "Balance of payments by country - quarterly data (BPM6)",
+  "source_updated": "2026-10-02T23:00:00+0200"
+ },
+ "svc_exp_technical": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:21+00:00",
+  "first_date": "2013-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 54,
+  "signature": "[\"eurostat\", \"bop_c6_q\", {\"bop_item\": \"SJ3\", \"currency\": \"MIO_EUR\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S1\", \"sectpart\": \"S1\", \"stk_flow\": \"CRE\"}, 1.0]",
+  "source_name": "Balance of payments by country - quarterly data (BPM6)",
+  "source_updated": "2026-10-02T23:00:00+0200"
+ },
+ "svc_exp_transport": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:20+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"eurostat\", \"bop_c6_q\", {\"bop_item\": \"SC\", \"currency\": \"MIO_EUR\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S1\", \"sectpart\": \"S1\", \"stk_flow\": \"CRE\"}, 1.0]",
+  "source_name": "Balance of payments by country - quarterly data (BPM6)",
+  "source_updated": "2026-10-02T23:00:00+0200"
+ },
+ "svc_imp_business": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:21+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"eurostat\", \"bop_c6_q\", {\"bop_item\": \"SJ\", \"currency\": \"MIO_EUR\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S1\", \"sectpart\": \"S1\", \"stk_flow\": \"DEB\"}, 1.0]",
+  "source_name": "Balance of payments by country - quarterly data (BPM6)",
+  "source_updated": "2026-10-02T23:00:00+0200"
+ },
+ "svc_imp_construction": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:21+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"eurostat\", \"bop_c6_q\", {\"bop_item\": \"SE\", \"currency\": \"MIO_EUR\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S1\", \"sectpart\": \"S1\", \"stk_flow\": \"DEB\"}, 1.0]",
+  "source_name": "Balance of payments by country - quarterly data (BPM6)",
+  "source_updated": "2026-10-02T23:00:00+0200"
+ },
+ "svc_imp_consulting": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:21+00:00",
+  "first_date": "2013-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 54,
+  "signature": "[\"eurostat\", \"bop_c6_q\", {\"bop_item\": \"SJ2\", \"currency\": \"MIO_EUR\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S1\", \"sectpart\": \"S1\", \"stk_flow\": \"DEB\"}, 1.0]",
+  "source_name": "Balance of payments by country - quarterly data (BPM6)",
+  "source_updated": "2026-10-02T23:00:00+0200"
+ },
+ "svc_imp_financial": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:21+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"eurostat\", \"bop_c6_q\", {\"bop_item\": \"SG\", \"currency\": \"MIO_EUR\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S1\", \"sectpart\": \"S1\", \"stk_flow\": \"DEB\"}, 1.0]",
+  "source_name": "Balance of payments by country - quarterly data (BPM6)",
+  "source_updated": "2026-10-02T23:00:00+0200"
+ },
+ "svc_imp_ict": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:21+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"eurostat\", \"bop_c6_q\", {\"bop_item\": \"SI\", \"currency\": \"MIO_EUR\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S1\", \"sectpart\": \"S1\", \"stk_flow\": \"DEB\"}, 1.0]",
+  "source_name": "Balance of payments by country - quarterly data (BPM6)",
+  "source_updated": "2026-10-02T23:00:00+0200"
+ },
+ "svc_imp_insurance": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:21+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"eurostat\", \"bop_c6_q\", {\"bop_item\": \"SF\", \"currency\": \"MIO_EUR\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S1\", \"sectpart\": \"S1\", \"stk_flow\": \"DEB\"}, 1.0]",
+  "source_name": "Balance of payments by country - quarterly data (BPM6)",
+  "source_updated": "2026-10-02T23:00:00+0200"
+ },
+ "svc_imp_ip": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:21+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"eurostat\", \"bop_c6_q\", {\"bop_item\": \"SH\", \"currency\": \"MIO_EUR\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S1\", \"sectpart\": \"S1\", \"stk_flow\": \"DEB\"}, 1.0]",
+  "source_name": "Balance of payments by country - quarterly data (BPM6)",
+  "source_updated": "2026-10-02T23:00:00+0200"
+ },
+ "svc_imp_rd": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:21+00:00",
+  "first_date": "2013-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 54,
+  "signature": "[\"eurostat\", \"bop_c6_q\", {\"bop_item\": \"SJ1\", \"currency\": \"MIO_EUR\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S1\", \"sectpart\": \"S1\", \"stk_flow\": \"DEB\"}, 1.0]",
+  "source_name": "Balance of payments by country - quarterly data (BPM6)",
+  "source_updated": "2026-10-02T23:00:00+0200"
+ },
+ "svc_imp_technical": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:21+00:00",
+  "first_date": "2013-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 54,
+  "signature": "[\"eurostat\", \"bop_c6_q\", {\"bop_item\": \"SJ3\", \"currency\": \"MIO_EUR\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S1\", \"sectpart\": \"S1\", \"stk_flow\": \"DEB\"}, 1.0]",
+  "source_name": "Balance of payments by country - quarterly data (BPM6)",
+  "source_updated": "2026-10-02T23:00:00+0200"
+ },
+ "svc_imp_transport": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:21+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"eurostat\", \"bop_c6_q\", {\"bop_item\": \"SC\", \"currency\": \"MIO_EUR\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S1\", \"sectpart\": \"S1\", \"stk_flow\": \"DEB\"}, 1.0]",
+  "source_name": "Balance of payments by country - quarterly data (BPM6)",
+  "source_updated": "2026-10-02T23:00:00+0200"
+ },
  "target_balance": {
   "status": "ok",
   "fetched_at": "2026-11-01T08:26:58+00:00",
@@ -6500,6 +6860,30 @@
   "signature": "[\"ine\", \"EPA416256\", {}, 1.0]",
   "flash": false,
   "source_name": "Asalariados. Total Nacional. Ambos sexos. Temporal: Total. Porcentaje."
+ },
+ "terms_of_trade": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:22+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"derived\", \"divide\", {\"a\": \"deflator_exports\", \"b\": \"deflator_imports\", \"scale\": 100}, 1.0]"
+ },
+ "terms_of_trade_goods": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:22+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"derived\", \"divide\", {\"a\": \"deflator_exports_goods\", \"b\": \"deflator_imports_goods\", \"scale\": 100}, 1.0]"
+ },
+ "terms_of_trade_industrial": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:22+00:00",
+  "first_date": "2005-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 261,
+  "signature": "[\"derived\", \"divide\", {\"a\": \"export_prices_all\", \"b\": \"import_prices_all\", \"scale\": 100}, 1.0]"
  },
  "tourism_receipts": {
   "status": "ok",
@@ -6548,6 +6932,30 @@
   "source_name": "Balance of payments by country - annual data (BPM6)",
   "source_updated": "2026-10-02T11:00:00+0200"
  },
+ "trade_exp_algeria": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:17+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"TOTAL\", {\"flow\": \"exports\", \"partner\": \"DZ\"}, 1e-06]"
+ },
+ "trade_exp_belgium": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:17+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"TOTAL\", {\"flow\": \"exports\", \"partner\": \"BE\"}, 1e-06]"
+ },
+ "trade_exp_brazil": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:17+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"TOTAL\", {\"flow\": \"exports\", \"partner\": \"BR\"}, 1e-06]"
+ },
  "trade_exp_chemicals": {
   "status": "ok",
   "fetched_at": "2026-11-01T12:54:24+00:00",
@@ -6555,6 +6963,14 @@
   "last_date": "2026-08-01",
   "n_obs": 296,
   "signature": "[\"comext\", \"28-29,31-38\", {\"flow\": \"exports\", \"partner\": \"WORLD\"}, 1e-06]"
+ },
+ "trade_exp_china": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:17+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"TOTAL\", {\"flow\": \"exports\", \"partner\": \"CN\"}, 1e-06]"
  },
  "trade_exp_drinks": {
   "status": "ok",
@@ -6580,6 +6996,14 @@
   "n_obs": 296,
   "signature": "[\"comext\", \"27\", {\"flow\": \"exports\", \"partner\": \"WORLD\"}, 1e-06]"
  },
+ "trade_exp_eu": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:17+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"TOTAL\", {\"flow\": \"exports\", \"partner\": \"INT_EU27_2020\"}, 1e-06]"
+ },
  "trade_exp_fats": {
   "status": "ok",
   "fetched_at": "2026-11-01T12:54:24+00:00",
@@ -6588,6 +7012,14 @@
   "n_obs": 296,
   "signature": "[\"comext\", \"15\", {\"flow\": \"exports\", \"partner\": \"WORLD\"}, 1e-06]"
  },
+ "trade_exp_france": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:17+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"TOTAL\", {\"flow\": \"exports\", \"partner\": \"FR\"}, 1e-06]"
+ },
  "trade_exp_fruit_veg": {
   "status": "ok",
   "fetched_at": "2026-11-01T12:54:24+00:00",
@@ -6595,6 +7027,38 @@
   "last_date": "2026-08-01",
   "n_obs": 296,
   "signature": "[\"comext\", \"06-08,20\", {\"flow\": \"exports\", \"partner\": \"WORLD\"}, 1e-06]"
+ },
+ "trade_exp_germany": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:17+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"TOTAL\", {\"flow\": \"exports\", \"partner\": \"DE\"}, 1e-06]"
+ },
+ "trade_exp_india": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:17+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"TOTAL\", {\"flow\": \"exports\", \"partner\": \"IN\"}, 1e-06]"
+ },
+ "trade_exp_italy": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:17+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"TOTAL\", {\"flow\": \"exports\", \"partner\": \"IT\"}, 1e-06]"
+ },
+ "trade_exp_japan": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:17+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"TOTAL\", {\"flow\": \"exports\", \"partner\": \"JP\"}, 1e-06]"
  },
  "trade_exp_machinery": {
   "status": "ok",
@@ -6620,6 +7084,14 @@
   "n_obs": 296,
   "signature": "[\"comext\", \"26,72-83\", {\"flow\": \"exports\", \"partner\": \"WORLD\"}, 1e-06]"
  },
+ "trade_exp_mexico": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:17+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"TOTAL\", {\"flow\": \"exports\", \"partner\": \"MX\"}, 1e-06]"
+ },
  "trade_exp_minerals": {
   "status": "ok",
   "fetched_at": "2026-11-01T12:54:24+00:00",
@@ -6627,6 +7099,38 @@
   "last_date": "2026-08-01",
   "n_obs": 296,
   "signature": "[\"comext\", \"25,68-70\", {\"flow\": \"exports\", \"partner\": \"WORLD\"}, 1e-06]"
+ },
+ "trade_exp_morocco": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:17+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"TOTAL\", {\"flow\": \"exports\", \"partner\": \"MA\"}, 1e-06]"
+ },
+ "trade_exp_netherlands": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:17+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"TOTAL\", {\"flow\": \"exports\", \"partner\": \"NL\"}, 1e-06]"
+ },
+ "trade_exp_nigeria": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:17+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"TOTAL\", {\"flow\": \"exports\", \"partner\": \"NG\"}, 1e-06]"
+ },
+ "trade_exp_non_eu": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:17+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"TOTAL\", {\"flow\": \"exports\", \"partner\": \"EXT_EU27_2020\"}, 1e-06]"
  },
  "trade_exp_other": {
   "status": "ok",
@@ -6668,6 +7172,30 @@
   "n_obs": 296,
   "signature": "[\"comext\", \"39-40\", {\"flow\": \"exports\", \"partner\": \"WORLD\"}, 1e-06]"
  },
+ "trade_exp_poland": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:17+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"TOTAL\", {\"flow\": \"exports\", \"partner\": \"PL\"}, 1e-06]"
+ },
+ "trade_exp_portugal": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:17+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"TOTAL\", {\"flow\": \"exports\", \"partner\": \"PT\"}, 1e-06]"
+ },
+ "trade_exp_switzerland": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:17+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"TOTAL\", {\"flow\": \"exports\", \"partner\": \"CH\"}, 1e-06]"
+ },
  "trade_exp_textiles": {
   "status": "ok",
   "fetched_at": "2026-11-01T12:54:24+00:00",
@@ -6678,11 +7206,35 @@
  },
  "trade_exp_total": {
   "status": "ok",
-  "fetched_at": "2026-11-01T12:54:13+00:00",
+  "fetched_at": "2026-11-01T19:17:10+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-08-01",
   "n_obs": 296,
   "signature": "[\"comext\", \"TOTAL\", {\"flow\": \"exports\", \"partner\": \"WORLD\"}, 1e-06]"
+ },
+ "trade_exp_turkey": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:17+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"TOTAL\", {\"flow\": \"exports\", \"partner\": \"TR\"}, 1e-06]"
+ },
+ "trade_exp_uk": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:17+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"TOTAL\", {\"flow\": \"exports\", \"partner\": \"GB\"}, 1e-06]"
+ },
+ "trade_exp_us": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:17+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"TOTAL\", {\"flow\": \"exports\", \"partner\": \"US\"}, 1e-06]"
  },
  "trade_exp_vehicles": {
   "status": "ok",
@@ -6700,6 +7252,30 @@
   "n_obs": 296,
   "signature": "[\"comext\", \"41-49\", {\"flow\": \"exports\", \"partner\": \"WORLD\"}, 1e-06]"
  },
+ "trade_imp_algeria": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:20+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"TOTAL\", {\"flow\": \"imports\", \"partner\": \"DZ\"}, 1e-06]"
+ },
+ "trade_imp_belgium": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:20+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"TOTAL\", {\"flow\": \"imports\", \"partner\": \"BE\"}, 1e-06]"
+ },
+ "trade_imp_brazil": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:20+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"TOTAL\", {\"flow\": \"imports\", \"partner\": \"BR\"}, 1e-06]"
+ },
  "trade_imp_chemicals": {
   "status": "ok",
   "fetched_at": "2026-11-01T12:54:24+00:00",
@@ -6707,6 +7283,14 @@
   "last_date": "2026-08-01",
   "n_obs": 296,
   "signature": "[\"comext\", \"28-29,31-38\", {\"flow\": \"imports\", \"partner\": \"WORLD\"}, 1e-06]"
+ },
+ "trade_imp_china": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:20+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"TOTAL\", {\"flow\": \"imports\", \"partner\": \"CN\"}, 1e-06]"
  },
  "trade_imp_drinks": {
   "status": "ok",
@@ -6732,6 +7316,14 @@
   "n_obs": 296,
   "signature": "[\"comext\", \"27\", {\"flow\": \"imports\", \"partner\": \"WORLD\"}, 1e-06]"
  },
+ "trade_imp_eu": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:20+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"TOTAL\", {\"flow\": \"imports\", \"partner\": \"INT_EU27_2020\"}, 1e-06]"
+ },
  "trade_imp_fats": {
   "status": "ok",
   "fetched_at": "2026-11-01T12:54:24+00:00",
@@ -6740,6 +7332,14 @@
   "n_obs": 296,
   "signature": "[\"comext\", \"15\", {\"flow\": \"imports\", \"partner\": \"WORLD\"}, 1e-06]"
  },
+ "trade_imp_france": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:20+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"TOTAL\", {\"flow\": \"imports\", \"partner\": \"FR\"}, 1e-06]"
+ },
  "trade_imp_fruit_veg": {
   "status": "ok",
   "fetched_at": "2026-11-01T12:54:24+00:00",
@@ -6747,6 +7347,38 @@
   "last_date": "2026-08-01",
   "n_obs": 296,
   "signature": "[\"comext\", \"06-08,20\", {\"flow\": \"imports\", \"partner\": \"WORLD\"}, 1e-06]"
+ },
+ "trade_imp_germany": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:20+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"TOTAL\", {\"flow\": \"imports\", \"partner\": \"DE\"}, 1e-06]"
+ },
+ "trade_imp_india": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:20+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"TOTAL\", {\"flow\": \"imports\", \"partner\": \"IN\"}, 1e-06]"
+ },
+ "trade_imp_italy": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:20+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"TOTAL\", {\"flow\": \"imports\", \"partner\": \"IT\"}, 1e-06]"
+ },
+ "trade_imp_japan": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:20+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"TOTAL\", {\"flow\": \"imports\", \"partner\": \"JP\"}, 1e-06]"
  },
  "trade_imp_machinery": {
   "status": "ok",
@@ -6772,6 +7404,14 @@
   "n_obs": 296,
   "signature": "[\"comext\", \"26,72-83\", {\"flow\": \"imports\", \"partner\": \"WORLD\"}, 1e-06]"
  },
+ "trade_imp_mexico": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:20+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"TOTAL\", {\"flow\": \"imports\", \"partner\": \"MX\"}, 1e-06]"
+ },
  "trade_imp_minerals": {
   "status": "ok",
   "fetched_at": "2026-11-01T12:54:24+00:00",
@@ -6779,6 +7419,38 @@
   "last_date": "2026-08-01",
   "n_obs": 296,
   "signature": "[\"comext\", \"25,68-70\", {\"flow\": \"imports\", \"partner\": \"WORLD\"}, 1e-06]"
+ },
+ "trade_imp_morocco": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:20+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"TOTAL\", {\"flow\": \"imports\", \"partner\": \"MA\"}, 1e-06]"
+ },
+ "trade_imp_netherlands": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:20+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"TOTAL\", {\"flow\": \"imports\", \"partner\": \"NL\"}, 1e-06]"
+ },
+ "trade_imp_nigeria": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:20+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"TOTAL\", {\"flow\": \"imports\", \"partner\": \"NG\"}, 1e-06]"
+ },
+ "trade_imp_non_eu": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:20+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"TOTAL\", {\"flow\": \"imports\", \"partner\": \"EXT_EU27_2020\"}, 1e-06]"
  },
  "trade_imp_other": {
   "status": "ok",
@@ -6820,6 +7492,30 @@
   "n_obs": 296,
   "signature": "[\"comext\", \"39-40\", {\"flow\": \"imports\", \"partner\": \"WORLD\"}, 1e-06]"
  },
+ "trade_imp_poland": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:20+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"TOTAL\", {\"flow\": \"imports\", \"partner\": \"PL\"}, 1e-06]"
+ },
+ "trade_imp_portugal": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:20+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"TOTAL\", {\"flow\": \"imports\", \"partner\": \"PT\"}, 1e-06]"
+ },
+ "trade_imp_switzerland": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:20+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"TOTAL\", {\"flow\": \"imports\", \"partner\": \"CH\"}, 1e-06]"
+ },
  "trade_imp_textiles": {
   "status": "ok",
   "fetched_at": "2026-11-01T12:54:24+00:00",
@@ -6830,11 +7526,35 @@
  },
  "trade_imp_total": {
   "status": "ok",
-  "fetched_at": "2026-11-01T12:54:24+00:00",
+  "fetched_at": "2026-11-01T19:17:11+00:00",
   "first_date": "2002-01-01",
   "last_date": "2026-08-01",
   "n_obs": 296,
   "signature": "[\"comext\", \"TOTAL\", {\"flow\": \"imports\", \"partner\": \"WORLD\"}, 1e-06]"
+ },
+ "trade_imp_turkey": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:20+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"TOTAL\", {\"flow\": \"imports\", \"partner\": \"TR\"}, 1e-06]"
+ },
+ "trade_imp_uk": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:20+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"TOTAL\", {\"flow\": \"imports\", \"partner\": \"GB\"}, 1e-06]"
+ },
+ "trade_imp_us": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T19:17:20+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 296,
+  "signature": "[\"comext\", \"TOTAL\", {\"flow\": \"imports\", \"partner\": \"US\"}, 1e-06]"
  },
  "trade_imp_vehicles": {
   "status": "ok",

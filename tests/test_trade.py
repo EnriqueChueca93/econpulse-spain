@@ -1,4 +1,5 @@
-"""Batch 26a: the Trade page, goods trade by product group from Eurostat's Comext (no network)."""
+"""Batches 26a and 26b: the Trade page, goods trade by product group and partner (Eurostat's Comext), services
+by type and export and import prices (no network)."""
 
 import numpy as np
 import pandas as pd
@@ -101,3 +102,111 @@ def test_trade_tab_is_built(tmp_path):
     html = (tmp_path / "site" / "trade.html").read_text(encoding="utf-8")
     assert 'aria-current="page">Trade</a>' in html and 'id="fig-trade-vehicles"' in html
     assert "Vehicles and parts (87)" in html and (tmp_path / "site" / "data" / "charts-trade.js").exists()
+
+
+def partner_payload(partners: list[str], months: list[str], value) -> dict:
+    """Comext-shaped JSON-stat for all goods by partner."""
+    dims = {"freq": ["M"], "reporter": ["ES"], "partner": partners, "product": ["TOTAL"], "flow": ["2"],
+            "indicators": ["VALUE_IN_EUROS"], "time": months}
+    values = {str(p * len(months) + t): v for p, part in enumerate(partners) for t, month in enumerate(months)
+              if (v := value(part, month)) is not None}
+    return {"id": list(dims), "size": [len(v) for v in dims.values()], "value": values,
+            "dimension": {d: {"category": {"index": {k: i for i, k in enumerate(v)}}} for d, v in dims.items()}}
+
+
+def test_totals_for_every_partner_in_one_request(monkeypatch):
+    asked = []
+
+    class Response:
+        def json(self):
+            return partner_payload(["WORLD", "FR", "CN"], ["2026-07", "2026-08", "2026-09"],
+                                   lambda p, m: None if m == "2026-09" else {"WORLD": 1000.0, "FR": 150.0, "CN": 20.0}[p])
+
+    def get(url, params=None, timeout=None):
+        asked.append(list(params))
+        return Response()
+
+    comext.clear_cache()
+    monkeypatch.setattr(comext.http, "get", get)
+    since = pd.Timestamp("2026-07-01")
+    fr = comext.fetch("TOTAL", {"flow": "exports", "partner": "FR"}, since=since).series
+    cn = comext.fetch("TOTAL", {"flow": "exports", "partner": "CN"}, since=since).series
+    assert len(asked) == 1 and ("product", "TOTAL") in asked[0] and not any(k == "partner" for k, _ in asked[0])
+    assert fr.tolist() == [150.0, 150.0] and cn.tolist() == [20.0, 20.0]     # the month without figures is left out
+    with pytest.raises(ValueError):
+        comext.fetch("TOTAL", {"flow": "exports", "partner": "XX"}, since=since)
+    comext.clear_cache()
+
+
+def test_registry_matches_the_page():
+    ids = {i.id for i in load_registry()}
+    assert all(f"trade_exp_{s}" in ids and f"trade_imp_{s}" in ids for s, _, _ in trade.PARTNERS)
+    assert all(f"svc_exp_{s}" in ids for s, _ in trade.SERVICES[1:] + trade.BUSINESS)
+    assert all(trade.SERVICE_IDS[s][0] in ids for s in ("total", "travel"))
+    assert all(f"export_prices_{s}" in ids and f"import_prices_{s}" in ids for s, _, _ in trade.PRICES)
+    assert {"terms_of_trade", "terms_of_trade_goods", "terms_of_trade_industrial"} <= ids
+
+
+def full_store(tmp_path) -> Store:
+    store = trade_store(tmp_path)
+    m = pd.date_range("2018-01-01", "2026-08-01", freq="MS")
+    growth = 1 + np.arange(len(m)) / 1000
+    for slug, exp, imp in (("eu", 18_000, 19_000), ("non_eu", 12_000, 16_000), ("france", 4_000, 3_000),
+                           ("germany", 3_000, 4_000), ("china", 600, 3_500)):
+        store.save_series(f"trade_exp_{slug}", pd.Series(exp * growth, index=m))
+        store.save_series(f"trade_imp_{slug}", pd.Series(imp * growth, index=m))
+    q = pd.date_range("2015-01-01", "2026-04-01", freq="QS")
+    qg = 1 + np.arange(len(q)) / 100
+    for ind_id, v in (("bop_q_exports_services", 60_000), ("bop_q_imports_services", 30_000),
+                      ("bop_q_travel_credit", 25_000), ("bop_q_travel_debit", 8_000)):
+        store.save_series(ind_id, pd.Series(v * qg, index=q))
+    for slug, _ in trade.SERVICES[1:] + trade.BUSINESS:
+        store.save_series(f"svc_exp_{slug}", pd.Series(4_000.0 * qg, index=q))
+        store.save_series(f"svc_imp_{slug}", pd.Series(2_000.0 * qg, index=q))
+    pm = pd.date_range("2015-01-01", "2026-09-01", freq="MS")
+    ex, im = np.linspace(90, 121, len(pm)), np.linspace(90, 110, len(pm))
+    for slug, _, _ in trade.PRICES:
+        store.save_series(f"export_prices_{slug}", pd.Series(ex, index=pm))
+        store.save_series(f"import_prices_{slug}", pd.Series(im, index=pm))
+    store.save_series("terms_of_trade_industrial", pd.Series(ex / im * 100, index=pm))
+    for ind_id in ("terms_of_trade", "terms_of_trade_goods"):
+        store.save_series(ind_id, pd.Series(100 + np.sin(np.arange(len(q))), index=q))
+    return store
+
+
+def test_partners_services_and_prices(tmp_path):
+    data = Data(load_registry(), full_store(tmp_path))
+    page = trade.page(data)
+    extras = {x["id"]: x for x in page["extras"]}
+    assert list(extras) == ["partners", "services", "prices"]
+
+    partners = extras["partners"]
+    assert [r["label"] for r in partners["table"]["rows"]] == ["All partners", "European Union", "France", "Germany",
+                                                               "Outside the EU", "China"]
+    facts = {f["label"]: f for f in partners["facts"]}
+    assert facts["Exports sold in the EU"]["value"] == "60.0%" and facts["Largest deficit"]["value"] == "China"
+    assert facts["Largest market"]["value"] == "France" and facts["Largest supplier"]["value"] == "Germany"
+    balances = next(c for c in partners["charts"] if c["id"] == "trade-partner-balances")
+    assert [s["name"] for s in balances["series"]] == ["France", "Germany", "China"]   # Portugal has no data here
+
+    services = extras["services"]
+    rows = {r["label"]: r for r in services["table"]["rows"]}
+    assert rows["Research and development"]["indent"] == 2 and services["table"]["caption"].endswith("Q2 2026")
+    main = sum(float(rows[label]["cells"][0]) for _, label in trade.SERVICES)
+    assert abs(float(rows["All services"]["cells"][0]) - main - float(rows["Other services"]["cells"][0])) < 0.5  # rounding
+    assert [f["label"] for f in services["facts"]][-1] == "Exports other than tourism"
+
+    prices = extras["prices"]
+    assert [r["label"] for r in prices["table"]["rows"]] == [label for _, label, _ in trade.PRICES]
+    assert [f["label"] for f in prices["facts"]] == ["Export prices", "Import prices", "Terms of trade",
+                                                     "Export prices without energy"]
+    assert {c["id"] for c in prices["charts"]} == {"prices-yoy", "terms-of-trade", "export-prices-groups",
+                                                   "import-prices-groups"}
+    assert len(page["charts"]) == 23 + 4 + 5 + 4
+
+
+def test_new_sections_are_built(tmp_path):
+    build_site(load_registry(), full_store(tmp_path), site_dir=tmp_path / "site")
+    html = (tmp_path / "site" / "trade.html").read_text(encoding="utf-8")
+    assert all(f'id="{s}"' in html for s in ("partners", "services", "prices"))
+    assert 'id="fig-services-tourism"' in html and 'id="fig-terms-of-trade"' in html and "Rankings by product" in html

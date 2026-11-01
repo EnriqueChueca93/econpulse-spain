@@ -6,8 +6,9 @@ or a country code). Key is a list of chapters, e.g. "01-05,16", or "TOTAL"; para
 ("exports" or "imports") and the partner. A group's value is the sum of its chapters in months when
 Comext has the total; a chapter with no value that month counts as zero. The API answers slowly when
 asked for many chapters at once, so the chapters are requested in batches; one download per partner and
-flow serves every group. Comext's figures follow the community concept (Spain's own customs figures
-differ slightly).
+flow serves every group. The total ("TOTAL") comes from one request per flow that covers every partner,
+which is quick. Comext's figures follow the community concept (Spain's own customs figures differ
+slightly).
 """
 
 import threading
@@ -44,18 +45,18 @@ def chapters(spec: str) -> list[str]:
     return out
 
 
-def parse(payload: dict) -> pd.DataFrame:
-    """Euros by month (rows) and product (columns) from a Comext JSON-stat answer."""
+def parse(payload: dict, column: str = "product") -> pd.DataFrame:
+    """Euros by month (rows) and product, or another dimension, (columns) from a Comext JSON-stat answer."""
     if "error" in payload:
         raise ValueError(f"Comext error: {payload['error']}")
     dims, sizes = payload["id"], payload["size"]
     cats = {d: list(payload["dimension"][d]["category"]["index"]) for d in dims}
     strides = [int(np.prod(sizes[i + 1:])) for i in range(len(sizes))]
-    product, time = dims.index("product"), dims.index("time")
+    product, time = dims.index(column), dims.index("time")
     rows: dict[pd.Timestamp, dict[str, float]] = {}
     for pos, v in payload.get("value", {}).items():
         coords = [(int(pos) // s) % n for s, n in zip(strides, sizes)]
-        rows.setdefault(parse_period(cats["time"][coords[time]]), {})[cats["product"][coords[product]]] = v
+        rows.setdefault(parse_period(cats["time"][coords[time]]), {})[cats[column][coords[product]]] = v
     return pd.DataFrame.from_dict(rows, orient="index").sort_index()
 
 
@@ -71,20 +72,34 @@ def _download(partner: str, flow: str, since: str) -> pd.DataFrame:
     return table.T.groupby(level=0).first().T          # one column per product
 
 
-def table(partner: str, flow: str, since: str = FIRST) -> pd.DataFrame:
-    """Every chapter and the total for one partner and flow, cached for the run."""
-    key = (partner, flow, since)
+def _download_totals(flow: str, since: str) -> pd.DataFrame:
+    params = [("reporter", "ES"), ("flow", FLOWS[flow]), ("product", "TOTAL"), ("indicators", "VALUE_IN_EUROS"),
+              ("freq", "M"), ("sinceTimePeriod", since), ("format", "JSON"), ("lang", "EN")]
+    return parse(http.get(BASE, params=params, timeout=180).json(), column="partner")
+
+
+def _cached(key: tuple, load) -> pd.DataFrame:
     with _lock:
         entry = _cache.get(key)
         if entry is None:
             try:
-                entry = _download(partner, flow, since)
+                entry = load()
             except Exception as e:
                 entry = e
             _cache[key] = entry
     if isinstance(entry, Exception):
         raise entry
     return entry
+
+
+def table(partner: str, flow: str, since: str = FIRST) -> pd.DataFrame:
+    """Every chapter and the total for one partner and flow, cached for the run."""
+    return _cached(("chapters", partner, flow, since), lambda: _download(partner, flow, since))
+
+
+def totals(flow: str, since: str = FIRST) -> pd.DataFrame:
+    """All goods for every partner (columns) in one flow, cached for the run."""
+    return _cached(("totals", flow, since), lambda: _download_totals(flow, since))
 
 
 def clear_cache() -> None:
@@ -98,6 +113,12 @@ def fetch(key: str, params: dict | None = None, *, since: pd.Timestamp | None = 
     if flow not in FLOWS:
         raise ValueError(f"unknown flow {flow!r}; use exports or imports")
     start = max(pd.Timestamp(FIRST), since).strftime("%Y-%m") if since is not None else FIRST
+    if key.upper() == "TOTAL":
+        t = totals(flow, start)
+        if partner not in t:
+            raise ValueError(f"Comext has no trade with partner {partner!r}")
+        values = t[partner].dropna()
+        return FetchResult(make_series(values.index, values.values), {})
     t = table(partner, flow, start)
     if "TOTAL" not in t:
         raise ValueError("Comext returned no total")

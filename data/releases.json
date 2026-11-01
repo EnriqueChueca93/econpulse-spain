@@ -5354,6 +5354,573 @@
    "display": "€31,892 mn 12-mo total",
    "period": "Aug 2026",
    "flash": false
+  },
+  "trade_exp_eu": {
+   "date": "2026-08-01",
+   "raw": 16373.83397,
+   "display": "€251,605 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_exp_non_eu": {
+   "date": "2026-08-01",
+   "raw": 10380.54431,
+   "display": "€150,238 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_exp_france": {
+   "date": "2026-08-01",
+   "raw": 3532.838294,
+   "display": "€58,226 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_exp_germany": {
+   "date": "2026-08-01",
+   "raw": 2236.506852,
+   "display": "€41,164 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_exp_portugal": {
+   "date": "2026-08-01",
+   "raw": 2836.076373,
+   "display": "€37,847 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_exp_italy": {
+   "date": "2026-08-01",
+   "raw": 2102.06971,
+   "display": "€34,454 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_exp_netherlands": {
+   "date": "2026-08-01",
+   "raw": 1007.059864,
+   "display": "€13,281 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_exp_belgium": {
+   "date": "2026-08-01",
+   "raw": 826.229152,
+   "display": "€11,986 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_exp_poland": {
+   "date": "2026-08-01",
+   "raw": 701.87887,
+   "display": "€10,957 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_exp_uk": {
+   "date": "2026-08-01",
+   "raw": 1873.80145,
+   "display": "€25,542 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_exp_switzerland": {
+   "date": "2026-08-01",
+   "raw": 245.535141,
+   "display": "€4,844 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_exp_turkey": {
+   "date": "2026-08-01",
+   "raw": 526.932088,
+   "display": "€9,507 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_exp_us": {
+   "date": "2026-08-01",
+   "raw": 1387.782782,
+   "display": "€17,412 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_exp_mexico": {
+   "date": "2026-08-01",
+   "raw": 405.52769,
+   "display": "€5,618 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_exp_brazil": {
+   "date": "2026-08-01",
+   "raw": 221.742778,
+   "display": "€3,218 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_exp_china": {
+   "date": "2026-08-01",
+   "raw": 553.417607,
+   "display": "€8,020 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_exp_japan": {
+   "date": "2026-08-01",
+   "raw": 130.593043,
+   "display": "€2,412 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_exp_india": {
+   "date": "2026-08-01",
+   "raw": 154.540307,
+   "display": "€1,948 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_exp_morocco": {
+   "date": "2026-08-01",
+   "raw": 730.554842,
+   "display": "€12,599 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_exp_algeria": {
+   "date": "2026-08-01",
+   "raw": 131.550406,
+   "display": "€2,355 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_exp_nigeria": {
+   "date": "2026-08-01",
+   "raw": 21.557119,
+   "display": "€367 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_imp_eu": {
+   "date": "2026-08-01",
+   "raw": 17563.58541,
+   "display": "€265,131 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_imp_non_eu": {
+   "date": "2026-08-01",
+   "raw": 17555.15322,
+   "display": "€211,924 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_imp_france": {
+   "date": "2026-08-01",
+   "raw": 3020.020233,
+   "display": "€46,249 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_imp_germany": {
+   "date": "2026-08-01",
+   "raw": 3772.134017,
+   "display": "€59,837 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_imp_portugal": {
+   "date": "2026-08-01",
+   "raw": 1317.670461,
+   "display": "€19,361 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_imp_italy": {
+   "date": "2026-08-01",
+   "raw": 2189.871132,
+   "display": "€36,932 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_imp_netherlands": {
+   "date": "2026-08-01",
+   "raw": 2522.86386,
+   "display": "€34,510 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_imp_belgium": {
+   "date": "2026-08-01",
+   "raw": 1143.391962,
+   "display": "€17,464 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_imp_poland": {
+   "date": "2026-08-01",
+   "raw": 699.748197,
+   "display": "€10,636 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_imp_uk": {
+   "date": "2026-08-01",
+   "raw": 682.078629,
+   "display": "€11,469 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_imp_switzerland": {
+   "date": "2026-08-01",
+   "raw": 239.876629,
+   "display": "€3,925 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_imp_turkey": {
+   "date": "2026-08-01",
+   "raw": 794.340195,
+   "display": "€10,101 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_imp_us": {
+   "date": "2026-08-01",
+   "raw": 2187.555564,
+   "display": "€25,830 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_imp_mexico": {
+   "date": "2026-08-01",
+   "raw": 379.511352,
+   "display": "€5,330 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_imp_brazil": {
+   "date": "2026-08-01",
+   "raw": 809.136373,
+   "display": "€7,921 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_imp_china": {
+   "date": "2026-08-01",
+   "raw": 3777.960628,
+   "display": "€47,208 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_imp_japan": {
+   "date": "2026-08-01",
+   "raw": 382.347334,
+   "display": "€4,532 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_imp_india": {
+   "date": "2026-08-01",
+   "raw": 485.181637,
+   "display": "€5,531 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_imp_morocco": {
+   "date": "2026-08-01",
+   "raw": 644.21581,
+   "display": "€10,506 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_imp_algeria": {
+   "date": "2026-08-01",
+   "raw": 574.51812,
+   "display": "€6,231 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "trade_imp_nigeria": {
+   "date": "2026-08-01",
+   "raw": 836.946974,
+   "display": "€5,326 mn 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "svc_exp_transport": {
+   "date": "2026-04-01",
+   "raw": 6887.0,
+   "display": "€24,115 mn 4-qtr total",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "svc_exp_business": {
+   "date": "2026-04-01",
+   "raw": 13053.0,
+   "display": "€48,971 mn 4-qtr total",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "svc_exp_ict": {
+   "date": "2026-04-01",
+   "raw": 6597.0,
+   "display": "€24,940 mn 4-qtr total",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "svc_exp_financial": {
+   "date": "2026-04-01",
+   "raw": 1615.0,
+   "display": "€6,455 mn 4-qtr total",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "svc_exp_insurance": {
+   "date": "2026-04-01",
+   "raw": 577.0,
+   "display": "€2,235 mn 4-qtr total",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "svc_exp_ip": {
+   "date": "2026-04-01",
+   "raw": 1266.0,
+   "display": "€8,112 mn 4-qtr total",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "svc_exp_construction": {
+   "date": "2026-04-01",
+   "raw": 396.0,
+   "display": "€1,371 mn 4-qtr total",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "svc_exp_rd": {
+   "date": "2026-04-01",
+   "raw": 677.0,
+   "display": "€2,655 mn 4-qtr total",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "svc_exp_consulting": {
+   "date": "2026-04-01",
+   "raw": 4626.0,
+   "display": "€15,711 mn 4-qtr total",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "svc_exp_technical": {
+   "date": "2026-04-01",
+   "raw": 7751.0,
+   "display": "€30,606 mn 4-qtr total",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "svc_imp_transport": {
+   "date": "2026-04-01",
+   "raw": 2884.0,
+   "display": "€10,010 mn 4-qtr total",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "svc_imp_business": {
+   "date": "2026-04-01",
+   "raw": 9439.0,
+   "display": "€34,723 mn 4-qtr total",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "svc_imp_ict": {
+   "date": "2026-04-01",
+   "raw": 3082.0,
+   "display": "€12,554 mn 4-qtr total",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "svc_imp_financial": {
+   "date": "2026-04-01",
+   "raw": 833.0,
+   "display": "€3,149 mn 4-qtr total",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "svc_imp_insurance": {
+   "date": "2026-04-01",
+   "raw": 709.0,
+   "display": "€2,857 mn 4-qtr total",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "svc_imp_ip": {
+   "date": "2026-04-01",
+   "raw": 1854.0,
+   "display": "€7,763 mn 4-qtr total",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "svc_imp_construction": {
+   "date": "2026-04-01",
+   "raw": 171.0,
+   "display": "€714 mn 4-qtr total",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "svc_imp_rd": {
+   "date": "2026-04-01",
+   "raw": 543.0,
+   "display": "€1,598 mn 4-qtr total",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "svc_imp_consulting": {
+   "date": "2026-04-01",
+   "raw": 3895.0,
+   "display": "€12,764 mn 4-qtr total",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "svc_imp_technical": {
+   "date": "2026-04-01",
+   "raw": 5001.0,
+   "display": "€20,361 mn 4-qtr total",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "export_prices_all": {
+   "date": "2026-09-01",
+   "raw": 124.9,
+   "display": "7.2% y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "export_prices_ex_energy": {
+   "date": "2026-09-01",
+   "raw": 118.5,
+   "display": "3.0% y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "export_prices_intermediate": {
+   "date": "2026-09-01",
+   "raw": 121.8,
+   "display": "7.4% y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "export_prices_capital": {
+   "date": "2026-09-01",
+   "raw": 114.0,
+   "display": "0.9% y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "export_prices_consumer": {
+   "date": "2026-09-01",
+   "raw": 119.4,
+   "display": "−0.8% y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "export_prices_energy": {
+   "date": "2026-09-01",
+   "raw": 184.7,
+   "display": "80.5% y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "import_prices_all": {
+   "date": "2026-09-01",
+   "raw": 127.9,
+   "display": "9.3% y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "import_prices_ex_energy": {
+   "date": "2026-09-01",
+   "raw": 116.3,
+   "display": "3.4% y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "import_prices_intermediate": {
+   "date": "2026-09-01",
+   "raw": 121.2,
+   "display": "7.6% y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "import_prices_capital": {
+   "date": "2026-09-01",
+   "raw": 116.7,
+   "display": "1.2% y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "import_prices_consumer": {
+   "date": "2026-09-01",
+   "raw": 110.7,
+   "display": "0.6% y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "import_prices_energy": {
+   "date": "2026-09-01",
+   "raw": 169.8,
+   "display": "34.1% y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "terms_of_trade_industrial": {
+   "date": "2026-09-01",
+   "raw": 97.654418,
+   "display": "97.7",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "deflator_exports": {
+   "date": "2026-07-01",
+   "raw": 136.083,
+   "display": "4.6% y/y",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "deflator_imports": {
+   "date": "2026-07-01",
+   "raw": 133.935,
+   "display": "6.5% y/y",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "deflator_exports_goods": {
+   "date": "2026-07-01",
+   "raw": 140.432,
+   "display": "5.5% y/y",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "deflator_imports_goods": {
+   "date": "2026-07-01",
+   "raw": 134.345,
+   "display": "7.2% y/y",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "terms_of_trade": {
+   "date": "2026-07-01",
+   "raw": 101.603763,
+   "display": "101.6",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "terms_of_trade_goods": {
+   "date": "2026-07-01",
+   "raw": 104.530872,
+   "display": "104.5",
+   "period": "Q3 2026",
+   "flash": false
   }
  },
  "notes": [
@@ -5379,6 +5946,6 @@
    "at": "2026-11-01T02:50:46+00:00"
   }
  ],
- "updated_at": "2026-11-01T12:54:28+00:00",
+ "updated_at": "2026-11-01T19:17:28+00:00",
  "started_at": "2026-10-31T23:31:49+00:00"
 }

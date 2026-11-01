@@ -162,6 +162,54 @@ trade_groups: &trade_groups
   - {slug: other_transport, name: "aircraft, ships and trains", name_es: "aeronaves, barcos y material ferroviario", hs: "86,88-89"}
   - {slug: other, name: "other goods", name_es: "otras mercancías", hs: "71,90-99"}
 
+# Partners for the Trade page (Comext partner codes); `name` reads after "to" or "from".
+trade_partners: &trade_partners
+  - {slug: eu, name: "the EU", name_es: "la UE", code: INT_EU27_2020}
+  - {slug: non_eu, name: "countries outside the EU", name_es: "países de fuera de la UE", code: EXT_EU27_2020}
+  - {slug: france, name: "France", name_es: "Francia", code: FR}
+  - {slug: germany, name: "Germany", name_es: "Alemania", code: DE}
+  - {slug: portugal, name: "Portugal", name_es: "Portugal", code: PT}
+  - {slug: italy, name: "Italy", name_es: "Italia", code: IT}
+  - {slug: netherlands, name: "the Netherlands", name_es: "Países Bajos", code: NL}
+  - {slug: belgium, name: "Belgium", name_es: "Bélgica", code: BE}
+  - {slug: poland, name: "Poland", name_es: "Polonia", code: PL}
+  - {slug: uk, name: "the United Kingdom", name_es: "Reino Unido", code: GB}
+  - {slug: switzerland, name: "Switzerland", name_es: "Suiza", code: CH}
+  - {slug: turkey, name: "Türkiye", name_es: "Turquía", code: TR}
+  - {slug: us, name: "the United States", name_es: "Estados Unidos", code: US}
+  - {slug: mexico, name: "Mexico", name_es: "México", code: MX}
+  - {slug: brazil, name: "Brazil", name_es: "Brasil", code: BR}
+  - {slug: china, name: "China", name_es: "China", code: CN}
+  - {slug: japan, name: "Japan", name_es: "Japón", code: JP}
+  - {slug: india, name: "India", name_es: "India", code: IN}
+  - {slug: morocco, name: "Morocco", name_es: "Marruecos", code: MA}
+  - {slug: algeria, name: "Algeria", name_es: "Argelia", code: DZ}
+  - {slug: nigeria, name: "Nigeria", name_es: "Nigeria", code: NG}
+# Services by type (BPM6 items in Eurostat's quarterly balance of payments). Travel and the total are
+# the existing bop_q_travel_* and bop_q_*_services series; Eurostat publishes no Spanish figures for
+# personal and cultural (SK) or government (SL) services, and manufacturing and repairs only from 2022,
+# so the Trade page counts them in "other services", the total less the types listed.
+services_types: &services_types
+  - {slug: transport, name: "transport", name_es: "transporte", item: SC}
+  - {slug: business, name: "other business services", name_es: "otros servicios empresariales", item: SJ}
+  - {slug: ict, name: "telecommunications, computer and information services", name_es: "telecomunicaciones, informática e información", item: SI}
+  - {slug: financial, name: "financial services", name_es: "servicios financieros", item: SG}
+  - {slug: insurance, name: "insurance and pension services", name_es: "seguros y pensiones", item: SF}
+  - {slug: ip, name: "charges for the use of intellectual property", name_es: "cargos por el uso de la propiedad intelectual", item: SH}
+  - {slug: construction, name: "construction services", name_es: "servicios de construcción", item: SE}
+  - {slug: rd, name: "research and development services", name_es: "investigación y desarrollo", item: SJ1}
+  - {slug: consulting, name: "professional and management consulting services", name_es: "consultoría profesional y de gestión", item: SJ2}
+  - {slug: technical, name: "technical, trade-related and other business services", name_es: "servicios técnicos, relacionados con el comercio y otros", item: SJ3}
+# Export and import prices of industrial products by main industrial grouping (Eurostat short-term
+# statistics: non-domestic producer prices, NACE; import prices, CPA), 2021 = 100.
+trade_prices: &trade_prices
+  - {slug: all, name: "industrial goods", name_es: "productos industriales", exp: B-D, imp: CPA_B-D}
+  - {slug: ex_energy, name: "industrial goods except energy", name_es: "productos industriales sin energía", exp: B_C_X_MIG_NRG, imp: CPA_B_C_X_MIG_NRG}
+  - {slug: intermediate, name: "intermediate goods", name_es: "bienes intermedios", exp: MIG_ING, imp: CPA_MIG_ING}
+  - {slug: capital, name: "capital goods", name_es: "bienes de equipo", exp: MIG_CAG, imp: CPA_MIG_CAG}
+  - {slug: consumer, name: "consumer goods", name_es: "bienes de consumo", exp: MIG_COG, imp: CPA_MIG_COG}
+  - {slug: energy, name: "energy", name_es: "energía", exp: MIG_NRG, imp: CPA_MIG_NRG_X_E}
+
 indicators:
 
   # ---------------------------------------------------------------- GDP (INE CNTR)
@@ -6345,3 +6393,173 @@ indicators:
     decimals: 0
     transforms: [sum_1y, yoy]
     max_age_days: 150
+
+  # ---------------------------------------------------------------- Trade partners, services and prices (Batch 26b)
+  # Goods trade with the EU and main partners (Comext, all goods); services trade by type (balance of
+  # payments, quarterly); export and import prices of industrial products; national-accounts deflators.
+  - id: trade_exp_{slug}
+    for_each: *trade_partners
+    label: "Goods exports to {name}"
+    label_es: "Exportaciones de bienes a {name_es} (Comext)"
+    section: international
+    source: comext
+    key: TOTAL
+    params: {flow: exports, partner: "{code}"}
+    freq: M
+    unit: "€ mn"
+    scale: 0.000001
+    decimals: 0
+    transforms: [sum_1y, yoy]
+    max_age_days: 150
+
+  - id: trade_imp_{slug}
+    for_each: *trade_partners
+    label: "Goods imports from {name}"
+    label_es: "Importaciones de bienes de {name_es} (Comext)"
+    section: international
+    source: comext
+    key: TOTAL
+    params: {flow: imports, partner: "{code}"}
+    freq: M
+    unit: "€ mn"
+    scale: 0.000001
+    decimals: 0
+    transforms: [sum_1y, yoy]
+    max_age_days: 150
+
+  - id: svc_exp_{slug}
+    for_each: *services_types
+    label: "Services exports, {name}"
+    label_es: "Exportaciones de servicios, {name_es}"
+    section: international
+    source: eurostat
+    key: bop_c6_q
+    params: {geo: ES, currency: MIO_EUR, partner: WRL_REST, sectpart: S1, sector10: S1, bop_item: "{item}", stk_flow: CRE}
+    freq: Q
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+    transforms: [sum_1y, yoy]
+
+  - id: svc_imp_{slug}
+    for_each: *services_types
+    label: "Services imports, {name}"
+    label_es: "Importaciones de servicios, {name_es}"
+    section: international
+    source: eurostat
+    key: bop_c6_q
+    params: {geo: ES, currency: MIO_EUR, partner: WRL_REST, sectpart: S1, sector10: S1, bop_item: "{item}", stk_flow: DEB}
+    freq: Q
+    unit: "€ mn"
+    change_unit: "%"
+    decimals: 0
+    transforms: [sum_1y, yoy]
+
+  - id: export_prices_{slug}
+    for_each: *trade_prices
+    label: "Export prices, {name}"
+    label_es: "Precios de exportación, {name_es}"
+    section: international
+    source: eurostat
+    key: sts_inppnd_m
+    params: {geo: ES, indic_bt: PRC_PRR_NDOM, nace_r2: "{exp}", unit: I21, s_adj: NSA}
+    freq: M
+    unit: index
+    transforms: [yoy, pop]
+    notes: Prices Spanish industry charges for its products sold abroad, 2021 = 100.
+
+  - id: import_prices_{slug}
+    for_each: *trade_prices
+    label: "Import prices, {name}"
+    label_es: "Precios de importación, {name_es}"
+    section: international
+    source: eurostat
+    key: sts_inpi_m
+    params: {geo: ES, indic_bt: PRC_IMP, cpa2_1: "{imp}", unit: I21, s_adj: NSA}
+    freq: M
+    unit: index
+    transforms: [yoy, pop]
+    notes: Prices of industrial products bought from abroad, 2021 = 100.
+
+  - id: terms_of_trade_industrial
+    label: "Terms of trade, industrial goods"
+    label_es: "Relación real de intercambio, productos industriales"
+    section: international
+    source: derived
+    key: divide
+    params: {a: export_prices_all, b: import_prices_all, scale: 100}
+    freq: M
+    unit: index
+    decimals: 1
+    transforms: [level, yoy]
+    notes: Export prices divided by import prices of industrial goods, 2021 = 100.
+
+  - id: deflator_exports
+    label: "Export deflator, goods and services"
+    label_es: "Deflactor de las exportaciones de bienes y servicios"
+    section: international
+    source: eurostat
+    key: namq_10_gdp
+    params: {geo: ES, unit: PD15_EUR, s_adj: SCA, na_item: P6}
+    freq: Q
+    unit: index
+    transforms: [yoy, pop]
+
+  - id: deflator_imports
+    label: "Import deflator, goods and services"
+    label_es: "Deflactor de las importaciones de bienes y servicios"
+    section: international
+    source: eurostat
+    key: namq_10_gdp
+    params: {geo: ES, unit: PD15_EUR, s_adj: SCA, na_item: P7}
+    freq: Q
+    unit: index
+    transforms: [yoy, pop]
+
+  - id: deflator_exports_goods
+    label: "Export deflator, goods"
+    label_es: "Deflactor de las exportaciones de bienes"
+    section: international
+    source: eurostat
+    key: namq_10_gdp
+    params: {geo: ES, unit: PD15_EUR, s_adj: SCA, na_item: P61}
+    freq: Q
+    unit: index
+    transforms: [yoy, pop]
+
+  - id: deflator_imports_goods
+    label: "Import deflator, goods"
+    label_es: "Deflactor de las importaciones de bienes"
+    section: international
+    source: eurostat
+    key: namq_10_gdp
+    params: {geo: ES, unit: PD15_EUR, s_adj: SCA, na_item: P71}
+    freq: Q
+    unit: index
+    transforms: [yoy, pop]
+
+  - id: terms_of_trade
+    label: "Terms of trade, goods and services"
+    label_es: "Relación real de intercambio, bienes y servicios"
+    section: international
+    source: derived
+    key: divide
+    params: {a: deflator_exports, b: deflator_imports, scale: 100}
+    freq: Q
+    unit: index
+    decimals: 1
+    transforms: [level, yoy]
+    notes: The export deflator divided by the import deflator (national accounts), 2015 = 100.
+
+  - id: terms_of_trade_goods
+    label: "Terms of trade, goods"
+    label_es: "Relación real de intercambio, bienes"
+    section: international
+    source: derived
+    key: divide
+    params: {a: deflator_exports_goods, b: deflator_imports_goods, scale: 100}
+    freq: Q
+    unit: index
+    decimals: 1
+    transforms: [level, yoy]
+    notes: The export deflator of goods divided by the import deflator of goods (national accounts), 2015 = 100.

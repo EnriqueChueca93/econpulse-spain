@@ -182,7 +182,7 @@ def build_site(indicators: list[Indicator], store: Store | None = None, site_dir
     if goods["charts"]:
         write_data_js(data_dir / "charts-trade.js", "charts", goods["charts"])
     render("trade.html", "trade.html", facts=goods["facts"], table=goods["table"], overview=goods["overview"],
-           rankings=goods["rankings"], sections=goods["sections"], chapters=goods["chapters"], page_nav=trade.PAGE,
+           rankings=goods["rankings"], extras=goods["extras"], sections=goods["sections"], chapters=goods["chapters"], page_nav=trade.PAGE,
            charts_file="data/charts-trade.js" if goods["charts"] else None)
     sector = sectortables.page(readings_data)
     if sector["charts"]:
