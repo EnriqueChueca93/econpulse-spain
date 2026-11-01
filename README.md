@@ -55,6 +55,8 @@ Because the workflow commits data every day, run `git pull` before working local
   EconPulse's published word lists rather than an AI; after Econvitals' Fedspeak Tracker. **Global central bank stance**
   (`site/stance.html`): Econvitals' Global Central Bank Stance Matrix for twelve central banks, shown natively
   and credited (Econvitals places its own work in the public domain, CC0 1.0).
+- **Sector tables** (`site/sector-tables.html`): every IMF-style table on one page, with a switch between amounts
+  in euros and percent of GDP, and twelve charts from the tables' data.
 - **IMF-style sector tables**: the tables of the IMF's 2026 Article IV report for Spain, rebuilt from public
   data (actual years from INE, Eurostat and the ECB, projections from the IMF's World Economic Outlook; "…" where
   the WEO does not publish a line). Each is on its section page (Table 1, main economic indicators, on the GDP

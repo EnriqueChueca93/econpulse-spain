@@ -16,7 +16,7 @@ The section pages show the last three actual years and the projections, as the I
 the workbook (site/data/econpulse-spain-sector-tables.xlsx) has every table from 2015.
 """
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from datetime import date
 from pathlib import Path
 from typing import Callable
@@ -833,27 +833,21 @@ FINANCIAL_SOUNDNESS = SectorTable(
 # Not in the Article IV for Spain, which as a euro area member has no monetary table: built in the IMF's style
 # from the ECB's data on the Banco de España's balance sheet, bank lending and interest rates.
 
-MONETARY = SectorTable(
-    id="monetary", label="Table 6", title="Monetary and Credit Indicators",
-    unit="End of year, unless otherwise indicated", section="ecb", block="monetary-table",
-    sheet="T6 Monetary", imf_table="(none: the Article IV for Spain has no monetary table)",
-    kind="actual", web_actual=6,
-    sources="Sources: ECB (Eurosystem balance sheets, TARGET balances, bank balance sheets and interest rates); "
-            "Banco de España; EconPulse calculations.",
-    rows=[
-        Group("Banco de España (billions of euros)"),
-        Line("Total assets", scaled(december("bde_total_assets"), 1e-3), source="ECB, Eurosystem balance sheets",
-             link="bde_total_assets"),
-        Line("Securities held for monetary policy purposes", scaled(december("bde_mp_securities"), 1e-3), indent=1,
-             source="ECB", link="bde_mp_securities"),
-        Line("Lending to credit institutions (monetary policy operations)", scaled(december("bde_mp_lending"), 1e-3),
-             indent=1, source="ECB", link="bde_mp_lending"),
-        Line("Banknotes in circulation", scaled(december("bde_banknotes"), 1e-3), indent=1, source="ECB",
-             link="bde_banknotes"),
-        Line("Credit institutions' reserves and deposits", scaled(december("bde_mp_liabilities"), 1e-3), indent=1,
-             source="ECB", link="bde_mp_liabilities"),
-        Line("TARGET balance 1/", scaled(december("target_balance"), 1e-3), source="ECB, end of December",
-             link="target_balance"),
+def _monetary_rows(in_gdp: bool) -> list:
+    """The Banco de España's balance sheet in billions of euros or in % of GDP; the rest is the same either way."""
+    def amount(ind_id: str) -> Expr:
+        return share(december(ind_id), GDP) if in_gdp else scaled(december(ind_id), 1e-3)
+    return [
+        Group(f"Banco de España ({'percent of GDP' if in_gdp else 'billions of euros'})"),
+        Line("Total assets", amount("bde_total_assets"), source="ECB, Eurosystem balance sheets", link="bde_total_assets"),
+        Line("Securities held for monetary policy purposes", amount("bde_mp_securities"), indent=1, source="ECB",
+             link="bde_mp_securities"),
+        Line("Lending to credit institutions (monetary policy operations)", amount("bde_mp_lending"), indent=1,
+             source="ECB", link="bde_mp_lending"),
+        Line("Banknotes in circulation", amount("bde_banknotes"), indent=1, source="ECB", link="bde_banknotes"),
+        Line("Credit institutions' reserves and deposits", amount("bde_mp_liabilities"), indent=1, source="ECB",
+             link="bde_mp_liabilities"),
+        Line("TARGET balance 1/", amount("target_balance"), source="ECB, end of December", link="target_balance"),
         Group("Credit and deposits (annual percent change, December)"),
         Line("Credit to the private sector 2/", december("private_credit_growth"), source="ECB",
              link="private_credit_growth"),
@@ -876,7 +870,17 @@ MONETARY = SectorTable(
              link="nfc_loan_rate"),
         Line("New household time deposits (December)", december("deposit_rate_households"), source="ECB",
              link="deposit_rate_households"),
-    ],
+    ]
+
+
+MONETARY = SectorTable(
+    id="monetary", label="Table 6", title="Monetary and Credit Indicators",
+    unit="End of year, unless otherwise indicated", section="ecb", block="monetary-table",
+    sheet="T6 Monetary", imf_table="(none: the Article IV for Spain has no monetary table)",
+    kind="actual", web_actual=6,
+    sources="Sources: ECB (Eurosystem balance sheets, TARGET balances, bank balance sheets and interest rates); "
+            "Banco de España; EconPulse calculations.",
+    rows=_monetary_rows(False),
     footnotes=[
         "1/ The Banco de España's net position in the Eurosystem's payment system; negative is a liability.",
         "2/ Bank loans to households, firms and non-bank financial corporations, adjusted for loan sales and "
@@ -888,6 +892,154 @@ MONETARY = SectorTable(
 TABLES = [REAL_SECTOR, FISCAL_EUR, FISCAL_GDP, DSA_BASELINE, DSA_STRESS, FINANCIAL_SOUNDNESS, BALANCE_OF_PAYMENTS,
           EXTERNAL_DEBT, MONETARY]
 BY_ID = {t.id: t for t in TABLES}
+
+# ---------------------------------------------------------------- the Sector tables page
+# Every table on one page (site/sector-tables.html). Tables with amounts come in two versions the page
+# switches between: billions of euros, as in the IMF's report, or percent of GDP. Tables of rates and
+# ratios are the same either way.
+
+
+def _bop_unit_rows(in_gdp: bool) -> list:
+    rows = []
+    for label, indent, ind, _ in BOP_LINES:
+        sign = -1 if ind == "bop_travel_debit" else 1
+        ca = ind == "current_account_annual"
+        proj = (W_CURRENT_ACCOUNT if in_gdp else W_CURRENT_ACCOUNT_BN) if ca else None
+        rows.append(Line(label, scaled(_pct(ind) if in_gdp else _bn(ind), sign), proj, indent=indent, source=BPM6,
+                         proj_source=WEO if ca else "", link=ind))
+    unexplained = less(diff(NIIP_EUR), published("bop_financial_account"))
+    rows += [Line("Net international investment position", _pct(NIIP_EUR) if in_gdp else _bn(NIIP_EUR),
+                  source=f"{ESTAT}, end of year", link="niip_eur_annual"),
+             Line("Valuation changes 2/", VALUATION if in_gdp else _bn(unexplained),
+                  source=f"{ESTAT}; change in the position less the financial account")]
+    return rows
+
+
+def _ext_unit_rows(in_gdp: bool) -> list:
+    return [Line(label, (published("net_external_debt_gdp") if "Net" in label else _pct(e)) if in_gdp else _bn(e),
+                 indent=indent, source=f"{IIP}; {note}", link=link) for label, indent, e, note, link in EXT_LINES]
+
+
+BOP_AMOUNTS = replace(BALANCE_OF_PAYMENTS, id="bop-amounts", unit="Billions of euros", rows=_bop_unit_rows(False))
+BOP_GDP = replace(BALANCE_OF_PAYMENTS, id="bop-gdp", unit="Percent of GDP", rows=_bop_unit_rows(True))
+EXT_AMOUNTS = replace(EXTERNAL_DEBT, id="ext-amounts", unit="End of year; billions of euros", rows=_ext_unit_rows(False))
+EXT_GDP = replace(EXTERNAL_DEBT, id="ext-gdp", unit="End of year; percent of GDP", rows=_ext_unit_rows(True))
+MONETARY_GDP = replace(MONETARY, id="monetary-gdp", rows=_monetary_rows(True))
+
+
+def _path(data: Data, actual: Expr, proj: Expr | None = None, first: int = FIRST_YEAR) -> pd.Series:
+    """Actual years, then the projections: the values a table line shows, as one series."""
+    last_actual, last = years(data) or (0, 0)
+    a, p = actual(data), proj(data) if proj else None
+    parts = [a[(a.index >= first) & (a.index <= last_actual)]] if a is not None else []
+    if p is not None:
+        parts.append(p[(p.index > last_actual) & (p.index <= last)])
+    parts = [s for s in parts if not s.empty]
+    return pd.concat(parts).dropna() if parts else pd.Series(dtype=float)
+
+
+def _spec(chart_id: str, title: str, subtitle: str, series: list, source: str, kind: str = "line", unit: str = "%",
+          **options) -> dict | None:
+    series = [s for s in series if s["x"]]
+    if not series:
+        return None
+    return {"id": chart_id, "title": title, "subtitle": subtitle, "kind": kind, "unit": unit, "decimals": 1,
+            "freq": "A", "ref_lines": [], "series": series, "source": source, **options}
+
+
+def chart_growth(data: Data) -> dict | None:
+    span_ = years(data)
+    if not span_:
+        return None
+    actual, proj = _path(data, published("gdp_growth_annual")), published("fc_imf_gdp")(data)
+    proj = proj[(proj.index > span_[0]) & (proj.index <= span_[1])] if proj is not None else pd.Series(dtype=float)
+    return _spec("st-growth", "Real GDP growth", f"% change on the year before; actual to {span_[0]}, then the IMF's "
+                 "projection", [_line("Actual", actual), _line("IMF projection", proj)],
+                 "Eurostat; IMF World Economic Outlook", kind="bar", signed=True)
+
+
+def chart_saving(data: Data) -> dict | None:
+    return _spec("st-saving", "Saving, investment and the current account",
+                 "% of GDP; the IMF's projections from the first year after the last actual figures",
+                 [_line("National savings", _path(data, NATIONAL_SAVING, published("fc_imf_saving"))),
+                  _line("Gross investment", _path(data, INVESTMENT, published("fc_imf_investment"))),
+                  _line("Current account", _path(data, share(published("current_account_annual"), GDP),
+                                                 W_CURRENT_ACCOUNT))],
+                 "Eurostat; IMF World Economic Outlook")
+
+
+def chart_fiscal(data: Data) -> dict | None:
+    return _spec("st-fiscal", "Government revenue and expenditure",
+                 "% of GDP; the IMF's projections after the last actual year",
+                 [_line("Expenditure", _path(data, share(TE, GDP), published("fc_imf_spending_gdp"))),
+                  _line("Revenue", _path(data, share(TR, GDP), published("fc_imf_revenue_gdp")))],
+                 "Eurostat; IMF World Economic Outlook")
+
+
+def chart_debt_dynamics(data: Data) -> dict | None:
+    other = less(diff(DEBT), PRIMARY_DEFICIT, AUTOMATIC)
+    w_other = less(diff(W_DEBT), W_PRIMARY_DEFICIT, W_AUTOMATIC)
+    first = FIRST_YEAR + 1
+    return _spec("st-debt-dynamics", "What changes the debt ratio",
+                 "Percentage points of GDP: the parts of DSA 1, actual years then the IMF's projections",
+                 [_line("Primary deficit", _path(data, PRIMARY_DEFICIT, W_PRIMARY_DEFICIT, first)),
+                  _line("Interest rate less growth", _path(data, AUTOMATIC, W_AUTOMATIC, first)),
+                  _line("Other flows and residual", _path(data, other, w_other, first)),
+                  _line("Change in debt", _path(data, diff(DEBT), diff(W_DEBT), first), kind="line", color="ink")],
+                 "Eurostat; IMF World Economic Outlook; EconPulse calculation", kind="bar", unit="pp", stack=True,
+                 signed=True)
+
+
+def chart_capital(data: Data) -> dict | None:
+    return _spec("st-capital", "Bank capital", "% of risk-weighted assets, consolidated, end of year",
+                 [_line("Regulatory capital", _path(data, _ratio("fsi_regulatory_capital", "fsi_rwa"))),
+                  _line("Tier 1 capital", _path(data, _ratio("fsi_tier1_capital", "fsi_rwa")))],
+                 "IMF Financial Soundness Indicators database")
+
+
+def chart_bad_loans(data: Data) -> dict | None:
+    return _spec("st-bad-loans", "Nonperforming loans", "% of loans, end of year",
+                 [_line("Domestic business", _path(data, share(december("bank_npl_domestic"),
+                                                                december("bank_credit_osr")))),
+                  _line("Consolidated (incl. abroad)", _path(data, _ratio("fsi_npl", "fsi_gross_loans")))],
+                 "Banco de España; IMF Financial Soundness Indicators database")
+
+
+def chart_current_account(data: Data) -> dict | None:
+    income = total(published("bop_primary_income"), published("bop_secondary_income"))
+    return _spec("st-current-account", "The current account and its parts", "% of GDP",
+                 [_line("Goods", _path(data, _pct("bop_goods_balance"))),
+                  _line("Services", _path(data, _pct("bop_services_balance"))),
+                  _line("Primary and secondary income", _path(data, _pct(income))),
+                  _line("Current account", _path(data, _pct("current_account_annual")), kind="line", color="ink")],
+                 f"{BPM6}", kind="bar", stack=True, signed=True)
+
+
+def chart_external(data: Data) -> dict | None:
+    return _spec("st-external", "External position and debt", "% of GDP, end of year",
+                 [_line("Gross external debt", _path(data, _pct(GROSS_EXT))),
+                  _line("Net external debt", _path(data, published("net_external_debt_gdp"))),
+                  _line("Net investment position", _path(data, _pct(NIIP_EUR)))],
+                 f"{IIP}")
+
+
+def chart_credit(data: Data) -> dict | None:
+    return _spec("st-credit", "Bank lending", "Annual % change in December, adjusted for loan sales; firms are "
+                 "non-financial corporations",
+                 [_line("Households", _path(data, december("loans_households_growth"))),
+                  _line("Firms", _path(data, december("loans_nfc_growth"))),
+                  _line("Private sector", _path(data, december("private_credit_growth")), color="ink")],
+                 "ECB", signed=True)
+
+
+def chart_central_bank(data: Data) -> dict | None:
+    return _spec("st-central-bank", "The Banco de España in the Eurosystem",
+                 "€ billion, end of year: securities bought for monetary policy, lending to banks, and its TARGET "
+                 "balance (net position in the Eurosystem's payment system)",
+                 [_line("Policy securities", _path(data, scaled(december("bde_mp_securities"), 1e-3))),
+                  _line("Lending to banks", _path(data, scaled(december("bde_mp_lending"), 1e-3))),
+                  _line("TARGET balance", _path(data, scaled(december("target_balance"), 1e-3)))],
+                 "ECB", unit="bn")
 
 
 # ---------------------------------------------------------------- computing a table
@@ -1202,3 +1354,50 @@ def write_workbook(data: Data, path: Path, built: str = "") -> bool:
     path.parent.mkdir(parents=True, exist_ok=True)
     wb.save(path)
     return True
+
+
+# ---------------------------------------------------------------- the Sector tables page: sections
+
+# id, title, intro, tables (a pair is amounts, then % of GDP), charts
+PAGE = [
+    ("real-sector", "Real sector",
+     "The IMF's main table for Spain: demand, saving and investment, prices, the labour market, and a summary of the "
+     "external and public accounts.", [REAL_SECTOR], [chart_growth, chart_saving]),
+    ("fiscal", "Government operations",
+     "Revenue, spending and the balances of the general government, from Eurostat's accounts.",
+     [(FISCAL_EUR, FISCAL_GDP)], [chart_fiscal]),
+    ("debt-sustainability", "Debt sustainability",
+     "What drives the debt ratio, in the IMF's layout, and how it fares under the European Commission's stress tests.",
+     [DSA_BASELINE, DSA_STRESS], [chart_debt_dynamics, dsa_fan_chart, dsa_stress_chart]),
+    ("financial-soundness", "Financial soundness",
+     "Bank capital, asset quality and profitability, banks' exposures at home, and the debt of firms and households.",
+     [FINANCIAL_SOUNDNESS], [chart_capital, chart_bad_loans]),
+    ("balance-of-payments", "Balance of payments",
+     "Spain's transactions with the rest of the world, and the investment position they build up.",
+     [(BOP_AMOUNTS, BOP_GDP)], [chart_current_account]),
+    ("external-debt", "External debt",
+     "What Spanish residents owe to non-residents, by sector and instrument.",
+     [(EXT_AMOUNTS, EXT_GDP)], [chart_external]),
+    ("monetary", "Monetary and credit",
+     "The Banco de España's balance sheet in the Eurosystem, bank lending and deposits, and interest rates.",
+     [(MONETARY, MONETARY_GDP)], [chart_credit, chart_central_bank]),
+]
+
+
+def page(data: Data) -> dict:
+    """The Sector tables page: its sections (tables, both versions where there are two) and chart specs."""
+    sections, charts = [], []
+    for section_id, title, intro, tables, chart_fns in PAGE:
+        built = []
+        for t in tables:
+            if isinstance(t, tuple):
+                amounts, gdp = (web_table(x, data) for x in t)
+                if amounts and gdp:
+                    built.append({"amounts": amounts, "gdp": gdp})
+            elif (single := web_table(t, data)):
+                built.append({"single": single})
+        specs = [c for c in (fn(data) for fn in chart_fns) if c]
+        if built or specs:
+            sections.append({"id": section_id, "title": title, "intro": intro, "tables": built, "charts": specs})
+            charts += specs
+    return {"sections": sections, "charts": charts}

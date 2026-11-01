@@ -299,3 +299,26 @@ def test_year_end_skips_incomplete_years(store):
     store.save_series("household_debt_gdp", pd.Series(range(len(q)), index=q, dtype=float))
     data = Data(load_registry(), store)
     assert st.year_end("household_debt_gdp")(data).to_dict() == {2024: 3.0, 2025: 7.0}
+
+
+def test_the_sector_tables_page(store, tmp_path):
+    data = Data(load_registry(), store)
+    p = st.page(data)
+    by_id = {s["id"]: s for s in p["sections"]}
+    # Government operations come in both units; the real sector table only once.
+    fiscal = by_id["fiscal"]["tables"][0]
+    assert set(fiscal) == {"amounts", "gdp"}
+    assert fiscal["amounts"]["title"].startswith("Table 2a") and fiscal["gdp"]["title"].startswith("Table 2b")
+    assert set(by_id["real-sector"]["tables"][0]) == {"single"}
+    # Every line of a pair exists in both versions, in the same order (the first row can name the unit).
+    for amounts, gdp in [(st.BOP_AMOUNTS, st.BOP_GDP), (st.EXT_AMOUNTS, st.EXT_GDP), (st.MONETARY, st.MONETARY_GDP)]:
+        assert [r.label for r in amounts.rows][1:] == [r.label for r in gdp.rows][1:]
+    growth = next(c for c in p["charts"] if c["id"] == "st-growth")
+    assert [s["name"] for s in growth["series"]] == ["Actual", "IMF projection"]
+    assert growth["series"][0]["x"][-1] == "2025-01-01" and growth["series"][1]["x"][0] == "2026-01-01"
+    build_site(load_registry(), store, site_dir=tmp_path / "site")
+    html = (tmp_path / "site" / "sector-tables.html").read_text(encoding="utf-8")
+    assert 'data-sector-unit="gdp"' in html and 'data-variant="amounts"' in html and 'data-variant="gdp"' in html
+    assert '<h2 id="fiscal">' in html and 'aria-current="page">Sector tables</a>' in html
+    other = (tmp_path / "site" / "gdp.html").read_text(encoding="utf-8")
+    assert 'href="sector-tables.html#debt-sustainability"' in other      # in the tab's dropdown on every page

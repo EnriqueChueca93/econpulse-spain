@@ -43,7 +43,8 @@ SECTION_PAGES = {
 }
 
 NAV = ([("index.html", "Home")] + [(f"{s}.html", t) for s, (t, _, _) in SECTION_PAGES.items()]
-       + [("tools.html", "Tools"), ("calendar.html", "Calendar"), ("data.html", "Data")])
+       + [("sector-tables.html", "Sector tables"), ("tools.html", "Tools"), ("calendar.html", "Calendar"),
+          ("data.html", "Data")])
 # What each tab's dropdown lists besides the sections of a section page (anchors or other pages).
 NAV_EXTRA = {
     "index.html": [("#key-indicators", "Key indicators"), ("#readings", "EconPulse readings"), ("#whats-new", "What's new"),
@@ -52,6 +53,7 @@ NAV_EXTRA = {
                    ("fiscal-explorer.html", "Fiscal Explorer"), ("ecb-speak.html", "ECB-speak"),
                    ("stance.html", "Global central bank stance")],
     "calendar.html": [("#recent", "Released in the past week"), ("#upcoming", "The next two months")],
+    "sector-tables.html": [(f"#{section_id}", title) for section_id, title, *_ in sectortables.PAGE],
 }
 
 
@@ -167,6 +169,12 @@ def build_site(indicators: list[Indicator], store: Store | None = None, site_dir
     groups = [{"id": s, "title": t, "items": [i for i in items if i["section"] == s]} for s, (t, _, _) in SECTION_PAGES.items()]
     attention = [i for i in items if i["status"] != "ok" or i["out_of_date"]]
     workbook = sectortables.write_workbook(readings_data, data_dir / sectortables.WORKBOOK, built=common["built"])
+    sector = sectortables.page(readings_data)
+    if sector["charts"]:
+        write_data_js(data_dir / "charts-sectortables.js", "charts", sector["charts"])
+    render("sector-tables.html", "sector-tables.html", sections=sector["sections"],
+           charts_file="data/charts-sectortables.js" if sector["charts"] else None,
+           workbook=f"data/{sectortables.WORKBOOK}" if workbook else None)
     render("data.html", "data.html", source_summary=_source_summary(items), groups=[g for g in groups if g["items"]],
            attention=attention, total=len(items), workbook=f"data/{sectortables.WORKBOOK}" if workbook else None,
            sector_tables=[(f"{t.section}.html#{t.block}", f"{t.label}. {t.title}") for t in sectortables.TABLES])

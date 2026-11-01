@@ -41,7 +41,8 @@
   <section aria-labelledby="sector-tables">
     <h2 id="sector-tables">IMF-style sector tables</h2>
     <p>The tables of the IMF's 2026 Article IV report for Spain, rebuilt from public data, with history from 2015:
-      <a href="{{ workbook }}" download>download the Excel workbook</a>. Each table is also on its section page:
+      <a href="{{ workbook }}" download>download the Excel workbook</a>. All of them are on the
+      <a href="sector-tables.html">Sector tables</a> page, in euros or as a percent of GDP, with charts; each is also on its section page:
       {% for href, title in sector_tables %}<a href="{{ href }}">{{ title }}</a>{% if not loop.last %}, {% endif %}{% endfor %}.</p>
   </section>
   {% endif %}

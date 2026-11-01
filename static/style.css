@@ -298,6 +298,16 @@ code { font-size: 13px; background: var(--hover); padding: 1px 5px; border-radiu
 .tool-result { font: 17px/1.45 var(--serif); color: var(--text); max-width: 820px; margin: 0 0 14px; min-height: 1.45em; }
 .tool-table { margin-bottom: 16px; max-width: 560px; }
 .tool-button[aria-pressed="true"] { background: var(--text); color: var(--page); border-color: var(--text); }
+
+/* Sector tables: the amounts / % of GDP switch stays in view on the long page */
+.sector-controls {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0 18px; position: sticky; top: 0; z-index: 5;
+  background: var(--page); padding: 10px 0 2px; margin: 0 0 4px;
+}
+.sector-controls .tool-controls { margin: 0 0 8px; }
+.sector-tables h2 { scroll-margin-top: 80px; }
+.sector-tables[data-unit="amounts"] .unit-variant[data-variant="gdp"],
+.sector-tables[data-unit="gdp"] .unit-variant[data-variant="amounts"] { display: none; }
 .tool-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin: 0 0 24px; }
 .tool-list a { display: block; padding: 12px 14px; text-decoration: none; color: var(--text); }
 .tool-list a span { display: block; color: var(--text-2); font-size: 13px; margin-top: 2px; }

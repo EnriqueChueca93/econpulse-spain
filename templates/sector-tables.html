@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% from "macros.html" import stat_table, chart_card %}
+
+{% block title %}Sector tables · EconPulse Spain{% endblock %}
+{% block description %}The IMF's tables for Spain, rebuilt from public data: real sector, government, debt sustainability, banks, balance of payments, external debt and money.{% endblock %}
+
+{% block content %}
+  <h1>Sector tables</h1>
+  <p class="lede">The tables of the IMF's 2026 Article IV report for Spain, rebuilt from public data and updated as the
+    data come out: actual years from INE, Eurostat, the Banco de España and the ECB, projections from the IMF's World
+    Economic Outlook. Where that database has no projection for a line, the table shows &hellip; instead.</p>
+  {% if sections %}
+  <div class="sector-controls">
+    <div class="tool-controls" role="group" aria-label="Show amounts in">
+      <span class="secondary">Show amounts in</span>
+      <button type="button" class="tool-button" data-sector-unit="amounts" aria-pressed="true">€ billions</button>
+      <button type="button" class="tool-button" data-sector-unit="gdp" aria-pressed="false">% of GDP</button>
+    </div>
+  </div>
+  <p class="note">The switch changes the tables with amounts in euros (government operations, the balance of payments,
+    external debt and the Banco de España's balance sheet). Tables of growth rates and ratios read the same either way.
+    {% if workbook %}<a href="{{ workbook }}" download>Download every table (Excel)</a>, with history from 2015.{% endif %}</p>
+  <nav class="on-page" aria-label="On this page">
+    {% for s in sections %}<a href="#{{ s.id }}">{{ s.title }}</a>{% endfor %}
+  </nav>
+  <div class="sector-tables" id="sector-tables" data-unit="amounts">
+    {% for s in sections %}
+    <section class="block" aria-labelledby="{{ s.id }}">
+      <h2 id="{{ s.id }}">{{ s.title }}</h2>
+      <p class="block-intro">{{ s.intro }}</p>
+      {% for t in s.tables %}
+        {% if t.single %}{{ stat_table(t.single) }}{% else %}
+        <div class="unit-variant" data-variant="amounts">{{ stat_table(t.amounts) }}</div>
+        <div class="unit-variant" data-variant="gdp">{{ stat_table(t.gdp) }}</div>
+        {% endif %}
+      {% endfor %}
+      {% if s.charts %}
+      <div class="charts">
+        {% for c in s.charts %}{{ chart_card(c) }}{% endfor %}
+      </div>
+      {% endif %}
+    </section>
+    {% endfor %}
+  </div>
+  {% else %}
+  <p class="notice">The tables appear once the annual national accounts have been downloaded.</p>
+  {% endif %}
+{% endblock %}
+
+{% block scripts %}
+  {% if charts_file %}
+  <script src="assets/plotly.min.js?v={{ build_id }}"></script>
+  <script src="{{ charts_file }}?v={{ build_id }}"></script>
+  {% endif %}
+{% endblock %}
+
+{% block after_scripts %}
+  <script>
+    (function () {
+      // Amounts or % of GDP; the choice is remembered in this browser.
+      var box = document.getElementById("sector-tables");
+      var buttons = document.querySelectorAll("[data-sector-unit]");
+      if (!box || !buttons.length) return;
+      function show(unit) {
+        box.setAttribute("data-unit", unit);
+        Array.prototype.forEach.call(buttons, function (b) {
+          b.setAttribute("aria-pressed", b.getAttribute("data-sector-unit") === unit ? "true" : "false");
+        });
+      }
+      var saved = null;
+      try { saved = localStorage.getItem("ep-sector-unit"); } catch (e) {}
+      if (saved === "gdp" || saved === "amounts") show(saved);
+      Array.prototype.forEach.call(buttons, function (b) {
+        b.addEventListener("click", function () {
+          var unit = b.getAttribute("data-sector-unit");
+          show(unit);
+          try { localStorage.setItem("ep-sector-unit", unit); } catch (e) {}
+        });
+      });
+    })();
+  </script>
+{% endblock %}
