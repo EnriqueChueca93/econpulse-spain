@@ -14,7 +14,7 @@ from pathlib import Path
 import pandas as pd
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
-from . import __version__, analytics, changes, ecbspeak, feed, fiscal, schedule, sectortables, stance, surprises, tools
+from . import __version__, analytics, changes, ecbspeak, feed, fiscal, industries, schedule, sectortables, stance, surprises, tools
 from .charts import build_home_charts
 from .config import SITE_DIR, STATIC_DIR, TEMPLATES_DIR
 from .pages import build_page
@@ -55,6 +55,8 @@ NAV_EXTRA = {
     "calendar.html": [("#recent", "Released in the past week"), ("#upcoming", "The next two months")],
     "sector-tables.html": [(f"#{section_id}", title) for section_id, title, *_ in sectortables.PAGE],
 }
+# Pages a section tab's dropdown lists after that page's own sections.
+NAV_SUBPAGES = {"labour.html": [("industry-detail.html", "Every industry")]}
 
 
 def nav_items(section_pages: dict) -> list[dict]:
@@ -63,7 +65,7 @@ def nav_items(section_pages: dict) -> list[dict]:
     for href, label in NAV:
         section = href.removesuffix(".html")
         if section in section_pages:
-            children = [(f"#{b['id']}", b["title"]) for b in section_pages[section]["blocks"]]
+            children = [(f"#{b['id']}", b["title"]) for b in section_pages[section]["blocks"]] + NAV_SUBPAGES.get(href, [])
         else:
             children = NAV_EXTRA.get(href, [])
         items.append({"href": href, "label": label, "id": section,
@@ -169,6 +171,12 @@ def build_site(indicators: list[Indicator], store: Store | None = None, site_dir
     groups = [{"id": s, "title": t, "items": [i for i in items if i["section"] == s]} for s, (t, _, _) in SECTION_PAGES.items()]
     attention = [i for i in items if i["status"] != "ok" or i["out_of_date"]]
     workbook = sectortables.write_workbook(readings_data, data_dir / sectortables.WORKBOOK, built=common["built"])
+    detail = industries.page(readings_data)
+    if detail["charts"]:
+        write_data_js(data_dir / "charts-industries.js", "charts", detail["charts"])
+    render("industry-detail.html", "industry-detail.html", active="labour.html", table=detail["table"],
+           sections=detail["sections"], moves=detail["moves"],
+           charts_file="data/charts-industries.js" if detail["charts"] else None)
     sector = sectortables.page(readings_data)
     if sector["charts"]:
         write_data_js(data_dir / "charts-sectortables.js", "charts", sector["charts"])

@@ -5084,6 +5084,7 @@ indicators:
     section: labour
     source: afiliacion
     key: "raw:construction"
+    params: {bridge: "-68"}
     freq: M
     unit: "thousands"
     scale: 0.001
@@ -5095,6 +5096,7 @@ indicators:
     section: labour
     source: afiliacion
     key: "sa:construction"
+    params: {bridge: "-68"}
     freq: M
     unit: "thousands"
     scale: 0.001
@@ -5107,6 +5109,7 @@ indicators:
     section: labour
     source: afiliacion
     key: "raw:services"
+    params: {bridge: "+68"}
     freq: M
     unit: "thousands"
     scale: 0.001
@@ -5118,6 +5121,7 @@ indicators:
     section: labour
     source: afiliacion
     key: "sa:services"
+    params: {bridge: "+68"}
     freq: M
     unit: "thousands"
     scale: 0.001
@@ -5370,3 +5374,431 @@ indicators:
     freq: M
     unit: "thousands"
     transforms: [sum_1y]
+
+  # ---------------------------------------------------------------- Every industry
+  # Average monthly registrations (general scheme and self-employed) by group of two-digit activities, from the
+  # Social Security's yearly workbooks (econpulse/industries.py), from 2021; bridged across CNAE-2025 where noted.
+
+  - id: ind_total
+    label: "Registrations, all industries"
+    label_es: "Afiliados medios, CNAE all"
+    section: labour
+    source: afiliacion
+    key: "cnae:all"
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [diff_yoy, yoy]
+
+  - id: ind_goods
+    label: "Registrations, goods-producing"
+    label_es: "Afiliados medios, CNAE 01-43"
+    section: labour
+    source: afiliacion
+    key: "cnae:01-43"
+    params: {bridge: "-68"}
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [diff_yoy, yoy]
+
+  - id: ind_services
+    label: "Registrations, service-providing"
+    label_es: "Afiliados medios, CNAE 45-99"
+    section: labour
+    source: afiliacion
+    key: "cnae:45-99"
+    params: {bridge: "+68"}
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [diff_yoy, yoy]
+
+  - id: ind_agriculture
+    label: "Registrations, agriculture, forestry and fishing"
+    label_es: "Afiliados medios, CNAE 01-03"
+    section: labour
+    source: afiliacion
+    key: "cnae:01-03"
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [diff_yoy, yoy]
+
+  - id: ind_mining
+    label: "Registrations, mining and quarrying"
+    label_es: "Afiliados medios, CNAE 05-09"
+    section: labour
+    source: afiliacion
+    key: "cnae:05-09"
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [diff_yoy, yoy]
+
+  - id: ind_manufacturing
+    label: "Registrations, manufacturing"
+    label_es: "Afiliados medios, CNAE 10-33"
+    section: labour
+    source: afiliacion
+    key: "cnae:10-33"
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [diff_yoy, yoy]
+
+  - id: ind_food
+    label: "Registrations, food, beverages and tobacco"
+    label_es: "Afiliados medios, CNAE 10-12"
+    section: labour
+    source: afiliacion
+    key: "cnae:10-12"
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [diff_yoy, yoy]
+
+  - id: ind_textiles
+    label: "Registrations, textiles, clothing and leather"
+    label_es: "Afiliados medios, CNAE 13-15"
+    section: labour
+    source: afiliacion
+    key: "cnae:13-15"
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [diff_yoy, yoy]
+
+  - id: ind_wood_paper
+    label: "Registrations, wood, paper and printing"
+    label_es: "Afiliados medios, CNAE 16-18"
+    section: labour
+    source: afiliacion
+    key: "cnae:16-18"
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [diff_yoy, yoy]
+
+  - id: ind_chemicals
+    label: "Registrations, petroleum, chemicals and pharmaceuticals"
+    label_es: "Afiliados medios, CNAE 19-21"
+    section: labour
+    source: afiliacion
+    key: "cnae:19-21"
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [diff_yoy, yoy]
+
+  - id: ind_plastics
+    label: "Registrations, rubber, plastics and other mineral products"
+    label_es: "Afiliados medios, CNAE 22-23"
+    section: labour
+    source: afiliacion
+    key: "cnae:22-23"
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [diff_yoy, yoy]
+
+  - id: ind_metals
+    label: "Registrations, metals and metal products"
+    label_es: "Afiliados medios, CNAE 24-25"
+    section: labour
+    source: afiliacion
+    key: "cnae:24-25"
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [diff_yoy, yoy]
+
+  - id: ind_machinery
+    label: "Registrations, electronics, electrical equipment and machinery"
+    label_es: "Afiliados medios, CNAE 26-28"
+    section: labour
+    source: afiliacion
+    key: "cnae:26-28"
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [diff_yoy, yoy]
+
+  - id: ind_vehicles
+    label: "Registrations, motor vehicles and other transport equipment"
+    label_es: "Afiliados medios, CNAE 29-30"
+    section: labour
+    source: afiliacion
+    key: "cnae:29-30"
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [diff_yoy, yoy]
+
+  - id: ind_other_manufacturing
+    label: "Registrations, furniture, other manufacturing and repair"
+    label_es: "Afiliados medios, CNAE 31-33"
+    section: labour
+    source: afiliacion
+    key: "cnae:31-33"
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [diff_yoy, yoy]
+
+  - id: ind_utilities
+    label: "Registrations, energy, water and waste"
+    label_es: "Afiliados medios, CNAE 35-39"
+    section: labour
+    source: afiliacion
+    key: "cnae:35-39"
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [diff_yoy, yoy]
+
+  - id: ind_construction
+    label: "Registrations, construction"
+    label_es: "Afiliados medios, CNAE 41-43"
+    section: labour
+    source: afiliacion
+    key: "cnae:41-43"
+    params: {bridge: "-68"}
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [diff_yoy, yoy]
+
+  - id: ind_trade
+    label: "Registrations, wholesale and retail trade"
+    label_es: "Afiliados medios, CNAE 45-47"
+    section: labour
+    source: afiliacion
+    key: "cnae:45-47"
+    params: {bridge: "-95"}
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [diff_yoy, yoy]
+
+  - id: ind_transport
+    label: "Registrations, transport and storage"
+    label_es: "Afiliados medios, CNAE 49-53"
+    section: labour
+    source: afiliacion
+    key: "cnae:49-53"
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [diff_yoy, yoy]
+
+  - id: ind_hospitality
+    label: "Registrations, accommodation and food services"
+    label_es: "Afiliados medios, CNAE 55-56"
+    section: labour
+    source: afiliacion
+    key: "cnae:55-56"
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [diff_yoy, yoy]
+
+  - id: ind_accommodation
+    label: "Registrations, accommodation"
+    label_es: "Afiliados medios, CNAE 55"
+    section: labour
+    source: afiliacion
+    key: "cnae:55"
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [diff_yoy, yoy]
+
+  - id: ind_food_services
+    label: "Registrations, restaurants and bars"
+    label_es: "Afiliados medios, CNAE 56"
+    section: labour
+    source: afiliacion
+    key: "cnae:56"
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [diff_yoy, yoy]
+
+  - id: ind_information
+    label: "Registrations, information and communication"
+    label_es: "Afiliados medios, CNAE 58-63"
+    section: labour
+    source: afiliacion
+    key: "cnae:58-63"
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [diff_yoy, yoy]
+
+  - id: ind_computing
+    label: "Registrations, computer programming and information services"
+    label_es: "Afiliados medios, CNAE 62-63"
+    section: labour
+    source: afiliacion
+    key: "cnae:62-63"
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [diff_yoy, yoy]
+
+  - id: ind_finance
+    label: "Registrations, finance and insurance"
+    label_es: "Afiliados medios, CNAE 64-66"
+    section: labour
+    source: afiliacion
+    key: "cnae:64-66"
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [diff_yoy, yoy]
+
+  - id: ind_real_estate
+    label: "Registrations, real estate"
+    label_es: "Afiliados medios, CNAE 68"
+    section: labour
+    source: afiliacion
+    key: "cnae:68"
+    params: {bridge: "+68"}
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [diff_yoy, yoy]
+
+  - id: ind_professional
+    label: "Registrations, professional, scientific and technical"
+    label_es: "Afiliados medios, CNAE 69-75"
+    section: labour
+    source: afiliacion
+    key: "cnae:69-75"
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [diff_yoy, yoy]
+
+  - id: ind_administrative
+    label: "Registrations, administrative and support services"
+    label_es: "Afiliados medios, CNAE 77-82"
+    section: labour
+    source: afiliacion
+    key: "cnae:77-82"
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [diff_yoy, yoy]
+
+  - id: ind_public_admin
+    label: "Registrations, public administration and defence"
+    label_es: "Afiliados medios, CNAE 84"
+    section: labour
+    source: afiliacion
+    key: "cnae:84"
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [diff_yoy, yoy]
+
+  - id: ind_education
+    label: "Registrations, education"
+    label_es: "Afiliados medios, CNAE 85"
+    section: labour
+    source: afiliacion
+    key: "cnae:85"
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [diff_yoy, yoy]
+
+  - id: ind_health_social
+    label: "Registrations, health and social work"
+    label_es: "Afiliados medios, CNAE 86-88"
+    section: labour
+    source: afiliacion
+    key: "cnae:86-88"
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [diff_yoy, yoy]
+
+  - id: ind_health
+    label: "Registrations, health"
+    label_es: "Afiliados medios, CNAE 86"
+    section: labour
+    source: afiliacion
+    key: "cnae:86"
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [diff_yoy, yoy]
+
+  - id: ind_social
+    label: "Registrations, residential care and social work"
+    label_es: "Afiliados medios, CNAE 87-88"
+    section: labour
+    source: afiliacion
+    key: "cnae:87-88"
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [diff_yoy, yoy]
+
+  - id: ind_arts
+    label: "Registrations, arts, entertainment and recreation"
+    label_es: "Afiliados medios, CNAE 90-93"
+    section: labour
+    source: afiliacion
+    key: "cnae:90-93"
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [diff_yoy, yoy]
+
+  - id: ind_other_services
+    label: "Registrations, other services, incl. repairs"
+    label_es: "Afiliados medios, CNAE 94-96"
+    section: labour
+    source: afiliacion
+    key: "cnae:94-96"
+    params: {bridge: "+95"}
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [diff_yoy, yoy]
+
+  - id: ind_households
+    label: "Registrations, households as employers"
+    label_es: "Afiliados medios, CNAE 97-98"
+    section: labour
+    source: afiliacion
+    key: "cnae:97-98"
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [diff_yoy, yoy]
+
+  - id: ind_div95
+    label: "Registrations, division 95 as published (repairs)"
+    label_es: "Afiliados medios, CNAE 95"
+    section: labour
+    source: afiliacion
+    key: "cnae:95"
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    notes: Not linked across the 2026 classification change; used to estimate the moves.
+
+  - id: ind_div68
+    label: "Registrations, division 68 as published (real estate)"
+    label_es: "Afiliados medios, CNAE 68"
+    section: labour
+    source: afiliacion
+    key: "cnae:68"
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    notes: Not linked across the 2026 classification change; used to estimate the moves.

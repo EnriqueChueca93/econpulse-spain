@@ -220,7 +220,9 @@ PAGES: dict[str, list[dict]] = {
             "intro": ("Average monthly Social Security registrations by sector and by type of work, from the ministry's "
                       "monthly workbooks. The 1- and 3-month changes use the ministry's own seasonal adjustment; the "
                       "12-month change, the figures as published. From January 2026 the sectors follow the new "
-                      "classification of activities (CNAE-2025)."),
+                      "classification of activities (CNAE-2025); EconPulse links construction and services across the "
+                      "change, which moved real estate development from one to the other. Every industry, month by "
+                      "month, is on its own page (Labour market menu, or the chart's More link)."),
             "tables": [
                 Table(
                     title="Monthly change",
@@ -250,7 +252,7 @@ PAGES: dict[str, list[dict]] = {
                 ),
             ],
             "charts": [
-                {"id": "sector-jobs-change", "title": "Jobs by sector: monthly change",
+                {"id": "sector-jobs-change", "title": "Jobs by sector: monthly change", "link": "industry-detail.html",
                  "subtitle": "Thousands, seasonally adjusted by the Social Security; agriculture is in the table",
                  "kind": "bar", "stack": True, "signed": True, "unit": "k", "decimals": 1, "start": "2023-01-01",
                  "series": [("reg_services_sa", "diff", "Services"), ("reg_industry_sa", "diff", "Industry"),

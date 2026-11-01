@@ -4432,6 +4432,348 @@
   "source_name": "Gross domestic product (GDP) and main components (output, expenditure and income) - annual data",
   "source_updated": "2026-10-22T23:00:00+0200"
  },
+ "ind_accommodation": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:49:58+00:00",
+  "first_date": "2021-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 69,
+  "signature": "[\"afiliacion\", \"cnae:55\", {}, 0.001]",
+  "source_name": "Afiliación media por actividad"
+ },
+ "ind_administrative": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:49:58+00:00",
+  "first_date": "2021-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 69,
+  "signature": "[\"afiliacion\", \"cnae:77-82\", {}, 0.001]",
+  "source_name": "Afiliación media por actividad"
+ },
+ "ind_agriculture": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:49:58+00:00",
+  "first_date": "2021-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 69,
+  "signature": "[\"afiliacion\", \"cnae:01-03\", {}, 0.001]",
+  "source_name": "Afiliación media por actividad"
+ },
+ "ind_arts": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:49:58+00:00",
+  "first_date": "2021-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 69,
+  "signature": "[\"afiliacion\", \"cnae:90-93\", {}, 0.001]",
+  "source_name": "Afiliación media por actividad"
+ },
+ "ind_chemicals": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:49:58+00:00",
+  "first_date": "2021-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 69,
+  "signature": "[\"afiliacion\", \"cnae:19-21\", {}, 0.001]",
+  "source_name": "Afiliación media por actividad"
+ },
+ "ind_computing": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:49:58+00:00",
+  "first_date": "2021-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 69,
+  "signature": "[\"afiliacion\", \"cnae:62-63\", {}, 0.001]",
+  "source_name": "Afiliación media por actividad"
+ },
+ "ind_construction": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:49:58+00:00",
+  "first_date": "2021-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 69,
+  "signature": "[\"afiliacion\", \"cnae:41-43\", {\"bridge\": \"-68\"}, 0.001]",
+  "source_name": "Afiliación media por actividad"
+ },
+ "ind_div68": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:49:58+00:00",
+  "first_date": "2021-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 69,
+  "signature": "[\"afiliacion\", \"cnae:68\", {}, 0.001]",
+  "source_name": "Afiliación media por actividad"
+ },
+ "ind_div95": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:49:58+00:00",
+  "first_date": "2021-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 69,
+  "signature": "[\"afiliacion\", \"cnae:95\", {}, 0.001]",
+  "source_name": "Afiliación media por actividad"
+ },
+ "ind_education": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:49:58+00:00",
+  "first_date": "2021-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 69,
+  "signature": "[\"afiliacion\", \"cnae:85\", {}, 0.001]",
+  "source_name": "Afiliación media por actividad"
+ },
+ "ind_finance": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:49:58+00:00",
+  "first_date": "2021-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 69,
+  "signature": "[\"afiliacion\", \"cnae:64-66\", {}, 0.001]",
+  "source_name": "Afiliación media por actividad"
+ },
+ "ind_food": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:49:58+00:00",
+  "first_date": "2021-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 69,
+  "signature": "[\"afiliacion\", \"cnae:10-12\", {}, 0.001]",
+  "source_name": "Afiliación media por actividad"
+ },
+ "ind_food_services": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:49:58+00:00",
+  "first_date": "2021-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 69,
+  "signature": "[\"afiliacion\", \"cnae:56\", {}, 0.001]",
+  "source_name": "Afiliación media por actividad"
+ },
+ "ind_goods": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:49:58+00:00",
+  "first_date": "2021-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 69,
+  "signature": "[\"afiliacion\", \"cnae:01-43\", {\"bridge\": \"-68\"}, 0.001]",
+  "source_name": "Afiliación media por actividad"
+ },
+ "ind_health": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:49:58+00:00",
+  "first_date": "2021-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 69,
+  "signature": "[\"afiliacion\", \"cnae:86\", {}, 0.001]",
+  "source_name": "Afiliación media por actividad"
+ },
+ "ind_health_social": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:49:58+00:00",
+  "first_date": "2021-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 69,
+  "signature": "[\"afiliacion\", \"cnae:86-88\", {}, 0.001]",
+  "source_name": "Afiliación media por actividad"
+ },
+ "ind_hospitality": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:49:58+00:00",
+  "first_date": "2021-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 69,
+  "signature": "[\"afiliacion\", \"cnae:55-56\", {}, 0.001]",
+  "source_name": "Afiliación media por actividad"
+ },
+ "ind_households": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:49:58+00:00",
+  "first_date": "2021-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 69,
+  "signature": "[\"afiliacion\", \"cnae:97-98\", {}, 0.001]",
+  "source_name": "Afiliación media por actividad"
+ },
+ "ind_information": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:49:58+00:00",
+  "first_date": "2021-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 69,
+  "signature": "[\"afiliacion\", \"cnae:58-63\", {}, 0.001]",
+  "source_name": "Afiliación media por actividad"
+ },
+ "ind_machinery": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:49:58+00:00",
+  "first_date": "2021-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 69,
+  "signature": "[\"afiliacion\", \"cnae:26-28\", {}, 0.001]",
+  "source_name": "Afiliación media por actividad"
+ },
+ "ind_manufacturing": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:49:58+00:00",
+  "first_date": "2021-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 69,
+  "signature": "[\"afiliacion\", \"cnae:10-33\", {}, 0.001]",
+  "source_name": "Afiliación media por actividad"
+ },
+ "ind_metals": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:49:58+00:00",
+  "first_date": "2021-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 69,
+  "signature": "[\"afiliacion\", \"cnae:24-25\", {}, 0.001]",
+  "source_name": "Afiliación media por actividad"
+ },
+ "ind_mining": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:49:58+00:00",
+  "first_date": "2021-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 69,
+  "signature": "[\"afiliacion\", \"cnae:05-09\", {}, 0.001]",
+  "source_name": "Afiliación media por actividad"
+ },
+ "ind_other_manufacturing": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:49:58+00:00",
+  "first_date": "2021-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 69,
+  "signature": "[\"afiliacion\", \"cnae:31-33\", {}, 0.001]",
+  "source_name": "Afiliación media por actividad"
+ },
+ "ind_other_services": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:49:58+00:00",
+  "first_date": "2021-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 69,
+  "signature": "[\"afiliacion\", \"cnae:94-96\", {\"bridge\": \"+95\"}, 0.001]",
+  "source_name": "Afiliación media por actividad"
+ },
+ "ind_plastics": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:49:58+00:00",
+  "first_date": "2021-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 69,
+  "signature": "[\"afiliacion\", \"cnae:22-23\", {}, 0.001]",
+  "source_name": "Afiliación media por actividad"
+ },
+ "ind_professional": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:49:58+00:00",
+  "first_date": "2021-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 69,
+  "signature": "[\"afiliacion\", \"cnae:69-75\", {}, 0.001]",
+  "source_name": "Afiliación media por actividad"
+ },
+ "ind_public_admin": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:49:58+00:00",
+  "first_date": "2021-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 69,
+  "signature": "[\"afiliacion\", \"cnae:84\", {}, 0.001]",
+  "source_name": "Afiliación media por actividad"
+ },
+ "ind_real_estate": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:49:58+00:00",
+  "first_date": "2021-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 69,
+  "signature": "[\"afiliacion\", \"cnae:68\", {\"bridge\": \"+68\"}, 0.001]",
+  "source_name": "Afiliación media por actividad"
+ },
+ "ind_services": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:49:58+00:00",
+  "first_date": "2021-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 69,
+  "signature": "[\"afiliacion\", \"cnae:45-99\", {\"bridge\": \"+68\"}, 0.001]",
+  "source_name": "Afiliación media por actividad"
+ },
+ "ind_social": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:49:58+00:00",
+  "first_date": "2021-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 69,
+  "signature": "[\"afiliacion\", \"cnae:87-88\", {}, 0.001]",
+  "source_name": "Afiliación media por actividad"
+ },
+ "ind_textiles": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:49:58+00:00",
+  "first_date": "2021-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 69,
+  "signature": "[\"afiliacion\", \"cnae:13-15\", {}, 0.001]",
+  "source_name": "Afiliación media por actividad"
+ },
+ "ind_total": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:49:58+00:00",
+  "first_date": "2021-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 69,
+  "signature": "[\"afiliacion\", \"cnae:all\", {}, 0.001]",
+  "source_name": "Afiliación media por actividad"
+ },
+ "ind_trade": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:49:58+00:00",
+  "first_date": "2021-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 69,
+  "signature": "[\"afiliacion\", \"cnae:45-47\", {\"bridge\": \"-95\"}, 0.001]",
+  "source_name": "Afiliación media por actividad"
+ },
+ "ind_transport": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:49:58+00:00",
+  "first_date": "2021-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 69,
+  "signature": "[\"afiliacion\", \"cnae:49-53\", {}, 0.001]",
+  "source_name": "Afiliación media por actividad"
+ },
+ "ind_utilities": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:49:58+00:00",
+  "first_date": "2021-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 69,
+  "signature": "[\"afiliacion\", \"cnae:35-39\", {}, 0.001]",
+  "source_name": "Afiliación media por actividad"
+ },
+ "ind_vehicles": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:49:58+00:00",
+  "first_date": "2021-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 69,
+  "signature": "[\"afiliacion\", \"cnae:29-30\", {}, 0.001]",
+  "source_name": "Afiliación media por actividad"
+ },
+ "ind_wood_paper": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:49:58+00:00",
+  "first_date": "2021-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 69,
+  "signature": "[\"afiliacion\", \"cnae:16-18\", {}, 0.001]",
+  "source_name": "Afiliación media por actividad"
+ },
  "industrial_production": {
   "status": "ok",
   "fetched_at": "2026-11-01T06:28:21+00:00",
@@ -4901,20 +5243,20 @@
  },
  "reg_construction": {
   "status": "ok",
-  "fetched_at": "2026-11-01T11:29:41+00:00",
+  "fetched_at": "2026-11-01T11:48:35+00:00",
   "first_date": "2022-01-01",
   "last_date": "2026-09-01",
   "n_obs": 57,
-  "signature": "[\"afiliacion\", \"raw:construction\", {}, 0.001]",
+  "signature": "[\"afiliacion\", \"raw:construction\", {\"bridge\": \"-68\"}, 0.001]",
   "source_name": "Afiliación media"
  },
  "reg_construction_sa": {
   "status": "ok",
-  "fetched_at": "2026-11-01T11:29:41+00:00",
+  "fetched_at": "2026-11-01T11:48:35+00:00",
   "first_date": "2022-01-01",
   "last_date": "2026-09-01",
   "n_obs": 57,
-  "signature": "[\"afiliacion\", \"sa:construction\", {}, 0.001]",
+  "signature": "[\"afiliacion\", \"sa:construction\", {\"bridge\": \"-68\"}, 0.001]",
   "source_name": "Afiliación media"
  },
  "reg_employees": {
@@ -4991,20 +5333,20 @@
  },
  "reg_services": {
   "status": "ok",
-  "fetched_at": "2026-11-01T11:29:41+00:00",
+  "fetched_at": "2026-11-01T11:48:35+00:00",
   "first_date": "2022-01-01",
   "last_date": "2026-09-01",
   "n_obs": 57,
-  "signature": "[\"afiliacion\", \"raw:services\", {}, 0.001]",
+  "signature": "[\"afiliacion\", \"raw:services\", {\"bridge\": \"+68\"}, 0.001]",
   "source_name": "Afiliación media"
  },
  "reg_services_sa": {
   "status": "ok",
-  "fetched_at": "2026-11-01T11:29:41+00:00",
+  "fetched_at": "2026-11-01T11:48:35+00:00",
   "first_date": "2022-01-01",
   "last_date": "2026-09-01",
   "n_obs": 57,
-  "signature": "[\"afiliacion\", \"sa:services\", {}, 0.001]",
+  "signature": "[\"afiliacion\", \"sa:services\", {\"bridge\": \"+68\"}, 0.001]",
   "source_name": "Afiliación media"
  },
  "retail_sales": {

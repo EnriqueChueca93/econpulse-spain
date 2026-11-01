@@ -46,6 +46,8 @@ Because the workflow commits data every day, run `git pull` before working local
   questions" and three charts.
 - **Labour market by sector**: Social Security registrations by sector and type of work (the ministry's own
   seasonal adjustment), registered unemployment by sector, and contracts by type, tracking the 2022 labour reform.
+  **Every industry** (`site/industry-detail.html`): monthly registrations in 36 industries, after Econvitals'
+  industry employment detail, linked across the 2026 change of activity classification (CNAE-2025).
 - **GDP, Labour market, Wages, Inflation**: econvitals-style tables (1-, 3-, 6- and 12-month changes; latest,
   a month ago, a year ago; contributions to growth) and 25 charts, each with a data table and PNG download.
   The Inflation page also measures underlying inflation across the ~180 detailed HICP items: weighted median,
@@ -141,6 +143,7 @@ econpulse/            Python package
   ecbspeak.py         ECB-speak: collects the Governing Council's speeches (data/ecbspeak.json) and analyses them
   speechscore.py      the hawkish/dovish word lists and the score
   fiscal_baseline.json  the Commission's Spain baseline, extracted by scripts/extract_fiscal_baseline.py
+  industries.py       the Every industry page: registrations by group of activities, charts and table
   sectortables.py     IMF-style sector tables: their lines, the section-page tables and the Excel workbook
   serve.py            serves site/ on this computer for `python -m econpulse serve` (what EconPulse.exe runs)
   build.py            renders every page into site/ (chart data goes in site/data/*.js)

@@ -3818,7 +3818,7 @@
   "reg_construction": {
    "date": "2026-09-01",
    "raw": 1496.607682,
-   "display": "+39.4k y/y",
+   "display": "+100.2k y/y",
    "period": "Sep 2026",
    "flash": false
   },
@@ -3832,7 +3832,7 @@
   "reg_services": {
    "date": "2026-09-01",
    "raw": 17404.10264,
-   "display": "+618.9k y/y",
+   "display": "+558.0k y/y",
    "period": "Sep 2026",
    "flash": false
   },
@@ -3996,6 +3996,272 @@
    "display": "4,532.4k 12-mo total",
    "period": "Sep 2026",
    "flash": false
+  },
+  "ind_total": {
+   "date": "2026-09-01",
+   "raw": 21352.43595,
+   "display": "+683.0k y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "ind_goods": {
+   "date": "2026-09-01",
+   "raw": 4364.163227,
+   "display": "+166.3k y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "ind_services": {
+   "date": "2026-09-01",
+   "raw": 16988.27273,
+   "display": "+516.7k y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "ind_agriculture": {
+   "date": "2026-09-01",
+   "raw": 354.0255455,
+   "display": "+8.1k y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "ind_mining": {
+   "date": "2026-09-01",
+   "raw": 21.69672727,
+   "display": "+0.5k y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "ind_manufacturing": {
+   "date": "2026-09-01",
+   "raw": 2260.8315,
+   "display": "+46.6k y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "ind_food": {
+   "date": "2026-09-01",
+   "raw": 512.5701818,
+   "display": "+13.6k y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "ind_textiles": {
+   "date": "2026-09-01",
+   "raw": 122.2796364,
+   "display": "+0.3k y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "ind_wood_paper": {
+   "date": "2026-09-01",
+   "raw": 182.6950455,
+   "display": "+2.5k y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "ind_chemicals": {
+   "date": "2026-09-01",
+   "raw": 193.9486818,
+   "display": "+5.0k y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "ind_plastics": {
+   "date": "2026-09-01",
+   "raw": 204.3071364,
+   "display": "+2.4k y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "ind_metals": {
+   "date": "2026-09-01",
+   "raw": 361.0667273,
+   "display": "+2.8k y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "ind_machinery": {
+   "date": "2026-09-01",
+   "raw": 231.5466364,
+   "display": "+7.5k y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "ind_vehicles": {
+   "date": "2026-09-01",
+   "raw": 216.2610455,
+   "display": "+6.4k y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "ind_other_manufacturing": {
+   "date": "2026-09-01",
+   "raw": 236.1564091,
+   "display": "+6.1k y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "ind_utilities": {
+   "date": "2026-09-01",
+   "raw": 231.6215,
+   "display": "+10.9k y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "ind_construction": {
+   "date": "2026-09-01",
+   "raw": 1495.987955,
+   "display": "+100.2k y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "ind_trade": {
+   "date": "2026-09-01",
+   "raw": 3222.208682,
+   "display": "+69.8k y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "ind_transport": {
+   "date": "2026-09-01",
+   "raw": 1195.028273,
+   "display": "+42.9k y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "ind_hospitality": {
+   "date": "2026-09-01",
+   "raw": 2053.728682,
+   "display": "+86.8k y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "ind_accommodation": {
+   "date": "2026-09-01",
+   "raw": 500.5715455,
+   "display": "+24.2k y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "ind_food_services": {
+   "date": "2026-09-01",
+   "raw": 1553.157136,
+   "display": "+62.5k y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "ind_information": {
+   "date": "2026-09-01",
+   "raw": 791.7765455,
+   "display": "+25.7k y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "ind_computing": {
+   "date": "2026-09-01",
+   "raw": 578.4693182,
+   "display": "+23.0k y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "ind_finance": {
+   "date": "2026-09-01",
+   "raw": 404.0363182,
+   "display": "+10.0k y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "ind_real_estate": {
+   "date": "2026-09-01",
+   "raw": 252.3505909,
+   "display": "+14.2k y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "ind_professional": {
+   "date": "2026-09-01",
+   "raw": 1337.396636,
+   "display": "+25.2k y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "ind_administrative": {
+   "date": "2026-09-01",
+   "raw": 1696.672227,
+   "display": "+31.0k y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "ind_public_admin": {
+   "date": "2026-09-01",
+   "raw": 1230.470364,
+   "display": "+32.7k y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "ind_education": {
+   "date": "2026-09-01",
+   "raw": 1285.570273,
+   "display": "+49.2k y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "ind_health_social": {
+   "date": "2026-09-01",
+   "raw": 2244.951955,
+   "display": "+87.1k y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "ind_health": {
+   "date": "2026-09-01",
+   "raw": 1414.060864,
+   "display": "+42.9k y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "ind_social": {
+   "date": "2026-09-01",
+   "raw": 830.8910909,
+   "display": "+44.2k y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "ind_arts": {
+   "date": "2026-09-01",
+   "raw": 426.7885,
+   "display": "+23.8k y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "ind_other_services": {
+   "date": "2026-09-01",
+   "raw": 807.2905455,
+   "display": "+19.4k y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "ind_households": {
+   "date": "2026-09-01",
+   "raw": 36.62031818,
+   "display": "−1.2k y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "ind_div95": {
+   "date": "2026-09-01",
+   "raw": 279.0141364,
+   "display": "279.0k",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "ind_div68": {
+   "date": "2026-09-01",
+   "raw": 252.3505909,
+   "display": "252.4k",
+   "period": "Sep 2026",
+   "flash": false
   }
  },
  "notes": [
@@ -4021,6 +4287,6 @@
    "at": "2026-11-01T02:50:46+00:00"
   }
  ],
- "updated_at": "2026-11-01T11:29:47+00:00",
+ "updated_at": "2026-11-01T11:50:03+00:00",
  "started_at": "2026-10-31T23:31:49+00:00"
 }

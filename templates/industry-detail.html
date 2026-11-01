@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% from "macros.html" import stat_table, chart_card %}
+
+{% block title %}Every industry · EconPulse Spain{% endblock %}
+{% block description %}Monthly Social Security registrations in every industry in Spain: the change each month and its 3-month average.{% endblock %}
+
+{% block content %}
+  <h1>Every industry</h1>
+  <p class="lede">Monthly change in Social Security registrations (bars) and its 3-month average (line) for every
+    major industry since 2023, from the broad aggregates down to two-digit activities. A companion to
+    <a href="labour.html#sectors">jobs by sector</a> on the Labour market page.</p>
+  {% if table %}
+  <nav class="on-page" aria-label="On this page">
+    <a href="#table">All industries in a table</a>{% for s in sections %}<a href="#{{ s.id }}">{{ s.title }}</a>{% endfor %}
+  </nav>
+  <section class="block" aria-labelledby="table">
+    <h2 id="table">All industries in a table</h2>
+    {{ stat_table(table) }}
+  </section>
+  {% for s in sections %}
+  <section class="block" aria-labelledby="{{ s.id }}">
+    <h2 id="{{ s.id }}">{{ s.title }}</h2>
+    <div class="charts">
+      {% for c in s.charts %}{{ chart_card(c) }}{% endfor %}
+    </div>
+  </section>
+  {% endfor %}
+  <section class="block" aria-labelledby="about-data">
+    <h2 id="about-data">About the data</h2>
+    <p class="note">Average monthly registrations of the general scheme and the self-employed by two-digit activity
+      (CNAE), from the Social Security's yearly workbooks, since 2021. They leave out the special schemes for farm
+      workers and domestic employees, so agriculture and households look smaller here than in the sector figures,
+      and civil servants covered by their own mutual funds, so public administration does too. Seasonal adjustment
+      is EconPulse's (STL on the series since 2021); the ministry adjusts only the four broad sectors.</p>
+    <p class="note">From January 2026 activities follow the new classification, CNAE-2025. The groups shown keep their
+      boundaries across the change, except for two moves that cross them, which EconPulse links by moving the
+      registrations involved in the series before 2026{% if moves %}: {{ moves | join("; ") }}{% endif %}. Each move is
+      estimated as the receiving division's jump from December 2025 to January 2026, less the same change a year
+      earlier.</p>
+  </section>
+  {% else %}
+  <p class="notice">The industry figures appear once the Social Security workbooks have been downloaded.</p>
+  {% endif %}
+{% endblock %}
+
+{% block scripts %}
+  {% if charts_file %}
+  <script src="assets/plotly.min.js?v={{ build_id }}"></script>
+  <script src="{{ charts_file }}?v={{ build_id }}"></script>
+  {% endif %}
+{% endblock %}
