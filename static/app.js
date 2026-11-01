@@ -46,12 +46,13 @@
     var y = iso.slice(0, 4), m = parseInt(iso.slice(5, 7), 10);
     if (freq === "Q") return "Q" + (Math.floor((m - 1) / 3) + 1) + " " + y;
     if (freq === "D") return parseInt(iso.slice(8, 10), 10) + " " + MONTHS[m - 1] + " " + y;
+    if (freq === "A") return y;
     return MONTHS[m - 1] + " " + y;
   }
 
   function hoverDate(spec) {
     if (spec.date_format) return spec.date_format;
-    return spec.freq === "Q" ? "Q%q %Y" : spec.freq === "D" ? "%-d %b %Y" : "%b %Y";
+    return spec.freq === "Q" ? "Q%q %Y" : spec.freq === "D" ? "%-d %b %Y" : spec.freq === "A" ? "%Y" : "%b %Y";
   }
 
   var CONFIG_BASE = {

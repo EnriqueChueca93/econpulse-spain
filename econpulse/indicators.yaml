@@ -1215,6 +1215,111 @@ indicators:
     freq: A
     unit: "% of GDP"
     change_unit: pp
+  # Revenue and spending in more detail, for the Fiscal Explorer's history (site/fiscal-explorer.html).
+  - id: taxes_production_annual
+    label: Taxes on production and imports (VAT, excise)
+    label_es: Impuestos sobre la producción y las importaciones
+    section: fiscal
+    source: eurostat
+    key: gov_10a_main
+    params: {geo: ES, unit: PC_GDP, sector: S13, na_item: D2REC}
+    freq: A
+    unit: "% of GDP"
+    change_unit: pp
+
+  - id: taxes_income_annual
+    label: Taxes on income and wealth
+    label_es: Impuestos corrientes sobre la renta y el patrimonio
+    section: fiscal
+    source: eurostat
+    key: gov_10a_main
+    params: {geo: ES, unit: PC_GDP, sector: S13, na_item: D5REC}
+    freq: A
+    unit: "% of GDP"
+    change_unit: pp
+
+  - id: social_contributions_annual
+    label: Social contributions
+    label_es: Cotizaciones sociales
+    section: fiscal
+    source: eurostat
+    key: gov_10a_main
+    params: {geo: ES, unit: PC_GDP, sector: S13, na_item: D61REC}
+    freq: A
+    unit: "% of GDP"
+    change_unit: pp
+
+  - id: social_benefits_annual
+    label: Social benefits in cash (pensions, unemployment…)
+    label_es: Prestaciones sociales distintas de las transferencias en especie
+    section: fiscal
+    source: eurostat
+    key: gov_10a_main
+    params: {geo: ES, unit: PC_GDP, sector: S13, na_item: D62PAY}
+    freq: A
+    unit: "% of GDP"
+    change_unit: pp
+
+  - id: public_wages_annual
+    label: Compensation of public employees
+    label_es: Remuneración de asalariados de las AAPP
+    section: fiscal
+    source: eurostat
+    key: gov_10a_main
+    params: {geo: ES, unit: PC_GDP, sector: S13, na_item: D1PAY}
+    freq: A
+    unit: "% of GDP"
+    change_unit: pp
+
+  - id: public_investment_annual
+    label: Public investment
+    label_es: Formación bruta de capital fijo de las AAPP
+    section: fiscal
+    source: eurostat
+    key: gov_10a_main
+    params: {geo: ES, unit: PC_GDP, sector: S13, na_item: P51G}
+    freq: A
+    unit: "% of GDP"
+    change_unit: pp
+
+  - id: spending_old_age_annual
+    label: Spending on old age (mostly pensions)
+    label_es: Gasto en vejez (COFOG 10.2)
+    section: fiscal
+    source: eurostat
+    key: gov_10a_exp
+    params: {geo: ES, unit: PC_GDP, sector: S13, na_item: TE, cofog99: GF1002}
+    freq: A
+    unit: "% of GDP"
+    change_unit: pp
+    max_age_days: 1250
+    notes: Spending by function (COFOG) is published about 14 months after the year ends.
+
+  - id: spending_health_annual
+    label: Spending on health
+    label_es: Gasto en sanidad (COFOG 07)
+    section: fiscal
+    source: eurostat
+    key: gov_10a_exp
+    params: {geo: ES, unit: PC_GDP, sector: S13, na_item: TE, cofog99: GF07}
+    freq: A
+    unit: "% of GDP"
+    change_unit: pp
+    max_age_days: 1250
+    notes: Spending by function (COFOG) is published about 14 months after the year ends.
+
+  - id: spending_education_annual
+    label: Spending on education
+    label_es: Gasto en educación (COFOG 09)
+    section: fiscal
+    source: eurostat
+    key: gov_10a_exp
+    params: {geo: ES, unit: PC_GDP, sector: S13, na_item: TE, cofog99: GF09}
+    freq: A
+    unit: "% of GDP"
+    change_unit: pp
+    max_age_days: 1250
+    notes: Spending by function (COFOG) is published about 14 months after the year ends.
 
   # ---------------------------------------------------------------- ECB
   - id: ecb_deposit_rate

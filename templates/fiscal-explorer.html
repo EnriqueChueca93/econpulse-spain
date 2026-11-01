@@ -1,0 +1,163 @@
+{% extends "base.html" %}
+
+{% block title %}Fiscal Explorer · EconPulse Spain{% endblock %}
+
+{% macro figure(id, title, subtitle, source, dynamic=false) -%}
+  <figure class="card chart-card" id="fig-{{ id }}">
+    <figcaption>
+      <span class="chart-title"{% if dynamic %} id="{{ id }}-title"{% endif %}>{{ title }}</span>
+      <span class="chart-subtitle"{% if dynamic %} id="{{ id }}-subtitle"{% endif %}>{{ subtitle }}</span>
+    </figcaption>
+    <div class="chart" id="chart-{{ id }}" role="img" aria-label="{{ title }}"></div>
+    <div class="chart-foot"><span class="secondary">Source: {{ source }}</span>
+      <button type="button" class="chart-link" data-figure="fig-{{ id }}" aria-label="Copy a link to the chart {{ title }}">Copy link</button></div>
+  </figure>
+{%- endmacro %}
+
+{% block content %}
+  <p class="back-link"><a href="tools.html">← Tools</a></p>
+  <h1>Fiscal Explorer</h1>
+  {% if not fx %}
+    <p class="notice">The fiscal baseline file is missing (run scripts/extract_fiscal_baseline.py).</p>
+  {% else %}
+  <p class="lede">Spain's public debt and deficits, past and future. The future starts from the European Commission's own
+    projection; change the economy or the budget and see where debt goes, or ask what it would take to reach a goal.</p>
+  <p class="fx-badges">
+    <span class="badge badge-info">European Commission, Debt Sustainability Monitor 2025</span>
+    <span class="badge badge-ok">✓ Reproduces the Commission's baseline to {{ fx.last_commission_year }} · <a href="#fx-method">how it works</a></span>
+  </p>
+  <div class="notice credit-box">
+    <p>After <a href="https://econvitals.org/tools/fiscal-explorer/" target="_blank" rel="noopener">Econvitals' Fiscal Explorer</a>
+      (econvitals.org, by Jason Furman; public domain, CC0 1.0), which does the same for the United States on the
+      Congressional Budget Office's baseline. This Spanish version is EconPulse's, built on the Commission's projection.</p>
+  </div>
+
+  <div class="tool-controls" role="group" aria-label="View">
+    <button type="button" class="tool-button" data-fx-view="past" aria-pressed="false">The Past</button>
+    <button type="button" class="tool-button" data-fx-view="future" aria-pressed="true">The Future</button>
+    <button type="button" class="tool-button" id="fx-share">Share this scenario</button>
+  </div>
+
+  <div id="fx-future">
+    <section class="block" aria-labelledby="fx-levers-h">
+      <h2 id="fx-levers-h">Your assumptions</h2>
+      <p class="block-intro">Every lever starts in {{ fx.first_lever_year }} and stays on. At zero, you are looking at the
+        Commission's numbers to {{ fx.last_commission_year }} and EconPulse's extension of them after.</p>
+      <div class="tool-controls fx-levers">
+        <label>Budget: primary balance <input type="range" id="fx-adj" min="-4" max="8" step="0.1" value="0">
+          <output id="fx-adj-out" for="fx-adj"></output></label>
+        <label>Ageing costs: share of the projected rise <input type="range" id="fx-ageing" min="0" max="150" step="5" value="100">
+          <output id="fx-ageing-out" for="fx-ageing"></output></label>
+        <label>Real growth <input type="range" id="fx-growth" min="-1" max="1" step="0.1" value="0">
+          <output id="fx-growth-out" for="fx-growth"></output></label>
+        <label>Inflation <input type="range" id="fx-inflation" min="-1" max="2" step="0.1" value="0">
+          <output id="fx-inflation-out" for="fx-inflation"></output></label>
+        <label>Interest rates on new debt <input type="range" id="fx-rate" min="-1" max="3" step="0.1" value="0">
+          <output id="fx-rate-out" for="fx-rate"></output></label>
+        <button type="button" class="tool-button" id="fx-reset">Reset</button>
+      </div>
+      <div class="tool-controls">
+        <span class="secondary">Solve for the budget that would</span>
+        <button type="button" class="tool-button" data-fx-goal="hold">hold debt at its 2025 level</button>
+        <button type="button" class="tool-button" data-fx-goal="sixty">bring debt to 60%</button>
+        <button type="button" class="tool-button" data-fx-goal="deficit3">keep the deficit ≤ 3%</button>
+        <span class="secondary">by</span>
+        <button type="button" class="tool-button" data-fx-horizon="2056" aria-pressed="true">2056</button>
+        <button type="button" class="tool-button" data-fx-horizon="2070" aria-pressed="false">2070</button>
+      </div>
+      <p class="tool-result" id="fx-result" aria-live="polite"></p>
+    </section>
+
+    <div class="charts">
+      {{ figure("fx-debt", "Gross public debt", "% of GDP: actual, the baseline, and your scenario",
+                "Eurostat; European Commission (DSM 2025, 2024 Ageing Report); EconPulse extension and scenario") }}
+      <div>
+        <div class="tool-controls fx-series-pick">
+          <label>Second chart <select id="fx-series">
+            <option value="balance">Overall balance</option><option value="pb">Primary balance</option>
+            <option value="interest">Interest</option><option value="rg">Interest rate and growth</option>
+            <option value="ageing">Ageing costs</option>
+          </select></label>
+          <label><input type="checkbox" id="fx-compare"> Show the Commission's adverse r − g scenario</label>
+        </div>
+        {{ figure("fx-second", "Overall balance", "% of GDP",
+                  "Eurostat; European Commission (DSM 2025, 2024 Ageing Report); EconPulse", dynamic=true) }}
+      </div>
+    </div>
+
+    <section class="block" aria-labelledby="fx-readout-h">
+      <h2 id="fx-readout-h">Readout</h2>
+      <div class="table-scroll tool-table fx-readout-wrap">
+        <table class="data-table stat-table" id="fx-readout">
+          <thead><tr><th scope="col">Measure</th><th scope="col" class="num">Baseline</th><th scope="col" class="num">Your scenario</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p class="note">Adjustments are permanent changes in the primary balance (revenue minus spending other than interest)
+        from {{ fx.first_lever_year }}, in % of GDP. For comparison, the Commission's own sustainability gaps for Spain: S1,
+        the adjustment from 2027 that brings debt to 60% of GDP by 2070, is {{ "%.2f" | format(fx.gaps.S1) }}% of GDP
+        (this page's model, run the same way, gives {{ "%.2f" | format(s1_check) }}%); S2, the adjustment that stabilises
+        debt over an infinite horizon, is {{ "%.2f" | format(fx.gaps.S2) }}%.
+        {% if fx.percentiles.p10 %}The Commission's stochastic projections put debt in 2030 between
+        {{ "%.0f" | format(fx.percentiles.p10[2030]) }}% and {{ "%.0f" | format(fx.percentiles.p90[2030]) }}% of GDP in 80% of
+        10,000 simulated outcomes.{% endif %} Its other scenarios for 2036: {% for name, path in fx.scenarios.items() %}{{ name | lower }}
+        {{ "%.1f" | format(path[2036]) }}%{{ "; " if not loop.last else "." }}{% endfor %}</p>
+    </section>
+  </div>
+
+  <div id="fx-past-panel" hidden>
+    <section class="block" aria-labelledby="fx-past-h">
+      <h2 id="fx-past-h">The Past</h2>
+      <p class="block-intro">Revenue, spending, deficits and debt since 1995 (debt since 1970), % of GDP. Pick up to three.</p>
+      <div class="tool-controls fx-past-picks">
+        {% for group, items in past_groups %}
+        <fieldset><legend>{{ group }}</legend>
+          {% for id, label in items %}<label><input type="checkbox" data-fx-past value="{{ id }}"> {{ label }}</label>{% endfor %}
+        </fieldset>
+        {% endfor %}
+      </div>
+      <div class="charts">
+        {{ figure("fx-past", "Spain's public finances", "% of GDP", "Eurostat; European Commission (debt before 1995)") }}
+      </div>
+    </section>
+  </div>
+
+  <section class="block" aria-labelledby="fx-method">
+    <h2 id="fx-method">How it works</h2>
+    <div class="prose">
+      <p><strong>The baseline is the Commission's.</strong> To {{ fx.last_commission_year }} the page shows the European
+        Commission's baseline debt projection for Spain from its <a href="{{ fx.sources.dsm.page }}" target="_blank" rel="noopener">Debt
+        Sustainability Monitor 2025</a> (February 2026), with its primary balance, interest bill and the growth, inflation and
+        stock-flow effects behind each year's change in debt. Nothing is modelled: run through the debt equation, these
+        reproduce the Commission's debt path to two decimals in every year. Like the Commission's, it is a no-policy-change
+        baseline: from 2026 the structural primary balance stays put, except that the rising cost of ageing is paid for
+        out of it.</p>
+      <p><strong>After {{ fx.last_commission_year }}, EconPulse extends it</strong> on the Commission's own long-term
+        assumptions from the <a href="{{ fx.sources.ar.page }}" target="_blank" rel="noopener">2024 Ageing Report</a>: the
+        primary balance falls by the further rise in pensions, health care, long-term care and education spending; real
+        growth is the report's potential growth, plus 2% inflation; and the interest rate on the debt moves an eighth of the
+        way each year toward the report's long-term market rate (about 4%), as maturing debt is refinanced. As a check, the
+        adjustment this model needs to bring debt to 60% of GDP by 2070 is {{ "%.2f" | format(s1_check) }}% of GDP, against
+        the Commission's {{ "%.2f" | format(fx.gaps.S1) }}% (its S1 indicator).</p>
+      <p><strong>Levers.</strong> The budget lever changes the primary balance permanently. The ageing lever scales the
+        projected rise in ageing costs after 2026 (100% is the Commission's; 0% freezes them at their 2026 share of GDP).
+        Growth and inflation change nominal GDP; inflation and the interest-rate lever reach the interest bill only as debt is
+        refinanced, an eighth a year. Revenue and spending are otherwise assumed to move with GDP. Higher debt does not, in
+        this model, raise interest rates by itself, and the economy does not respond to the budget: both would make large
+        adjustments look somewhat easier or harder than they are.</p>
+      <p class="note">Sources: {{ fx.sources.dsm.edition }}; {{ fx.sources.ar.edition }}; Eurostat government finance
+        statistics. The Commission's figures were extracted from its published workbooks on {{ fx.sources.extracted }}
+        (scripts/extract_fiscal_baseline.py) and are refreshed when new editions appear. Not an official Commission product.</p>
+    </div>
+  </section>
+  {% endif %}
+{% endblock %}
+
+{% block scripts %}
+  <script src="assets/plotly.min.js?v={{ build_id }}"></script>
+  <script src="data/fiscal.js?v={{ build_id }}"></script>
+{% endblock %}
+
+{% block after_scripts %}
+  <script src="assets/fiscal.js?v={{ build_id }}"></script>
+{% endblock %}

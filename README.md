@@ -46,7 +46,11 @@ Because the workflow commits data every day, run `git pull` before working local
 - **Fiscal, Activity, Housing, International, Regions**: the public finances, activity and tourism, the housing
   market and household debt, Spain against its peers, and the 17 autonomous communities.
 - **Tools**: Economy vs pre-COVID trend, an interactive Taylor rule and an interest rate decomposer; change a
-  setting and the numbers and charts recompute in the browser. **Global central bank stance**
+  setting and the numbers and charts recompute in the browser. **Fiscal Explorer** (`site/fiscal-explorer.html`):
+  Spain's debt and deficits since 1970 and to 2070, starting from the European Commission's baseline (reproduced
+  exactly to 2036, extended by EconPulse on the Commission's long-term assumptions), with levers for the budget,
+  ageing costs, growth, inflation and interest rates, a goal-solver and shareable scenario links; after
+  Econvitals' Fiscal Explorer. **Global central bank stance**
   (`site/stance.html`): Econvitals' Global Central Bank Stance Matrix for twelve central banks, shown natively
   and credited (Econvitals places its own work in the public domain, CC0 1.0).
 - **Analysis**: EconPulse's own calculations, each explained on the page: activity and inflation composites,
@@ -108,6 +112,8 @@ econpulse/            Python package
   changes.py          "what changed": notes on new releases, revisions and big market moves
   feed.py             the RSS feed of those notes (site/feed.xml; absolute links use config.SITE_URL)
   stance.py           the central bank stance page, from Econvitals' public data (saved to data/stance.json)
+  fiscal.py           the Fiscal Explorer's baseline and data (the levers run in static/fiscal.js)
+  fiscal_baseline.json  the Commission's Spain baseline, extracted by scripts/extract_fiscal_baseline.py
   build.py            renders every page into site/ (chart data goes in site/data/*.js)
 templates/            Jinja2 pages: base layout, home, section pages, data page
 static/               style.css (light/dark tokens), app.js (theme toggle, Plotly charts)
@@ -155,6 +161,19 @@ figures with the publisher's own document, and only then runs `confirm`, which r
 fingerprint in `data/forecast_checks.json`; `--note` adds a caveat under the table. Commit that file. The
 daily run's `status` step lists forecasts awaiting a check. To show an edition the automatic sources have
 not picked up yet, enter it by hand in `econpulse/forecasts.yaml` (the comment at its top explains how).
+
+## Updating the Fiscal Explorer's baseline
+
+The Fiscal Explorer starts from two European Commission workbooks: the Debt Sustainability Monitor (a new edition
+each year, around February) and the Ageing Report (every three years; the next is due in 2027). When a new edition
+comes out, update the two download links at the top of `scripts/extract_fiscal_baseline.py` and run it:
+
+```bash
+.venv/Scripts/python scripts/extract_fiscal_baseline.py
+```
+
+It rewrites `econpulse/fiscal_baseline.json`; check that the tests still pass (they confirm that the debt equation
+reproduces the Commission's path and that the model's S1 matches the Commission's), then commit the file.
 
 ## Tests
 

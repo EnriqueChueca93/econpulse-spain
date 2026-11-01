@@ -15,6 +15,7 @@
   --hover: #f1f0ec;
   --accent: #b5121b;         /* brand red, used sparingly */
   --info-bg: #e3ecf8;  --info-text: #1c5cab;
+  --ok-bg: #e2f3e8;  --ok-text: #1d6b3a;
   --warn-bg: #fbf0d9;  --warn-text: #7a5000;
   --error-text: #b42318;
   --series-1: #2a78d6;
@@ -38,6 +39,8 @@
     --hover: #242422;
     --accent: #f0646b;
     --info-bg: #1e2a3c;  --info-text: #8db4ec;
+  --ok-bg: #1d3326;  --ok-text: #7fd19c;
+    --ok-bg: #1d3326;  --ok-text: #7fd19c;
     --warn-bg: #3a3020;  --warn-text: #f0c060;
     --error-text: #f97066;
     --series-1: #3987e5;
@@ -140,6 +143,8 @@ code { font-size: 13px; background: var(--hover); padding: 1px 5px; border-radiu
 .badge { display: inline-block; font-size: 11px; line-height: 1.5; padding: 0 6px; border-radius: 4px; margin: 2px 4px 0 0; white-space: nowrap; }
 .badge-info { background: var(--info-bg); color: var(--info-text); }
 .badge-warn { background: var(--warn-bg); color: var(--warn-text); }
+.badge-ok { background: var(--ok-bg); color: var(--ok-text); }
+.badge-ok a { color: inherit; }
 
 /* Four questions */
 .questions { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
@@ -303,6 +308,18 @@ code { font-size: 13px; background: var(--hover); padding: 1px 5px; border-radiu
 .tilt-neutral { background: var(--hover); color: var(--text-2); }
 .stance-lists { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; font-size: 14px; }
 blockquote.note { margin: 8px 0; padding-left: 12px; border-left: 3px solid var(--border); }
+
+/* Fiscal Explorer */
+.fx-badges { margin: 0 0 12px; }
+.fx-badges .badge { font-size: 12px; padding: 2px 8px; }
+.fx-levers label { flex-wrap: wrap; }
+.fx-levers input[type="range"] { width: 140px; }
+.fx-levers output { min-width: 64px; }
+.fx-series-pick { margin-bottom: 8px; }
+.fx-past-picks { align-items: flex-start; }
+.fx-past-picks fieldset { border: 0; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px; min-width: 200px; }
+.fx-past-picks legend { font-weight: 600; color: var(--text); margin-bottom: 4px; }
+.fx-readout-wrap { max-width: 760px; }
 
 .site-footer { margin-top: 48px; padding: 18px 0 36px; border-top: 1px solid var(--border); color: var(--text-2); font-size: 12px; }
 .site-footer p { margin: 0 0 4px; }
