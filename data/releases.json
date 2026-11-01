@@ -1875,6 +1875,62 @@
    "display": "2.25%",
    "period": "26 Oct 2026",
    "flash": false
+  },
+  "fc_oecd_gdp": {
+   "date": "2027-01-01",
+   "raw": 1.669901758,
+   "display": "1.7%",
+   "period": "2027",
+   "flash": false
+  },
+  "fc_oecd_inflation": {
+   "date": "2027-01-01",
+   "raw": 2.891002087,
+   "display": "2.9%",
+   "period": "2027",
+   "flash": false
+  },
+  "fc_oecd_unemployment": {
+   "date": "2027-01-01",
+   "raw": 9.793902044,
+   "display": "9.8%",
+   "period": "2027",
+   "flash": false
+  },
+  "fc_oecd_balance": {
+   "date": "2027-01-01",
+   "raw": -2.189406759,
+   "display": "−2.2% of GDP",
+   "period": "2027",
+   "flash": false
+  },
+  "fc_ec_gdp_volume": {
+   "date": "2027-01-01",
+   "raw": 1458.04647,
+   "display": "1.9% y/y",
+   "period": "2027",
+   "flash": false
+  },
+  "fc_ec_hicp_index": {
+   "date": "2027-01-01",
+   "raw": 133.70524,
+   "display": "2.5% y/y",
+   "period": "2027",
+   "flash": false
+  },
+  "fc_ec_unemployment": {
+   "date": "2027-01-01",
+   "raw": 9.6,
+   "display": "9.6%",
+   "period": "2027",
+   "flash": false
+  },
+  "fc_ec_balance": {
+   "date": "2027-01-01",
+   "raw": -2.02093,
+   "display": "−2.0% of GDP",
+   "period": "2027",
+   "flash": false
   }
  },
  "notes": [
@@ -1900,6 +1956,6 @@
    "at": "2026-11-01T02:50:46+00:00"
   }
  ],
- "updated_at": "2026-11-01T03:07:54+00:00",
+ "updated_at": "2026-11-01T03:36:20+00:00",
  "started_at": "2026-10-31T23:31:49+00:00"
 }
