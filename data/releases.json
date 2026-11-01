@@ -2169,6 +2169,69 @@
    "display": "2.5%",
    "period": "Sep 2026",
    "flash": false
+  },
+  "taxes_production_annual": {
+   "date": "2025-01-01",
+   "raw": 11.3,
+   "display": "11.3% of GDP",
+   "period": "2025",
+   "flash": false
+  },
+  "taxes_income_annual": {
+   "date": "2025-01-01",
+   "raw": 13.1,
+   "display": "13.1% of GDP",
+   "period": "2025",
+   "flash": false
+  },
+  "social_contributions_annual": {
+   "date": "2025-01-01",
+   "raw": 13.2,
+   "display": "13.2% of GDP",
+   "period": "2025",
+   "flash": false
+  },
+  "social_benefits_annual": {
+   "date": "2025-01-01",
+   "raw": 16.9,
+   "display": "16.9% of GDP",
+   "period": "2025",
+   "flash": false
+  },
+  "public_wages_annual": {
+   "date": "2025-01-01",
+   "raw": 10.7,
+   "display": "10.7% of GDP",
+   "period": "2025",
+   "flash": false
+  },
+  "public_investment_annual": {
+   "date": "2025-01-01",
+   "raw": 3.0,
+   "display": "3.0% of GDP",
+   "period": "2025",
+   "flash": false
+  },
+  "spending_old_age_annual": {
+   "date": "2024-01-01",
+   "raw": 10.4,
+   "display": "10.4% of GDP",
+   "period": "2024",
+   "flash": false
+  },
+  "spending_health_annual": {
+   "date": "2024-01-01",
+   "raw": 6.5,
+   "display": "6.5% of GDP",
+   "period": "2024",
+   "flash": false
+  },
+  "spending_education_annual": {
+   "date": "2024-01-01",
+   "raw": 4.1,
+   "display": "4.1% of GDP",
+   "period": "2024",
+   "flash": false
   }
  },
  "notes": [
@@ -2194,6 +2257,6 @@
    "at": "2026-11-01T02:50:46+00:00"
   }
  ],
- "updated_at": "2026-11-01T05:22:48+00:00",
+ "updated_at": "2026-11-01T05:55:22+00:00",
  "started_at": "2026-10-31T23:31:49+00:00"
 }
