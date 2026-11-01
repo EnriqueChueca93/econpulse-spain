@@ -927,6 +927,62 @@ EXT_GDP = replace(EXTERNAL_DEBT, id="ext-gdp", unit="End of year; percent of GDP
 MONETARY_GDP = replace(MONETARY, id="monetary-gdp", rows=_monetary_rows(True))
 
 
+# Any table in the other unit. A line's unit is in its label or its group heading, as the IMF writes
+# them: "(percent of GDP)" lines become billions of euros (with nominal GDP: Eurostat for actual years,
+# the WEO for projections) and "(billions of euros)" lines percent of GDP. Lines in their own units
+# (percent change, percent of potential GDP or of disposable income) stay as they are; where their group
+# heading changes unit, the line's unit is spelled out.
+W_NOMINAL_GDP = published("fc_imf_nominal_gdp")
+OWN_UNITS = {"Potential output 1/": "percent change", "Structural balance 1/": "percent of potential GDP",
+             "Primary structural balance 1/": "percent of GDP"}
+SHARE, AMOUNT = "(percent of GDP)", "(billions of euros)"
+
+
+def _amounts(e: Expr | None, projection: bool = False) -> Expr | None:
+    if e is None:
+        return None
+    return combine(lambda v, y: v / 100 * y * (1e-9 if projection else 1e-3), e, W_NOMINAL_GDP if projection else GDP)
+
+
+def _shares(e: Expr | None, projection: bool = False) -> Expr | None:
+    if e is None:
+        return None
+    return combine(lambda v, y: v / (y * (1e-9 if projection else 1e-3)) * 100, e, W_NOMINAL_GDP if projection else GDP)
+
+
+def _with_unit(label: str, unit: str) -> str:
+    """'Structural balance 1/' -> 'Structural balance (percent of potential GDP) 1/'."""
+    head, _, tail = label.rpartition(" ")
+    if head and tail.endswith("/") and tail[:-1].isdigit():
+        return f"{head} ({unit}) {tail}"
+    return f"{label} ({unit})"
+
+
+def convert(table: SectorTable, to: str) -> SectorTable:
+    """The table with its amounts in billions of euros (to="amounts") or in percent of GDP (to="gdp")."""
+    rows, group_in_shares = [], False
+    for r in table.rows:
+        if isinstance(r, Group):
+            group_in_shares = SHARE in r.label
+            rows.append(Group(r.label.replace(SHARE, AMOUNT)) if to == "amounts" else r)
+            continue
+        own_unit = "(percent of" in r.label or "(billions of" in r.label
+        if AMOUNT in r.label and "GDP (billions" not in r.label:
+            measure = "amount"
+        elif SHARE in r.label or (group_in_shares and not own_unit and r.label not in OWN_UNITS):
+            measure = "share"
+        else:
+            measure = "rate"
+        if to == "amounts" and measure == "share":
+            r = replace(r, label=r.label.replace(SHARE, AMOUNT), actual=_amounts(r.actual), proj=_amounts(r.proj, True))
+        elif to == "gdp" and measure == "amount":
+            r = replace(r, label=r.label.replace(AMOUNT, SHARE), actual=_shares(r.actual), proj=_shares(r.proj, True))
+        elif to == "amounts" and group_in_shares and r.label in OWN_UNITS:
+            r = replace(r, label=_with_unit(r.label, OWN_UNITS[r.label]))
+        rows.append(r)
+    return replace(table, id=f"{table.id}-{to}", rows=rows)
+
+
 def _path(data: Data, actual: Expr, proj: Expr | None = None, first: int = FIRST_YEAR) -> pd.Series:
     """Actual years, then the projections: the values a table line shows, as one series."""
     last_actual, last = years(data) or (0, 0)
@@ -1362,16 +1418,19 @@ def write_workbook(data: Data, path: Path, built: str = "") -> bool:
 PAGE = [
     ("real-sector", "Real sector",
      "The IMF's main table for Spain: demand, saving and investment, prices, the labour market, and a summary of the "
-     "external and public accounts.", [REAL_SECTOR], [chart_growth, chart_saving]),
+     "external and public accounts.", [(convert(REAL_SECTOR, "amounts"), convert(REAL_SECTOR, "gdp"))],
+     [chart_growth, chart_saving]),
     ("fiscal", "Government operations",
      "Revenue, spending and the balances of the general government, from Eurostat's accounts.",
      [(FISCAL_EUR, FISCAL_GDP)], [chart_fiscal]),
     ("debt-sustainability", "Debt sustainability",
-     "What drives the debt ratio, in the IMF's layout, and how it fares under the European Commission's stress tests.",
+     "What drives the debt ratio, in the IMF's layout, and how it fares under the European Commission's stress tests. "
+     "Both tables stay in percent of GDP whichever unit is chosen: they analyse the debt ratio itself, and each stress "
+     "test has its own path for GDP.",
      [DSA_BASELINE, DSA_STRESS], [chart_debt_dynamics, dsa_fan_chart, dsa_stress_chart]),
     ("financial-soundness", "Financial soundness",
      "Bank capital, asset quality and profitability, banks' exposures at home, and the debt of firms and households.",
-     [FINANCIAL_SOUNDNESS], [chart_capital, chart_bad_loans]),
+     [(convert(FINANCIAL_SOUNDNESS, "amounts"), convert(FINANCIAL_SOUNDNESS, "gdp"))], [chart_capital, chart_bad_loans]),
     ("balance-of-payments", "Balance of payments",
      "Spain's transactions with the rest of the world, and the investment position they build up.",
      [(BOP_AMOUNTS, BOP_GDP)], [chart_current_account]),

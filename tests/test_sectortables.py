@@ -309,7 +309,8 @@ def test_the_sector_tables_page(store, tmp_path):
     fiscal = by_id["fiscal"]["tables"][0]
     assert set(fiscal) == {"amounts", "gdp"}
     assert fiscal["amounts"]["title"].startswith("Table 2a") and fiscal["gdp"]["title"].startswith("Table 2b")
-    assert set(by_id["real-sector"]["tables"][0]) == {"single"}
+    assert set(by_id["real-sector"]["tables"][0]) == {"amounts", "gdp"}
+    assert [set(x) for x in by_id["debt-sustainability"]["tables"]] == [{"single"}, {"single"}]   # shares of GDP only
     # Every line of a pair exists in both versions, in the same order (the first row can name the unit).
     for amounts, gdp in [(st.BOP_AMOUNTS, st.BOP_GDP), (st.EXT_AMOUNTS, st.EXT_GDP), (st.MONETARY, st.MONETARY_GDP)]:
         assert [r.label for r in amounts.rows][1:] == [r.label for r in gdp.rows][1:]
@@ -322,3 +323,29 @@ def test_the_sector_tables_page(store, tmp_path):
     assert '<h2 id="fiscal">' in html and 'aria-current="page">Sector tables</a>' in html
     other = (tmp_path / "site" / "gdp.html").read_text(encoding="utf-8")
     assert 'href="sector-tables.html#debt-sustainability"' in other      # in the tab's dropdown on every page
+
+
+def test_convert_switches_amounts_and_shares(store):
+    data = Data(load_registry(), store)
+    nominal = {y: 1000.0 * 1.04 ** (y - 2015) for y in range(2015, 2026)}   # € mn, from the fixture
+    amounts = by_label(st.convert(st.REAL_SECTOR, "amounts"), store)
+    # "% of GDP" lines become € bn with nominal GDP; projections use the WEO's nominal GDP.
+    assert amounts["Trade balance (goods and services)"][2020] == pytest.approx(40.0 / 1000, abs=1e-6)   # 4% of GDP back to €
+    store.save_series("fc_imf_current_account", annual([2.0] * len(WEO), WEO))
+    store.save_series("fc_imf_nominal_gdp", annual([2e12] * len(WEO), WEO))
+    store.save_series("current_account_annual", annual([v * 0.03 for v in nominal.values()]))
+    amounts = by_label(st.convert(st.REAL_SECTOR, "amounts"), store)
+    assert amounts["Current account balance"][2020] == pytest.approx(nominal[2020] * 0.03 / 1000, abs=1e-6)   # values carry 6 decimals
+    assert amounts["Current account balance"][2026] == pytest.approx(40.0)                     # 2% of €2,000 bn
+    # Lines in their own units stay, with the unit spelled out; nominal GDP is not converted.
+    labels = [r.label for r in st.convert(st.REAL_SECTOR, "amounts").rows]
+    assert "Structural balance (percent of potential GDP) 1/" in labels
+    assert "Savings-investment balance (billions of euros)" in labels
+    assert "Household saving rate (percent of gross disposable income)" in labels
+    gdp = by_label(st.convert(st.REAL_SECTOR, "gdp"), store)
+    assert gdp["Nominal GDP (billions of euros)"][2020] == pytest.approx(nominal[2020] / 1000, abs=1e-6)
+    # And the other way: euro amounts become shares of GDP.
+    store.save_series("fsi_npl", annual([30e9] * len(YEARS)))
+    fsi = by_label(st.convert(st.FINANCIAL_SOUNDNESS, "gdp"), store, 2015, 2025)
+    assert fsi["Nonperforming loans (percent of GDP)"][2020] == pytest.approx(30.0 / (nominal[2020] / 1000) * 100, abs=1e-6)
+    assert st._with_unit("Potential output 1/", "percent change") == "Potential output (percent change) 1/"

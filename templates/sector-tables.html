@@ -17,8 +17,9 @@
       <button type="button" class="tool-button" data-sector-unit="gdp" aria-pressed="false">% of GDP</button>
     </div>
   </div>
-  <p class="note">The switch changes the tables with amounts in euros (government operations, the balance of payments,
-    external debt and the Banco de España's balance sheet). Tables of growth rates and ratios read the same either way.
+  <p class="note">The switch changes every amount: shares of GDP become billions of euros (with nominal GDP, the IMF's
+    projection for future years) and euro amounts become shares of GDP. Growth rates, interest rates and ratios to
+    anything other than GDP stay as they are, and the two debt sustainability tables stay in percent of GDP.
     {% if workbook %}<a href="{{ workbook }}" download>Download every table (Excel)</a>, with history from 2015.{% endif %}</p>
   <nav class="on-page" aria-label="On this page">
     {% for s in sections %}<a href="#{{ s.id }}">{{ s.title }}</a>{% endfor %}
