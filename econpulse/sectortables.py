@@ -25,7 +25,7 @@ import pandas as pd
 
 from . import fiscal
 from .config import SITE_URL
-from .snapshot import MINUS
+from .snapshot import MINUS, period_label
 from .tables import Data
 
 WORKBOOK = "econpulse-spain-sector-tables.xlsx"   # in site/data/
@@ -222,6 +222,7 @@ class SectorTable:
     web_actual: int = WEB_ACTUAL_YEARS    # actual years shown on the page
     first_year: int = FIRST_YEAR          # first year in the workbook
     sources: str = ""                     # the sources line, where the kind's default does not fit
+    freq: str = "A"                       # "Q" or "M": a quarterly or monthly view (no projections)
 
     def indicator_ids(self) -> set[str]:
         ids = set()
@@ -861,15 +862,15 @@ def _monetary_rows(in_gdp: bool) -> list:
              link="bank_deposits_osr"),
         Group("Interest rates (percent)"),
         Line("ECB deposit facility rate (end of year)", year_end("ecb_deposit_rate"), source="ECB",
-             link="ecb_deposit_rate"),
-        Line("3-month Euribor (end of year)", year_end("euribor_3m"), source=BDE, link="euribor_3m"),
-        Line("10-year government bond yield (end of year)", year_end("es_10y"), source=BDE, link="es_10y"),
+             link="ecb_deposit_rate", decimals=2),
+        Line("3-month Euribor (end of year)", year_end("euribor_3m"), source=BDE, link="euribor_3m", decimals=2),
+        Line("10-year government bond yield (end of year)", year_end("es_10y"), source=BDE, link="es_10y", decimals=2),
         Line("New loans to households for house purchase (December)", december("mortgage_rate"), source="ECB",
-             link="mortgage_rate"),
+             link="mortgage_rate", decimals=2),
         Line("New loans to non-financial corporations (December)", december("nfc_loan_rate"), source="ECB",
-             link="nfc_loan_rate"),
+             link="nfc_loan_rate", decimals=2),
         Line("New household time deposits (December)", december("deposit_rate_households"), source="ECB",
-             link="deposit_rate_households"),
+             link="deposit_rate_households", decimals=2),
     ]
 
 
@@ -1273,6 +1274,8 @@ def fmt(v: float | None, decimals: int = 1) -> str:
 
 def web_table(table: SectorTable, data: Data) -> dict | None:
     """The table for its section page: the last actual years and the projections."""
+    if table.freq != "A":
+        return period_web_table(table, data)
     years_ = span(table, data)
     if not years_:
         return None
@@ -1499,13 +1502,243 @@ def write_workbook(data: Data, path: Path, built: str = "") -> bool:
     return True
 
 
+# ---------------------------------------------------------------- quarterly and monthly views
+# Tables with quarterly or monthly data also come as period tables: the last 8 quarters or 13 months, actual
+# data only. Their expressions map the build's Data to a series indexed by the start of each quarter or month.
+# Lines published only once a year are left out of these views.
+
+PERIOD_START = {"Q": "QS", "M": "MS"}
+PERIOD_COUNT = {"Q": 8, "M": 13}
+PERIOD_WORD = {"A": "Annual", "Q": "Quarterly", "M": "Monthly"}
+
+
+def at(ind_id: str, to: str, how: str = "last") -> Expr:
+    """A series by quarter or month: as published, or the last value or mean of each complete period."""
+    def fn(data):
+        s = data.raw(ind_id)
+        if s is None:
+            return None
+        s, source = s.dropna().astype(float), data.by_id[ind_id].freq
+        if s.empty or source == to:
+            return s
+        if source in ("A", "Q") and to in ("Q", "M"):
+            return None   # no finer data to show
+        periods = s.index.to_period(to)
+        grouped = s.groupby(periods)
+        out = grouped.last() if how == "last" else grouped.mean()
+        last_seen = s.groupby(periods).apply(lambda g: g.index.max())
+        ends = out.index.to_timestamp(how="end").normalize()
+        if source == "M":   # a quarter is complete when its last month is in
+            complete = pd.Series(last_seen.dt.month.values % 3 == 0, index=out.index) if how == "last" else \
+                grouped.count() == 3
+        else:               # daily: complete once the period is within four days of its end
+            complete = pd.Series((ends - pd.DatetimeIndex(last_seen.values)).days <= 4, index=out.index)
+        out = out[complete.values]
+        out.index = out.index.to_timestamp()
+        return out
+    return _expr(fn, [ind_id])
+
+
+def yoy(e: Expr) -> Expr:
+    """% change on the same period a year earlier."""
+    def fn(data):
+        s = e(data)
+        if s is None:
+            return None
+        prev = s.reindex(s.index - pd.DateOffset(years=1)).values
+        return pd.Series((s.values / prev - 1) * 100, index=s.index).dropna()
+    return _expr(fn, e.ids)
+
+
+GDP_QUARTER = at("gdp_nominal", "Q")
+
+
+def _gdp_year_to(to: str) -> Expr:
+    """GDP over the past four quarters (€ mn) for each quarter or month: the latest published by then."""
+    def fn(data):
+        q = data.raw("gdp_nominal")   # a regular quarterly calendar: a missing quarter gives no sum
+        if q is None:
+            return None
+        rolled = q.rolling(4).sum().dropna()
+        if rolled.empty:
+            return None
+        index = pd.date_range(rolled.index.min(), pd.Timestamp.today().normalize(), freq=PERIOD_START[to])
+        return rolled.reindex(index.union(rolled.index)).ffill().reindex(index)
+    return _expr(fn, {"gdp_nominal"})
+
+
+def _per_gdp(e: Expr, gdp: Expr) -> Expr:
+    """An amount in € mn as a percent of GDP."""
+    return combine(lambda v, y: v / y * 100, e, gdp)
+
+
+def _amount_of(e: Expr, gdp: Expr) -> Expr:
+    """A share of GDP as billions of euros."""
+    return combine(lambda v, y: v / 100 * y * 1e-3, e, gdp)
+
+
+def period_web_table(table: SectorTable, data: Data) -> dict | None:
+    """A quarterly or monthly table: the latest periods, leaving out lines with no data at that frequency."""
+    computed = [(r, r.actual(data) if isinstance(r, Line) and r.actual else None) for r in table.rows]
+    lasts = [s.dropna().index.max() for _, s in computed if s is not None and not s.dropna().empty]
+    if not lasts:
+        return None
+    through = max(lasts)
+    columns = pd.date_range(end=through, periods=PERIOD_COUNT[table.freq], freq=PERIOD_START[table.freq])
+    rows, heading = [], None
+    for r, s in computed:
+        if isinstance(r, Group):
+            heading = r
+            continue
+        cells = [None if s is None or p not in s.index or pd.isna(s[p]) else float(s[p]) for p in columns]
+        if all(c is None for c in cells):
+            continue
+        if heading:
+            rows.append({"heading": True, "label": heading.label})
+            heading = None
+        rows.append({"heading": False, "label": r.label, "label_es": "", "indent": r.indent, "period_note": "",
+                     "url": data.by_id[r.link].source_url() if r.link in data.by_id else None,
+                     "cells": [fmt(c, r.decimals) for c in cells]})
+    word = PERIOD_WORD[table.freq].lower()
+    return {
+        "title": f"{table.label}. {table.title}",
+        "caption": f"{table.unit} · {word} data to {period_label(through, table.freq)}",
+        "through": period_label(through, table.freq),
+        "columns": [period_label(c, table.freq) for c in columns],
+        "column_notes": None,
+        "rows": rows,
+        "note": " ".join(table.footnotes) + f" Lines published only once a year are left out; {NA} not yet published.",
+    }
+
+
+def _real_sector_quarterly(in_amounts: bool) -> SectorTable:
+    gdp_q, gdp_year = GDP_QUARTER, _gdp_year_to("Q")
+    share_of = lambda e, base: _amount_of(e, base) if in_amounts else e
+    q = lambda ind, how="last": at(ind, "Q", how)
+    employment = q("employment_epa")
+    return replace(
+        REAL_SECTOR, id=f"real-sector-q-{'amounts' if in_amounts else 'gdp'}", freq="Q",
+        unit="Percent change on a year earlier unless otherwise indicated",
+        rows=[
+            Group("Demand and supply in constant prices"),
+            Line("Gross domestic product", yoy(q("gdp")), source=INE, link="gdp"),
+            Line("Private consumption", yoy(q("consumption_households")), indent=1, source=INE,
+                 link="consumption_households"),
+            Line("Public consumption", yoy(q("consumption_government")), indent=1, source=INE,
+                 link="consumption_government"),
+            Line("Gross fixed investment", yoy(q("investment")), indent=1, source=INE, link="investment"),
+            Line("Total domestic demand", yoy(q("domestic_demand")), indent=1, source=INE, link="domestic_demand"),
+            Line("Net exports (contribution to growth)", q("contrib_external_yy"), indent=1, source=INE,
+                 link="contrib_external_yy"),
+            Line("Exports of goods and services", yoy(q("exports")), indent=1, source=INE, link="exports"),
+            Line("Imports of goods and services", yoy(q("imports")), indent=1, source=INE, link="imports"),
+            Group("Households"),
+            Line("Household saving rate (percent of gross disposable income)", q("saving_rate"), source=INE,
+                 link="saving_rate"),
+            Group("Prices"),
+            Line("GDP deflator", yoy(q("gdp_deflator")), source=INE, link="gdp_nominal"),
+            Line("Headline inflation (average) 1/", yoy(q("hicp_index", "mean")), source=ESTAT, link="hicp_index"),
+            Line("Headline inflation (end of period) 1/", yoy(q("hicp_index")), source=ESTAT, link="hicp_index"),
+            Line("Core inflation (average) 1/", yoy(q("hicp_core_np_index", "mean")), source=ESTAT,
+                 link="hicp_core_np_index"),
+            Line("Core inflation (end of period) 1/", yoy(q("hicp_core_np_index")), source=ESTAT,
+                 link="hicp_core_np_index"),
+            Group("Employment and wages"),
+            Line("Unemployment rate (percent of total labor force)", q("unemployment_epa"), source=INE,
+                 link="unemployment_epa"),
+            Line("Labor productivity 2/", q("productivity_fte"), source=INE, link="productivity_fte"),
+            Line("Labor costs 3/", yoy(q("labour_cost")), source=INE, link="labour_cost"),
+            Line("Employment", yoy(employment), source=INE, link="employment_epa"),
+            Line("Labor force", yoy(combine(lambda e, u: e / (1 - u / 100), employment, q("unemployment_epa"))),
+                 source=INE, link="employment_epa"),
+            Group(f"Balance of payments ({'billions of euros' if in_amounts else 'percent of GDP'})"),
+            Line("Current account balance 4/", share_of(q("current_account"), gdp_q), source=ESTAT,
+                 link="current_account"),
+            Group(f"Public finance ({'billions of euros' if in_amounts else 'percent of GDP'})"),
+            Line("General government balance 4/", share_of(q("government_balance"), gdp_q), source=ESTAT,
+                 link="government_balance"),
+            Line("General government debt 5/", share_of(q("government_debt"), gdp_year), source=ESTAT,
+                 link="government_debt"),
+            Group("Memo items"),
+            Line("Credit to the private sector 6/", q("private_credit_growth"), source=ECB, link="private_credit_growth"),
+            Line("Nominal GDP (billions of euros, the quarter)", scaled(gdp_q, 1e-3), source=INE, link="gdp_nominal"),
+        ],
+        footnotes=[
+            "Growth rates compare each quarter with the same quarter a year earlier.",
+            "1/ Harmonised Index of Consumer Prices; core excludes energy and unprocessed food. Average: the quarter's "
+            "mean; end of period: its last month.",
+            "2/ Output per full-time equivalent job.",
+            "3/ Total labour cost per worker, all sectors (INE's quarterly labour cost survey).",
+            "4/ The quarter's flow" + (" in euros (its share of the quarter's GDP times that GDP)" if in_amounts
+                                       else ", as a share of the quarter's GDP") + ", not seasonally adjusted.",
+            "5/ End of quarter" + (", in euros." if in_amounts else ", as a share of GDP over the past four quarters."),
+            "6/ Annual growth of bank loans to the private sector at the end of the quarter, adjusted for loan sales "
+            "and securitisation.",
+        ],
+    )
+
+
+def _monetary_periodic(to: str, in_gdp: bool) -> SectorTable:
+    gdp_year = _gdp_year_to(to)
+    p = lambda ind: at(ind, to)
+    amount = (lambda ind: _per_gdp(p(ind), gdp_year)) if in_gdp else (lambda ind: scaled(p(ind), 1e-3))
+    return replace(
+        MONETARY, id=f"monetary-{to.lower()}-{'gdp' if in_gdp else 'amounts'}", freq=to,
+        unit="End of period, unless otherwise indicated",
+        rows=[
+            Group(f"Banco de España ({'percent of GDP' if in_gdp else 'billions of euros'})"),
+            Line("Total assets", amount("bde_total_assets"), source="ECB", link="bde_total_assets"),
+            Line("Securities held for monetary policy purposes", amount("bde_mp_securities"), indent=1, source="ECB",
+                 link="bde_mp_securities"),
+            Line("Lending to credit institutions (monetary policy operations)", amount("bde_mp_lending"), indent=1,
+                 source="ECB", link="bde_mp_lending"),
+            Line("Banknotes in circulation", amount("bde_banknotes"), indent=1, source="ECB", link="bde_banknotes"),
+            Line("Credit institutions' reserves and deposits", amount("bde_mp_liabilities"), indent=1, source="ECB",
+                 link="bde_mp_liabilities"),
+            Line("TARGET balance 1/", amount("target_balance"), source="ECB", link="target_balance"),
+            Group("Credit and deposits (percent change on a year earlier)"),
+            Line("Credit to the private sector 2/", p("private_credit_growth"), source="ECB", link="private_credit_growth"),
+            Line("Loans to households", p("loans_households_growth"), indent=1, source="ECB",
+                 link="loans_households_growth"),
+            Line("o.w. for house purchase", p("housing_loans_growth"), indent=2, source="ECB", link="housing_loans_growth"),
+            Line("Loans to non-financial corporations", p("loans_nfc_growth"), indent=1, source="ECB",
+                 link="loans_nfc_growth"),
+            Line("Deposits of other resident sectors 3/", yoy(p("bank_deposits_osr")), source=BDE,
+                 link="bank_deposits_osr"),
+            Group("Interest rates (percent)"),
+            Line("ECB deposit facility rate", p("ecb_deposit_rate"), source="ECB", link="ecb_deposit_rate", decimals=2),
+            Line("3-month Euribor", p("euribor_3m"), source=BDE, link="euribor_3m", decimals=2),
+            Line("10-year government bond yield", p("es_10y"), source=BDE, link="es_10y", decimals=2),
+            Line("New loans to households for house purchase 4/", p("mortgage_rate"), source="ECB", link="mortgage_rate", decimals=2),
+            Line("New loans to non-financial corporations 4/", p("nfc_loan_rate"), source="ECB", link="nfc_loan_rate", decimals=2),
+            Line("New household time deposits 4/", p("deposit_rate_households"), source="ECB",
+                 link="deposit_rate_households", decimals=2),
+        ],
+        footnotes=[
+            "1/ The Banco de España's net position in the Eurosystem's payment system; negative is a liability."
+            + (" Shares of GDP use GDP over the past four quarters." if in_gdp else ""),
+            "2/ Bank loans to households, firms and non-bank financial corporations, adjusted for loan sales and "
+            "securitisation.",
+            "3/ Deposits held at credit institutions and specialised lenders, unadjusted.",
+            "4/ New business in the " + ("month" if to == "M" else "quarter's last month") + ".",
+        ],
+    )
+
+
+REAL_SECTOR_Q = (_real_sector_quarterly(True), _real_sector_quarterly(False))
+MONETARY_Q = (_monetary_periodic("Q", False), _monetary_periodic("Q", True))
+MONETARY_M = (_monetary_periodic("M", False), _monetary_periodic("M", True))
+
+
 # ---------------------------------------------------------------- the Sector tables page: sections
 
-# id, title, intro, tables (a pair is amounts, then % of GDP), charts
+# id, title, intro, tables (a pair is amounts, then % of GDP; a dict gives the annual, quarterly and monthly
+# views), charts
 PAGE = [
     ("real-sector", "Real sector",
      "The IMF's main table for Spain: demand, saving and investment, prices, the labour market, and a summary of the "
-     "external and public accounts.", [(convert(REAL_SECTOR, "amounts"), convert(REAL_SECTOR, "gdp"))],
+     "external and public accounts.",
+     [{"A": (convert(REAL_SECTOR, "amounts"), convert(REAL_SECTOR, "gdp")), "Q": REAL_SECTOR_Q}],
      [chart_growth, chart_saving]),
     ("fiscal", "Government operations",
      "Revenue, spending and the balances of the general government, from Eurostat's accounts.",
@@ -1527,22 +1760,29 @@ PAGE = [
      [(EXT_AMOUNTS, EXT_GDP)], [chart_external]),
     ("monetary", "Monetary and credit",
      "The Banco de España's balance sheet in the Eurosystem, bank lending and deposits, and interest rates.",
-     [(MONETARY, MONETARY_GDP)], [chart_credit, chart_central_bank]),
+     [{"A": (MONETARY, MONETARY_GDP), "Q": MONETARY_Q, "M": MONETARY_M}], [chart_credit, chart_central_bank]),
 ]
 
 
+def _view(freq: str, entry, data: Data) -> dict | None:
+    if isinstance(entry, tuple):
+        amounts, gdp = (web_table(x, data) for x in entry)
+        return {"freq": freq, "label": PERIOD_WORD[freq], "amounts": amounts, "gdp": gdp} if amounts and gdp else None
+    single = web_table(entry, data)
+    return {"freq": freq, "label": PERIOD_WORD[freq], "single": single} if single else None
+
+
 def page(data: Data) -> dict:
-    """The Sector tables page: its sections (tables, both versions where there are two) and chart specs."""
+    """The Sector tables page: its sections (each table's views, in both units) and chart specs."""
     sections, charts = [], []
     for section_id, title, intro, tables, chart_fns in PAGE:
         built = []
-        for t in tables:
-            if isinstance(t, tuple):
-                amounts, gdp = (web_table(x, data) for x in t)
-                if amounts and gdp:
-                    built.append({"amounts": amounts, "gdp": gdp})
-            elif (single := web_table(t, data)):
-                built.append({"single": single})
+        for n, entry in enumerate(tables, start=1):
+            entries = entry if isinstance(entry, dict) else {"A": entry}
+            views = [v for v in (_view(f, entries[f], data) for f in ("A", "Q", "M") if f in entries) if v]
+            if views:
+                first = views[0].get("single") or views[0]["amounts"]
+                built.append({"id": f"{section_id}-{n}", "title": first["title"], "views": views})
         specs = [c for c in (fn(data) for fn in chart_fns) if c]
         if built or specs:
             sections.append({"id": section_id, "title": title, "intro": intro, "tables": built, "charts": specs})

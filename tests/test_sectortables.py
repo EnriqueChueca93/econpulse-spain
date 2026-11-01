@@ -305,12 +305,13 @@ def test_the_sector_tables_page(store, tmp_path):
     data = Data(load_registry(), store)
     p = st.page(data)
     by_id = {s["id"]: s for s in p["sections"]}
-    # Government operations come in both units; the real sector table only once.
-    fiscal = by_id["fiscal"]["tables"][0]
-    assert set(fiscal) == {"amounts", "gdp"}
+    # Every table comes in both units (each view of it); government operations switch between 2a and 2b.
+    fiscal = by_id["fiscal"]["tables"][0]["views"][0]
+    assert {"amounts", "gdp"} <= set(fiscal) and fiscal["freq"] == "A"
     assert fiscal["amounts"]["title"].startswith("Table 2a") and fiscal["gdp"]["title"].startswith("Table 2b")
-    assert set(by_id["real-sector"]["tables"][0]) == {"amounts", "gdp"}
-    assert [set(x) for x in by_id["debt-sustainability"]["tables"]] == [{"amounts", "gdp"}, {"amounts", "gdp"}]
+    for s in p["sections"]:
+        for table in s["tables"]:
+            assert all({"amounts", "gdp"} <= set(v) for v in table["views"]), table["id"]
     # Every line of a pair exists in both versions, in the same order (the first row can name the unit).
     for amounts, gdp in [(st.BOP_AMOUNTS, st.BOP_GDP), (st.EXT_AMOUNTS, st.EXT_GDP), (st.MONETARY, st.MONETARY_GDP)]:
         assert [r.label for r in amounts.rows][1:] == [r.label for r in gdp.rows][1:]
@@ -369,3 +370,43 @@ def test_debt_sustainability_in_euros(fiscal_store):
     stress = st.values(st.DSA_STRESS_AMOUNTS, data, first, first, first)
     base = next(r for r in stress if not r["heading"] and r["label"] == "Baseline (no policy change)")
     assert base["cells"][0] == pytest.approx(raw["baseline"]["debt"][str(first)] / 100 * 1000 * 1e-3, abs=1e-6)
+
+
+def test_period_helpers(store):
+    # Monthly to quarterly: last value or mean, complete quarters only (the index runs to Sep 2026).
+    data = Data(load_registry(), store)
+    last = st.at("hicp_index", "Q")(data)
+    mean = st.at("hicp_index", "Q", "mean")(data)
+    assert last.index[-1] == pd.Timestamp("2026-07-01") and mean.index[-1] == pd.Timestamp("2026-07-01")
+    assert last[pd.Timestamp("2026-07-01")] == pytest.approx(100 * 1.0025 ** (len(pd.date_range("2014-01-01", "2026-09-01", freq="MS")) - 1))
+    # Daily to monthly: a month counts once it is within four days of its end.
+    d = pd.date_range("2026-01-01", "2026-03-27", freq="B")
+    store.save_series("ecb_deposit_rate", pd.Series([2.0] * len(d), index=d))
+    data = Data(load_registry(), store)
+    months = st.at("ecb_deposit_rate", "M")(data)
+    assert list(months.index) == [pd.Timestamp("2026-01-01"), pd.Timestamp("2026-02-01"), pd.Timestamp("2026-03-01")]
+    d = pd.date_range("2026-01-01", "2026-03-20", freq="B")
+    store.save_series("ecb_deposit_rate", pd.Series([2.0] * len(d), index=d))
+    data = Data(load_registry(), store)
+    assert st.at("ecb_deposit_rate", "M")(data).index[-1] == pd.Timestamp("2026-02-01")   # March not over
+    # Quarterly data has no monthly view; change on a year earlier compares the same period.
+    assert st.at("unemployment_epa", "M")(data) is None
+    q = st.at("employment_epa", "Q")
+    growth = st.yoy(q)(data)
+    assert growth[pd.Timestamp("2025-01-01")] == pytest.approx((20000 + 50 * 44) / (20000 + 50 * 40) * 100 - 100)
+
+
+def test_period_views_on_the_page(store):
+    q = pd.date_range("2014-01-01", "2026-07-01", freq="QS")
+    store.save_series("gdp", pd.Series([100 * 1.005 ** k for k in range(len(q))], index=q))
+    store.save_series("gdp_nominal", pd.Series([300000.0] * len(q), index=q))
+    store.save_series("government_debt", pd.Series([100.0] * len(q), index=q))
+    data = Data(load_registry(), store)
+    gdp_view, amounts_view = st.web_table(st.REAL_SECTOR_Q[1], data), st.web_table(st.REAL_SECTOR_Q[0], data)
+    assert len(gdp_view["columns"]) == 8 and gdp_view["columns"][-1] == "Q3 2026"
+    labels = [r["label"] for r in gdp_view["rows"] if not r["heading"]]
+    assert "Gross domestic product" in labels and "Private consumption" not in labels   # no data: left out
+    debt = next(r for r in amounts_view["rows"] if r.get("label") == "General government debt 5/")
+    assert debt["cells"][-1] == "1,200.0"                    # 100% of four quarters of €300 bn
+    sections = {s["id"]: s for s in st.page(data)["sections"]}
+    assert [v["freq"] for v in sections["real-sector"]["tables"][0]["views"]] == ["A", "Q"]

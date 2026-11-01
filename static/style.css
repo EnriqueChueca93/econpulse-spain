@@ -322,6 +322,10 @@ code { font-size: 13px; background: var(--hover); padding: 1px 5px; border-radiu
 .sector-tables h2 { scroll-margin-top: 80px; }
 .sector-tables[data-unit="amounts"] .unit-variant[data-variant="gdp"],
 .sector-tables[data-unit="gdp"] .unit-variant[data-variant="amounts"] { display: none; }
+.freq-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; margin: 6px 0 2px; font-size: 13px; }
+.freq-box[data-freq="A"] .freq-variant:not([data-freq="A"]),
+.freq-box[data-freq="Q"] .freq-variant:not([data-freq="Q"]),
+.freq-box[data-freq="M"] .freq-variant:not([data-freq="M"]) { display: none; }
 .tool-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin: 0 0 24px; }
 .tool-list a { display: block; padding: 12px 14px; text-decoration: none; color: var(--text); }
 .tool-list a span { display: block; color: var(--text-2); font-size: 13px; margin-top: 2px; }

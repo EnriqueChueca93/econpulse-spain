@@ -19,7 +19,8 @@
   </div>
   <p class="note">The switch changes every amount: shares of GDP become billions of euros (with nominal GDP, the IMF's
     projection for future years; the Commission's for its stress tests) and euro amounts become shares of GDP.
-    Growth rates, interest rates and ratios to anything other than GDP stay as they are.
+    Growth rates, interest rates and ratios to anything other than GDP stay as they are. Tables with quarterly or
+    monthly data have their own switch above them.
     {% if workbook %}<a href="{{ workbook }}" download>Download every table (Excel)</a>, with history from 2015.{% endif %}</p>
   <nav class="on-page" aria-label="On this page">
     {% for s in sections %}<a href="#{{ s.id }}">{{ s.title }}</a>{% endfor %}
@@ -30,10 +31,23 @@
       <h2 id="{{ s.id }}">{{ s.title }}</h2>
       <p class="block-intro">{{ s.intro }}</p>
       {% for t in s.tables %}
-        {% if t.single %}{{ stat_table(t.single) }}{% else %}
-        <div class="unit-variant" data-variant="amounts">{{ stat_table(t.amounts) }}</div>
-        <div class="unit-variant" data-variant="gdp">{{ stat_table(t.gdp) }}</div>
+      <div class="freq-box" id="tbl-{{ t.id }}" data-freq="{{ t.views[0].freq }}">
+        {% if t.views | length > 1 %}
+        <div class="freq-controls" role="group" aria-label="Frequency of {{ t.title }}">
+          <span class="secondary">Show</span>
+          {% for v in t.views %}<button type="button" class="tool-button" data-freq-choice="{{ v.freq }}"
+            aria-pressed="{{ 'true' if loop.first else 'false' }}">{{ v.label }}</button>{% endfor %}
+        </div>
         {% endif %}
+        {% for v in t.views %}
+        <div class="freq-variant" data-freq="{{ v.freq }}">
+          {% if v.single %}{{ stat_table(v.single) }}{% else %}
+          <div class="unit-variant" data-variant="amounts">{{ stat_table(v.amounts) }}</div>
+          <div class="unit-variant" data-variant="gdp">{{ stat_table(v.gdp) }}</div>
+          {% endif %}
+        </div>
+        {% endfor %}
+      </div>
       {% endfor %}
       {% if s.charts %}
       <div class="charts">
@@ -76,6 +90,28 @@
           var unit = b.getAttribute("data-sector-unit");
           show(unit);
           try { localStorage.setItem("ep-sector-unit", unit); } catch (e) {}
+        });
+      });
+
+      // Annual, quarterly or monthly, table by table; each choice is remembered too.
+      Array.prototype.forEach.call(document.querySelectorAll(".freq-box"), function (fbox) {
+        var choices = fbox.querySelectorAll("[data-freq-choice]"), key = "ep-sector-freq-" + fbox.id;
+        function pick(freq) {
+          if (!fbox.querySelector('.freq-variant[data-freq="' + freq + '"]')) return;
+          fbox.setAttribute("data-freq", freq);
+          Array.prototype.forEach.call(choices, function (c) {
+            c.setAttribute("aria-pressed", c.getAttribute("data-freq-choice") === freq ? "true" : "false");
+          });
+        }
+        var kept = null;
+        try { kept = localStorage.getItem(key); } catch (e) {}
+        if (kept) pick(kept);
+        Array.prototype.forEach.call(choices, function (c) {
+          c.addEventListener("click", function () {
+            var freq = c.getAttribute("data-freq-choice");
+            pick(freq);
+            try { localStorage.setItem(key, freq); } catch (e) {}
+          });
         });
       });
     })();
