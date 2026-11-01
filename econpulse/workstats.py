@@ -1,10 +1,13 @@
 """Hours, vacancies and pay by activity, and collective dismissals and temporary layoffs (Labour and Wages pages).
 
-Hours worked per worker, job vacancies and wage cost per worker by CNAE-09 section come from INE's labour
-cost survey (ETCL, quarterly, not seasonally adjusted); hours per person employed from the national
+Hours worked per worker, job vacancies and wage cost per worker (in total, regular pay only, and per hour
+worked) by CNAE-09 section come from INE's labour cost survey (ETCL, quarterly, not seasonally adjusted);
+hours per person employed from the national
 accounts; the workers affected by collective dismissals and temporary layoffs (ERE and ERTE) from the
 Ministry of Labour (sources/reg.py).
 """
+
+import pandas as pd
 
 from . import transforms
 from .snapshot import fmt_change, fmt_value, period_label
@@ -59,22 +62,250 @@ def hours_callout(data: Data) -> str | None:
     return text + (f", the equivalent of {fmt_value(share, '%', 1)} of the hours worked." if share == share else ".")
 
 
-def pay_callout(data: Data) -> str | None:
-    """The best- and worst-paid sections, past four quarters."""
+def _extremes(data: Data, prefix: str) -> tuple | None:
+    """(lowest label, value), (highest label, value) and the date, on four-quarter averages."""
     latest = {}
     for slug, label in SECTIONS:
-        s = _avg(data, f"pay_{slug}")
+        s = _avg(data, f"{prefix}_{slug}")
         if s is not None:
             latest[label] = (float(s.iloc[-1]), s.index[-1])
     if len(latest) < 2:
         return None
     top = max(latest, key=lambda k: latest[k][0])
     low = min(latest, key=lambda k: latest[k][0])
-    ratio = latest[top][0] / latest[low][0]
-    return (f"In the four quarters to {period_label(latest[top][1], 'Q')}, pay per worker ranged from "
-            f"{fmt_value(latest[low][0], '€', 0)} a month in {low.lower()} to {fmt_value(latest[top][0], '€', 0)} "
-            f"in {top.lower()}, {ratio:.1f} times as much. Part of the gap reflects hours: part-time work is "
-            "more common in the lower-paid activities.")
+    return (low, latest[low][0]), (top, latest[top][0]), latest[top][1]
+
+
+def pay_callout(data: Data) -> str | None:
+    """The best- and worst-paid sections, past four quarters, a month and an hour."""
+    month = _extremes(data, "pay")
+    if month is None:
+        return None
+    (low, lo), (top, hi), date = month
+    text = (f"In the four quarters to {period_label(date, 'Q')}, pay per worker ranged from "
+            f"{fmt_value(lo, '€', 0)} a month in {low.lower()} to {fmt_value(hi, '€', 0)} "
+            f"in {top.lower()}, {hi / lo:.1f} times as much.")
+    hour = _extremes(data, "pay_hour")
+    if hour is not None:
+        (h_low, h_lo), (h_top, h_hi), _ = hour
+        text += (f" Per hour worked the range is {fmt_value(h_lo, '€', 2)} in {h_low.lower()} to "
+                 f"{fmt_value(h_hi, '€', 2)} in {h_top.lower()}, {h_hi / h_lo:.1f} times as much: part-time "
+                 "work, more common in the lower-paid activities, explains a little of the monthly gap.")
+    return text
+
+
+# ---------------------------------------------------------------- pay by activity: levels, bonuses and growth
+# Bonuses make pay seasonal (most workers get extra months' pay in June and December, and many firms
+# pay annual bonuses early in the year), and their timing can shift from one quarter to another, so
+# levels and growth are on averages of four quarters; the latest quarter alone is shown beside them.
+PAY_ROWS = [("All activities", "wage_cost", "wage_cost_ordinary", "wage_cost_hour")] + [
+    (label, f"pay_{slug}", f"pay_regular_{slug}", f"pay_hour_{slug}") for slug, label in SECTIONS]
+PAY_USES = sorted({i for row in PAY_ROWS for i in row[1:]} | {"cpi_index"})
+BASE_YEAR = 2019
+
+
+def _year_back(s: pd.Series, date: pd.Timestamp) -> float | None:
+    v = s.get(date - pd.DateOffset(years=1))
+    return None if v is None or pd.isna(v) or v == 0 else float(v)
+
+
+def _four(s: pd.Series, date: pd.Timestamp) -> pd.Series | None:
+    """The four quarters to `date`, or None if any is missing."""
+    part = s[(s.index > date - pd.DateOffset(years=1)) & (s.index <= date)].dropna()
+    return part if len(part) == 4 else None
+
+
+def _cpi_quarters(data: Data) -> pd.Series | None:
+    cpi = data.raw("cpi_index")
+    if cpi is None:
+        return None
+    cpi = cpi.dropna()
+    grouped = cpi.groupby(cpi.index.to_period("Q"))
+    q = grouped.mean()[grouped.count() == 3]
+    q.index = q.index.to_timestamp()
+    return q
+
+
+def pay_measures(data: Data, total_id: str, regular_id: str, hour_id: str) -> dict | None:
+    """Pay a month and an hour (four-quarter averages), the share from bonuses and extras, growth on a
+    year (four-quarter averages and the latest quarter alone), and the change since 2019 after inflation."""
+    total = data.raw(total_id)
+    if total is None or total.dropna().empty:
+        return None
+    total = total.dropna()
+    date = total.index[-1]
+    last4 = _four(total, date)
+    if last4 is None:
+        return None
+    avg = transforms.apply("avg_1y", total, "Q").dropna()
+    out = {"date": date, "month": float(last4.mean()), "hour": None, "extra": None, "real": None,
+           "growth": None, "quarter": None}
+    if (before := _year_back(avg, date)) is not None:
+        out["growth"] = (out["month"] / before - 1) * 100
+    if (before := _year_back(total, date)) is not None:
+        out["quarter"] = (float(total.iloc[-1]) / before - 1) * 100
+    hour = data.raw(hour_id)
+    if hour is not None and (h4 := _four(hour.dropna(), date)) is not None:
+        out["hour"] = float(h4.mean())
+    regular = data.raw(regular_id)
+    if regular is not None and (r4 := _four(regular.dropna(), date)) is not None:
+        out["extra"] = (1 - float(r4.sum()) / float(last4.sum())) * 100
+    base = total[total.index.year == BASE_YEAR]
+    cpi = _cpi_quarters(data)
+    if len(base) == 4 and cpi is not None:
+        cpi_base, cpi_now = cpi[cpi.index.year == BASE_YEAR], cpi.reindex(last4.index)
+        if len(cpi_base) == 4 and cpi_now.notna().all():
+            out["real"] = (out["month"] / float(base.mean())) / (float(cpi_now.mean()) / float(cpi_base.mean())) * 100 - 100
+    return out
+
+
+def _all_measures(data: Data) -> list[tuple[str, dict]]:
+    return [(label, m) for label, *ids in PAY_ROWS if (m := pay_measures(data, *ids))]
+
+
+def pay_table(data: Data) -> dict | None:
+    measures = _all_measures(data)
+    if not measures or measures[0][0] != "All activities":
+        return None
+    date = measures[0][1]["date"]
+    num = lambda v, d=1: "–" if v is None else fmt_value(v, "", d).strip()
+    pct = lambda v: "–" if v is None else fmt_change(v, "%", 1).rstrip("%")
+    rows = []
+    for k, (label, m) in enumerate(measures):
+        if k == 1:
+            rows.append({"heading": True, "label": "By activity", "cells": []})
+        if m["date"] != date:
+            continue
+        rows.append({"heading": False, "label": label, "label_es": "", "indent": 0 if k == 0 else 1, "period_note": "",
+                     "url": None, "highlight": False,
+                     "cells": [num(m["month"], 0), num(m["hour"], 2), num(m["extra"]), pct(m["growth"]),
+                               pct(m["quarter"]), pct(m["real"])]})
+    return {"title": "Activity", "caption": f"€ and % · averages of the past four quarters · through {period_label(date, 'Q')}",
+            "through": period_label(date, "Q"),
+            "columns": ["€ a month", "€ an hour", "Bonuses and extras %", "y/y %", "Latest qtr y/y %",
+                        f"Since {BASE_YEAR}, after inflation %"],
+            "column_notes": [], "rows": rows,
+            "note": ("Wage cost per worker: gross pay before the worker's tax and contributions, for full-time and "
+                     "part-time employees together. Bonuses and extras are the share of pay from bonuses, extra "
+                     "months' pay and arrears. y/y compares the average of the past four quarters with the four before; "
+                     "the latest quarter alone can swing with the timing of bonuses. The change since 2019 compares the "
+                     "past four quarters with 2019, deflated by the CPI over the same quarters.")}
+
+
+def _pay_ranking(id_, title, subtitle, unit, decimals, date, points, ref=None) -> dict | None:
+    points = [p for p in points if p[1] is not None]
+    if len(points) < 2:
+        return None
+    points.sort(key=lambda p: p[1], reverse=True)
+    return {"id": id_, "title": title, "kind": "hbar", "x_kind": "category", "x_title": "Activity",
+            "subtitle": f"{subtitle} · {period_label(date, 'Q')}", "unit": unit, "decimals": decimals,
+            "series": [{"name": title, "x": [p[0] for p in points], "y": [round(p[1], 3) for p in points]}],
+            "ref_lines": [{"y": round(ref, 3), "label": "All"}] if ref is not None else [], "freq": None,
+            "source": "INE"}
+
+
+def _ranking_of(data: Data, key: str, *args) -> dict | None:
+    measures = _all_measures(data)
+    if not measures or measures[0][0] != "All activities":
+        return None
+    first = measures[0][1]
+    points = [(label, m[key]) for label, m in measures[1:] if m["date"] == first["date"]]
+    return _pay_ranking(*args[:5], first["date"], points, first[key])
+
+
+def extra_pay_chart(data: Data) -> dict | None:
+    return _ranking_of(data, "extra", "pay-extra-ranking", "How much of pay is bonuses and extras",
+                       "Bonuses, extra months' pay and arrears, % of pay over the past four quarters", "%", 1)
+
+
+def pay_growth_chart(data: Data) -> dict | None:
+    return _ranking_of(data, "growth", "pay-growth-ranking", "Pay growth by activity",
+                       "Average of the past four quarters, % change on the four before", "%", 1)
+
+
+def real_pay_chart(data: Data) -> dict | None:
+    return _ranking_of(data, "real", "real-pay-ranking", f"Pay since {BASE_YEAR}, after inflation",
+                       f"Past four quarters against {BASE_YEAR}, deflated by the CPI, % change", "%", 1)
+
+
+def _swing(data: Data) -> tuple[str, str, dict] | None:
+    """The activity whose latest quarter strays furthest from its four-quarter growth (at least 5 points)."""
+    best = None
+    for (label, *ids), slug in zip(PAY_ROWS[1:], (s for s, _ in SECTIONS)):
+        m = pay_measures(data, *ids)
+        if m and m["growth"] is not None and m["quarter"] is not None:
+            gap = abs(m["quarter"] - m["growth"])
+            if gap >= 5 and (best is None or gap > best[0]):
+                best = (gap, slug, label, m)
+    return None if best is None else best[1:]
+
+
+def bonus_timing_chart(data: Data) -> dict | None:
+    """All pay and regular pay quarter by quarter, for the activity whose latest quarter swings most."""
+    swing = _swing(data)
+    if swing is None:
+        return None
+    slug, label, _ = swing
+    total, regular = data.raw(f"pay_{slug}"), data.raw(f"pay_regular_{slug}")
+    if total is None or regular is None:
+        return None
+    series = []
+    for name, s in (("All pay", total), ("Regular pay", regular)):
+        s = s.dropna()
+        s = s[s.index >= f"{BASE_YEAR}-01-01"].round(0)
+        series.append({"name": name, "x": [d.strftime("%Y-%m-%d") for d in s.index], "y": s.tolist()})
+    return {"id": "pay-bonus-timing", "title": f"{label}: pay quarter by quarter",
+            "subtitle": "Wage cost per worker, € a month; the gap between the lines is bonuses, extra months' pay and arrears",
+            "kind": "line", "unit": "€", "decimals": 0, "freq": "Q", "ref_lines": [], "series": series, "source": "INE"}
+
+
+def growth_facts(data: Data) -> list[dict]:
+    measures = _all_measures(data)
+    if not measures or measures[0][0] != "All activities":
+        return []
+    first = measures[0][1]
+    quarter = period_label(first["date"], "Q")
+    out = []
+    if first["growth"] is not None:
+        out.append({"label": "Pay growth, all activities", "value": fmt_change(first["growth"], "%", 1),
+                    "sub": f"four quarters to {quarter} on the four before"})
+    if first["real"] is not None:
+        out.append({"label": f"Since {BASE_YEAR}, after inflation", "value": fmt_change(first["real"], "%", 1),
+                    "sub": "pay per worker against the CPI, all activities"})
+    ranked = sorted(((label, m["growth"]) for label, m in measures[1:]
+                     if m["date"] == first["date"] and m["growth"] is not None), key=lambda p: p[1])
+    if len(ranked) >= 2:
+        out += [{"label": "Fastest rise", "value": ranked[-1][0], "sub": f"{fmt_change(ranked[-1][1], '%', 1)} on a year"},
+                {"label": "Slowest rise", "value": ranked[0][0], "sub": f"{fmt_change(ranked[0][1], '%', 1)} on a year"}]
+    return out
+
+
+def growth_callout(data: Data) -> str | None:
+    """Why one activity's latest quarter looks out of line: usually the timing of bonuses."""
+    swing = _swing(data)
+    if swing is None:
+        return None
+    slug, label, m = swing
+    total = data.raw(f"pay_{slug}").dropna()
+    date = m["date"]
+    prev = date - pd.DateOffset(months=3)
+    vs = lambda v: f"{fmt_value(abs(v), '%', 1)} {'higher' if v >= 0 else 'lower'}"
+    before = _year_back(total, prev) if prev in total.index else None
+    if before is not None:
+        when = (f"{vs((float(total[prev]) / before - 1) * 100)} than a year earlier in {period_label(prev, 'Q')} "
+                f"and {vs(m['quarter'])} in {period_label(date, 'Q')}")
+    else:
+        when = f"{vs(m['quarter'])} than a year earlier in {period_label(date, 'Q')}"
+    text = (f"{label} swings most from quarter to quarter: pay per worker was {when}, but the average of the past "
+            f"four quarters {'grew' if m['growth'] >= 0 else 'fell'} {fmt_value(abs(m['growth']), '%', 1)}.")
+    regular = data.raw(f"pay_regular_{slug}")
+    if regular is not None and date in regular.index and (r_before := _year_back(regular.dropna(), date)) is not None:
+        move = float(total.iloc[-1]) - _year_back(total, date)
+        extra_move = move - (float(regular[date]) - r_before)
+        if move and extra_move / move > 0.5:
+            text += (" Most of the swing is in bonuses and other extra payments, which came at a different time of "
+                     "the year; the chart below shows them quarter by quarter.")
+    return text
 
 
 def ere_facts(data: Data) -> list[dict]:

@@ -30,7 +30,7 @@ from .tables import Data
 SECTION_PAGES = {
     "gdp": ("GDP", "What Spain produces, and who is spending: households, firms, government and the rest of the world.", 4),
     "labour": ("Labour market", "Jobs, unemployment and contracts by sector, from the Social Security register and the public employment service, INE's labour force survey (EPA), who works by age, sex, citizenship and education, the effect of an ageing population, worker flows, hours, vacancies and layoffs.", 4),
-    "wages": ("Wages", "Pay and labour costs, how they compare with inflation, and pay by activity.", 4),
+    "wages": ("Wages", "Pay and labour costs, how they compare with inflation, and pay by activity: a month, per hour, bonuses and growth.", 4),
     "inflation": ("Inflation", "Consumer prices on Spain's own index (IPC) and the harmonised index the ECB targets (IPCA), underlying inflation across the basket, and energy prices.", 4),
     "financial": ("Financial", "Spanish bond yields and the prima de riesgo, Euribor, the IBEX 35, the euro and commodities, and the IMF-style financial soundness indicators.", 5),
     "ecb": ("ECB", "Spain has no monetary policy of its own: the European Central Bank sets rates for the whole euro area. The IMF-style monetary table shows what that means for the Banco de España and Spanish banks.", 5),

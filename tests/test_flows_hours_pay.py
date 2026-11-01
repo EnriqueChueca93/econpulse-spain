@@ -83,10 +83,16 @@ def quarterly_store(tmp_path) -> Store:
     store.save_series("hours_etcl", pd.Series(128.0, index=q))
     for slug, _ in workstats.SECTIONS:
         store.save_series(f"pay_{slug}", pd.Series(1500.0 + 100 * len(slug) + np.arange(n), index=q))
+        store.save_series(f"pay_regular_{slug}", pd.Series(0.85 * (1500.0 + 100 * len(slug) + np.arange(n)), index=q))
+        store.save_series(f"pay_hour_{slug}", pd.Series(12.0 + len(slug), index=q))
         store.save_series(f"hours_{slug}", pd.Series(120.0 + len(slug), index=q))
         if slug not in workstats.NO_VACANCIES:
             store.save_series(f"vacancies_{slug}", pd.Series(5.0 + len(slug), index=q))
     store.save_series("wage_cost", pd.Series(2400.0, index=q))
+    store.save_series("wage_cost_ordinary", pd.Series(2100.0, index=q))
+    store.save_series("wage_cost_hour", pd.Series(18.0, index=q))
+    months = pd.date_range("2015-01-01", "2026-06-01", freq="MS")
+    store.save_series("cpi_index", pd.Series(np.linspace(100.0, 130.0, len(months)), index=months))
     store.save_series("vacancies", pd.Series(150.0, index=q))
     m = pd.date_range("2023-01-01", "2026-08-01", freq="MS").delete(11)        # no December 2023
     for ind_id, v in (("ere_total", 9.0), ("ere_dismissals", 3.0), ("ere_suspensions", 5.5), ("ere_reductions", 0.5)):
@@ -119,8 +125,34 @@ def test_labour_and_wages_blocks(tmp_path):
     assert charts["layoffs-12m"]["series"][0]["x"][0] == "2024-12-01"        # the first full 12 months after the gap
     wages = build_page("wages", load_registry(), store)
     pay = next(b for b in wages["blocks"] if b["id"] == "pay-sectors")
-    assert pay["tables"][0]["rows"][0]["cells"][0] == "€2,400"
-    assert {"pay-ranking", "pay-growth-ranking"} <= {c["id"] for c in wages["charts"]}
+    first = pay["tables"][0]["rows"][0]
+    assert first["label"] == "All activities" and first["cells"][:3] == ["2,400", "18.00", "12.5"]   # 300 of 2,400
+    assert {"pay-ranking", "pay-hour-ranking", "pay-extra-ranking", "pay-growth-ranking",
+            "real-pay-ranking"} <= {c["id"] for c in wages["charts"]}
+    growth = next(b for b in wages["blocks"] if b["id"] == "pay-growth")
+    assert [f["label"] for f in growth["facts"]][:2] == ["Pay growth, all activities", "Since 2019, after inflation"]
+    assert growth["callout"] is None                    # no activity's latest quarter strays from its trend
+
+
+def test_bonus_timing(tmp_path):
+    store = quarterly_store(tmp_path)
+    q = pd.date_range("2015-01-01", "2026-04-01", freq="QS")
+    regular = pd.Series(4000.0, index=q)
+    total = regular + np.where(q.month == 4, 1800.0, np.where(q.month == 1, 1200.0, 0.0))   # bonuses in Q1 and Q2
+    total.loc["2026-01-01"] += 600
+    total.loc["2026-04-01"] -= 600                      # in 2026 part of the Q2 bonus came in Q1
+    store.save_series("pay_energy", total)
+    store.save_series("pay_regular_energy", regular)
+    data = Data(load_registry(), store)
+    m = workstats.pay_measures(data, "pay_energy", "pay_regular_energy", "pay_hour_energy")
+    assert m["extra"] == pytest.approx(3000 / 19000 * 100)          # 3,000 of bonuses in 19,000 a year
+    assert m["growth"] == pytest.approx(0) and m["quarter"] == pytest.approx((5200 / 5800 - 1) * 100)
+    assert m["real"] < 0                                            # flat pay, rising prices
+    text = workstats.growth_callout(data)
+    assert text.startswith("Electricity and gas swings most from quarter to quarter: pay per worker was 11.5% higher")
+    assert "10.3% lower in Q2 2026" in text and "Most of the swing is in bonuses" in text
+    chart = workstats.bonus_timing_chart(data)
+    assert chart["title"] == "Electricity and gas: pay quarter by quarter" and chart["series"][0]["x"][0] == "2019-01-01"
 
 
 def test_every_series_is_registered():

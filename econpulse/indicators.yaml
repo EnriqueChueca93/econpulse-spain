@@ -104,25 +104,27 @@ lfs_education: &lfs_education
 
 # CNAE-09 sections in INE's labour cost survey (ETCL): wage cost per worker, effective hours per
 # worker and job vacancies, by section (series codes).
+# pay: total wage cost per worker a month; reg: regular pay only (no bonuses, extra payments or arrears);
+# hour: total wage cost per hour actually worked (ETCL).
 etcl_sections: &etcl_sections
-  - {slug: mining, name: "mining and quarrying", name_es: "industrias extractivas", pay: ETCL1743, hours: ETCL2533, vac: ETCL2943}
-  - {slug: manufacturing, name: "manufacturing", name_es: "industria manufacturera", pay: ETCL1739, hours: ETCL2526, vac: ETCL2942}
-  - {slug: energy, name: "electricity and gas", name_es: "suministro de energía eléctrica, gas, vapor y aire acondicionado", pay: ETCL1735, hours: ETCL2519, vac: ETCL2941}
-  - {slug: water, name: "water and waste", name_es: "suministro de agua, saneamiento y gestión de residuos", pay: ETCL1731, hours: ETCL2512, vac: ETCL2940}
-  - {slug: construction, name: "construction", name_es: "construcción", pay: ETCL1727, hours: ETCL2505, vac: ETCL2939}
-  - {slug: trade, name: "wholesale and retail trade", name_es: "comercio al por mayor y al por menor", pay: ETCL1723, hours: ETCL2498, vac: ETCL2938}
-  - {slug: transport, name: "transport and storage", name_es: "transporte y almacenamiento", pay: ETCL1719, hours: ETCL2491, vac: ETCL2937}
-  - {slug: hospitality, name: "accommodation and food services", name_es: "hostelería", pay: ETCL1715, hours: ETCL2484, vac: ETCL2936}
-  - {slug: information, name: "information and communication", name_es: "información y comunicaciones", pay: ETCL1711, hours: ETCL2477, vac: ETCL2935}
-  - {slug: finance, name: "finance and insurance", name_es: "actividades financieras y de seguros", pay: ETCL1707, hours: ETCL2470, vac: ETCL2934}
-  - {slug: real_estate, name: "real estate", name_es: "actividades inmobiliarias", pay: ETCL1703, hours: ETCL2463, vac: ETCL2933}
-  - {slug: professional, name: "professional, scientific and technical", name_es: "actividades profesionales, científicas y técnicas", pay: ETCL1699, hours: ETCL2456, vac: ETCL2932}
-  - {slug: administrative, name: "administrative and support services", name_es: "actividades administrativas y servicios auxiliares", pay: ETCL1695, hours: ETCL2449, vac: ETCL2931}
-  - {slug: public_admin, name: "public administration and defence", name_es: "administración pública y defensa", pay: ETCL1691, hours: ETCL2442, vac: ETCL2930}
-  - {slug: education, name: "education", name_es: "educación", pay: ETCL1687, hours: ETCL2435, vac: ETCL2929}
-  - {slug: health, name: "health and social work", name_es: "actividades sanitarias y de servicios sociales", pay: ETCL1683, hours: ETCL2428, vac: ETCL2928}
-  - {slug: arts, name: "arts, entertainment and recreation", name_es: "actividades artísticas, recreativas y de entretenimiento", pay: ETCL1679, hours: ETCL2421, vac: ETCL2927}
-  - {slug: other_services, name: "other services", name_es: "otros servicios", pay: ETCL1675, hours: ETCL2414, vac: ETCL2926}
+  - {slug: mining, name: "mining and quarrying", name_es: "industrias extractivas", pay: ETCL1743, reg: ETCL1742, hour: ETCL1875, hours: ETCL2533, vac: ETCL2943}
+  - {slug: manufacturing, name: "manufacturing", name_es: "industria manufacturera", pay: ETCL1739, reg: ETCL1738, hour: ETCL1874, hours: ETCL2526, vac: ETCL2942}
+  - {slug: energy, name: "electricity and gas", name_es: "suministro de energía eléctrica, gas, vapor y aire acondicionado", pay: ETCL1735, reg: ETCL1734, hour: ETCL1873, hours: ETCL2519, vac: ETCL2941}
+  - {slug: water, name: "water and waste", name_es: "suministro de agua, saneamiento y gestión de residuos", pay: ETCL1731, reg: ETCL1730, hour: ETCL1872, hours: ETCL2512, vac: ETCL2940}
+  - {slug: construction, name: "construction", name_es: "construcción", pay: ETCL1727, reg: ETCL1726, hour: ETCL1871, hours: ETCL2505, vac: ETCL2939}
+  - {slug: trade, name: "wholesale and retail trade", name_es: "comercio al por mayor y al por menor", pay: ETCL1723, reg: ETCL1722, hour: ETCL1870, hours: ETCL2498, vac: ETCL2938}
+  - {slug: transport, name: "transport and storage", name_es: "transporte y almacenamiento", pay: ETCL1719, reg: ETCL1718, hour: ETCL1869, hours: ETCL2491, vac: ETCL2937}
+  - {slug: hospitality, name: "accommodation and food services", name_es: "hostelería", pay: ETCL1715, reg: ETCL1714, hour: ETCL1868, hours: ETCL2484, vac: ETCL2936}
+  - {slug: information, name: "information and communication", name_es: "información y comunicaciones", pay: ETCL1711, reg: ETCL1710, hour: ETCL1867, hours: ETCL2477, vac: ETCL2935}
+  - {slug: finance, name: "finance and insurance", name_es: "actividades financieras y de seguros", pay: ETCL1707, reg: ETCL1706, hour: ETCL1866, hours: ETCL2470, vac: ETCL2934}
+  - {slug: real_estate, name: "real estate", name_es: "actividades inmobiliarias", pay: ETCL1703, reg: ETCL1702, hour: ETCL1865, hours: ETCL2463, vac: ETCL2933}
+  - {slug: professional, name: "professional, scientific and technical", name_es: "actividades profesionales, científicas y técnicas", pay: ETCL1699, reg: ETCL1698, hour: ETCL1864, hours: ETCL2456, vac: ETCL2932}
+  - {slug: administrative, name: "administrative and support services", name_es: "actividades administrativas y servicios auxiliares", pay: ETCL1695, reg: ETCL1694, hour: ETCL1863, hours: ETCL2449, vac: ETCL2931}
+  - {slug: public_admin, name: "public administration and defence", name_es: "administración pública y defensa", pay: ETCL1691, reg: ETCL1690, hour: ETCL1862, hours: ETCL2442, vac: ETCL2930}
+  - {slug: education, name: "education", name_es: "educación", pay: ETCL1687, reg: ETCL1686, hour: ETCL1861, hours: ETCL2435, vac: ETCL2929}
+  - {slug: health, name: "health and social work", name_es: "actividades sanitarias y de servicios sociales", pay: ETCL1683, reg: ETCL1682, hour: ETCL1860, hours: ETCL2428, vac: ETCL2928}
+  - {slug: arts, name: "arts, entertainment and recreation", name_es: "actividades artísticas, recreativas y de entretenimiento", pay: ETCL1679, reg: ETCL1678, hour: ETCL1859, hours: ETCL2421, vac: ETCL2927}
+  - {slug: other_services, name: "other services", name_es: "otros servicios", pay: ETCL1675, reg: ETCL1674, hour: ETCL1858, hours: ETCL2414, vac: ETCL2926}
 
 # The sections with vacancies published every quarter (INE leaves out the others in many quarters).
 etcl_vacancies: &etcl_vacancies
@@ -6271,6 +6273,31 @@ indicators:
     freq: Q
     unit: "€"
     decimals: 0
+    transforms: [yoy, avg_1y]
+
+  - id: pay_regular_{slug}
+    for_each: *etcl_sections
+    label: "Regular pay per worker a month, {name}"
+    label_es: "Coste salarial ordinario por trabajador y mes, {name_es} (ETCL)"
+    section: wages
+    source: ine
+    key: "{reg}"
+    freq: Q
+    unit: "€"
+    decimals: 0
+    transforms: [yoy, avg_1y]
+    notes: Pay without bonuses, extra months' pay or arrears.
+
+  - id: pay_hour_{slug}
+    for_each: *etcl_sections
+    label: "Wage cost per hour worked, {name}"
+    label_es: "Coste salarial total por hora efectiva, {name_es} (ETCL)"
+    section: wages
+    source: ine
+    key: "{hour}"
+    freq: Q
+    unit: "€"
+    decimals: 2
     transforms: [yoy, avg_1y]
 
   # Collective dismissals and temporary layoffs (ERE/ERTE): workers affected each month by procedures

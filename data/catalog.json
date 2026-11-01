@@ -6132,6 +6132,186 @@
   "flash": false,
   "source_name": "Ambas jornadas. Hostelería. Coste salarial total. Costes salariales. Total Nacional. Euros."
  },
+ "pay_hour_administrative": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T20:08:53+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL1863\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Coste salarial total por hora. Ambas jornadas. Actividades administrativas y servicios auxiliares. Costes salariales. Total Nacional. Euros."
+ },
+ "pay_hour_arts": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T20:08:53+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL1859\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Coste salarial total por hora. Ambas jornadas. Actividades artísticas, recreativas y de entretenimiento. Costes salariales. Total Nacional. Euros."
+ },
+ "pay_hour_construction": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T20:08:53+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL1871\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Coste salarial total por hora. Ambas jornadas. Construcción. Costes salariales. Total Nacional. Euros."
+ },
+ "pay_hour_education": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T20:08:53+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL1861\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Coste salarial total por hora. Ambas jornadas. Educación. Costes salariales. Total Nacional. Euros."
+ },
+ "pay_hour_energy": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T20:08:52+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL1873\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Coste salarial total por hora. Ambas jornadas. Suministro de energía eléctrica, gas, vapor y aire acondicionado. Costes salariales. Total Nacional. Euros."
+ },
+ "pay_hour_finance": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T20:08:53+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL1866\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Coste salarial total por hora. Ambas jornadas. Actividades financieras y de seguros. Costes salariales. Total Nacional. Euros."
+ },
+ "pay_hour_health": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T20:08:53+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL1860\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Coste salarial total por hora. Ambas jornadas. Actividades sanitarias y de servicios sociales. Costes salariales. Total Nacional. Euros."
+ },
+ "pay_hour_hospitality": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T20:08:53+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL1868\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Coste salarial total por hora. Ambas jornadas. Hostelería. Costes salariales. Total Nacional. Euros."
+ },
+ "pay_hour_information": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T20:08:53+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL1867\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Coste salarial total por hora. Ambas jornadas. Información y comunicaciones. Costes salariales. Total Nacional. Euros."
+ },
+ "pay_hour_manufacturing": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T20:08:52+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL1874\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Coste salarial total por hora. Ambas jornadas. Industria manufacturera. Costes salariales. Total Nacional. Euros."
+ },
+ "pay_hour_mining": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T20:08:52+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL1875\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Coste salarial total por hora. Ambas jornadas. Industrias extractivas. Costes salariales. Total Nacional. Euros."
+ },
+ "pay_hour_other_services": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T20:08:53+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL1858\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Coste salarial total por hora. Ambas jornadas. Otros servicios. Costes salariales. Total Nacional. Euros."
+ },
+ "pay_hour_professional": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T20:08:53+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL1864\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Coste salarial total por hora. Ambas jornadas. Actividades profesionales, científicas y técnicas. Costes salariales. Total Nacional. Euros."
+ },
+ "pay_hour_public_admin": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T20:08:53+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL1862\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Coste salarial total por hora. Ambas jornadas. Administración pública y defensa; seguridad social obligatoria. Costes salariales. Total Nacional. Euros."
+ },
+ "pay_hour_real_estate": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T20:08:53+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL1865\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Coste salarial total por hora. Ambas jornadas. Actividades inmobiliarias. Costes salariales. Total Nacional. Euros."
+ },
+ "pay_hour_trade": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T20:08:53+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL1870\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Coste salarial total por hora. Ambas jornadas. Comercio al por mayor y al por menor; reparación de vehículos de motor y motocicletas. Costes salariales. Total Nacional. Euros."
+ },
+ "pay_hour_transport": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T20:08:53+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL1869\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Coste salarial total por hora. Ambas jornadas. Transporte y almacenamiento. Costes salariales. Total Nacional. Euros."
+ },
+ "pay_hour_water": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T20:08:53+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL1872\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Coste salarial total por hora. Ambas jornadas. Suministro de agua, actividades de saneamiento, gestión de residuos y descontaminación. Costes salariales. Total Nacional. Euros."
+ },
  "pay_information": {
   "status": "ok",
   "fetched_at": "2026-11-01T12:28:46+00:00",
@@ -6201,6 +6381,186 @@
   "signature": "[\"ine\", \"ETCL1703\", {}, 1.0]",
   "flash": false,
   "source_name": "Ambas jornadas. Actividades inmobiliarias. Coste salarial total. Costes salariales. Total Nacional. Euros."
+ },
+ "pay_regular_administrative": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T20:08:52+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL1694\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Ambas jornadas. Actividades administrativas y servicios auxiliares. Coste salarial ordinario. Costes salariales. Total Nacional. Euros."
+ },
+ "pay_regular_arts": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T20:08:52+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL1678\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Ambas jornadas. Actividades artísticas, recreativas y de entretenimiento. Coste salarial ordinario. Costes salariales. Total Nacional. Euros."
+ },
+ "pay_regular_construction": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T20:08:52+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL1726\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Ambas jornadas. Construcción. Coste salarial ordinario. Costes salariales. Total Nacional. Euros."
+ },
+ "pay_regular_education": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T20:08:52+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL1686\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Ambas jornadas. Educación. Coste salarial ordinario. Costes salariales. Total Nacional. Euros."
+ },
+ "pay_regular_energy": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T20:08:52+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL1734\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Ambas jornadas. Suministro de energía eléctrica, gas, vapor y aire acondicionado. Coste salarial ordinario. Costes salariales. Total Nacional. Euros."
+ },
+ "pay_regular_finance": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T20:08:52+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL1706\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Ambas jornadas. Actividades financieras y de seguros. Coste salarial ordinario. Costes salariales. Total Nacional. Euros."
+ },
+ "pay_regular_health": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T20:08:52+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL1682\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Ambas jornadas. Actividades sanitarias y de servicios sociales. Coste salarial ordinario. Costes salariales. Total Nacional. Euros."
+ },
+ "pay_regular_hospitality": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T20:08:52+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL1714\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Ambas jornadas. Hostelería. Coste salarial ordinario. Costes salariales. Total Nacional. Euros."
+ },
+ "pay_regular_information": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T20:08:52+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL1710\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Ambas jornadas. Información y comunicaciones. Coste salarial ordinario. Costes salariales. Total Nacional. Euros."
+ },
+ "pay_regular_manufacturing": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T20:08:52+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL1738\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Ambas jornadas. Industria manufacturera. Coste salarial ordinario. Costes salariales. Total Nacional. Euros."
+ },
+ "pay_regular_mining": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T20:08:51+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL1742\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Ambas jornadas. Industrias extractivas. Coste salarial ordinario. Costes salariales. Total Nacional. Euros."
+ },
+ "pay_regular_other_services": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T20:08:52+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL1674\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Ambas jornadas. Otros servicios. Coste salarial ordinario. Costes salariales. Total Nacional. Euros."
+ },
+ "pay_regular_professional": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T20:08:52+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL1698\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Ambas jornadas. Actividades profesionales, científicas y técnicas. Coste salarial ordinario. Costes salariales. Total Nacional. Euros."
+ },
+ "pay_regular_public_admin": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T20:08:52+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL1690\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Ambas jornadas. Administración pública y defensa; seguridad social obligatoria. Coste salarial ordinario. Costes salariales. Total Nacional. Euros."
+ },
+ "pay_regular_real_estate": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T20:08:52+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL1702\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Ambas jornadas. Actividades inmobiliarias. Coste salarial ordinario. Costes salariales. Total Nacional. Euros."
+ },
+ "pay_regular_trade": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T20:08:52+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL1722\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Ambas jornadas. Comercio al por mayor y al por menor; reparación de vehículos de motor y motocicletas. Coste salarial ordinario. Costes salariales. Total Nacional. Euros."
+ },
+ "pay_regular_transport": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T20:08:52+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL1718\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Ambas jornadas. Transporte y almacenamiento. Coste salarial ordinario. Costes salariales. Total Nacional. Euros."
+ },
+ "pay_regular_water": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T20:08:52+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL1730\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Ambas jornadas. Suministro de agua, actividades de saneamiento, gestión de residuos y descontaminación. Coste salarial ordinario. Costes salariales. Total Nacional. Euros."
  },
  "pay_trade": {
   "status": "ok",

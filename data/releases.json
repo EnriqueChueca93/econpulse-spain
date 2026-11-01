@@ -5921,6 +5921,258 @@
    "display": "104.5",
    "period": "Q3 2026",
    "flash": false
+  },
+  "pay_regular_mining": {
+   "date": "2026-04-01",
+   "raw": 3037.37,
+   "display": "3.6% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "pay_regular_manufacturing": {
+   "date": "2026-04-01",
+   "raw": 2364.21,
+   "display": "3.5% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "pay_regular_energy": {
+   "date": "2026-04-01",
+   "raw": 3930.61,
+   "display": "−5.1% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "pay_regular_water": {
+   "date": "2026-04-01",
+   "raw": 2132.53,
+   "display": "4.5% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "pay_regular_construction": {
+   "date": "2026-04-01",
+   "raw": 2041.8,
+   "display": "4.2% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "pay_regular_trade": {
+   "date": "2026-04-01",
+   "raw": 1871.13,
+   "display": "0.3% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "pay_regular_transport": {
+   "date": "2026-04-01",
+   "raw": 2143.58,
+   "display": "2.5% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "pay_regular_hospitality": {
+   "date": "2026-04-01",
+   "raw": 1378.02,
+   "display": "3.3% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "pay_regular_information": {
+   "date": "2026-04-01",
+   "raw": 3301.07,
+   "display": "3.3% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "pay_regular_finance": {
+   "date": "2026-04-01",
+   "raw": 3754.23,
+   "display": "3.9% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "pay_regular_real_estate": {
+   "date": "2026-04-01",
+   "raw": 2275.21,
+   "display": "5.9% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "pay_regular_professional": {
+   "date": "2026-04-01",
+   "raw": 2691.76,
+   "display": "4.5% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "pay_regular_administrative": {
+   "date": "2026-04-01",
+   "raw": 1567.83,
+   "display": "6.1% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "pay_regular_public_admin": {
+   "date": "2026-04-01",
+   "raw": 2506.26,
+   "display": "3.8% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "pay_regular_education": {
+   "date": "2026-04-01",
+   "raw": 2160.45,
+   "display": "8.7% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "pay_regular_health": {
+   "date": "2026-04-01",
+   "raw": 2146.03,
+   "display": "4.0% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "pay_regular_arts": {
+   "date": "2026-04-01",
+   "raw": 1478.48,
+   "display": "1.6% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "pay_regular_other_services": {
+   "date": "2026-04-01",
+   "raw": 1670.17,
+   "display": "7.3% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "pay_hour_mining": {
+   "date": "2026-04-01",
+   "raw": 25.09,
+   "display": "2.5% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "pay_hour_manufacturing": {
+   "date": "2026-04-01",
+   "raw": 20.17,
+   "display": "3.8% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "pay_hour_energy": {
+   "date": "2026-04-01",
+   "raw": 38.43,
+   "display": "−10.3% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "pay_hour_water": {
+   "date": "2026-04-01",
+   "raw": 19.95,
+   "display": "2.6% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "pay_hour_construction": {
+   "date": "2026-04-01",
+   "raw": 16.88,
+   "display": "5.6% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "pay_hour_trade": {
+   "date": "2026-04-01",
+   "raw": 16.36,
+   "display": "2.6% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "pay_hour_transport": {
+   "date": "2026-04-01",
+   "raw": 17.97,
+   "display": "3.0% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "pay_hour_hospitality": {
+   "date": "2026-04-01",
+   "raw": 12.21,
+   "display": "4.3% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "pay_hour_information": {
+   "date": "2026-04-01",
+   "raw": 26.06,
+   "display": "5.6% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "pay_hour_finance": {
+   "date": "2026-04-01",
+   "raw": 34.22,
+   "display": "5.2% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "pay_hour_real_estate": {
+   "date": "2026-04-01",
+   "raw": 19.11,
+   "display": "6.9% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "pay_hour_professional": {
+   "date": "2026-04-01",
+   "raw": 21.98,
+   "display": "1.5% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "pay_hour_administrative": {
+   "date": "2026-04-01",
+   "raw": 14.54,
+   "display": "7.1% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "pay_hour_public_admin": {
+   "date": "2026-04-01",
+   "raw": 25.18,
+   "display": "9.5% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "pay_hour_education": {
+   "date": "2026-04-01",
+   "raw": 23.09,
+   "display": "8.5% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "pay_hour_health": {
+   "date": "2026-04-01",
+   "raw": 23.1,
+   "display": "5.2% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "pay_hour_arts": {
+   "date": "2026-04-01",
+   "raw": 16.32,
+   "display": "2.5% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "pay_hour_other_services": {
+   "date": "2026-04-01",
+   "raw": 14.63,
+   "display": "5.4% y/y",
+   "period": "Q2 2026",
+   "flash": false
   }
  },
  "notes": [
@@ -5946,6 +6198,6 @@
    "at": "2026-11-01T02:50:46+00:00"
   }
  ],
- "updated_at": "2026-11-01T19:17:28+00:00",
+ "updated_at": "2026-11-01T20:08:58+00:00",
  "started_at": "2026-10-31T23:31:49+00:00"
 }

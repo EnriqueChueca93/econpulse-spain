@@ -682,31 +682,38 @@ PAGES: dict[str, list[dict]] = {
         {
             "id": "pay-sectors",
             "title": "Pay by activity",
-            "intro": ("Average wage cost per worker a month by activity, from INE's labour cost survey: gross pay "
-                      "including bonuses, before the worker's tax and contributions, for full-time and part-time "
-                      "employees together."),
+            "intro": ("Average wage cost per worker by activity, from INE's labour cost survey: gross pay including "
+                      "bonuses, before the worker's tax and contributions, for full-time and part-time employees "
+                      "together, a month and per hour actually worked, with the share that comes from bonuses and "
+                      "extra months' pay. Averages of four quarters, as bonuses make pay seasonal."),
             "callout": workstats.pay_callout,
-            "tables": [Table(
-                title="Wage cost per worker",
-                caption="€ a month",
-                columns=[Level("latest", "Past 4 quarters"), Level("year", "A year earlier"), Change("Latest qtr, y/y %", 12)],
-                rows=[Row("wage_cost", "All activities", transform="avg_1y", flow=False), Heading("By activity"),
-                      *workstats.rows("pay", "avg_1y")],
-                note=("The first two columns are averages of four quarters, as bonuses make pay seasonal; the last "
-                      "compares the latest quarter with the same quarter a year earlier."),
-            )],
+            "uses": workstats.PAY_USES,
+            "tables": [workstats.pay_table],
             "charts": [
                 {"id": "pay-ranking", "kind": "hbar", "title": "Monthly pay by activity",
                  "subtitle": "Wage cost per worker, € a month, average of the past four quarters",
                  "unit": "€", "decimals": 0, "x_title": "Activity", "transform": "avg_1y",
                  "items": workstats.items("pay", "avg_1y"),
                  "ref_from": [("wage_cost", "All", "avg_1y")]},
-                {"id": "pay-growth-ranking", "kind": "hbar", "title": "Pay growth by activity",
-                 "subtitle": "Wage cost per worker, % change on the same quarter a year earlier",
-                 "unit": "%", "decimals": 1, "x_title": "Activity", "transform": "yoy",
-                 "items": workstats.items("pay", "yoy"),
-                 "ref_from": [("wage_cost", "All", "yoy")]},
+                {"id": "pay-hour-ranking", "kind": "hbar", "title": "Pay per hour by activity",
+                 "subtitle": "Wage cost per hour actually worked, €, average of the past four quarters",
+                 "unit": "€", "decimals": 2, "x_title": "Activity", "transform": "avg_1y",
+                 "items": workstats.items("pay_hour", "avg_1y"),
+                 "ref_from": [("wage_cost_hour", "All", "avg_1y")]},
+                workstats.extra_pay_chart,
             ],
+        },
+        {
+            "id": "pay-growth",
+            "title": "Pay growth by activity",
+            "intro": ("How fast pay is rising in each activity, and how it has done against prices since 2019. Growth "
+                      "compares averages of four quarters: the latest quarter alone can jump or fall when bonuses "
+                      "come at a different time of the year, above all in the activities that pay large ones."),
+            "facts": workstats.growth_facts,
+            "callout": workstats.growth_callout,
+            "uses": workstats.PAY_USES,
+            "tables": [],
+            "charts": [workstats.pay_growth_chart, workstats.real_pay_chart, workstats.bonus_timing_chart],
         },
     ],
     # ------------------------------------------------------------------ Inflation

@@ -52,7 +52,8 @@ Because the workflow commits data every day, run `git pull` before working local
   labour force survey), and participation and employment at the 2008 age mix, to show the effect of ageing.
   **Flows, hours and layoffs**: Eurostat's worker flows, hours worked (national accounts and INE's labour cost
   survey, with hours lost to sick leave), vacancies by activity, and the workers affected by collective
-  dismissals and temporary layoffs (ERE/ERTE, Ministry of Labour). The Wages page ranks pay by activity.
+  dismissals and temporary layoffs (ERE/ERTE, Ministry of Labour). The Wages page compares pay by activity a
+  month and per hour, the share from bonuses, growth on four-quarter averages and pay since 2019 after inflation.
 - **Trade** (`site/trade.html`): goods exports and imports by product group (18 groups of HS chapters, Eurostat
   Comext) and by partner (the EU and 19 countries), totals over the past 12 months, rankings, the balance with and
   without energy, and every group since 2008; services trade by type (quarterly balance of payments); and export and
