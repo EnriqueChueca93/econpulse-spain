@@ -26,10 +26,20 @@
       </div>
     </div>
     <nav class="wrap site-nav" aria-label="Sections">
-      {% for href, label in nav %}
-      <a href="{{ href }}"{% if href == active %} aria-current="page"{% endif %}>{{ label }}</a>
+      {% for item in nav %}
+      <span class="nav-item" data-menu="{{ 'menu-' ~ item.id if item.children else '' }}">
+        <a href="{{ item.href }}"{% if item.href == active %} aria-current="page"{% endif %}>{{ item.label }}</a>
+        {%- if item.children %}<button type="button" class="nav-caret" aria-expanded="false" aria-controls="menu-{{ item.id }}"
+          aria-label="Sections of {{ item.label }}"><svg viewBox="0 0 10 6" width="10" height="6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>{% endif %}
+      </span>
       {% endfor %}
     </nav>
+    {% for item in nav if item.children %}
+    <div class="nav-menu" id="menu-{{ item.id }}" hidden>
+      <a class="nav-menu-head" href="{{ item.href }}">{{ item.label }}</a>
+      {% for c in item.children %}<a href="{{ c.href }}">{{ c.title }}</a>{% endfor %}
+    </div>
+    {% endfor %}
   </header>
   {% if coming_up and (coming_up["items"] or coming_up.today_items) %}
   <div class="release-bar" role="region" aria-label="Release calendar">

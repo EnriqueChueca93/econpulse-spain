@@ -44,6 +44,29 @@ SECTION_PAGES = {
 
 NAV = ([("index.html", "Home")] + [(f"{s}.html", t) for s, (t, _, _) in SECTION_PAGES.items()]
        + [("tools.html", "Tools"), ("calendar.html", "Calendar"), ("data.html", "Data")])
+# What each tab's dropdown lists besides the sections of a section page (anchors or other pages).
+NAV_EXTRA = {
+    "index.html": [("#key-indicators", "Key indicators"), ("#readings", "EconPulse readings"), ("#whats-new", "What's new"),
+                   ("#four-questions", "The economy in four questions"), ("#charts", "Charts")],
+    "tools.html": [("#trend", "Economy vs pre-COVID trend"), ("#taylor", "Taylor rule"), ("#rates", "Interest rate decomposer"),
+                   ("fiscal-explorer.html", "Fiscal Explorer"), ("ecb-speak.html", "ECB-speak"),
+                   ("stance.html", "Global central bank stance")],
+    "calendar.html": [("#recent", "Released in the past week"), ("#upcoming", "The next two months")],
+}
+
+
+def nav_items(section_pages: dict) -> list[dict]:
+    """The tabs, each with the sections its dropdown links to."""
+    items = []
+    for href, label in NAV:
+        section = href.removesuffix(".html")
+        if section in section_pages:
+            children = [(f"#{b['id']}", b["title"]) for b in section_pages[section]["blocks"]]
+        else:
+            children = NAV_EXTRA.get(href, [])
+        items.append({"href": href, "label": label, "id": section,
+                      "children": [{"href": c if not c.startswith("#") else href + c, "title": t} for c, t in children]})
+    return items
 
 
 def write_data_js(path: Path, name: str, data) -> None:
@@ -106,13 +129,14 @@ def build_site(indicators: list[Indicator], store: Store | None = None, site_dir
     build_id = "".join(ch for ch in snapshot["generated_at"] if ch.isdigit())[:14]
     env = Environment(loader=FileSystemLoader(TEMPLATES_DIR), autoescape=select_autoescape(["html"]),
                       trim_blocks=True, lstrip_blocks=True)
+    section_pages = {s: build_page(s, indicators, store) for s in SECTION_PAGES}   # the navigation lists their sections
     common = {
         "version": __version__,
         "build_id": build_id,
         "built": _madrid_time(snapshot["generated_at"]),
         "as_of": _madrid_time(snapshot["data_as_of"]).replace(" Madrid time", ""),
         "sources": list(dict.fromkeys(i.source_name for i in indicators if not i.is_derived)),
-        "nav": NAV,
+        "nav": nav_items(section_pages),
         "coming_up": schedule.coming_up(store),
     }
 
@@ -132,7 +156,7 @@ def build_site(indicators: list[Indicator], store: Store | None = None, site_dir
                    questions=snapshot["questions"], charts=charts, readings=snapshot["readings"],
                    whats_new=whats_new)
     for section, (title, intro, batch) in SECTION_PAGES.items():
-        page = build_page(section, indicators, store)
+        page = section_pages[section]
         charts_file = None
         if page["charts"]:
             charts_file = f"data/charts-{section}.js"

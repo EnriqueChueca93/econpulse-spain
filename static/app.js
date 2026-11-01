@@ -22,6 +22,63 @@
   }
   darkQuery.addEventListener("change", drawAll);
 
+  // ---------------------------------------------------------------- tab dropdowns
+  // Each tab's ▾ opens a list of the sections on that page. The lists live outside the scrolling
+  // tab bar, so they are placed under their tab here. Hover opens them where there is a mouse.
+  (function () {
+    var open = null, timer = null, hover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    function place(item, menu) {
+      var r = item.getBoundingClientRect(), w = menu.offsetWidth;
+      menu.style.top = Math.round(r.bottom) + "px";
+      menu.style.left = Math.round(Math.max(8, Math.min(r.left, window.innerWidth - w - 8))) + "px";
+    }
+    function close(focusCaret) {
+      if (!open) return;
+      open.menu.hidden = true;
+      open.caret.setAttribute("aria-expanded", "false");
+      if (focusCaret) open.caret.focus();
+      open = null;
+    }
+    function show(item, focusFirst) {
+      var caret = item.querySelector(".nav-caret"), menu = document.getElementById(item.getAttribute("data-menu"));
+      if (!caret || !menu) return;
+      if (open && open.menu === menu) return;
+      close(false);
+      menu.hidden = false;
+      place(item, menu);
+      caret.setAttribute("aria-expanded", "true");
+      open = { item: item, caret: caret, menu: menu };
+      if (focusFirst) { var first = menu.querySelector("a"); if (first) first.focus(); }
+    }
+    Array.prototype.forEach.call(document.querySelectorAll(".nav-item[data-menu^='menu']"), function (item) {
+      var caret = item.querySelector(".nav-caret"), menu = document.getElementById(item.getAttribute("data-menu"));
+      caret.addEventListener("click", function (e) {
+        e.stopPropagation();
+        if (open && open.item === item) close(false); else show(item, e.detail === 0);   // keyboard: focus the first link
+      });
+      if (hover) {
+        [item, menu].forEach(function (el) {
+          el.addEventListener("mouseenter", function () { clearTimeout(timer); timer = setTimeout(function () { show(item, false); }, 120); });
+          el.addEventListener("mouseleave", function () { clearTimeout(timer); timer = setTimeout(function () { if (open && open.item === item) close(false); }, 250); });
+        });
+      }
+      menu.addEventListener("keydown", function (e) {
+        var links = Array.prototype.slice.call(menu.querySelectorAll("a")), i = links.indexOf(document.activeElement);
+        if (e.key === "Escape") { e.preventDefault(); close(true); }
+        else if (e.key === "ArrowDown") { e.preventDefault(); links[(i + 1) % links.length].focus(); }
+        else if (e.key === "ArrowUp") { e.preventDefault(); links[(i - 1 + links.length) % links.length].focus(); }
+        else if (e.key === "Tab" && ((!e.shiftKey && i === links.length - 1) || (e.shiftKey && i === 0))) close(!e.shiftKey ? false : true);
+      });
+      menu.addEventListener("click", function (e) { if (e.target.closest("a")) close(false); });
+    });
+    document.addEventListener("click", function (e) { if (open && !open.menu.contains(e.target)) close(false); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") close(true); });
+    window.addEventListener("resize", function () { close(false); });
+    window.addEventListener("scroll", function () { if (open) place(open.item, open.menu); }, { passive: true });
+    var bar = document.querySelector(".site-nav");
+    if (bar) bar.addEventListener("scroll", function () { if (open) place(open.item, open.menu); }, { passive: true });
+  })();
+
   // ---------------------------------------------------------------- charts
   var specs = (window.EP && window.EP.charts) || [];
   var MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
