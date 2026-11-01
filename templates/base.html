@@ -9,6 +9,15 @@
     // Apply a saved light/dark choice before the page paints.
     try { var t = localStorage.getItem("ep-theme"); if (t) document.documentElement.setAttribute("data-theme", t); } catch (e) {}
   </script>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="EconPulse Spain">
+  <meta property="og:title" content="{{ self.title() }}">
+  <meta property="og:description" content="{{ self.description() }}">
+  <meta name="twitter:card" content="summary">
+  <meta name="theme-color" content="#fcfcfb" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1a1a19" media="(prefers-color-scheme: dark)">
+  {% block head_extra %}{% endblock %}
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets/style.css?v={{ build_id }}">
   <link rel="alternate" type="application/rss+xml" title="EconPulse Spain: what changed" href="feed.xml">
 </head>

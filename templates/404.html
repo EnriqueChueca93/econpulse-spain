@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Page not found · EconPulse Spain{% endblock %}
+{% block description %}The page you asked for is not on EconPulse Spain.{% endblock %}
+{# GitHub Pages serves this page at whatever address was asked for, so links resolve from the site's root. #}
+{% block head_extra %}<base href="{{ site_path }}">{% endblock %}
+
+{% block content %}
+  <h1>Page not found</h1>
+  <p class="lede">That page doesn't exist, or it has moved. Every page on the site is below.</p>
+  <div class="tool-list lost-list">
+    {% for item in nav %}<a class="card" href="{{ item.href }}">{{ item.label }}</a>{% endfor %}
+    <a class="card" href="calendar.html">Release calendar</a>
+    <a class="card" href="data.html">Data and sources</a>
+    <a class="card" href="about.html">About and methods</a>
+  </div>
+{% endblock %}

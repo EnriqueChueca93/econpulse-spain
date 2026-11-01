@@ -9,6 +9,7 @@ A .json copy of the snapshot is written alongside for anything that wants plain 
 import json
 import shutil
 from datetime import datetime
+from urllib.parse import urlparse
 from pathlib import Path
 
 import pandas as pd
@@ -16,7 +17,7 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 from . import __version__, analytics, changes, ecbspeak, feed, fiscal, industries, schedule, sectortables, stance, surprises, tools, trade
 from .charts import build_home_charts
-from .config import SITE_DIR, STATIC_DIR, TEMPLATES_DIR
+from .config import SITE_DIR, SITE_URL, STATIC_DIR, TEMPLATES_DIR
 from .pages import build_page
 from .questions import four_questions
 from .registry import Indicator
@@ -199,6 +200,7 @@ def build_site(indicators: list[Indicator], store: Store | None = None, site_dir
     for i in items:
         counts[i["source"]] = counts.get(i["source"], 0) + 1
     render("about.html", "about.html", total=len(items), source_counts=sorted(counts.items(), key=lambda kv: -kv[1]))
+    render("404.html", "404.html", active="", site_path=urlparse(SITE_URL).path or "/")
     (site_dir / feed.FEED_FILE).write_text(feed.build_feed(store), encoding="utf-8", newline="\n")
     write_data_js(data_dir / "tools.js", "tools", tools.tools_data(Data(indicators, store)))
     render("tools.html", "tools.html", taylor_defaults={"r_star": analytics.R_STAR})

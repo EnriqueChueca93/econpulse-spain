@@ -2,6 +2,7 @@
 {% from "macros.html" import chart_card %}
 
 {% block title %}ECB-speak · EconPulse Spain{% endblock %}
+{% block description %}How hawkish or dovish the ECB's Governing Council sounds, scored speech by speech since September 2022.{% endblock %}
 
 {% macro signed(v, d=0) -%}{% if v is none %}–{% else %}{{ ("%+." ~ d ~ "f") | format(v) | replace("-", "−") }}{% endif %}{%- endmacro %}
 

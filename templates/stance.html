@@ -2,6 +2,7 @@
 {% from "macros.html" import chart_card %}
 
 {% block title %}Central bank stance · EconPulse Spain{% endblock %}
+{% block description %}Twelve central banks side by side: their latest decisions, what they said, where they are in the cycle and when they meet next.{% endblock %}
 
 {% macro phase_badge(r) -%}<span class="badge phase phase-{{ r.phase_class }}">{{ r.phase }}</span>{%- endmacro %}
 {% macro tilt_badge(t) -%}{% if t %}<span class="badge tilt tilt-{{ t | lower }}">{{ t | upper }}</span>{% endif %}{%- endmacro %}

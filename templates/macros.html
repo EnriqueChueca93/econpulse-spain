@@ -77,7 +77,7 @@
         <tbody>
           {% for r in t.rows %}
           {% if r.heading %}
-          <tr class="group-row"><td colspan="{{ t.columns | length + 1 }}">{{ r.label }}</td></tr>
+          <tr class="group-row"><td colspan="{{ t.columns | length + 1 }}"><span>{{ r.label }}</span></td></tr>
           {% else %}
           <tr{% if r.highlight %} class="highlight-row"{% endif %}>
             <th scope="row" class="indent-{{ r.indent }}"{% if r.label_es %} title="{{ r.label_es }}"{% endif %}>
@@ -107,6 +107,7 @@
     <div class="chart-foot">
       <span class="secondary">Source: {{ c.source }}</span>
       <span class="chart-actions">
+        <button type="button" class="chart-link chart-csv" data-chart="{{ c.id }}" aria-label="Download the data of the chart {{ c.title }} as a CSV file">CSV</button>
         <button type="button" class="chart-link" data-figure="fig-{{ c.id }}" aria-label="Copy a link to the chart {{ c.title }}">Copy link</button>
         {%- if c.link %} <a class="more" href="{{ c.link }}">More <span aria-hidden="true">&rarr;</span></a>{% endif %}
       </span>

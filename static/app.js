@@ -451,8 +451,87 @@
     holder.appendChild(caption);
   }
 
+  // ---------------------------------------------------------------- drawing as charts come into view
+  // A page can carry 30 charts or more: each is drawn when it nears the screen, and a theme switch or
+  // a resize redraws only those already drawn. Rankings and dot plots get their height first, so
+  // drawing them later doesn't move the page.
+  var drawn = {};
+
+  function byId(id) {
+    for (var i = 0; i < specs.length; i++) if (specs[i].id === id) return specs[i];
+    return null;
+  }
+
+  function presize(spec) {
+    var el = document.getElementById("chart-" + spec.id);
+    if (!el) return;
+    if (spec.kind === "hbar") el.style.height = Math.max(220, spec.series[0].x.length * 22 + 56) + "px";
+    if (spec.kind === "dots") el.style.height = Math.max(220, spec.rows.length * 30 + 70) + "px";
+  }
+
+  function drawSpec(spec) {
+    drawn[spec.id] = true;
+    draw(spec);
+  }
+
   function drawAll() {
-    specs.forEach(draw);
+    specs.forEach(function (s) { if (drawn[s.id]) draw(s); });
+  }
+
+  function drawEverything() {
+    specs.forEach(function (s) { if (!drawn[s.id]) drawSpec(s); });
+  }
+
+  var observer = "IntersectionObserver" in window ? new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      observer.unobserve(entry.target);
+      var spec = byId(entry.target.id.slice("chart-".length));
+      if (spec) drawSpec(spec);
+    });
+  }, { rootMargin: "400px 0px" }) : null;
+
+  // ---------------------------------------------------------------- CSV download
+  // Every value a chart carries (not just what the data table shows), one row per date or item.
+  function csvCell(v) {
+    var s = v === null || v === undefined ? "" : String(v);
+    return /[",\r\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
+  }
+
+  function csvRows(spec) {
+    var unit = spec.unit ? " (" + spec.unit + ")" : "";
+    if (spec.kind === "hbar") {
+      var bars = spec.series[0];
+      return [[spec.x_title || "Item", bars.name + unit]].concat(bars.x.map(function (x, i) { return [x, bars.y[i]]; }));
+    }
+    if (spec.kind === "xy") {
+      var path = spec.series[0];
+      return [[spec.x_title || "Period", spec.x_label, spec.y_label]].concat(
+        path.x.map(function (x, i) { return [path.text[i], x, path.y[i]]; }));
+    }
+    if (spec.kind === "dots") {
+      return [["Member", "Stance", "Lowest over the year", "Highest over the year"]].concat(spec.rows.map(function (r) {
+        return [r.label, r.stance, r.range ? r.range[0] : "", r.range ? r.range[1] : ""];
+      }));
+    }
+    var keys = [], seen = {}, maps = spec.series.map(function (s) {
+      var m = {};
+      s.x.forEach(function (x, i) { m[x] = s.y[i]; if (!seen[x]) { seen[x] = true; keys.push(x); } });
+      return m;
+    });
+    if (spec.x_kind !== "category") keys.sort();
+    return [[spec.x_title || "Date"].concat(spec.series.map(function (s) { return s.name + unit; }))].concat(
+      keys.map(function (k) { return [k].concat(maps.map(function (m) { return k in m ? m[k] : ""; })); }));
+  }
+
+  function downloadCsv(spec) {
+    // A byte-order mark so spreadsheet programs read "€" and accents correctly.
+    var text = "﻿" + csvRows(spec).map(function (r) { return r.map(csvCell).join(","); }).join("\r\n") + "\r\n";
+    var url = URL.createObjectURL(new Blob([text], { type: "text/csv;charset=utf-8" }));
+    var a = document.createElement("a");
+    a.href = url; a.download = "econpulse-" + spec.id + ".csv";
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
   }
 
   // ---------------------------------------------------------------- chart links
@@ -468,6 +547,12 @@
     });
   }
   document.addEventListener("click", function (event) {
+    var csv = event.target.closest && event.target.closest(".chart-csv");
+    if (csv) {
+      var spec = byId(csv.getAttribute("data-chart"));
+      if (spec) downloadCsv(spec);
+      return;
+    }
     var button = event.target.closest && event.target.closest(".chart-link");
     if (!button) return;
     var url = location.href.split(/[?#]/)[0] + "#" + button.getAttribute("data-figure");
@@ -479,9 +564,28 @@
     copyText(url).then(function () { show("Link copied"); }, function () { window.prompt("Copy this link:", url); });
   });
 
-  specs.forEach(fillTable);
-  drawAll();
-  // Charts are drawn after the page loads; bring a linked chart (#fig-<id>) back into view.
+  // A chart's data table is filled the first time it is opened.
+  document.addEventListener("toggle", function (event) {
+    var holder = event.target;
+    if (!holder.classList || !holder.classList.contains("chart-data") || !holder.open) return;
+    var spec = byId(holder.getAttribute("data-chart"));
+    if (spec) fillTable(spec);
+  }, true);
+
+  // A chart with no data has nothing to download.
+  function csvButton(id) { return document.querySelector('.chart-csv[data-chart="' + id + '"]'); }
+  Array.prototype.forEach.call(document.querySelectorAll(".chart-csv"), function (b) {
+    b.hidden = !byId(b.getAttribute("data-chart"));
+  });
+
+  specs.forEach(function (spec) {
+    presize(spec);
+    var el = document.getElementById("chart-" + spec.id);
+    if (!el) return;
+    if (observer) observer.observe(el); else drawSpec(spec);
+  });
+  window.addEventListener("beforeprint", drawEverything);
+  // Bring a linked chart (#fig-<id>) into view once the rankings above it have their height.
   if (location.hash.indexOf("#fig-") === 0) {
     var linked = document.getElementById(location.hash.slice(1));
     if (linked) linked.scrollIntoView();
@@ -491,13 +595,55 @@
   // whenever the theme or the window size changes, like the charts written by the build.
   window.EP = window.EP || {};
   window.EP.render = function (spec) {
+    var b = csvButton(spec.id);
+    if (b) b.hidden = false;
     for (var i = 0; i < specs.length; i++) {
-      if (specs[i].id === spec.id) { specs[i] = spec; draw(spec); return; }
+      if (specs[i].id === spec.id) { specs[i] = spec; drawSpec(spec); return; }
     }
     specs.push(spec);
-    draw(spec);
+    drawSpec(spec);
   };
   window.EP.fmt = fmt;
+
+  // ---------------------------------------------------------------- section links and back to top
+  // A "#" after each section heading links to it (and copies the link).
+  Array.prototype.forEach.call(document.querySelectorAll("main h2[id]"), function (h) {
+    var a = document.createElement("a");
+    a.className = "anchor";
+    a.href = "#" + h.id;
+    a.setAttribute("aria-label", "Copy a link to the section " + h.textContent.trim());
+    a.textContent = "#";
+    a.addEventListener("click", function (event) {
+      event.preventDefault();
+      history.replaceState(null, "", "#" + h.id);
+      h.scrollIntoView();
+      copyText(location.href).then(function () {
+        a.classList.add("copied");
+        setTimeout(function () { a.classList.remove("copied"); }, 1800);
+      }, function () { /* the address bar has the link */ });
+    });
+    h.appendChild(a);
+  });
+
+  (function () {
+    var button = document.createElement("button");
+    button.type = "button";
+    button.className = "to-top";
+    button.hidden = true;
+    button.innerHTML = '<svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"><path d="M6 10V2M2 6l4-4 4 4" ' +
+      'fill="none" stroke="currentColor" stroke-width="1.6"/></svg>Top';
+    button.setAttribute("aria-label", "Back to the top of the page");
+    document.body.appendChild(button);
+    var still = window.matchMedia("(prefers-reduced-motion: reduce)");
+    button.addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: still.matches ? "auto" : "smooth" });
+      var skip = document.querySelector(".brand");
+      if (skip) skip.focus({ preventScroll: true });
+    });
+    function check() { button.hidden = window.scrollY < window.innerHeight * 1.5; }
+    window.addEventListener("scroll", check, { passive: true });
+    check();
+  })();
 
   // Redraw after a resize settles: whether end labels fit depends on the chart's width.
   var resizeTimer;

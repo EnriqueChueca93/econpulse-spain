@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}Tools · EconPulse Spain{% endblock %}
+{% block description %}Interactive tools for the Spanish economy: change a setting and every number and chart recomputes in your browser.{% endblock %}
 
 {% macro figure(id, title, subtitle, source) -%}
   <figure class="card chart-card" id="fig-{{ id }}">
@@ -10,7 +11,9 @@
     </figcaption>
     <div class="chart" id="chart-{{ id }}" role="img" aria-label="{{ title }}: {{ subtitle }}"></div>
     <div class="chart-foot"><span class="secondary">Source: {{ source }}</span>
-      <button type="button" class="chart-link" data-figure="fig-{{ id }}" aria-label="Copy a link to the chart {{ title }}">Copy link</button></div>
+      <span class="chart-actions">
+        <button type="button" class="chart-link chart-csv" data-chart="{{ id }}" hidden aria-label="Download the data of the chart {{ title }} as a CSV file">CSV</button>
+        <button type="button" class="chart-link" data-figure="fig-{{ id }}" aria-label="Copy a link to the chart {{ title }}">Copy link</button></span></div>
   </figure>
 {%- endmacro %}
 
