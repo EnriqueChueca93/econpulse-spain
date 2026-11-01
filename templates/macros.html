@@ -83,6 +83,7 @@
             <th scope="row" class="indent-{{ r.indent }}"{% if r.label_es %} title="{{ r.label_es }}"{% endif %}>
               {%- if r.url %}<a href="{{ r.url }}" target="_blank" rel="noopener">{{ r.label }}</a>{% else %}{{ r.label }}{% endif -%}
               {%- if r.period_note %}<span class="period-note"> · {{ r.period_note }}</span>{% endif -%}
+              {%- if r.flag %} <span class="badge badge-warn">{{ r.flag }}</span>{% endif -%}
             </th>
             {% for cell in r.cells %}<td class="num">{% if cell is mapping %}{{ cell.value }}<span class="period-note"> · {{ cell.note }}</span>{% else %}{{ cell }}{% endif %}</td>{% endfor %}
           </tr>

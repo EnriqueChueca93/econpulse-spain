@@ -78,7 +78,9 @@ econpulse/            Python package
   indicators.yaml     the indicator registry: every series the site tracks
   sources/            one client per data provider: ine, eurostat, ecb, bde (Banco de España),
                       segsocial (Seguridad Social), ree (Red Eléctrica), oecd, bis, bls,
-                      dbnomics, eia, worldbank, bundesbank, fred (local use only), derived
+                      dbnomics, eia, worldbank, bundesbank, imf, bdeproj (Banco de España
+                      projections), funcas, fred (local use only), derived; webtables.py reads
+                      the HTML tables of the sources that publish web pages
   transforms.py       y/y, m/m, q/q, 3-month annualised, changes
   store.py            data/series/<id>.csv + data/catalog.json
   fetch.py            fetches everything; one failing source never stops the rest
@@ -92,8 +94,8 @@ econpulse/            Python package
   policy.py           ECB meeting calendar, rate decisions, the mortgage check
   analytics.py        composites, GDP nowcast, 10-year decomposition, Taylor rules
   surprises.py        data surprises: each figure against a one-step AR(1) forecast
-  forecasts.py        the forecasters' table: OECD and Commission (fetched) plus forecasts.yaml
-  forecasts.yaml      forecasts entered by hand (Banco de España, AIReF, FUNCAS, government, IMF)
+  forecasts.py        the forecasters' table, read automatically, with the AI check (data/forecast_checks.json)
+  forecasts.yaml      optional overrides by hand, for an edition the automatic sources have not picked up
   tools.py            data for the interactive tools (the browser does the arithmetic, static/tools.js)
   schedule.py         release calendar: INE's iCal, the Social Security rule, ECB decisions
   changes.py          "what changed": notes on new releases, revisions and big market moves
@@ -126,12 +128,24 @@ To show it in a section table or chart, add a `Row` or a chart series to that pa
 - **Derived:** `subtract`, `add` or `divide` two indicators defined earlier in the file, `deflate` one by a
   price index, or `average` a daily series over complete months.
 
-## Updating the forecasts
+## Forecasts and the AI check
 
-The OECD and European Commission forecasts update themselves. The others are in `econpulse/forecasts.yaml`:
-when a forecaster publishes a new edition, change its `published` date, `url` and `values`, then run
-`python -m econpulse build` (or push, and the site rebuilds). The comment at the top of the file lists each
-field and when the forecasters usually publish.
+Every forecaster is read automatically: the IMF, OECD and European Commission from their data services, the
+Banco de España from its latest report's projections table, and the FUNCAS Panel from its web page or PDF,
+whose reference table also gives the government's and AIReF's latest forecasts. Figures read this way count
+only after an **AI check**: until then their row shows an "awaiting AI check" badge and is left out of the
+average, the facts and the chart. A new edition, or any change to the figures, needs a new check.
+
+```bash
+.venv/Scripts/python -m econpulse forecasts                      # figures, sources, and which await a check
+.venv/Scripts/python -m econpulse confirm bde --against "the report's table of 9 Oct"   # after checking
+```
+
+The check means an AI (for example Claude, in a session on this repository) opens each source, compares the
+figures with the publisher's own document, and only then runs `confirm`, which records the edition's
+fingerprint in `data/forecast_checks.json`; `--note` adds a caveat under the table. Commit that file. The
+daily run's `status` step lists forecasts awaiting a check. To show an edition the automatic sources have
+not picked up yet, enter it by hand in `econpulse/forecasts.yaml` (the comment at its top explains how).
 
 ## Tests
 

@@ -6,18 +6,23 @@
     update  fetch, then build
     list    print the latest values from the data already saved (no download)
     status  freshness report: what failed, what has stopped updating, per source
+    forecasts  the forecasters' latest figures, and which await an AI check
+    confirm <id> [<id> ...] [--against TEXT] [--note TEXT] [--by NAME]
+            record that an AI checked those forecasters' current figures against the
+            publisher's own document (see econpulse/forecasts.py)
 """
 
 import argparse
 import sys
 import time
 
-from . import changes, schedule
+from . import changes, forecasts, schedule
 from .build import build_site
 from .fetch import fetch_all
 from .registry import load_registry
 from .snapshot import build_snapshot
 from .store import Store
+from .tables import Data
 
 STATUS_MARK = {"ok": "ok", "stale": "STALE", "error": "ERROR", "missing": "-"}
 
@@ -86,13 +91,42 @@ def print_status(snapshot: dict, catalog: dict, store: Store, known_ids: set[str
     return len(problems)
 
 
+def print_forecasts(data: Data) -> int:
+    """Each forecaster's edition, status and figures for this year and next. Returns how many await a check."""
+    this, nxt = forecasts.years()
+    forecasters = forecasts.forecasters(data)
+    for f in sorted(forecasters, key=lambda f: (f.status != forecasts.PENDING, f.id)):
+        print(f"{f.id} ({f.name}): {f.status}; published {f.published or '?'}"
+              + (f", via {f.via}" if f.via else "") + f"; fingerprint {forecasts.fingerprint(f)}")
+        print(f"    source: {f.url}")
+        for year in (this, nxt):
+            cells = [f"{m} {f.value(year, m)}" for m in forecasts.MEASURE_IDS if f.value(year, m) is not None]
+            print(f"    {year}: {', '.join(cells) or '-'}")
+            if f.low.get(year):
+                print(f"    {year} panel range: " + ", ".join(
+                    f"{m} {f.low[year].get(m)} to {f.high[year].get(m)}" for m in forecasts.MEASURE_IDS if m in f.low[year]))
+        if f.check:
+            print(f"    checked by {f.check['checked_by']} on {f.check['checked_at']}"
+                  + (f" against {f.check['checked_against']}" if f.check.get("checked_against") else "")
+                  + (f"; note: {f.check['note']}" if f.check.get("note") else ""))
+    waiting = [f.id for f in forecasters if f.status == forecasts.PENDING]
+    if waiting:
+        print(f"\nAwaiting an AI check: {', '.join(waiting)}. Compare each with its source, then run\n"
+              f"  python -m econpulse confirm {' '.join(waiting)}")
+    return len(waiting)
+
+
 def main(argv: list[str] | None = None) -> int:
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
     parser = argparse.ArgumentParser(prog="econpulse", description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("command", choices=["fetch", "build", "update", "list", "status"])
+    parser.add_argument("command", choices=["fetch", "build", "update", "list", "status", "forecasts", "confirm"])
+    parser.add_argument("ids", nargs="*", help="forecaster ids, for confirm")
     parser.add_argument("--only", help="comma-separated indicator ids to fetch (default: all)")
+    parser.add_argument("--against", default="", help="confirm: what the figures were compared with")
+    parser.add_argument("--note", default="", help="confirm: a note shown under the forecasts table")
+    parser.add_argument("--by", default="AI check (Claude)", help="confirm: who checked the figures")
     args = parser.parse_args(argv)
 
     indicators = load_registry()
@@ -119,6 +153,23 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.command == "status":
         print_status(build_snapshot(indicators, store), store.load_catalog(), store, {i.id for i in indicators})
+        waiting = [f.id for f in forecasts.pending(Data(indicators, store))]
+        if waiting:
+            print(f"\nForecasts awaiting an AI check: {', '.join(waiting)} (python -m econpulse forecasts)")
+
+    if args.command == "forecasts":
+        print_forecasts(Data(indicators, store))
+
+    if args.command == "confirm":
+        if not args.ids:
+            parser.error("confirm needs one or more forecaster ids (see python -m econpulse forecasts)")
+        data = Data(indicators, store)
+        for forecaster_id in args.ids:
+            try:
+                record = forecasts.confirm(data, forecaster_id, args.by, args.note, args.against)
+            except ValueError as e:
+                parser.error(str(e))
+            print(f"Confirmed {forecaster_id}: edition of {record['published']}, fingerprint {record['fingerprint']}")
 
     if args.command in ("build", "update"):
         index = build_site(indicators, store)

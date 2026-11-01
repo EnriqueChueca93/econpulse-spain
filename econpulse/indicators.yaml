@@ -6,7 +6,7 @@
 #   section      gdp | labour | wages | inflation | financial | ecb | fiscal | activity | housing | international |
 #                regions | analysis
 #   source       ine | eurostat | ecb | bde | segsocial | ree | oecd | bis | bls | dbnomics | eia | worldbank |
-#                bundesbank |
+#                bundesbank | imf | bdeproj (Banco de España projections) | funcas |
 #                fred | derived  (FRED does not answer GitHub's servers, so the online site avoids it)
 #   key, params  what to ask the source for (see econpulse/sources/<source>.py)
 #   freq         D | M | Q | A
@@ -64,6 +64,20 @@ regions: &regions
   - {slug: navarra, name: Navarra, epa: EPA452552, ipv: IPV1467, ipc: IPC294443, cre: CRE47426}
   - {slug: pais_vasco, name: País Vasco, epa: EPA452560, ipv: IPV1482, ipc: IPC294499, cre: CRE47425}
   - {slug: rioja, name: La Rioja, epa: EPA452568, ipv: IPV1497, ipc: IPC294555, cre: CRE47424}
+
+# What the forecasters read automatically predict (see the Forecasts part at the end), with
+# each source's code for it: the IMF's WEO indicator and the Banco de España's table row.
+forecast_measures: &forecast_measures
+  - {m: gdp, name: real GDP growth, name_es: crecimiento del PIB real, unit: "%", imf: NGDP_RPCH, bde: GDP}
+  - {m: inflation, name: inflation, name_es: inflación, unit: "%", imf: PCPIPCH, bde: HICP}
+  - {m: unemployment, name: unemployment rate, name_es: tasa de paro, unit: "%", imf: LUR, bde: Unemployment rate}
+  - {m: balance, name: government budget balance, name_es: saldo de las AA. PP., unit: "% of GDP", imf: GGXCNL_NGDP,
+     bde: General government net lending}
+# The government publishes no inflation forecast.
+government_measures: &government_measures
+  - {m: gdp, name: real GDP growth, name_es: crecimiento del PIB real, unit: "%"}
+  - {m: unemployment, name: unemployment rate, name_es: tasa de paro, unit: "%"}
+  - {m: balance, name: government budget balance, name_es: saldo de las AA. PP., unit: "% of GDP"}
 
 indicators:
 
@@ -2024,9 +2038,11 @@ indicators:
     notes: GDP per head at current prices, Spain = 100 (INE regional accounts).
 
   # ---------------------------------------------------------------- Forecasts (Analysis page)
-  # Each series runs through the latest forecast year: the last two values are the forecasts
-  # for this year and next, and they change with each edition. Forecasts not available from
-  # an API (Banco de España, AIReF, FUNCAS, the government, the IMF) are in forecasts.yaml.
+  # Each series runs through the latest forecast year: the values for this year and next are
+  # the forecasts, and they change with each edition. Figures read from web pages and PDFs
+  # (Banco de España, FUNCAS) and every other automatic forecast are shown as awaiting an AI
+  # check until confirmed (python -m econpulse forecasts / confirm). forecasts.yaml can
+  # override any forecaster by hand with a newer edition.
   - id: fc_oecd_gdp
     label: OECD forecast, real GDP growth
     label_es: Previsión de la OCDE, crecimiento del PIB real
@@ -2119,3 +2135,85 @@ indicators:
     unit: "% of GDP"
     change_unit: pp
     notes: AMECO, updated with the Commission's spring and autumn forecasts. Negative = deficit.
+
+  - id: fc_imf_{m}
+    for_each: *forecast_measures
+    label: IMF forecast, {name}
+    label_es: Previsión del FMI, {name_es}
+    section: analysis
+    source: imf
+    key: "IMF.RES,WEO/ESP.{imf}.A"
+    freq: A
+    unit: "{unit}"
+    change_unit: pp
+    notes: IMF World Economic Outlook (April and October), from the IMF's data service; history then projections.
+
+  - id: fc_bde_{m}
+    for_each: *forecast_measures
+    label: Banco de España projection, {name}
+    label_es: Proyección del Banco de España, {name_es}
+    section: analysis
+    source: bdeproj
+    key: "{bde}"
+    freq: A
+    unit: "{unit}"
+    change_unit: pp
+    notes: Read from the projections table of the bank's latest quarterly report (March, June, September, December).
+
+  - id: fc_funcas_{m}
+    for_each: *forecast_measures
+    label: FUNCAS Panel consensus, {name}
+    label_es: Panel de Funcas, consenso, {name_es}
+    section: analysis
+    source: funcas
+    key: "consensus/{m}"
+    freq: A
+    unit: "{unit}"
+    change_unit: pp
+    notes: Average of the panel's forecasters, every two months; inflation is the CPI.
+
+  - id: fc_funcas_{m}_max
+    for_each: *forecast_measures
+    label: FUNCAS Panel, highest forecast, {name}
+    label_es: Panel de Funcas, máximo, {name_es}
+    section: analysis
+    source: funcas
+    key: "max/{m}"
+    freq: A
+    unit: "{unit}"
+    change_unit: pp
+
+  - id: fc_funcas_{m}_min
+    for_each: *forecast_measures
+    label: FUNCAS Panel, lowest forecast, {name}
+    label_es: Panel de Funcas, mínimo, {name_es}
+    section: analysis
+    source: funcas
+    key: "min/{m}"
+    freq: A
+    unit: "{unit}"
+    change_unit: pp
+
+  - id: fc_gov_{m}
+    for_each: *government_measures
+    label: Government forecast, {name}
+    label_es: Previsión del Gobierno, {name_es}
+    section: analysis
+    source: funcas
+    key: "government/{m}"
+    freq: A
+    unit: "{unit}"
+    change_unit: pp
+    notes: As listed in the FUNCAS Panel's reference table, which gives the month of the government's forecast.
+
+  - id: fc_airef_{m}
+    for_each: *forecast_measures
+    label: AIReF forecast, {name}
+    label_es: Previsión de la AIReF, {name_es}
+    section: analysis
+    source: funcas
+    key: "airef/{m}"
+    freq: A
+    unit: "{unit}"
+    change_unit: pp
+    notes: As listed in the FUNCAS Panel's reference table, which gives the month of AIReF's forecast; inflation is the CPI.

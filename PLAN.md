@@ -70,7 +70,7 @@ One Python codebase. Its output is a plain static website that opens by double-c
 
 ## 3. Data sources
 
-Status after Batch 12 (1 Nov 2026): 276 indicators. All sources are official or public and are accessed with an honest `EconPulseSpain` User-Agent:
+Status after Batch 12b (1 Nov 2026): 303 indicators. All sources are official or public and are accessed with an honest `EconPulseSpain` User-Agent:
 
 | Provider | Access | Status | Covers |
 |---|---|---|---|
@@ -91,7 +91,9 @@ Status after Batch 12 (1 Nov 2026): 276 indicators. All sources are official or 
 | **EconPulse calculations** | from the series above | ✅ in use (12) | Brent in euros, 10-year spreads over Germany, GDP deflator, real wages, real house prices, average mortgage, primary balance, monthly electricity demand |
 | ~~Yahoo Finance~~ | unofficial API | ❌ dropped | IBEX 35 now comes from Banco de España and Brent from FRED |
 | **INE release calendar** | iCal file `ine.es/dynt3/Calendario/calendario.ics` | ✅ in use | dates and times of every INE release; saved to `data/calendar.json` at each fetch |
-| **AIReF · FUNCAS · BdE · government · IMF forecasts** | web pages / PDF | ✍ by hand (Batch 12) | `econpulse/forecasts.yaml`: no data feed (the IMF's site blocks automated downloads, and DBnomics' copy of its outlook is a year old) |
+| **IMF data service** | SDMX REST (api.imf.org), XML | ✅ in use (4) | World Economic Outlook forecasts for Spain, with the edition's date (the older DataMapper API blocks automated requests) |
+| **Banco de España projections** | report web page, HTML table | ✅ in use (4) | the latest quarterly report's projections table; the report list shows the newest first |
+| **FUNCAS Panel** | WordPress REST API, HTML tables or PDF (pdfplumber) | ✅ in use (19) | consensus, highest and lowest forecasts, and the government's and AIReF's latest forecasts from its reference table |
 
 **Gotchas found already:**
 - INE's CPI table 50902 stops at Dec 2025, because CPI moved to new tables in 2026. The registry pins INE *series* codes rather than table IDs, and a freshness check flags any series that stops updating.
@@ -222,6 +224,9 @@ Each batch is sized for one working session, ends with something you can open or
 
 ### Batch 12 — Forecasts and surprises ✅ done 1 Nov 2026
 *Result: two new blocks on the Analysis page. "What forecasters expect": GDP growth, inflation, unemployment and the budget balance for 2026 and 2027 from seven forecasters, each with its publication month and a link. The OECD Economic Outlook and the European Commission (AMECO, via DBnomics) are fetched as indicators (`fc_*`, edition read from the data); the Banco de España, AIReF, the FUNCAS Panel, the government and the IMF are in `econpulse/forecasts.yaml`, updated by hand. They average 2.5% for 2026 and 2.0% for 2027; EconPulse's own 2026 figure, INE's first three quarters plus the Q4 nowcast, is 2.6%, and 2.4% is already banked even with a flat Q4. "Data surprises": each figure behind the composites against a one-step AR(1) forecast fitted only on earlier data, in units of the model's typical error, averaged over the past four months (weights 1, ¾, ½, ¼). Activity is +0.3 (in line) and inflation +0.8 (above expectations); both are also on the home page. DBnomics series are now credited to their real publisher. 276 indicators, 144 offline tests.*
+
+### Batch 12b — Forecasts read automatically, with an AI check ✅ done 1 Nov 2026
+*Result: the hand-entered forecasts are now read automatically. IMF from its current data service (api.imf.org), which gives the full October 2026 WEO row and its date; Banco de España from the projections table on its latest report page; FUNCAS from its WordPress API, reading the newest panel's HTML tables or, when an edition has none, its PDF with pdfplumber (the September PDF and HTML give identical figures); the government and AIReF from the FUNCAS Panel's reference table, labelled with their month. The panel's range (highest and lowest forecast) is shown under the consensus. Every automatic figure needs an AI check: until `python -m econpulse confirm <id>` records the edition's fingerprint in `data/forecast_checks.json`, its row carries an "awaiting AI check" badge and stays out of the average, facts and chart; a new edition or revision needs a new check. The first check compared all seven forecasters with the publishers' own documents (the OECD through FUNCAS's reference row, since oecd.org refuses automated reading) and confirmed them. `forecasts.yaml` is now only for overrides by hand. Found on the way: rounding to two decimals showed the OECD's 2026 balance (−2.1502) as −2.1 instead of −2.2. 303 indicators, 153 offline tests.*
 
 ### Batch 11 — Interactive tools ✅ done 1 Nov 2026
 *Result: a Tools page (`templates/tools.html`, `static/tools.js`, data from `econpulse/tools.py`) where every number recomputes in the browser. Economy vs pre-COVID trend: ten series against a log-linear trend fitted from a chosen year (2010–2017) to 2019, with the gap for all of them (real GDP is 5.8% below its 2015–19 trend; consumer prices 17.5% above). Taylor rule: sliders for the neutral rate and the two weights, headline or core inflation, euro area and/or Spain; the defaults reproduce the Analysis page. Interest rate decomposer: any two dates, Spain's 10-year move split into German yield plus prima de riesgo, and into AAA 1-year, AAA 1-to-10-year forward and spread over AAA. Building it showed that Banco de España's German 10-year series has gaps since 2020 (one day in July 2022), so `de_10y` now comes from the Bundesbank. 135 offline tests.*

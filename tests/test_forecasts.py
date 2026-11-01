@@ -98,6 +98,7 @@ def test_forecast_table_and_chart(tmp_path, hand):
     store.save_series("fc_ec_hicp_index", pd.Series([100.0, 102.0, 105.06, 107.0], index=years))
     data = Data(load_registry(), store)
     data.cache["nowcast"] = {"quarter": pd.Timestamp("2026-10-01"), "value": 1.0}
+    forecasts.confirm(data, "oecd", by="test")  # the Commission stays unchecked
     t = forecasts.forecast_table(data, 2026)
     by_label = {r["label"]: r for r in t["rows"]}
     assert [r["label"] for r in t["rows"] if r["heading"]] == ["In Spain", "International organisations", "Summary"]
@@ -105,11 +106,15 @@ def test_forecast_table_and_chart(tmp_path, hand):
     assert by_label["Central Bank"]["period_note"] == "Oct 2026"
     assert by_label["Government"]["cells"] == ["2.4%", "–", "–", "−2.0%"]
     assert by_label["European Commission"]["cells"][1] == "3.0%"  # HICP index, % change on a year earlier
+    assert by_label["European Commission"]["flag"] == "awaiting AI check"
+    assert by_label["OECD Economic Outlook"]["flag"] == ""
     assert by_label["Average of the forecasts above"]["cells"][0] == "2.4%"  # (2.6 + 2.4 + 2.2) / 3
+    assert by_label["Average of the forecasts above"]["cells"][1] == "3.9%"  # the unchecked Commission left out
     assert by_label["EconPulse: INE's quarters + nowcast"]["cells"][0] == "2.3%"
     assert "the HICP for Bank and Commission" in t["note"] and "Deficit excludes one-offs." in t["note"]
+    assert "newly read and not yet checked" in t["note"]
     chart = forecasts.forecast_chart(data, today=date(2026, 10, 31))
-    assert chart["series"][0]["x"] == ["Bank", "Gov", "OECD", "Commission", "Average", "EconPulse"]
+    assert chart["series"][0]["x"] == ["Bank", "Gov", "OECD", "Average", "EconPulse"]
     assert chart["series"][1]["y"][1] is None  # no 2027 figure from the government
     facts = forecasts.forecast_facts(data, today=date(2026, 10, 31))
     assert facts[0]["label"] == "GDP growth forecast, 2026" and "average of 3" in facts[0]["sub"]
@@ -166,6 +171,5 @@ def test_surprise_index_and_sign(tmp_path):
     assert [f["label"] for f in facts] == ["Activity data vs forecasts", "Inflation data vs forecasts"]
     assert facts[1]["sub"].startswith("above expectations")
     page = pages.build_page("analysis", load_registry(), store)
-    ids = [b["id"] for b in page["blocks"]]
-    assert "surprises" in ids and "forecasts" in ids
+    assert "surprises" in [b["id"] for b in page["blocks"]]
     assert any(c["id"] == "surprises" for c in page["charts"])

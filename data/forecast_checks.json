@@ -1,0 +1,171 @@
+{
+ "airef": {
+  "fingerprint": "5baf61b93447",
+  "published": "2026-07-01",
+  "checked_by": "AI check (Claude)",
+  "checked_at": "2026-11-01 05:11",
+  "values": {
+   "2026": {
+    "gdp": 2.5,
+    "inflation": 3.3,
+    "unemployment": 10.2,
+    "balance": -2.6
+   },
+   "2027": {
+    "gdp": 2.1,
+    "inflation": 2.4,
+    "unemployment": 10.1
+   }
+  },
+  "checked_against": "AIReF's own report of 15 Jul 2026 (Cuadro 3 and text); no 2027 deficit published"
+ },
+ "bde": {
+  "fingerprint": "15db2e861654",
+  "published": "2026-10-09",
+  "checked_by": "AI check (Claude)",
+  "checked_at": "2026-11-01 05:11",
+  "values": {
+   "2026": {
+    "gdp": 2.6,
+    "inflation": 3.9,
+    "unemployment": 10.0,
+    "balance": -2.6
+   },
+   "2027": {
+    "gdp": 2.2,
+    "inflation": 3.7,
+    "unemployment": 9.7,
+    "balance": -2.2
+   }
+  },
+  "checked_against": "the projections table on the bank's report page of 9 Oct 2026, read separately"
+ },
+ "ec": {
+  "fingerprint": "f904ca5e140f",
+  "published": "2026-05-22",
+  "checked_by": "AI check (Claude)",
+  "checked_at": "2026-11-01 05:12",
+  "values": {
+   "2026": {
+    "gdp": 2.3962,
+    "inflation": 3.0451,
+    "unemployment": 9.9,
+    "balance": -2.4184
+   },
+   "2027": {
+    "gdp": 1.9497,
+    "inflation": 2.4529,
+    "unemployment": 9.6,
+    "balance": -2.0209
+   }
+  },
+  "checked_against": "the Commission's Spain page for the Spring 2026 forecast of 21 May 2026"
+ },
+ "funcas": {
+  "fingerprint": "a2302df915c6",
+  "published": "2026-09-16",
+  "checked_by": "AI check (Claude)",
+  "checked_at": "2026-11-01 05:11",
+  "values": {
+   "2026": {
+    "gdp": 2.5,
+    "inflation": 3.4,
+    "unemployment": 9.9,
+    "balance": -2.5
+   },
+   "2027": {
+    "gdp": 2.0,
+    "inflation": 2.5,
+    "unemployment": 9.6,
+    "balance": -2.3
+   }
+  },
+  "checked_against": "the panel page of 16 Sep 2026 (consensus, highest and lowest rows) and its PDF"
+ },
+ "government": {
+  "fingerprint": "8f779f3b8175",
+  "published": "2026-06-01",
+  "checked_by": "AI check (Claude)",
+  "checked_at": "2026-11-01 05:11",
+  "values": {
+   "2026": {
+    "gdp": 2.6,
+    "unemployment": 9.9,
+    "balance": -2.1
+   },
+   "2027": {
+    "gdp": 2.2,
+    "unemployment": 9.4,
+    "balance": -1.8
+   }
+  },
+  "checked_against": "the Ministerio de Economía release of 29 Jun 2026",
+  "note": "The government's deficit figures leave out the extraordinary spending after the DANA floods."
+ },
+ "imf": {
+  "fingerprint": "652304882c01",
+  "published": "2026-10-13",
+  "checked_by": "AI check (Claude)",
+  "checked_at": "2026-11-01 05:11",
+  "values": {
+   "2026": {
+    "gdp": 2.5133,
+    "inflation": 3.6895,
+    "unemployment": 9.8022,
+    "balance": -2.371
+   },
+   "2027": {
+    "gdp": 1.797,
+    "inflation": 2.6535,
+    "unemployment": 9.8422,
+    "balance": -2.2866
+   },
+   "2028": {
+    "gdp": 1.7984,
+    "inflation": 2.5,
+    "unemployment": 9.8822,
+    "balance": -2.1962
+   },
+   "2029": {
+    "gdp": 1.6992,
+    "inflation": 2.0,
+    "unemployment": 9.9222,
+    "balance": -2.1768
+   },
+   "2030": {
+    "gdp": 1.7015,
+    "inflation": 2.0,
+    "unemployment": 9.9622,
+    "balance": -2.1239
+   },
+   "2031": {
+    "gdp": 1.7029,
+    "inflation": 2.0,
+    "unemployment": 9.9622,
+    "balance": -2.0688
+   }
+  },
+  "checked_against": "GDP and inflation: press reports of the 13 Oct 2026 WEO; unemployment and balance: a separate CSV read of the IMF's database (the report's tables could not be read)"
+ },
+ "oecd": {
+  "fingerprint": "0fbd4363c572",
+  "published": "2026-06-01",
+  "checked_by": "AI check (Claude)",
+  "checked_at": "2026-11-01 05:11",
+  "values": {
+   "2026": {
+    "gdp": 2.1917,
+    "inflation": 3.2698,
+    "unemployment": 10.2137,
+    "balance": -2.1502
+   },
+   "2027": {
+    "gdp": 1.6699,
+    "inflation": 2.891,
+    "unemployment": 9.7939,
+    "balance": -2.1894
+   }
+  },
+  "checked_against": "the FUNCAS Panel's reference row for the OECD (June 2026); oecd.org refuses automated reading"
+ }
+}

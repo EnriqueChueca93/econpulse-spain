@@ -3,7 +3,7 @@
 import pandas as pd
 import pytest
 
-from econpulse.sources import bde, dbnomics, ecb, eurostat, fred, ine, oecd, ree, segsocial
+from econpulse.sources import bde, bdeproj, dbnomics, ecb, eurostat, fred, funcas, imf, ine, oecd, ree, segsocial
 
 pytestmark = pytest.mark.live
 
@@ -58,3 +58,15 @@ def test_forecast_feeds():
     assert r.meta["edition"].startswith("Economic Outlook") and r.series.index[-1].year > pd.Timestamp.now().year
     r = dbnomics.fetch("AMECO/ZUTN/ESP.1.0.0.0.ZUTN")
     assert r.series.index[-1].year > pd.Timestamp.now().year and len(r.meta["source_updated"]) == 10
+
+
+def test_forecasts_read_from_web_pages():
+    """IMF data service, the Banco de España's latest report table and the newest FUNCAS panel."""
+    r = imf.fetch("IMF.RES,WEO/ESP.NGDP_RPCH.A")
+    assert len(r.meta["published"]) == 10 and r.series.index[-1].year > pd.Timestamp.now().year
+    bdeproj.clear_cache()
+    r = bdeproj.fetch("GDP")
+    assert r.meta["url"].startswith("https://www.bde.es/") and len(r.series) >= 3
+    funcas.clear_cache()
+    for key in ("consensus/gdp", "max/gdp", "government/gdp", "airef/gdp"):
+        assert len(funcas.fetch(key).series) >= 1, key

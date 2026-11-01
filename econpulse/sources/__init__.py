@@ -5,7 +5,8 @@ Clients with INCREMENTAL = True can't serve full history in one request; when gi
 `since` they return only recent observations, which fetch.py merges into the store.
 """
 
-from . import bde, bis, bls, bundesbank, dbnomics, ecb, eia, eurostat, fred, ine, oecd, ree, segsocial, worldbank
+from . import (bde, bdeproj, bis, bls, bundesbank, dbnomics, ecb, eia, eurostat, fred, funcas, imf, ine, oecd, ree,
+               segsocial, worldbank)
 
 CLIENTS = {
     "ine": ine,
@@ -22,6 +23,9 @@ CLIENTS = {
     "eia": eia,
     "worldbank": worldbank,
     "bundesbank": bundesbank,
+    "imf": imf,
+    "bdeproj": bdeproj,
+    "funcas": funcas,
 }
 
 # Computed from other indicators after fetching; see derived.py.
@@ -42,6 +46,9 @@ SOURCE_NAMES = {
     "eia": "US EIA",
     "worldbank": "World Bank",
     "bundesbank": "Bundesbank",
+    "imf": "IMF",
+    "bdeproj": "Banco de España",
+    "funcas": "FUNCAS",
     DERIVED: "EconPulse calculation",
 }
 
