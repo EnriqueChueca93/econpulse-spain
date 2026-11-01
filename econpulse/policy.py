@@ -14,6 +14,15 @@ from .sources.base import madrid_today
 from .tables import Data
 
 ECB_CALENDAR_URL = "https://www.ecb.europa.eu/press/calendars/mgcgc/html/index.en.html"
+# Monetary policy meetings already held (press-conference day), for the ECB-speak meeting cycles.
+# Checked against the deposit rate: every change since 2022 took effect six days after one of these.
+ECB_PAST_DECISIONS = [pd.Timestamp(d) for d in (
+    "2022-02-03", "2022-03-10", "2022-04-14", "2022-06-09", "2022-07-21", "2022-09-08", "2022-10-27", "2022-12-15",
+    "2023-02-02", "2023-03-16", "2023-05-04", "2023-06-15", "2023-07-27", "2023-09-14", "2023-10-26", "2023-12-14",
+    "2024-01-25", "2024-03-07", "2024-04-11", "2024-06-06", "2024-07-18", "2024-09-12", "2024-10-17", "2024-12-12",
+    "2025-01-30", "2025-03-06", "2025-04-17", "2025-06-05", "2025-07-24", "2025-09-11", "2025-10-30", "2025-12-18",
+    "2026-02-05", "2026-03-19", "2026-04-30", "2026-06-11", "2026-07-23", "2026-09-10", "2026-10-29",
+)]
 ECB_DECISIONS = [pd.Timestamp(d) for d in (
     "2026-12-17",
     "2027-02-04", "2027-03-18", "2027-04-29", "2027-06-10", "2027-07-22", "2027-09-09", "2027-10-28", "2027-12-16",

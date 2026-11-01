@@ -50,7 +50,9 @@ Because the workflow commits data every day, run `git pull` before working local
   Spain's debt and deficits since 1970 and to 2070, starting from the European Commission's baseline (reproduced
   exactly to 2036, extended by EconPulse on the Commission's long-term assumptions), with levers for the budget,
   ageing costs, growth, inflation and interest rates, a goal-solver and shareable scenario links; after
-  Econvitals' Fiscal Explorer. **Global central bank stance**
+  Econvitals' Fiscal Explorer. **ECB-speak** (`site/ecb-speak.html`): how hawkish or dovish the ECB's Governing
+  Council sounds, from every member's speech since September 2022 (ECB and BIS full texts), scored with
+  EconPulse's published word lists rather than an AI; after Econvitals' Fedspeak Tracker. **Global central bank stance**
   (`site/stance.html`): Econvitals' Global Central Bank Stance Matrix for twelve central banks, shown natively
   and credited (Econvitals places its own work in the public domain, CC0 1.0).
 - **Analysis**: EconPulse's own calculations, each explained on the page: activity and inflation composites,
@@ -113,6 +115,8 @@ econpulse/            Python package
   feed.py             the RSS feed of those notes (site/feed.xml; absolute links use config.SITE_URL)
   stance.py           the central bank stance page, from Econvitals' public data (saved to data/stance.json)
   fiscal.py           the Fiscal Explorer's baseline and data (the levers run in static/fiscal.js)
+  ecbspeak.py         ECB-speak: collects the Governing Council's speeches (data/ecbspeak.json) and analyses them
+  speechscore.py      the hawkish/dovish word lists and the score
   fiscal_baseline.json  the Commission's Spain baseline, extracted by scripts/extract_fiscal_baseline.py
   build.py            renders every page into site/ (chart data goes in site/data/*.js)
 templates/            Jinja2 pages: base layout, home, section pages, data page

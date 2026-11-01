@@ -1,0 +1,160 @@
+{% extends "base.html" %}
+{% from "macros.html" import chart_card %}
+
+{% block title %}ECB-speak · EconPulse Spain{% endblock %}
+
+{% macro signed(v, d=0) -%}{% if v is none %}–{% else %}{{ ("%+." ~ d ~ "f") | format(v) | replace("-", "−") }}{% endif %}{%- endmacro %}
+
+{% block content %}
+  <p class="back-link"><a href="tools.html">← Tools</a></p>
+  <h1>ECB-speak</h1>
+  {% if not p %}
+    <p class="notice">The speeches have not been collected yet; they arrive with the next data update.</p>
+  {% else %}
+  <p class="lede">How hawkish or dovish the ECB's Governing Council sounds: every speech by its members since September 2022,
+    scored on a scale from −100 (dovish) to +100 (hawkish) by counting the phrases that point to tighter or easier policy,
+    and averaged over each meeting cycle.</p>
+  <div class="notice credit-box">
+    <p>After <a href="https://econvitals.org/tools/fedspeak/" target="_blank" rel="noopener">Econvitals' Fedspeak Tracker</a>
+      (econvitals.org, by Jason Furman; public domain, CC0 1.0), which scores the US Federal Reserve's communications with a
+      language model. This version scores the ECB's with <strong>word lists</strong>, not an AI: transparent and free, but
+      cruder, so read it as a rough gauge. Speeches from the ECB and the Bank for International Settlements.</p>
+    <p class="secondary">{{ p.documents }} speeches, {{ p.scored }} with a monetary-policy stance · updated {{ p.updated_at }} UTC</p>
+  </div>
+  {% if p.error %}<p class="notice">The last update failed ({{ p.error }}); these are the speeches collected before.</p>{% endif %}
+
+  <div class="facts">
+    <div class="fact"><span class="fact-label">Committee tone, last full cycle</span>
+      <span class="fact-value">{{ signed(p.tone_last) }}</span>
+      <span class="fact-sub">meeting of {{ p.last_full }} · {{ p.docs_last }} scored speeches</span></div>
+    <div class="fact"><span class="fact-label">Current cycle</span>
+      <span class="fact-value">{{ signed(p.tone_current) if p.tone_current is not none else "NA" }}</span>
+      <span class="fact-sub">to {{ p.current }} · {% if p.docs_current %}{{ p.docs_current }} scored speeches{% else %}too few speeches yet{% endif %}</span></div>
+    <div class="fact"><span class="fact-label">Change over the year</span>
+      <span class="fact-value">{% if p.tone_last is not none and p.tone_year_ago is not none %}{{ signed(p.tone_last - p.tone_year_ago) }}{% else %}–{% endif %}</span>
+      <span class="fact-sub">vs the cycle to {{ p.year_ago }} ({{ signed(p.tone_year_ago) }})</span></div>
+    <div class="fact"><span class="fact-label">Dispersion (σ)</span>
+      <span class="fact-value">{{ "%.0f" | format(p.spread_last) if p.spread_last is not none else "–" }}</span>
+      <span class="fact-sub">spread of members' tone, last full cycle</span></div>
+  </div>
+
+  <section class="block" aria-labelledby="standings">
+    <h2 id="standings">Where they stand</h2>
+    <p class="block-intro">Every current member with a scored speech in the last year, ranked by their stance: the heavy dot
+      is their average over the last four meeting cycles (or their latest three speeches if they have been quiet). Small
+      numbered dots are their two latest scored speeches (1 = most recent); the band is their range over the past year.
+      Relative compares each speech with the rest of the committee in the same cycle, which takes out the swings everyone
+      shares. The Banco de España's governor is in orange when shown.</p>
+    <div class="tool-controls" role="group" aria-label="Scale">
+      <span class="secondary">Scale</span>
+      <button type="button" class="tool-button" data-speak-scale="absolute" aria-pressed="true">Absolute</button>
+      <button type="button" class="tool-button" data-speak-scale="relative" aria-pressed="false">Relative</button>
+    </div>
+    <div class="charts charts-single">{% for c in charts if c.id == "speak-standings" %}{{ chart_card(c) }}{% endfor %}</div>
+    {% if p.unscored %}
+    <p class="note">Members whose speeches in the last year had too little monetary-policy language to score:
+      {% for u in p.unscored %}{{ u.name }} ({{ u.label }}){{ ", " if not loop.last else "." }}{% endfor %}
+      Many governors mostly speak about payments, supervision or their national economy, and speeches given only in
+      their own language (such as many of the Banco de España's) are not in the English archive.</p>
+    {% endif %}
+  </section>
+
+  <section class="block" aria-labelledby="committee">
+    <h2 id="committee">The committee over time</h2>
+    <p class="block-intro">The committee's tone each meeting cycle (the average of its members' average scores) and the
+      spread between its more hawkish and more dovish quarters. Cycles with fewer than {{ p.min_members }} members
+      speaking on policy are left out.</p>
+    <div class="charts charts-single">{% for c in charts if c.id == "speak-committee" %}{{ chart_card(c) }}{% endfor %}</div>
+    {% if p.decision_text %}<p class="notice callout">{{ p.decision_text }}</p>{% endif %}
+  </section>
+
+  <section class="block" aria-labelledby="week">
+    <h2 id="week">This week at the ECB</h2>
+    <p class="block-intro">Every member's speech dated in the last seven days, newest first, including those with no
+      monetary-policy stance to score.</p>
+    {% if p.week %}
+    <div class="table-scroll"><table class="data-table speak-table">
+      <thead><tr><th scope="col">Date</th><th scope="col">Member</th><th scope="col">Speech</th><th scope="col" class="num">Score</th><th scope="col" class="num">Relative</th></tr></thead>
+      <tbody>{% for r in p.week %}<tr{% if r.spain %} class="highlight-row"{% endif %}><td>{{ r.date }}</td><td>{{ r.name }}<span class="secondary"> · {{ r.where }}</span></td>
+        <td><a href="{{ r.url }}" target="_blank" rel="noopener">{{ r.title }}</a></td>
+        <td class="num">{{ signed(r.score) if r.score is not none else "no stance" }}</td><td class="num">{{ signed(r.relative) }}</td></tr>{% endfor %}</tbody>
+    </table></div>
+    {% else %}<p class="note">No speeches by members in the last seven days.</p>{% endif %}
+  </section>
+
+  <section class="block" aria-labelledby="latest">
+    <h2 id="latest">Latest on the record</h2>
+    <p class="block-intro">The latest speeches with a policy stance. "Vs own average" is the score minus the member's average
+      over their previous six scored speeches: how hawkish or dovish this was for them.</p>
+    <div class="table-scroll"><table class="data-table speak-table">
+      <thead><tr><th scope="col">Date</th><th scope="col">Member</th><th scope="col">Speech</th><th scope="col" class="num">Score</th>
+        <th scope="col" class="num">Vs own average</th><th scope="col" class="num">Relative</th></tr></thead>
+      <tbody>{% for r in p.latest %}<tr{% if r.spain %} class="highlight-row"{% endif %}><td>{{ r.date }}</td><td>{{ r.name }}<span class="secondary"> · {{ r.where }}</span></td>
+        <td><a href="{{ r.url }}" target="_blank" rel="noopener">{{ r.title }}</a></td>
+        <td class="num">{{ signed(r.score) }}</td><td class="num">{{ signed(r.own) }}</td><td class="num">{{ signed(r.relative) }}</td></tr>{% endfor %}</tbody>
+    </table></div>
+    {% if p.next_meeting %}<p class="note">Next monetary policy meeting: {{ p.next_meeting }}. Members stop discussing policy
+      in public from about a week before ({{ p.quiet_from }}), the ECB's quiet period.</p>{% endif %}
+  </section>
+
+  <section class="block" aria-labelledby="speak-method">
+    <h2 id="speak-method">Methods and data</h2>
+    <div class="prose">
+      <p><strong>Score.</strong> Each speech is split into sentences and searched for the phrases below. The score is
+        100 × (hawkish − dovish) ÷ (hawkish + dovish). A speech needs at least {{ p.min_matches }} matches, and at least 5%
+        of its sentences must mention monetary policy, inflation or interest rates, to be scored; otherwise it has "no
+        stance". The lists count changes and risks, not levels ("higher inflation", not "high inflation"), because
+        speeches use levels to describe the past as often as the outlook. They miss negation and context: "not yet time to
+        cut" counts as a cut. Members' averages give each member equal weight; meeting cycles run from the Saturday after
+        one meeting to the Friday after the next.</p>
+      <div class="speak-lists">
+        {% for side in ["hawkish", "dovish"] %}
+        <div><h3>{{ side | capitalize }}</h3><ul>
+          {% for g in p.groups if g.side == side %}<li><strong>{{ g.name }}</strong>: {{ g.note }}.</li>{% endfor %}
+        </ul></div>
+        {% endfor %}
+      </div>
+      <details><summary>The exact patterns</summary>
+        {% for g in p.groups %}<p class="note"><strong>{{ g.side }} · {{ g.name }}</strong><br>{% for pat in g.patterns %}<code>{{ pat }}</code><br>{% endfor %}</p>{% endfor %}
+      </details>
+      <p><strong>Who counts.</strong> Speeches by Governing Council members, recognised by the role printed with each
+        speech: the ECB's President, Vice-President and Executive Board, and the governors of the euro-area national
+        central banks (Croatia's from 2023, Bulgaria's from 2026). Deputy governors are not members and are left out.
+        "Current" members are the latest holder of each seat and board members heard from in the last six months.</p>
+      <p><strong>Sources.</strong> Executive Board speeches from the ECB's
+        <a href="{{ ecb_page }}" target="_blank" rel="noopener">full-text file of its speeches</a>{% if p.ecb_last %} (to {{ p.ecb_last }}){% endif %};
+        national governors from the BIS's <a href="{{ bis_page }}" target="_blank" rel="noopener">archive of central bankers'
+        speeches</a>{% if p.bis_archive_last %}, which currently runs to {{ p.bis_archive_last }}{% endif %}, and, after that,
+        from the BIS feed as speeches appear; speeches between the two are added when the BIS updates its archive. The BIS
+        allows non-commercial use; only scores, titles and links are shown here. Interviews and press conferences are not
+        included.</p>
+    </div>
+  </section>
+  {% endif %}
+{% endblock %}
+
+{% block scripts %}
+  {% if charts_file %}
+  <script src="assets/plotly.min.js?v={{ build_id }}"></script>
+  <script src="{{ charts_file }}?v={{ build_id }}"></script>
+  {% endif %}
+{% endblock %}
+
+{% block after_scripts %}
+  <script>
+    (function () {
+      var alt = window.EP && window.EP.speakRelative, render = window.EP && window.EP.render;
+      if (!alt || !render) return;
+      var absolute = (window.EP.charts || []).filter(function (c) { return c.id === "speak-standings"; })[0];
+      Array.prototype.forEach.call(document.querySelectorAll("[data-speak-scale]"), function (b) {
+        b.addEventListener("click", function () {
+          var rel = b.getAttribute("data-speak-scale") === "relative";
+          render(rel ? alt : absolute);
+          Array.prototype.forEach.call(document.querySelectorAll("[data-speak-scale]"), function (x) {
+            x.setAttribute("aria-pressed", x === b ? "true" : "false");
+          });
+        });
+      });
+    })();
+  </script>
+{% endblock %}

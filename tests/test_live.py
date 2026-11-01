@@ -87,3 +87,15 @@ def test_econvitals_stance_data(tmp_path):
     assert "central banks" in stance.refresh(store)
     page = stance.page(store)
     assert any(r["code"] == "XM" for r in page["rows"]) and page["diffusion"]["n"] > 20
+
+
+def test_ecb_speak_sources():
+    """The BIS feed and archive and the ECB's speeches file still answer in the shape ECB-speak reads."""
+    from datetime import date
+
+    from econpulse import ecbspeak, http
+    items = ecbspeak.parse_feed(http.get(ecbspeak.BIS_FEED).text)
+    assert len(items) >= 10 and all(i["url"].startswith("https://www.bis.org/") for i in items)
+    assert ecbspeak.archive(date.today().year - 1)
+    head = http.session().head(ecbspeak.ECB_FILE, timeout=60, allow_redirects=True)
+    assert head.status_code == 200

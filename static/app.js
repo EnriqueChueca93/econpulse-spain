@@ -129,10 +129,58 @@
     window.Plotly.react(el, traces, layout, config);
   }
 
+  // A dot plot, one row per person (the ECB-speak standings): a heavy dot for the current
+  // stance, small numbered dots for the latest readings (1 = most recent) and a band for the range.
+  function drawDots(el, spec) {
+    var surface = token("--surface"), ink = token("--text"), ink2 = token("--text-2");
+    var muted = token("--muted"), grid = token("--grid"), axis = token("--axis");
+    var blue = token("--series-1"), orange = token("--series-2");
+    var rows = spec.rows;
+    el.style.height = Math.max(220, rows.length * 30 + 70) + "px";
+    var labels = rows.map(function (r) { return r.label; });
+    var band = { x: [], y: [] }, recent = { x: [], y: [], text: [] };
+    rows.forEach(function (r) {
+      if (r.range) { band.x.push(r.range[0], r.range[1], null); band.y.push(r.label, r.label, null); }
+      (r.recent || []).forEach(function (v, i) {
+        if (v === null || v === undefined) return;
+        recent.x.push(v); recent.y.push(r.label); recent.text.push(String(i + 1));
+      });
+    });
+    var traces = [
+      { type: "scatter", mode: "lines", x: band.x, y: band.y, hoverinfo: "skip", showlegend: false,
+        line: { color: axis, width: 7 }, opacity: 0.6 },
+      { type: "scatter", mode: "markers+text", x: recent.x, y: recent.y, text: recent.text, textposition: "top center",
+        textfont: { size: 9, color: ink2 }, showlegend: false, marker: { size: 8, color: surface, line: { color: ink2, width: 1.5 } },
+        hovertemplate: "Reading %{text}: <b>%{x:+." + spec.decimals + "f}</b><extra>%{y}</extra>" },
+      { type: "scatter", mode: "markers", x: rows.map(function (r) { return r.stance; }), y: labels, showlegend: false,
+        marker: { size: 13, color: rows.map(function (r) { return r.highlight ? orange : blue; }), line: { color: surface, width: 2 } },
+        customdata: rows.map(function (r) { return r.sub || ""; }),
+        hovertemplate: "<b>%{x:+." + spec.decimals + "f}</b> %{y}<br>%{customdata}<extra></extra>" }
+    ];
+    var lo = spec.x_range[0], hi = spec.x_range[1];
+    var layout = {
+      paper_bgcolor: surface, plot_bgcolor: surface,
+      font: { family: token("--sans") || "system-ui, sans-serif", size: 12, color: ink2 },
+      margin: { l: 10, r: 18, t: 8, b: 44 },
+      hovermode: "closest", hoverlabel: { bgcolor: surface, bordercolor: grid, font: { color: ink, size: 12 } },
+      yaxis: { type: "category", categoryorder: "array", categoryarray: labels, autorange: "reversed", automargin: true,
+        fixedrange: true, ticks: "", tickfont: { color: ink2, size: 12 } },
+      xaxis: { range: [lo, hi], gridcolor: grid, zeroline: true, zerolinecolor: ink2, zerolinewidth: 1, fixedrange: true,
+        tickfont: { color: muted }, tickformat: "+d" },
+      annotations: [
+        { x: lo, xref: "x", y: 0, yref: "paper", yshift: -32, xanchor: "left", showarrow: false, text: "← " + (spec.left || "lower"), font: { size: 11, color: ink2 } },
+        { x: hi, xref: "x", y: 0, yref: "paper", yshift: -32, xanchor: "right", showarrow: false, text: (spec.right || "higher") + " →", font: { size: 11, color: ink2 } }
+      ]
+    };
+    var config = Object.assign({ toImageButtonOptions: { filename: "econpulse-" + spec.id, scale: 2 } }, CONFIG_BASE);
+    window.Plotly.react(el, traces, layout, config);
+  }
+
   function draw(spec) {
     var el = document.getElementById("chart-" + spec.id);
     if (!el || !window.Plotly) return;
     if (spec.kind === "hbar") return drawRanking(el, spec);
+    if (spec.kind === "dots") return drawDots(el, spec);
     if (spec.kind === "xy") return drawXY(el, spec);
     // Fixed slot order, never cycled: a spec has at most three palette series.
     var colors = [token("--series-1"), token("--series-2"), token("--series-3")];
@@ -267,6 +315,21 @@
     var category = spec.x_kind === "category";
     var head = table.createTHead().insertRow();
     if (spec.kind === "xy") return fillXYTable(spec, holder, table, head);
+    if (spec.kind === "dots") {
+      ["Member", "Stance", "Latest", "Range over the year"].forEach(function (h) {
+        var th = document.createElement("th"); th.scope = "col"; th.textContent = h; head.appendChild(th);
+      });
+      var tb = table.createTBody();
+      spec.rows.forEach(function (r) {
+        var tr = tb.insertRow();
+        tr.insertCell().textContent = r.label;
+        tr.insertCell().textContent = fmt(r.stance, spec, true);
+        tr.insertCell().textContent = (r.recent || []).filter(function (v) { return v !== null; }).map(function (v) { return fmt(v, spec, true); }).join(", ");
+        tr.insertCell().textContent = r.range ? fmt(r.range[0], spec, true) + " to " + fmt(r.range[1], spec, true) : "–";
+      });
+      holder.appendChild(table);
+      return;
+    }
     [spec.x_title || "Date"].concat(spec.series.map(function (s) { return s.name; })).forEach(function (h) {
       var th = document.createElement("th"); th.scope = "col"; th.textContent = h; head.appendChild(th);
     });

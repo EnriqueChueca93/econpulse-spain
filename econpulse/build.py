@@ -14,7 +14,7 @@ from pathlib import Path
 import pandas as pd
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
-from . import __version__, analytics, changes, feed, fiscal, schedule, stance, surprises, tools
+from . import __version__, analytics, changes, ecbspeak, feed, fiscal, schedule, stance, surprises, tools
 from .charts import build_home_charts
 from .config import SITE_DIR, STATIC_DIR, TEMPLATES_DIR
 from .pages import build_page
@@ -158,6 +158,14 @@ def build_site(indicators: list[Indicator], store: Store | None = None, site_dir
         write_data_js(data_dir / "fiscal.js", "fiscal", fx)
     render("fiscal-explorer.html", "fiscal-explorer.html", active="tools.html", fx=fx,
            s1_check=fx["s1_check"] if fx else None, past_groups=fiscal.past_groups(fx["history"]) if fx else [])
+    speak = ecbspeak.page(store)
+    if speak:
+        write_data_js(data_dir / "charts-ecbspeak.js", "charts", speak["charts"])
+        with open(data_dir / "charts-ecbspeak.js", "a", encoding="utf-8") as f:
+            f.write("window.EP.speakRelative = " + json.dumps(speak["relative"], ensure_ascii=False, separators=(",", ":")) + ";\n")
+    render("ecb-speak.html", "ecb-speak.html", active="tools.html", p=speak, charts=speak["charts"] if speak else [],
+           charts_file="data/charts-ecbspeak.js" if speak else None, ecb_page=ecbspeak.ECB_SPEECHES,
+           bis_page=ecbspeak.BIS_ARCHIVE_PAGE)
     stance_charts = stance.charts(store)
     if stance_charts:
         write_data_js(data_dir / "charts-stance.js", "charts", stance_charts)

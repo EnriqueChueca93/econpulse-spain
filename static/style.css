@@ -309,6 +309,15 @@ code { font-size: 13px; background: var(--hover); padding: 1px 5px; border-radiu
 .stance-lists { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; font-size: 14px; }
 blockquote.note { margin: 8px 0; padding-left: 12px; border-left: 3px solid var(--border); }
 
+/* ECB-speak */
+.charts-single { grid-template-columns: 1fr; }
+.speak-table td { vertical-align: top; }
+.speak-table td:nth-child(3) { min-width: 260px; }
+.speak-lists { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+.speak-lists h3 { margin: 8px 0 4px; font-size: 15px; }
+.speak-lists ul { margin: 0; padding-left: 18px; font-size: 14px; }
+details code { font-size: 11px; word-break: break-all; }
+
 /* Fiscal Explorer */
 .fx-badges { margin: 0 0 12px; }
 .fx-badges .badge { font-size: 12px; padding: 2px 8px; }
