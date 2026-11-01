@@ -2120,6 +2120,55 @@
    "display": "−2.6% of GDP",
    "period": "2026",
    "flash": false
+  },
+  "hicp_wmedian": {
+   "date": "2026-09-01",
+   "raw": 3.081817278,
+   "display": "3.1%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "hicp_trim10": {
+   "date": "2026-09-01",
+   "raw": 3.668608986,
+   "display": "3.7%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "hicp_trim30": {
+   "date": "2026-09-01",
+   "raw": 3.158529435,
+   "display": "3.2%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "hicp_share_above2": {
+   "date": "2026-09-01",
+   "raw": 71.94442404,
+   "display": "71.9%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "hicp_share_above5": {
+   "date": "2026-09-01",
+   "raw": 18.32453591,
+   "display": "18.3%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "hicp_wmedian_euro_area": {
+   "date": "2026-09-01",
+   "raw": 2.683363148,
+   "display": "2.7%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "hicp_trim30_euro_area": {
+   "date": "2026-09-01",
+   "raw": 2.473722642,
+   "display": "2.5%",
+   "period": "Sep 2026",
+   "flash": false
   }
  },
  "notes": [
@@ -2145,6 +2194,6 @@
    "at": "2026-11-01T02:50:46+00:00"
   }
  ],
- "updated_at": "2026-11-01T04:15:43+00:00",
+ "updated_at": "2026-11-01T04:33:59+00:00",
  "started_at": "2026-10-31T23:31:49+00:00"
 }
