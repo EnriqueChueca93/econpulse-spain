@@ -9,6 +9,7 @@
 #                bundesbank | imf | bdeproj (Banco de España projections) | funcas |
 #                hicpdist (underlying inflation from Eurostat's detailed HICP items) |
 #                ageing (participation adjusted for the population's ageing, from Eurostat's LFS) |
+#                reg (Ministry of Labour: collective dismissals and temporary layoffs) |
 #                fred | derived  (FRED does not answer GitHub's servers, so the online site avoids it)
 #   key, params  what to ask the source for (see econpulse/sources/<source>.py)
 #   freq         D | M | Q | A
@@ -100,6 +101,44 @@ lfs_education: &lfs_education
   - {slug: edu_mid, name: "upper secondary education, 25-64", name_es: "segunda etapa de secundaria, 25 a 64 años", isced: ED3_4}
   - {slug: edu_high, name: "tertiary education, 25-64", name_es: "educación superior, 25 a 64 años", isced: ED5-8}
 
+# CNAE-09 sections in INE's labour cost survey (ETCL): wage cost per worker, effective hours per
+# worker and job vacancies, by section (series codes).
+etcl_sections: &etcl_sections
+  - {slug: mining, name: "mining and quarrying", name_es: "industrias extractivas", pay: ETCL1743, hours: ETCL2533, vac: ETCL2943}
+  - {slug: manufacturing, name: "manufacturing", name_es: "industria manufacturera", pay: ETCL1739, hours: ETCL2526, vac: ETCL2942}
+  - {slug: energy, name: "electricity and gas", name_es: "suministro de energía eléctrica, gas, vapor y aire acondicionado", pay: ETCL1735, hours: ETCL2519, vac: ETCL2941}
+  - {slug: water, name: "water and waste", name_es: "suministro de agua, saneamiento y gestión de residuos", pay: ETCL1731, hours: ETCL2512, vac: ETCL2940}
+  - {slug: construction, name: "construction", name_es: "construcción", pay: ETCL1727, hours: ETCL2505, vac: ETCL2939}
+  - {slug: trade, name: "wholesale and retail trade", name_es: "comercio al por mayor y al por menor", pay: ETCL1723, hours: ETCL2498, vac: ETCL2938}
+  - {slug: transport, name: "transport and storage", name_es: "transporte y almacenamiento", pay: ETCL1719, hours: ETCL2491, vac: ETCL2937}
+  - {slug: hospitality, name: "accommodation and food services", name_es: "hostelería", pay: ETCL1715, hours: ETCL2484, vac: ETCL2936}
+  - {slug: information, name: "information and communication", name_es: "información y comunicaciones", pay: ETCL1711, hours: ETCL2477, vac: ETCL2935}
+  - {slug: finance, name: "finance and insurance", name_es: "actividades financieras y de seguros", pay: ETCL1707, hours: ETCL2470, vac: ETCL2934}
+  - {slug: real_estate, name: "real estate", name_es: "actividades inmobiliarias", pay: ETCL1703, hours: ETCL2463, vac: ETCL2933}
+  - {slug: professional, name: "professional, scientific and technical", name_es: "actividades profesionales, científicas y técnicas", pay: ETCL1699, hours: ETCL2456, vac: ETCL2932}
+  - {slug: administrative, name: "administrative and support services", name_es: "actividades administrativas y servicios auxiliares", pay: ETCL1695, hours: ETCL2449, vac: ETCL2931}
+  - {slug: public_admin, name: "public administration and defence", name_es: "administración pública y defensa", pay: ETCL1691, hours: ETCL2442, vac: ETCL2930}
+  - {slug: education, name: "education", name_es: "educación", pay: ETCL1687, hours: ETCL2435, vac: ETCL2929}
+  - {slug: health, name: "health and social work", name_es: "actividades sanitarias y de servicios sociales", pay: ETCL1683, hours: ETCL2428, vac: ETCL2928}
+  - {slug: arts, name: "arts, entertainment and recreation", name_es: "actividades artísticas, recreativas y de entretenimiento", pay: ETCL1679, hours: ETCL2421, vac: ETCL2927}
+  - {slug: other_services, name: "other services", name_es: "otros servicios", pay: ETCL1675, hours: ETCL2414, vac: ETCL2926}
+
+# The sections with vacancies published every quarter (INE leaves out the others in many quarters).
+etcl_vacancies: &etcl_vacancies
+  - {slug: manufacturing, name: "manufacturing", name_es: "industria manufacturera", pay: ETCL1739, hours: ETCL2526, vac: ETCL2942}
+  - {slug: construction, name: "construction", name_es: "construcción", pay: ETCL1727, hours: ETCL2505, vac: ETCL2939}
+  - {slug: trade, name: "wholesale and retail trade", name_es: "comercio al por mayor y al por menor", pay: ETCL1723, hours: ETCL2498, vac: ETCL2938}
+  - {slug: transport, name: "transport and storage", name_es: "transporte y almacenamiento", pay: ETCL1719, hours: ETCL2491, vac: ETCL2937}
+  - {slug: hospitality, name: "accommodation and food services", name_es: "hostelería", pay: ETCL1715, hours: ETCL2484, vac: ETCL2936}
+  - {slug: information, name: "information and communication", name_es: "información y comunicaciones", pay: ETCL1711, hours: ETCL2477, vac: ETCL2935}
+  - {slug: finance, name: "finance and insurance", name_es: "actividades financieras y de seguros", pay: ETCL1707, hours: ETCL2470, vac: ETCL2934}
+  - {slug: professional, name: "professional, scientific and technical", name_es: "actividades profesionales, científicas y técnicas", pay: ETCL1699, hours: ETCL2456, vac: ETCL2932}
+  - {slug: administrative, name: "administrative and support services", name_es: "actividades administrativas y servicios auxiliares", pay: ETCL1695, hours: ETCL2449, vac: ETCL2931}
+  - {slug: public_admin, name: "public administration and defence", name_es: "administración pública y defensa", pay: ETCL1691, hours: ETCL2442, vac: ETCL2930}
+  - {slug: education, name: "education", name_es: "educación", pay: ETCL1687, hours: ETCL2435, vac: ETCL2929}
+  - {slug: health, name: "health and social work", name_es: "actividades sanitarias y de servicios sociales", pay: ETCL1683, hours: ETCL2428, vac: ETCL2928}
+  - {slug: arts, name: "arts, entertainment and recreation", name_es: "actividades artísticas, recreativas y de entretenimiento", pay: ETCL1679, hours: ETCL2421, vac: ETCL2927}
+  - {slug: other_services, name: "other services", name_es: "otros servicios", pay: ETCL1675, hours: ETCL2414, vac: ETCL2926}
 indicators:
 
   # ---------------------------------------------------------------- GDP (INE CNTR)
@@ -5990,3 +6029,222 @@ indicators:
     transforms: [avg_1y, level]
     max_age_days: 300
     notes: People in private households, from Eurostat's labour force survey; it leaves out care homes.
+
+  # ---------------------------------------------------------------- Flows, hours and pay (Batch 25d)
+  # Labour market transitions: the share of people in one state who are in another a quarter later
+  # (Eurostat, from the labour force survey, seasonally adjusted).
+  - id: flow_une_emp
+    label: "Unemployed who find a job, % of the unemployed"
+    label_es: "Parados que pasan a ocupados, % de los parados"
+    section: labour
+    source: eurostat
+    key: lfsi_long_q
+    params: {geo: ES, s_adj: SA, sex: T, wstatus: UNE_EMP, unit: PC_UNE}
+    freq: Q
+    unit: "%"
+    change_unit: pp
+    max_age_days: 300
+    notes: Share of the unemployed in one quarter who are employed in the next (Eurostat, seasonally adjusted).
+
+  - id: flow_une_inac
+    label: "Unemployed who stop looking, % of the unemployed"
+    label_es: "Parados que pasan a inactivos, % de los parados"
+    section: labour
+    source: eurostat
+    key: lfsi_long_q
+    params: {geo: ES, s_adj: SA, sex: T, wstatus: UNE_INAC, unit: PC_UNE}
+    freq: Q
+    unit: "%"
+    change_unit: pp
+    max_age_days: 300
+
+  - id: flow_emp_une
+    label: "Employed who lose their job, % of the employed"
+    label_es: "Ocupados que pasan a parados, % de los ocupados"
+    section: labour
+    source: eurostat
+    key: lfsi_long_q
+    params: {geo: ES, s_adj: SA, sex: T, wstatus: EMP_UNE, unit: PC_EMP}
+    freq: Q
+    unit: "%"
+    change_unit: pp
+    max_age_days: 300
+    notes: Share of the employed in one quarter who are unemployed in the next (Eurostat, seasonally adjusted).
+
+  - id: flow_emp_inac
+    label: "Employed who leave the labour force, % of the employed"
+    label_es: "Ocupados que pasan a inactivos, % de los ocupados"
+    section: labour
+    source: eurostat
+    key: lfsi_long_q
+    params: {geo: ES, s_adj: SA, sex: T, wstatus: EMP_INAC, unit: PC_EMP}
+    freq: Q
+    unit: "%"
+    change_unit: pp
+    max_age_days: 300
+
+  - id: flow_inac_emp
+    label: "Inactive people who start work, % of the inactive"
+    label_es: "Inactivos que pasan a ocupados, % de los inactivos"
+    section: labour
+    source: eurostat
+    key: lfsi_long_q
+    params: {geo: ES, s_adj: SA, sex: T, wstatus: INAC_EMP, unit: PC_INAC}
+    freq: Q
+    unit: "%"
+    change_unit: pp
+    max_age_days: 300
+
+  # Hours worked: national accounts (all jobs, seasonally and calendar adjusted) and INE's labour cost
+  # survey (hours per worker and month, not seasonally adjusted).
+  - id: hours_na
+    label: "Hours worked (national accounts)"
+    label_es: "Horas trabajadas, contabilidad nacional"
+    section: labour
+    source: eurostat
+    key: namq_10_a10_e
+    params: {geo: ES, s_adj: SCA, nace_r2: TOTAL, na_item: EMP_DC, unit: THS_HW}
+    freq: Q
+    unit: "mn hours"
+    scale: 0.001
+    decimals: 0
+    transforms: [yoy, level]
+    notes: Hours worked by everyone employed in Spain, seasonally and calendar adjusted.
+
+  - id: persons_na
+    label: "People employed (national accounts)"
+    label_es: "Personas ocupadas, contabilidad nacional"
+    section: labour
+    source: eurostat
+    key: namq_10_a10_e
+    params: {geo: ES, s_adj: SCA, nace_r2: TOTAL, na_item: EMP_DC, unit: THS_PER}
+    freq: Q
+    unit: thousands
+    transforms: [yoy, level]
+    notes: Domestic employment concept, seasonally and calendar adjusted.
+
+  - id: hours_per_person
+    label: "Hours worked a week per person employed"
+    label_es: "Horas trabajadas por ocupado y semana"
+    section: labour
+    source: derived
+    key: divide
+    params: {a: hours_na, b: persons_na, scale: 76.923}
+    freq: Q
+    unit: hours
+    transforms: [level, yoy]
+    notes: Hours worked in the quarter per person employed, divided by 13 weeks (national accounts).
+
+  - id: hours_etcl
+    label: "Hours worked per worker a month"
+    label_es: "Horas efectivas por trabajador y mes (ETCL)"
+    section: labour
+    source: ine
+    key: ETCL2407
+    freq: Q
+    unit: hours
+    transforms: [avg_1y, level]
+    notes: Hours actually worked per employee a month, from INE's labour cost survey; not seasonally adjusted.
+
+  - id: hours_sick
+    label: "Hours lost to sick leave per worker a month"
+    label_es: "Horas no trabajadas por incapacidad temporal, por trabajador y mes (ETCL)"
+    section: labour
+    source: ine
+    key: ETCL2401
+    freq: Q
+    unit: hours
+    transforms: [avg_1y, level]
+    notes: Hours not worked because of temporary incapacity (sick leave and accidents), per employee a month.
+
+  - id: hours_overtime
+    label: "Overtime hours per worker a month"
+    label_es: "Horas extras por trabajador y mes (ETCL)"
+    section: labour
+    source: ine
+    key: ETCL2392
+    freq: Q
+    unit: hours
+    transforms: [avg_1y, level]
+
+  - id: hours_{slug}
+    for_each: *etcl_sections
+    label: "Hours worked per worker a month, {name}"
+    label_es: "Horas efectivas por trabajador y mes, {name_es} (ETCL)"
+    section: labour
+    source: ine
+    key: "{hours}"
+    freq: Q
+    unit: hours
+    transforms: [avg_1y, level]
+
+  - id: vacancies_{slug}
+    for_each: *etcl_vacancies
+    label: "Job vacancies, {name}"
+    label_es: "Puestos de trabajo vacantes, {name_es} (ETCL)"
+    section: labour
+    source: ine
+    key: "{vac}"
+    freq: Q
+    unit: thousands
+    scale: 0.001
+    transforms: [avg_1y, yoy]
+
+  - id: pay_{slug}
+    for_each: *etcl_sections
+    label: "Wage cost per worker a month, {name}"
+    label_es: "Coste salarial total por trabajador y mes, {name_es} (ETCL)"
+    section: wages
+    source: ine
+    key: "{pay}"
+    freq: Q
+    unit: "€"
+    decimals: 0
+    transforms: [yoy, avg_1y]
+
+  # Collective dismissals and temporary layoffs (ERE/ERTE): workers affected each month by procedures
+  # under articles 51 and 47 of the Workers' Statute (Ministry of Labour, sources/reg.py), from 2023.
+  - id: ere_total
+    label: "Workers affected by collective dismissals and temporary layoffs"
+    label_es: "Trabajadores afectados por regulación de empleo (REG)"
+    section: labour
+    source: reg
+    key: total
+    freq: M
+    unit: thousands
+    scale: 0.001
+    transforms: [sum_1y, level]
+    notes: Provisional monthly figures; the year's workbook revises them slightly.
+
+  - id: ere_dismissals
+    label: "Workers affected by collective dismissals"
+    label_es: "Trabajadores afectados por despidos colectivos (REG)"
+    section: labour
+    source: reg
+    key: dismissals
+    freq: M
+    unit: thousands
+    scale: 0.001
+    transforms: [sum_1y, level]
+
+  - id: ere_suspensions
+    label: "Workers affected by contract suspensions (ERTE)"
+    label_es: "Trabajadores afectados por suspensión de contrato (REG)"
+    section: labour
+    source: reg
+    key: suspensions
+    freq: M
+    unit: thousands
+    scale: 0.001
+    transforms: [sum_1y, level]
+
+  - id: ere_reductions
+    label: "Workers affected by cuts in working hours (ERTE)"
+    label_es: "Trabajadores afectados por reducción de jornada (REG)"
+    section: labour
+    source: reg
+    key: reductions
+    freq: M
+    unit: thousands
+    scale: 0.001
+    transforms: [sum_1y, level]

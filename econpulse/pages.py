@@ -8,7 +8,7 @@ lists the indicators those functions read. Sections without blocks yet show thei
 (see build.SECTION_PAGES for the batch that fills them).
 """
 
-from . import analytics, demography, forecasts, policy, sectortables, surprises, underlying
+from . import analytics, demography, forecasts, policy, sectortables, surprises, underlying, workstats
 from .charts import build_chart, build_curve, build_ranking, build_xy
 from .registry import Indicator
 from .snapshot import fmt_value, period_label
@@ -477,6 +477,79 @@ PAGES: dict[str, list[dict]] = {
             ],
         },
         {
+            "id": "flows",
+            "title": "Worker flows: finding and losing jobs",
+            "intro": ("Behind the unemployment rate, people move all the time: some of the unemployed find work or "
+                      "give up looking, and some of the employed lose their jobs or leave the labour force. Eurostat "
+                      "follows the same people from one quarter to the next in the labour force survey. More of the "
+                      "unemployed find a job each quarter than before the pandemic, and fewer workers lose theirs."),
+            "tables": [Table(
+                title="From one quarter to the next",
+                caption="% of each group, seasonally adjusted",
+                columns=LEVELS,
+                rows=[Heading("The unemployed"),
+                      Row("flow_une_emp", "Find a job", indent=1),
+                      Row("flow_une_inac", "Stop looking (leave the labour force)", indent=1),
+                      Heading("The employed"),
+                      Row("flow_emp_une", "Lose their job", indent=1),
+                      Row("flow_emp_inac", "Leave the labour force", indent=1),
+                      Heading("The inactive"),
+                      Row("flow_inac_emp", "Start work", indent=1)],
+                note="Eurostat's labour market transitions, from the labour force survey's panel of households.",
+            )],
+            "charts": [
+                {"id": "flows-unemployed", "title": "Where the unemployed go",
+                 "subtitle": "% of the unemployed who, a quarter later, are employed or out of the labour force",
+                 "kind": "line", "unit": "%", "decimals": 1, "start": "2010-01-01",
+                 "series": [("flow_une_emp", "level", "Find a job"), ("flow_une_inac", "level", "Stop looking")]},
+                {"id": "flows-employed", "title": "Losing or leaving a job",
+                 "subtitle": "% of the employed who, a quarter later, are unemployed or out of the labour force",
+                 "kind": "line", "unit": "%", "decimals": 1, "start": "2010-01-01",
+                 "series": [("flow_emp_une", "level", "Lose their job"),
+                            ("flow_emp_inac", "level", "Leave the labour force")]},
+            ],
+        },
+        {
+            "id": "hours",
+            "title": "Hours worked",
+            "intro": ("Hours show how much work gets done, not just how many people do it. Hours per person "
+                      "employed have drifted down since the early 2000s as part-time work and shorter schedules "
+                      "spread. INE's labour cost survey adds hours per employee by activity and the hours lost to "
+                      "sick leave."),
+            "callout": workstats.hours_callout,
+            "tables": [Table(
+                title="Hours",
+                caption="Hours, unless stated",
+                columns=LEVELS,
+                rows=[Heading("National accounts, seasonally adjusted"),
+                      Row("hours_per_person", "Hours a week per person employed", indent=1),
+                      Row("hours_na", "Hours worked, millions a quarter", indent=1),
+                      Row("persons_na", "People employed, thousands", indent=1),
+                      Heading("Per employee a month, average of the past four quarters"),
+                      Row("hours_etcl", "Hours worked", indent=1, transform="avg_1y", flow=False),
+                      Row("hours_sick", "Hours lost to sick leave", indent=1, transform="avg_1y", flow=False),
+                      Row("hours_overtime", "Overtime", indent=1, transform="avg_1y", flow=False)],
+                note=("Hours a week are the quarter's hours per person employed divided by 13. Hours per employee "
+                      "come from INE's labour cost survey (ETCL), which covers employees in industry, construction "
+                      "and services, and are not seasonally adjusted."),
+            )],
+            "charts": [
+                {"id": "hours-per-person", "title": "Hours per person employed",
+                 "subtitle": "Hours worked a week, national accounts, seasonally adjusted",
+                 "kind": "line", "unit": "", "decimals": 1, "start": "1995-01-01",
+                 "series": [("hours_per_person", "level", "Hours a week")]},
+                {"id": "sick-leave", "title": "Hours lost to sick leave",
+                 "subtitle": "Hours per employee a month, average of the past four quarters",
+                 "kind": "line", "unit": "", "decimals": 1, "start": "2009-01-01",
+                 "series": [("hours_sick", "avg_1y", "Sick leave")]},
+                {"id": "hours-sectors", "kind": "hbar", "title": "Hours worked by activity",
+                 "subtitle": "Hours per employee a month, average of the past four quarters",
+                 "unit": "", "decimals": 1, "x_title": "Activity", "transform": "avg_1y",
+                 "items": workstats.items("hours", "avg_1y"),
+                 "ref_from": [("hours_etcl", "All", "avg_1y")]},
+            ],
+        },
+        {
             "id": "slack",
             "title": "Slack and vacancies",
             "intro": ("Unemployment understates how much spare labour there is. Eurostat's measure of slack adds "
@@ -504,6 +577,64 @@ PAGES: dict[str, list[dict]] = {
                  "start": "2014-04-01",
                  "x": ("unemployment_epa", "level", "Unemployment rate", "%"),
                  "y": ("vacancies", "avg_1y", "Vacancies", "k")},
+            ],
+        },
+        {
+            "id": "vacancies-sectors",
+            "title": "Vacancies by activity",
+            "intro": ("The posts firms and public bodies are trying to fill, from INE's labour cost survey. "
+                      "Vacancies are few in Spain by European standards, and a large share of them are in public "
+                      "administration."),
+            "tables": [Table(
+                title="Vacancies",
+                caption="Thousands, average of the past four quarters",
+                columns=LEVELS,
+                rows=workstats.VACANCY_ROWS,
+                note=("Not seasonally adjusted. Mining, energy, water and real estate are left out: INE does not "
+                      "publish their vacancies in many quarters."),
+            )],
+            "charts": [
+                {"id": "vacancies-ranking", "kind": "hbar", "title": "Where the vacancies are",
+                 "subtitle": "Thousands, average of the past four quarters",
+                 "unit": "k", "decimals": 1, "x_title": "Activity", "transform": "avg_1y",
+                 "items": workstats.items("vacancies", "avg_1y")},
+                {"id": "vacancies-sectors", "title": "Vacancies in the largest private activities",
+                 "subtitle": "Thousands, average of the past four quarters",
+                 "kind": "line", "unit": "k", "decimals": 1, "start": "2014-07-01",
+                 "series": [("vacancies_trade", "avg_1y", "Trade"), ("vacancies_hospitality", "avg_1y", "Hospitality"),
+                            ("vacancies_manufacturing", "avg_1y", "Manufacturing")]},
+            ],
+        },
+        {
+            "id": "layoffs",
+            "title": "Collective dismissals and temporary layoffs",
+            "intro": ("Firms in difficulty can dismiss groups of workers (despidos colectivos, through an ERE) or, "
+                      "under an ERTE, suspend contracts or cut working hours for a time, keeping people on the payroll "
+                      "while unemployment benefits cover part of their pay. The Ministry of Labour counts the workers "
+                      "affected by the procedures of each month. Figures start in January 2023; December 2023 is "
+                      "missing, as the ministry published only that year's total."),
+            "facts": workstats.ere_facts,
+            "tables": [Table(
+                title="Workers affected",
+                caption="Thousands",
+                columns=FLOWS,
+                rows=[Row("ere_total", "All procedures"),
+                      Row("ere_dismissals", "Collective dismissals", indent=1),
+                      Row("ere_suspensions", "Contract suspensions (ERTE)", indent=1),
+                      Row("ere_reductions", "Cuts in working hours (ERTE)", indent=1)],
+                note="Provisional monthly figures (Estadística de Regulación de Empleo); each year's final figures differ slightly.",
+            )],
+            "charts": [
+                {"id": "layoffs-monthly", "title": "Workers affected each month",
+                 "subtitle": "Thousands, by measure",
+                 "kind": "bar", "stack": True, "unit": "k", "decimals": 1, "start": "2023-01-01",
+                 "series": [("ere_dismissals", "level", "Dismissals"), ("ere_suspensions", "level", "Suspensions"),
+                            ("ere_reductions", "level", "Cuts in hours")]},
+                {"id": "layoffs-12m", "title": "Workers affected over the past 12 months",
+                 "subtitle": "Thousands, by measure",
+                 "kind": "line", "unit": "k", "decimals": 1, "start": "2024-01-01",
+                 "series": [("ere_dismissals", "sum_1y", "Dismissals"), ("ere_suspensions", "sum_1y", "Suspensions"),
+                            ("ere_reductions", "sum_1y", "Cuts in hours")]},
             ],
         },
     ],
@@ -546,6 +677,35 @@ PAGES: dict[str, list[dict]] = {
                  "subtitle": "Average rise agreed for the year in agreements registered so far, %",
                  "kind": "line", "unit": "%", "decimals": 2, "start": "2015-01-01",
                  "series": [("wage_agreements", "level", "Agreed rise")]},
+            ],
+        },
+        {
+            "id": "pay-sectors",
+            "title": "Pay by activity",
+            "intro": ("Average wage cost per worker a month by activity, from INE's labour cost survey: gross pay "
+                      "including bonuses, before the worker's tax and contributions, for full-time and part-time "
+                      "employees together."),
+            "callout": workstats.pay_callout,
+            "tables": [Table(
+                title="Wage cost per worker",
+                caption="€ a month",
+                columns=[Level("latest", "Past 4 quarters"), Level("year", "A year earlier"), Change("Latest qtr, y/y %", 12)],
+                rows=[Row("wage_cost", "All activities", transform="avg_1y", flow=False), Heading("By activity"),
+                      *workstats.rows("pay", "avg_1y")],
+                note=("The first two columns are averages of four quarters, as bonuses make pay seasonal; the last "
+                      "compares the latest quarter with the same quarter a year earlier."),
+            )],
+            "charts": [
+                {"id": "pay-ranking", "kind": "hbar", "title": "Monthly pay by activity",
+                 "subtitle": "Wage cost per worker, € a month, average of the past four quarters",
+                 "unit": "€", "decimals": 0, "x_title": "Activity", "transform": "avg_1y",
+                 "items": workstats.items("pay", "avg_1y"),
+                 "ref_from": [("wage_cost", "All", "avg_1y")]},
+                {"id": "pay-growth-ranking", "kind": "hbar", "title": "Pay growth by activity",
+                 "subtitle": "Wage cost per worker, % change on the same quarter a year earlier",
+                 "unit": "%", "decimals": 1, "x_title": "Activity", "transform": "yoy",
+                 "items": workstats.items("pay", "yoy"),
+                 "ref_from": [("wage_cost", "All", "yoy")]},
             ],
         },
     ],

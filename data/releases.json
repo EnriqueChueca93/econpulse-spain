@@ -4598,6 +4598,489 @@
    "display": "23.9% 4-qtr avg.",
    "period": "Q2 2026",
    "flash": false
+  },
+  "flow_une_emp": {
+   "date": "2026-04-01",
+   "raw": 26.7,
+   "display": "26.7%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "flow_une_inac": {
+   "date": "2026-04-01",
+   "raw": 22.0,
+   "display": "22.0%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "flow_emp_une": {
+   "date": "2026-04-01",
+   "raw": 2.4,
+   "display": "2.4%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "flow_emp_inac": {
+   "date": "2026-04-01",
+   "raw": 3.1,
+   "display": "3.1%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "flow_inac_emp": {
+   "date": "2026-04-01",
+   "raw": 4.4,
+   "display": "4.4%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "hours_na": {
+   "date": "2026-07-01",
+   "raw": 9509.931,
+   "display": "2.2% y/y",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "persons_na": {
+   "date": "2026-07-01",
+   "raw": 23201.7,
+   "display": "1.9% y/y",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "hours_per_person": {
+   "date": "2026-07-01",
+   "raw": 31.52926,
+   "display": "31.5 hours",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "hours_etcl": {
+   "date": "2026-04-01",
+   "raw": 129.4,
+   "display": "127.5 hours 4-qtr avg.",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "hours_sick": {
+   "date": "2026-04-01",
+   "raw": 8.5,
+   "display": "8.3 hours 4-qtr avg.",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "hours_overtime": {
+   "date": "2026-04-01",
+   "raw": 0.7,
+   "display": "0.8 hours 4-qtr avg.",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "hours_mining": {
+   "date": "2026-04-01",
+   "raw": 143.1,
+   "display": "140.8 hours 4-qtr avg.",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "hours_manufacturing": {
+   "date": "2026-04-01",
+   "raw": 140.4,
+   "display": "136.9 hours 4-qtr avg.",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "hours_energy": {
+   "date": "2026-04-01",
+   "raw": 139.9,
+   "display": "135.7 hours 4-qtr avg.",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "hours_water": {
+   "date": "2026-04-01",
+   "raw": 130.1,
+   "display": "127.1 hours 4-qtr avg.",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "hours_construction": {
+   "date": "2026-04-01",
+   "raw": 144.2,
+   "display": "141.5 hours 4-qtr avg.",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "hours_trade": {
+   "date": "2026-04-01",
+   "raw": 132.4,
+   "display": "131.5 hours 4-qtr avg.",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "hours_transport": {
+   "date": "2026-04-01",
+   "raw": 137.6,
+   "display": "134.9 hours 4-qtr avg.",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "hours_hospitality": {
+   "date": "2026-04-01",
+   "raw": 120.7,
+   "display": "120.0 hours 4-qtr avg.",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "hours_information": {
+   "date": "2026-04-01",
+   "raw": 145.2,
+   "display": "142.2 hours 4-qtr avg.",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "hours_finance": {
+   "date": "2026-04-01",
+   "raw": 140.3,
+   "display": "136.1 hours 4-qtr avg.",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "hours_real_estate": {
+   "date": "2026-04-01",
+   "raw": 139.7,
+   "display": "135.8 hours 4-qtr avg.",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "hours_professional": {
+   "date": "2026-04-01",
+   "raw": 140.7,
+   "display": "137.1 hours 4-qtr avg.",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "hours_administrative": {
+   "date": "2026-04-01",
+   "raw": 118.9,
+   "display": "117.1 hours 4-qtr avg.",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "hours_public_admin": {
+   "date": "2026-04-01",
+   "raw": 131.6,
+   "display": "130.0 hours 4-qtr avg.",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "hours_education": {
+   "date": "2026-04-01",
+   "raw": 112.4,
+   "display": "110.5 hours 4-qtr avg.",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "hours_health": {
+   "date": "2026-04-01",
+   "raw": 118.6,
+   "display": "116.8 hours 4-qtr avg.",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "hours_arts": {
+   "date": "2026-04-01",
+   "raw": 102.6,
+   "display": "102.3 hours 4-qtr avg.",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "hours_other_services": {
+   "date": "2026-04-01",
+   "raw": 124.6,
+   "display": "122.0 hours 4-qtr avg.",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "vacancies_mining": {
+   "date": "2026-04-01",
+   "raw": 0.127,
+   "display": "0.1k 4-qtr avg.",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "vacancies_manufacturing": {
+   "date": "2026-04-01",
+   "raw": 10.391,
+   "display": "10.9k 4-qtr avg.",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "vacancies_energy": {
+   "date": "2026-04-01",
+   "raw": 0.494,
+   "display": "0.5k 4-qtr avg.",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "vacancies_water": {
+   "date": "2026-04-01",
+   "raw": 0.946,
+   "display": "0.9k 4-qtr avg.",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "vacancies_construction": {
+   "date": "2026-04-01",
+   "raw": 7.224,
+   "display": "7.5k 4-qtr avg.",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "vacancies_trade": {
+   "date": "2026-04-01",
+   "raw": 14.413,
+   "display": "14.9k 4-qtr avg.",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "vacancies_transport": {
+   "date": "2026-04-01",
+   "raw": 6.037,
+   "display": "6.2k 4-qtr avg.",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "vacancies_hospitality": {
+   "date": "2026-04-01",
+   "raw": 10.62,
+   "display": "9.5k 4-qtr avg.",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "vacancies_information": {
+   "date": "2026-04-01",
+   "raw": 4.729,
+   "display": "6.8k 4-qtr avg.",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "vacancies_finance": {
+   "date": "2026-04-01",
+   "raw": 1.641,
+   "display": "1.9k 4-qtr avg.",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "vacancies_real_estate": {
+   "date": "2026-04-01",
+   "raw": 0.645,
+   "display": "0.4k 4-qtr avg.",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "vacancies_professional": {
+   "date": "2026-04-01",
+   "raw": 9.478,
+   "display": "9.7k 4-qtr avg.",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "vacancies_administrative": {
+   "date": "2026-04-01",
+   "raw": 11.378,
+   "display": "10.6k 4-qtr avg.",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "vacancies_public_admin": {
+   "date": "2026-04-01",
+   "raw": 51.835,
+   "display": "52.5k 4-qtr avg.",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "vacancies_education": {
+   "date": "2026-04-01",
+   "raw": 5.979,
+   "display": "5.0k 4-qtr avg.",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "vacancies_health": {
+   "date": "2026-04-01",
+   "raw": 11.235,
+   "display": "13.4k 4-qtr avg.",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "vacancies_arts": {
+   "date": "2026-04-01",
+   "raw": 3.131,
+   "display": "2.3k 4-qtr avg.",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "vacancies_other_services": {
+   "date": "2026-04-01",
+   "raw": 1.434,
+   "display": "1.8k 4-qtr avg.",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "pay_mining": {
+   "date": "2026-04-01",
+   "raw": 3590.52,
+   "display": "1.1% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "pay_manufacturing": {
+   "date": "2026-04-01",
+   "raw": 2833.11,
+   "display": "3.3% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "pay_energy": {
+   "date": "2026-04-01",
+   "raw": 5377.66,
+   "display": "−10.1% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "pay_water": {
+   "date": "2026-04-01",
+   "raw": 2594.94,
+   "display": "2.4% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "pay_construction": {
+   "date": "2026-04-01",
+   "raw": 2433.29,
+   "display": "4.8% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "pay_trade": {
+   "date": "2026-04-01",
+   "raw": 2166.12,
+   "display": "1.2% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "pay_transport": {
+   "date": "2026-04-01",
+   "raw": 2472.84,
+   "display": "2.2% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "pay_hospitality": {
+   "date": "2026-04-01",
+   "raw": 1473.54,
+   "display": "3.4% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "pay_information": {
+   "date": "2026-04-01",
+   "raw": 3784.86,
+   "display": "5.3% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "pay_finance": {
+   "date": "2026-04-01",
+   "raw": 4800.76,
+   "display": "4.5% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "pay_real_estate": {
+   "date": "2026-04-01",
+   "raw": 2669.81,
+   "display": "7.8% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "pay_professional": {
+   "date": "2026-04-01",
+   "raw": 3092.75,
+   "display": "1.3% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "pay_administrative": {
+   "date": "2026-04-01",
+   "raw": 1729.67,
+   "display": "6.3% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "pay_public_admin": {
+   "date": "2026-04-01",
+   "raw": 3313.66,
+   "display": "8.4% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "pay_education": {
+   "date": "2026-04-01",
+   "raw": 2595.39,
+   "display": "9.6% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "pay_health": {
+   "date": "2026-04-01",
+   "raw": 2738.03,
+   "display": "4.2% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "pay_arts": {
+   "date": "2026-04-01",
+   "raw": 1674.55,
+   "display": "1.7% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "pay_other_services": {
+   "date": "2026-04-01",
+   "raw": 1822.58,
+   "display": "6.0% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "ere_total": {
+   "date": "2026-08-01",
+   "raw": 3.479,
+   "display": "112.5k 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "ere_dismissals": {
+   "date": "2026-08-01",
+   "raw": 1.947,
+   "display": "41.8k 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "ere_suspensions": {
+   "date": "2026-08-01",
+   "raw": 1.291,
+   "display": "64.4k 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "ere_reductions": {
+   "date": "2026-08-01",
+   "raw": 0.241,
+   "display": "6.3k 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
   }
  },
  "notes": [
@@ -4623,6 +5106,6 @@
    "at": "2026-11-01T02:50:46+00:00"
   }
  ],
- "updated_at": "2026-11-01T12:07:58+00:00",
+ "updated_at": "2026-11-01T12:31:12+00:00",
  "started_at": "2026-10-31T23:31:49+00:00"
 }

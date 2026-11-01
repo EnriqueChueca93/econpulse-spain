@@ -1647,6 +1647,38 @@
   "flash": false,
   "source_name": "Total Nacional. Tasa de empleo de la población. Ambos sexos. Total."
  },
+ "ere_dismissals": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:31:08+00:00",
+  "first_date": "2023-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 43,
+  "signature": "[\"reg\", \"dismissals\", {}, 0.001]"
+ },
+ "ere_reductions": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:31:08+00:00",
+  "first_date": "2023-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 43,
+  "signature": "[\"reg\", \"reductions\", {}, 0.001]"
+ },
+ "ere_suspensions": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:31:08+00:00",
+  "first_date": "2023-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 43,
+  "signature": "[\"reg\", \"suspensions\", {}, 0.001]"
+ },
+ "ere_total": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:31:08+00:00",
+  "first_date": "2023-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 43,
+  "signature": "[\"reg\", \"total\", {}, 0.001]"
+ },
  "es_10y": {
   "status": "ok",
   "fetched_at": "2026-11-01T06:28:24+00:00",
@@ -2608,6 +2640,56 @@
   "n_obs": 38,
   "signature": "[\"oecd\", \"OECD.ECO.MAD,DSD_EO@DF_EO,/ESP.UNR.A\", {\"edition\": true}, 1.0]",
   "edition": "Economic Outlook 119"
+ },
+ "flow_emp_inac": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:43+00:00",
+  "first_date": "2010-04-01",
+  "last_date": "2026-04-01",
+  "n_obs": 65,
+  "signature": "[\"eurostat\", \"lfsi_long_q\", {\"geo\": \"ES\", \"s_adj\": \"SA\", \"sex\": \"T\", \"unit\": \"PC_EMP\", \"wstatus\": \"EMP_INAC\"}, 1.0]",
+  "source_name": "Labour market transitions - quarterly data",
+  "source_updated": "2026-09-15T23:00:00+0200"
+ },
+ "flow_emp_une": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:43+00:00",
+  "first_date": "2010-04-01",
+  "last_date": "2026-04-01",
+  "n_obs": 65,
+  "signature": "[\"eurostat\", \"lfsi_long_q\", {\"geo\": \"ES\", \"s_adj\": \"SA\", \"sex\": \"T\", \"unit\": \"PC_EMP\", \"wstatus\": \"EMP_UNE\"}, 1.0]",
+  "source_name": "Labour market transitions - quarterly data",
+  "source_updated": "2026-09-15T23:00:00+0200"
+ },
+ "flow_inac_emp": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:43+00:00",
+  "first_date": "2010-04-01",
+  "last_date": "2026-04-01",
+  "n_obs": 65,
+  "signature": "[\"eurostat\", \"lfsi_long_q\", {\"geo\": \"ES\", \"s_adj\": \"SA\", \"sex\": \"T\", \"unit\": \"PC_INAC\", \"wstatus\": \"INAC_EMP\"}, 1.0]",
+  "source_name": "Labour market transitions - quarterly data",
+  "source_updated": "2026-09-15T23:00:00+0200"
+ },
+ "flow_une_emp": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:43+00:00",
+  "first_date": "2010-04-01",
+  "last_date": "2026-04-01",
+  "n_obs": 65,
+  "signature": "[\"eurostat\", \"lfsi_long_q\", {\"geo\": \"ES\", \"s_adj\": \"SA\", \"sex\": \"T\", \"unit\": \"PC_UNE\", \"wstatus\": \"UNE_EMP\"}, 1.0]",
+  "source_name": "Labour market transitions - quarterly data",
+  "source_updated": "2026-09-15T23:00:00+0200"
+ },
+ "flow_une_inac": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:43+00:00",
+  "first_date": "2010-04-01",
+  "last_date": "2026-04-01",
+  "n_obs": 65,
+  "signature": "[\"eurostat\", \"lfsi_long_q\", {\"geo\": \"ES\", \"s_adj\": \"SA\", \"sex\": \"T\", \"unit\": \"PC_UNE\", \"wstatus\": \"UNE_INAC\"}, 1.0]",
+  "source_name": "Labour market transitions - quarterly data",
+  "source_updated": "2026-09-15T23:00:00+0200"
  },
  "fsi_average_assets": {
   "status": "ok",
@@ -4139,6 +4221,234 @@
   "signature": "[\"bde\", \"D_1PM2120T\", {}, 1.0]",
   "source_name": "Estadísticas Generales. Encuesta de ocupación hotelera. Pernoctaciones. Residentes en el extranjero. Tasa interanual"
  },
+ "hours_administrative": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:45+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL2449\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Actividades administrativas y servicios auxiliares. Horas efectivas. Total Nacional. Tiempo de trabajo. Ambas jornadas. Número de Horas."
+ },
+ "hours_arts": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:45+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL2421\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Actividades artísticas, recreativas y de entretenimiento. Horas efectivas. Total Nacional. Tiempo de trabajo. Ambas jornadas. Número de Horas."
+ },
+ "hours_construction": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:44+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL2505\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Construcción. Horas efectivas. Total Nacional. Tiempo de trabajo. Ambas jornadas. Número de Horas."
+ },
+ "hours_education": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:45+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL2435\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Educación. Horas efectivas. Total Nacional. Tiempo de trabajo. Ambas jornadas. Número de Horas."
+ },
+ "hours_energy": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:44+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL2519\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Suministro de energía eléctrica, gas, vapor y aire acondicionado. Horas efectivas. Total Nacional. Tiempo de trabajo. Ambas jornadas. Número de Horas."
+ },
+ "hours_etcl": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:44+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL2407\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Industria, construcción y servicios (excepto actividades de los hogares como empleadores y de organizaciones y organismos extraterritoriales). Horas efectivas. Total Nacional. Tiempo de trabajo. Ambas jornadas. Número de Horas."
+ },
+ "hours_finance": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:45+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL2470\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Actividades financieras y de seguros. Horas efectivas. Total Nacional. Tiempo de trabajo. Ambas jornadas. Número de Horas."
+ },
+ "hours_health": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:45+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL2428\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Actividades sanitarias y de servicios sociales. Horas efectivas. Total Nacional. Tiempo de trabajo. Ambas jornadas. Número de Horas."
+ },
+ "hours_hospitality": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:45+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL2484\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Hostelería. Horas efectivas. Total Nacional. Tiempo de trabajo. Ambas jornadas. Número de Horas."
+ },
+ "hours_information": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:45+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL2477\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Información y comunicaciones. Horas efectivas. Total Nacional. Tiempo de trabajo. Ambas jornadas. Número de Horas."
+ },
+ "hours_manufacturing": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:44+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL2526\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Industria manufacturera. Horas efectivas. Total Nacional. Tiempo de trabajo. Ambas jornadas. Número de Horas."
+ },
+ "hours_mining": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:44+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL2533\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Industrias extractivas. Horas efectivas. Total Nacional. Tiempo de trabajo. Ambas jornadas. Número de Horas."
+ },
+ "hours_na": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:43+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"eurostat\", \"namq_10_a10_e\", {\"geo\": \"ES\", \"na_item\": \"EMP_DC\", \"nace_r2\": \"TOTAL\", \"s_adj\": \"SCA\", \"unit\": \"THS_HW\"}, 0.001]",
+  "source_name": "Employment by main industry (NACE Rev.2) - national accounts - quarterly data",
+  "source_updated": "2026-10-30T23:00:00+0100"
+ },
+ "hours_other_services": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:45+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL2414\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Otros servicios. Horas efectivas. Total Nacional. Tiempo de trabajo. Ambas jornadas. Número de Horas."
+ },
+ "hours_overtime": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:44+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL2392\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Industria, construcción y servicios (excepto actividades de los hogares como empleadores y de organizaciones y organismos extraterritoriales). Horas extras por trabajador. Total Nacional. Tiempo de trabajo. Ambas jornadas. Número de Horas."
+ },
+ "hours_per_person": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:58+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"derived\", \"divide\", {\"a\": \"hours_na\", \"b\": \"persons_na\", \"scale\": 76.923}, 1.0]"
+ },
+ "hours_professional": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:45+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL2456\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Actividades profesionales, científicas y técnicas. Horas efectivas. Total Nacional. Tiempo de trabajo. Ambas jornadas. Número de Horas."
+ },
+ "hours_public_admin": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:45+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL2442\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Administración pública y defensa; seguridad social obligatoria. Horas efectivas. Total Nacional. Tiempo de trabajo. Ambas jornadas. Número de Horas."
+ },
+ "hours_real_estate": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:45+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL2463\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Actividades inmobiliarias. Horas efectivas. Total Nacional. Tiempo de trabajo. Ambas jornadas. Número de Horas."
+ },
+ "hours_sick": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:44+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL2401\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Industria, construcción y servicios (excepto actividades de los hogares como empleadores y de organizaciones y organismos extraterritoriales). Horas no trabajadas por I.T. Total Nacional. Tiempo de trabajo. Ambas jornadas. Número de Horas."
+ },
+ "hours_trade": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:44+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL2498\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Comercio al por mayor y al por menor; reparación de vehículos de motor y motocicletas. Horas efectivas. Total Nacional. Tiempo de trabajo. Ambas jornadas. Número de Horas."
+ },
+ "hours_transport": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:44+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL2491\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Transporte y almacenamiento. Horas efectivas. Total Nacional. Tiempo de trabajo. Ambas jornadas. Número de Horas."
+ },
+ "hours_water": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:44+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL2512\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Suministro de agua, actividades de saneamiento, gestión de residuos y descontaminación. Horas efectivas. Total Nacional. Tiempo de trabajo. Ambas jornadas. Número de Horas."
+ },
  "house_prices": {
   "status": "ok",
   "fetched_at": "2026-11-01T06:28:21+00:00",
@@ -5582,6 +5892,196 @@
   "signature": "[\"bde\", \"D_1JA0DE93DE0950_SISPE\", {}, 0.001]",
   "source_name": "Estadísticas Generales. MLR. Demanda de empleo no ocupados. Paro registrado. Han trabajado antes. Servicios"
  },
+ "pay_administrative": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:46+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL1695\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Ambas jornadas. Actividades administrativas y servicios auxiliares. Coste salarial total. Costes salariales. Total Nacional. Euros."
+ },
+ "pay_arts": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:46+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL1679\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Ambas jornadas. Actividades artísticas, recreativas y de entretenimiento. Coste salarial total. Costes salariales. Total Nacional. Euros."
+ },
+ "pay_construction": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:46+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL1727\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Ambas jornadas. Construcción. Coste salarial total. Costes salariales. Total Nacional. Euros."
+ },
+ "pay_education": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:46+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL1687\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Ambas jornadas. Educación. Coste salarial total. Costes salariales. Total Nacional. Euros."
+ },
+ "pay_energy": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:46+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL1735\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Ambas jornadas. Suministro de energía eléctrica, gas, vapor y aire acondicionado. Coste salarial total. Costes salariales. Total Nacional. Euros."
+ },
+ "pay_finance": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:46+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL1707\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Ambas jornadas. Actividades financieras y de seguros. Coste salarial total. Costes salariales. Total Nacional. Euros."
+ },
+ "pay_health": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:46+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL1683\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Ambas jornadas. Actividades sanitarias y de servicios sociales. Coste salarial total. Costes salariales. Total Nacional. Euros."
+ },
+ "pay_hospitality": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:46+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL1715\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Ambas jornadas. Hostelería. Coste salarial total. Costes salariales. Total Nacional. Euros."
+ },
+ "pay_information": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:46+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL1711\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Ambas jornadas. Información y comunicaciones. Coste salarial total. Costes salariales. Total Nacional. Euros."
+ },
+ "pay_manufacturing": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:46+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL1739\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Ambas jornadas. Industria manufacturera. Coste salarial total. Costes salariales. Total Nacional. Euros."
+ },
+ "pay_mining": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:46+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL1743\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Ambas jornadas. Industrias extractivas. Coste salarial total. Costes salariales. Total Nacional. Euros."
+ },
+ "pay_other_services": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:46+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL1675\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Ambas jornadas. Otros servicios. Coste salarial total. Costes salariales. Total Nacional. Euros."
+ },
+ "pay_professional": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:46+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL1699\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Ambas jornadas. Actividades profesionales, científicas y técnicas. Coste salarial total. Costes salariales. Total Nacional. Euros."
+ },
+ "pay_public_admin": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:46+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL1691\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Ambas jornadas. Administración pública y defensa; seguridad social obligatoria. Coste salarial total. Costes salariales. Total Nacional. Euros."
+ },
+ "pay_real_estate": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:46+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL1703\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Ambas jornadas. Actividades inmobiliarias. Coste salarial total. Costes salariales. Total Nacional. Euros."
+ },
+ "pay_trade": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:46+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL1723\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Ambas jornadas. Comercio al por mayor y al por menor; reparación de vehículos de motor y motocicletas. Coste salarial total. Costes salariales. Total Nacional. Euros."
+ },
+ "pay_transport": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:46+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL1719\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Ambas jornadas. Transporte y almacenamiento. Coste salarial total. Costes salariales. Total Nacional. Euros."
+ },
+ "pay_water": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:46+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 74,
+  "signature": "[\"ine\", \"ETCL1731\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Ambas jornadas. Suministro de agua, actividades de saneamiento, gestión de residuos y descontaminación. Coste salarial total. Costes salariales. Total Nacional. Euros."
+ },
+ "persons_na": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:43+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"eurostat\", \"namq_10_a10_e\", {\"geo\": \"ES\", \"na_item\": \"EMP_DC\", \"nace_r2\": \"TOTAL\", \"s_adj\": \"SCA\", \"unit\": \"THS_PER\"}, 1.0]",
+  "source_name": "Employment by main industry (NACE Rev.2) - national accounts - quarterly data",
+  "source_updated": "2026-10-30T23:00:00+0100"
+ },
  "policy_rate_ca": {
   "status": "ok",
   "fetched_at": "2026-11-01T06:28:31+00:00",
@@ -5700,7 +6200,7 @@
  },
  "reg_agriculture": {
   "status": "ok",
-  "fetched_at": "2026-11-01T11:29:41+00:00",
+  "fetched_at": "2026-11-01T12:28:42+00:00",
   "first_date": "2022-01-01",
   "last_date": "2026-09-01",
   "n_obs": 57,
@@ -5709,7 +6209,7 @@
  },
  "reg_agriculture_sa": {
   "status": "ok",
-  "fetched_at": "2026-11-01T11:29:41+00:00",
+  "fetched_at": "2026-11-01T12:28:42+00:00",
   "first_date": "2022-01-01",
   "last_date": "2026-09-01",
   "n_obs": 57,
@@ -5718,7 +6218,7 @@
  },
  "reg_construction": {
   "status": "ok",
-  "fetched_at": "2026-11-01T11:48:35+00:00",
+  "fetched_at": "2026-11-01T12:28:42+00:00",
   "first_date": "2022-01-01",
   "last_date": "2026-09-01",
   "n_obs": 57,
@@ -5727,7 +6227,7 @@
  },
  "reg_construction_sa": {
   "status": "ok",
-  "fetched_at": "2026-11-01T11:48:35+00:00",
+  "fetched_at": "2026-11-01T12:28:42+00:00",
   "first_date": "2022-01-01",
   "last_date": "2026-09-01",
   "n_obs": 57,
@@ -5736,7 +6236,7 @@
  },
  "reg_employees": {
   "status": "ok",
-  "fetched_at": "2026-11-01T11:29:41+00:00",
+  "fetched_at": "2026-11-01T12:28:42+00:00",
   "first_date": "2022-01-01",
   "last_date": "2026-09-01",
   "n_obs": 57,
@@ -5745,7 +6245,7 @@
  },
  "reg_employees_sa": {
   "status": "ok",
-  "fetched_at": "2026-11-01T11:29:41+00:00",
+  "fetched_at": "2026-11-01T12:28:42+00:00",
   "first_date": "2022-01-01",
   "last_date": "2026-09-01",
   "n_obs": 57,
@@ -5754,7 +6254,7 @@
  },
  "reg_industry": {
   "status": "ok",
-  "fetched_at": "2026-11-01T11:29:41+00:00",
+  "fetched_at": "2026-11-01T12:28:42+00:00",
   "first_date": "2022-01-01",
   "last_date": "2026-09-01",
   "n_obs": 57,
@@ -5763,7 +6263,7 @@
  },
  "reg_industry_sa": {
   "status": "ok",
-  "fetched_at": "2026-11-01T11:29:41+00:00",
+  "fetched_at": "2026-11-01T12:28:42+00:00",
   "first_date": "2022-01-01",
   "last_date": "2026-09-01",
   "n_obs": 57,
@@ -5772,7 +6272,7 @@
  },
  "reg_sector_total": {
   "status": "ok",
-  "fetched_at": "2026-11-01T11:29:41+00:00",
+  "fetched_at": "2026-11-01T12:28:42+00:00",
   "first_date": "2022-01-01",
   "last_date": "2026-09-01",
   "n_obs": 57,
@@ -5781,7 +6281,7 @@
  },
  "reg_sector_total_sa": {
   "status": "ok",
-  "fetched_at": "2026-11-01T11:29:41+00:00",
+  "fetched_at": "2026-11-01T12:28:42+00:00",
   "first_date": "2022-01-01",
   "last_date": "2026-09-01",
   "n_obs": 57,
@@ -5790,7 +6290,7 @@
  },
  "reg_self_employed": {
   "status": "ok",
-  "fetched_at": "2026-11-01T11:29:41+00:00",
+  "fetched_at": "2026-11-01T12:28:42+00:00",
   "first_date": "2022-01-01",
   "last_date": "2026-09-01",
   "n_obs": 57,
@@ -5799,7 +6299,7 @@
  },
  "reg_self_employed_sa": {
   "status": "ok",
-  "fetched_at": "2026-11-01T11:29:41+00:00",
+  "fetched_at": "2026-11-01T12:28:42+00:00",
   "first_date": "2022-01-01",
   "last_date": "2026-09-01",
   "n_obs": 57,
@@ -5808,7 +6308,7 @@
  },
  "reg_services": {
   "status": "ok",
-  "fetched_at": "2026-11-01T11:48:35+00:00",
+  "fetched_at": "2026-11-01T12:28:42+00:00",
   "first_date": "2022-01-01",
   "last_date": "2026-09-01",
   "n_obs": 57,
@@ -5817,7 +6317,7 @@
  },
  "reg_services_sa": {
   "status": "ok",
-  "fetched_at": "2026-11-01T11:48:35+00:00",
+  "fetched_at": "2026-11-01T12:28:42+00:00",
   "first_date": "2022-01-01",
   "last_date": "2026-09-01",
   "n_obs": 57,
@@ -6382,6 +6882,146 @@
   "signature": "[\"ine\", \"ETCL2925\", {}, 0.001]",
   "flash": false,
   "source_name": "Total Nacional. Industria, construcción y servicios (excepto actividades de los hogares como empleadores y de organizaciones y organismos extraterritoriales). Puestos de trabajo vacantes en un CCC. Total."
+ },
+ "vacancies_administrative": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:46+00:00",
+  "first_date": "2013-07-01",
+  "last_date": "2026-04-01",
+  "n_obs": 52,
+  "signature": "[\"ine\", \"ETCL2931\", {}, 0.001]",
+  "flash": false,
+  "source_name": "Total Nacional. Actividades administrativas y servicios auxiliares. Puestos de trabajo vacantes en un CCC. Total."
+ },
+ "vacancies_arts": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:46+00:00",
+  "first_date": "2013-07-01",
+  "last_date": "2026-04-01",
+  "n_obs": 52,
+  "signature": "[\"ine\", \"ETCL2927\", {}, 0.001]",
+  "flash": false,
+  "source_name": "Total Nacional. Actividades artísticas, recreativas y de entretenimiento. Puestos de trabajo vacantes en un CCC. Total."
+ },
+ "vacancies_construction": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:45+00:00",
+  "first_date": "2013-07-01",
+  "last_date": "2026-04-01",
+  "n_obs": 52,
+  "signature": "[\"ine\", \"ETCL2939\", {}, 0.001]",
+  "flash": false,
+  "source_name": "Total Nacional. Construcción. Puestos de trabajo vacantes en un CCC. Total."
+ },
+ "vacancies_education": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:46+00:00",
+  "first_date": "2013-07-01",
+  "last_date": "2026-04-01",
+  "n_obs": 52,
+  "signature": "[\"ine\", \"ETCL2929\", {}, 0.001]",
+  "flash": false,
+  "source_name": "Total Nacional. Educación. Puestos de trabajo vacantes en un CCC. Total."
+ },
+ "vacancies_finance": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:45+00:00",
+  "first_date": "2013-07-01",
+  "last_date": "2026-04-01",
+  "n_obs": 52,
+  "signature": "[\"ine\", \"ETCL2934\", {}, 0.001]",
+  "flash": false,
+  "source_name": "Total Nacional. Actividades financieras y de seguros. Puestos de trabajo vacantes en un CCC. Total."
+ },
+ "vacancies_health": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:46+00:00",
+  "first_date": "2013-07-01",
+  "last_date": "2026-04-01",
+  "n_obs": 52,
+  "signature": "[\"ine\", \"ETCL2928\", {}, 0.001]",
+  "flash": false,
+  "source_name": "Total Nacional. Actividades sanitarias y de servicios sociales. Puestos de trabajo vacantes en un CCC. Total."
+ },
+ "vacancies_hospitality": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:45+00:00",
+  "first_date": "2013-07-01",
+  "last_date": "2026-04-01",
+  "n_obs": 52,
+  "signature": "[\"ine\", \"ETCL2936\", {}, 0.001]",
+  "flash": false,
+  "source_name": "Total Nacional. Hostelería. Puestos de trabajo vacantes en un CCC. Total."
+ },
+ "vacancies_information": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:45+00:00",
+  "first_date": "2013-07-01",
+  "last_date": "2026-04-01",
+  "n_obs": 52,
+  "signature": "[\"ine\", \"ETCL2935\", {}, 0.001]",
+  "flash": false,
+  "source_name": "Total Nacional. Información y comunicaciones. Puestos de trabajo vacantes en un CCC. Total."
+ },
+ "vacancies_manufacturing": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:45+00:00",
+  "first_date": "2013-07-01",
+  "last_date": "2026-04-01",
+  "n_obs": 52,
+  "signature": "[\"ine\", \"ETCL2942\", {}, 0.001]",
+  "flash": false,
+  "source_name": "Total Nacional. Industria manufacturera. Puestos de trabajo vacantes en un CCC. Total."
+ },
+ "vacancies_other_services": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:46+00:00",
+  "first_date": "2013-07-01",
+  "last_date": "2026-04-01",
+  "n_obs": 52,
+  "signature": "[\"ine\", \"ETCL2926\", {}, 0.001]",
+  "flash": false,
+  "source_name": "Total Nacional. Otros servicios. Puestos de trabajo vacantes en un CCC. Total."
+ },
+ "vacancies_professional": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:45+00:00",
+  "first_date": "2013-07-01",
+  "last_date": "2026-04-01",
+  "n_obs": 52,
+  "signature": "[\"ine\", \"ETCL2932\", {}, 0.001]",
+  "flash": false,
+  "source_name": "Total Nacional. Actividades profesionales, científicas y técnicas. Puestos de trabajo vacantes en un CCC. Total."
+ },
+ "vacancies_public_admin": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:46+00:00",
+  "first_date": "2013-07-01",
+  "last_date": "2026-04-01",
+  "n_obs": 52,
+  "signature": "[\"ine\", \"ETCL2930\", {}, 0.001]",
+  "flash": false,
+  "source_name": "Total Nacional. Administración pública y defensa; seguridad social obligatoria. Puestos de trabajo vacantes en un CCC. Total."
+ },
+ "vacancies_trade": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:45+00:00",
+  "first_date": "2013-07-01",
+  "last_date": "2026-04-01",
+  "n_obs": 52,
+  "signature": "[\"ine\", \"ETCL2938\", {}, 0.001]",
+  "flash": false,
+  "source_name": "Total Nacional. Comercio al por mayor y al por menor; reparación de vehículos de motor y motocicletas. Puestos de trabajo vacantes en un CCC. Total."
+ },
+ "vacancies_transport": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T12:28:45+00:00",
+  "first_date": "2013-07-01",
+  "last_date": "2026-04-01",
+  "n_obs": 52,
+  "signature": "[\"ine\", \"ETCL2937\", {}, 0.001]",
+  "flash": false,
+  "source_name": "Total Nacional. Transporte y almacenamiento. Puestos de trabajo vacantes en un CCC. Total."
  },
  "wage_agreements": {
   "status": "ok",
