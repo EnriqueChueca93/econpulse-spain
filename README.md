@@ -44,6 +44,8 @@ Because the workflow commits data every day, run `git pull` before working local
 - **Home** (`site/index.html`): 16 key-indicator tiles, EconPulse readings (activity and inflation against their
   history and against a simple forecast, the GDP nowcast, the ECB rate against a Taylor rule), "The economy in four
   questions" and three charts.
+- **Labour market by sector**: Social Security registrations by sector and type of work (the ministry's own
+  seasonal adjustment), registered unemployment by sector, and contracts by type, tracking the 2022 labour reform.
 - **GDP, Labour market, Wages, Inflation**: econvitals-style tables (1-, 3-, 6- and 12-month changes; latest,
   a month ago, a year ago; contributions to growth) and 25 charts, each with a data table and PNG download.
   The Inflation page also measures underlying inflation across the ~180 detailed HICP items: weighted median,

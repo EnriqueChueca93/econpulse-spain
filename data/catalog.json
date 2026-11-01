@@ -288,6 +288,15 @@
   "n_obs": 123,
   "signature": "[\"ecb\", \"ILM/M.ES.N.T000000.Z5.Z01\", {}, 1.0]"
  },
+ "benefit_recipients": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:29:42+00:00",
+  "first_date": "1982-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 536,
+  "signature": "[\"bde\", \"D_1JA0QA00\", {}, 1.0]",
+  "source_name": "Beneficiarios prestación de desempleo"
+ },
  "bond10_ca": {
   "status": "ok",
   "fetched_at": "2026-11-01T06:28:30+00:00",
@@ -1004,6 +1013,110 @@
   "signature": "[\"eurostat\", \"nama_10_gdp\", {\"geo\": \"ES\", \"na_item\": \"P3_S13\", \"unit\": \"CLV_PCH_PRE\"}, 1.0]",
   "source_name": "Gross domestic product (GDP) and main components (output, expenditure and income) - annual data",
   "source_updated": "2026-10-22T23:00:00+0200"
+ },
+ "contracts_conversions": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:29:42+00:00",
+  "first_date": "1992-05-01",
+  "last_date": "2026-09-01",
+  "n_obs": 413,
+  "signature": "[\"bde\", \"D_1JACTCICNV000\", {}, 0.001]",
+  "source_name": "Estadísticas Generales. Estadísticas de contratos. Contratos de trabajo. Por modalidad de contratación. Indefinidos. Conversión a indefinidos"
+ },
+ "contracts_fd_share": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:29:42+00:00",
+  "first_date": "1999-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 333,
+  "signature": "[\"derived\", \"divide\", {\"a\": \"contracts_fixed_discontinuous\", \"b\": \"contracts_total\", \"scale\": 100}, 1.0]"
+ },
+ "contracts_fixed_discontinuous": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:29:42+00:00",
+  "first_date": "1999-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 333,
+  "signature": "[\"bde\", \"D_1JACTJFDS0000\", {}, 0.001]",
+  "source_name": "Estadísticas Generales. Estadísticas de contratos. Contratos de trabajo. Contratos fijos discontinuos"
+ },
+ "contracts_full_time": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:29:42+00:00",
+  "first_date": "1985-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 501,
+  "signature": "[\"bde\", \"D_1JACTJCOM0000\", {}, 0.001]",
+  "source_name": "Estadísticas Generales. Estadísticas de contratos. Contratos de trabajo. Por tipo de jornada. Completa"
+ },
+ "contracts_part_time": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:29:42+00:00",
+  "first_date": "1999-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 333,
+  "signature": "[\"bde\", \"D_1JACTJPAR0000\", {}, 0.001]",
+  "source_name": "Estadísticas Generales. Estadísticas de contratos. Contratos de trabajo. Por tipo de jornada. Parcial"
+ },
+ "contracts_part_time_share": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:29:42+00:00",
+  "first_date": "1999-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 333,
+  "signature": "[\"derived\", \"divide\", {\"a\": \"contracts_part_time\", \"b\": \"contracts_total\", \"scale\": 100}, 1.0]"
+ },
+ "contracts_permanent": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:29:42+00:00",
+  "first_date": "1985-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 501,
+  "signature": "[\"bde\", \"D_1JACTCI000000\", {}, 0.001]",
+  "source_name": "Estadísticas Generales. Estadísticas de contratos. Contratos de trabajo. Por modalidad de contratación. Indefinidos. Total"
+ },
+ "contracts_permanent_initial": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:29:42+00:00",
+  "first_date": "2005-05-01",
+  "last_date": "2026-09-01",
+  "n_obs": 257,
+  "signature": "[\"bde\", \"D_1JACTCIORD000\", {}, 0.001]",
+  "source_name": "Estadísticas Generales. Estadísticas de contratos. Contratos de trabajo. Por modalidad de contratación. Indefinidos. Iniciales"
+ },
+ "contracts_permanent_other": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:29:42+00:00",
+  "first_date": "1999-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 333,
+  "signature": "[\"derived\", \"subtract\", {\"a\": \"contracts_permanent\", \"b\": \"contracts_fixed_discontinuous\"}, 1.0]"
+ },
+ "contracts_permanent_share": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:29:42+00:00",
+  "first_date": "1985-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 501,
+  "signature": "[\"derived\", \"divide\", {\"a\": \"contracts_permanent\", \"b\": \"contracts_total\", \"scale\": 100}, 1.0]"
+ },
+ "contracts_temporary": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:29:42+00:00",
+  "first_date": "1985-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 501,
+  "signature": "[\"bde\", \"D_1JACTCT000000\", {}, 0.001]",
+  "source_name": "Estadísticas Generales. Estadísticas de contratos. Contratos de trabajo. De duración determinada. Total"
+ },
+ "contracts_total": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:29:42+00:00",
+  "first_date": "1985-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 501,
+  "signature": "[\"bde\", \"D_1JACTC0000000\", {}, 0.001]",
+  "source_name": "Estadísticas Generales. Estadística de contratos. Contratos de trabajo. Total"
  },
  "contrib_domestic_qq": {
   "status": "ok",
@@ -4598,14 +4711,59 @@
   "signature": "[\"bde\", \"D_BEEA2020\", {}, 1.0]",
   "source_name": "Ratio de créditos dudosos"
  },
+ "paro_agriculture": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:29:42+00:00",
+  "first_date": "1996-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 369,
+  "signature": "[\"bde\", \"D_1JA0DE93DE0910_SISPE\", {}, 0.001]",
+  "source_name": "Estadísticas Generales. MLR. Demandantes de empleo no ocupados. Paro registrado. Han trabajado antes. Agrícolas"
+ },
+ "paro_construction": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:29:42+00:00",
+  "first_date": "1996-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 369,
+  "signature": "[\"bde\", \"D_1JA0DE93DE0940_SISPE\", {}, 0.001]",
+  "source_name": "Estadísticas Generales. MLR. Demandantes de empleo no ocupados. Paro registrado. Han trabajado antes. Construcción"
+ },
+ "paro_industry": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:29:42+00:00",
+  "first_date": "1996-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 369,
+  "signature": "[\"bde\", \"D_1JA0DE93DE0930_SISPE\", {}, 0.001]",
+  "source_name": "Estadísticas Generales. MLR. Demandantes de empleo no ocupados. Paro registrado. Han trabajado antes. Industria"
+ },
+ "paro_no_previous_job": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:29:42+00:00",
+  "first_date": "1996-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 369,
+  "signature": "[\"bde\", \"D_1JA0DE93DE0960_SISPE\", {}, 0.001]",
+  "source_name": "Estadísticas Generales. MLR. Demandantes de empleo no ocupados. Paro registrado. Sin empleo anterior"
+ },
  "paro_registrado": {
   "status": "ok",
-  "fetched_at": "2026-11-01T06:28:15+00:00",
+  "fetched_at": "2026-11-01T11:29:39+00:00",
   "first_date": "1943-06-01",
   "last_date": "2026-09-01",
   "n_obs": 1000,
   "signature": "[\"bde\", \"D_1JA0D000\", {}, 0.001]",
   "source_name": "Paro registrado"
+ },
+ "paro_services": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:29:42+00:00",
+  "first_date": "1996-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 369,
+  "signature": "[\"bde\", \"D_1JA0DE93DE0950_SISPE\", {}, 0.001]",
+  "source_name": "Estadísticas Generales. MLR. Demanda de empleo no ocupados. Paro registrado. Han trabajado antes. Servicios"
  },
  "policy_rate_ca": {
   "status": "ok",
@@ -4722,6 +4880,132 @@
   "last_date": "2026-04-01",
   "n_obs": 74,
   "signature": "[\"derived\", \"deflate\", {\"a\": \"wage_cost\", \"b\": \"cpi_index\", \"period\": \"Q\"}, 1.0]"
+ },
+ "reg_agriculture": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:29:41+00:00",
+  "first_date": "2022-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 57,
+  "signature": "[\"afiliacion\", \"raw:agriculture\", {}, 0.001]",
+  "source_name": "Afiliación media"
+ },
+ "reg_agriculture_sa": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:29:41+00:00",
+  "first_date": "2022-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 57,
+  "signature": "[\"afiliacion\", \"sa:agriculture\", {}, 0.001]",
+  "source_name": "Afiliación media"
+ },
+ "reg_construction": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:29:41+00:00",
+  "first_date": "2022-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 57,
+  "signature": "[\"afiliacion\", \"raw:construction\", {}, 0.001]",
+  "source_name": "Afiliación media"
+ },
+ "reg_construction_sa": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:29:41+00:00",
+  "first_date": "2022-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 57,
+  "signature": "[\"afiliacion\", \"sa:construction\", {}, 0.001]",
+  "source_name": "Afiliación media"
+ },
+ "reg_employees": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:29:41+00:00",
+  "first_date": "2022-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 57,
+  "signature": "[\"afiliacion\", \"raw:employees\", {}, 0.001]",
+  "source_name": "Afiliación media"
+ },
+ "reg_employees_sa": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:29:41+00:00",
+  "first_date": "2022-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 57,
+  "signature": "[\"afiliacion\", \"sa:employees\", {}, 0.001]",
+  "source_name": "Afiliación media"
+ },
+ "reg_industry": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:29:41+00:00",
+  "first_date": "2022-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 57,
+  "signature": "[\"afiliacion\", \"raw:industry\", {}, 0.001]",
+  "source_name": "Afiliación media"
+ },
+ "reg_industry_sa": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:29:41+00:00",
+  "first_date": "2022-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 57,
+  "signature": "[\"afiliacion\", \"sa:industry\", {}, 0.001]",
+  "source_name": "Afiliación media"
+ },
+ "reg_sector_total": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:29:41+00:00",
+  "first_date": "2022-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 57,
+  "signature": "[\"afiliacion\", \"raw:total\", {}, 0.001]",
+  "source_name": "Afiliación media"
+ },
+ "reg_sector_total_sa": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:29:41+00:00",
+  "first_date": "2022-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 57,
+  "signature": "[\"afiliacion\", \"sa:total\", {}, 0.001]",
+  "source_name": "Afiliación media"
+ },
+ "reg_self_employed": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:29:41+00:00",
+  "first_date": "2022-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 57,
+  "signature": "[\"afiliacion\", \"raw:self_employed\", {}, 0.001]",
+  "source_name": "Afiliación media"
+ },
+ "reg_self_employed_sa": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:29:41+00:00",
+  "first_date": "2022-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 57,
+  "signature": "[\"afiliacion\", \"sa:self_employed\", {}, 0.001]",
+  "source_name": "Afiliación media"
+ },
+ "reg_services": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:29:41+00:00",
+  "first_date": "2022-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 57,
+  "signature": "[\"afiliacion\", \"raw:services\", {}, 0.001]",
+  "source_name": "Afiliación media"
+ },
+ "reg_services_sa": {
+  "status": "ok",
+  "fetched_at": "2026-11-01T11:29:41+00:00",
+  "first_date": "2022-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 57,
+  "signature": "[\"afiliacion\", \"sa:services\", {}, 0.001]",
+  "source_name": "Afiliación media"
  },
  "retail_sales": {
   "status": "ok",

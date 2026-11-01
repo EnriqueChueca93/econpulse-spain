@@ -5004,3 +5004,369 @@ indicators:
     freq: Q
     unit: "% of GDP"
     change_unit: "pp"
+
+  # ---------------------------------------------------------------- Jobs by sector
+  # Average monthly Social Security registrations by sector and type of work, from the ministry's yearly
+  # workbooks (sources/afiliacion.py): as published and seasonally adjusted by the ministry, from 2022.
+
+  - id: reg_sector_total
+    label: Registrations, total
+    label_es: Afiliados medios, total
+    section: labour
+    source: afiliacion
+    key: "raw:total"
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [diff_yoy, yoy]
+
+  - id: reg_sector_total_sa
+    label: Registrations, total (SA)
+    label_es: Afiliados medios, total (desestacionalizado)
+    section: labour
+    source: afiliacion
+    key: "sa:total"
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [diff]
+    notes: Seasonally adjusted by the ministry.
+
+  - id: reg_agriculture
+    label: Registrations, agriculture
+    label_es: Afiliados medios, agricultura
+    section: labour
+    source: afiliacion
+    key: "raw:agriculture"
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [diff_yoy, yoy]
+
+  - id: reg_agriculture_sa
+    label: Registrations, agriculture (SA)
+    label_es: Afiliados medios, agricultura (desestacionalizado)
+    section: labour
+    source: afiliacion
+    key: "sa:agriculture"
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [diff]
+    notes: Seasonally adjusted by the ministry.
+
+  - id: reg_industry
+    label: Registrations, industry
+    label_es: Afiliados medios, industria
+    section: labour
+    source: afiliacion
+    key: "raw:industry"
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [diff_yoy, yoy]
+
+  - id: reg_industry_sa
+    label: Registrations, industry (SA)
+    label_es: Afiliados medios, industria (desestacionalizado)
+    section: labour
+    source: afiliacion
+    key: "sa:industry"
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [diff]
+    notes: Seasonally adjusted by the ministry.
+
+  - id: reg_construction
+    label: Registrations, construction
+    label_es: Afiliados medios, construcción
+    section: labour
+    source: afiliacion
+    key: "raw:construction"
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [diff_yoy, yoy]
+
+  - id: reg_construction_sa
+    label: Registrations, construction (SA)
+    label_es: Afiliados medios, construcción (desestacionalizado)
+    section: labour
+    source: afiliacion
+    key: "sa:construction"
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [diff]
+    notes: Seasonally adjusted by the ministry.
+
+  - id: reg_services
+    label: Registrations, services
+    label_es: Afiliados medios, servicios
+    section: labour
+    source: afiliacion
+    key: "raw:services"
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [diff_yoy, yoy]
+
+  - id: reg_services_sa
+    label: Registrations, services (SA)
+    label_es: Afiliados medios, servicios (desestacionalizado)
+    section: labour
+    source: afiliacion
+    key: "sa:services"
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [diff]
+    notes: Seasonally adjusted by the ministry.
+
+  - id: reg_employees
+    label: Registrations, employees
+    label_es: Afiliados medios, asalariados
+    section: labour
+    source: afiliacion
+    key: "raw:employees"
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [diff_yoy, yoy]
+
+  - id: reg_employees_sa
+    label: Registrations, employees (SA)
+    label_es: Afiliados medios, asalariados (desestacionalizado)
+    section: labour
+    source: afiliacion
+    key: "sa:employees"
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [diff]
+    notes: Seasonally adjusted by the ministry.
+
+  - id: reg_self_employed
+    label: Registrations, self-employed
+    label_es: Afiliados medios, no asalariados
+    section: labour
+    source: afiliacion
+    key: "raw:self_employed"
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [diff_yoy, yoy]
+
+  - id: reg_self_employed_sa
+    label: Registrations, self-employed (SA)
+    label_es: Afiliados medios, no asalariados (desestacionalizado)
+    section: labour
+    source: afiliacion
+    key: "sa:self_employed"
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [diff]
+    notes: Seasonally adjusted by the ministry.
+
+  # Registered unemployment by sector of the last job (SEPE, via the Banco de España).
+
+  - id: paro_no_previous_job
+    label: Registered unemployment, no previous job
+    label_es: Paro registrado, sin empleo anterior
+    section: labour
+    source: bde
+    key: D_1JA0DE93DE0960_SISPE
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [diff_yoy, yoy]
+
+  - id: paro_agriculture
+    label: Registered unemployment, agriculture
+    label_es: Paro registrado, agricultura
+    section: labour
+    source: bde
+    key: D_1JA0DE93DE0910_SISPE
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [diff_yoy, yoy]
+
+  - id: paro_industry
+    label: Registered unemployment, industry
+    label_es: Paro registrado, industria
+    section: labour
+    source: bde
+    key: D_1JA0DE93DE0930_SISPE
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [diff_yoy, yoy]
+
+  - id: paro_construction
+    label: Registered unemployment, construction
+    label_es: Paro registrado, construcción
+    section: labour
+    source: bde
+    key: D_1JA0DE93DE0940_SISPE
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [diff_yoy, yoy]
+
+  - id: paro_services
+    label: Registered unemployment, services
+    label_es: Paro registrado, servicios
+    section: labour
+    source: bde
+    key: D_1JA0DE93DE0950_SISPE
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [diff_yoy, yoy]
+
+  - id: benefit_recipients
+    label: Unemployment benefit recipients
+    label_es: Beneficiarios de prestaciones por desempleo
+    section: labour
+    source: bde
+    key: D_1JA0QA00
+    freq: M
+    unit: "thousands"
+    transforms: [diff_yoy, yoy]
+
+  # Employment contracts registered each month (SEPE, via the Banco de España).
+
+  - id: contracts_total
+    label: Contracts registered
+    label_es: Contratos registrados
+    section: labour
+    source: bde
+    key: D_1JACTC0000000
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [yoy, sum_1y]
+
+  - id: contracts_permanent
+    label: Permanent contracts
+    label_es: Contratos indefinidos
+    section: labour
+    source: bde
+    key: D_1JACTCI000000
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [yoy, sum_1y]
+
+  - id: contracts_fixed_discontinuous
+    label: Fijo discontinuo contracts
+    label_es: Contratos fijos discontinuos
+    section: labour
+    source: bde
+    key: D_1JACTJFDS0000
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [yoy, sum_1y]
+
+  - id: contracts_permanent_initial
+    label: Permanent contracts, initial
+    label_es: Contratos indefinidos iniciales
+    section: labour
+    source: bde
+    key: D_1JACTCIORD000
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [yoy, sum_1y]
+
+  - id: contracts_conversions
+    label: Conversions to permanent
+    label_es: Conversiones en indefinidos
+    section: labour
+    source: bde
+    key: D_1JACTCICNV000
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [yoy, sum_1y]
+
+  - id: contracts_temporary
+    label: Temporary contracts
+    label_es: Contratos temporales
+    section: labour
+    source: bde
+    key: D_1JACTCT000000
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [yoy, sum_1y]
+
+  - id: contracts_full_time
+    label: Full-time contracts
+    label_es: Contratos a tiempo completo
+    section: labour
+    source: bde
+    key: D_1JACTJCOM0000
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [yoy, sum_1y]
+
+  - id: contracts_part_time
+    label: Part-time contracts
+    label_es: Contratos a tiempo parcial
+    section: labour
+    source: bde
+    key: D_1JACTJPAR0000
+    freq: M
+    unit: "thousands"
+    scale: 0.001
+    transforms: [yoy, sum_1y]
+
+  - id: contracts_permanent_share
+    label: Permanent contracts, share of all contracts
+    label_es: Contratos indefinidos, % del total
+    section: labour
+    source: derived
+    key: divide
+    params: {a: contracts_permanent, b: contracts_total, scale: 100}
+    freq: M
+    unit: "%"
+    transforms: [avg_1y]
+
+  - id: contracts_fd_share
+    label: Fijo discontinuo contracts, share of all contracts
+    label_es: Contratos fijos discontinuos, % del total
+    section: labour
+    source: derived
+    key: divide
+    params: {a: contracts_fixed_discontinuous, b: contracts_total, scale: 100}
+    freq: M
+    unit: "%"
+    transforms: [avg_1y]
+
+  - id: contracts_part_time_share
+    label: Part-time contracts, share of all contracts
+    label_es: Contratos a tiempo parcial, % del total
+    section: labour
+    source: derived
+    key: divide
+    params: {a: contracts_part_time, b: contracts_total, scale: 100}
+    freq: M
+    unit: "%"
+    transforms: [avg_1y]
+
+  - id: contracts_permanent_other
+    label: Permanent contracts other than fijo discontinuo
+    label_es: Contratos indefinidos salvo fijos discontinuos
+    section: labour
+    source: derived
+    key: subtract
+    params: {a: contracts_permanent, b: contracts_fixed_discontinuous}
+    freq: M
+    unit: "thousands"
+    transforms: [sum_1y]

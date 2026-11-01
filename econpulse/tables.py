@@ -101,6 +101,7 @@ class Row:
     vs: str | None = None             # what a Spread column compares against
     flow: bool = True                 # a flow that can be summed (YearToDate); False for averages
     label_es: str | None = None
+    sa: str | None = None             # a published seasonally adjusted twin, for horizons under 12 months
 
 
 @dataclass
@@ -305,12 +306,14 @@ class _RowCalc:
         if s is None or ind.freq != "M":
             return None
         if col.months < 12:
-            if row.season == "raw":
+            if row.sa:
+                s = self.data.raw(row.sa)
+            elif row.season == "raw":
                 return None
-            if row.season == "ours":
+            elif row.season == "ours":
                 s = self.data.adjusted(row.id)
-                if s is None:
-                    return None
+            if s is None or self.date not in s.index:
+                return None
         base = _back(s, self.date, ind.freq, col.months)
         return None if base is None else (float(s.loc[self.date]) - base) / col.months
 
