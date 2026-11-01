@@ -351,9 +351,118 @@
       bargap: dense ? 0 : 0.3, barcornerradius: dense ? 0 : 4,
       annotations: annotations, shapes: shapes
     };
+    // A chosen time window (5 or 10 years...) narrows the date axis and fits the vertical axis to it.
+    var win = category ? null : rangeWindow(spec);
+    if (win) {
+      layout.xaxis.range = win.x;
+      layout.yaxis.range = win.y;
+    } else {
+      layout.xaxis.autorange = true;
+      layout.yaxis.autorange = true;
+    }
     var config = Object.assign({ toImageButtonOptions: { filename: "econpulse-" + spec.id, scale: 2 } }, CONFIG_BASE);
     window.Plotly.react(el, traces, layout, config).then(function () { spreadLabels(el); });
   }
+
+  // ---------------------------------------------------------------- time ranges
+  // Long time series get buttons for the last few years. The choice is kept per chart for the visit and
+  // survives redraws (theme, resize, a tool's new settings).
+  var ranges = {};
+  var DAY = 86400000;
+
+  function isoDate(t) { return new Date(t).toISOString().slice(0, 10); }
+  function parseIso(s) { return Date.UTC(+s.slice(0, 4), +s.slice(5, 7) - 1, +s.slice(8, 10) || 1); }
+  function yearsBack(s, years) { return isoDate(Date.UTC(+s.slice(0, 4) - years, +s.slice(5, 7) - 1, +s.slice(8, 10) || 1)); }
+
+  function dateSpan(spec) {
+    var first = null, last = null;
+    spec.series.forEach(function (s) {
+      if (!s.x.length) return;
+      if (first === null || s.x[0] < first) first = s.x[0];
+      if (last === null || s.x[s.x.length - 1] > last) last = s.x[s.x.length - 1];
+    });
+    return first === null ? null : { first: first, last: last, years: (parseIso(last) - parseIso(first)) / (365.25 * DAY) };
+  }
+
+  // The windows worth offering: a window must be clearly shorter than the data. Annual charts are short,
+  // and often end in projections, so they keep their whole span.
+  function rangeOptions(spec) {
+    if (spec.x_kind === "category" || ["hbar", "xy", "dots"].indexOf(spec.kind) >= 0 || spec.freq === "A" ||
+        !spec.series || !spec.series.length) return [];
+    var span = dateSpan(spec);
+    if (!span) return [];
+    return (spec.freq === "D" ? [1, 5] : [5, 10]).filter(function (y) { return span.years > y * 1.25; });
+  }
+
+  function rangeWindow(spec) {
+    var years = ranges[spec.id];
+    var span = years && dateSpan(spec);
+    if (!span) return null;
+    var cutoff = yearsBack(span.last, years);
+    var lo = Infinity, hi = -Infinity, first = null, bars = false, up = {}, down = {};
+    spec.series.forEach(function (s) {
+      var bar = (s.kind || spec.kind) === "bar";
+      s.x.forEach(function (x, i) {
+        var v = s.y[i];
+        if (x <= cutoff || v === null || v === undefined) return;
+        if (first === null || x < first) first = x;
+        if (bar) {
+          bars = true;
+          if (spec.stack) {   // stacked bars: the visible range is set by each date's positive and negative totals
+            if (v >= 0) up[x] = (up[x] || 0) + v; else down[x] = (down[x] || 0) + v;
+            return;
+          }
+        }
+        lo = Math.min(lo, v); hi = Math.max(hi, v);
+      });
+    });
+    Object.keys(up).forEach(function (k) { hi = Math.max(hi, up[k]); lo = Math.min(lo, 0); });
+    Object.keys(down).forEach(function (k) { lo = Math.min(lo, down[k]); hi = Math.max(hi, 0); });
+    if (bars) { lo = Math.min(lo, 0); hi = Math.max(hi, 0); }
+    if (!isFinite(lo) || first === null) return null;
+    var pad = (hi - lo) * 0.06 || Math.abs(hi) * 0.1 || 1;
+    // Room at the edges: half a period for bars, and enough for the end dots of lines.
+    var start = parseIso(first), end = parseIso(span.last);
+    var room = Math.max(bars ? ({ D: 1, M: 16, Q: 46, A: 183 }[spec.freq] || 16) * DAY : 0, (end - start) * 0.015);
+    return {
+      x: [isoDate(start - room), isoDate(end + room)],
+      y: [bars && lo === 0 ? 0 : lo - pad, bars && hi === 0 ? 0 : hi + pad]
+    };
+  }
+
+  function addRangeButtons(spec) {
+    var fig = document.getElementById("fig-" + spec.id), options = rangeOptions(spec);
+    if (!fig || !options.length || fig.querySelector(".range-buttons")) return;
+    var caption = fig.querySelector("figcaption");
+    if (!caption) return;
+    var group = document.createElement("div");
+    group.className = "range-buttons";
+    group.setAttribute("role", "group");
+    group.setAttribute("aria-label", "Time range");
+    options.concat([0]).forEach(function (years) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.textContent = years ? years + "Y" : "All";
+      b.setAttribute("data-years", years);
+      b.setAttribute("aria-label", years ? "Last " + years + (years === 1 ? " year" : " years") : "All the data");
+      b.setAttribute("aria-pressed", String((ranges[spec.id] || 0) === years));
+      group.appendChild(b);
+    });
+    caption.classList.add("has-range");
+    caption.appendChild(group);
+  }
+
+  document.addEventListener("click", function (event) {
+    var b = event.target.closest && event.target.closest(".range-buttons button");
+    if (!b) return;
+    var fig = b.closest(".chart-card"), spec = fig && byId(fig.id.slice("fig-".length));
+    if (!spec) return;
+    ranges[spec.id] = +b.getAttribute("data-years") || null;
+    Array.prototype.forEach.call(b.parentNode.querySelectorAll("button"), function (other) {
+      other.setAttribute("aria-pressed", String(other === b));
+    });
+    drawSpec(spec);
+  });
 
   // Right margin wide enough for the longest end label (about 6.5px a character at 12px).
   function labelMargin(annotations) {
@@ -384,10 +493,13 @@
     } catch (e) { /* labels stay where they are */ }
   }
 
-  // A plain table under each chart, so every value is readable without hovering.
-  function fillTable(spec) {
+  // A plain table under each chart, so every value is readable without hovering. Time series show
+  // their latest 12 dates, or every date once asked (`all`).
+  function fillTable(spec, all) {
     var holder = document.querySelector('.chart-data[data-chart="' + spec.id + '"]');
-    if (!holder || holder.querySelector("table")) return;
+    if (!holder) return;
+    if (all === undefined && holder.querySelector("table")) return;
+    Array.prototype.forEach.call(holder.querySelectorAll("table, .note"), function (el) { holder.removeChild(el); });
     var table = document.createElement("table");
     var category = spec.x_kind === "category";
     var head = table.createTHead().insertRow();
@@ -416,19 +528,34 @@
     spec.series.forEach(function (s) {
       s.x.forEach(function (d) { if (!seen[d]) { seen[d] = true; dates.push(d); } });
     });
-    if (!category) dates = dates.sort().reverse().slice(0, 12);
+    var total = dates.length;
+    if (!category) dates = dates.sort().reverse().slice(0, all ? total : 12);
+    var maps = spec.series.map(function (s) {
+      var m = {};
+      s.x.forEach(function (x, i) { m[x] = s.y[i]; });
+      return m;
+    });
     var body = table.createTBody();
     dates.forEach(function (d) {
       var row = body.insertRow();
       row.insertCell().textContent = category ? d : dateLabel(d, spec.freq);
-      spec.series.forEach(function (s) {
-        var j = s.x.indexOf(d);
-        row.insertCell().textContent = j >= 0 && s.y[j] !== null ? fmt(s.y[j], spec, spec.signed) : "–";
+      maps.forEach(function (m) {
+        row.insertCell().textContent = d in m && m[d] !== null ? fmt(m[d], spec, spec.signed) : "–";
       });
     });
     var caption = document.createElement("p");
     caption.className = "note";
-    caption.textContent = category ? "All points." : "Latest " + dates.length + " dates.";
+    if (category || total <= 12) {
+      caption.textContent = category ? "All points." : "All " + total + " dates.";
+    } else {
+      caption.textContent = all ? "All " + total + " dates, newest first. " : "Latest 12 of " + total + " dates. ";
+      var more = document.createElement("button");
+      more.type = "button";
+      more.className = "chart-link table-all";
+      more.textContent = all ? "Show the latest 12" : "Show all " + total;
+      more.addEventListener("click", function () { fillTable(spec, !all); });
+      caption.appendChild(more);
+    }
     holder.appendChild(table);
     holder.appendChild(caption);
   }
@@ -553,7 +680,7 @@
       if (spec) downloadCsv(spec);
       return;
     }
-    var button = event.target.closest && event.target.closest(".chart-link");
+    var button = event.target.closest && event.target.closest(".chart-link[data-figure]");
     if (!button) return;
     var url = location.href.split(/[?#]/)[0] + "#" + button.getAttribute("data-figure");
     var label = button.textContent;
@@ -580,6 +707,7 @@
 
   specs.forEach(function (spec) {
     presize(spec);
+    addRangeButtons(spec);
     var el = document.getElementById("chart-" + spec.id);
     if (!el) return;
     if (observer) observer.observe(el); else drawSpec(spec);
@@ -597,6 +725,7 @@
   window.EP.render = function (spec) {
     var b = csvButton(spec.id);
     if (b) b.hidden = false;
+    addRangeButtons(spec);
     for (var i = 0; i < specs.length; i++) {
       if (specs[i].id === spec.id) { specs[i] = spec; drawSpec(spec); return; }
     }

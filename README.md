@@ -59,7 +59,8 @@ Because the workflow commits data every day, run `git pull` before working local
   without energy, and every group since 2008; services trade by type (quarterly balance of payments); and export and
   import prices of industrial goods, with the terms of trade.
 - **GDP, Labour market, Wages, Inflation**: econvitals-style tables (1-, 3-, 6- and 12-month changes; latest,
-  a month ago, a year ago; contributions to growth) and 25 charts, each with a data table, a PNG and a CSV download.
+  a month ago, a year ago; contributions to growth) and 25 charts, each with a data table, a PNG and a CSV download
+  and, for long time series, buttons for the last 5 or 10 years.
   The Inflation page also measures underlying inflation across the ~180 detailed HICP items: weighted median,
   10% and 30% trimmed means, how widespread price rises are, and the items rising fastest and slowest.
 - **Financial, ECB**: a markets table (1-day, 1-week, YTD, 1-year moves), the Spanish yield curve against the
