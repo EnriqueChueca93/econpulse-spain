@@ -9,6 +9,8 @@ when the ECB publishes later years; after the last date the page links to that c
 
 import pandas as pd
 
+from . import i18n
+from .i18n import _
 from .snapshot import fmt_change, fmt_value
 from .sources.base import madrid_today
 from .tables import Data
@@ -34,7 +36,7 @@ MORTGAGE = {"principal": 150_000, "years": 25, "margin": 0.9}
 
 
 def _day(d: pd.Timestamp) -> str:
-    return f"{d.day} {d:%b %Y}"
+    return i18n.day_month_year(d)
 
 
 def _today(today=None) -> pd.Timestamp:
@@ -65,12 +67,12 @@ def decisions_table(data: Data, n: int = 8) -> dict | None:
              "cells": [fmt_value(level, "%", 2), fmt_change(bp, "bp", 0)]} for d, level, bp in changes]
     latest = s.dropna().index[-1]
     return {
-        "title": "Date it took effect",
-        "caption": f"Recent changes in the deposit facility rate · through {_day(latest)}",
+        "title": _("Date it took effect"),
+        "caption": _("Recent changes in the deposit facility rate · through {day}").format(day=_day(latest)),
         "through": _day(latest),
-        "columns": ["Deposit rate", "Change"],
+        "columns": [_("Deposit rate"), _("Change")],
         "rows": rows,
-        "note": "New rates take effect a few days after the decision is announced (on the Wednesday after it, since 2024).",
+        "note": _("New rates take effect a few days after the decision is announced (on the Wednesday after it, since 2024)."),
     }
 
 
@@ -80,24 +82,25 @@ def ecb_facts(data: Data, today: pd.Timestamp | None = None) -> list[dict]:
     dfr = data.raw("ecb_deposit_rate")
     if dfr is not None:
         dfr = dfr.dropna()
-        facts.append({"label": "Deposit facility rate", "value": fmt_value(float(dfr.iloc[-1]), "%", 2),
+        facts.append({"label": _("Deposit facility rate"), "value": fmt_value(float(dfr.iloc[-1]), "%", 2),
                       "sub": _day(dfr.index[-1])})
         changes = rate_changes(dfr)
         if changes:
-            d, _, bp = changes[0]
-            facts.append({"label": "Last change", "value": fmt_change(bp, "bp", 0), "sub": f"took effect {_day(d)}"})
+            d, _level, bp = changes[0]
+            facts.append({"label": _("Last change"), "value": fmt_change(bp, "bp", 0),
+                          "sub": _("took effect {day}").format(day=_day(d))})
     today = _today(today)
     nxt = next_decision(today)
     if nxt is not None:
         days = (nxt - today).days
-        facts.append({"label": "Next decision", "value": _day(nxt),
-                      "sub": "today" if days == 0 else f"in {days} day{'s' if days != 1 else ''}"})
+        facts.append({"label": _("Next decision"), "value": _day(nxt),
+                      "sub": _("today") if days == 0 else i18n.ngettext("in {n} day", "in {n} days", days).format(n=days)})
     else:
-        facts.append({"label": "Next decision", "value": "See the ECB calendar", "sub": "", "url": ECB_CALENDAR_URL})
+        facts.append({"label": _("Next decision"), "value": _("See the ECB calendar"), "sub": "", "url": ECB_CALENDAR_URL})
     estr = data.raw("estr")
     if estr is not None:
         estr = estr.dropna()
-        facts.append({"label": "€STR, overnight", "value": fmt_value(float(estr.iloc[-1]), "%", 3), "sub": _day(estr.index[-1])})
+        facts.append({"label": _("€STR, overnight"), "value": fmt_value(float(estr.iloc[-1]), "%", 3), "sub": _day(estr.index[-1])})
     return facts
 
 
@@ -124,8 +127,13 @@ def mortgage_check(data: Data) -> str | None:
     pay_then = monthly_payment(m["principal"], then + m["margin"], m["years"])
     diff = pay_now - pay_then
     partial = s.index[-1] < month + pd.offsets.BMonthEnd(0)  # before the month's last business day
-    so_far = f" so far, to {s.index[-1].day} {s.index[-1]:%b}" if partial else ""
-    change = "the same as" if abs(diff) < 0.5 else f"€{abs(diff):,.0f} {'more' if diff > 0 else 'less'} than"
-    return (f"Mortgage check: a €{m['principal']:,}, {m['years']}-year variable-rate mortgage at Euribor + "
-            f"{m['margin']} pp, reset at {month:%B}'s average 12-month Euribor ({now:.2f}%{so_far}), costs "
-            f"€{pay_now:,.0f} a month: {change} a reset at the rate a year earlier ({then:.2f}%).")
+    so_far = _(" so far, to {day}").format(day=i18n.day_mon(s.index[-1])) if partial else ""
+    if abs(diff) < 0.5:
+        change = _("the same as")
+    else:
+        change = (_("€{amount} more than") if diff > 0 else _("€{amount} less than")).format(amount=f"{abs(diff):,.0f}")
+    return _("Mortgage check: a €{principal}, {years}-year variable-rate mortgage at Euribor + {margin} pp, reset at "
+             "{month}'s average 12-month Euribor ({now}%{so_far}), costs €{payment} a month: {change} a reset at the rate "
+             "a year earlier ({then}%).").format(
+        principal=f"{m['principal']:,}", years=m['years'], margin=m['margin'], month=i18n.month(month), now=f"{now:.2f}",
+        so_far=so_far, payment=f"{pay_now:,.0f}", change=change, then=f"{then:.2f}")

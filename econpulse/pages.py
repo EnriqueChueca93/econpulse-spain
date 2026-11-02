@@ -10,7 +10,8 @@ lists the indicators those functions read. Sections without blocks yet show thei
 
 from . import (analytics, demography, forecasts, fuel, housing, peers, pensions, policy, sectortables, surprises,
                underlying, workstats)
-from .charts import build_chart, build_curve, build_ranking, build_xy
+from .charts import build_chart, build_curve, build_ranking, build_xy, localise
+from .i18n import _
 from .registry import Indicator
 from .snapshot import fmt_value, period_label
 from .store import Store
@@ -2158,11 +2159,11 @@ def _flash_note(block: dict, tables: list[dict], data: Data) -> str:
         s = s.dropna()
         period = period_label(s.index[-1], data.by_id[ind_id].freq)
         if period != through:
-            parts.append(f"{name} {fmt_value(float(s.iloc[-1]), '%', 1)}")
+            parts.append(f"{_(name)} {fmt_value(float(s.iloc[-1]), '%', 1)}")
     if not parts:
         return ""
-    return (f"Flash estimate for {period}: {', '.join(parts)} on a year earlier. "
-            "The table follows when INE publishes the full index.")
+    return _("Flash estimate for {period}: {figures} on a year earlier. "
+             "The table follows when INE publishes the full index.").format(period=period, figures=", ".join(parts))
 
 
 def _build_any_table(t, data: Data) -> dict | None:
@@ -2189,15 +2190,15 @@ def build_page(section: str, indicators: list[Indicator], store: Store) -> dict:
     blocks, charts = [], []
     for block in PAGES.get(section, []):
         tables = [t for t in (_build_any_table(t, data) for t in block["tables"]) if t]
-        specs = [c for c in ((c(data) if callable(c) else _chart_builder(c)(c, data.by_id, store))
-                             for c in block.get("charts", [])) if c]
+        specs = [localise(c) for c in ((c(data) if callable(c) else _chart_builder(c)(c, data.by_id, store))
+                                       for c in block.get("charts", [])) if c]
         flash = _flash_note(block, tables, data)
         facts = block["facts"](data) if "facts" in block else []
         callout = block["callout"](data) if "callout" in block else None
         documents = block["documents"](data) if "documents" in block else []
         if not tables and not specs and not documents:
             continue
-        blocks.append({"id": block["id"], "title": block["title"], "intro": block["intro"], "facts": facts,
+        blocks.append({"id": block["id"], "title": _(block["title"]), "intro": _(block["intro"]), "facts": facts,
                        "tables": tables, "callout": callout, "charts": specs, "flash": flash,
                        "picker": block.get("picker", False), "documents": documents})
         charts += specs

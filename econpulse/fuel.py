@@ -6,6 +6,7 @@ Monday's average in Spain and the euro area, with and before duties and taxes, i
 
 import pandas as pd
 
+from .i18n import _
 from .snapshot import MINUS, period_label
 from .tables import Data
 
@@ -29,8 +30,9 @@ def facts(data: Data) -> list[dict]:
         date, value = s.index[-1], float(s.iloc[-1])
         latest[fuel] = (date, value)
         year_ago = s.asof(date - pd.DateOffset(years=1))
-        sub = "" if pd.isna(year_ago) else f"{_signed((value / year_ago - 1) * 100)}% on a year earlier"
-        out.append({"label": f"{label}, {period_label(date, 'D')}", "value": f"€{value:.3f} a litre", "sub": sub})
+        sub = "" if pd.isna(year_ago) else _("{change}% on a year earlier").format(change=_signed((value / year_ago - 1) * 100))
+        out.append({"label": f"{_(label)}, {period_label(date, 'D')}", "value": _("€{price} a litre").format(price=f"{value:.3f}"),
+                    "sub": sub})
 
     def at(ind_id: str, date: pd.Timestamp) -> float | None:
         s = data.raw(ind_id)
@@ -41,11 +43,12 @@ def facts(data: Data) -> list[dict]:
 
     taxes = {f: 1 - pretax / value for f, (date, value) in latest.items() if (pretax := at(f"{f}_price_pretax", date))}
     if "petrol" in taxes:
-        out.append({"label": "Taxes in the pump price", "value": f"{taxes['petrol'] * 100:.0f}%",
-                    "sub": "of petrol's" + (f"; {taxes['diesel'] * 100:.0f}% of diesel's" if "diesel" in taxes else "")})
+        out.append({"label": _("Taxes in the pump price"), "value": f"{taxes['petrol'] * 100:.0f}%",
+                    "sub": _("of petrol's") + (_("; {share}% of diesel's").format(share=f"{taxes['diesel'] * 100:.0f}")
+                                               if "diesel" in taxes else "")})
     gaps = {f: value / ea - 1 for f, (date, value) in latest.items() if (ea := at(f"{f}_price_ea", date))}
     if "petrol" in gaps:
-        out.append({"label": "Against the euro area", "value": f"{_signed(gaps['petrol'] * 100, 0)}%",
-                    "sub": "petrol in Spain against the euro-area average" +
-                           (f"; diesel {_signed(gaps['diesel'] * 100, 0)}%" if "diesel" in gaps else "")})
+        out.append({"label": _("Against the euro area"), "value": f"{_signed(gaps['petrol'] * 100, 0)}%",
+                    "sub": _("petrol in Spain against the euro-area average") +
+                           (_("; diesel {gap}%").format(gap=_signed(gaps['diesel'] * 100, 0)) if "diesel" in gaps else "")})
     return out

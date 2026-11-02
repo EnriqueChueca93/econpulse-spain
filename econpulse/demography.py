@@ -6,6 +6,7 @@ calculation from Eurostat's population counts by sex and age (sources/ageing.py)
 """
 
 from . import transforms
+from .i18n import _
 from .snapshot import fmt_change, fmt_value, period_label
 from .sources.ageing import BASE_YEAR
 from .tables import Data, Heading, Move, Panel, PanelColumn, PanelRow
@@ -59,16 +60,17 @@ def ageing_facts(data: Data) -> list[dict]:
         return []
     date = actual.index[-1]
     now, at_base = float(actual.iloc[-1]), float(adjusted.get(date, float("nan")))
-    out = [{"label": "Participation, 15 and over", "value": fmt_value(now, "%", 1),
-            "sub": f"average of the four quarters to {period_label(date, 'Q')}"},
-           {"label": f"At the {BASE_YEAR} age mix", "value": fmt_value(at_base, "%", 1),
-            "sub": f"each age group's rate today, weighted as in {BASE_YEAR}"},
-           {"label": f"Effect of ageing since {BASE_YEAR}", "value": fmt_change(now - at_base, "pp", 1),
-            "sub": "on the participation rate"}]
+    out = [{"label": _("Participation, 15 and over"), "value": fmt_value(now, "%", 1),
+            "sub": _("average of the four quarters to {quarter}").format(quarter=period_label(date, 'Q'))},
+           {"label": _("At the {year} age mix").format(year=BASE_YEAR), "value": fmt_value(at_base, "%", 1),
+            "sub": _("each age group's rate today, weighted as in {year}").format(year=BASE_YEAR)},
+           {"label": _("Effect of ageing since {year}").format(year=BASE_YEAR), "value": fmt_change(now - at_base, "pp", 1),
+            "sub": _("on the participation rate")}]
     old = _avg(data, "lfs_share_65plus")
     if old is not None and _at(old, BASE_YEAR) is not None:
-        out.append({"label": "Aged 65 and over", "value": fmt_value(float(old.iloc[-1]), "%", 1),
-                    "sub": f"of people 15 and over, from {fmt_value(_at(old, BASE_YEAR), '%', 1)} in {BASE_YEAR}"})
+        out.append({"label": _("Aged 65 and over"), "value": fmt_value(float(old.iloc[-1]), "%", 1),
+                    "sub": _("of people 15 and over, from {then} in {year}").format(
+                        then=fmt_value(_at(old, BASE_YEAR), '%', 1), year=BASE_YEAR)})
     return out
 
 
@@ -82,9 +84,10 @@ def ageing_callout(data: Data) -> str | None:
     then, today = adjusted.get(peak_date), adjusted.get(actual.index[-1])
     if then is None or today is None or peak - now < 0.3:
         return None
-    text = (f"Participation of everyone aged 15 and over peaked at {fmt_value(peak, '%', 1)} in the four quarters to "
-            f"{period_label(peak_date, 'Q')} and is {fmt_value(now, '%', 1)} now. At the {BASE_YEAR} age mix it would "
-            f"have gone from {fmt_value(float(then), '%', 1)} to {fmt_value(float(today), '%', 1)}")
+    text = _("Participation of everyone aged 15 and over peaked at {peak} in the four quarters to {quarter} and is "
+             "{now} now. At the {year} age mix it would have gone from {then} to {today}").format(
+        peak=fmt_value(peak, '%', 1), quarter=period_label(peak_date, 'Q'), now=fmt_value(now, '%', 1), year=BASE_YEAR,
+        then=fmt_value(float(then), '%', 1), today=fmt_value(float(today), '%', 1))
     if today > then:
-        return text + ": the fall comes from the population's ageing; within age groups, participation has risen on balance."
-    return text + ": participation within age groups has fallen too."
+        return text + _(": the fall comes from the population's ageing; within age groups, participation has risen on balance.")
+    return text + _(": participation within age groups has fallen too.")

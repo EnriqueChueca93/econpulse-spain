@@ -9,9 +9,9 @@
   <p class="lede">{{ page.intro }}</p>
   {% if blocks %}
     {% if blocks | length > 1 or subpages %}
-    <nav class="on-page" aria-label="On this page">
-      {% for b in blocks %}<a href="#{{ b.id }}"{% if b.updated %} class="has-new" title="Updated {{ b.updated.day }}"{% endif %}>{{ b.title }}</a>{% endfor %}
-      {% for href, title in subpages %}<a href="{{ href }}">{{ title }} <span aria-hidden="true">&rarr;</span></a>{% endfor %}
+    <nav class="on-page" aria-label="{{ _("On this page") }}">
+      {% for b in blocks %}<a href="#{{ b.id }}"{% if b.updated %} class="has-new" title="{{ _("Updated %(day)s", day=b.updated.day) }}"{% endif %}>{{ b.title }}</a>{% endfor %}
+      {% for href, title in subpages %}<a href="{{ href }}">{{ _(title) }} <span aria-hidden="true">&rarr;</span></a>{% endfor %}
     </nav>
     {% endif %}
     {% for b in blocks %}
@@ -22,9 +22,9 @@
       {# The comparators drawn beside Spain on this page's line charts, and coloured in its rankings (static/app.js). #}
       <div class="country-picker" id="country-picker" data-max="{{ picker.max }}"
            data-default="{{ picker.default | join(',') }}">
-        <span class="picker-label">Compare Spain with up to {{ picker.max }}:</span>
-        <span class="picker-chips" role="group" aria-label="Countries drawn beside Spain on the charts">
-          {%- for slug, label in picker.countries %}<button type="button" class="chip" data-country="{{ slug }}" aria-pressed="false"><span class="chip-swatch" aria-hidden="true"></span>{{ label }}</button>{% endfor -%}
+        <span class="picker-label">{{ _("Compare Spain with up to %(n)s:", n=picker.max) }}</span>
+        <span class="picker-chips" role="group" aria-label="{{ _("Countries drawn beside Spain on the charts") }}">
+          {%- for slug, label in picker.countries %}<button type="button" class="chip" data-country="{{ slug }}" aria-pressed="false"><span class="chip-swatch" aria-hidden="true"></span>{{ _(label) }}</button>{% endfor -%}
         </span>
       </div>
       {% endif %}
@@ -68,17 +68,16 @@
     {% endfor %}
     {% if items %}
     <details class="all-series">
-      <summary>All {{ items | length }} series in this section, with their sources</summary>
+      <summary>{{ _("All %(n)s series in this section, with their sources", n=items | length) }}</summary>
       {{ indicator_table(items) }}
     </details>
     {% endif %}
   {% else %}
-    <p class="notice">Charts and detailed tables for this page arrive in Batch {{ page.batch }} of the build plan.
-      For now, here is every {{ page.title | lower }} indicator tracked, with its latest reading.</p>
+    <p class="notice">{{ _("Charts and detailed tables for this page arrive in Batch %(batch)s of the build plan. For now, here is every indicator tracked, with its latest reading.", batch=page.batch) }}</p>
     {% if items %}
       {{ indicator_table(items) }}
     {% else %}
-      <p class="note">No indicators in this section yet.</p>
+      <p class="note">{{ _("No indicators in this section yet.") }}</p>
     {% endif %}
   {% endif %}
 {% endblock %}

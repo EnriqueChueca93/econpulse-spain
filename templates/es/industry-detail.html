@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% from "macros.html" import stat_table, chart_card %}
+
+{% block title %}Todas las actividades · {{ brand }}{% endblock %}
+{% block description %}La afiliación mensual a la Seguridad Social en todas las actividades en España: la variación de cada mes y su media de 3 meses.{% endblock %}
+
+{% block content %}
+  <h1>Todas las actividades</h1>
+  <p class="lede">La variación mensual de la afiliación a la Seguridad Social (barras) y su media de 3 meses (línea) en
+    todas las grandes actividades desde 2023, desde los agregados hasta las divisiones de dos dígitos. Complementa el
+    <a href="labour.html#sectors">empleo por sectores</a> de la página Mercado laboral.</p>
+  {% if table %}
+  <nav class="on-page" aria-label="En esta página">
+    <a href="#table">Todas las actividades en una tabla</a>{% for s in sections %}<a href="#{{ s.id }}">{{ s.title }}</a>{% endfor %}
+  </nav>
+  <section class="block" aria-labelledby="table">
+    <h2 id="table">Todas las actividades en una tabla</h2>
+    {{ stat_table(table) }}
+  </section>
+  {% for s in sections %}
+  <section class="block" aria-labelledby="{{ s.id }}">
+    <h2 id="{{ s.id }}">{{ s.title }}</h2>
+    <div class="charts">
+      {% for c in s.charts %}{{ chart_card(c) }}{% endfor %}
+    </div>
+  </section>
+  {% endfor %}
+  <section class="block" aria-labelledby="about-data">
+    <h2 id="about-data">Sobre los datos</h2>
+    <p class="note">La afiliación media mensual del régimen general y de los autónomos por actividad a dos dígitos
+      (CNAE), de los ficheros anuales de la Seguridad Social, desde 2021. Deja fuera los sistemas especiales agrario y
+      de empleados de hogar, así que la agricultura y los hogares parecen aquí más pequeños que en las cifras por
+      sectores, y a los funcionarios cubiertos por sus mutualidades, así que la Administración pública también. La
+      desestacionalización es de Macroscope (STL sobre las series desde 2021); el ministerio solo desestacionaliza los
+      cuatro grandes sectores.</p>
+    <p class="note">Desde enero de 2026 las actividades siguen la nueva clasificación, la CNAE-2025. Los grupos que se
+      muestran mantienen sus límites a través del cambio, salvo dos traspasos que los cruzan, que Macroscope enlaza
+      moviendo la afiliación afectada en las series anteriores a 2026{% if moves %}: {{ moves | join("; ") }}{% endif %}.
+      Cada traspaso se estima como el salto de la división que lo recibe entre diciembre de 2025 y enero de 2026, menos
+      la misma variación un año antes.</p>
+  </section>
+  {% else %}
+  <p class="notice">Las cifras por actividad aparecen cuando se han descargado los ficheros de la Seguridad Social.</p>
+  {% endif %}
+{% endblock %}
+
+{% block scripts %}
+  {% if charts_file %}
+  <script src="{{ root }}assets/plotly-basic.min.js?v={{ build_id }}"></script>
+  <script src="{{ charts_file }}?v={{ build_id }}"></script>
+  {% endif %}
+{% endblock %}

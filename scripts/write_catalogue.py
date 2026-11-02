@@ -441,6 +441,11 @@ add({
 for unit in ("$", "$/MMBtu", "$/oz", "$/t", "GWh", "pp", "€/MWh", "€/bbl", "€/l", "€/m²"):
     add({unit: unit})
 
+# The section pages, one file per batch (scripts/ is on the path when this runs as a script)
+from catalogue_sections_1 import PAIRS as SECTIONS_1   # noqa: E402  Batch 33b
+
+add(SECTIONS_1)
+
 
 if __name__ == "__main__":
     out = Path(__file__).resolve().parents[1] / "econpulse" / "locale" / "es.yaml"

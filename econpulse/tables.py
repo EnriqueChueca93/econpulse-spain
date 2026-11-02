@@ -21,7 +21,8 @@ from dataclasses import dataclass, field
 
 import pandas as pd
 
-from . import seasonal, transforms
+from . import i18n, seasonal, transforms
+from .i18n import _
 from .registry import Indicator
 from .snapshot import MINUS, fmt_change, fmt_value, period_label
 from .store import Store
@@ -359,18 +360,18 @@ class _RowCalc:
 
 def _level_header(col: Level, freqs: set[str], through: pd.Timestamp) -> str:
     if col.header:
-        return col.header
+        return _(col.header)
     if col.at == "latest":
-        return "Latest"
+        return _("Latest")
     if col.at == "year":
-        return "1-yr ago"
+        return _("1-yr ago")
     if col.at == "yearend":
-        return f"End-{through.year - 1}"
+        return _("End-{year}").format(year=through.year - 1)
     if freqs == {"Q"}:
-        return "1-qtr ago"
+        return _("1-qtr ago")
     if freqs <= {"M", "D"}:
-        return "1-mo ago"
-    return "Previous"
+        return _("1-mo ago")
+    return _("Previous")
 
 
 def build_table(table: Table, data: Data) -> dict | None:
@@ -390,7 +391,7 @@ def build_table(table: Table, data: Data) -> dict | None:
     rows = []
     for c in calcs:
         if isinstance(c, Heading):
-            rows.append({"heading": True, "label": c.label})
+            rows.append({"heading": True, "label": _(c.label)})
             continue
         ind, row = c.ind, c.row
         source = ind or (data.by_id.get(next(iter(row.contrib.values()))) if row.contrib else None)
@@ -399,22 +400,22 @@ def build_table(table: Table, data: Data) -> dict | None:
             note = period_label(c.date, c.freq)
         rows.append({
             "heading": False,
-            "label": row.label or (ind.label if ind else ""),
+            "label": _(row.label) if row.label else (i18n.pick(ind.label, ind.label_es) if ind else ""),
             "label_es": row.label_es or (source.label_es if source else ""),
             "indent": row.indent,
             "period_note": note,
             "url": source.source_url() if source else None,
             "cells": [c.value(col) for col in table.columns],
         })
-    headers = [_level_header(col, freqs, through) if isinstance(col, Level) else col.header for col in table.columns]
+    headers = [_level_header(col, freqs, through) if isinstance(col, Level) else _(col.header) for col in table.columns]
     through_label = period_label(through, main_freq)
     return {
-        "title": table.title,
-        "caption": f"{table.caption} · through {through_label}",
+        "title": _(table.title),
+        "caption": _("{caption} · through {period}").format(caption=_(table.caption), period=through_label),
         "through": through_label,
         "columns": headers,
         "rows": rows,
-        "note": table.note,
+        "note": _(table.note),
     }
 
 
@@ -483,7 +484,7 @@ def build_panel(panel: Panel, data: Data) -> dict | None:
     rows = []
     for row, cells in zip(panel.rows, grid):
         if isinstance(row, Heading):
-            rows.append({"heading": True, "label": row.label, "label_es": "", "indent": 0, "period_note": "",
+            rows.append({"heading": True, "label": _(row.label), "label_es": "", "indent": 0, "period_note": "",
                          "url": None, "cells": [], "highlight": False})
             continue
         out = []
@@ -496,14 +497,14 @@ def build_panel(panel: Panel, data: Data) -> dict | None:
                 out.append({"value": value, "note": period_label(calc.date, calc.freq)})
             else:
                 out.append(value)
-        rows.append({"heading": False, "label": row.label, "label_es": "", "indent": row.indent, "period_note": "",
+        rows.append({"heading": False, "label": _(row.label), "label_es": "", "indent": row.indent, "period_note": "",
                      "url": None, "cells": out, "highlight": row.highlight})
     return {
-        "title": panel.title,
-        "caption": panel.caption,
+        "title": _(panel.title),
+        "caption": _(panel.caption),
         "through": None,
-        "columns": [col.header for col in panel.columns],
+        "columns": [_(col.header) for col in panel.columns],
         "column_notes": [period_label(*p) if p else "" for p in periods],
         "rows": rows,
-        "note": panel.note,
+        "note": _(panel.note),
     }

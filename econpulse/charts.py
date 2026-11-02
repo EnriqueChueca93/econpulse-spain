@@ -89,6 +89,35 @@ def _sources(inds: list[Indicator], by_id: dict[str, Indicator]) -> str:
     return "; ".join(i18n._(n) for n in [n for n in dict.fromkeys(names) if n != calc] + ([calc] if calc in names else []))
 
 
+_TEXT_KEYS = ("title", "subtitle", "x_title", "x_label", "y_label", "a_name", "b_name", "left", "right")
+
+
+def localise(spec: dict) -> dict:
+    """A chart spec's words in the language being written (Batch 33b): titles, axis and series names,
+    reference lines, the rows of a dot or dumbbell chart, and category labels the catalogue knows.
+    Numbers and dates are left as they are. A spec is put into a language once (`lang` marks it)."""
+    if spec.get("lang") == i18n.lang():
+        return spec
+    spec["lang"] = i18n.lang()
+    if i18n.lang() == "en":
+        return spec
+    for key in _TEXT_KEYS:
+        if spec.get(key):
+            spec[key] = i18n._(spec[key])
+    if spec.get("unit") in ("bp", "% of GDP", "pp"):
+        spec["unit"] = i18n._(spec["unit"])
+    for s in spec.get("series", []):
+        if s.get("name"):
+            s["name"] = i18n.maybe(s["name"]) if s.get("country") else i18n._(s["name"])
+        if spec.get("x_kind") == "category":
+            s["x"] = [i18n.maybe(x) for x in s["x"]]
+    for key in ("ref_lines", "rows"):
+        if spec.get(key):
+            spec[key] = [{**r, "label": i18n.maybe(r["label"]) if key == "rows" else i18n._(r["label"])}
+                         if r.get("label") else r for r in spec[key]]
+    return spec
+
+
 def build_chart(definition: dict, by_id: dict[str, Indicator], store: Store) -> dict | None:
     """One chart spec, or None if none of its series has data."""
     start = pd.Timestamp(definition["start"])
@@ -115,23 +144,16 @@ def build_chart(definition: dict, by_id: dict[str, Indicator], store: Store) -> 
         s = s[s.index >= start].round(4)
         if s.empty:
             continue
-        series.append({"name": i18n._(name), "x": [d.strftime("%Y-%m-%d") for d in s.index], "y": s.tolist(), **opts})
+        series.append({"name": name, "x": [d.strftime("%Y-%m-%d") for d in s.index], "y": s.tolist(), **opts})
         sources.append(ind)
         freqs.append(freq)
     if not series:
         return None
     spec = {k: v for k, v in definition.items() if k not in ("series", "start")}
-    for key in ("title", "subtitle", "x_title"):        # in the language being written
-        if spec.get(key):
-            spec[key] = i18n._(spec[key])
-    if spec.get("unit") in ("bp", "% of GDP"):
-        spec["unit"] = i18n._(spec["unit"])
-    if spec.get("ref_lines"):
-        spec["ref_lines"] = [{**r, "label": i18n._(r["label"])} if r.get("label") else r for r in spec["ref_lines"]]
     spec["series"] = series
     spec["freq"] = min(freqs, key=FREQ_ORDER.index)
     spec["source"] = _sources(sources, by_id)
-    return spec
+    return localise(spec)
 
 
 def build_home_charts(indicators: list[Indicator], store: Store) -> list[dict]:
@@ -141,7 +163,7 @@ def build_home_charts(indicators: list[Indicator], store: Store) -> list[dict]:
 
 
 def _day(d: pd.Timestamp) -> str:
-    return f"{d.day} {d:%b %Y}"
+    return i18n.day_month_year(d)
 
 
 def build_curve(definition: dict, by_id: dict[str, Indicator], store: Store) -> dict | None:
@@ -174,8 +196,8 @@ def build_curve(definition: dict, by_id: dict[str, Indicator], store: Store) -> 
                 x.append(label)
                 y.append(round(float(v), 4))
         if len(y) >= 2:
-            name = line["name"].format(date=_day(date), prev_year=latest.year - 1)
-            series.append({"name": name, "x": x, "y": y})
+            name = i18n._(line["name"]).format(date=_day(date), prev_year=latest.year - 1)
+            series.append({"name": name, "x": [i18n.maybe(m) for m in x], "y": y})
     if not series:
         return None
     ref_lines = list(definition.get("ref_lines", []))
@@ -183,11 +205,13 @@ def build_curve(definition: dict, by_id: dict[str, Indicator], store: Store) -> 
         s = store.load_series(ind_id)
         if s is not None and not s.dropna().empty:
             v = float(s.dropna().asof(latest))
-            ref_lines.append({"y": round(v, 4), "label": f"{label} {v:.{definition['decimals']}f}%"})
+            ref_lines.append({"y": round(v, 4), "label": f"{i18n._(label)} {v:.{definition['decimals']}f}%"})
     ids = {i for line in definition["lines"] for i, _ in line["points"] if i in loaded}
-    spec = {k: v for k, v in definition.items() if k not in ("lines", "curve", "ref_from")}
-    spec.update(kind="line", x_kind="category", x_title=definition.get("x_title", "Maturity"),
-                series=series, ref_lines=ref_lines, freq=None, source=_sources([by_id[i] for i in sorted(ids)], by_id))
+    spec = {k: v for k, v in definition.items() if k not in ("lines", "curve", "ref_from", "ref_lines")}
+    spec.update(kind="line", x_kind="category", x_title=definition.get("x_title", "Maturity"), freq=None,
+                ref_lines=list(definition.get("ref_lines", [])), source=_sources([by_id[i] for i in sorted(ids)], by_id))
+    localise(spec)                  # before the series and reference lines, whose names carry dates and figures
+    spec.update(series=series, ref_lines=spec["ref_lines"] + ref_lines[len(definition.get("ref_lines", [])):])
     return spec
 
 
@@ -219,10 +243,11 @@ def build_ranking(definition: dict, by_id: dict[str, Indicator], store: Store) -
     sources = _sources([r[3] for r in rows], by_id)
     spec = {k: v for k, v in definition.items() if k not in ("items", "transform", "ref_from", "start")}
     spec.update(kind="hbar", x_kind="category", x_title=definition.get("x_title", "Region"),
-                subtitle=f"{definition['subtitle']} · {period_label(date, freq)}",
                 series=[{"name": definition.get("name", definition["title"]),
                          "x": [r[0] for r in rows], "y": [r[1] for r in rows]}],
                 ref_lines=ref_lines, freq=None, source=sources)
+    localise(spec)
+    spec["subtitle"] = f"{spec['subtitle']} · {period_label(date, freq)}"
     return spec
 
 
@@ -250,4 +275,4 @@ def build_xy(definition: dict, by_id: dict[str, Indicator], store: Store) -> dic
                 series=[{"name": definition["title"], "x": both["x"].tolist(), "y": both["y"].tolist(),
                          "text": [period_label(d, freq) for d in both.index]}],
                 ref_lines=[], source=_sources(inds, by_id))
-    return spec
+    return localise(spec)

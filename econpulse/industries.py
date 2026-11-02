@@ -8,6 +8,8 @@ The groups keep their boundaries across the 2026 change to CNAE-2025; the two mo
 vehicle repair into division 95, real estate development into 68) are linked by the client.
 """
 
+from .charts import localise
+from .i18n import _
 from .sources.afiliacion import moved
 from .tables import AvgChange, Change, Data, Heading, Level, Row, Table, build_table
 
@@ -104,21 +106,23 @@ def chart(group_id: str, label: str, data: Data) -> dict | None:
         return None
     iso = lambda s: [d.strftime("%Y-%m-%d") for d in s.index]
     ind = data.by_id[indicator_id(group_id)]
-    return {"id": f"ind-{group_id.replace('_', '-')}", "title": label,
-            "subtitle": "Change on the month before, thousands, seasonally adjusted; line: 3-month average",
-            "kind": "bar", "signed": True, "unit": "k", "decimals": 1, "freq": "M", "ref_lines": [],
-            "series": [{"name": "Monthly change", "x": iso(change), "y": change.tolist()},
-                       {"name": "3-month average", "kind": "line", "color": "ink", "x": iso(average), "y": average.tolist()}],
-            "source": f"{ind.source_name} (afiliación media por actividad); Macroscope seasonal adjustment"}
+    return localise({"id": f"ind-{group_id.replace('_', '-')}", "title": label,
+                     "subtitle": "Change on the month before, thousands, seasonally adjusted; line: 3-month average",
+                     "kind": "bar", "signed": True, "unit": "k", "decimals": 1, "freq": "M", "ref_lines": [],
+                     "series": [{"name": "Monthly change", "x": iso(change), "y": change.tolist()},
+                                {"name": "3-month average", "kind": "line", "color": "ink", "x": iso(average),
+                                 "y": average.tolist()}],
+                     "source": f"{_(ind.source_name)} (afiliación media por actividad); {_('Macroscope seasonal adjustment')}"})
 
 
 def moves(data: Data) -> list[str]:
     """How many registrations each link moved, from the destination divisions as published."""
     out = []
-    for ind_id, _, what in MOVES:
+    for ind_id, _division, what in MOVES:
         s = data.raw(ind_id)
         try:
-            out.append(f"about {round(moved(s.dropna()), -1):,.0f} thousand registrations of {what}")
+            out.append(_("about {n} thousand registrations of {what}").format(n=f"{round(moved(s.dropna()), -1):,.0f}",
+                                                                                what=_(what)))
         except (AttributeError, KeyError, TypeError):
             continue
     return out
@@ -129,6 +133,6 @@ def page(data: Data) -> dict:
     for section_id, title, items in SECTIONS:
         specs = [c for c in (chart(gid, label, data) for gid, label, *_ in items) if c]
         if specs:
-            sections.append({"id": section_id, "title": title, "charts": specs})
+            sections.append({"id": section_id, "title": _(title), "charts": specs})
             charts += specs
     return {"table": summary_table(data), "sections": sections, "charts": charts, "moves": moves(data)}

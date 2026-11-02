@@ -44,9 +44,11 @@ Because the workflow commits data every day, run `git pull` before working local
 The site is written in English, where everyone starts, and in Spanish under `site/es/`; the EN | ES switch beside
 the theme button opens the same page in the other language. One build writes both (`econpulse/build.py`, one pass
 per language, sharing `site/assets/`). Text marked for translation (`_("...")` in Python and the templates) takes its
-Spanish from `econpulse/locale/es.yaml`, which `scripts/write_catalogue.py` writes; the About page, mostly prose, has
-a Spanish template of its own (`templates/es/about.html`). The series use their official Spanish names from the
-registry. Numbers keep the English format in both languages; dates take Spanish month and day names. Text not
+Spanish from `econpulse/locale/es.yaml`, which `scripts/write_catalogue.py` writes (the section pages' Spanish is in
+`scripts/catalogue_sections_1.py`, one file per batch); the About and Every industry pages, mostly prose, have
+Spanish templates of their own (`templates/es/`). The section pages' tables and charts are put into the page's
+language where they are written out (`econpulse/tables.py`, `charts.localise`), so a page definition in
+`pages.py` stays in English. The series use their official Spanish names from the registry. Numbers keep the English format in both languages; dates take Spanish month and day names. Text not
 translated yet stays in English, and `python -m econpulse build` says how much is left. The Excel workbook and the
 RSS feed are in English only.
 

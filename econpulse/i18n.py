@@ -43,15 +43,34 @@ def catalogue() -> dict[str, str]:
     return _catalogue
 
 
+def _spanish() -> set[str]:
+    global _values
+    if _values is None:
+        _values = set(catalogue().values())
+    return _values
+
+
+_values: set[str] | None = None
+
+
 def _(text: str) -> str:
     """`text` in the language being written."""
     if lang() == "en" or not text:
         return text
     out = catalogue().get(text)
     if out is None:
-        missing[text] = missing.get(text, 0) + 1
+        if text not in _spanish():        # text that is in Spanish already (translated twice) is not missing
+            missing[text] = missing.get(text, 0) + 1
         return text
     return out
+
+
+def maybe(text):
+    """`text` in Spanish if the catalogue has it, without noting it as missing: labels that are often proper
+    names already (regions, countries) or not text at all."""
+    if lang() == "en" or not isinstance(text, str):
+        return text
+    return catalogue().get(text, text)
 
 
 def ngettext(singular: str, plural: str, n: int) -> str:

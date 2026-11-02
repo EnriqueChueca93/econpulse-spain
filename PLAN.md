@@ -239,7 +239,8 @@ How it works, for every batch below: the build writes the site twice in the same
 - In Spanish from this batch: the header, the menus, the footer, the search box, the "Coming up" bar, the home page (tiles, readings, the four questions, what's new, its charts), the Calendar (release names too), the Data and About pages and the 404 page
 - **Done when:** the switch moves between the two versions of any page, and those pages read in Spanish
 
-#### Batch 33b — Spanish section pages I
+#### Batch 33b — Spanish section pages I ✅ done 2 Nov 2026
+*Result: the six pages and Every industry read in Spanish, 677 texts in `scripts/catalogue_sections_1.py`. Tables (`tables.py`) and charts (`charts.localise`, one function for every chart, including the computed ones) are put into the page's language where they are written out, so `pages.py` stays in English; the facts and notes built with figures inside (workstats, demography, underlying, fuel, policy, industries) use templates with placeholders. The IMF-style tables on the GDP, Financial and ECB pages (Tables 1 and 3 and the monetary table) stay in English until 33c, with the other sector tables. The HICP items rising fastest and slowest are Eurostat's names: the ten shown now are translated, and a new one shows in English until it is added (the build counts it). The build now counts more of what is left on the 33c–33d pages (466 texts), as their tables and charts go through the catalogue too.*
 - GDP, Labour market (and Every industry), Wages, Inflation, Financial, ECB: section titles and introductions, table rows, captions and notes, chart titles, subtitles and series names, and the facts above them
 
 #### Batch 33c — Spanish section pages II

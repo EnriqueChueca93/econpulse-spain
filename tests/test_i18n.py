@@ -6,15 +6,20 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from econpulse import changes, i18n
-from econpulse.build import build_site
+from econpulse import changes, i18n, industries, policy, workstats
+from econpulse.build import SECTION_PAGES, build_site
 from econpulse.config import TEMPLATES_DIR
+from econpulse.pages import PAGES, build_page
 from econpulse.registry import Indicator, load_registry
 from econpulse.snapshot import fmt_value, period_label
 from econpulse.store import Store
+from econpulse.tables import Data, Heading, Panel, Table
 
-# The templates whose text is in Spanish from Batch 33a; the others follow in 33b-33d.
-SPANISH_TEMPLATES = ("base.html", "index.html", "calendar.html", "data.html", "404.html", "macros.html")
+# The templates whose text is in Spanish (33a: the frame and the home page; 33b: the section pages); the
+# others follow in 33c-33d.
+SPANISH_TEMPLATES = ("base.html", "index.html", "calendar.html", "data.html", "404.html", "macros.html", "section.html")
+# The section pages in Spanish from Batch 33b.
+SPANISH_SECTIONS = ("gdp", "labour", "wages", "inflation", "financial", "ecb")
 
 
 def test_every_marked_text_of_the_translated_pages_has_its_spanish():
@@ -83,3 +88,64 @@ def test_the_site_is_built_in_both_languages(tmp_path):
     assert "<h1>Datos y fuentes</h1>" in (site / "es" / "data.html").read_text(encoding="utf-8")
     assert not (site / "es" / "404.html").exists() and not (site / "es" / "feed.xml").exists()
     assert (site / "es" / "data" / "search.js").exists() and (site / "es" / "data" / "snapshot.js").exists()
+
+
+def _fixed_texts(section: str) -> set[str]:
+    """Every text a section page's definition writes as it is: block titles and intros, table titles, captions,
+    headers, rows and notes, chart titles, subtitles, axes, series and reference lines."""
+    texts = set()
+    for block in PAGES[section]:
+        texts |= {block["title"], block["intro"]}
+        for t in block["tables"]:
+            if isinstance(t, (Table, Panel)):
+                texts |= {t.title, t.caption, t.note} | {c.header for c in t.columns if c.header}
+                texts |= {r.label for r in t.rows if getattr(r, "label", None)}
+        for c in block.get("charts", []):
+            if callable(c):
+                continue
+            texts |= {c.get(k) for k in ("title", "subtitle", "x_title")}
+            texts |= {r["label"] for r in c.get("ref_lines", []) if r.get("label")} | {r[1] for r in c.get("ref_from", [])}
+            if c.get("curve"):
+                texts |= {line["name"] for line in c["lines"]} | {m for line in c["lines"] for _id, m in line["points"]}
+            elif c.get("kind") == "hbar":
+                texts |= {item[1] for item in c["items"]}
+            elif c.get("kind") == "xy":
+                texts |= {c["x"][2], c["y"][2]}
+            else:
+                texts |= {s[2] for s in c["series"]}
+    return {t for t in texts if t}
+
+
+def test_every_fixed_text_of_the_33b_pages_has_its_spanish():
+    known = i18n.catalogue()
+    for section in SPANISH_SECTIONS:
+        title, intro, _batch = SECTION_PAGES[section]
+        missing = sorted(t for t in _fixed_texts(section) | {title, intro} if t not in known)
+        assert not missing, (section, missing)
+    labels = {label for _id, title, items in industries.SECTIONS for label in [title] + [i[1] for i in items]}
+    labels |= {label for _slug, label in workstats.SECTIONS}
+    assert not sorted(t for t in labels if t not in known)
+
+
+def test_tables_charts_and_facts_are_written_in_spanish(tmp_path):
+    store = Store(tmp_path / "data")
+    q = pd.date_range("2015-01-01", "2026-07-01", freq="QS")
+    store.save_series("gdp", pd.Series(100 * 1.005 ** np.arange(len(q)), index=q))
+    days = pd.date_range("2024-01-01", "2026-10-30", freq="D")
+    store.save_series("ecb_deposit_rate", pd.Series(np.where(days < pd.Timestamp("2026-06-17"), 2.25, 2.0), index=days))
+    indicators = load_registry()
+    en = build_page("gdp", indicators, store)
+    with i18n.using("es"):
+        es = build_page("gdp", indicators, store)
+        facts = policy.ecb_facts(Data(indicators, store), today=pd.Timestamp("2026-11-02"))
+        decisions = policy.decisions_table(Data(indicators, store))
+    table, chart = es["blocks"][0]["tables"][0], es["charts"][0]
+    assert en["blocks"][0]["title"] == "GDP and its components" and es["blocks"][0]["title"] == "El PIB y sus componentes"
+    assert table["title"] == "Crecimiento real" and table["caption"].endswith("· hasta T3 2026")
+    assert table["columns"][:2] == ["t/t", "a/a"] and table["rows"][0]["label"] == "PIB"
+    assert chart["title"] == "Crecimiento del PIB real" and [s["name"] for s in chart["series"]] == ["t/t", "a/a"]
+    assert en["charts"][0]["series"][0]["name"] == "q/q" and chart["lang"] == "es"
+    assert [f["label"] for f in facts] == ["Tipo de la facilidad de depósito", "Último cambio", "Próxima decisión"]
+    assert facts[0]["sub"] == "30 oct 2026" and facts[1]["sub"] == "en vigor desde el 17 jun 2026"
+    assert facts[2]["value"] == "17 dic 2026" and facts[2]["sub"] == "dentro de 45 días" and facts[1]["value"] == "−25 pb"
+    assert decisions["title"] == "Fecha de entrada en vigor" and decisions["rows"][0]["label"] == "17 jun 2026"

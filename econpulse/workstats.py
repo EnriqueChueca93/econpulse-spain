@@ -10,6 +10,8 @@ Ministry of Labour (sources/reg.py).
 import pandas as pd
 
 from . import transforms
+from .charts import localise
+from .i18n import _
 from .snapshot import fmt_change, fmt_value, period_label
 from .tables import Data, Heading, Row
 
@@ -56,10 +58,11 @@ def hours_callout(data: Data) -> str | None:
         return None
     now, then = float(sick.iloc[-1]), float(before.iloc[-1])
     share = now / float(worked.get(sick.index[-1], float("nan"))) * 100
-    text = (f"Sick leave took {fmt_value(now, 'hours', 1)} a month per employee in the four quarters to "
-            f"{period_label(sick.index[-1], 'Q')}, against {fmt_value(then, 'hours', 1)} in 2019 "
-            f"({fmt_change((now / then - 1) * 100, '%', 0)})")
-    return text + (f", the equivalent of {fmt_value(share, '%', 1)} of the hours worked." if share == share else ".")
+    text = _("Sick leave took {now} a month per employee in the four quarters to {quarter}, against {then} in 2019 "
+             "({change})").format(now=fmt_value(now, 'hours', 1), quarter=period_label(sick.index[-1], 'Q'),
+                                  then=fmt_value(then, 'hours', 1), change=fmt_change((now / then - 1) * 100, '%', 0))
+    return text + (_(", the equivalent of {share} of the hours worked.").format(share=fmt_value(share, '%', 1))
+                   if share == share else ".")
 
 
 def _extremes(data: Data, prefix: str) -> tuple | None:
@@ -82,15 +85,17 @@ def pay_callout(data: Data) -> str | None:
     if month is None:
         return None
     (low, lo), (top, hi), date = month
-    text = (f"In the four quarters to {period_label(date, 'Q')}, pay per worker ranged from "
-            f"{fmt_value(lo, '€', 0)} a month in {low.lower()} to {fmt_value(hi, '€', 0)} "
-            f"in {top.lower()}, {hi / lo:.1f} times as much.")
+    text = _("In the four quarters to {quarter}, pay per worker ranged from {low_pay} a month in {low} to {high_pay} "
+             "in {high}, {times} times as much.").format(
+        quarter=period_label(date, 'Q'), low_pay=fmt_value(lo, '€', 0), low=_(low).lower(), high_pay=fmt_value(hi, '€', 0),
+        high=_(top).lower(), times=f"{hi / lo:.1f}")
     hour = _extremes(data, "pay_hour")
     if hour is not None:
-        (h_low, h_lo), (h_top, h_hi), _ = hour
-        text += (f" Per hour worked the range is {fmt_value(h_lo, '€', 2)} in {h_low.lower()} to "
-                 f"{fmt_value(h_hi, '€', 2)} in {h_top.lower()}, {h_hi / h_lo:.1f} times as much: part-time "
-                 "work, more common in the lower-paid activities, explains a little of the monthly gap.")
+        (h_low, h_lo), (h_top, h_hi), _when = hour
+        text += " " + _("Per hour worked the range is {low_pay} in {low} to {high_pay} in {high}, {times} times as much: "
+                        "part-time work, more common in the lower-paid activities, explains a little of the monthly gap.").format(
+            low_pay=fmt_value(h_lo, '€', 2), low=_(h_low).lower(), high_pay=fmt_value(h_hi, '€', 2), high=_(h_top).lower(),
+            times=f"{h_hi / h_lo:.1f}")
     return text
 
 
@@ -173,23 +178,24 @@ def pay_table(data: Data) -> dict | None:
     rows = []
     for k, (label, m) in enumerate(measures):
         if k == 1:
-            rows.append({"heading": True, "label": "By activity", "cells": []})
+            rows.append({"heading": True, "label": _("By activity"), "cells": []})
         if m["date"] != date:
             continue
-        rows.append({"heading": False, "label": label, "label_es": "", "indent": 0 if k == 0 else 1, "period_note": "",
+        rows.append({"heading": False, "label": _(label), "label_es": "", "indent": 0 if k == 0 else 1, "period_note": "",
                      "url": None, "highlight": False,
                      "cells": [num(m["month"], 0), num(m["hour"], 2), num(m["extra"]), pct(m["growth"]),
                                pct(m["quarter"]), pct(m["real"])]})
-    return {"title": "Activity", "caption": f"€ and % · averages of the past four quarters · through {period_label(date, 'Q')}",
+    return {"title": _("Activity"),
+            "caption": _("€ and % · averages of the past four quarters · through {period}").format(period=period_label(date, 'Q')),
             "through": period_label(date, "Q"),
-            "columns": ["€ a month", "€ an hour", "Bonuses and extras %", "y/y %", "Latest qtr y/y %",
-                        f"Since {BASE_YEAR}, after inflation %"],
+            "columns": [_(c) for c in ("€ a month", "€ an hour", "Bonuses and extras %", "y/y %", "Latest qtr y/y %")]
+                       + [_("Since {year}, after inflation %").format(year=BASE_YEAR)],
             "column_notes": [], "rows": rows,
-            "note": ("Wage cost per worker: gross pay before the worker's tax and contributions, for full-time and "
-                     "part-time employees together. Bonuses and extras are the share of pay from bonuses, extra "
-                     "months' pay and arrears. y/y compares the average of the past four quarters with the four before; "
-                     "the latest quarter alone can swing with the timing of bonuses. The change since 2019 compares the "
-                     "past four quarters with 2019, deflated by the CPI over the same quarters.")}
+            "note": _("Wage cost per worker: gross pay before the worker's tax and contributions, for full-time and "
+                      "part-time employees together. Bonuses and extras are the share of pay from bonuses, extra "
+                      "months' pay and arrears. y/y compares the average of the past four quarters with the four before; "
+                      "the latest quarter alone can swing with the timing of bonuses. The change since 2019 compares the "
+                      "past four quarters with 2019, deflated by the CPI over the same quarters.")}
 
 
 def _pay_ranking(id_, title, subtitle, unit, decimals, date, points, ref=None) -> dict | None:
@@ -197,11 +203,13 @@ def _pay_ranking(id_, title, subtitle, unit, decimals, date, points, ref=None) -
     if len(points) < 2:
         return None
     points.sort(key=lambda p: p[1], reverse=True)
-    return {"id": id_, "title": title, "kind": "hbar", "x_kind": "category", "x_title": "Activity",
-            "subtitle": f"{subtitle} · {period_label(date, 'Q')}", "unit": unit, "decimals": decimals,
-            "series": [{"name": title, "x": [p[0] for p in points], "y": [round(p[1], 3) for p in points]}],
-            "ref_lines": [{"y": round(ref, 3), "label": "All"}] if ref is not None else [], "freq": None,
-            "source": "INE"}
+    spec = localise({"id": id_, "title": title, "kind": "hbar", "x_kind": "category", "x_title": "Activity",
+                     "subtitle": subtitle, "unit": unit, "decimals": decimals,
+                     "series": [{"name": title, "x": [p[0] for p in points], "y": [round(p[1], 3) for p in points]}],
+                     "ref_lines": [{"y": round(ref, 3), "label": "All"}] if ref is not None else [], "freq": None,
+                     "source": "INE"})
+    spec["subtitle"] = f"{spec['subtitle']} · {period_label(date, 'Q')}"
+    return spec
 
 
 def _ranking_of(data: Data, key: str, *args) -> dict | None:
@@ -224,8 +232,8 @@ def pay_growth_chart(data: Data) -> dict | None:
 
 
 def real_pay_chart(data: Data) -> dict | None:
-    return _ranking_of(data, "real", "real-pay-ranking", f"Pay since {BASE_YEAR}, after inflation",
-                       f"Past four quarters against {BASE_YEAR}, deflated by the CPI, % change", "%", 1)
+    return _ranking_of(data, "real", "real-pay-ranking", _("Pay since {year}, after inflation").format(year=BASE_YEAR),
+                       _("Past four quarters against {year}, deflated by the CPI, % change").format(year=BASE_YEAR), "%", 1)
 
 
 def _swing(data: Data) -> tuple[str, str, dict] | None:
@@ -245,7 +253,7 @@ def bonus_timing_chart(data: Data) -> dict | None:
     swing = _swing(data)
     if swing is None:
         return None
-    slug, label, _ = swing
+    slug, label, _measures = swing
     total, regular = data.raw(f"pay_{slug}"), data.raw(f"pay_regular_{slug}")
     if total is None or regular is None:
         return None
@@ -254,9 +262,11 @@ def bonus_timing_chart(data: Data) -> dict | None:
         s = s.dropna()
         s = s[s.index >= f"{BASE_YEAR}-01-01"].round(0)
         series.append({"name": name, "x": [d.strftime("%Y-%m-%d") for d in s.index], "y": s.tolist()})
-    return {"id": "pay-bonus-timing", "title": f"{label}: pay quarter by quarter",
-            "subtitle": "Wage cost per worker, € a month; the gap between the lines is bonuses, extra months' pay and arrears",
-            "kind": "line", "unit": "€", "decimals": 0, "freq": "Q", "ref_lines": [], "series": series, "source": "INE"}
+    spec = localise({"id": "pay-bonus-timing", "title": "",
+                     "subtitle": "Wage cost per worker, € a month; the gap between the lines is bonuses, extra months' pay and arrears",
+                     "kind": "line", "unit": "€", "decimals": 0, "freq": "Q", "ref_lines": [], "series": series, "source": "INE"})
+    spec["title"] = _("{activity}: pay quarter by quarter").format(activity=_(label))
+    return spec
 
 
 def growth_facts(data: Data) -> list[dict]:
@@ -267,16 +277,18 @@ def growth_facts(data: Data) -> list[dict]:
     quarter = period_label(first["date"], "Q")
     out = []
     if first["growth"] is not None:
-        out.append({"label": "Pay growth, all activities", "value": fmt_change(first["growth"], "%", 1),
-                    "sub": f"four quarters to {quarter} on the four before"})
+        out.append({"label": _("Pay growth, all activities"), "value": fmt_change(first["growth"], "%", 1),
+                    "sub": _("four quarters to {quarter} on the four before").format(quarter=quarter)})
     if first["real"] is not None:
-        out.append({"label": f"Since {BASE_YEAR}, after inflation", "value": fmt_change(first["real"], "%", 1),
-                    "sub": "pay per worker against the CPI, all activities"})
+        out.append({"label": _("Since {year}, after inflation").format(year=BASE_YEAR), "value": fmt_change(first["real"], "%", 1),
+                    "sub": _("pay per worker against the CPI, all activities")})
     ranked = sorted(((label, m["growth"]) for label, m in measures[1:]
                      if m["date"] == first["date"] and m["growth"] is not None), key=lambda p: p[1])
     if len(ranked) >= 2:
-        out += [{"label": "Fastest rise", "value": ranked[-1][0], "sub": f"{fmt_change(ranked[-1][1], '%', 1)} on a year"},
-                {"label": "Slowest rise", "value": ranked[0][0], "sub": f"{fmt_change(ranked[0][1], '%', 1)} on a year"}]
+        out += [{"label": _("Fastest rise"), "value": _(ranked[-1][0]),
+                 "sub": _("{change} on a year").format(change=fmt_change(ranked[-1][1], '%', 1))},
+                {"label": _("Slowest rise"), "value": _(ranked[0][0]),
+                 "sub": _("{change} on a year").format(change=fmt_change(ranked[0][1], '%', 1))}]
     return out
 
 
@@ -289,22 +301,25 @@ def growth_callout(data: Data) -> str | None:
     total = data.raw(f"pay_{slug}").dropna()
     date = m["date"]
     prev = date - pd.DateOffset(months=3)
-    vs = lambda v: f"{fmt_value(abs(v), '%', 1)} {'higher' if v >= 0 else 'lower'}"
+    vs = lambda v: (_("{change} higher") if v >= 0 else _("{change} lower")).format(change=fmt_value(abs(v), '%', 1))
     before = _year_back(total, prev) if prev in total.index else None
     if before is not None:
-        when = (f"{vs((float(total[prev]) / before - 1) * 100)} than a year earlier in {period_label(prev, 'Q')} "
-                f"and {vs(m['quarter'])} in {period_label(date, 'Q')}")
+        when = _("{first} than a year earlier in {prev} and {second} in {quarter}").format(
+            first=vs((float(total[prev]) / before - 1) * 100), prev=period_label(prev, 'Q'), second=vs(m['quarter']),
+            quarter=period_label(date, 'Q'))
     else:
-        when = f"{vs(m['quarter'])} than a year earlier in {period_label(date, 'Q')}"
-    text = (f"{label} swings most from quarter to quarter: pay per worker was {when}, but the average of the past "
-            f"four quarters {'grew' if m['growth'] >= 0 else 'fell'} {fmt_value(abs(m['growth']), '%', 1)}.")
+        when = _("{first} than a year earlier in {quarter}").format(first=vs(m['quarter']), quarter=period_label(date, 'Q'))
+    text = (_("{activity} swings most from quarter to quarter: pay per worker was {when}, but the average of the past "
+              "four quarters grew {change}.") if m['growth'] >= 0 else
+            _("{activity} swings most from quarter to quarter: pay per worker was {when}, but the average of the past "
+              "four quarters fell {change}.")).format(activity=_(label), when=when, change=fmt_value(abs(m['growth']), '%', 1))
     regular = data.raw(f"pay_regular_{slug}")
     if regular is not None and date in regular.index and (r_before := _year_back(regular.dropna(), date)) is not None:
         move = float(total.iloc[-1]) - _year_back(total, date)
         extra_move = move - (float(regular[date]) - r_before)
         if move and extra_move / move > 0.5:
-            text += (" Most of the swing is in bonuses and other extra payments, which came at a different time of "
-                     "the year; the chart below shows them quarter by quarter.")
+            text += " " + _("Most of the swing is in bonuses and other extra payments, which came at a different time of "
+                            "the year; the chart below shows them quarter by quarter.")
     return text
 
 
@@ -321,10 +336,11 @@ def ere_facts(data: Data) -> list[dict]:
             continue
         date = total.index[-1]
         year_ago = total.get(date.replace(year=date.year - 1))
-        sub = f"12 months to {period_label(date, 'M')}"
+        sub = _("12 months to {month}").format(month=period_label(date, 'M'))
         if year_ago:
-            sub += f", {fmt_change((float(total.iloc[-1]) / float(year_ago) - 1) * 100, '%', 0)} on a year earlier"
-        out.append({"label": label, "value": fmt_value(float(total.iloc[-1]), "thousands", 1), "sub": sub})
+            sub += ", " + _("{change} on a year earlier").format(
+                change=fmt_change((float(total.iloc[-1]) / float(year_ago) - 1) * 100, '%', 0))
+        out.append({"label": _(label), "value": fmt_value(float(total.iloc[-1]), "thousands", 1), "sub": sub})
     return out
 
 
