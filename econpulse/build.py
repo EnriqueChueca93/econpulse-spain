@@ -15,7 +15,7 @@ from pathlib import Path
 import pandas as pd
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
-from . import __version__, analytics, changes, ecbspeak, feed, fiscal, industries, peers, schedule, search, sectortables, stance, surprises, tools, trade
+from . import __version__, analytics, budget, changes, ecbspeak, feed, fiscal, industries, peers, schedule, search, sectortables, stance, surprises, tools, trade
 from .charts import build_home_charts
 from .config import SITE_DIR, SITE_URL, STATIC_DIR, TEMPLATES_DIR
 from .pages import PAGES, block_indicator_ids, build_page, indicator_anchors
@@ -52,14 +52,16 @@ NAV_EXTRA = {
     "index.html": [("#key-indicators", "Key indicators"), ("#readings", "EconPulse readings"), ("#whats-new", "What's new"),
                    ("#four-questions", "The economy in four questions"), ("#charts", "Charts")],
     "tools.html": [("#trend", "Economy vs pre-COVID trend"), ("#taylor", "Taylor rule"), ("#rates", "Interest rate decomposer"),
-                   ("fiscal-explorer.html", "Fiscal Explorer"), ("ecb-speak.html", "ECB-speak"),
+                   ("fiscal-explorer.html", "Fiscal Explorer"), ("budget-explorer.html", "Budget explorer"),
+                   ("ecb-speak.html", "ECB-speak"),
                    ("stance.html", "Global central bank stance")],
     "calendar.html": [("#recent", "Released in the past week"), ("#upcoming", "The next two months")],
     "sector-tables.html": [(f"#{section_id}", title) for section_id, title, *_ in sectortables.PAGE],
     "trade.html": [(f"#{section_id}", title) for section_id, title in trade.PAGE],
 }
 # Pages a section tab's dropdown lists after that page's own sections.
-NAV_SUBPAGES = {"labour.html": [("industry-detail.html", "Every industry")]}
+NAV_SUBPAGES = {"labour.html": [("industry-detail.html", "Every industry")],
+                "fiscal.html": [("budget-explorer.html", "Budget explorer")]}
 
 
 def nav_items(section_pages: dict, updated: set[str] = frozenset()) -> list[dict]:
@@ -249,6 +251,11 @@ def build_site(indicators: list[Indicator], store: Store | None = None, site_dir
         write_data_js(data_dir / "fiscal.js", "fiscal", fx)
     render("fiscal-explorer.html", "fiscal-explorer.html", active="tools.html", fx=fx,
            s1_check=fx["s1_check"] if fx else None, past_groups=fiscal.past_groups(fx["history"]) if fx else [])
+    bx = budget.explorer_data(store, Data(indicators, store))
+    if bx:
+        write_data_js(data_dir / "budget.js", "budget", bx)
+        bx = dict(bx, fetched_day=budget.fetched_day(bx), provisional_note=budget.provisional_note(bx))
+    render("budget-explorer.html", "budget-explorer.html", active="fiscal.html", bx=bx)
     speak = ecbspeak.page(store)
     if speak:
         write_data_js(data_dir / "charts-ecbspeak.js", "charts", speak["charts"])

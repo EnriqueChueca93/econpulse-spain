@@ -8255,6 +8255,16 @@
   "n_obs": 9311,
   "signature": "[\"bis\", \"WS_CBPOL/D.GB\", {}, 1.0]"
  },
+ "population_es": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T05:16:44+00:00",
+  "first_date": "1960-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 66,
+  "signature": "[\"eurostat\", \"demo_gind\", {\"geo\": \"ES\", \"indic_de\": \"AVG\"}, 1.0]",
+  "source_name": "Population change - Demographic balance and crude rates at national level",
+  "source_updated": "2026-10-27T23:00:00+0100"
+ },
  "ppi": {
   "status": "ok",
   "fetched_at": "2026-11-01T21:22:24+00:00",

@@ -3492,6 +3492,19 @@ indicators:
     change_unit: "%"
     decimals: 0
 
+  - id: population_es
+    label: Population
+    label_es: Población media
+    section: gdp
+    source: eurostat
+    key: demo_gind
+    params: {geo: ES, indic_de: AVG}
+    freq: A
+    unit: persons
+    decimals: 0
+    transforms: [level, yoy]
+    notes: Average population over the year (Eurostat); used for figures per person, such as the Budget explorer's.
+
   - id: gdp_real_annual
     label: Real GDP, annual (2020 prices)
     label_es: PIB, volumen encadenado (2020)

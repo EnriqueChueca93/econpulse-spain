@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+{% block title %}Budget explorer · EconPulse Spain{% endblock %}
+{% block description %}What Spain's public administrations spend and raise, by theme, since 1995: functions, types of spending and taxes.{% endblock %}
+
+{% macro figure(id, title, subtitle, source) -%}
+  <figure class="card chart-card" id="fig-{{ id }}">
+    <figcaption>
+      <span class="chart-title" id="{{ id }}-title">{{ title }}</span>
+      <span class="chart-subtitle" id="{{ id }}-subtitle">{{ subtitle }}</span>
+    </figcaption>
+    <div class="chart" id="chart-{{ id }}" role="img" aria-label="{{ title }}"></div>
+    <div class="chart-foot"><span class="secondary">Source: {{ source }}</span>
+      <span class="chart-actions">
+        <button type="button" class="chart-link chart-csv" data-chart="{{ id }}" hidden aria-label="Download the data of the chart {{ title }} as a CSV file">CSV</button>
+        <button type="button" class="chart-link" data-figure="fig-{{ id }}" aria-label="Copy a link to the chart {{ title }}">Copy link</button></span></div>
+  </figure>
+{%- endmacro %}
+
+{% block content %}
+  <p class="back-link"><a href="fiscal.html">← Fiscal</a> · <a href="tools.html">Tools</a></p>
+  <h1>Budget explorer</h1>
+  {% if not bx %}
+    <p class="notice">The budget data have not been downloaded yet (they arrive with the next fetch).</p>
+  {% else %}
+  <p class="lede">What Spain's public administrations spend, on what, and where the money comes from, every year since
+    1995: spending by function (health, education, pensions, defence...), by type (pay, purchases, benefits, interest...)
+    and revenue tax by tax. Choose the administration and the measure; click a row to follow it over time.</p>
+
+  <div class="tool-controls bx-controls" role="group" aria-label="What to show">
+    <label>Administration
+      <select id="bx-level">
+        {% for lv in bx.levels %}<option value="{{ lv.id }}">{{ lv.name }}</option>{% endfor %}
+      </select></label>
+    <span class="bx-views" role="group" aria-label="View">
+      <button type="button" class="tool-button" data-bx-view="function" aria-pressed="true">Spending by function</button>
+      <button type="button" class="tool-button" data-bx-view="type" aria-pressed="false">Spending by type</button>
+      <button type="button" class="tool-button" data-bx-view="revenue" aria-pressed="false">Revenue</button>
+    </span>
+  </div>
+  <div class="tool-controls bx-controls" role="group" aria-label="Measure">
+    <label>Measure
+      <select id="bx-measure">
+        <option value="eur">€ bn</option>
+        <option value="real">€ bn at {{ bx.price_year }} prices</option>
+        <option value="gdp">% of GDP</option>
+        <option value="person">€ a person at {{ bx.price_year }} prices</option>
+        <option value="share">% of the total</option>
+      </select></label>
+    <label>Year <select id="bx-year"></select></label>
+    <label>Compare with <select id="bx-base"></select></label>
+    <label class="bx-exclude"><input type="checkbox" id="bx-exclude"> Leave out flows between administrations</label>
+  </div>
+  <p class="bx-about" id="bx-about"></p>
+  <div class="facts bx-facts" id="bx-facts" aria-live="polite"></div>
+
+  <nav class="bx-crumbs" id="bx-crumbs" aria-label="Where you are"></nav>
+  <div class="charts">
+    {{ figure("bx-mix", "Spending by function", "", "IGAE, national accounts of the public administrations") }}
+    {{ figure("bx-trend", "Over time", "", "IGAE, national accounts of the public administrations") }}
+  </div>
+
+  <div class="stat">
+    <p class="stat-caption" id="bx-table-caption"></p>
+    <div class="table-scroll">
+      <table class="data-table stat-table bx-table" id="bx-table">
+        <thead><tr><th scope="col" id="bx-col-item">Item</th><th scope="col" class="num" id="bx-col-year"></th>
+          <th scope="col" class="num">Share</th><th scope="col" class="num" id="bx-col-base"></th>
+          <th scope="col" class="num" id="bx-col-change">Change</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <p class="note">Click a row to draw it over time (up to three at once); rows marked ▸ open into their parts.</p>
+  </div>
+
+  <section class="block" aria-labelledby="bx-method">
+    <h2 id="bx-method">How to read it</h2>
+    <div class="prose">
+      <p><strong>National accounts.</strong> All figures are the IGAE's national accounts of the public administrations
+        (SEC 2010): what was spent and earned in each year, whether paid in cash or not, on the same basis for every
+        administration and every year, so they compare cleanly. They are not the budget the Cortes approves, which is
+        a plan, on a cash-and-commitment basis. The latest year is provisional{% if bx.provisional_note %} ({{ bx.provisional_note }}){% endif %}.</p>
+      <p><strong>Functions</strong> follow the UN's classification of the functions of government (COFOG): 10 divisions,
+        each split into groups. <strong>Types</strong> group the economic transactions: pay, purchases, social benefits,
+        interest, subsidies, investment and transfers. Spending by function comes a year after spending by type, and the two
+        are published separately, so their totals can differ by a little.</p>
+      <p><strong>Flows between administrations.</strong> Much of what the State spends it passes on: to the regions under
+        their financing system, to local councils, and to the Social Security. In the national accounts these transfers count
+        as spending of the State and as revenue of whoever receives them (COFOG group 01.8, "transfers of a general
+        character between different levels of government"). The switch leaves them out, to show what each administration
+        spends on itself. For all public administrations together the accounts are consolidated, so they cancel out.</p>
+      <p><strong>Measures.</strong> Constant prices use the GDP deflator ({{ bx.price_year }} = 100), the price index of
+        everything the economy produces; per person, Eurostat's average population; % of GDP, nominal GDP for the year.</p>
+      <p class="note">Sources: IGAE, <a href="{{ bx.pages.cofog }}" target="_blank" rel="noopener">functional classification
+        of spending</a>, <a href="{{ bx.pages.accounts }}" target="_blank" rel="noopener">non-financial operations</a> and
+        <a href="{{ bx.pages.taxes }}" target="_blank" rel="noopener">taxes and social contributions</a>; Eurostat (GDP and
+        its deflator, population). Downloaded {{ bx.fetched_day }}.</p>
+    </div>
+  </section>
+  {% endif %}
+{% endblock %}
+
+{% block scripts %}
+  <script src="assets/plotly-basic.min.js?v={{ build_id }}"></script>
+  <script src="data/budget.js?v={{ build_id }}"></script>
+{% endblock %}
+
+{% block after_scripts %}
+  <script src="assets/budget.js?v={{ build_id }}"></script>
+{% endblock %}
