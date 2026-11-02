@@ -192,3 +192,73 @@ def test_only_new_and_recent_workbooks_are_downloaded(tmp_path, monkeypatch):
     budget.refresh_communities(store)
     again = sorted(a for a in asked if a.endswith(".xlsx") and "Det_" in a)
     assert again == ["A_CCAA_Det_2022.xlsx", "A_CCAA_Det_2023.xlsx", "A_CCAA_Det_2024.xlsx"]
+
+
+# ---------------------------------------------------------------- Batch 30c: the State's budget
+
+BUDGET_BOOK = workbook({
+    "141": [["1.4. Políticas de gasto"], ["Millones de euros"],
+            ["Políticas", "2023", "2023-P", "2024-P"],
+            ["Pensiones", 190687.2, 190687.2, 190687.2], ["Defensa", 12316.8, 12316.8, 12316.8],
+            ["Investigación civil", 15933.7, 15963.7, 15969.9], ["Investigación militar", 1833.3, 1833.3, 1833.3],
+            ["CAPÍTULOS 1 a 8", 220771.0, 220801.0, 220807.2]],
+    "15": [["1.5. Ingresos"], ["Capítulos", "2023", "2023-P", "2024-P"], ["Impuestos directos", 269000.3, 269000.3, 269000.3],
+           ["Impuestos indirectos", 57809.2, 57809.2, 57809.2], ["TOTAL CAPÍTULOS 1 a 8", 326809.5, 326809.5, 326809.5]]})
+EXECUTION_BOOK = workbook({
+    "GTOS 016": [["Miles de euros"],
+                 ["PRESUPUESTO DE GASTOS ESTADO DE EJECUCIÓN: ÁREAS DE GASTO Y POLÍTICAS HASTA EL 31 DE AGOSTO",
+                  "CRÉDITOS DEFINITIVOS (1)", "OBLIGACIONES RECONOCIDAS NETAS (2)", "PAGOS REALIZADOS (3)"],
+                 [None, None, None, None],
+                 ["1. SERVICIOS PÚBLICOS BASICOS", 21669344, 7883956, 7806598],
+                 ["2. Defensa", 21669344, 7883956, 7806598],
+                 ["2. ACTUACIONES DE PROTECCIÓN Y PROMOCIÓN SOCIAL", 20508661, 15911213, 15910957],
+                 ["1. Pensiones", 20508661, 15911213, 15910957],
+                 ["TOTALES", 42178005, 23795169, 23717555]],
+    "GTOS M03": [["Miles de euros"], ["PRESUPUESTO DE GASTOS MODIFICACIONES DE CREDITO", "CRÉDITOS EXTRAORDINARIOS (1)", "TOTAL MODIFICACIONES (10)"],
+                 [None], ["2. Defensa", 0, 9607135], ["1. Pensiones", 0, 50], ["TOTALES", 0, 9607185]]})
+
+
+def test_budget_columns_and_policies():
+    assert budget._in_force("2023") == (2023, False) and budget._in_force("2023-P") == (2024, True)
+    assert budget._in_force(2016) == (2016, False) and budget._in_force("Políticas") == (None, False)
+    assert budget._policy("2. Defensa") == "defence" and budget._policy("Investigación civil") == "research_civil"
+    assert budget._policy("6. Investigación, desarrollo, innovación y digitalización") == "research"
+    assert budget._policy("9. Gestión y admón. de Inclusión,S.Social y Migraciones") == "inclusion_admin"
+    assert budget._policy("8. Gestión y administ. de Trabajo y Economía Social") == "labour_admin"
+    assert budget.rolled_note([2019, 2020, 2024, 2025, 2026], list(range(2014, 2027))) == \
+        "the 2023 budget has stayed in force in 2024, 2025 and 2026"
+
+
+def test_parse_the_budget_and_its_execution():
+    b = budget.parse_budget(BUDGET_BOOK)
+    assert sorted(b["spending"]) == [2023, 2024, 2025] and b["rolled_over"] == [2024, 2025]
+    assert b["spending"][2025]["pensions"] == 190687.2 and b["spending"][2024]["TOTAL"] == 220801.0
+    assert b["revenue"][2025] == {"direct": 269000.3, "indirect": 57809.2, "TOTAL": 326809.5}
+    ex = budget.parse_execution(EXECUTION_BOOK)
+    assert (ex["month"], ex["day"]) == (8, 31)
+    assert ex["policies"]["defence"] == {"final": 21669.3, "obligations": 7884.0, "payments": 7806.6, "initial": 12062.2}
+    assert ex["policies"]["TOTAL"]["initial"] == round(42178.005 - 9607.185, 1)
+    assert set(ex["policies"]) == {"defence", "pensions", "TOTAL"}            # area headings are skipped
+
+
+def test_refresh_the_state_budget(monkeypatch):
+    sepg = ('<a href="/sitios/sepg/es-ES/x/Documents/2025-P/01%20Presupuestos%20Generales%20del%20Estado%20Consolidados.xlsx">'
+            '<a href="/sitios/sepg/es-ES/x/Documents/2023/01%20Presupuestos%20Generales%20del%20Estado%20Consolidados.xlsx">')
+    igae = '<a href="/sitios/igae/x/Documents/MENSUAL%20AGOSTO%202026.xlsx"><a href="/sitios/igae/x/Documents/MENSUAL%20JULIO%202026.xlsx">'
+    asked = []
+
+    class Reply:
+        def __init__(self, url):
+            asked.append(url.rsplit("/", 1)[-1])
+            self.text = sepg if "Estadisticas.aspx" in url else igae
+            self.content = EXECUTION_BOOK if "MENSUAL" in url else BUDGET_BOOK
+
+    monkeypatch.setattr(budget.http, "get", lambda url, **_: Reply(url))
+    sb = budget.refresh_state_budget({"execution": {"2024": {"month": 12, "day": 31, "policies": {}}}})
+    assert sb["edition"] == "2025-P" and sb["rolled_over"] == [2024, 2025]
+    assert set(sb["execution"]) == {"2024", "2025", "2026"} and sb["execution"]["2026"]["month"] == 8
+    assert "MENSUAL%20AGOSTO%202026.xlsx" in asked and "MENSUAL%20DICIEMBRE%202025.xlsx" in asked
+    page = budget.state_budget_data({"state_budget": sb}, {2023: 1_500_000.0})
+    assert page["years"] == [2023, 2024, 2025] and page["gdp"] == [1_500_000.0, None, None]
+    assert page["execution"][0]["year"] == 2026 and page["execution"][0]["through"] == "31 August 2026"
+    assert [p["code"] for p in page["policies"]] == ["pensions", "defence", "research_civil", "research_military"]

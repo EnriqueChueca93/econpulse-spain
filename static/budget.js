@@ -335,7 +335,9 @@
   }
 
   // ---------------------------------------------------------------- state in the address, for sharing
+  var touched = false;      // until a control is used, a link to a section (#bx-pge) stays in the address
   function writeHash() {
+    if (!touched && location.hash && location.hash.indexOf("level=") < 0) return;
     var h = "level=" + state.level + "&view=" + state.view + "&measure=" + state.measure + "&year=" + state.year +
             "&base=" + state.base + (state.exclude ? "&exclude=1" : "") + (state.parent ? "&parent=" + state.parent : "") +
             "&sel=" + state.selected.join(",") + (state.cmp ? "&cmp=" + state.cmp : "");
@@ -368,6 +370,14 @@
   }
 
   // ---------------------------------------------------------------- events
+  ["input", "change"].forEach(function (type) {
+    $("bx-level").closest(".bx-controls").parentNode.addEventListener(type, function (e) {
+      if (!e.target.closest("#bx-pge")) touched = true;
+    }, true);
+  });
+  document.querySelector(".bx-controls").parentNode.addEventListener("click", function (e) {
+    if (e.target.closest("#bx-pge") === null && e.target.closest("button, tr, select, input")) touched = true;
+  }, true);
   $("bx-level").addEventListener("change", function (e) { state.level = e.target.value; state.parent = null; syncControls(); draw(); });
   $("bx-measure").addEventListener("change", function (e) { state.measure = e.target.value; draw(); });
   $("bx-year").addEventListener("change", function (e) { state.year = +e.target.value; draw(); });

@@ -179,6 +179,7 @@ code { font-size: 13px; background: var(--hover); padding: 1px 5px; border-radiu
 .badge-ok { background: var(--ok-bg); color: var(--ok-text); }
 .badge-ok a { color: inherit; }
 
+.bx-sub { margin: 28px 0 4px; font-size: 1.05rem; }
 /* Documents whose figures are entered by hand (Pensions page), with their AI-check status. */
 .documents { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; margin: 0 0 16px; }
 .doc-card { padding: 14px 16px; }

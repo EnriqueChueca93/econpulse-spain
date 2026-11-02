@@ -90,7 +90,9 @@ Because the workflow commits data every day, run `git pull` before working local
   all public administrations spend and raise since 1995 (the communities one by one from 2000, by function from
   2012), by function (COFOG, with its groups), by type and tax by tax, from the IGAE's national accounts, in € bn, at
   constant prices, % of GDP (each community's own), per person or as a share, with flows between administrations
-  shown apart or left out, each community's balance, and the communities side by side.
+  shown apart or left out, each community's balance, and the communities side by side; and the State's budget
+  itself: the consolidated budget by spending policy and revenue chapter since 2014 (rolled-over years marked),
+  and the State's initial and final appropriations against what it has spent, policy by policy (IGAE, from 2025).
   **ECB-speak** (`site/ecb-speak.html`): how hawkish or dovish the ECB's Governing
   Council sounds, from every member's speech since September 2022 (ECB and BIS full texts), scored with
   EconPulse's published word lists rather than an AI; after Econvitals' Fedspeak Tracker. **Global central bank stance**
@@ -178,8 +180,9 @@ econpulse/            Python package
   stance.py           the central bank stance page, from Econvitals' public data (saved to data/stance.json)
   fiscal.py           the Fiscal Explorer's baseline and data (the levers run in static/fiscal.js)
   budget.py           the Budget explorer's data: the IGAE workbooks read into data/budget.json at fetch time,
-                      the per-community ones cached in data/budget_regional.json (the explorer runs in
-                      static/budget.js)
+                      the per-community ones cached in data/budget_regional.json, and the State's budget
+                      (Ministry of Finance statistics, IGAE execution); the explorer runs in static/budget.js
+                      and static/pge.js
   ecbspeak.py         ECB-speak: collects the Governing Council's speeches (data/ecbspeak.json) and analyses them
   speechscore.py      the hawkish/dovish word lists and the score
   fiscal_baseline.json  the Commission's Spain baseline, extracted by scripts/extract_fiscal_baseline.py

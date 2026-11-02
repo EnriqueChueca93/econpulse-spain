@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-11-02T05:50:56+00:00",
+ "fetched_at": "2026-11-02T06:44:03+00:00",
  "levels": {
   "central": {
    "function": {
@@ -32721,6 +32721,897 @@
     "accounts": [
      2025
     ]
+   }
+  }
+ },
+ "state_budget": {
+  "spending": {
+   "2014": {
+    "justice": 1500.75404,
+    "defence": 5654.45439,
+    "security": 7880.95326,
+    "foreign": 1395.16909,
+    "pensions": 127483.83335,
+    "other_benefits": 11603.8306,
+    "social_services": 1809.90696,
+    "employment": 4073.5211,
+    "unemployment": 29727.53427,
+    "housing": 799.72408,
+    "labour_admin": 4377.40358,
+    "health": 3839.75595,
+    "education": 2174.99611,
+    "culture": 717.9710200000001,
+    "agriculture": 7720.52809,
+    "industry": 5777.76195,
+    "trade": 936.19507,
+    "transport_subsidies": 1615.15535,
+    "infrastructure": 5453.55269,
+    "research_civil": 5632.84864,
+    "research_military": 507.0,
+    "other_economic": 1160.0663,
+    "institutions": 593.78543,
+    "general_services": 29905.72263,
+    "tax_admin": 9704.863800000001,
+    "transfers": 45988.78943,
+    "debt": 36590.0,
+    "TOTAL": 354626.07717999996
+   },
+   "2015": {
+    "justice": 1508.15445,
+    "defence": 5711.68742,
+    "security": 7843.1293399999995,
+    "foreign": 1422.4261299999998,
+    "pensions": 131658.53137,
+    "other_benefits": 10943.65291,
+    "social_services": 1944.28735,
+    "employment": 4746.36141,
+    "unemployment": 25300.04046,
+    "housing": 587.1090899999999,
+    "labour_admin": 5344.13814,
+    "health": 3863.83198,
+    "education": 2272.8628799999997,
+    "culture": 749.05751,
+    "agriculture": 8579.917720000001,
+    "industry": 6027.76196,
+    "trade": 963.30186,
+    "transport_subsidies": 1340.46926,
+    "infrastructure": 6150.015230000001,
+    "research_civil": 5668.39274,
+    "research_military": 726.758,
+    "other_economic": 927.48959,
+    "institutions": 612.82351,
+    "general_services": 28417.44684,
+    "tax_admin": 1877.8041,
+    "transfers": 47165.8896,
+    "debt": 35490.0,
+    "TOTAL": 347843.34085000004
+   },
+   "2016": {
+    "justice": 1604.31179,
+    "defence": 5734.29191,
+    "security": 7903.6176,
+    "foreign": 1477.9398500000002,
+    "pensions": 135448.92578999998,
+    "other_benefits": 11685.70921,
+    "social_services": 2296.22252,
+    "employment": 5214.915940000001,
+    "unemployment": 19620.938899999997,
+    "housing": 587.1090899999999,
+    "labour_admin": 5990.1235,
+    "health": 4000.1176499999997,
+    "education": 2484.28081,
+    "culture": 806.75934,
+    "agriculture": 7403.2523,
+    "industry": 5457.0194599999995,
+    "trade": 982.61881,
+    "transport_subsidies": 1424.06776,
+    "infrastructure": 6048.97196,
+    "research_civil": 5793.3062899999995,
+    "research_military": 631.85598,
+    "other_economic": 665.3526400000001,
+    "institutions": 633.57089,
+    "general_services": 33998.15719,
+    "tax_admin": 1656.81513,
+    "transfers": 48816.04245,
+    "debt": 33490.0,
+    "TOTAL": 351856.29476
+   },
+   "2017": {
+    "justice": 1726.19093,
+    "defence": 7575.59287,
+    "security": 7912.33049,
+    "foreign": 1521.6985,
+    "pensions": 139646.72308,
+    "other_benefits": 13511.89823,
+    "social_services": 2408.29327,
+    "employment": 5499.25475,
+    "unemployment": 18318.31265,
+    "housing": 474.24203,
+    "labour_admin": 14287.73122,
+    "health": 4093.47783,
+    "education": 2523.8162,
+    "culture": 802.59203,
+    "agriculture": 7412.50029,
+    "industry": 5432.17109,
+    "trade": 875.38705,
+    "transport_subsidies": 1421.02589,
+    "infrastructure": 5453.14431,
+    "research_civil": 6041.17359,
+    "research_military": 461.44704,
+    "other_economic": 555.55667,
+    "institutions": 652.41492,
+    "general_services": 24728.30283,
+    "tax_admin": 1382.39038,
+    "transfers": 48222.51107,
+    "debt": 32171.0,
+    "TOTAL": 355111.1792099999
+   },
+   "2018": {
+    "justice": 1780.74441,
+    "defence": 8400.561539999999,
+    "security": 8418.138710000001,
+    "foreign": 1581.4435,
+    "pensions": 144834.30565999998,
+    "other_benefits": 14388.36595,
+    "social_services": 2630.33656,
+    "employment": 5716.143349999999,
+    "unemployment": 17702.180620000003,
+    "housing": 481.24238,
+    "labour_admin": 17296.74017,
+    "health": 4253.25186,
+    "education": 2581.90473,
+    "culture": 856.15214,
+    "agriculture": 7500.18083,
+    "industry": 5768.82792,
+    "trade": 896.20275,
+    "transport_subsidies": 2148.7620899999997,
+    "infrastructure": 5656.5084400000005,
+    "research_civil": 6370.86728,
+    "research_military": 679.20748,
+    "other_economic": 639.4749899999999,
+    "institutions": 681.4626,
+    "general_services": 24658.607359999998,
+    "tax_admin": 1389.5288500000001,
+    "transfers": 49510.401920000004,
+    "debt": 31547.48377,
+    "TOTAL": 368369.02786
+   },
+   "2019": {
+    "justice": 1779.72937,
+    "defence": 8400.561539999999,
+    "security": 8418.08732,
+    "foreign": 1581.4435,
+    "pensions": 144834.30565999998,
+    "other_benefits": 14385.074949999998,
+    "social_services": 2630.84984,
+    "employment": 5715.9599100000005,
+    "unemployment": 17702.180620000003,
+    "housing": 481.24238,
+    "labour_admin": 17296.74017,
+    "health": 4251.33701,
+    "education": 2540.6827999999996,
+    "culture": 886.99344,
+    "agriculture": 7706.941650000001,
+    "industry": 5770.53589,
+    "trade": 896.20275,
+    "transport_subsidies": 2138.71009,
+    "infrastructure": 5436.92789,
+    "research_civil": 6379.18681,
+    "research_military": 678.58748,
+    "other_economic": 639.4737,
+    "institutions": 681.03333,
+    "general_services": 24642.56771,
+    "tax_admin": 1389.5288500000001,
+    "transfers": 49510.401920000004,
+    "debt": 31547.48377,
+    "TOTAL": 368322.77034999995
+   },
+   "2020": {
+    "justice": 1779.72937,
+    "defence": 8400.561539999999,
+    "security": 8418.08732,
+    "foreign": 1581.4435,
+    "pensions": 144834.30565999998,
+    "other_benefits": 14385.074949999998,
+    "social_services": 2630.84984,
+    "employment": 5715.9599100000005,
+    "unemployment": 17702.180620000003,
+    "housing": 481.24238,
+    "labour_admin": 17296.74017,
+    "health": 4251.33701,
+    "education": 2540.6827999999996,
+    "culture": 886.99344,
+    "agriculture": 7706.941650000001,
+    "industry": 5770.53589,
+    "trade": 896.20275,
+    "transport_subsidies": 2138.71009,
+    "infrastructure": 5436.92789,
+    "research_civil": 6379.18681,
+    "research_military": 678.58748,
+    "other_economic": 639.4737,
+    "institutions": 681.03333,
+    "general_services": 24642.56771,
+    "tax_admin": 1389.5288500000001,
+    "transfers": 49510.401920000004,
+    "debt": 31547.48377,
+    "TOTAL": 368322.77034999995
+   },
+   "2021": {
+    "justice": 2048.13086,
+    "defence": 9072.01433,
+    "security": 9694.41496,
+    "foreign": 1882.0076999999999,
+    "pensions": 163296.58073,
+    "other_benefits": 20622.903690000003,
+    "social_services": 5201.178940000001,
+    "employment": 7404.808730000001,
+    "unemployment": 25011.796589999998,
+    "housing": 2253.0953799999997,
+    "labour_admin": 104.15044,
+    "inclusion_admin": 2499.12021,
+    "health": 7329.68378,
+    "education": 4893.45613,
+    "culture": 1148.06383,
+    "agriculture": 8405.077710000001,
+    "industry": 11176.46219,
+    "trade": 2220.0081800000003,
+    "transport_subsidies": 2618.29154,
+    "infrastructure": 11473.421400000001,
+    "research_civil": 11483.42835,
+    "research_military": 861.13839,
+    "other_economic": 1107.88594,
+    "institutions": 752.09048,
+    "general_services": 39705.0,
+    "tax_admin": 1564.0876799999999,
+    "transfers": 70570.0,
+    "debt": 31675.10409,
+    "TOTAL": 456073.4022499999
+   },
+   "2022": {
+    "justice": 2283.5494,
+    "defence": 9790.81151,
+    "security": 10148.79292,
+    "foreign": 2253.51982,
+    "pensions": 171139.65331,
+    "other_benefits": 20974.48387,
+    "social_services": 6179.0870700000005,
+    "employment": 7647.9270400000005,
+    "unemployment": 22457.09722,
+    "housing": 3295.19506,
+    "labour_admin": 142.93977999999998,
+    "inclusion_admin": 3336.30863,
+    "health": 6606.049940000001,
+    "education": 5022.78388,
+    "culture": 1589.3321899999999,
+    "agriculture": 8845.24972,
+    "industry": 11313.634810000001,
+    "trade": 2932.00237,
+    "transport_subsidies": 2720.59549,
+    "infrastructure": 11842.66013,
+    "research_civil": 12359.82592,
+    "research_military": 938.56096,
+    "other_economic": 1393.16856,
+    "institutions": 789.13455,
+    "general_services": 30452.795899999997,
+    "tax_admin": 1611.3854,
+    "transfers": 70727.91805,
+    "debt": 30175.10409,
+    "TOTAL": 458969.56758999993
+   },
+   "2023": {
+    "justice": 2291.31848,
+    "defence": 12316.82907,
+    "security": 10719.2046,
+    "foreign": 2425.50604,
+    "pensions": 190687.24615,
+    "other_benefits": 22299.76643,
+    "social_services": 7116.82158,
+    "employment": 8028.78539,
+    "unemployment": 21278.01988,
+    "housing": 3476.83565,
+    "labour_admin": 193.46848,
+    "inclusion_admin": 7162.23125,
+    "health": 7049.08276,
+    "education": 5354.97335,
+    "culture": 1803.68982,
+    "agriculture": 8868.48265,
+    "industry": 10154.33315,
+    "trade": 3096.07805,
+    "transport_subsidies": 3447.6803,
+    "infrastructure": 12609.08958,
+    "research_civil": 15933.73341,
+    "research_military": 1833.25162,
+    "other_economic": 1450.76623,
+    "institutions": 933.2904,
+    "general_services": 25969.48761,
+    "tax_admin": 1753.48571,
+    "transfers": 66457.25049,
+    "debt": 31275.10409,
+    "TOTAL": 485985.81222
+   },
+   "2024": {
+    "justice": 2233.3997400000003,
+    "defence": 12316.82907,
+    "security": 10673.007380000001,
+    "foreign": 2150.7102999999997,
+    "pensions": 190687.24615,
+    "other_benefits": 22298.916960000002,
+    "social_services": 5743.88916,
+    "employment": 7515.79215,
+    "unemployment": 21278.01988,
+    "housing": 3480.7696499999997,
+    "labour_admin": 118.90274000000001,
+    "inclusion_admin": 6965.29273,
+    "health": 5505.41999,
+    "education": 5337.561009999999,
+    "culture": 1652.41406,
+    "agriculture": 8411.98265,
+    "industry": 9801.34591,
+    "trade": 3094.98412,
+    "transport_subsidies": 3446.3301,
+    "infrastructure": 12578.4585,
+    "research_civil": 15963.6996,
+    "research_military": 1833.25162,
+    "other_economic": 1433.81369,
+    "institutions": 854.99963,
+    "general_services": 25951.846940000003,
+    "tax_admin": 1747.97243,
+    "transfers": 66273.56996000001,
+    "debt": 31275.10409,
+    "TOTAL": 480625.5302099999
+   },
+   "2025": {
+    "justice": 2231.3610099999996,
+    "defence": 12316.82907,
+    "security": 10673.007380000001,
+    "foreign": 2150.7102999999997,
+    "pensions": 190687.24615,
+    "other_benefits": 22298.916960000002,
+    "social_services": 5744.44909,
+    "employment": 7515.79215,
+    "unemployment": 21278.01988,
+    "housing": 3483.4684300000004,
+    "labour_admin": 118.90274000000001,
+    "inclusion_admin": 6965.29273,
+    "health": 5505.41999,
+    "education": 5337.561009999999,
+    "culture": 1652.38406,
+    "agriculture": 8411.98265,
+    "industry": 9801.12591,
+    "trade": 3094.98412,
+    "transport_subsidies": 3446.3301,
+    "infrastructure": 12577.798449999998,
+    "research_civil": 15969.908050000002,
+    "research_military": 1833.25162,
+    "other_economic": 1433.28376,
+    "institutions": 854.99963,
+    "general_services": 25943.94766,
+    "tax_admin": 1749.88326,
+    "transfers": 66273.56996000001,
+    "debt": 31275.10409,
+    "TOTAL": 480625.53021
+   },
+   "2026": {
+    "justice": 2231.3610099999996,
+    "defence": 12316.82907,
+    "security": 10673.007380000001,
+    "foreign": 2150.7102999999997,
+    "pensions": 190687.24615,
+    "other_benefits": 22298.916960000002,
+    "social_services": 5744.44909,
+    "employment": 7515.79215,
+    "unemployment": 21278.01988,
+    "housing": 3483.4684300000004,
+    "labour_admin": 118.90274000000001,
+    "inclusion_admin": 6965.29273,
+    "health": 5505.41999,
+    "education": 5337.561009999999,
+    "culture": 1652.38406,
+    "agriculture": 8411.98265,
+    "industry": 9795.967849999999,
+    "trade": 3094.98412,
+    "transport_subsidies": 3446.3301,
+    "infrastructure": 12577.798449999998,
+    "research_civil": 15980.047000000002,
+    "research_military": 1833.25162,
+    "other_economic": 1433.28376,
+    "institutions": 854.99963,
+    "general_services": 25938.96677,
+    "tax_admin": 1749.88326,
+    "transfers": 66273.56996000001,
+    "debt": 31275.10409,
+    "TOTAL": 480625.53021
+   }
+  },
+  "revenue": {
+   "2014": {
+    "direct": 192669.0228,
+    "indirect": 37687.564,
+    "fees": 7085.20015,
+    "current_transfers": 16031.88359,
+    "property": 9876.56537,
+    "asset_sales": 470.9418,
+    "capital_transfers": 2328.94304,
+    "financial_assets": 15528.28968,
+    "TOTAL": 281678.41043
+   },
+   "2015": {
+    "direct": 200270.92207,
+    "indirect": 44156.0,
+    "fees": 7049.06799,
+    "current_transfers": 16356.64967,
+    "property": 8689.52202,
+    "asset_sales": 294.25725,
+    "capital_transfers": 2925.72428,
+    "financial_assets": 18577.107350000002,
+    "TOTAL": 298319.25062999997
+   },
+   "2016": {
+    "direct": 209880.89938,
+    "indirect": 43476.0,
+    "fees": 10158.16243,
+    "current_transfers": 14191.76434,
+    "property": 6941.09161,
+    "asset_sales": 363.57428999999996,
+    "capital_transfers": 2620.95651,
+    "financial_assets": 11399.8964,
+    "TOTAL": 299032.34496
+   },
+   "2017": {
+    "direct": 202722.57979,
+    "indirect": 44532.0,
+    "fees": 11922.65256,
+    "current_transfers": 11716.80773,
+    "property": 6272.5107,
+    "asset_sales": 337.63165,
+    "capital_transfers": 2707.58896,
+    "financial_assets": 11879.09064,
+    "TOTAL": 292090.86202999996
+   },
+   "2018": {
+    "direct": 210024.87087,
+    "indirect": 47191.0,
+    "fees": 14643.860929999999,
+    "current_transfers": 12223.1023,
+    "property": 5965.757009999999,
+    "asset_sales": 231.67953,
+    "capital_transfers": 2917.98884,
+    "financial_assets": 7704.95168,
+    "TOTAL": 300903.21116000006
+   },
+   "2019": {
+    "direct": 210024.87087,
+    "indirect": 47191.0,
+    "fees": 14643.860929999999,
+    "current_transfers": 12223.1023,
+    "property": 5965.757009999999,
+    "asset_sales": 231.67953,
+    "capital_transfers": 2917.98884,
+    "financial_assets": 7704.95168,
+    "TOTAL": 300903.21116000006
+   },
+   "2020": {
+    "direct": 210020.24038,
+    "indirect": 47191.0,
+    "fees": 14643.860929999999,
+    "current_transfers": 12223.1023,
+    "property": 5965.757009999999,
+    "asset_sales": 231.67953,
+    "capital_transfers": 2917.98884,
+    "financial_assets": 7686.87242,
+    "TOTAL": 300880.50141
+   },
+   "2021": {
+    "direct": 221946.0,
+    "indirect": 51480.0,
+    "fees": 14255.0,
+    "current_transfers": 15423.0,
+    "property": 8401.0,
+    "asset_sales": 643.0,
+    "capital_transfers": 8082.0,
+    "financial_assets": 3767.0,
+    "TOTAL": 323997.0
+   },
+   "2022": {
+    "direct": 244043.38961,
+    "indirect": 57879.54769,
+    "fees": 13578.14664,
+    "current_transfers": 19127.65625,
+    "property": 6629.0612599999995,
+    "asset_sales": 287.26693,
+    "capital_transfers": 19464.75491,
+    "financial_assets": 15986.851929999999,
+    "TOTAL": 376996.67522
+   },
+   "2023": {
+    "direct": 269000.30435,
+    "indirect": 57809.23951,
+    "fees": 14470.948,
+    "current_transfers": 19014.42614,
+    "property": 6338.44798,
+    "asset_sales": 350.0526,
+    "capital_transfers": 16187.7617,
+    "financial_assets": 6756.31419,
+    "TOTAL": 389927.49447
+   },
+   "2024": {
+    "direct": 269000.30435000005,
+    "indirect": 57809.23951,
+    "fees": 14470.948,
+    "current_transfers": 19014.42614,
+    "property": 6338.447980000001,
+    "asset_sales": 350.0526,
+    "capital_transfers": 16187.7617,
+    "financial_assets": 6756.31419,
+    "TOTAL": 389927.49447
+   },
+   "2025": {
+    "direct": 269000.30435000005,
+    "indirect": 57809.23951,
+    "fees": 14470.948,
+    "current_transfers": 19014.42614,
+    "property": 6338.447980000001,
+    "asset_sales": 350.0526,
+    "capital_transfers": 16187.7617,
+    "financial_assets": 6756.31419,
+    "TOTAL": 389927.49447
+   },
+   "2026": {
+    "direct": 269000.30435000005,
+    "indirect": 57809.23951,
+    "fees": 14470.948,
+    "current_transfers": 19014.42614,
+    "property": 6338.447980000001,
+    "asset_sales": 350.0526,
+    "capital_transfers": 16187.7617,
+    "financial_assets": 6756.31419,
+    "TOTAL": 389927.49447
+   }
+  },
+  "rolled_over": [
+   2019,
+   2020,
+   2024,
+   2025,
+   2026
+  ],
+  "edition": "2025-P",
+  "execution": {
+   "2026": {
+    "month": 8,
+    "day": 31,
+    "policies": {
+     "internal": {
+      "final": 77996.3,
+      "obligations": 53179.2,
+      "payments": 48462.4,
+      "initial": 60621.3
+     },
+     "justice": {
+      "final": 2577.6,
+      "obligations": 1563.1,
+      "payments": 1559.4,
+      "initial": 2206.8
+     },
+     "defence": {
+      "final": 21669.3,
+      "obligations": 7884.0,
+      "payments": 7806.6,
+      "initial": 12062.2
+     },
+     "security": {
+      "final": 10534.9,
+      "obligations": 6734.8,
+      "payments": 6712.7,
+      "initial": 9791.5
+     },
+     "foreign": {
+      "final": 1333.4,
+      "obligations": 687.8,
+      "payments": 680.0,
+      "initial": 1293.5
+     },
+     "pensions": {
+      "final": 20508.7,
+      "obligations": 15911.2,
+      "payments": 15911.0,
+      "initial": 20508.6
+     },
+     "social_services": {
+      "final": 2881.4,
+      "obligations": 993.4,
+      "payments": 849.2,
+      "initial": 1852.6
+     },
+     "employment": {
+      "final": 1262.7,
+      "obligations": 544.0,
+      "payments": 542.9,
+      "initial": 1268.5
+     },
+     "housing": {
+      "final": 3594.1,
+      "obligations": 1160.5,
+      "payments": 1159.3,
+      "initial": 3483.6
+     },
+     "labour_admin": {
+      "final": 168.6,
+      "obligations": 71.9,
+      "payments": 71.3,
+      "initial": 118.9
+     },
+     "inclusion_admin": {
+      "final": 71.8,
+      "obligations": 34.4,
+      "payments": 34.9,
+      "initial": 67.1
+     },
+     "health": {
+      "final": 1178.8,
+      "obligations": 307.3,
+      "payments": 302.6,
+      "initial": 1119.7
+     },
+     "education": {
+      "final": 5243.9,
+      "obligations": 1747.3,
+      "payments": 1706.0,
+      "initial": 5227.7
+     },
+     "culture": {
+      "final": 586.9,
+      "obligations": 169.4,
+      "payments": 169.2,
+      "initial": 608.2
+     },
+     "agriculture": {
+      "final": 1931.4,
+      "obligations": 830.5,
+      "payments": 823.1,
+      "initial": 738.8
+     },
+     "industry": {
+      "final": 17529.1,
+      "obligations": 14218.4,
+      "payments": 14199.1,
+      "initial": 5986.2
+     },
+     "trade": {
+      "final": 1549.0,
+      "obligations": 1080.5,
+      "payments": 386.8,
+      "initial": 2980.8
+     },
+     "transport_subsidies": {
+      "final": 4474.7,
+      "obligations": 1822.1,
+      "payments": 1740.9,
+      "initial": 3446.3
+     },
+     "infrastructure": {
+      "final": 10370.3,
+      "obligations": 3640.8,
+      "payments": 3559.6,
+      "initial": 10906.1
+     },
+     "research": {
+      "final": 10671.6,
+      "obligations": 1794.9,
+      "payments": 1785.0,
+      "initial": 14084.2
+     },
+     "other_economic": {
+      "final": 414.3,
+      "obligations": 234.0,
+      "payments": 233.8,
+      "initial": 1009.7
+     },
+     "institutions": {
+      "final": 530.1,
+      "obligations": 353.4,
+      "payments": 353.4,
+      "initial": 511.7
+     },
+     "general_services": {
+      "final": 24398.3,
+      "obligations": 4177.4,
+      "payments": 4020.4,
+      "initial": 25514.5
+     },
+     "tax_admin": {
+      "final": 1957.0,
+      "obligations": 1779.1,
+      "payments": 1778.8,
+      "initial": 343.4
+     },
+     "transfers": {
+      "final": 79705.9,
+      "obligations": 41283.9,
+      "payments": 41281.4,
+      "initial": 66273.6
+     },
+     "debt": {
+      "final": 159022.5,
+      "obligations": 118133.9,
+      "payments": 118131.4,
+      "initial": 128796.8
+     },
+     "TOTAL": {
+      "final": 462162.5,
+      "obligations": 280337.1,
+      "payments": 274260.9,
+      "initial": 380822.5
+     }
+    }
+   },
+   "2025": {
+    "month": 12,
+    "day": 31,
+    "policies": {
+     "internal": {
+      "final": 72304.4,
+      "obligations": 71888.5,
+      "payments": 68896.9,
+      "initial": 60624.4
+     },
+     "justice": {
+      "final": 2495.6,
+      "obligations": 2439.3,
+      "payments": 2433.8,
+      "initial": 2211.1
+     },
+     "defence": {
+      "final": 17463.5,
+      "obligations": 17267.8,
+      "payments": 16959.0,
+      "initial": 12062.2
+     },
+     "security": {
+      "final": 11049.4,
+      "obligations": 10767.2,
+      "payments": 10679.0,
+      "initial": 9791.5
+     },
+     "foreign": {
+      "final": 1439.1,
+      "obligations": 1167.9,
+      "payments": 1150.3,
+      "initial": 1291.6
+     },
+     "pensions": {
+      "final": 23531.9,
+      "obligations": 23515.5,
+      "payments": 23515.4,
+      "initial": 20508.6
+     },
+     "social_services": {
+      "final": 3641.1,
+      "obligations": 3217.2,
+      "payments": 2819.4,
+      "initial": 1852.6
+     },
+     "employment": {
+      "final": 1220.1,
+      "obligations": 852.3,
+      "payments": 844.3,
+      "initial": 1268.5
+     },
+     "housing": {
+      "final": 4953.8,
+      "obligations": 4745.1,
+      "payments": 1377.3,
+      "initial": 3483.6
+     },
+     "labour_admin": {
+      "final": 252.1,
+      "obligations": 195.2,
+      "payments": 191.8,
+      "initial": 118.9
+     },
+     "inclusion_admin": {
+      "final": 67.2,
+      "obligations": 47.4,
+      "payments": 46.8,
+      "initial": 67.1
+     },
+     "health": {
+      "final": 1245.3,
+      "obligations": 1049.0,
+      "payments": 1027.5,
+      "initial": 1119.7
+     },
+     "education": {
+      "final": 4538.4,
+      "obligations": 3921.9,
+      "payments": 3914.3,
+      "initial": 5227.7
+     },
+     "culture": {
+      "final": 522.8,
+      "obligations": 441.0,
+      "payments": 381.1,
+      "initial": 547.7
+     },
+     "agriculture": {
+      "final": 809.1,
+      "obligations": 764.7,
+      "payments": 755.5,
+      "initial": 738.8
+     },
+     "industry": {
+      "final": 3473.8,
+      "obligations": 3209.3,
+      "payments": 2789.3,
+      "initial": 5991.4
+     },
+     "trade": {
+      "final": 5340.7,
+      "obligations": 1954.8,
+      "payments": 531.9,
+      "initial": 2980.8
+     },
+     "transport_subsidies": {
+      "final": 5339.3,
+      "obligations": 5332.1,
+      "payments": 4854.7,
+      "initial": 3446.3
+     },
+     "infrastructure": {
+      "final": 16978.3,
+      "obligations": 7024.3,
+      "payments": 5618.9,
+      "initial": 10906.1
+     },
+     "research": {
+      "final": 16614.2,
+      "obligations": 12595.7,
+      "payments": 5942.5,
+      "initial": 14129.0
+     },
+     "other_economic": {
+      "final": 3747.0,
+      "obligations": 3634.2,
+      "payments": 571.9,
+      "initial": 1009.7
+     },
+     "institutions": {
+      "final": 545.0,
+      "obligations": 519.0,
+      "payments": 510.6,
+      "initial": 511.7
+     },
+     "general_services": {
+      "final": 25196.4,
+      "obligations": 15021.2,
+      "payments": 11112.4,
+      "initial": 25519.5
+     },
+     "tax_admin": {
+      "final": 4052.8,
+      "obligations": 2623.3,
+      "payments": 2622.5,
+      "initial": 343.4
+     },
+     "transfers": {
+      "final": 73645.3,
+      "obligations": 72806.7,
+      "payments": 72770.1,
+      "initial": 66273.6
+     },
+     "debt": {
+      "final": 157299.7,
+      "obligations": 156335.7,
+      "payments": 156230.3,
+      "initial": 128796.8
+     },
+     "TOTAL": {
+      "final": 457766.4,
+      "obligations": 423336.4,
+      "payments": 398547.5,
+      "initial": 380822.5
+     }
+    }
    }
   }
  }

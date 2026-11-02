@@ -550,13 +550,241 @@ def refresh(store: Store) -> str:
             files = {k: http.get(u).content for k, u in urls(level).items()}
             levels[level["id"]] = build_level(level, files["cofog"], files["accounts"], files["taxes"])
         communities = refresh_communities(store)
+        state_budget = refresh_state_budget(saved.get("state_budget"))
     except Exception as e:  # keep what we had: the page says when it was last fetched
         saved.update(error=f"{type(e).__name__}: {e}", failed_at=now)
         store.save_json(STORE, saved)
         return f"not updated ({saved['error']}); keeping the copy from {saved.get('fetched_at', 'never')}"
-    store.save_json(STORE, {"fetched_at": now, "levels": levels, "communities": communities})
+    store.save_json(STORE, {"fetched_at": now, "levels": levels, "communities": communities, "state_budget": state_budget})
     last = max(int(y) for y in levels["central"]["revenue"]["TOTAL"])
     return f"{len(levels)} administrations and {len(communities)} communities, revenue and spending by type through {last}"
+
+
+
+# ---------------------------------------------------------------- the State's budget (Batch 30c)
+# The budget itself, unlike the national accounts above: what the Presupuestos Generales del Estado plan, by
+# spending policy, and how much of it the State has spent. Two sources:
+#   the budget office (SEPG): each year's statistics workbook of the consolidated budget (the State, its agencies
+#       and the Social Security), with the initial appropriations by spending policy (chapters 1 to 8) and the
+#       revenue by chapter for the past ten years or so; a column "2023-P" is the 2023 budget rolled over into 2024
+#   the IGAE: the monthly execution of the State's own budget (without the Social Security), by spending policy:
+#       final appropriations, obligations recognised and payments to date, and the year's changes to the budget
+
+SEPG_PAGE = ("https://www.sepg.pap.hacienda.gob.es/sitios/sepg/es-ES/Presupuestos/DocumentacionEstadisticas/"
+             "Estadisticas/Paginas/Estadisticas.aspx")
+SEPG_FILE = re.compile(r'href="([^"]*/Documents/([0-9]{4}(?:-P)?)/01%20Presupuestos%20Generales%20del%20Estado%20Consolidados\.xlsx)"')
+HISTORY_EDITION = "2023"    # the edition whose series reach back furthest (2014) on the same policy structure
+EXECUTION_PAGE = ("https://www.igae.pap.hacienda.gob.es/sitios/igae/es-ES/Contabilidad/ContabilidadPublica/CPE/"
+                  "EjecucionPresupuestaria/Paginas/imejecucionpresupuesto.aspx")
+EXECUTION_FILE = re.compile(r'href="([^"]*/Documents/MENSUAL%20([A-Z]+)%20([0-9]{4})\.xlsx)"')
+SPANISH_MONTHS = {"ENERO": 1, "FEBRERO": 2, "MARZO": 3, "ABRIL": 4, "MAYO": 5, "JUNIO": 6, "JULIO": 7, "AGOSTO": 8,
+                  "SEPTIEMBRE": 9, "OCTUBRE": 10, "NOVIEMBRE": 11, "DICIEMBRE": 12}
+# Spending policies (políticas de gasto): key, label, and the start of their Spanish names. Order matters where
+# one name starts like another.
+POLICIES = [
+    ("pensions", "Pensions", ["pensiones"]),
+    ("unemployment", "Unemployment benefits", ["desempleo"]),
+    ("other_benefits", "Other cash benefits", ["otras prestaciones economicas"]),
+    ("social_services", "Social services and promotion", ["servicios sociales"]),
+    ("employment", "Employment promotion", ["fomento del empleo"]),
+    ("housing", "Housing", ["acceso a la vivienda"]),
+    ("labour_admin", "Labour and social economy administration", ["gestion y administracion de trabajo", "gestion y administ. de trabajo"]),
+    ("inclusion_admin", "Inclusion, Social Security and migration administration", ["gestion y administracion de la inclusion", "gestion y admon. de inclusion"]),
+    ("health", "Health", ["sanidad"]),
+    ("education", "Education", ["educacion"]),
+    ("culture", "Culture", ["cultura"]),
+    ("justice", "Justice", ["justicia"]),
+    ("defence", "Defence", ["defensa"]),
+    ("security", "Public safety and prisons", ["seguridad ciudadana"]),
+    ("foreign", "Foreign policy and development aid", ["politica exterior"]),
+    ("agriculture", "Agriculture, fisheries and food", ["agricultura"]),
+    ("industry", "Industry and energy", ["industria"]),
+    ("trade", "Trade, tourism and SMEs", ["comercio"]),
+    ("transport_subsidies", "Transport subsidies", ["subvenciones al transporte"]),
+    ("infrastructure", "Infrastructure and resilient ecosystems", ["infraestructuras"]),
+    ("research_civil", "Civil research", ["investigacion civil"]),
+    ("research_military", "Military research", ["investigacion militar"]),
+    ("research", "Research, development, innovation and digitalisation", ["investigacion"]),
+    ("other_economic", "Other economic affairs", ["otras actuaciones de caracter economico"]),
+    ("institutions", "Constitutional bodies and government", ["organos constitucionales"]),
+    ("general_services", "General services", ["servicios de caracter general"]),
+    ("tax_admin", "Financial and tax administration", ["administracion financiera"]),
+    ("transfers", "Transfers to other administrations", ["transferencias a otras admin"]),
+    ("debt", "Public debt", ["deuda publica"]),
+    ("internal", "Transfers within the State's public sector", ["transferencias internas"]),
+]
+BUDGET_REVENUE = [
+    ("direct", "Direct taxes and social contributions", ["impuestos directos"]),
+    ("indirect", "Indirect taxes", ["impuestos indirectos"]),
+    ("fees", "Fees, prices and other revenue", ["tasas"]),
+    ("current_transfers", "Current transfers", ["transferencias corrientes"]),
+    ("property", "Property income", ["ingresos patrimoniales"]),
+    ("asset_sales", "Sales of real investments", ["enajenacion"]),
+    ("capital_transfers", "Capital transfers", ["transferencias de capital"]),
+    ("financial_assets", "Financial assets", ["activos financieros"]),
+]
+
+
+def _policy(label, table=POLICIES) -> str | None:
+    """'2. Defensa' or 'Defensa' -> 'defence'."""
+    name = re.sub(r"^\d+\.\s*", "", _norm(label))
+    return next((key for key, _, prefixes in table if any(name.startswith(p) for p in prefixes)), None)
+
+
+def _in_force(label) -> tuple[int | None, bool]:
+    """A budget column: '2023' is the 2023 budget, '2023-P' the 2023 budget rolled over into 2024."""
+    m = re.match(r"^\s*(\d{4})(-P)?\s*$", str(label if label is not None else ""))
+    if not m:
+        return None, False
+    return (int(m[1]) + 1, True) if m[2] else (int(m[1]), False)
+
+
+def _budget_sheet(rows, table) -> tuple[dict[int, dict[str, float]], list[int]]:
+    head = next(i for i, r in enumerate(rows) if r and _norm(r[0]) in ("politicas", "capitulos"))
+    columns = {c: _in_force(v) for c, v in enumerate(rows[head]) if _in_force(v)[0]}
+    out, rolled, total = {}, set(), {}
+    for r in rows[head + 1:]:
+        label = _norm(r[0]) if r and r[0] else ""
+        if label.startswith(("capitulos 1 a 8", "total capitulos")):
+            for c, (year, _) in columns.items():
+                if (v := _num(r[c])) is not None:
+                    total[year] = v
+            continue
+        key = _policy(r[0], table) if label else None
+        if not key:
+            continue
+        for c, (year, rolled_over) in columns.items():
+            if (v := _num(r[c])) is not None:
+                out.setdefault(year, {})[key] = out.get(year, {}).get(key, 0.0) + v
+                if rolled_over:
+                    rolled.add(year)
+    for year, t in total.items():
+        out.setdefault(year, {})["TOTAL"] = t
+    return out, sorted(rolled)
+
+
+def parse_budget(content: bytes) -> dict:
+    """The consolidated budget by spending policy and revenue by chapter, by year in force (€ mn)."""
+    wb = openpyxl.load_workbook(io.BytesIO(content), read_only=True, data_only=True)
+    spending, rolled = _budget_sheet(list(wb["141"].iter_rows(values_only=True)), POLICIES)
+    revenue, _ = _budget_sheet(list(wb["15"].iter_rows(values_only=True)), BUDGET_REVENUE)
+    if not spending:
+        raise ValueError("budget workbook: no spending policies found")
+    return {"spending": spending, "revenue": revenue, "rolled_over": rolled}
+
+
+def parse_execution(content: bytes) -> dict:
+    """The State's execution by spending policy to date: appropriations (initial and final), obligations and
+    payments (€ mn), from tables GTOS 016 and GTOS M03."""
+    wb = openpyxl.load_workbook(io.BytesIO(content), read_only=True, data_only=True)
+
+    def table(name, wanted):
+        rows = list(wb[name].iter_rows(values_only=True))
+        head = rows[1]
+        cols = {key: next(c for c, v in enumerate(head) if v and text in _norm(v)) for key, text in wanted.items()}
+        title = " ".join(str(v) for r in rows[:3] for v in r if v)
+        out = {}
+        for r in rows[2:]:
+            label = str(r[0] or "").strip()
+            if not label:
+                continue
+            key = "TOTAL" if _norm(label).startswith("totales") else (None if label.isupper() else _policy(label))
+            if key:
+                out[key] = {k: (_num(r[c]) or 0.0) / 1000 for k, c in cols.items()}   # thousands -> € mn
+        return out, title
+
+    spent, title = table("GTOS 016", {"final": "creditos", "obligations": "obligaciones", "payments": "pagos"})
+    changes, _ = table("GTOS M03", {"changes": "total modificaciones"})
+    m = re.search(r"HASTA EL (\d{1,2}) DE ([A-Z]+)", title.upper())
+    if not m or m[2] not in SPANISH_MONTHS or "TOTAL" not in spent:
+        raise ValueError("execution workbook: no date or no totals found")
+    for key, row in spent.items():
+        row["initial"] = round(row["final"] - changes.get(key, {}).get("changes", 0.0), 1)
+        for k in ("final", "obligations", "payments"):
+            row[k] = round(row[k], 1)
+    return {"month": SPANISH_MONTHS[m[2]], "day": int(m[1]), "policies": spent}
+
+
+def refresh_state_budget(saved: dict | None) -> dict:
+    """The consolidated budget's series and the State's execution: the latest month, and the previous December."""
+    saved = saved or {}
+    page = http.get(SEPG_PAGE).text
+    editions = {label: url for url, label in SEPG_FILE.findall(page)}
+    if not editions:
+        raise ValueError("SEPG statistics page: no consolidated budget workbooks found")
+    host = "https://www.sepg.pap.hacienda.gob.es"
+    latest = max(editions, key=lambda label: _in_force(label)[0])     # "2025-P" (in force in 2026) beats "2025"
+    budget = {"spending": {}, "revenue": {}, "rolled_over": set()}
+    for label in [HISTORY_EDITION, latest] if HISTORY_EDITION in editions else [latest]:
+        part = parse_budget(http.get(host + editions[label]).content)
+        for kind in ("spending", "revenue"):
+            budget[kind].update(part[kind])                 # the latest edition wins where they overlap
+        budget["rolled_over"] |= set(part["rolled_over"])
+    execution = dict(saved.get("execution", {}))
+    files = {(int(y), SPANISH_MONTHS[m]): url for url, m, y in EXECUTION_FILE.findall(http.get(EXECUTION_PAGE).text)
+             if m in SPANISH_MONTHS}
+    if files:
+        year, month = max(files)
+        wanted = [(year, month)] + [(year - 1, 12)]
+        base = "https://www.igae.pap.hacienda.gob.es"
+        for y, mo in wanted:
+            url = files.get((y, mo)) or (f"{base}/sitios/igae/es-ES/Contabilidad/ContabilidadPublica/CPE/EjecucionPresupuestaria/"
+                                         f"Documents/MENSUAL%20DICIEMBRE%20{y}.xlsx" if mo == 12 else None)
+            if not url:
+                continue
+            try:
+                got = parse_execution(http.get(url if url.startswith("http") else base + url).content)
+            except Exception:
+                if (y, mo) == (year, month):
+                    raise
+                continue                                    # an older December that is not online: keep what we had
+            execution[str(y)] = got
+    return {"spending": {str(y): v for y, v in sorted(budget["spending"].items())},
+            "revenue": {str(y): v for y, v in sorted(budget["revenue"].items())},
+            "rolled_over": sorted(budget["rolled_over"]), "edition": latest, "execution": execution}
+
+
+def rolled_note(rolled: list[int], years: list[int]) -> str:
+    """'the 2023 budget has stayed in force in 2024, 2025 and 2026', for the latest run of rolled-over years."""
+    if not rolled:
+        return ""
+    run = [max(rolled)]
+    while run[0] - 1 in rolled:
+        run.insert(0, run[0] - 1)
+    listed = ", ".join(str(y) for y in run[:-1]) + (" and " if len(run) > 1 else "") + str(run[-1])
+    tense = "has stayed" if run[-1] == max(years) else "stayed"
+    return f"the {run[0] - 1} budget {tense} in force in {listed}"
+
+
+def state_budget_data(saved: dict, gdp: dict[int, float]) -> dict | None:
+    """The State's budget for the page: series by policy and chapter, and the execution tables."""
+    sb = saved.get("state_budget")
+    if not sb:
+        return None
+    years = sorted(int(y) for y in sb["spending"])
+    spend_keys = [k for k, _, _ in POLICIES if any(k in sb["spending"][str(y)] for y in years)]
+    rev_keys = [k for k, _, _ in BUDGET_REVENUE if any(k in sb["revenue"].get(str(y), {}) for y in years)]
+    labels = {k: label for k, label, _ in POLICIES + BUDGET_REVENUE}
+    month_names = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September",
+                   "October", "November", "December"]
+    execution = []
+    for y, ex in sorted(sb.get("execution", {}).items(), reverse=True):
+        if "TOTAL" not in ex.get("policies", {}):
+            continue
+        rows = [{"code": k, "label": labels[k], **ex["policies"][k]} for k, _, _ in POLICIES if k in ex["policies"]]
+        execution.append({"year": int(y), "month": ex["month"], "through": f"{ex['day']} {month_names[ex['month']]} {y}",
+                          "full_year": ex["month"] == 12, "rows": rows, "total": ex["policies"]["TOTAL"]})
+    return {
+        "years": years, "rolled_over": sb["rolled_over"], "edition": sb.get("edition", ""),
+        "rolled_note": rolled_note(sb["rolled_over"], years),
+        "gdp": [gdp.get(y) for y in years],
+        "policies": [{"code": k, "label": labels[k]} for k in spend_keys],
+        "spending": {k: [sb["spending"][str(y)].get(k) for y in years] for k in spend_keys + ["TOTAL"]},
+        "revenues": [{"code": k, "label": labels[k]} for k in rev_keys],
+        "revenue": {k: [sb["revenue"].get(str(y), {}).get(k) for y in years] for k in rev_keys + ["TOTAL"]},
+        "execution": execution,
+        "pages": {"sepg": SEPG_PAGE, "igae": EXECUTION_PAGE},
+    }
 
 
 # ---------------------------------------------------------------- the page
@@ -628,6 +856,7 @@ def explorer_data(store: Store, data: Data) -> dict | None:
                      for k, label, _ in REVENUE_TYPES],
         "transfer_function": TRANSFER_FUNCTION,
         "levels": out_levels,
+        "state_budget": state_budget_data(saved, gdp),
         "pages": PAGES,
     }
 

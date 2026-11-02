@@ -101,6 +101,69 @@
     </div>
   </section>
 
+  {% if bx.state_budget %}
+  {% set sb = bx.state_budget %}
+  <section class="block" id="bx-pge" aria-labelledby="bx-pge-h">
+    <h2 id="bx-pge-h">The State's budget</h2>
+    <p class="block-intro">What the budget (the Presupuestos Generales del Estado) plans, by spending policy, for the State,
+      its agencies and the Social Security together, and how much of its own budget the State has spent. Unlike the
+      figures above, these are the budget's appropriations. In years marked "rolled over" there was no new budget, and
+      the previous one stayed in force: {{ sb.rolled_note }}.</p>
+    <div class="tool-controls bx-controls" role="group" aria-label="What the budget plans">
+      <span role="group" aria-label="Side">
+        <button type="button" class="tool-button" data-pge-kind="spending" aria-pressed="true">Spending by policy</button>
+        <button type="button" class="tool-button" data-pge-kind="revenue" aria-pressed="false">Revenue by chapter</button>
+      </span>
+      <label>Measure <select id="pge-measure"><option value="eur">€ bn</option><option value="gdp">% of GDP</option></select></label>
+      <label>Year <select id="pge-year"></select></label>
+      <label>Compare with <select id="pge-base"></select></label>
+    </div>
+    <div class="facts" id="pge-facts" aria-live="polite"></div>
+    <div class="charts">
+      {{ figure("pge-mix", "The budget by policy", "", "Ministry of Finance (SEPG), consolidated budget statistics") }}
+      {{ figure("pge-trend", "Over time", "", "Ministry of Finance (SEPG), consolidated budget statistics") }}
+    </div>
+    <div class="stat">
+      <p class="stat-caption" id="pge-table-caption"></p>
+      <div class="table-scroll">
+        <table class="data-table stat-table bx-table" id="pge-table">
+          <thead><tr><th scope="col" id="pge-col-item">Policy</th><th scope="col" class="num" id="pge-col-year"></th>
+            <th scope="col" class="num">Share</th><th scope="col" class="num" id="pge-col-base"></th>
+            <th scope="col" class="num">Change</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p class="note">Initial appropriations, chapters 1 to 8 (without repayments of debt), consolidated: transfers between the
+        State, its agencies and the Social Security are counted once. Click a row to draw it over time.</p>
+    </div>
+
+    {% if sb.execution %}
+    <h3 class="bx-sub" id="bx-pge-spent">Budgeted and spent: the State</h3>
+    <p class="block-intro">The State's own budget (without the Social Security and its agencies), policy by policy: what it
+      started the year with, what it had after the year's changes (supplements, extensions, transfers between policies),
+      and the obligations recognised so far, the spending committed and due.</p>
+    <div class="tool-controls bx-controls"><label>Year <select id="pge-ex-year"></select></label></div>
+    <div class="facts" id="pge-ex-facts" aria-live="polite"></div>
+    <div class="charts">
+      {{ figure("pge-ex", "How much has been spent", "", "IGAE, execution of the State budget") }}
+    </div>
+    <div class="stat">
+      <p class="stat-caption" id="pge-ex-caption"></p>
+      <div class="table-scroll">
+        <table class="data-table stat-table bx-table" id="pge-ex-table">
+          <thead><tr><th scope="col">Policy</th><th scope="col" class="num">Initial, € bn</th><th scope="col" class="num">Final, € bn</th>
+            <th scope="col" class="num">Change</th><th scope="col" class="num">Spent, € bn</th><th scope="col" class="num">% of final</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p class="note">All chapters, so public debt includes the repayment of maturing debt. Transfers within the State's public
+        sector are mostly to the Social Security and the State's agencies. Spent: obligations recognised (obligaciones
+        reconocidas netas).</p>
+    </div>
+    {% endif %}
+  </section>
+  {% endif %}
+
   <section class="block" aria-labelledby="bx-method">
     <h2 id="bx-method">How to read it</h2>
     <div class="prose">
@@ -126,6 +189,12 @@
         so the Basque government's revenue arrives as transfers from them. A community's % of GDP uses its own GDP (from the
         IGAE's figures as a share of it); per person, its population (Eurostat, the mean of 1 January of the year and the
         next). The communities together are set against Spain's GDP and population.</p>
+      <p><strong>The State's budget.</strong> The plan by policy comes from the Ministry of Finance's budget statistics (the
+        Secretaría de Estado de Presupuestos y Gastos), which give each year's initial appropriations consolidated across the
+        State, its agencies and the Social Security; a rolled-over budget repeats the previous one's appropriations, so
+        pensions, for one, appear unchanged although they are revalued every year. What the State has spent comes from the
+        IGAE's monthly execution of the State budget, which the IGAE publishes in Excel from 2025; the series grows from
+        there.</p>
       <p><strong>Measures.</strong> Constant prices use the GDP deflator ({{ bx.price_year }} = 100), the price index of
         everything the economy produces; per person, Eurostat's average population; % of GDP, nominal GDP for the year.</p>
       <p class="note">Sources: IGAE, <a href="{{ bx.pages.cofog }}" target="_blank" rel="noopener">functional classification
@@ -134,7 +203,9 @@
         communities one by one: <a href="{{ bx.pages.cofog_ccaa }}" target="_blank" rel="noopener">spending by function</a>,
         <a href="{{ bx.pages.accounts_ccaa }}" target="_blank" rel="noopener">non-financial operations</a> and
         <a href="{{ bx.pages.taxes_ccaa }}" target="_blank" rel="noopener">taxes</a>; Eurostat (GDP and its deflator,
-        population). Downloaded {{ bx.fetched_day }}.</p>
+        population){% if bx.state_budget %}; Ministry of Finance, <a href="{{ bx.state_budget.pages.sepg }}" target="_blank"
+        rel="noopener">budget statistics</a>; IGAE, <a href="{{ bx.state_budget.pages.igae }}" target="_blank"
+        rel="noopener">execution of the State budget</a>{% endif %}. Downloaded {{ bx.fetched_day }}.</p>
     </div>
   </section>
   {% endif %}
@@ -147,4 +218,5 @@
 
 {% block after_scripts %}
   <script src="assets/budget.js?v={{ build_id }}"></script>
+  <script src="assets/pge.js?v={{ build_id }}"></script>
 {% endblock %}
