@@ -6,7 +6,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from econpulse import changes, i18n, industries, policy, workstats
+from econpulse import changes, i18n, industries, policy, trade, workstats
 from econpulse.build import SECTION_PAGES, build_site
 from econpulse.config import TEMPLATES_DIR
 from econpulse.pages import PAGES, build_page
@@ -18,8 +18,8 @@ from econpulse.tables import Data, Heading, Panel, Table
 # The templates whose text is in Spanish (33a: the frame and the home page; 33b: the section pages); the
 # others follow in 33c-33d.
 SPANISH_TEMPLATES = ("base.html", "index.html", "calendar.html", "data.html", "404.html", "macros.html", "section.html")
-# The section pages in Spanish from Batch 33b.
-SPANISH_SECTIONS = ("gdp", "labour", "wages", "inflation", "financial", "ecb")
+# The section pages in Spanish from Batch 33b, and from 33c-1.
+SPANISH_SECTIONS = ("gdp", "labour", "wages", "inflation", "financial", "ecb", "fiscal", "activity", "regions", "analysis")
 
 
 def test_every_marked_text_of_the_translated_pages_has_its_spanish():
@@ -123,8 +123,15 @@ def test_every_fixed_text_of_the_33b_pages_has_its_spanish():
         missing = sorted(t for t in _fixed_texts(section) | {title, intro} if t not in known)
         assert not missing, (section, missing)
     labels = {label for _id, title, items in industries.SECTIONS for label in [title] + [i[1] for i in items]}
-    labels |= {label for _slug, label in workstats.SECTIONS}
+    labels |= {label for _slug, label in workstats.SECTIONS} | {title for _id, title in trade.PAGE}
     assert not sorted(t for t in labels if t not in known)
+
+
+def test_the_euro_sign_follows_the_figure_in_spanish():
+    assert fmt_value(58.2, "€ bn", 1) == "€58.2 bn" and fmt_value(-1449, "€", 0) == "−€1,449"
+    with i18n.using("es"):
+        assert fmt_value(58.2, "€ bn", 1) == "58.2 mm €" and fmt_value(-1449, "€", 0) == "−1,449 €"
+        assert fmt_value(3.5, "€ mn", 1) == "3.5 mill. €"
 
 
 def test_tables_charts_and_facts_are_written_in_spanish(tmp_path):

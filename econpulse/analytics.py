@@ -16,6 +16,7 @@ import pandas as pd
 from statsmodels.tsa.filters.hp_filter import hpfilter
 
 from . import i18n, seasonal, transforms
+from .charts import localise
 from .i18n import _
 from .snapshot import MINUS, fmt_change, fmt_value, period_label
 from .tables import DASH, Data
@@ -204,14 +205,14 @@ def composite_table(data: Data, key: str) -> dict | None:
     for row in c["rows"]:
         ind = data.by_id[row["component"].id]
         weight = max(0.0, 1 - row["age"] / 4)
-        rows.append({"heading": False, "label": row["component"].label, "label_es": ind.label_es, "indent": 0,
+        rows.append({"heading": False, "label": _(row["component"].label), "label_es": ind.label_es, "indent": 0,
                      "period_note": period_label(row["date"], row["freq"]), "url": ind.source_url(),
                      "cells": [_component_display(data, row), _fmt_signed(row["z"]), f"{weight:.2f}" if weight else "–"]})
     end = period_label(c["end"], "M")
-    return {"title": title, "caption": f"Latest readings and their z-scores · composite for {end}",
-            "through": end, "columns": ["Latest", "z-score", "Weight"], "rows": rows,
-            "note": ("A z-score of +1 means one typical deviation above the 2013–present norm (Covid years "
-                     "left out). Weights fall by a quarter for each month a reading is older than the newest data.")}
+    return {"title": _(title), "caption": _("Latest readings and their z-scores · composite for {month}").format(month=end),
+            "through": end, "columns": [_("Latest"), _("z-score"), _("Weight")], "rows": rows,
+            "note": _("A z-score of +1 means one typical deviation above the 2013–present norm (Covid years "
+                      "left out). Weights fall by a quarter for each month a reading is older than the newest data.")}
 
 
 def composite_chart(data: Data) -> dict | None:
@@ -226,7 +227,7 @@ def composite_chart(data: Data) -> dict | None:
     return {"id": "composites", "title": "Activity and inflation against their history",
             "subtitle": "Weighted average of z-scores, monthly; 0 = the 2013–present norm",
             "kind": "line", "unit": "", "decimals": 2, "signed": True, "freq": "M", "series": series,
-            "ref_lines": [], "source": "Macroscope calculation from INE, Eurostat, Seguridad Social, Red Eléctrica"}
+            "ref_lines": [], "source": _("Macroscope calculation from INE, Eurostat, Seguridad Social, Red Eléctrica")}
 
 
 # ---------------------------------------------------------------- GDP nowcast
@@ -350,14 +351,15 @@ def nowcast_inputs_table(data: Data) -> dict | None:
     if n is None:
         return None
     q = period_label(n["quarter"], "Q")
-    rows = [{"heading": False, "label": c["input"].label, "label_es": data.by_id[c["input"].id].label_es, "indent": 0,
+    rows = [{"heading": False, "label": _(c["input"].label), "label_es": data.by_id[c["input"].id].label_es, "indent": 0,
              "period_note": "", "url": data.by_id[c["input"].id].source_url(),
-             "cells": [period_label(c["last"], "M"), f"{c['months']} of 3"]} for c in n["coverage"]]
-    return {"title": "Input", "caption": f"What the {q} nowcast is built on", "through": q,
-            "columns": ["Latest month", f"Months of {q}"], "rows": rows,
-            "note": ("The model also uses the previous quarter's GDP growth. Months not yet published are projected "
-                     "from each series' recent momentum (an AR(1) model), so early in a quarter the nowcast leans "
-                     "on those projections.")}
+             "cells": [period_label(c["last"], "M"), _("{n} of {total}").format(n=c['months'], total=3)]}
+            for c in n["coverage"]]
+    return {"title": _("Input"), "caption": _("What the {q} nowcast is built on").format(q=q), "through": q,
+            "columns": [_("Latest month"), _("Months of {q}").format(q=q)], "rows": rows,
+            "note": _("The model also uses the previous quarter's GDP growth. Months not yet published are projected "
+                      "from each series' recent momentum (an AR(1) model), so early in a quarter the nowcast leans "
+                      "on those projections.")}
 
 
 def nowcast_record_table(data: Data) -> dict | None:
@@ -366,13 +368,14 @@ def nowcast_record_table(data: Data) -> dict | None:
         return None
     rows = [{"heading": False, "label": period_label(q, "Q"), "label_es": "", "indent": 0, "period_note": "", "url": None,
              "cells": [_fmt_signed(p, 1, "%"), _fmt_signed(a, 1, "%"), _fmt_signed(p - a, 1, " pp")]}
-            for q, p, a, _ in reversed(n["backtest"][-8:])]
-    return {"title": "Quarter", "caption": "Track record: each quarter predicted from a model fitted on earlier data",
-            "through": None, "columns": ["Model", "Official", "Error"], "rows": rows,
-            "note": (f"Since 2023 the model's typical (root mean square) error is {n['rmse']:.2f} pp, against "
-                     f"{n['naive_rmse']:.2f} pp for repeating the previous quarter and {n['mean_rmse']:.2f} pp for the "
-                     "post-2013 average. The inputs were chosen with this same test, and it uses complete quarters "
-                     "of data, so real-time errors, with months still missing, will be larger.")}
+            for q, p, a, _naive in reversed(n["backtest"][-8:])]
+    return {"title": _("Quarter"), "caption": _("Track record: each quarter predicted from a model fitted on earlier data"),
+            "through": None, "columns": [_("Model"), _("Official"), _("Error")], "rows": rows,
+            "note": _("Since 2023 the model's typical (root mean square) error is {rmse} pp, against {naive} pp for "
+                      "repeating the previous quarter and {mean} pp for the post-2013 average. The inputs were chosen "
+                      "with this same test, and it uses complete quarters of data, so real-time errors, with months "
+                      "still missing, will be larger.").format(
+                rmse=f"{n['rmse']:.2f}", naive=f"{n['naive_rmse']:.2f}", mean=f"{n['mean_rmse']:.2f}")}
 
 
 def nowcast_chart(data: Data) -> dict | None:
@@ -381,15 +384,17 @@ def nowcast_chart(data: Data) -> dict | None:
         return None
     iso = lambda d: d.strftime("%Y-%m-%d")
     bt = n["backtest"]
-    return {"id": "nowcast", "title": "GDP growth: model and official figures",
-            "subtitle": f"% change on the previous quarter; the last point is the nowcast for {period_label(n['quarter'], 'Q')}",
-            "kind": "bar", "unit": "%", "decimals": 1, "signed": True, "freq": "Q", "ref_lines": [],
-            "series": [
-                {"name": "Official (INE)", "x": [iso(q) for q, *_ in bt], "y": [round(a, 3) for _, _, a, _ in bt]},
-                {"name": "Model", "kind": "line", "x": [iso(q) for q, *_ in bt] + [iso(n["quarter"])],
-                 "y": [round(p, 3) for _, p, _, _ in bt] + [round(n["value"], 3)]},
-            ],
-            "source": "Macroscope calculation from INE and Seguridad Social"}
+    spec = localise({"id": "nowcast", "title": "GDP growth: model and official figures", "subtitle": "",
+                     "kind": "bar", "unit": "%", "decimals": 1, "signed": True, "freq": "Q", "ref_lines": [],
+                     "series": [
+                         {"name": "Official (INE)", "x": [iso(b[0]) for b in bt], "y": [round(b[2], 3) for b in bt]},
+                         {"name": "Model", "kind": "line", "x": [iso(b[0]) for b in bt] + [iso(n["quarter"])],
+                          "y": [round(b[1], 3) for b in bt] + [round(n["value"], 3)]},
+                     ],
+                     "source": _("Macroscope calculation from INE and Seguridad Social")})
+    spec["subtitle"] = _("% change on the previous quarter; the last point is the nowcast for {q}").format(
+        q=period_label(n["quarter"], "Q"))
+    return spec
 
 
 # ---------------------------------------------------------------- 10-year decomposition
@@ -413,15 +418,16 @@ def yield_decomposition_table(data: Data) -> dict | None:
         cols[key] = None if before.empty else (both.iloc[-1] - before.iloc[-1]) * 100
     labels = [("Spain 10-year yield", lambda c: c["es"]), ("German Bund: euro-wide rates", lambda c: c["de"]),
               ("Prima de riesgo: Spain-specific", lambda c: c["es"] - c["de"])]
-    rows = [{"heading": False, "label": label, "label_es": "", "indent": 0 if i == 0 else 1, "period_note": "",
-             "url": None, "cells": [DASH if cols[k] is None else fmt_change(float(f(cols[k])), "bp", 0) for _, k in MOVES]}
+    rows = [{"heading": False, "label": _(label), "label_es": "", "indent": 0 if i == 0 else 1, "period_note": "",
+             "url": None, "cells": [DASH if cols[k] is None else fmt_change(float(f(cols[k])), "bp", 0)
+                                    for _head, k in MOVES]}
             for i, (label, f) in enumerate(labels)]
-    day = f"{d.day} {d:%b %Y}"
-    return {"title": "Change", "caption": f"Basis points, to {day}, the latest day with both yields", "through": day,
-            "columns": [h for h, _ in MOVES], "rows": rows,
-            "note": ("Spain's yield is the German yield plus the prima de riesgo, so the two parts add up to the "
-                     "total. A rising Bund means rates are rising across the euro area; a rising prima de riesgo "
-                     "is about Spain.")}
+    day = i18n.day_month_year(d)
+    return {"title": _("Change"), "caption": _("Basis points, to {day}, the latest day with both yields").format(day=day),
+            "through": day, "columns": [_(h) for h, _key in MOVES], "rows": rows,
+            "note": _("Spain's yield is the German yield plus the prima de riesgo, so the two parts add up to the "
+                      "total. A rising Bund means rates are rising across the euro area; a rising prima de riesgo "
+                      "is about Spain.")}
 
 
 # ---------------------------------------------------------------- Taylor rules
@@ -435,7 +441,7 @@ def _rule(inflation: pd.Series, unemployment: pd.Series) -> pd.DataFrame | None:
     u = unemployment.dropna()
     if len(u) < 60:
         return None
-    _, trend = hpfilter(u, lamb=HP_LAMBDA)
+    _cycle, trend = hpfilter(u, lamb=HP_LAMBDA)
     df = pd.DataFrame({"inflation": inflation, "unemployment": u, "trend": trend}).dropna()
     df["u_gap"] = df["unemployment"] - df["trend"]
     # Taylor (1993): r* + inflation + 0.5 x inflation gap + 0.5 x output gap, with an
@@ -468,14 +474,15 @@ def taylor_facts(data: Data) -> list[dict]:
         return []
     facts = []
     if t["dfr"] is not None:
-        facts.append({"label": "ECB deposit rate", "value": fmt_value(float(t["dfr"].iloc[-1]), "%", 2),
-                      "sub": f"{t['dfr'].index[-1]:%b %Y} average"})
+        facts.append({"label": _("ECB deposit rate"), "value": fmt_value(float(t["dfr"].iloc[-1]), "%", 2),
+                      "sub": _("{month} average").format(month=i18n.month_year(t["dfr"].index[-1]))})
     for key, label in (("ea", "Taylor rule, euro area"), ("es", "Taylor rule, Spain")):
         df = t[key]
-        facts.append({"label": label, "value": fmt_value(float(df["rule"].iloc[-1]), "%", 1),
+        facts.append({"label": _(label), "value": fmt_value(float(df["rule"].iloc[-1]), "%", 1),
                       "sub": period_label(df.index[-1], "M")})
     gap = float(t["es"]["rule"].iloc[-1] - t["ea"]["rule"].iloc[-1])
-    facts.append({"label": "Spain minus euro area", "value": _fmt_signed(gap, 1, " pp"), "sub": "the one-size-fits-all gap"})
+    facts.append({"label": _("Spain minus euro area"), "value": _fmt_signed(gap, 1, " pp"),
+                  "sub": _("the one-size-fits-all gap")})
     return facts
 
 
@@ -493,15 +500,15 @@ def taylor_table(data: Data) -> dict | None:
         ("Unemployment gap", _fmt_signed(ea["u_gap"], 1, " pp"), _fmt_signed(es["u_gap"], 1, " pp"), 1),
         ("Rate the rule suggests", fmt(ea["rule"]), fmt(es["rule"]), 0),
     ]
-    rows = [{"heading": False, "label": label, "label_es": "", "indent": indent, "period_note": "", "url": None,
+    rows = [{"heading": False, "label": _(label), "label_es": "", "indent": indent, "period_note": "", "url": None,
              "cells": [a, b]} for label, a, b, indent in lines]
     month = period_label(min(t["ea"].index[-1], t["es"].index[-1]), "M")
-    return {"title": "Input", "caption": f"Latest month with every input · {month}", "through": month,
-            "columns": ["Euro area", "Spain"], "rows": rows,
-            "note": (f"Rule: {R_STAR}% neutral real rate + inflation + 0.5 × (inflation − 2%) − unemployment gap "
-                     "(Taylor's 1993 rule, with an output gap of twice the unemployment gap). Trend unemployment is a "
-                     "statistical trend (Hodrick–Prescott filter), so the latest gap is uncertain. A rule is a "
-                     "yardstick, not a forecast of what the ECB will do.")}
+    return {"title": _("Input"), "caption": _("Latest month with every input · {month}").format(month=month),
+            "through": month, "columns": [_("Euro area"), _("Spain")], "rows": rows,
+            "note": _("Rule: {r_star}% neutral real rate + inflation + 0.5 × (inflation − 2%) − unemployment gap "
+                      "(Taylor's 1993 rule, with an output gap of twice the unemployment gap). Trend unemployment is a "
+                      "statistical trend (Hodrick–Prescott filter), so the latest gap is uncertain. A rule is a "
+                      "yardstick, not a forecast of what the ECB will do.").format(r_star=R_STAR)}
 
 
 def taylor_chart(data: Data) -> dict | None:
@@ -520,7 +527,7 @@ def taylor_chart(data: Data) -> dict | None:
         series.append({"name": name, "x": iso(r.index), "y": r.tolist()})
     return {"id": "taylor", "title": "The ECB rate and what a Taylor rule suggests",
             "subtitle": "%, monthly", "kind": "line", "unit": "%", "decimals": 1, "freq": "M", "series": series,
-            "ref_lines": [], "source": "Macroscope calculation from Eurostat and the ECB"}
+            "ref_lines": [], "source": _("Macroscope calculation from Eurostat and the ECB")}
 
 
 # ---------------------------------------------------------------- home page

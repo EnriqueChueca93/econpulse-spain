@@ -104,8 +104,10 @@ def localise(spec: dict) -> dict:
     for key in _TEXT_KEYS:
         if spec.get(key):
             spec[key] = i18n._(spec[key])
-    if spec.get("unit") in ("bp", "% of GDP", "pp"):
-        spec["unit"] = i18n._(spec["unit"])
+    if spec.get("unit"):                          # bp → pb, % of GDP → % del PIB, € bn → mm €; symbols stay
+        spec["unit"] = i18n.maybe(spec["unit"])
+    if spec.get("highlight"):                     # a ranking's highlighted bar, named like its category labels
+        spec["highlight"] = i18n.maybe(spec["highlight"])
     for s in spec.get("series", []):
         if s.get("name"):
             s["name"] = i18n.maybe(s["name"]) if s.get("country") else i18n._(s["name"])

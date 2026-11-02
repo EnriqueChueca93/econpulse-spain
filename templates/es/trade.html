@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% from "macros.html" import stat_table, chart_card, updated_badge %}
+{# The Trade page in Spanish (Batch 33c-1): mostly prose, so a template of its own; the figures, tables and charts
+   come from econpulse/trade.py in Spanish already. Keep it in step with templates/trade.html. #}
+
+{% block title %}{{ _("Trade") }} · {{ brand }}{% endblock %}
+{% block description %}El comercio de España: bienes por grupo de productos y por socio, servicios por tipo y precios de exportación e importación, con el saldo con y sin energía.{% endblock %}
+
+{% block content %}
+  <p class="back-link"><a href="activity.html">← {{ _("Economic activity and external accounts") }}</a></p>
+  <h1>{{ _("Trade") }}</h1>
+  <p class="lede">Las exportaciones e importaciones de bienes de España por grupo de productos y por socio, su comercio
+    de servicios por tipo y los precios de exportación e importación. Los flujos son totales de los últimos 12 meses
+    (cuatro trimestres en los servicios), que suavizan la estacionalidad y el ruido de cada mes. La balanza por cuenta
+    corriente en su conjunto está en la página <a href="activity.html">{{ _("Economic activity and external accounts") }}</a>.</p>
+  {% if table %}
+  <nav class="on-page" aria-label="En esta página">
+    {% for id, title in page_nav %}<a href="#{{ id }}"{% if updated[id] %} class="has-new" title="{{ _("Updated %(day)s", day=updated[id].day) }}"{% endif %}>{{ _(title) }}</a>{% endfor %}
+  </nav>
+  <section class="block" aria-labelledby="overview">
+    <h2 id="overview">{{ _("Exports, imports and the balance") }}{{ updated_badge(updated["overview"]) }}</h2>
+    {% if facts %}
+    <div class="facts">
+      {% for f in facts %}
+      <div class="fact">
+        <span class="fact-label">{{ f.label }}</span>
+        <span class="fact-value">{{ f.value }}</span>
+        {% if f.sub %}<span class="fact-sub">{{ f.sub }}</span>{% endif %}
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+    <div class="charts">
+      {% for c in overview %}{{ chart_card(c) }}{% endfor %}
+    </div>
+  </section>
+  <section class="block" aria-labelledby="by-product">
+    <h2 id="by-product">{{ _("Trade by product group") }}{{ updated_badge(updated["by-product"]) }}</h2>
+    {{ stat_table(table) }}
+  </section>
+  <section class="block" aria-labelledby="rankings">
+    <h2 id="rankings">{{ _("Rankings by product") }}</h2>
+    <div class="charts">
+      {% for c in rankings %}{{ chart_card(c) }}{% endfor %}
+    </div>
+  </section>
+  {% for x in extras %}
+  <section class="block" aria-labelledby="{{ x.id }}">
+    <h2 id="{{ x.id }}">{{ x.title }}{{ updated_badge(updated[x.id]) }}</h2>
+    <p class="block-intro">{{ x.intro }}</p>
+    {% if x.facts %}
+    <div class="facts">
+      {% for f in x.facts %}
+      <div class="fact">
+        <span class="fact-label">{{ f.label }}</span>
+        <span class="fact-value">{{ f.value }}</span>
+        {% if f.sub %}<span class="fact-sub">{{ f.sub }}</span>{% endif %}
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+    {% if x.table %}{{ stat_table(x.table) }}{% endif %}
+    <div class="charts">
+      {% for c in x.charts %}{{ chart_card(c) }}{% endfor %}
+    </div>
+  </section>
+  {% endfor %}
+  {% for s in sections %}
+  <section class="block" aria-labelledby="{{ s.id }}">
+    <h2 id="{{ s.id }}">{{ s.title }}</h2>
+    <div class="charts">
+      {% for c in s.charts %}{{ chart_card(c) }}{% endfor %}
+    </div>
+  </section>
+  {% endfor %}
+  <section class="block" aria-labelledby="about-data">
+    <h2 id="about-data">{{ _("About the data") }}</h2>
+    <p class="note">Las exportaciones e importaciones mensuales de bienes, en euros, de la base de datos Comext de
+      Eurostat (DS-045409), por capítulos del Sistema Armonizado, sumados en grupos de productos. Comext sigue el
+      concepto comunitario de la UE, así que sus cifras difieren algo de las de las aduanas españolas y el Ministerio de
+      Economía: en 2023 Comext contabilizó 391 mil millones de euros de exportaciones y 435 mil millones de
+      importaciones, algo más que las cifras nacionales en ambos lados. El comercio por socio usa la misma fuente, por
+      país de destino de las exportaciones y de origen de las importaciones. Sin desestacionalizar; los últimos meses
+      son provisionales.</p>
+    <p class="note">Los servicios por tipo proceden de la balanza de pagos trimestral de Eurostat (MBP6); turismo y
+      viajes es lo que gastan los visitantes en España y lo que gastan los españoles en el extranjero. Los precios de
+      exportación e importación de los bienes industriales proceden de las estadísticas coyunturales de empresas de
+      Eurostat (precios de producción en el mercado exterior y precios de importación, que elabora el INE para España),
+      2021 = 100, por grandes sectores industriales. La relación real de intercambio del gráfico divide el deflactor de
+      las exportaciones de la contabilidad nacional entre el de las importaciones, para bienes y servicios y solo para
+      bienes.</p>
+    <p class="note">Capítulos de cada grupo: {% for label, hs in chapters %}{{ label }} ({{ hs }}){% if not loop.last %}; {% endif %}{% endfor %}.</p>
+  </section>
+  {% else %}
+  <p class="notice">Las cifras de comercio aparecen cuando se han descargado los datos de Comext.</p>
+  {% endif %}
+{% endblock %}
+
+{% block scripts %}
+  {% if charts_file %}
+  <script src="{{ root }}assets/plotly-basic.min.js?v={{ build_id }}"></script>
+  <script src="{{ charts_file }}?v={{ build_id }}"></script>
+  {% endif %}
+{% endblock %}

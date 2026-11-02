@@ -215,7 +215,7 @@
 
   function dateLabel(iso, freq) {
     var y = iso.slice(0, 4), m = parseInt(iso.slice(5, 7), 10);
-    if (freq === "Q") return "Q" + (Math.floor((m - 1) / 3) + 1) + " " + y;
+    if (freq === "Q") return (LANG === "es" ? "T" : "Q") + (Math.floor((m - 1) / 3) + 1) + " " + y;
     if (freq === "D") return parseInt(iso.slice(8, 10), 10) + " " + MONTHS[m - 1] + " " + y;
     if (freq === "A") return y;
     return MONTHS[m - 1] + " " + y;

@@ -443,8 +443,12 @@ for unit in ("$", "$/MMBtu", "$/oz", "$/t", "GWh", "pp", "€/MWh", "€/bbl", "
 
 # The section pages, one file per batch (scripts/ is on the path when this runs as a script)
 from catalogue_sections_1 import PAIRS as SECTIONS_1   # noqa: E402  Batch 33b
+from catalogue_sections_2 import PAIRS as SECTIONS_2   # noqa: E402  Batch 33c
+from catalogue_analysis import PAIRS as ANALYSIS       # noqa: E402  Batch 33c
+from catalogue_trade import PAIRS as TRADE             # noqa: E402  Batch 33c
 
-add(SECTIONS_1)
+for part in (SECTIONS_1, SECTIONS_2, ANALYSIS, TRADE):
+    add(part)
 
 
 if __name__ == "__main__":

@@ -26,15 +26,17 @@ from datetime import date, datetime
 import pandas as pd
 import yaml
 
-from . import analytics, transforms
+from . import analytics, i18n, transforms
+from .charts import localise
 from .config import FORECASTS_FILE
+from .i18n import _
 from .snapshot import fmt_value, period_label
 from .sources.base import MADRID, madrid_today
 from .tables import DASH, Data
 
 MEASURES = [("gdp", "GDP growth", "real, %"), ("inflation", "Inflation", "annual avg., %"),
             ("unemployment", "Unemployment", "% of labour force"), ("balance", "Budget balance", "% of GDP")]
-MEASURE_IDS = [m for m, *_ in MEASURES]
+MEASURE_IDS = [m for m, *_rest in MEASURES]
 GROUPS = [("spain", "In Spain"), ("international", "International organisations")]
 EC_FORECAST_PAGE = "https://economy-finance.ec.europa.eu/economic-forecast-and-surveys/economic-forecasts_en"
 CHECKS = "forecast_checks"   # data/forecast_checks.json
@@ -259,7 +261,7 @@ def gdp_this_year(data: Data, year: int) -> dict | None:
 
 
 def _month(d: date | None) -> str:
-    return f"{d:%b %Y}" if d else ""
+    return i18n.month_year(d) if d else ""
 
 
 def _cell(v: float | None) -> str:
@@ -270,7 +272,7 @@ def _range_cell(f: Forecaster, year: int, measure: str) -> str:
     lo, hi = f.low.get(year, {}).get(measure), f.high.get(year, {}).get(measure)
     if lo is None or hi is None:
         return DASH
-    return f"{fmt_value(lo, '%', 1)} to {fmt_value(hi, '%', 1)}"
+    return _("{low} to {high}").format(low=fmt_value(lo, '%', 1), high=fmt_value(hi, '%', 1))
 
 
 def _average(fs: list[Forecaster], year: int, measure: str) -> tuple[float | None, list[float]]:
@@ -292,8 +294,19 @@ def _ordered(fs: list[Forecaster], year: int) -> list[tuple[str, list[Forecaster
 def _row_note(f: Forecaster) -> str:
     parts = [_month(f.published)]
     if f.via:
-        parts.append(f"via {f.via}")
+        parts.append(_("via {source}").format(source=_(f.via)))
     return " · ".join(p for p in parts if p)
+
+
+def _note(f: Forecaster) -> str:
+    """A forecaster's note under the table in the language being written: its own note, then its AI check's
+    (_apply_checks joins the two)."""
+    extra = (f.check or {}).get("note", "")
+    if extra and f.note.endswith(extra):
+        parts = [f.note[:len(f.note) - len(extra)].rstrip(), extra]
+    else:
+        parts = [f.note]
+    return " ".join(_(p) for p in parts if p)
 
 
 def forecast_table(data: Data, year: int) -> dict | None:
@@ -304,45 +317,49 @@ def forecast_table(data: Data, year: int) -> dict | None:
     rows = []
     shown = []
     for title, members in groups:
-        rows.append({"heading": True, "label": title})
+        rows.append({"heading": True, "label": _(title)})
         for f in members:
             shown.append(f)
-            rows.append({"heading": False, "label": f.name, "label_es": "", "indent": 0,
-                         "period_note": _row_note(f), "url": f.url, "flag": PENDING if f.status == PENDING else "",
+            rows.append({"heading": False, "label": _(f.name), "label_es": "", "indent": 0,
+                         "period_note": _row_note(f), "url": f.url, "flag": _(PENDING) if f.status == PENDING else "",
                          "cells": [_cell(f.value(year, m)) for m in MEASURE_IDS]})
             if f.low.get(year) and f.high.get(year):
-                rows.append({"heading": False, "label": "Range of the panel", "label_es": "", "indent": 1,
-                             "period_note": "lowest to highest", "url": None,
+                rows.append({"heading": False, "label": _("Range of the panel"), "label_es": "", "indent": 1,
+                             "period_note": _("lowest to highest"), "url": None,
                              "cells": [_range_cell(f, year, m) for m in MEASURE_IDS]})
-    rows.append({"heading": True, "label": "Summary"})
-    rows.append({"heading": False, "label": "Average of the forecasts above", "label_es": "", "indent": 0,
-                 "period_note": "AI-checked rows only" if any(not f.counts for f in shown) else "", "url": None,
+    rows.append({"heading": True, "label": _("Summary")})
+    rows.append({"heading": False, "label": _("Average of the forecasts above"), "label_es": "", "indent": 0,
+                 "period_note": _("AI-checked rows only") if any(not f.counts for f in shown) else "", "url": None,
                  "highlight": True, "cells": [_cell(_average(shown, year, m)[0]) for m in MEASURE_IDS]})
     own = gdp_this_year(data, year)
     if own is not None:
-        rows.append({"heading": False, "label": "Macroscope: INE's quarters + nowcast", "label_es": "", "indent": 0,
-                     "period_note": f"Q4 {_fmt_growth(own['nowcast'])}", "url": None,
+        rows.append({"heading": False, "label": _("Macroscope: INE's quarters + nowcast"), "label_es": "", "indent": 0,
+                     "period_note": _("Q4 {growth}").format(growth=_fmt_growth(own['nowcast'])), "url": None,
                      "cells": [_cell(own["value"]), DASH, DASH, DASH]})
-    hicp = [f.short for f in shown if f.inflation == "HICP" and f.value(year, "inflation") is not None]
-    cpi = [f.short for f in shown if f.inflation != "HICP" and f.value(year, "inflation") is not None]
-    measures = []
-    if hicp:
-        measures.append(f"the HICP for {_join(hicp)}")
-    if cpi:
-        measures.append(f"the CPI for {_join(cpi)}")
-    checking = ("Figures are read automatically from each publisher's data service, web page or PDF, and count in "
-                "the average and the chart only after an AI check against the publisher's own document.")
+    # Short names are the chart's; proper names stay as they are when the catalogue has no other form.
+    hicp = [i18n.maybe(f.short) for f in shown if f.inflation == "HICP" and f.value(year, "inflation") is not None]
+    cpi = [i18n.maybe(f.short) for f in shown if f.inflation != "HICP" and f.value(year, "inflation") is not None]
+    if hicp and cpi:
+        measures = _("Inflation is the HICP for {hicp} and the CPI for {cpi}.").format(hicp=_join(hicp), cpi=_join(cpi))
+    elif hicp:
+        measures = _("Inflation is the HICP for {names}.").format(names=_join(hicp))
+    elif cpi:
+        measures = _("Inflation is the CPI for {names}.").format(names=_join(cpi))
+    else:
+        measures = ""
+    checking = _("Figures are read automatically from each publisher's data service, web page or PDF, and count in "
+                 "the average and the chart only after an AI check against the publisher's own document.")
     if any(f.status == PENDING for f in shown):
-        checking += " Rows marked “awaiting AI check” are newly read and not yet checked."
-    via = [f.short for f in shown if f.via]
-    notes = [f"Inflation is {' and '.join(measures)}." if measures else "",
-             "A budget balance below zero is a deficit.",
+        checking += " " + _("Rows marked “awaiting AI check” are newly read and not yet checked.")
+    via = [i18n.maybe(f.short) for f in shown if f.via]
+    notes = [measures,
+             _("A budget balance below zero is a deficit."),
              checking,
-             (f"{_join(via)} figures are taken from the FUNCAS Panel's reference table, which lists each with the "
-              "month it was published.") if via else "",
-             *dict.fromkeys(f.note for f in shown if f.note)]
-    return {"title": "Forecaster", "caption": f"Forecasts for {year}", "through": None,
-            "columns": [label for _, label, _ in MEASURES], "column_notes": [note for *_, note in MEASURES],
+             _("{names} figures are taken from the FUNCAS Panel's reference table, which lists each with the "
+               "month it was published.").format(names=_join(via)) if via else "",
+             *dict.fromkeys(_note(f) for f in shown if f.note)]
+    return {"title": _("Forecaster"), "caption": _("Forecasts for {year}").format(year=year), "through": None,
+            "columns": [_(label) for _m, label, _n in MEASURES], "column_notes": [_(note) for *_rest, note in MEASURES],
             "rows": rows, "note": " ".join(n for n in notes if n)}
 
 
@@ -351,7 +368,9 @@ def _fmt_growth(v: float) -> str:
 
 
 def _join(names: list[str]) -> str:
-    return names[0] if len(names) == 1 else ", ".join(names[:-1]) + " and " + names[-1]
+    if len(names) == 1:
+        return names[0]
+    return _("{names} and {last}").format(names=", ".join(names[:-1]), last=names[-1])
 
 
 def forecast_facts(data: Data, today: date | None = None) -> list[dict]:
@@ -361,46 +380,56 @@ def forecast_facts(data: Data, today: date | None = None) -> list[dict]:
     for year in (this, nxt):
         avg, vals = _average(fs, year, "gdp")
         if avg is not None:
-            facts.append({"label": f"GDP growth forecast, {year}", "value": fmt_value(avg, "%", 1),
-                          "sub": f"average of {len(vals)}; range {fmt_value(min(vals), '%', 1)} to {fmt_value(max(vals), '%', 1)}"})
+            facts.append({"label": _("GDP growth forecast, {year}").format(year=year), "value": fmt_value(avg, "%", 1),
+                          "sub": _spread(vals)})
     own = gdp_this_year(data, this)
     if own is not None:
-        facts.append({"label": f"Macroscope, {this} GDP", "value": fmt_value(own["value"], "%", 1),
-                      "sub": f"INE to {period_label(own['through'], 'Q')}, then the Q4 nowcast"})
+        facts.append({"label": _("Macroscope, {year} GDP").format(year=this), "value": fmt_value(own["value"], "%", 1),
+                      "sub": _("INE to {quarter}, then the Q4 nowcast").format(quarter=period_label(own['through'], 'Q'))})
     avg, vals = _average(fs, this, "inflation")
     if avg is not None:
-        facts.append({"label": f"Inflation forecast, {this}", "value": fmt_value(avg, "%", 1),
-                      "sub": f"average of {len(vals)}; range {fmt_value(min(vals), '%', 1)} to {fmt_value(max(vals), '%', 1)}"})
+        facts.append({"label": _("Inflation forecast, {year}").format(year=this), "value": fmt_value(avg, "%", 1),
+                      "sub": _spread(vals)})
     return facts
 
 
+def _spread(vals: list[float]) -> str:
+    return _("average of {n}; range {low} to {high}").format(
+        n=len(vals), low=fmt_value(min(vals), '%', 1), high=fmt_value(max(vals), '%', 1))
+
+
 def forecast_callout(data: Data, today: date | None = None) -> str | None:
-    this, _ = years(today)
+    this, _nxt = years(today)
     own = gdp_this_year(data, this)
     if own is None:
         return None
-    return (f"With three quarters published, {this} is largely decided: even with no growth at all in the fourth "
-            f"quarter, GDP would grow {fmt_value(own['flat'], '%', 1)} on {this - 1}. The forecasts differ mainly "
-            f"in what they expect for {this + 1}.")
+    return _("With three quarters published, {year} is largely decided: even with no growth at all in the fourth "
+             "quarter, GDP would grow {flat} on {previous}. The forecasts differ mainly in what they expect for "
+             "{following}.").format(year=this, flat=fmt_value(own['flat'], '%', 1), previous=this - 1, following=this + 1)
 
 
 def forecast_chart(data: Data, today: date | None = None) -> dict | None:
     this, nxt = years(today)
-    fs = [f for _, members in _ordered(forecasters(data), this) for f in members if f.counts]
+    fs = [f for _title, members in _ordered(forecasters(data), this) for f in members if f.counts]
     if len(fs) < 2:
         return None
     labels = [f.short for f in fs] + ["Average"]
     series = []
     for year in (this, nxt):
         ys = [f.value(year, "gdp") for f in fs] + [_average(fs, year, "gdp")[0]]
-        series.append({"name": str(year), "x": labels, "y": [None if v is None else round(v, 2) for v in ys]})
+        # The years are named after the spec is put into the language being written: they are not text.
+        series.append({"name": "", "x": labels, "y": [None if v is None else round(v, 2) for v in ys]})
     own = gdp_this_year(data, this)
     if own is not None:
         for s in series:
             s["x"] = s["x"] + ["Macroscope"]
         series[0]["y"].append(round(own["value"], 2))
         series[1]["y"].append(None)
-    return {"id": "forecasts", "title": "GDP growth forecasts", "subtitle": f"Real GDP, % change on a year earlier, {this} and {nxt}",
-            "kind": "bar", "x_kind": "category", "x_title": "Forecaster", "unit": "%", "decimals": 1, "freq": None,
-            "series": series, "ref_lines": [],
-            "source": "Forecasters' publications (see table), AI-checked; Macroscope nowcast"}
+    spec = localise({"id": "forecasts", "title": "GDP growth forecasts", "subtitle": "",
+                     "kind": "bar", "x_kind": "category", "x_title": "Forecaster", "unit": "%", "decimals": 1,
+                     "freq": None, "series": series, "ref_lines": [],
+                     "source": _("Forecasters' publications (see table), AI-checked; Macroscope nowcast")})
+    for s, year in zip(spec["series"], (this, nxt)):
+        s["name"] = str(year)
+    spec["subtitle"] = _("Real GDP, % change on a year earlier, {year} and {following}").format(year=this, following=nxt)
+    return spec

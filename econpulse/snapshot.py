@@ -51,12 +51,14 @@ def fmt_value(v: float, unit: str, decimals: int) -> str:
         return n
     if unit == "$/bbl":
         return f"{sign}${digits}"
+    # In Spanish the euro sign follows the figure ("58.2 mm €"); the number keeps the English format.
+    es = i18n.lang() == "es"
     if unit == "€ mn":
-        return f"{sign}€{digits} {i18n._('mn')}"
+        return f"{n} {i18n._('mn')} €" if es else f"{sign}€{digits} {i18n._('mn')}"
     if unit == "€ bn":
-        return f"{sign}€{digits} {i18n._('bn')}"
+        return f"{n} {i18n._('bn')} €" if es else f"{sign}€{digits} {i18n._('bn')}"
     if unit == "€":
-        return f"{sign}€{digits}"
+        return f"{n} €" if es else f"{sign}€{digits}"
     return f"{n} {i18n._(unit)}"  # e.g. "224.9 €/MWh", "93,858 vehicles"
 
 

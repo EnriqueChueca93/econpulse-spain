@@ -80,7 +80,7 @@ def accumulate(scores: dict[str, pd.Series], end: pd.Timestamp) -> pd.Series:
 
 
 def surprise_index(data: Data, key: str) -> dict | None:
-    components, _ = INDEXES[key]
+    components, _title = INDEXES[key]
 
     def compute():
         rows = [r for c in components if (r := _component(data, c))]
@@ -126,27 +126,30 @@ def surprise_table(data: Data, key: str) -> dict | None:
     idx = surprise_index(data, key)
     if idx is None:
         return None
-    _, title = INDEXES[key]
+    _comps, title = INDEXES[key]
     rows = []
     for r in idx["rows"]:
         c = r["component"]
         ind = data.by_id[c.id]
         show = lambda v: analytics._component_display(data, {"component": c, "value": v})  # noqa: E731
-        rows.append({"heading": False, "label": LABELS.get(c.id, c.label.split(" (")[0]), "label_es": ind.label_es, "indent": 0,
+        rows.append({"heading": False, "label": _(LABELS.get(c.id, c.label.split(" (")[0])), "label_es": ind.label_es,
+                     "indent": 0,
                      "period_note": period_label(r["date"], r["freq"]), "url": ind.source_url(),
                      "cells": [show(r["value"]), show(r["forecast"]), _fmt_signed(r["z"], 1)]})
     end = period_label(idx["end"], "M")
-    return {"title": title, "caption": f"Latest figures against the statistical forecast · index for {end}",
-            "through": end, "columns": ["Actual", "Forecast", "Surprise"], "rows": rows,
-            "note": ("Forecast: what an AR(1) model fitted on the earlier figures expected. Surprise: the gap in "
-                     "units of the model's typical error since 2013 (Covid years left out); "
-                     + ("positive means hotter inflation." if key == "inflation" else
-                        "positive means a stronger economy (for unemployment, a smaller rise than expected)."))}
+    note = (_("Forecast: what an AR(1) model fitted on the earlier figures expected. Surprise: the gap in units of "
+              "the model's typical error since 2013 (Covid years left out); positive means hotter inflation.")
+            if key == "inflation" else
+            _("Forecast: what an AR(1) model fitted on the earlier figures expected. Surprise: the gap in units of "
+              "the model's typical error since 2013 (Covid years left out); positive means a stronger economy (for "
+              "unemployment, a smaller rise than expected)."))
+    return {"title": _(title), "caption": _("Latest figures against the statistical forecast · index for {month}").format(month=end),
+            "through": end, "columns": [_("Actual"), _("Forecast"), _("Surprise")], "rows": rows, "note": note}
 
 
 def surprise_chart(data: Data) -> dict | None:
     series = []
-    for key, (_, name) in INDEXES.items():
+    for key, (_comps, name) in INDEXES.items():
         idx = surprise_index(data, key)
         if idx is not None:
             s = idx["series"][idx["series"].index >= CHART_START].round(3)
@@ -156,4 +159,4 @@ def surprise_chart(data: Data) -> dict | None:
     return {"id": "surprises", "title": "Surprise indexes", "kind": "line", "unit": "", "decimals": 2,
             "subtitle": "Average surprise over the past four months, newest weighted most; above 0 = above forecast",
             "signed": True, "freq": "M", "series": series, "ref_lines": [],
-            "source": "Macroscope calculation from INE, Eurostat, Seguridad Social, Red Eléctrica"}
+            "source": _("Macroscope calculation from INE, Eurostat, Seguridad Social, Red Eléctrica")}
