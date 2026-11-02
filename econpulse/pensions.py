@@ -4,7 +4,7 @@ their sustainability and comparisons (Batch 29b).
 The figures come from the Ministry of Labour's statistics bulletin (tables PEN-1 to PEN-31, sources/bel.py):
 monthly series of the pensions in force, new and ended pensions, by class, scheme and region, which start in
 April 2025 and grow month by month; annual averages since 2016; and the maximum and minimum amounts since
-1990. EconPulse adds three calculations: what pensions cost in a year (the average number of pensions times
+1990. Macroscope adds three calculations: what pensions cost in a year (the average number of pensions times
 the average pension times the 14 payments, against nominal GDP), the average pension after inflation, and
 registered workers per pension.
 
@@ -241,7 +241,7 @@ def cost_chart(data: Data) -> dict | None:
     share = cost["share"].dropna()
     return {"id": "pension-cost", "title": "What contributory pensions cost", "kind": "bar", "unit": "%", "decimals": 1,
             "subtitle": f"% of GDP, an estimate: pensions × the average pension × {PAYMENTS} payments",
-            "freq": "A", "source": f"{SOURCE}, Eurostat; EconPulse calculation",
+            "freq": "A", "source": f"{SOURCE}, Eurostat; Macroscope calculation",
             "series": [{"name": "Contributory pensions", "x": _years(share.index), "y": share.round(2).tolist()}]}
 
 
@@ -252,7 +252,7 @@ def real_chart(data: Data) -> dict | None:
     first = real.index[0]
     return {"id": "pension-real", "title": "The average pension and prices", "kind": "line", "unit": "", "decimals": 1,
             "subtitle": f"Average pension, annual average, {first} = 100: as paid, and after consumer prices",
-            "freq": "A", "source": f"{SOURCE}, INE; EconPulse calculation",
+            "freq": "A", "source": f"{SOURCE}, INE; Macroscope calculation",
             "ref_lines": [{"y": 100, "label": str(first)}],
             "series": [{"name": "As paid", "x": _years(real.index), "y": real["nominal"].round(2).tolist()},
                        {"name": "After inflation", "x": _years(real.index), "y": real["real"].round(2).tolist()}]}
@@ -265,7 +265,7 @@ def workers_chart(data: Data) -> dict | None:
     yearly = ratio[0]
     return {"id": "workers-per-pension", "title": "Workers per pension", "kind": "line", "unit": "", "decimals": 2,
             "subtitle": "Registered workers per contributory pension, annual averages",
-            "freq": "A", "source": f"Seguridad Social, {SOURCE}; EconPulse calculation",
+            "freq": "A", "source": f"Seguridad Social, {SOURCE}; Macroscope calculation",
             "series": [{"name": "Workers per pension", "x": _years(yearly.index), "y": yearly.round(3).tolist()}]}
 
 

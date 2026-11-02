@@ -1,4 +1,4 @@
-// EconPulse Spain: theme toggle and charts.
+// Macroscope Spain: theme toggle and charts.
 // Pages are plain HTML; this script only adds the light/dark switch and draws the
 // charts from window.EP.charts (written by `python -m econpulse build`).
 (function () {
@@ -6,6 +6,28 @@
 
   var root = document.documentElement;
   var darkQuery = window.matchMedia("(prefers-color-scheme: dark)");
+
+  // The page's language (Batch 33a: the Spanish site is under es/), and its words for what this script writes.
+  var LANG = root.lang === "es" ? "es" : "en";
+  var ES = {
+    "Time range": "Periodo", "All": "Todo", "All the data": "Todos los datos", "Item": "Concepto", "Change": "Variación",
+    "Member": "Miembro", "Stance": "Orientación", "Latest": "Último", "Range over the year": "Rango en el año",
+    "Lowest over the year": "Mínimo del año", "Highest over the year": "Máximo del año", "Date": "Fecha", "Period": "Periodo",
+    "All points.": "Todos los puntos.", "Latest 12 periods.": "Últimos 12 periodos.", "Link copied": "Enlace copiado",
+    "Copy this link:": "Copie este enlace:", "Page": "Página", "Section": "Sección", "Chart": "Gráfico", "Series": "Serie",
+    "Loading the index…": "Cargando el índice…", "The search index could not be loaded.": "No se pudo cargar el índice de búsqueda.",
+    "On this page": "En esta página", "Sections of this page": "Secciones de esta página", "Top": "Arriba",
+    "Back to the top of the page": "Volver al principio de la página", "Reading": "Lectura", " to ": " a ",
+    "Copy a link to the section": "Copiar un enlace a la sección"
+  };
+  function t(s) { return LANG === "es" && ES[s] !== undefined ? ES[s] : s; }
+
+  // Switching language keeps the place on the page (a chart's anchor, an explorer's settings).
+  Array.prototype.forEach.call(document.querySelectorAll(".lang-switch a"), function (a) {
+    a.addEventListener("click", function () {
+      if (location.hash && !a.hasAttribute("aria-current")) a.href = a.getAttribute("href").split("#")[0] + location.hash;
+    });
+  });
 
   function currentTheme() {
     return root.getAttribute("data-theme") || (darkQuery.matches ? "dark" : "light");
@@ -101,7 +123,8 @@
 
   // ---------------------------------------------------------------- charts
   var specs = (window.EP && window.EP.charts) || [];
-  var MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  var MONTHS = LANG === "es" ? ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"]
+                               : ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
   // ---------------------------------------------------------------- chosen comparators (International page)
   // Charts flagged `pick` carry every country's series, tagged `country` (or `countries`, for a central
@@ -133,7 +156,8 @@
       var code = b.getAttribute("data-country"), on = picked.indexOf(code) >= 0;
       b.setAttribute("aria-pressed", String(on));
       b.setAttribute("aria-disabled", String(!on && picked.length >= pickMax));
-      b.title = !on && picked.length >= pickMax ? "Up to " + pickMax + " at a time: untick one first" : "";
+      b.title = !on && picked.length >= pickMax ? (LANG === "es" ? "Hasta " + pickMax + " a la vez: quite uno antes"
+                                                               : "Up to " + pickMax + " at a time: untick one first") : "";
       var swatch = b.querySelector(".chip-swatch");
       if (swatch) swatch.style.background = on ? "var(--series-" + pickSlot[code] + ")" : "";   // follows the theme
     });
@@ -202,7 +226,18 @@
     return spec.freq === "Q" ? "Q%q %Y" : spec.freq === "D" ? "%-d %b %Y" : spec.freq === "A" ? "%Y" : "%b %Y";
   }
 
+  // Spanish month and day names on the charts' axes and in their hover labels; numbers keep the English format.
+  if (LANG === "es" && window.Plotly && window.Plotly.register) {
+    window.Plotly.register({ moduleType: "locale", name: "es", dictionary: {}, format: {
+      days: ["domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"],
+      shortDays: ["dom", "lun", "mar", "mié", "jue", "vie", "sáb"],
+      months: ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre",
+               "noviembre", "diciembre"],
+      shortMonths: ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"],
+      date: "%d/%m/%Y", decimal: ".", thousands: "," } });
+  }
   var CONFIG_BASE = {
+    locale: LANG,
     displaylogo: false, responsive: true,
     modeBarButtonsToRemove: ["zoom2d", "pan2d", "select2d", "lasso2d", "zoomIn2d", "zoomOut2d", "autoScale2d",
       "resetScale2d", "toggleSpikelines", "hoverClosestCartesian", "hoverCompareCartesian"]
@@ -243,7 +278,7 @@
         ticksuffix: suffix(spec), automargin: true },
       bargap: 0.3, barcornerradius: 3, shapes: shapes, annotations: annotations
     };
-    var config = Object.assign({ toImageButtonOptions: { filename: "econpulse-" + spec.id, scale: 2 } }, CONFIG_BASE);
+    var config = Object.assign({ toImageButtonOptions: { filename: "macroscope-" + spec.id, scale: 2 } }, CONFIG_BASE);
     window.Plotly.react(el, traces, layout, config);
   }
 
@@ -277,7 +312,7 @@
         gridcolor: grid, zeroline: false, fixedrange: true, tickfont: { color: muted }, automargin: true },
       annotations: [label(0, "right"), label(n - 1, "left")]
     };
-    var config = Object.assign({ toImageButtonOptions: { filename: "econpulse-" + spec.id, scale: 2 } }, CONFIG_BASE);
+    var config = Object.assign({ toImageButtonOptions: { filename: "macroscope-" + spec.id, scale: 2 } }, CONFIG_BASE);
     window.Plotly.react(el, traces, layout, config);
   }
 
@@ -303,7 +338,7 @@
         line: { color: axis, width: 7 }, opacity: 0.6 },
       { type: "scatter", mode: "markers+text", x: recent.x, y: recent.y, text: recent.text, textposition: "top center",
         textfont: { size: 9, color: ink2 }, showlegend: false, marker: { size: 8, color: surface, line: { color: ink2, width: 1.5 } },
-        hovertemplate: "Reading %{text}: <b>%{x:+." + spec.decimals + "f}</b><extra>%{y}</extra>" },
+        hovertemplate: t("Reading") + " %{text}: <b>%{x:+." + spec.decimals + "f}</b><extra>%{y}</extra>" },
       { type: "scatter", mode: "markers", x: rows.map(function (r) { return r.stance; }), y: labels, showlegend: false,
         marker: { size: 13, color: rows.map(function (r) { return r.highlight ? orange : blue; }), line: { color: surface, width: 2 } },
         customdata: rows.map(function (r) { return r.sub || ""; }),
@@ -324,7 +359,7 @@
         { x: hi, xref: "x", y: 0, yref: "paper", yshift: -32, xanchor: "right", showarrow: false, text: (spec.right || "higher") + " →", font: { size: 11, color: ink2 } }
       ]
     };
-    var config = Object.assign({ toImageButtonOptions: { filename: "econpulse-" + spec.id, scale: 2 } }, CONFIG_BASE);
+    var config = Object.assign({ toImageButtonOptions: { filename: "macroscope-" + spec.id, scale: 2 } }, CONFIG_BASE);
     window.Plotly.react(el, traces, layout, config);
   }
 
@@ -365,7 +400,7 @@
       xaxis: { gridcolor: grid, zeroline: true, zerolinecolor: axis, fixedrange: true, tickfont: { color: muted },
         ticksuffix: suffix(spec), automargin: true }
     };
-    var config = Object.assign({ toImageButtonOptions: { filename: "econpulse-" + spec.id, scale: 2 } }, CONFIG_BASE);
+    var config = Object.assign({ toImageButtonOptions: { filename: "macroscope-" + spec.id, scale: 2 } }, CONFIG_BASE);
     window.Plotly.react(el, traces, layout, config);
   }
 
@@ -479,7 +514,7 @@
       layout.xaxis.autorange = true;
       layout.yaxis.autorange = true;
     }
-    var config = Object.assign({ toImageButtonOptions: { filename: "econpulse-" + spec.id, scale: 2 } }, CONFIG_BASE);
+    var config = Object.assign({ toImageButtonOptions: { filename: "macroscope-" + spec.id, scale: 2 } }, CONFIG_BASE);
     window.Plotly.react(el, traces, layout, config).then(function () { spreadLabels(el); });
   }
 
@@ -557,13 +592,14 @@
     var group = document.createElement("div");
     group.className = "range-buttons";
     group.setAttribute("role", "group");
-    group.setAttribute("aria-label", "Time range");
+    group.setAttribute("aria-label", t("Time range"));
     options.concat([0]).forEach(function (years) {
       var b = document.createElement("button");
       b.type = "button";
-      b.textContent = years ? years + "Y" : "All";
+      b.textContent = years ? years + (LANG === "es" ? "A" : "Y") : t("All");
       b.setAttribute("data-years", years);
-      b.setAttribute("aria-label", years ? "Last " + years + (years === 1 ? " year" : " years") : "All the data");
+      b.setAttribute("aria-label", years ? (LANG === "es" ? "Últimos " + years + (years === 1 ? " año" : " años")
+                                                         : "Last " + years + (years === 1 ? " year" : " years")) : t("All the data"));
       b.setAttribute("aria-pressed", String((ranges[spec.id] || 0) === years));
       group.appendChild(b);
     });
@@ -625,7 +661,7 @@
     var head = table.createTHead().insertRow();
     if (spec.kind === "xy") return fillXYTable(spec, holder, table, head);
     if (spec.kind === "dumbbell") {
-      [spec.x_title || "Item", spec.a_name, spec.b_name, "Change"].forEach(function (h) {
+      [spec.x_title || t("Item"), spec.a_name, spec.b_name, t("Change")].forEach(function (h) {
         var th = document.createElement("th"); th.scope = "col"; th.textContent = h; head.appendChild(th);
       });
       var rb = table.createTBody();
@@ -640,7 +676,7 @@
       return;
     }
     if (spec.kind === "dots") {
-      ["Member", "Stance", "Latest", "Range over the year"].forEach(function (h) {
+      ["Member", "Stance", "Latest", "Range over the year"].map(t).forEach(function (h) {
         var th = document.createElement("th"); th.scope = "col"; th.textContent = h; head.appendChild(th);
       });
       var tb = table.createTBody();
@@ -649,12 +685,12 @@
         tr.insertCell().textContent = r.label;
         tr.insertCell().textContent = fmt(r.stance, spec, true);
         tr.insertCell().textContent = (r.recent || []).filter(function (v) { return v !== null; }).map(function (v) { return fmt(v, spec, true); }).join(", ");
-        tr.insertCell().textContent = r.range ? fmt(r.range[0], spec, true) + " to " + fmt(r.range[1], spec, true) : "–";
+        tr.insertCell().textContent = r.range ? fmt(r.range[0], spec, true) + t(" to ") + fmt(r.range[1], spec, true) : "–";
       });
       holder.appendChild(table);
       return;
     }
-    [spec.x_title || "Date"].concat(spec.series.map(function (s) { return s.name; })).forEach(function (h) {
+    [spec.x_title || t("Date")].concat(spec.series.map(function (s) { return s.name; })).forEach(function (h) {
       var th = document.createElement("th"); th.scope = "col"; th.textContent = h; head.appendChild(th);
     });
     // Curves: every point in order. Time series: every date any series has (they can
@@ -681,13 +717,16 @@
     var caption = document.createElement("p");
     caption.className = "note";
     if (category || total <= 12) {
-      caption.textContent = category ? "All points." : "All " + total + " dates.";
+      caption.textContent = category ? t("All points.") : (LANG === "es" ? "Las " + total + " fechas." : "All " + total + " dates.");
     } else {
-      caption.textContent = all ? "All " + total + " dates, newest first. " : "Latest 12 of " + total + " dates. ";
+      caption.textContent = LANG === "es"
+        ? (all ? "Las " + total + " fechas, de la más reciente a la más antigua. " : "Las últimas 12 de " + total + " fechas. ")
+        : (all ? "All " + total + " dates, newest first. " : "Latest 12 of " + total + " dates. ");
       var more = document.createElement("button");
       more.type = "button";
       more.className = "chart-link table-all";
-      more.textContent = all ? "Show the latest 12" : "Show all " + total;
+      more.textContent = LANG === "es" ? (all ? "Ver las últimas 12" : "Ver las " + total)
+                                       : (all ? "Show the latest 12" : "Show all " + total);
       more.addEventListener("click", function () { fillTable(spec, !all); });
       caption.appendChild(more);
     }
@@ -708,7 +747,7 @@
     }
     var caption = document.createElement("p");
     caption.className = "note";
-    caption.textContent = "Latest 12 periods.";
+    caption.textContent = t("Latest 12 periods.");
     holder.appendChild(table);
     holder.appendChild(caption);
   }
@@ -780,18 +819,18 @@
     var unit = spec.unit ? " (" + spec.unit + ")" : "";
     if (spec.kind === "hbar") {
       var bars = spec.series[0];
-      return [[spec.x_title || "Item", bars.name + unit]].concat(bars.x.map(function (x, i) { return [x, bars.y[i]]; }));
+      return [[spec.x_title || t("Item"), bars.name + unit]].concat(bars.x.map(function (x, i) { return [x, bars.y[i]]; }));
     }
     if (spec.kind === "xy") {
       var path = spec.series[0];
-      return [[spec.x_title || "Period", spec.x_label, spec.y_label]].concat(
+      return [[spec.x_title || t("Period"), spec.x_label, spec.y_label]].concat(
         path.x.map(function (x, i) { return [path.text[i], x, path.y[i]]; }));
     }
     if (spec.kind === "dumbbell") {
-      return [[spec.x_title || "Item", spec.a_name + unit, spec.b_name + unit]].concat(spec.rows.map(function (r) { return [r.label, r.a, r.b]; }));
+      return [[spec.x_title || t("Item"), spec.a_name + unit, spec.b_name + unit]].concat(spec.rows.map(function (r) { return [r.label, r.a, r.b]; }));
     }
     if (spec.kind === "dots") {
-      return [["Member", "Stance", "Lowest over the year", "Highest over the year"]].concat(spec.rows.map(function (r) {
+      return [["Member", "Stance", "Lowest over the year", "Highest over the year"].map(t)].concat(spec.rows.map(function (r) {
         return [r.label, r.stance, r.range ? r.range[0] : "", r.range ? r.range[1] : ""];
       }));
     }
@@ -801,7 +840,7 @@
       return m;
     });
     if (spec.x_kind !== "category") keys.sort();
-    return [[spec.x_title || "Date"].concat(spec.series.map(function (s) { return s.name + unit; }))].concat(
+    return [[spec.x_title || t("Date")].concat(spec.series.map(function (s) { return s.name + unit; }))].concat(
       keys.map(function (k) { return [k].concat(maps.map(function (m) { return k in m ? m[k] : ""; })); }));
   }
 
@@ -810,7 +849,7 @@
     var text = "﻿" + csvRows(spec).map(function (r) { return r.map(csvCell).join(","); }).join("\r\n") + "\r\n";
     var url = URL.createObjectURL(new Blob([text], { type: "text/csv;charset=utf-8" }));
     var a = document.createElement("a");
-    a.href = url; a.download = "econpulse-" + spec.id + ".csv";
+    a.href = url; a.download = "macroscope-" + spec.id + ".csv";
     document.body.appendChild(a); a.click(); document.body.removeChild(a);
     setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
   }
@@ -842,7 +881,7 @@
       button.textContent = text;
       setTimeout(function () { button.textContent = label; }, 2000);
     }
-    copyText(url).then(function () { show("Link copied"); }, function () { window.prompt("Copy this link:", url); });
+    copyText(url).then(function () { show(t("Link copied")); }, function () { window.prompt(t("Copy this link:"), url); });
   });
 
   // A chart's data table is filled the first time it is opened.
@@ -894,7 +933,7 @@
     var a = document.createElement("a");
     a.className = "anchor";
     a.href = "#" + h.id;
-    a.setAttribute("aria-label", "Copy a link to the section " + (h.firstChild ? h.firstChild.textContent : h.textContent).trim());
+    a.setAttribute("aria-label", t("Copy a link to the section") + " " + (h.firstChild ? h.firstChild.textContent : h.textContent).trim());
     a.textContent = "#";
     a.addEventListener("click", function (event) {
       event.preventDefault();
@@ -917,7 +956,7 @@
     if (!opener || !panel) return;
     var input = document.getElementById("search-input"), list = document.getElementById("search-results");
     var hint = panel.querySelector(".search-hint");
-    var KINDS = ["Page", "Section", "Chart", "Series"], BONUS = [5, 4, 2, 0];
+    var KINDS = ["Page", "Section", "Chart", "Series"].map(t), BONUS = [5, 4, 2, 0];
     var index = null, loading = false, results = [], active = -1;
 
     function norm(s) { return (s || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase(); }
@@ -933,11 +972,11 @@
       if (window.EP && window.EP.search) { prepare(); return then(); }
       if (loading) return;
       loading = true;
-      hint.textContent = "Loading the index…";
+      hint.textContent = t("Loading the index…");
       var script = document.createElement("script");
       script.src = opener.getAttribute("data-index");
       script.onload = function () { prepare(); then(); };
-      script.onerror = function () { loading = false; hint.textContent = "The search index could not be loaded."; };
+      script.onerror = function () { loading = false; hint.textContent = t("The search index could not be loaded."); };
       document.head.appendChild(script);
     }
 
@@ -987,8 +1026,11 @@
       });
       setActive(results.length ? 0 : -1);
       input.setAttribute("aria-expanded", String(results.length > 0));
-      hint.textContent = !q ? "Every series, chart and section on the site. Try “paro”, “house prices” or “exports to China”."
-        : results.length ? "" : "Nothing matches “" + input.value.trim() + "”.";
+      hint.textContent = LANG === "es"
+        ? (!q ? "Todas las series, gráficos y secciones del sitio. Pruebe «paro», «precios de vivienda» o «exportaciones a China»."
+              : results.length ? "" : "Nada coincide con «" + input.value.trim() + "».")
+        : (!q ? "Every series, chart and section on the site. Try “paro”, “house prices” or “exports to China”."
+              : results.length ? "" : "Nothing matches “" + input.value.trim() + "”.");
     }
 
     function setActive(i) {
@@ -1062,9 +1104,9 @@
     bar.className = "section-bar";
     bar.hidden = true;
     bar.innerHTML = '<div class="wrap section-bar-inner"><button type="button" class="section-bar-toggle" aria-expanded="false">' +
-      '<span class="section-bar-label">On this page</span><strong></strong><svg viewBox="0 0 10 6" width="10" height="6" ' +
+      '<span class="section-bar-label">' + t("On this page") + '</span><strong></strong><svg viewBox="0 0 10 6" width="10" height="6" ' +
       'aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>' +
-      '<nav class="section-bar-menu" aria-label="Sections of this page" hidden></nav></div>';
+      '<nav class="section-bar-menu" aria-label="' + t("Sections of this page") + '" hidden></nav></div>';
     var toggle = bar.querySelector("button"), current = bar.querySelector("strong"), menu = bar.querySelector("nav");
     if (picker) {
       var barChips = picker.querySelector(".picker-chips").cloneNode(true);
@@ -1121,8 +1163,8 @@
     button.className = "to-top";
     button.hidden = true;
     button.innerHTML = '<svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"><path d="M6 10V2M2 6l4-4 4 4" ' +
-      'fill="none" stroke="currentColor" stroke-width="1.6"/></svg>Top';
-    button.setAttribute("aria-label", "Back to the top of the page");
+      'fill="none" stroke="currentColor" stroke-width="1.6"/></svg>' + t("Top");
+    button.setAttribute("aria-label", t("Back to the top of the page"));
     document.body.appendChild(button);
     var still = window.matchMedia("(prefers-reduced-motion: reduce)");
     button.addEventListener("click", function () {

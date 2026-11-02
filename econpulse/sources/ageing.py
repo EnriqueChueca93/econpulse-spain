@@ -1,4 +1,4 @@
-"""Participation and employment adjusted for an ageing population (EconPulse calculation).
+"""Participation and employment adjusted for an ageing population (Macroscope calculation).
 
 Eurostat's labour force survey counts people in private households by sex, five-year age group and
 labour status (lfsq_pganws, from 1998). The participation rate of everyone aged 15 and over is the

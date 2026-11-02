@@ -13,13 +13,13 @@ missing period gives a missing result instead of silently comparing the wrong da
     sum_1y    total over the past year (12 months, 4 quarters), for flows like tourist arrivals
     avg_1y    average over the past year, e.g. a quarterly deficit as a share of GDP
 
-Prefix sa_ (sa_level, sa_pop, sa_ann3m, sa_saar, sa_diff) applies EconPulse's own
+Prefix sa_ (sa_level, sa_pop, sa_ann3m, sa_saar, sa_diff) applies Macroscope's own
 seasonal adjustment first (see seasonal.py), for series published unadjusted.
 """
 
 import pandas as pd
 
-from . import seasonal
+from . import i18n, seasonal
 
 FREQS = ("D", "M", "Q", "A")
 PERIODS_PER_YEAR = {"M": 12, "Q": 4, "A": 1}
@@ -88,8 +88,12 @@ def label(name: str, freq: str) -> str:
     Changes (diff, diff_yoy) share the labels of the % changes; their display
     carries an explicit sign and unit instead ('+465.5k y/y').
     """
+    return i18n.figures(_label(name, freq))
+
+
+def _label(name: str, freq: str) -> str:
     if name.startswith(SA_PREFIX):
-        return f"{label(name[len(SA_PREFIX):], freq)} SA".strip()
+        return f"{_label(name[len(SA_PREFIX):], freq)} SA".strip()
     if name in ("pop", "diff"):
         return {"D": "d/d", "M": "m/m", "Q": "q/q", "A": "y/y"}[freq]
     if name in ("sum_1y", "avg_1y"):

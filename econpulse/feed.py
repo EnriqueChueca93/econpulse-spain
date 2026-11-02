@@ -28,11 +28,11 @@ def build_feed(store: Store, site_url: str = SITE_URL) -> str:
     ET.register_namespace("atom", "http://www.w3.org/2005/Atom")
     rss = ET.Element("rss", {"version": "2.0"})
     channel = ET.SubElement(rss, "channel")
-    ET.SubElement(channel, "title").text = "EconPulse Spain: what changed"
+    ET.SubElement(channel, "title").text = "Macroscope Spain: what changed"
     ET.SubElement(channel, "link").text = site_url
     ET.SubElement(channel, "description").text = (
         "New releases, revisions and big market moves in Spain's economic data, one item per change, "
-        "as found by each EconPulse Spain update.")
+        "as found by each Macroscope Spain update.")
     ET.SubElement(channel, "language").text = "en"
     ET.SubElement(channel, "{http://www.w3.org/2005/Atom}link",
                   {"href": site_url + FEED_FILE, "rel": "self", "type": "application/rss+xml"})

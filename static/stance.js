@@ -1,4 +1,4 @@
-// EconPulse Spain: sorting the central bank stance matrix (site/stance.html).
+// Macroscope Spain: sorting the central bank stance matrix (site/stance.html).
 (function () {
   "use strict";
   var table = document.getElementById("stance-table");

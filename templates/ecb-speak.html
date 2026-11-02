@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% from "macros.html" import chart_card %}
 
-{% block title %}ECB-speak · EconPulse Spain{% endblock %}
-{% block description %}How hawkish or dovish the ECB's Governing Council sounds, scored speech by speech since September 2022.{% endblock %}
+{% block title %}{{ _("ECB-speak") }} · {{ brand }}{% endblock %}
+{% block description %}{{ _("How hawkish or dovish the ECB's Governing Council sounds, scored speech by speech since September 2022.") }}{% endblock %}
 
 {% macro signed(v, d=0) -%}{% if v is none %}–{% else %}{{ ("%+." ~ d ~ "f") | format(v) | replace("-", "−") }}{% endif %}{%- endmacro %}
 
@@ -136,7 +136,7 @@
 
 {% block scripts %}
   {% if charts_file %}
-  <script src="assets/plotly-basic.min.js?v={{ build_id }}"></script>
+  <script src="{{ root }}assets/plotly-basic.min.js?v={{ build_id }}"></script>
   <script src="{{ charts_file }}?v={{ build_id }}"></script>
   {% endif %}
 {% endblock %}

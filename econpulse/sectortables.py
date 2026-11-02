@@ -13,7 +13,7 @@ same sources, and the European Commission's baseline and stress tests from its D
 Monitor (econpulse/fiscal_baseline.json), because the IMF's own stress tests are not published as data.
 
 The section pages show the last three actual years and the projections, as the IMF does;
-the workbook (site/data/econpulse-spain-sector-tables.xlsx) has every table from 2015.
+the workbook (site/data/macroscope-spain-sector-tables.xlsx) has every table from 2015.
 """
 
 from dataclasses import dataclass, field, replace
@@ -28,7 +28,7 @@ from .config import SITE_URL
 from .snapshot import MINUS, period_label
 from .tables import Data
 
-WORKBOOK = "econpulse-spain-sector-tables.xlsx"   # in site/data/
+WORKBOOK = "macroscope-spain-sector-tables.xlsx"   # in site/data/
 NA = "…"
 WEB_ACTUAL_YEARS = 3       # actual years on the section pages, as in the IMF's tables
 FIRST_YEAR = 2015          # first year in the workbook
@@ -521,22 +521,22 @@ DSA_BASELINE = SectorTable(
         Line("Public debt", DEBT, W_DEBT, source=f"{ESTAT}; Maastricht debt over GDP", proj_source=WEO,
              link="gg_debt_eur"),
         Line("Change in public debt", diff(DEBT), diff(W_DEBT), source=ESTAT, proj_source=WEO),
-        Line("Contribution of identified flows 1/", IDENTIFIED, W_IDENTIFIED, indent=1, source="EconPulse calculation",
-             proj_source="EconPulse calculation from the WEO"),
+        Line("Contribution of identified flows 1/", IDENTIFIED, W_IDENTIFIED, indent=1, source="Macroscope calculation",
+             proj_source="Macroscope calculation from the WEO"),
         Line("Primary deficit", PRIMARY_DEFICIT, W_PRIMARY_DEFICIT, indent=2,
              source=f"{ESTAT}; minus the primary balance", proj_source=WEO),
         Line("Noninterest revenues", share(less(TR, INTEREST_RECEIVED), GDP), indent=3, source=f"{ESTAT}; TR less D41"),
         Line("Noninterest expenditures", share(less(TE, INTEREST_PAID), GDP), indent=3, source=f"{ESTAT}; TE less D41"),
-        Line("Automatic debt dynamics", AUTOMATIC, W_AUTOMATIC, indent=2, source="EconPulse calculation",
-             proj_source="EconPulse calculation from the WEO"),
-        Line("Real interest rate", REAL_INTEREST, W_REAL_INTEREST, indent=3, source="EconPulse calculation",
-             proj_source="EconPulse calculation from the WEO"),
-        Line("Real growth rate", REAL_GROWTH_EFFECT, W_REAL_GROWTH_EFFECT, indent=3, source="EconPulse calculation",
-             proj_source="EconPulse calculation from the WEO"),
+        Line("Automatic debt dynamics", AUTOMATIC, W_AUTOMATIC, indent=2, source="Macroscope calculation",
+             proj_source="Macroscope calculation from the WEO"),
+        Line("Real interest rate", REAL_INTEREST, W_REAL_INTEREST, indent=3, source="Macroscope calculation",
+             proj_source="Macroscope calculation from the WEO"),
+        Line("Real growth rate", REAL_GROWTH_EFFECT, W_REAL_GROWTH_EFFECT, indent=3, source="Macroscope calculation",
+             proj_source="Macroscope calculation from the WEO"),
         Line("Other identified flows: (minus) interest revenues 2/", INTEREST_EARNINGS, indent=2,
              source=f"{ESTAT}; D41 received", link="gg_interest_received_eur"),
         Line("Contribution of residual 3/", less(diff(DEBT), IDENTIFIED), less(diff(W_DEBT), W_IDENTIFIED), indent=1,
-             source="EconPulse calculation", proj_source="EconPulse calculation from the WEO"),
+             source="Macroscope calculation", proj_source="Macroscope calculation from the WEO"),
         Group("Memo items"),
         Line("Real GDP growth (percent)", REAL_GROWTH, W_GROWTH, source=ESTAT, proj_source=WEO,
              link="gdp_growth_annual"),
@@ -759,7 +759,7 @@ FINANCIAL_SOUNDNESS = SectorTable(
     sheet="T3 Financial soundness", imf_table="Table 3. Spain: Selected Financial Soundness Indicators",
     kind="actual", web_actual=6,
     sources=("Sources: IMF Financial Soundness Indicators database (consolidated basis); Banco de España (domestic "
-             "operations); Eurostat (household debt); INE (house prices and sales); EconPulse calculations."),
+             "operations); Eurostat (household debt); INE (house prices and sales); Macroscope calculations."),
     rows=[
         Group("Deposit takers: consolidated basis"),
         Line("Regulatory capital to risk-weighted assets", _ratio("fsi_regulatory_capital", "fsi_rwa"), source=FSI,
@@ -880,7 +880,7 @@ MONETARY = SectorTable(
     sheet="T6 Monetary", imf_table="(none: the Article IV for Spain has no monetary table)",
     kind="actual", web_actual=6,
     sources="Sources: ECB (Eurosystem balance sheets, TARGET balances, bank balance sheets and interest rates); "
-            "Banco de España; EconPulse calculations.",
+            "Banco de España; Macroscope calculations.",
     rows=_monetary_rows(False),
     footnotes=[
         "1/ The Banco de España's net position in the Eurosystem's payment system; negative is a liability.",
@@ -942,8 +942,8 @@ DSA_BASELINE_AMOUNTS = replace(
              link="gg_interest_received_eur"),
         Line("Other flows (stock-flow adjustment) 2/",
              less(diff(DEBT_BN), PRIMARY_DEFICIT_BN, INTEREST_PAID_BN, INTEREST_RECEIVED_BN),
-             less(diff(W_DEBT_BN), W_PRIMARY_DEFICIT_BN, W_NET_INTEREST_BN), indent=1, source="EconPulse calculation",
-             proj_source="EconPulse calculation from the WEO"),
+             less(diff(W_DEBT_BN), W_PRIMARY_DEFICIT_BN, W_NET_INTEREST_BN), indent=1, source="Macroscope calculation",
+             proj_source="Macroscope calculation from the WEO"),
         Group("Memo items"),
         Line("Nominal GDP (billions of euros)", scaled(GDP, 1e-3), scaled(published("fc_imf_nominal_gdp"), 1e-9), source=ESTAT,
              proj_source=WEO, link="gdp_nominal_annual"),
@@ -1130,7 +1130,7 @@ def chart_debt_dynamics(data: Data) -> dict | None:
                   _line("Interest rate less growth", _path(data, AUTOMATIC, W_AUTOMATIC, first)),
                   _line("Other flows and residual", _path(data, other, w_other, first)),
                   _line("Change in debt", _path(data, diff(DEBT), diff(W_DEBT), first), kind="line", color="ink")],
-                 "Eurostat; IMF World Economic Outlook; EconPulse calculation", kind="bar", unit="pp", stack=True,
+                 "Eurostat; IMF World Economic Outlook; Macroscope calculation", kind="bar", unit="pp", stack=True,
                  signed=True)
 
 
@@ -1241,10 +1241,10 @@ def sources_line(table: SectorTable, data: Data) -> str:
     if table.kind == "dsm":
         return f"Source: {dsm_edition(data)}, Spain's country fiche."
     if table.kind == "actual":
-        return "Sources: Eurostat; EconPulse calculations."
+        return "Sources: Eurostat; Macroscope calculations."
     edition = weo_edition(data)
     return ("Sources: INE, Eurostat and the ECB for actual years; IMF World Economic Outlook"
-            + (f" ({edition})" if edition else "") + " for projections; EconPulse calculations.")
+            + (f" ({edition})" if edition else "") + " for projections; Macroscope calculations.")
 
 
 def values(table: SectorTable, data: Data, first: int, last: int, last_actual: int) -> list[dict]:
@@ -1413,7 +1413,7 @@ def write_workbook(data: Data, path: Path, built: str = "") -> bool:
     wb = Workbook()
     contents = wb.active
     contents.title = "Contents"
-    contents["A1"] = "EconPulse Spain: IMF-style sector tables"
+    contents["A1"] = "Macroscope Spain: IMF-style sector tables"
     contents["A1"].font = title_font
     contents["A2"] = f"Built {built}" if built else ""
     contents["A2"].font = muted
@@ -1441,7 +1441,7 @@ def write_workbook(data: Data, path: Path, built: str = "") -> bool:
         f"DSA 2 is the European Commission's: {dsm_edition(data)}. The IMF's own stress tests are not published "
         "as data.",
         "Past years can differ from the staff report's because the data have been revised since it was written.",
-        "Figures are as published by each source; anything derived is computed by EconPulse from published series.",
+        "Figures are as published by each source; anything derived is computed by Macroscope from published series.",
         f"IMF staff report: {REPORT_URL}",
         f"IMF WEO database: {WEO_URL}",
     ]

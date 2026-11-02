@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% from "macros.html" import stat_table, chart_card %}
 
-{% block title %}Sector tables · EconPulse Spain{% endblock %}
-{% block description %}The IMF's tables for Spain, rebuilt from public data: real sector, government, debt sustainability, banks, balance of payments, external debt and money.{% endblock %}
+{% block title %}{{ _("Sector tables") }} · {{ brand }}{% endblock %}
+{% block description %}{{ _("The IMF's tables for Spain, rebuilt from public data: real sector, government, debt sustainability, banks, balance of payments, external debt and money.") }}{% endblock %}
 
 {% block content %}
   <h1>Sector tables</h1>
@@ -64,7 +64,7 @@
 
 {% block scripts %}
   {% if charts_file %}
-  <script src="assets/plotly-basic.min.js?v={{ build_id }}"></script>
+  <script src="{{ root }}assets/plotly-basic.min.js?v={{ build_id }}"></script>
   <script src="{{ charts_file }}?v={{ build_id }}"></script>
   {% endif %}
 {% endblock %}

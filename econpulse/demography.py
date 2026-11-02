@@ -1,7 +1,7 @@
 """Who works, and participation in an ageing population (Labour page).
 
 The labour-force rates by age, sex, citizenship and education are Eurostat's (labour force survey,
-quarterly, not seasonally adjusted). Participation and employment at a fixed age mix are an EconPulse
+quarterly, not seasonally adjusted). Participation and employment at a fixed age mix are a Macroscope
 calculation from Eurostat's population counts by sex and age (sources/ageing.py).
 """
 

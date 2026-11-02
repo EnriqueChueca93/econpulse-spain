@@ -6,13 +6,14 @@ depends on the last one), fitted only on the figures before it. The surprise is 
 units of the model's typical error, for the same indicators as the composites. Each index
 averages every surprise of the past four months, the newest at full weight and older ones
 a quarter less per month, so news keeps counting for a while after it is released.
-EconPulse calculation, labelled as such on the page.
+Macroscope calculation, labelled as such on the page.
 """
 
 import numpy as np
 import pandas as pd
 
-from . import analytics, transforms
+from . import analytics, i18n, transforms
+from .i18n import _
 from .analytics import ACTIVITY, COVID, HISTORY_START, INFLATION, Z_CLIP, Component, _fmt_signed
 from .snapshot import period_label
 from .tables import Data
@@ -115,8 +116,9 @@ def surprise_facts(data: Data) -> list[dict]:
         z = float(idx["series"].iloc[-1])
         recent = [r for r in idx["rows"] if _age(r, idx["end"]) < 4]  # latest figures still in the index
         above = sum(r["z"] > 0 for r in recent)
-        facts.append({"label": label, "value": _fmt_signed(z),
-                      "sub": f"{_describe(z)}, {idx['end']:%b %Y}; {above} of {len(recent)} recent figures above"})
+        facts.append({"label": _(label), "value": _fmt_signed(z),
+                      "sub": _("{verdict}, {month}; {above} of {total} recent figures above").format(
+                          verdict=_(_describe(z)), month=i18n.month_year(idx["end"]), above=above, total=len(recent))})
     return facts
 
 
@@ -154,4 +156,4 @@ def surprise_chart(data: Data) -> dict | None:
     return {"id": "surprises", "title": "Surprise indexes", "kind": "line", "unit": "", "decimals": 2,
             "subtitle": "Average surprise over the past four months, newest weighted most; above 0 = above forecast",
             "signed": True, "freq": "M", "series": series, "ref_lines": [],
-            "source": "EconPulse calculation from INE, Eurostat, Seguridad Social, Red Eléctrica"}
+            "source": "Macroscope calculation from INE, Eurostat, Seguridad Social, Red Eléctrica"}

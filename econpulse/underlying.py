@@ -79,7 +79,7 @@ def distribution_chart(data: Data) -> dict | None:
             "subtitle": f"Share of the HICP basket, by weight, in each band of annual inflation (%), {month}",
             "kind": "bar", "x_kind": "category", "x_title": "Annual inflation, %", "unit": "%", "decimals": 1, "freq": None,
             "series": [{"name": "Share of the basket", "x": [b[0] for b in d["bands"]], "y": [b[1] for b in d["bands"]]}],
-            "ref_lines": [], "source": "Eurostat; EconPulse calculation"}
+            "ref_lines": [], "source": "Eurostat; Macroscope calculation"}
 
 
 def movers_table(data: Data) -> dict | None:

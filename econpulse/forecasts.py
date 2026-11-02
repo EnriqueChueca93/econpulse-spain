@@ -13,7 +13,7 @@ that fingerprint in data/forecast_checks.json, after an AI has compared the figu
 publisher's own document, its row is marked "awaiting AI check" and left out of the
 average, the facts and the chart. A new edition, or a revision, needs a new check.
 
-Next to the forecasters, EconPulse's own figure for this year's GDP: the quarters INE has
+Next to the forecasters, Macroscope's own figure for this year's GDP: the quarters INE has
 published plus the nowcast for the quarter still to come.
 """
 
@@ -320,7 +320,7 @@ def forecast_table(data: Data, year: int) -> dict | None:
                  "highlight": True, "cells": [_cell(_average(shown, year, m)[0]) for m in MEASURE_IDS]})
     own = gdp_this_year(data, year)
     if own is not None:
-        rows.append({"heading": False, "label": "EconPulse: INE's quarters + nowcast", "label_es": "", "indent": 0,
+        rows.append({"heading": False, "label": "Macroscope: INE's quarters + nowcast", "label_es": "", "indent": 0,
                      "period_note": f"Q4 {_fmt_growth(own['nowcast'])}", "url": None,
                      "cells": [_cell(own["value"]), DASH, DASH, DASH]})
     hicp = [f.short for f in shown if f.inflation == "HICP" and f.value(year, "inflation") is not None]
@@ -365,7 +365,7 @@ def forecast_facts(data: Data, today: date | None = None) -> list[dict]:
                           "sub": f"average of {len(vals)}; range {fmt_value(min(vals), '%', 1)} to {fmt_value(max(vals), '%', 1)}"})
     own = gdp_this_year(data, this)
     if own is not None:
-        facts.append({"label": f"EconPulse, {this} GDP", "value": fmt_value(own["value"], "%", 1),
+        facts.append({"label": f"Macroscope, {this} GDP", "value": fmt_value(own["value"], "%", 1),
                       "sub": f"INE to {period_label(own['through'], 'Q')}, then the Q4 nowcast"})
     avg, vals = _average(fs, this, "inflation")
     if avg is not None:
@@ -397,10 +397,10 @@ def forecast_chart(data: Data, today: date | None = None) -> dict | None:
     own = gdp_this_year(data, this)
     if own is not None:
         for s in series:
-            s["x"] = s["x"] + ["EconPulse"]
+            s["x"] = s["x"] + ["Macroscope"]
         series[0]["y"].append(round(own["value"], 2))
         series[1]["y"].append(None)
     return {"id": "forecasts", "title": "GDP growth forecasts", "subtitle": f"Real GDP, % change on a year earlier, {this} and {nxt}",
             "kind": "bar", "x_kind": "category", "x_title": "Forecaster", "unit": "%", "decimals": 1, "freq": None,
             "series": series, "ref_lines": [],
-            "source": "Forecasters' publications (see table), AI-checked; EconPulse nowcast"}
+            "source": "Forecasters' publications (see table), AI-checked; Macroscope nowcast"}

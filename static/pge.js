@@ -1,4 +1,4 @@
-// EconPulse Spain: the Budget explorer's section on the State's budget (Batch 30c). What the Presupuestos
+// Macroscope Spain: the Budget explorer's section on the State's budget (Batch 30c). What the Presupuestos
 // Generales del Estado plan by spending policy and revenue chapter (the consolidated budget, by year in force),
 // and how much of its own budget the State has spent, and how fast, from data/budget.js (econpulse/budget.py).
 // Charts are drawn by the site's own renderer (EP.render).

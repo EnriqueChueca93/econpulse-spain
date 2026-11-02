@@ -1,7 +1,7 @@
 """The Fiscal Explorer for Spain (site/fiscal-explorer.html), after Econvitals' Fiscal Explorer.
 
 Baseline: the European Commission's Debt Sustainability Monitor 2025 projection for Spain,
-shown exactly to 2036, then extended to 2056 by EconPulse with the same debt equation,
+shown exactly to 2036, then extended to 2056 by Macroscope with the same debt equation,
 
     d(t) = d(t-1) x (1 + i) / (1 + g) - pb(t) + sfa(t)
 
@@ -86,7 +86,7 @@ def baseline(raw: dict) -> dict:
         d = prev_debt * (1 + i / 100) / (1 + g) - pb
         rows[y] = {"debt": d, "pb": pb, "interest": i * prev_debt / (100 * (1 + g)),
                    "i": i, "g": 100 * g, "real": real, "inflation": INFLATION, "sfa": 0.0,
-                   "coa": rows[last]["coa"] + ageing[y] - ageing[last], "source": "EconPulse extension"}
+                   "coa": rows[last]["coa"] + ageing[y] - ageing[last], "source": "Macroscope extension"}
         prev_debt = d
     for y, r in rows.items():
         r["balance"] = r["pb"] - r["interest"]

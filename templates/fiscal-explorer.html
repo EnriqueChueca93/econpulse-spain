@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
-{% block title %}Fiscal Explorer · EconPulse Spain{% endblock %}
-{% block description %}Spain's public debt and deficits, past and projected, with levers to try other paths.{% endblock %}
+{% block title %}{{ _("Fiscal Explorer") }} · {{ brand }}{% endblock %}
+{% block description %}{{ _("Spain's public debt and deficits, past and projected, with levers to try other paths.") }}{% endblock %}
 
 {% macro figure(id, title, subtitle, source, dynamic=false) -%}
   <figure class="card chart-card" id="fig-{{ id }}">
@@ -32,7 +32,7 @@
   <div class="notice credit-box">
     <p>After <a href="https://econvitals.org/tools/fiscal-explorer/" target="_blank" rel="noopener">Econvitals' Fiscal Explorer</a>
       (econvitals.org, by Jason Furman; public domain, CC0 1.0), which does the same for the United States on the
-      Congressional Budget Office's baseline. This Spanish version is EconPulse's, built on the Commission's projection.</p>
+      Congressional Budget Office's baseline. This Spanish version is Macroscope's, built on the Commission's projection.</p>
   </div>
 
   <div class="tool-controls" role="group" aria-label="View">
@@ -45,7 +45,7 @@
     <section class="block" aria-labelledby="fx-levers-h">
       <h2 id="fx-levers-h">Your assumptions</h2>
       <p class="block-intro">Every lever starts in {{ fx.first_lever_year }} and stays on. At zero, you are looking at the
-        Commission's numbers to {{ fx.last_commission_year }} and EconPulse's extension of them after.</p>
+        Commission's numbers to {{ fx.last_commission_year }} and Macroscope's extension of them after.</p>
       <div class="tool-controls fx-levers">
         <label>Budget: primary balance <input type="range" id="fx-adj" min="-4" max="8" step="0.1" value="0">
           <output id="fx-adj-out" for="fx-adj"></output></label>
@@ -73,7 +73,7 @@
 
     <div class="charts">
       {{ figure("fx-debt", "Gross public debt", "% of GDP: actual, the baseline, and your scenario",
-                "Eurostat; European Commission (DSM 2025, 2024 Ageing Report); EconPulse extension and scenario") }}
+                "Eurostat; European Commission (DSM 2025, 2024 Ageing Report); Macroscope extension and scenario") }}
       <div>
         <div class="tool-controls fx-series-pick">
           <label>Second chart <select id="fx-series">
@@ -84,7 +84,7 @@
           <label><input type="checkbox" id="fx-compare"> Show the Commission's adverse r − g scenario</label>
         </div>
         {{ figure("fx-second", "Overall balance", "% of GDP",
-                  "Eurostat; European Commission (DSM 2025, 2024 Ageing Report); EconPulse", dynamic=true) }}
+                  "Eurostat; European Commission (DSM 2025, 2024 Ageing Report); Macroscope", dynamic=true) }}
       </div>
     </div>
 
@@ -135,7 +135,7 @@
         reproduce the Commission's debt path to two decimals in every year. Like the Commission's, it is a no-policy-change
         baseline: from 2026 the structural primary balance stays put, except that the rising cost of ageing is paid for
         out of it.</p>
-      <p><strong>After {{ fx.last_commission_year }}, EconPulse extends it</strong> on the Commission's own long-term
+      <p><strong>After {{ fx.last_commission_year }}, Macroscope extends it</strong> on the Commission's own long-term
         assumptions from the <a href="{{ fx.sources.ar.page }}" target="_blank" rel="noopener">2024 Ageing Report</a>: the
         primary balance falls by the further rise in pensions, health care, long-term care and education spending; real
         growth is the report's potential growth, plus 2% inflation; and the interest rate on the debt moves an eighth of the
@@ -157,10 +157,10 @@
 {% endblock %}
 
 {% block scripts %}
-  <script src="assets/plotly-basic.min.js?v={{ build_id }}"></script>
+  <script src="{{ root }}assets/plotly-basic.min.js?v={{ build_id }}"></script>
   <script src="data/fiscal.js?v={{ build_id }}"></script>
 {% endblock %}
 
 {% block after_scripts %}
-  <script src="assets/fiscal.js?v={{ build_id }}"></script>
+  <script src="{{ root }}assets/fiscal.js?v={{ build_id }}"></script>
 {% endblock %}

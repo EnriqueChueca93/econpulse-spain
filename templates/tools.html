@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
-{% block title %}Tools · EconPulse Spain{% endblock %}
-{% block description %}Interactive tools for the Spanish economy: change a setting and every number and chart recomputes in your browser.{% endblock %}
+{% block title %}{{ _("Tools") }} · {{ brand }}{% endblock %}
+{% block description %}{{ _("Interactive tools for the Spanish economy: change a setting and every number and chart recomputes in your browser.") }}{% endblock %}
 
 {% macro figure(id, title, subtitle, source) -%}
   <figure class="card chart-card" id="fig-{{ id }}">
@@ -49,12 +49,12 @@
     </div>
     <p class="tool-result" id="trend-result" aria-live="polite"></p>
     <div class="charts">
-      {{ figure("trend-line", "Actual and pre-COVID trend", "Index, last pre-COVID reading of the trend = 100", "INE, Seguridad Social; EconPulse calculation") }}
-      {{ figure("trend-gaps", "Gap with the pre-COVID trend", "Every series, same trend years; % above or below", "INE, Seguridad Social; EconPulse calculation") }}
+      {{ figure("trend-line", "Actual and pre-COVID trend", "Index, last pre-COVID reading of the trend = 100", "INE, Seguridad Social; Macroscope calculation") }}
+      {{ figure("trend-gaps", "Gap with the pre-COVID trend", "Every series, same trend years; % above or below", "INE, Seguridad Social; Macroscope calculation") }}
     </div>
     <p class="note">The trend is a straight line through the logarithm of each series (constant growth), fitted from
       January of the start year to December 2019 (the fourth quarter for quarterly series). Registrations and consumer prices
-      are seasonally adjusted by EconPulse; the others are adjusted by INE. A gap shows how far the economy is from where the
+      are seasonally adjusted by Macroscope; the others are adjusted by INE. A gap shows how far the economy is from where the
       old trend pointed, not where it should be: the start year matters, which is why you can change it.</p>
   </section>
 
@@ -79,7 +79,7 @@
     </div>
     <p class="tool-result" id="taylor-result" aria-live="polite"></p>
     <div class="charts">
-      {{ figure("taylor-tool", "The ECB rate and the rule", "%, monthly", "Eurostat, ECB; EconPulse calculation") }}
+      {{ figure("taylor-tool", "The ECB rate and the rule", "%, monthly", "Eurostat, ECB; Macroscope calculation") }}
     </div>
     <p class="note">Rule: neutral real rate + inflation + (weight on inflation) × (inflation − 2%) − (weight on unemployment) ×
       (unemployment − its trend). Taylor's 1993 rule is 0.5 on inflation and, with an output gap of twice the unemployment gap,
@@ -109,7 +109,7 @@
       </table>
     </div>
     <div class="charts">
-      {{ figure("rates-parts", "The move against the AAA curve", "Basis points", "Banco de España, ECB; EconPulse calculation") }}
+      {{ figure("rates-parts", "The move against the AAA curve", "Basis points", "Banco de España, ECB; Macroscope calculation") }}
       {{ figure("rates-levels", "10-year yields over the period", "%, daily", "Banco de España, ECB") }}
     </div>
     <p class="note">Pure arithmetic, no model: Spain's yield is the German yield plus the prima de riesgo, and also the AAA
@@ -121,10 +121,10 @@
 {% endblock %}
 
 {% block scripts %}
-  <script src="assets/plotly-basic.min.js?v={{ build_id }}"></script>
+  <script src="{{ root }}assets/plotly-basic.min.js?v={{ build_id }}"></script>
   <script src="data/tools.js?v={{ build_id }}"></script>
 {% endblock %}
 
 {% block after_scripts %}
-  <script src="assets/tools.js?v={{ build_id }}"></script>
+  <script src="{{ root }}assets/tools.js?v={{ build_id }}"></script>
 {% endblock %}

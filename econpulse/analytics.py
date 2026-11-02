@@ -1,11 +1,11 @@
-"""EconPulse originals: calculations built on the official data, shown on the Analysis page.
+"""Macroscope originals: calculations built on the official data, shown on the Analysis page.
 
     Composites  how activity and inflation compare with their own history since 2013
     Nowcast     a bridge-equation estimate of this quarter's GDP growth, with its track record
     Decomposition  the change in Spain's 10-year yield split into the Bund and the prima de riesgo
     Taylor rules   the policy rate a simple rule suggests for the euro area and for Spain
 
-All of these are EconPulse estimates, not official figures, and the page says how each
+All of these are Macroscope estimates, not official figures, and the page says how each
 is made. Results are cached on the build's Data object, since several blocks share them.
 """
 
@@ -15,7 +15,8 @@ import numpy as np
 import pandas as pd
 from statsmodels.tsa.filters.hp_filter import hpfilter
 
-from . import seasonal, transforms
+from . import i18n, seasonal, transforms
+from .i18n import _
 from .snapshot import MINUS, fmt_change, fmt_value, period_label
 from .tables import DASH, Data
 
@@ -177,8 +178,9 @@ def composite_facts(data: Data) -> list[dict]:
         s = c["series"]
         z = float(s.iloc[-1])
         prev = s.asof(s.index[-1] - pd.DateOffset(months=3))
-        trend = "" if pd.isna(prev) else f"; {_fmt_signed(float(prev))} three months earlier"
-        facts.append({"label": label, "value": _fmt_signed(z), "sub": f"{_describe(z, hot)}, {s.index[-1]:%b %Y}{trend}"})
+        trend = "" if pd.isna(prev) else _("; {value} three months earlier").format(value=_fmt_signed(float(prev)))
+        facts.append({"label": _(label), "value": _fmt_signed(z),
+                      "sub": f"{_(_describe(z, hot))}, {i18n.month_year(s.index[-1])}{trend}"})
     return facts
 
 
@@ -224,7 +226,7 @@ def composite_chart(data: Data) -> dict | None:
     return {"id": "composites", "title": "Activity and inflation against their history",
             "subtitle": "Weighted average of z-scores, monthly; 0 = the 2013–present norm",
             "kind": "line", "unit": "", "decimals": 2, "signed": True, "freq": "M", "series": series,
-            "ref_lines": [], "source": "EconPulse calculation from INE, Eurostat, Seguridad Social, Red Eléctrica"}
+            "ref_lines": [], "source": "Macroscope calculation from INE, Eurostat, Seguridad Social, Red Eléctrica"}
 
 
 # ---------------------------------------------------------------- GDP nowcast
@@ -302,7 +304,7 @@ def nowcast(data: Data) -> dict | None:
 
         def fit_predict(train, row):
             A = np.column_stack([np.ones(len(train)), X.loc[train].to_numpy()])
-            coef, *_ = np.linalg.lstsq(A, gdp.loc[train].to_numpy(), rcond=None)
+            coef, *_rest = np.linalg.lstsq(A, gdp.loc[train].to_numpy(), rcond=None)
             return float(coef[0] + X.loc[row].to_numpy() @ coef[1:])
 
         value = fit_predict(sample, target_q)
@@ -330,14 +332,16 @@ def nowcast_facts(data: Data) -> list[dict]:
     if n is None:
         return []
     q = period_label(n["quarter"], "Q")
-    band = f"± {n['rmse']:.1f} pp typical error" if n["rmse"] is not None else ""
+    band = _("± {error} pp typical error").format(error=f"{n['rmse']:.1f}") if n["rmse"] is not None else ""
     last_q, last_v = n["last_gdp"]
     months = sum(c["months"] for c in n["coverage"])
     return [
-        {"label": f"GDP nowcast (placeholder), {q}", "value": _fmt_signed(n["value"], 1, "%"), "sub": f"q/q; {band}"},
-        {"label": f"Latest official, {period_label(last_q, 'Q')}", "value": _fmt_signed(last_v, 1, "%"), "sub": "q/q, INE"},
-        {"label": f"Data in hand for {q}", "value": f"{months} of {3 * len(n['coverage'])}",
-         "sub": "monthly readings; the rest is projected"},
+        {"label": _("GDP nowcast (placeholder), {q}").format(q=q), "value": _fmt_signed(n["value"], 1, "%"),
+         "sub": f"{i18n.figures('q/q')}; {band}"},
+        {"label": _("Latest official, {q}").format(q=period_label(last_q, 'Q')), "value": _fmt_signed(last_v, 1, "%"),
+         "sub": f"{i18n.figures('q/q')}, INE"},
+        {"label": _("Data in hand for {q}").format(q=q), "value": _("{n} of {total}").format(n=months, total=3 * len(n['coverage'])),
+         "sub": _("monthly readings; the rest is projected")},
     ]
 
 
@@ -385,7 +389,7 @@ def nowcast_chart(data: Data) -> dict | None:
                 {"name": "Model", "kind": "line", "x": [iso(q) for q, *_ in bt] + [iso(n["quarter"])],
                  "y": [round(p, 3) for _, p, _, _ in bt] + [round(n["value"], 3)]},
             ],
-            "source": "EconPulse calculation from INE and Seguridad Social"}
+            "source": "Macroscope calculation from INE and Seguridad Social"}
 
 
 # ---------------------------------------------------------------- 10-year decomposition
@@ -404,7 +408,7 @@ def yield_decomposition_table(data: Data) -> dict | None:
     refs = {"week": d - pd.Timedelta(days=7), "month": d - pd.DateOffset(months=1),
             "ytd": pd.Timestamp(d.year, 1, 1) - pd.Timedelta(days=1), "year": d - pd.DateOffset(years=1)}
     cols = {}
-    for _, key in MOVES:
+    for _label, key in MOVES:
         before = both[both.index <= refs[key]]
         cols[key] = None if before.empty else (both.iloc[-1] - before.iloc[-1]) * 100
     labels = [("Spain 10-year yield", lambda c: c["es"]), ("German Bund: euro-wide rates", lambda c: c["de"]),
@@ -516,13 +520,13 @@ def taylor_chart(data: Data) -> dict | None:
         series.append({"name": name, "x": iso(r.index), "y": r.tolist()})
     return {"id": "taylor", "title": "The ECB rate and what a Taylor rule suggests",
             "subtitle": "%, monthly", "kind": "line", "unit": "%", "decimals": 1, "freq": "M", "series": series,
-            "ref_lines": [], "source": "EconPulse calculation from Eurostat and the ECB"}
+            "ref_lines": [], "source": "Macroscope calculation from Eurostat and the ECB"}
 
 
 # ---------------------------------------------------------------- home page
 
 def home_facts(data: Data) -> list[dict]:
-    """The strip of EconPulse readings on the home page."""
+    """The strip of Macroscope readings on the home page."""
     facts = composite_facts(data)
     n = nowcast_facts(data)
     if n:
@@ -530,6 +534,6 @@ def home_facts(data: Data) -> list[dict]:
     t = taylor(data)
     if t is not None and t["dfr"] is not None:
         gap = float(t["dfr"].iloc[-1] - t["ea"]["rule"].iloc[-1])
-        facts.append({"label": "ECB rate vs Taylor rule", "value": _fmt_signed(gap, 1, " pp"),
-                      "sub": "deposit rate minus the euro-area rule"})
+        facts.append({"label": _("ECB rate vs Taylor rule"), "value": _fmt_signed(gap, 1, " pp"),
+                      "sub": _("deposit rate minus the euro-area rule")})
     return facts

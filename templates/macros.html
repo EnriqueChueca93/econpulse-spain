@@ -1,10 +1,10 @@
 {# Shared building blocks for the page templates. #}
 
 {% macro badges(item) -%}
-  {%- if item.flash %}<span class="badge badge-info">flash estimate</span>{% endif -%}
-  {%- if item.status == "stale" %}<span class="badge badge-warn">stale: last update failed</span>{% endif -%}
-  {%- if item.status in ("error", "missing") %}<span class="badge badge-warn">no data</span>{% endif -%}
-  {%- if item.status == "ok" and item.out_of_date %}<span class="badge badge-warn">not updating</span>{% endif -%}
+  {%- if item.flash %}<span class="badge badge-info">{{ _("flash estimate") }}</span>{% endif -%}
+  {%- if item.status == "stale" %}<span class="badge badge-warn">{{ _("stale: last update failed") }}</span>{% endif -%}
+  {%- if item.status in ("error", "missing") %}<span class="badge badge-warn">{{ _("no data") }}</span>{% endif -%}
+  {%- if item.status == "ok" and item.out_of_date %}<span class="badge badge-warn">{{ _("not updating") }}</span>{% endif -%}
 {%- endmacro %}
 
 {# "209 €/MWh" -> large "209", small "€/MWh", so long units don't crowd the tile. #}
@@ -17,7 +17,7 @@
 {% macro tile(item) -%}
   {%- set head = item.headline -%}
   <a class="tile"{% if item.source_url %} href="{{ item.source_url }}" target="_blank" rel="noopener"{% endif %}
-     title="{{ item.label_es }}{% if item.notes %}. {{ item.notes }}{% endif %}">
+     title="{{ item.label_es if item.label != item.label_es else item.label_en }}{% if item.notes %}. {{ _(item.notes) }}{% endif %}">
     <span class="tile-label">{{ item.label }}</span>
     <span class="tile-value">{% if head %}{{ split_value(head) }}{% else %}&ndash;{% endif %}</span>
     <span class="tile-meta">
@@ -33,8 +33,8 @@
     <table class="data-table">
       <thead>
         <tr>
-          <th scope="col">Indicator</th><th scope="col" class="num">Latest</th><th scope="col" class="num">Change</th>
-          <th scope="col">Period</th><th scope="col">Source</th>{% if with_status %}<th scope="col">Status</th>{% endif %}
+          <th scope="col">{{ _("Indicator") }}</th><th scope="col" class="num">{{ _("Latest") }}</th><th scope="col" class="num">{{ _("Change") }}</th>
+          <th scope="col">{{ _("Period") }}</th><th scope="col">{{ _("Source") }}</th>{% if with_status %}<th scope="col">{{ _("Status") }}</th>{% endif %}
         </tr>
       </thead>
       <tbody>
@@ -43,7 +43,7 @@
         <tr{% if with_status %} id="ind-{{ item.id }}"{% endif %}>
           <td>
             <div class="ind-name">{{ item.label }}</div>
-            <div class="ind-es">{{ item.label_es }}</div>
+            <div class="ind-es">{{ item.label_es if item.label != item.label_es else item.label_en }}</div>
             {% if not with_status %}{{ badges(item) }}{% endif %}
           </td>
           <td class="num">{{ (head.display ~ " " ~ head.label) | trim if head else "–" }}</td>
@@ -52,7 +52,7 @@
           <td>{% if item.source_url %}<a href="{{ item.source_url }}" target="_blank" rel="noopener">{{ item.source }}</a>{% else %}{{ item.source }}{% endif %}</td>
           {% if with_status %}
           <td class="nowrap">
-            {% set b = badges(item) %}{% if b | trim %}{{ b }}{% else %}<span class="secondary">ok</span>{% endif %}
+            {% set b = badges(item) %}{% if b | trim %}{{ b }}{% else %}<span class="secondary">{{ _("ok") }}</span>{% endif %}
             {% if item.error %}<div class="error-text">{{ item.error }}</div>{% endif %}
           </td>
           {% endif %}
@@ -98,7 +98,7 @@
 
 {# "Updated 30 Oct" after a section heading whose figures are from the past week. #}
 {% macro updated_badge(u) -%}
-  {%- if u %} <span class="badge badge-ok badge-updated" title="New figures: {{ u.what }}">Updated {{ u.day }}</span>{% endif -%}
+  {%- if u %} <span class="badge badge-ok badge-updated" title="{{ _("New figures: %(what)s", what=u.what) }}">{{ _("Updated %(day)s", day=u.day) }}</span>{% endif -%}
 {%- endmacro %}
 
 {# A chart: the plot is drawn by assets/app.js from the page's data/charts*.js. #}
@@ -110,13 +110,13 @@
     </figcaption>
     <div class="chart" id="chart-{{ c.id }}" role="img" aria-label="{{ c.title }}: {{ c.subtitle }}"></div>
     <div class="chart-foot">
-      <span class="secondary">Source: {{ c.source }}</span>
+      <span class="secondary">{{ _("Source: %(source)s", source=c.source) }}</span>
       <span class="chart-actions">
-        <button type="button" class="chart-link chart-csv" data-chart="{{ c.id }}" aria-label="Download the data of the chart {{ c.title }} as a CSV file">CSV</button>
-        <button type="button" class="chart-link" data-figure="fig-{{ c.id }}" aria-label="Copy a link to the chart {{ c.title }}">Copy link</button>
-        {%- if c.link %} <a class="more" href="{{ c.link }}">More <span aria-hidden="true">&rarr;</span></a>{% endif %}
+        <button type="button" class="chart-link chart-csv" data-chart="{{ c.id }}" aria-label="{{ _("Download the data of the chart %(title)s as a CSV file", title=c.title) }}">CSV</button>
+        <button type="button" class="chart-link" data-figure="fig-{{ c.id }}" aria-label="{{ _("Copy a link to the chart %(title)s", title=c.title) }}">{{ _("Copy link") }}</button>
+        {%- if c.link %} <a class="more" href="{{ c.link }}">{{ _("More") }} <span aria-hidden="true">&rarr;</span></a>{% endif %}
       </span>
     </div>
-    <details class="chart-data" data-chart="{{ c.id }}"><summary>Show data</summary></details>
+    <details class="chart-data" data-chart="{{ c.id }}"><summary>{{ _("Show data") }}</summary></details>
   </figure>
 {%- endmacro %}

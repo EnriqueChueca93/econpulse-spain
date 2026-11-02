@@ -165,7 +165,7 @@ def test_chart_scale_rebase_and_derived_sources(store):
     assert spec["series"][0]["y"] == [50.0, 100.0, 150.0]
     assert spec["series"][1]["y"] == [10.0, 20.0, 30.0]
     assert "rebase" not in spec["series"][0] and "scale" not in spec["series"][1]
-    assert spec["source"] == "INE; EconPulse calculation"
+    assert spec["source"] == "INE; Macroscope calculation"
 
 
 # ---------------------------------------------------------------- pages

@@ -1,4 +1,4 @@
-// EconPulse Spain: the Fiscal Explorer (site/fiscal-explorer.html), after Econvitals' Fiscal Explorer.
+// Macroscope Spain: the Fiscal Explorer (site/fiscal-explorer.html), after Econvitals' Fiscal Explorer.
 // The baseline comes from data/fiscal.js (econpulse/fiscal.py): the European Commission's debt
 // projection to 2036, extended to 2070 on its long-term assumptions. Levers change the path from
 // 2027 through the same debt equation, written as changes from the baseline, so with every lever

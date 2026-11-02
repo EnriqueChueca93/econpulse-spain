@@ -57,16 +57,16 @@ SOURCE_NAMES = {
     "imf": "IMF",
     "bdeproj": "Banco de España",
     "funcas": "FUNCAS",
-    "hicpdist": "Eurostat (EconPulse calculation)",
-    "ageing": "Eurostat (EconPulse calculation)",
+    "hicpdist": "Eurostat (Macroscope calculation)",
+    "ageing": "Eurostat (Macroscope calculation)",
     "reg": "Ministerio de Trabajo",
     "bel": "Ministerio de Trabajo",
     "comext": "Eurostat (Comext)",
     "oilbulletin": "European Commission (Weekly Oil Bulletin)",
-    DERIVED: "EconPulse calculation",
+    DERIVED: "Macroscope calculation",
 }
 
-# EconPulse calculations made while fetching, from another publisher's data: charts credit both.
+# Macroscope calculations made while fetching, from another publisher's data: charts credit both.
 CALCULATED_FROM = {"hicpdist": "Eurostat", "ageing": "Eurostat"}
 
 # DBnomics mirrors several agencies; credit the one behind the series (the key's first part).

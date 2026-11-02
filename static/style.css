@@ -113,6 +113,15 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
   border: 1px solid var(--border); border-radius: 6px; background: transparent; color: var(--text-2); cursor: pointer;
 }
 .theme-toggle:hover { background: var(--hover); color: var(--text); }
+/* English | Español, beside the theme button: the page's own language is filled in. */
+.lang-switch { display: inline-flex; height: 32px; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+.lang-switch a {
+  display: inline-grid; place-items: center; min-width: 32px; padding: 0 7px; font: 600 12px/1 var(--sans);
+  letter-spacing: 0.03em; color: var(--text-2); text-decoration: none;
+}
+.lang-switch a + a { border-left: 1px solid var(--border); }
+.lang-switch a:hover { background: var(--hover); color: var(--text); }
+.lang-switch a[aria-current="true"] { background: var(--text); color: var(--page); }
 
 .site-nav { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; padding-bottom: 0; }
 .site-nav::-webkit-scrollbar { display: none; }
@@ -326,7 +335,9 @@ code { font-size: 13px; background: var(--hover); padding: 1px 5px; border-radiu
 .all-series summary:hover { color: var(--text); }
 
 /* Release bar under the header: today and the next few releases */
-.header-link { font-size: 13px; color: var(--text-2); text-decoration: none; }
+.header-link { font-size: 13px; color: var(--text-2); text-decoration: none; white-space: nowrap; }
+/* Phones: the About link (also in the footer) makes room for the language switch. */
+@media (max-width: 480px) { .header-link { display: none; } }
 .header-link:hover, .header-link[aria-current="page"] { color: var(--text); text-decoration: underline; }
 .release-bar { background: var(--hover); border-bottom: 1px solid var(--border); font-size: 13px; color: var(--text-2); }
 .release-bar-inner { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 18px; padding-top: 7px; padding-bottom: 7px; }

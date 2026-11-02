@@ -21,7 +21,7 @@ def test_free_port_skips_a_busy_one():
 
 
 def test_serves_the_site_without_caching(tmp_path, monkeypatch):
-    (tmp_path / "index.html").write_text("<p>EconPulse</p>", encoding="utf-8")
+    (tmp_path / "index.html").write_text("<p>Macroscope</p>", encoding="utf-8")
     port = serve.free_port(18765)
     stop = {}
 
@@ -40,7 +40,7 @@ def test_serves_the_site_without_caching(tmp_path, monkeypatch):
         threading.Event().wait(0.05)
     try:
         with urllib.request.urlopen(f"http://127.0.0.1:{port}/") as r:
-            assert r.read() == b"<p>EconPulse</p>" and r.headers["Cache-Control"] == "no-store"
+            assert r.read() == b"<p>Macroscope</p>" and r.headers["Cache-Control"] == "no-store"
     finally:
         stop["server"].shutdown()
         thread.join(5)

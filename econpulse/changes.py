@@ -20,6 +20,8 @@ from datetime import datetime, timedelta, timezone
 
 import pandas as pd
 
+from . import i18n
+from .i18n import _
 from .registry import Indicator
 from .sources.base import MADRID
 from .snapshot import summarize
@@ -104,6 +106,30 @@ def record(indicators: list[Indicator], store: Store, now: datetime | None = Non
 
 _NO_CHANGE = re.compile(r"revised to (.+), from \1\.$")
 
+# The log is written in English when the data are fetched; the Spanish site rebuilds each note from its parts.
+_PARTS = {
+    "release": (re.compile(r"^: (?P<now>.+) in (?P<period>.+?)(?P<flash> \(flash estimate\))?, after (?P<before>.+) in (?P<bperiod>.+)\.$"),
+                "{label}: {now} in {period}{flash}, after {before} in {bperiod}."),
+    "revision": (re.compile(r"^ for (?P<period>.+) revised to (?P<now>.+), from (?P<before>.+)\.$"),
+                 "{label} for {period} revised to {now}, from {before}."),
+    "market": (re.compile(r"^: (?P<move>.+) since the last update, to (?P<now>.+)\.$"),
+               "{label}: {move} since the last update, to {now}."),
+}
+
+
+def note_text(note: dict, ind: Indicator | None) -> str:
+    """A logged note in the language being written (as logged when it cannot be taken apart)."""
+    if i18n.lang() == "en" or ind is None or not note["text"].startswith(ind.label) or note["kind"] not in _PARTS:
+        return note["text"]
+    pattern, template = _PARTS[note["kind"]]
+    m = pattern.match(note["text"][len(ind.label):])
+    if not m:
+        return note["text"]
+    parts = {k: i18n.figures(v) for k, v in m.groupdict(default="").items()}
+    if parts.get("flash"):
+        parts["flash"] = _(" (flash estimate)")
+    return _(template).format(label=i18n.pick(ind.label, ind.label_es), **parts)
+
 
 def shown_notes(saved: dict) -> list[dict]:
     """The logged notes worth showing: not revisions whose figure, as shown, did not change
@@ -140,7 +166,7 @@ def recent_releases(store: Store, items_by_id: dict, events: list[dict], today: 
             head = item and item["headline"]
             if head and (not e["period"] or head["period"] == e["period"]):
                 figures.append(f"{item['label']} {head['display']} {head['label']}".strip())
-        out.append({"day": f"{day:%a} {day.day} {day:%b}", "label": e["label"], "period": e["period"],
+        out.append({"day": i18n.wd_day_mon(day), "label": e["label"], "period": e["period"],
                     "page": e["page"], "figures": figures, "ids": e.get("ids", [])})
     return list(reversed(out))
 
@@ -183,4 +209,5 @@ def updated_mark(ids, fresh: dict, labels: dict) -> dict | None:
         return None
     day = fresh[hits[0]]["day"]
     names = [f"{labels.get(i, i)} ({fresh[i]['period']})" for i in hits[:6]]
-    return {"day": f"{day.day} {day:%b}", "what": "; ".join(names) + (f"; and {len(hits) - 6} more" if len(hits) > 6 else "")}
+    more = _("; and {n} more").format(n=len(hits) - 6) if len(hits) > 6 else ""
+    return {"day": i18n.day_mon(day), "what": "; ".join(names) + more}

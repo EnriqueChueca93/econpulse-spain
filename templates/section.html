@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% from "macros.html" import indicator_table, stat_table, chart_card, updated_badge %}
 
-{% block title %}{{ page.title }} · EconPulse Spain{% endblock %}
+{% block title %}{{ page.title }} · {{ brand }}{% endblock %}
 {% block description %}{{ page.intro }}{% endblock %}
 
 {% block content %}
@@ -85,7 +85,7 @@
 
 {% block scripts %}
   {% if charts_file %}
-  <script src="assets/plotly-basic.min.js?v={{ build_id }}"></script>
+  <script src="{{ root }}assets/plotly-basic.min.js?v={{ build_id }}"></script>
   <script src="{{ charts_file }}?v={{ build_id }}"></script>
   {% endif %}
 {% endblock %}

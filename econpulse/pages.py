@@ -19,7 +19,7 @@ from .tables import (AvgChange, Change, Contribution, Data, Heading, Level, Move
 
 LEVELS = [Level("latest"), Level("prev"), Level("year")]
 HORIZONS = [Change("1-mo ann.", 1, True), Change("3-mo ann.", 3, True), Change("6-mo ann.", 6, True), Change("12-mo", 12)]
-SA_NOTE = ("Horizons under 12 months are annualised and use EconPulse seasonal adjustment, because INE publishes "
+SA_NOTE = ("Horizons under 12 months are annualised and use Macroscope seasonal adjustment, because INE publishes "
            "these indices unadjusted. The 12-month column matches the published annual rates.")
 TARGET = [{"y": 2, "label": "2% target"}]
 MOVES = [Level("latest"), Move("1-day", "day"), Move("1-week", "week"), Move("YTD", "ytd"), Move("1-yr", "year")]
@@ -159,7 +159,7 @@ PAGES: dict[str, list[dict]] = {
                     columns=[AvgChange("1-mo", 1), AvgChange("3-mo", 3), AvgChange("12-mo", 12)],
                     rows=[Row("afiliados", "Registrations", season="ours"),
                           Row("paro_registrado", "Registered unemployment", season="ours")],
-                    note=("The 1- and 3-month columns are seasonally adjusted by EconPulse, so they can differ from the "
+                    note=("The 1- and 3-month columns are seasonally adjusted by Macroscope, so they can differ from the "
                           "ministry's own adjusted figures. The 12-month column uses the published data."),
                 ),
                 Table(
@@ -171,11 +171,11 @@ PAGES: dict[str, list[dict]] = {
             ],
             "charts": [
                 {"id": "afiliados-change", "title": "Registrations: monthly change",
-                 "subtitle": "Thousands, seasonally adjusted by EconPulse",
+                 "subtitle": "Thousands, seasonally adjusted by Macroscope",
                  "kind": "bar", "signed": True, "unit": "k", "decimals": 1, "start": "2022-01-01",
                  "series": [("afiliados", "sa_diff", "Monthly change")]},
                 {"id": "paro-change", "title": "Registered unemployment: monthly change",
-                 "subtitle": "Thousands, seasonally adjusted by EconPulse",
+                 "subtitle": "Thousands, seasonally adjusted by Macroscope",
                  "kind": "bar", "signed": True, "unit": "k", "decimals": 1, "start": "2022-01-01",
                  "series": [("paro_registrado", "sa_diff", "Monthly change")]},
                 {"id": "registrations-yoy", "title": "Jobs and job seekers",
@@ -190,7 +190,7 @@ PAGES: dict[str, list[dict]] = {
             "intro": ("Average monthly Social Security registrations by sector and by type of work, from the ministry's "
                       "monthly workbooks. The 1- and 3-month changes use the ministry's own seasonal adjustment; the "
                       "12-month change, the figures as published. From January 2026 the sectors follow the new "
-                      "classification of activities (CNAE-2025); EconPulse links construction and services across the "
+                      "classification of activities (CNAE-2025); Macroscope links construction and services across the "
                       "change, which moved real estate development from one to the other. Every industry, month by "
                       "month, is on its own page (Labour market menu, or the chart's More link)."),
             "tables": [
@@ -252,7 +252,7 @@ PAGES: dict[str, list[dict]] = {
                           Row("paro_construction", "Construction", indent=1, season="ours"),
                           Row("paro_services", "Services", indent=1, season="ours"),
                           Row("paro_no_previous_job", "No previous job", indent=1, season="ours")],
-                    note=("The 1- and 3-month columns are seasonally adjusted by EconPulse; the 12-month column uses "
+                    note=("The 1- and 3-month columns are seasonally adjusted by Macroscope; the 12-month column uses "
                           "the published data."),
                 ),
                 Table(
@@ -404,7 +404,7 @@ PAGES: dict[str, list[dict]] = {
             "title": "Participation and an ageing population",
             "intro": ("As the baby-boom generations reach retirement, a growing share of adults are past working "
                       "age, which pulls down the participation and employment rates of everyone aged 15 and over "
-                      "even when each age group works as much as before. EconPulse holds the population's mix by "
+                      "even when each age group works as much as before. Macroscope holds the population's mix by "
                       "sex and five-year age group at its 2008 shares, letting each group's own rate move, to show "
                       "how much of the change comes from ageing."),
             "facts": demography.ageing_facts,
@@ -419,7 +419,7 @@ PAGES: dict[str, list[dict]] = {
                       Row("lfs_epop_aged", "At the 2008 age mix", indent=1, transform="avg_1y", flow=False),
                       Row("lfs_share_65plus", "Aged 65 and over, % of people 15 and over", transform="avg_1y",
                           flow=False)],
-                note=("EconPulse calculation from Eurostat's labour force survey: the rates of men and women in 13 age "
+                note=("Macroscope calculation from Eurostat's labour force survey: the rates of men and women in 13 age "
                       "groups (15–19 to 70–74, and 75 and over), weighted by each group's share of the population, "
                       "actual or as in 2008. People in private households only."),
             )],
@@ -718,7 +718,7 @@ PAGES: dict[str, list[dict]] = {
                  "kind": "line", "unit": "%", "decimals": 1, "start": "2019-01-01", "ref_lines": TARGET,
                  "series": [("cpi", "level", "CPI"), ("core_cpi", "level", "Core CPI")]},
                 {"id": "core-momentum", "title": "Core CPI momentum",
-                 "subtitle": "3-month annualised (seasonally adjusted by EconPulse) and 12-month % change",
+                 "subtitle": "3-month annualised (seasonally adjusted by Macroscope) and 12-month % change",
                  "kind": "line", "unit": "%", "decimals": 1, "start": "2021-01-01", "ref_lines": TARGET,
                  "series": [("core_cpi_index", "sa_ann3m", "3-mo ann."), ("core_cpi_index", "yoy", "12-mo")]},
                 {"id": "core-components", "title": "Inside core inflation", "subtitle": "% change on a year earlier",
@@ -769,7 +769,7 @@ PAGES: dict[str, list[dict]] = {
             "intro": ("A few big price moves, like energy, can push headline inflation around. These measures look at "
                       "the whole spread of price changes across about 180 detailed items of the harmonised basket: "
                       "the weighted median is the rate half the basket is rising faster than, and the trimmed means "
-                      "average what is left after dropping the most extreme rises and falls. EconPulse calculation from "
+                      "average what is left after dropping the most extreme rises and falls. Macroscope calculation from "
                       "Eurostat data, following the method the ECB uses for the euro area."),
             "facts": underlying.facts,
             "callout": underlying.callout,
@@ -1246,7 +1246,7 @@ PAGES: dict[str, list[dict]] = {
                     Row("cpi_rent_index", "Rents (CPI)", season="ours"),
                 ],
                 note=("House prices are not seasonally adjusted; the quarterly change is as INE reports it. The rents "
-                      "quarterly change uses EconPulse seasonal adjustment."),
+                      "quarterly change uses Macroscope seasonal adjustment."),
             )],
             "charts": [
                 {"id": "house-prices", "title": "House prices", "subtitle": "% change on a year earlier",
@@ -2014,14 +2014,14 @@ PAGES: dict[str, list[dict]] = {
             ],
         },
     ],
-    # ------------------------------------------------------------------ Analysis (EconPulse originals)
+    # ------------------------------------------------------------------ Analysis (Macroscope originals)
     "analysis": [
         {
             "id": "composites",
             "title": "The economy against its history",
             "intro": ("Two summary readings. Each indicator is compared with its own record since 2013 (a z-score: "
                       "0 is normal, +1 is one typical deviation above), then the scores are averaged, giving the "
-                      "newest data the most weight. EconPulse calculation, not an official statistic."),
+                      "newest data the most weight. Macroscope calculation, not an official statistic."),
             "facts": analytics.composite_facts,
             "uses": [c.id for c in analytics.ACTIVITY + analytics.INFLATION],
             "tables": [lambda data: analytics.composite_table(data, "activity"),
@@ -2034,7 +2034,7 @@ PAGES: dict[str, list[dict]] = {
             "intro": ("Did the latest figures beat or miss expectations? Analysts' forecasts for Spanish data are not "
                       "freely available, so each figure is compared with a simple statistical forecast: what the "
                       "indicator's own past predicted. Above zero, the data came in stronger (or inflation hotter) "
-                      "than that forecast. EconPulse calculation, not a survey of forecasters."),
+                      "than that forecast. Macroscope calculation, not a survey of forecasters."),
             "facts": surprises.surprise_facts,
             "uses": [c.id for c in analytics.ACTIVITY + analytics.INFLATION],
             "tables": [lambda data: surprises.surprise_table(data, "activity"),
@@ -2055,7 +2055,7 @@ PAGES: dict[str, list[dict]] = {
         {
             "id": "forecasts",
             "title": "What forecasters expect",
-            "intro": ("The latest forecasts for Spain this year and next, with EconPulse's own figure for this year's "
+            "intro": ("The latest forecasts for Spain this year and next, with Macroscope's own figure for this year's "
                       "GDP. Each forecaster's row shows when it was published: forecasts made months apart saw "
                       "different data, so differences are partly about timing."),
             "facts": forecasts.forecast_facts,

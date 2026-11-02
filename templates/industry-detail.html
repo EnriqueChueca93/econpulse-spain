@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% from "macros.html" import stat_table, chart_card %}
 
-{% block title %}Every industry · EconPulse Spain{% endblock %}
-{% block description %}Monthly Social Security registrations in every industry in Spain: the change each month and its 3-month average.{% endblock %}
+{% block title %}{{ _("Every industry") }} · {{ brand }}{% endblock %}
+{% block description %}{{ _("Monthly Social Security registrations in every industry in Spain: the change each month and its 3-month average.") }}{% endblock %}
 
 {% block content %}
   <h1>Every industry</h1>
@@ -31,9 +31,9 @@
       (CNAE), from the Social Security's yearly workbooks, since 2021. They leave out the special schemes for farm
       workers and domestic employees, so agriculture and households look smaller here than in the sector figures,
       and civil servants covered by their own mutual funds, so public administration does too. Seasonal adjustment
-      is EconPulse's (STL on the series since 2021); the ministry adjusts only the four broad sectors.</p>
+      is Macroscope's (STL on the series since 2021); the ministry adjusts only the four broad sectors.</p>
     <p class="note">From January 2026 activities follow the new classification, CNAE-2025. The groups shown keep their
-      boundaries across the change, except for two moves that cross them, which EconPulse links by moving the
+      boundaries across the change, except for two moves that cross them, which Macroscope links by moving the
       registrations involved in the series before 2026{% if moves %}: {{ moves | join("; ") }}{% endif %}. Each move is
       estimated as the receiving division's jump from December 2025 to January 2026, less the same change a year
       earlier.</p>
@@ -45,7 +45,7 @@
 
 {% block scripts %}
   {% if charts_file %}
-  <script src="assets/plotly-basic.min.js?v={{ build_id }}"></script>
+  <script src="{{ root }}assets/plotly-basic.min.js?v={{ build_id }}"></script>
   <script src="{{ charts_file }}?v={{ build_id }}"></script>
   {% endif %}
 {% endblock %}

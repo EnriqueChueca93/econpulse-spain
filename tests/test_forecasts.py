@@ -110,11 +110,11 @@ def test_forecast_table_and_chart(tmp_path, hand):
     assert by_label["OECD Economic Outlook"]["flag"] == ""
     assert by_label["Average of the forecasts above"]["cells"][0] == "2.4%"  # (2.6 + 2.4 + 2.2) / 3
     assert by_label["Average of the forecasts above"]["cells"][1] == "3.9%"  # the unchecked Commission left out
-    assert by_label["EconPulse: INE's quarters + nowcast"]["cells"][0] == "2.3%"
+    assert by_label["Macroscope: INE's quarters + nowcast"]["cells"][0] == "2.3%"
     assert "the HICP for Bank and Commission" in t["note"] and "Deficit excludes one-offs." in t["note"]
     assert "newly read and not yet checked" in t["note"]
     chart = forecasts.forecast_chart(data, today=date(2026, 10, 31))
-    assert chart["series"][0]["x"] == ["Bank", "Gov", "OECD", "Average", "EconPulse"]
+    assert chart["series"][0]["x"] == ["Bank", "Gov", "OECD", "Average", "Macroscope"]
     assert chart["series"][1]["y"][1] is None  # no 2027 figure from the government
     facts = forecasts.forecast_facts(data, today=date(2026, 10, 31))
     assert facts[0]["label"] == "GDP growth forecast, 2026" and "average of 3" in facts[0]["sub"]

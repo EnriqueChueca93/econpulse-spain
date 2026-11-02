@@ -21,7 +21,7 @@ import argparse
 import sys
 import time
 
-from . import budget, changes, ecbspeak, forecasts, pensions, schedule, serve, stance
+from . import budget, changes, ecbspeak, forecasts, i18n, pensions, schedule, serve, stance
 from .build import build_site
 from .fetch import fetch_all
 from .registry import load_registry
@@ -213,7 +213,9 @@ def main(argv: list[str] | None = None) -> int:
 
     if building:
         index = build_site(indicators, store)
-        print(f"Site built: {index}")
+        print(f"Site built: {index} (in Spanish under es/)")
+        if i18n.missing:
+            print(f"Spanish: {len(i18n.missing)} texts still in English (add them in scripts/write_catalogue.py)")
 
     if args.command == "serve":
         try:

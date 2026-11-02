@@ -1,5 +1,5 @@
 @echo off
-rem EconPulse Spain: fetch the latest data, rebuild the site, open it.
+rem Macroscope Spain: fetch the latest data, rebuild the site, open it.
 cd /d "%~dp0"
 
 if not exist ".venv\Scripts\python.exe" (

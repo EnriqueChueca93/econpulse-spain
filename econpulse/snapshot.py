@@ -9,7 +9,7 @@ from datetime import datetime, timezone
 
 import pandas as pd
 
-from . import transforms
+from . import i18n, transforms
 from .fetch import is_out_of_date
 from .registry import Indicator
 from .store import Store
@@ -18,12 +18,13 @@ MINUS = "−"  # typographic minus, as on econvitals
 
 
 def period_label(date: pd.Timestamp, freq: str) -> str:
+    """"26 Oct 2026", "Oct 2026", "Q3 2026", "2026" (in Spanish "26 oct 2026", "oct 2026", "T3 2026")."""
     if freq == "D":
-        return f"{date.day} {date:%b %Y}"
+        return i18n.day_month_year(date)
     if freq == "M":
-        return f"{date:%b %Y}"
+        return i18n.month_year(date)
     if freq == "Q":
-        return f"Q{(date.month - 1) // 3 + 1} {date.year}"
+        return i18n.quarter(date)
     return str(date.year)
 
 
@@ -41,9 +42,9 @@ def fmt_value(v: float, unit: str, decimals: int) -> str:
     if unit == "%":
         return f"{_num(v, decimals, thousands=True)}%"
     if unit == "% of GDP":
-        return f"{_num(v, decimals)}% of GDP"
+        return f"{_num(v, decimals)}{i18n._('% of GDP')}"
     if unit == "bp":
-        return f"{_num(v, 0)} bp"
+        return f"{_num(v, 0)} {i18n._('bp')}"
     if unit == "thousands":
         return f"{n}k"
     if unit in ("index", "balance", "rate"):
@@ -51,12 +52,12 @@ def fmt_value(v: float, unit: str, decimals: int) -> str:
     if unit == "$/bbl":
         return f"{sign}${digits}"
     if unit == "€ mn":
-        return f"{sign}€{digits} mn"
+        return f"{sign}€{digits} {i18n._('mn')}"
     if unit == "€ bn":
-        return f"{sign}€{digits} bn"
+        return f"{sign}€{digits} {i18n._('bn')}"
     if unit == "€":
         return f"{sign}€{digits}"
-    return f"{n} {unit}"  # e.g. "224.9 €/MWh", "93,858 vehicles"
+    return f"{n} {i18n._(unit)}"  # e.g. "224.9 €/MWh", "93,858 vehicles"
 
 
 def fmt_change(c: float, unit: str, decimals: int) -> str:
@@ -135,9 +136,9 @@ def subline(ind: Indicator, values: list[dict]) -> str:
     if head["transform"] != "level" and len(values) > 1:
         return f"{values[1]['display']} {values[1]['label']}".strip()
     if ind.freq == "D" and head["change_ytd_display"]:
-        return f"{head['change_ytd_display']} YTD"
+        return f"{head['change_ytd_display']} {i18n.figures('YTD')}"
     if head["change_year_display"]:
-        return f"{head['change_year_display']} y/y"
+        return f"{head['change_year_display']} {i18n.figures('y/y')}"
     return ""
 
 
@@ -155,13 +156,14 @@ def summarize(ind: Indicator, series: pd.Series | None, entry: dict) -> dict:
     status = entry.get("status", "missing" if series is None else "ok")
     return {
         "id": ind.id,
-        "label": ind.label,
+        "label": i18n.pick(ind.label, ind.label_es),   # the official Spanish name on the Spanish site
+        "label_en": ind.label,
         "label_es": ind.label_es,
         "section": ind.section,
         "freq": ind.freq,
         "tile": ind.tile,
         "notes": ind.notes,
-        "source": ind.source_name,
+        "source": i18n._(ind.source_name),
         "source_url": ind.source_url(),
         "status": status,
         "out_of_date": is_out_of_date(last_date, ind.max_age),

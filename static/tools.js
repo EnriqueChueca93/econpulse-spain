@@ -1,4 +1,4 @@
-// EconPulse Spain: interactive tools. The data comes from data/tools.js (written by the
+// Macroscope Spain: interactive tools. The data comes from data/tools.js (written by the
 // build); every number here is recomputed in the browser when a control changes, and the
 // charts are drawn by app.js (window.EP.render) so they follow the light/dark theme.
 (function () {

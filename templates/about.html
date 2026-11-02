@@ -1,17 +1,17 @@
 {% extends "base.html" %}
 
-{% block title %}About and methods · EconPulse Spain{% endblock %}
-{% block description %}How EconPulse Spain works: its sources, how often each series updates, and how the EconPulse calculations are made.{% endblock %}
+{% block title %}{{ _("About and methods") }} · {{ brand }}{% endblock %}
+{% block description %}{{ _("How Macroscope Spain works: its sources, how often each series updates, and how the Macroscope calculations are made.") }}{% endblock %}
 
 {% block content %}
-  <h1>About EconPulse Spain</h1>
+  <h1>About Macroscope Spain</h1>
   <p class="lede">A running read on the health of the Spanish economy: {{ total }} official series, updated together,
     shown as tables and charts with the method behind every number.</p>
 
   <section aria-labelledby="what">
     <h2 id="what">What this is</h2>
     <div class="prose">
-      <p>EconPulse Spain follows the idea of <a href="https://econvitals.org/" target="_blank" rel="noopener">Econvitals</a>,
+      <p>Macroscope Spain follows the idea of <a href="https://econvitals.org/" target="_blank" rel="noopener">Econvitals</a>,
         which does the same for the United States, and is not affiliated with it. Everything here comes from official
         or public sources, accessed through their open data services, and is rebuilt as a plain website that works
         offline.</p>
@@ -34,7 +34,7 @@
             "FRED": "Brent crude, European gas and US comparators (from the US EIA, IMF and US agencies)",
             "Red Eléctrica": "Day-ahead electricity price and daily electricity demand",
             "Seguridad Social": "Workers registered with the Social Security (afiliados)",
-            "EconPulse calculation": "Series computed here from the others: spreads, real values, averages"} %}
+            "Macroscope calculation": "Series computed here from the others: spreads, real values, averages"} %}
           {% for source, count in source_counts %}
           <tr><td class="ind-name">{{ source }}</td><td class="num">{{ count }}</td><td class="secondary">{{ what.get(source, "") }}</td></tr>
           {% endfor %}
@@ -49,7 +49,7 @@
     <div class="prose">
       <h3>As published, unless marked</h3>
       <p>Figures are shown as each source publishes them. Where the site changes or combines them, it says so:
-        <abbr title="seasonally adjusted">SA</abbr> marks seasonal adjustment done here, and "EconPulse calculation"
+        <abbr title="seasonally adjusted">SA</abbr> marks seasonal adjustment done here, and "Macroscope calculation"
         marks anything computed here.</p>
       <h3>Changes and growth rates</h3>
       <p>"y/y" compares with the same period a year earlier, "q/q" and "m/m" with the previous quarter or month. Following
@@ -58,7 +58,7 @@
         (bp, hundredths of a percentage point) or percentage points (pp); prices move in %.</p>
       <h3>Seasonal adjustment</h3>
       <p>Spain's CPI, the Social Security registrations and several other monthly series are published unadjusted.
-        Where a short-term change needs adjusting, EconPulse uses STL (seasonal-trend decomposition with LOESS) on the
+        Where a short-term change needs adjusting, Macroscope uses STL (seasonal-trend decomposition with LOESS) on the
         logarithm of the series from 2010, with robust weights so that 2020 does not distort it, and seasonal factors
         that change only slowly. Results can differ from adjusted figures the source publishes.</p>
       <h3>Flash estimates and revisions</h3>
@@ -68,7 +68,7 @@
       <p>Each series is checked against a delay that suits how often it is published. A series whose last download
         failed keeps its previous data and is marked "stale"; one whose source has stopped publishing is marked
         "not updating". Dates and times are Madrid time.</p>
-      <h3>EconPulse originals</h3>
+      <h3>Macroscope originals</h3>
       <p>The composites, data surprises, GDP nowcast, forecasters' table, 10-year yield decomposition and Taylor rules
         are explained, with their assumptions and track record, on the <a href="analysis.html">Analysis</a> page.
         <a href="ecb-speak.html">ECB-speak</a> scores the Governing Council's speeches with published word lists, not
@@ -109,10 +109,10 @@
         shares of GDP over the past four quarters. Past years can differ from the
         report's because the data have been revised since. All the tables, from
         2015, are in one
-        <a href="data/econpulse-spain-sector-tables.xlsx" download>Excel workbook</a>.</p>
+        <a href="data/macroscope-spain-sector-tables.xlsx" download>Excel workbook</a>.</p>
       <h3>What changed and the calendar</h3>
       <p>After each update the site compares every series with the previous update and writes a short note for each
-        new release, revision or large market move; the same notes make up the <a href="feed.xml">RSS feed</a>.
+        new release, revision or large market move; the same notes make up the <a href="{{ root }}feed.xml">RSS feed</a>.
         Revisions are noted only when the figure changes as shown. The release calendar uses INE's published
         calendar, the Social Security's usual publication day and the ECB's meeting schedule.</p>
       <h3>Charts</h3>

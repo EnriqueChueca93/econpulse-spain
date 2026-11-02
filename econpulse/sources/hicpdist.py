@@ -1,4 +1,4 @@
-"""Underlying inflation from the spread of price changes across the HICP basket (EconPulse calculation).
+"""Underlying inflation from the spread of price changes across the HICP basket (Macroscope calculation).
 
 Eurostat publishes the harmonised index for about 290 detailed items (ECOICOP ver. 2
 subclasses, five digits; around 180-200 have data for Spain) with each year's weights.

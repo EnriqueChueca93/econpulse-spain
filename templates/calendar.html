@@ -1,33 +1,31 @@
 {% extends "base.html" %}
 
-{% block title %}Release calendar · EconPulse Spain{% endblock %}
-{% block description %}When the figures on EconPulse Spain are published: the release calendar of INE, the Banco de España, Eurostat and the other sources, in Madrid time.{% endblock %}
+{% block title %}{{ _("Release calendar") }} · {{ brand }}{% endblock %}
+{% block description %}{{ _("When the figures on Macroscope Spain are published: the release calendar of INE, the Banco de España, Eurostat and the other sources, in Madrid time.") }}{% endblock %}
 
 {% block content %}
-  <h1>Release calendar</h1>
-  <p class="lede">When the figures on this site are published. Times are Madrid time.</p>
-  <p class="note">INE dates come from <a href="{{ calendar_page }}" target="_blank" rel="noopener">INE's own calendar</a>,
-    refreshed at every update. Social Security registrations are expected on the second working day of each month;
-    ECB decisions follow the ECB's published schedule.</p>
+  <h1>{{ _("Release calendar") }}</h1>
+  <p class="lede">{{ _("When the figures on this site are published. Times are Madrid time.") }}</p>
+  <p class="note">{{ _("INE dates come from") }} <a href="{{ calendar_page }}" target="_blank" rel="noopener">{{ _("INE's own calendar") }}</a>,
+    {{ _("refreshed at every update. Social Security registrations are expected on the second working day of each month; ECB decisions follow the ECB's published schedule.") }}</p>
 
   {% if months %}
   {# The release map: the build writes four months of days and static/calendar.js shows the three from the viewer's
      own month, marks today and opens the first day with releases still to come; without scripts the build's own
      three show. #}
   <section class="cal-map" id="cal-map" aria-labelledby="release-map">
-    <h2 id="release-map">Release map</h2>
-    <p class="block-intro">The next three months, day by day: the darker the day, the more releases it has, and the
-      number in its corner says how many. Click a day to see them.</p>
-    <p class="cal-legend"><span>Releases in a day</span>
+    <h2 id="release-map">{{ _("Release map") }}</h2>
+    <p class="block-intro">{{ _("The next three months, day by day: the darker the day, the more releases it has, and the number in its corner says how many. Click a day to see them.") }}</p>
+    <p class="cal-legend"><span>{{ _("Releases in a day") }}</span>
       {% for k, label in [(0, "0"), (1, "1"), (2, "2"), (3, "3"), (4, "4+")] %}<span class="cal-key"><span class="cal-swatch heat-{{ k }}" aria-hidden="true"></span>{{ label }}</span>{% endfor %}
-      <span class="cal-key"><span class="cal-today-key" aria-hidden="true"></span>today</span>
+      <span class="cal-key"><span class="cal-today-key" aria-hidden="true"></span>{{ _("today") }}</span>
     </p>
     <div class="cal-months">
       {% for m in months %}
       <div class="cal-month" data-month="{{ m.key }}"{% if loop.index0 > 2 %} hidden{% endif %}>
         <h3>{{ m.title }}</h3>
         <div class="cal-grid">
-          {% for w in ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"] %}<span class="cal-head" aria-hidden="true">{{ w }}</span>{% endfor %}
+          {% for w in weekday_heads %}<span class="cal-head" aria-hidden="true">{{ w }}</span>{% endfor %}
           {% for c in m.cells %}
           {% if not c %}<span class="cal-blank"></span>
           {% else %}
@@ -35,7 +33,7 @@
           {% set past = c.date < today_iso %}
           {% set cls = "cal-cell heat-" ~ ([n, 4] | min) ~ (" is-weekend" if c.weekend else "") ~ (" is-past" if past else "") ~ (" is-today" if c.date == today_iso else "") %}
           {% if n %}<button type="button" class="{{ cls }}" data-date="{{ c.date }}" data-last="{{ c.last }}"
-            aria-label="{{ c.long }}: {{ n }} release{{ 's' if n > 1 }}" aria-controls="cal-list-{{ c.date }}"
+            aria-label="{{ c.long }}: {{ ngettext("%(num)s release", "%(num)s releases", n) }}" aria-controls="cal-list-{{ c.date }}"
             aria-pressed="{{ 'true' if c.date == map_open else 'false' }}"{% if past %} disabled{% endif %}><span class="cal-num">{{ c.day }}</span><span class="cal-n" aria-hidden="true">{{ n }}</span></button>
           {%- else %}<span class="{{ cls }}" data-date="{{ c.date }}"><span class="cal-num">{{ c.day }}</span></span>{% endif %}
           {% endif %}
@@ -52,21 +50,20 @@
       <ul class="news-list">
         {% for e in c.events %}
         <li><span class="news-day">{{ e.time }}</span> <a href="{{ e.page }}">{{ e.label }}</a>{% if e.period %} · {{ e.period }}{% endif %}
-          <span class="secondary">· {{ e.source }}</span>{% if e.expected %} <span class="badge badge-info">expected</span>{% endif %}</li>
+          <span class="secondary">· {{ e.source }}</span>{% if e.expected %} <span class="badge badge-info">{{ _("expected") }}</span>{% endif %}</li>
         {% endfor %}
       </ul>
     </div>
     {% endfor %}{% endfor %}
     </div>
-    <p class="note cal-none"{% if map_open %} hidden{% endif %}>Nothing scheduled in the next three months.</p>
-    <p class="note">INE puts out each year's calendar towards the end of the year before; until then the months ahead
-      show only the Social Security's and the ECB's dates.</p>
+    <p class="note cal-none"{% if map_open %} hidden{% endif %}>{{ _("Nothing scheduled in the next three months.") }}</p>
+    <p class="note">{{ _("INE puts out each year's calendar towards the end of the year before; until then the months ahead show only the Social Security's and the ECB's dates.") }}</p>
   </section>
   {% endif %}
 
   {% if recent %}
   <section aria-labelledby="recent">
-    <h2 id="recent">Released in the past week</h2>
+    <h2 id="recent">{{ _("Released in the past week") }}</h2>
     <ul class="news-list">
       {% for r in recent %}
       <li><span class="news-day">{{ r.day }}</span> <a href="{{ r.page }}">{{ r.label }}</a>{% if r.period %} · {{ r.period }}{% endif %}
@@ -77,23 +74,23 @@
   {% endif %}
 
   <section aria-labelledby="upcoming">
-    <h2 id="upcoming">The next two months</h2>
+    <h2 id="upcoming">{{ _("The next two months") }}</h2>
     {% set upcoming = days | rejectattr("past") | list %}
     {% if upcoming %}
     <div class="table-scroll">
       <table class="data-table calendar-table">
         <thead>
-          <tr><th scope="col">Time</th><th scope="col">Release</th><th scope="col">Period</th><th scope="col">Source</th></tr>
+          <tr><th scope="col">{{ _("Time") }}</th><th scope="col">{{ _("Release") }}</th><th scope="col">{{ _("Period") }}</th><th scope="col">{{ _("Source") }}</th></tr>
         </thead>
         {% for day in upcoming %}
         <tbody>
-          <tr class="day-row{% if day.today %} is-today{% endif %}"><th scope="rowgroup" colspan="4">{{ day.label }}{% if day.today %} · today{% endif %}</th></tr>
+          <tr class="day-row{% if day.today %} is-today{% endif %}"><th scope="rowgroup" colspan="4">{{ day.label }}{% if day.today %} · {{ _("today") }}{% endif %}</th></tr>
           {% for e in day.events %}
           <tr>
             <td class="nowrap secondary">{{ e.time }}</td>
             <td><a href="{{ e.page }}">{{ e.label }}</a></td>
             <td class="nowrap">{{ e.period }}</td>
-            <td class="secondary">{{ e.source }}{% if e.expected %} <span class="badge badge-info">expected</span>{% endif %}</td>
+            <td class="secondary">{{ e.source }}{% if e.expected %} <span class="badge badge-info">{{ _("expected") }}</span>{% endif %}</td>
           </tr>
           {% endfor %}
         </tbody>
@@ -101,9 +98,9 @@
       </table>
     </div>
     {% else %}
-    <p class="note">No releases found for the coming weeks. The calendar fills in at the next data update.</p>
+    <p class="note">{{ _("No releases found for the coming weeks. The calendar fills in at the next data update.") }}</p>
     {% endif %}
   </section>
 {% endblock %}
 
-{% block after_scripts %}<script src="assets/calendar.js?v={{ build_id }}"></script>{% endblock %}
+{% block after_scripts %}<script src="{{ root }}assets/calendar.js?v={{ build_id }}"></script>{% endblock %}

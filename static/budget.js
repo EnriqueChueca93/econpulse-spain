@@ -1,4 +1,4 @@
-// EconPulse Spain: the Budget explorer (site/budget-explorer.html). Spending by function and by type, and
+// Macroscope Spain: the Budget explorer (site/budget-explorer.html). Spending by function and by type, and
 // revenue by type, for each administration since 1995, from data/budget.js (econpulse/budget.py: the IGAE's
 // national accounts). Values arrive in € mn by year; the measures (constant prices, % of GDP, per person,
 // share of the total) are worked out here. Charts are drawn by the site's own renderer (EP.render). The reader

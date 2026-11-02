@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+{# The About page in Spanish (Batch 33a): mostly prose, so a template of its own rather than catalogue entries.
+   Keep it in step with templates/about.html. #}
+
+{% block title %}Acerca del sitio y métodos · {{ brand }}{% endblock %}
+{% block description %}Cómo funciona Macroscope España: sus fuentes, con qué frecuencia se actualiza cada serie y cómo se hacen los cálculos de Macroscope.{% endblock %}
+
+{% block content %}
+  <h1>Acerca de Macroscope España</h1>
+  <p class="lede">Una lectura continua del estado de la economía española: {{ total }} series oficiales, actualizadas a la
+    vez y presentadas en tablas y gráficos, con el método detrás de cada cifra.</p>
+
+  <section aria-labelledby="what">
+    <h2 id="what">Qué es</h2>
+    <div class="prose">
+      <p>Macroscope España sigue la idea de <a href="https://econvitals.org/" target="_blank" rel="noopener">Econvitals</a>,
+        que hace lo mismo para Estados Unidos, y no tiene relación con él. Todo procede de fuentes oficiales o públicas,
+        consultadas a través de sus servicios de datos abiertos, y se reconstruye como un sitio web sencillo que funciona
+        sin conexión.</p>
+      <p>El sitio no hace previsiones propias, salvo las que se señalan claramente en la página de
+        <a href="analysis.html">Análisis</a>, y nada de lo que contiene es asesoramiento de inversión.</p>
+      <p>Esta versión en español está traducida a partir de la inglesa; los nombres de las series son los oficiales de
+        cada organismo. Algunas partes del sitio siguen todavía en inglés mientras se completa la traducción.</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="sources">
+    <h2 id="sources">Fuentes</h2>
+    <div class="table-scroll">
+      <table class="data-table">
+        <thead><tr><th scope="col">Fuente</th><th scope="col" class="num">Series</th><th scope="col">Qué aporta</th></tr></thead>
+        <tbody>
+          {% set what = {
+            "INE": "Contabilidad nacional, IPC, Encuesta de Población Activa (EPA), costes laborales, industria, comercio minorista, turismo, vivienda y datos regionales",
+            "Eurostat": "Inflación armonizada, paro y PIB de España y de sus comparables, finanzas públicas y encuestas",
+            "BCE": "Tipos oficiales, €STR, tipos de cambio, curva de tipos AAA de la zona del euro, tipos hipotecarios y deuda de los hogares",
+            "Banco de España": "Rentabilidades diarias de la deuda española, prima de riesgo, Euríbor, IBEX 35, paro registrado, convenios colectivos y visados",
+            "FRED": "Brent, gas europeo y comparables de Estados Unidos (de la EIA, el FMI y otras agencias estadounidenses)",
+            "Red Eléctrica": "Precio de la electricidad en el mercado diario y demanda eléctrica diaria",
+            "Seguridad Social": "Trabajadores afiliados a la Seguridad Social",
+            "cálculo de Macroscope": "Series calculadas aquí a partir de las demás: diferenciales, valores reales y medias"} %}
+          {% for source, count in source_counts %}
+          <tr><td class="ind-name">{{ source }}</td><td class="num">{{ count }}</td><td class="secondary">{{ what.get(source, "") }}</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Todas las series, con un enlace a su fuente, están en la página de <a href="data.html">Datos</a>.</p>
+  </section>
+
+  <section aria-labelledby="methods">
+    <h2 id="methods">Cómo se elaboran las cifras</h2>
+    <div class="prose">
+      <h3>Tal como se publican, salvo que se indique</h3>
+      <p>Las cifras se muestran como las publica cada fuente. Cuando el sitio las modifica o las combina, lo dice:
+        <abbr title="desestacionalizado">desest.</abbr> señala una desestacionalización hecha aquí, y «cálculo de
+        Macroscope» señala todo lo que se calcula aquí.</p>
+      <h3>Variaciones y tasas de crecimiento</h3>
+      <p>«a/a» compara con el mismo periodo del año anterior; «t/t» y «m/m», con el trimestre o el mes anterior. Siguiendo
+        la práctica española, el crecimiento trimestral del PIB no se anualiza. Las tablas que comparan horizontes
+        anualizan las variaciones de menos de un año, para que una tasa a un mes y otra a doce meses puedan leerse una
+        junto a otra. Los tipos de interés se mueven en puntos básicos (pb, centésimas de punto porcentual) o en puntos
+        porcentuales (pp); los precios, en %. Las cifras conservan el formato inglés: el punto separa los decimales y la
+        coma, los millares.</p>
+      <h3>Desestacionalización</h3>
+      <p>El IPC español, la afiliación a la Seguridad Social y varias otras series mensuales se publican sin
+        desestacionalizar. Cuando una variación a corto plazo necesita ajuste, Macroscope aplica STL (descomposición
+        estacional y de tendencia con LOESS) al logaritmo de la serie desde 2010, con pesos robustos para que 2020 no la
+        distorsione y factores estacionales que cambian solo lentamente. Los resultados pueden diferir de las cifras
+        desestacionalizadas que publica la fuente.</p>
+      <h3>Avances y revisiones</h3>
+      <p>El avance del IPC del INE aparece en cuanto se publica y se señala como tal. Cada actualización vuelve a
+        descargar la historia reciente, de modo que las revisiones sustituyen a las cifras anteriores.</p>
+      <h3>Actualidad de los datos</h3>
+      <p>Cada serie se comprueba frente a un plazo acorde con la frecuencia con que se publica. Una serie cuya última
+        descarga falló conserva sus datos anteriores y se marca como «desfasada»; una cuya fuente ha dejado de publicar
+        se marca como «sin actualizar». Las fechas y horas son de Madrid.</p>
+      <h3>Elaboraciones propias de Macroscope</h3>
+      <p>Los indicadores compuestos, las sorpresas en los datos, la estimación adelantada del PIB, la tabla de
+        previsiones, la descomposición del bono a 10 años y las reglas de Taylor se explican, con sus supuestos y su
+        historial, en la página de <a href="analysis.html">Análisis</a>.
+        <a href="ecb-speak.html">ECB-speak</a> puntúa los discursos del Consejo de Gobierno con listas de palabras
+        publicadas, no con una IA, y muestra hasta qué punto el resultado sigue las decisiones del BCE.
+        El <a href="fiscal-explorer.html">explorador fiscal</a> parte del escenario base del Debt Sustainability
+        Monitor de la Comisión Europea para España, reproducido con exactitud hasta 2036, y lo prolonga con los supuestos
+        de largo plazo de la Comisión; su método se explica en la página.
+        La página de <a href="stance.html">orientación de los bancos centrales</a> muestra la Global Central Bank Stance
+        Matrix de Econvitals (econvitals.org, de Jason Furman), cuyo trabajo es de dominio público (CC0 1.0); se
+        actualiza a diario con los datos públicos de Econvitals, que se citan en la página.
+        La inflación subyacente (mediana ponderada y medias recortadas) se calcula a partir de las rúbricas detalladas
+        del IPCA de Eurostat y sus ponderaciones anuales, según el método del BCE, y se explica en la página de
+        <a href="inflation.html#underlying">Inflación</a>. La actividad y el empleo con la estructura de edades de 2008,
+        en la página del <a href="labour.html#ageing">Mercado laboral</a>, recombinan las tasas de hombres y mujeres de
+        13 grupos de edad de la encuesta de población activa de Eurostat con el peso de cada grupo en la población de
+        2008. Los despidos colectivos y los ERTE proceden de las hojas mensuales de Regulación de Empleo del Ministerio
+        de Trabajo, leídas desde 2023. La página de <a href="trade.html">Comercio</a> suma las exportaciones e
+        importaciones de Comext (Eurostat) por capítulos del Sistema Armonizado en 18 grupos de productos y lee sus
+        totales por socio; Comext sigue el concepto comunitario de la UE, por lo que sus totales difieren ligeramente de
+        las cifras de Aduanas. Los servicios por tipo proceden de la balanza de pagos trimestral de Eurostat, y los
+        precios de exportación e importación, de sus estadísticas coyunturales de empresas. La senda implícita en los
+        mercados de la página del BCE usa los tipos a plazo de la deuda pública AAA en lugar de los tipos swap, que no
+        están disponibles gratuitamente.</p>
+      <h3>Tablas sectoriales al estilo del FMI</h3>
+      <p>Las <a href="sector-tables.html">tablas sectoriales</a> siguen línea a línea, en la medida en que lo permiten
+        los datos públicos, las tablas del informe del personal técnico del FMI sobre el Artículo IV de España de 2026.
+        Los años observados proceden del INE, Eurostat y el BCE, y los de previsión, de la base de datos del World
+        Economic Outlook del FMI, que publica solo algunas de las líneas del informe; las demás muestran «…», la marca
+        del FMI para los datos no disponibles. El producto potencial, la brecha de producción y el saldo estructural son
+        estimaciones del personal técnico del FMI en todos los años. Cuando una línea se deriva, sigue la definición del
+        FMI: el saldo primario excluye tanto los intereses cobrados como los pagados, y el ahorro público es el saldo de
+        las administraciones más la inversión pública. El análisis de sostenibilidad de la deuda descompone la variación
+        de la ratio de deuda como el FMI (déficit primario, tipo de interés real, crecimiento real y otros flujos); sus
+        pruebas de estrés proceden del Debt Sustainability Monitor de la Comisión Europea, porque las del FMI no se
+        publican como datos. La deuda externa se reconstruye a partir de la posición de inversión internacional de
+        Eurostat (pasivos en instrumentos de deuda), mientras que el FMI usa las estadísticas de deuda externa del Banco
+        Mundial. Los indicadores de solidez consolidados de los bancos se calculan con la base de datos de Financial
+        Soundness Indicators del propio FMI, y sus exposiciones nacionales, con el Boletín Estadístico del Banco de
+        España. La tabla monetaria no tiene equivalente en el informe, porque el BCE fija la política para toda la zona
+        del euro. En la página de tablas sectoriales, las tablas con datos trimestrales o mensuales también se ofrecen por
+        trimestre o por mes (solo datos observados): los flujos, como porcentaje del PIB de ese periodo, y los saldos,
+        como porcentaje del PIB de los cuatro últimos trimestres. Los años pasados pueden diferir de los del informe
+        porque los datos se han revisado desde entonces. Todas las tablas, desde 2015, están en un
+        <a href="{{ root }}data/macroscope-spain-sector-tables.xlsx" download>libro de Excel</a> (en inglés).</p>
+      <h3>Qué ha cambiado y el calendario</h3>
+      <p>Tras cada actualización, el sitio compara cada serie con la actualización anterior y escribe una nota breve por
+        cada nueva publicación, revisión o movimiento grande de mercado; esas mismas notas forman el
+        <a href="{{ root }}feed.xml">canal RSS</a> (en inglés). Las revisiones solo se anotan cuando cambia la cifra tal
+        como se muestra. El calendario de publicaciones usa el calendario publicado por el INE, el día habitual de
+        publicación de la Seguridad Social y el calendario de reuniones del BCE.</p>
+      <h3>Gráficos</h3>
+      <p>Los gráficos se dibujan en el navegador con <a href="https://plotly.com/javascript/">plotly.js</a> (licencia
+        MIT), en su edición básica, que es todo lo que el sitio necesita; se sirve con el sitio, de modo que no se carga
+        nada de fuera.</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="limits">
+    <h2 id="limits">Límites</h2>
+    <div class="prose">
+      <ul>
+        <li>Los datos aparecen cuando el sitio se actualiza, no en el momento en que la fuente los publica.</li>
+        <li>Algunas series aún no tienen una fuente gratuita fiable, como los diferenciales de crédito empresarial de
+          la zona del euro.</li>
+        <li>Varios organismos de previsión publican páginas web y PDF en lugar de datos, así que sus cifras se leen de
+          esas páginas; cada nueva edición solo cuenta tras una comprobación con IA frente al documento del propio
+          organismo, y hasta entonces se marca como «pendiente de comprobación por IA». Las previsiones del Gobierno y de
+          la AIReF llegan a través del Panel de FUNCAS, hasta dos meses después de publicarse.</li>
+        <li>Las sorpresas en los datos se miden frente a una previsión estadística sencilla, no frente a las
+          expectativas de los analistas, que no están disponibles gratuitamente para los datos españoles.</li>
+        <li>Los cálculos se revisan, pero puede haber errores: la publicación de la propia fuente es siempre la
+          referencia.</li>
+      </ul>
+    </div>
+  </section>
+{% endblock %}

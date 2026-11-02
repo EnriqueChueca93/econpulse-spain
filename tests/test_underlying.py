@@ -81,10 +81,10 @@ def test_page_pieces_from_the_stored_distribution(tmp_path):
     page = pages.build_page("inflation", load_registry(), store)
     block = next(b for b in page["blocks"] if b["id"] == "underlying")
     assert [c["id"] for c in block["charts"]][-1] == "inflation-spread"
-    assert block["charts"][0]["source"] == "Eurostat; EconPulse calculation"
+    assert block["charts"][0]["source"] == "Eurostat; Macroscope calculation"
 
 
 def test_calculated_series_credit_eurostat():
     by_id = {i.id: i for i in load_registry()}
-    assert charts.source_names(by_id["hicp_wmedian"], by_id) == ["Eurostat", "EconPulse calculation"]
-    assert by_id["hicp_wmedian"].source_name == "Eurostat (EconPulse calculation)"
+    assert charts.source_names(by_id["hicp_wmedian"], by_id) == ["Eurostat", "Macroscope calculation"]
+    assert by_id["hicp_wmedian"].source_name == "Eurostat (Macroscope calculation)"

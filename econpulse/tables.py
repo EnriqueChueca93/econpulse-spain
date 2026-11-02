@@ -10,7 +10,7 @@ Each row says how to treat seasonality (`season`):
     adjusted   published seasonally adjusted: every horizon uses the series as it is
     published  unadjusted, but short-term changes shown as the source reports them
                (house prices q/q, as INE does)
-    ours       published unadjusted: horizons under 12 months use EconPulse's adjustment
+    ours       published unadjusted: horizons under 12 months use Macroscope's adjustment
     raw        published unadjusted and left so: only 12-month horizons are shown
 
 A Panel is the other way round: one row per country or region, one column per

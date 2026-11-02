@@ -1,4 +1,4 @@
-# EconPulse Spain indicator registry.
+# Macroscope Spain indicator registry.
 #
 # One entry per series. Fields:
 #   id           unique name, also the CSV file name in data/series/
@@ -19,7 +19,7 @@
 #                "€ mn", "€", "€/l" (a litre), or a plain number shown without suffix: "index", "balance", "rate"
 #   scale        multiply fetched values (default 1), e.g. 0.001 for persons -> thousands
 #   transforms   how to show it; the first one is the headline (level, pop, yoy, ann3m, saar, diff, diff_yoy;
-#                sa_pop, sa_diff… first apply EconPulse seasonal adjustment)
+#                sa_pop, sa_diff… first apply Macroscope seasonal adjustment)
 #   decimals     decimals to display (default 1)
 #   change_unit  pp | bp for rates; % for relative change (prices, indices, exchange rates)
 #   tile         position in the home-page key-indicators strip (omit if not a tile)
@@ -614,7 +614,7 @@ indicators:
     scale: 0.001
     transforms: [sa_diff, diff_yoy, yoy]
     tile: 2
-    notes: Monthly average, total system. The monthly change is seasonally adjusted by EconPulse; the y/y change is as published.
+    notes: Monthly average, total system. The monthly change is seasonally adjusted by Macroscope; the y/y change is as published.
 
   - id: unemployment_epa
     label: Unemployment rate (EPA)
@@ -973,7 +973,7 @@ indicators:
     tile: 7
     notes: Harmonised index, the measure the ECB targets.
 
-  # Underlying inflation: EconPulse calculations over the ~200 detailed HICP items (see sources/hicpdist.py).
+  # Underlying inflation: Macroscope calculations over the ~200 detailed HICP items (see sources/hicpdist.py).
   - id: hicp_wmedian
     label: Weighted median inflation (HICP)
     label_es: Mediana ponderada de la inflación (IPCA)
@@ -983,7 +983,7 @@ indicators:
     freq: M
     unit: "%"
     change_unit: pp
-    notes: EconPulse calculation from Eurostat's detailed HICP items and each year's weights, following the ECB's method.
+    notes: Macroscope calculation from Eurostat's detailed HICP items and each year's weights, following the ECB's method.
 
   - id: hicp_trim10
     label: Trimmed mean inflation, 10% (HICP)
@@ -6932,7 +6932,7 @@ indicators:
     notes: Euro area of 21 countries (Bulgaria joined in 2026).
 
   # Participation and employment of everyone aged 15 and over, actual and at the 2008 age mix:
-  # EconPulse calculation from Eurostat's population counts by sex, age and labour status (sources/ageing.py).
+  # Macroscope calculation from Eurostat's population counts by sex, age and labour status (sources/ageing.py).
   - id: lfs_participation
     label: "Participation rate, ages 15 and over"
     label_es: "Tasa de actividad, 15 años y más"

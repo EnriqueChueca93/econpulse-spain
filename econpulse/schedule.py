@@ -14,7 +14,8 @@ from datetime import datetime
 
 import pandas as pd
 
-from . import http, policy
+from . import http, i18n, policy
+from .i18n import _
 from .sources.base import madrid_today
 from .store import Store
 
@@ -86,17 +87,18 @@ def refresh(store: Store) -> int:
 
 
 def _period_en(text: str) -> str:
-    """'Noviembre 2026' -> 'Nov 2026'; 'Tercer trimestre 2026' or 'Trimestre 3/2026' -> 'Q3 2026'."""
+    """'Noviembre 2026' -> 'Nov 2026'; 'Tercer trimestre 2026' or 'Trimestre 3/2026' -> 'Q3 2026' (in the language
+    being written, as the indicators' own periods are, so the two can be compared)."""
     t = text.lower()
     m = re.search(r"trimestre\s+(\d)/(\d{4})", t) or re.search(r"(\d)/(\d{4})", t)
     if m and "trimestre" in t:
-        return f"Q{m.group(1)} {m.group(2)}"
+        return i18n.quarter(pd.Timestamp(int(m.group(2)), 3 * int(m.group(1)) - 2, 1))
     m = re.search(r"(primer|segundo|tercer|cuarto)\s+trimestre\s+(?:de\s+)?(\d{4})", t)
     if m:
-        return f"Q{QUARTERS_ES[m.group(1)]} {m.group(2)}"
+        return i18n.quarter(pd.Timestamp(int(m.group(2)), 3 * QUARTERS_ES[m.group(1)] - 2, 1))
     m = re.search(r"(" + "|".join(MONTHS_ES) + r")\s+(?:de\s+)?(\d{4})", t)
     if m:
-        return f"{pd.Timestamp(int(m.group(2)), MONTHS_ES[m.group(1)], 1):%b %Y}"
+        return i18n.month_year(pd.Timestamp(int(m.group(2)), MONTHS_ES[m.group(1)], 1))
     years = re.findall(r"\d{4}", t)  # "Serie 2000-2025": the last year is the new one
     return years[-1] if years else ""
 
@@ -151,7 +153,7 @@ def social_security_releases(start: pd.Timestamp, months: int = 13) -> list[dict
         day = working_day(first.year, first.month, 2)
         period = first - pd.DateOffset(months=1)
         out.append({"when": day + pd.Timedelta(hours=9), "label": "Registrations and registered unemployment",
-                    "page": "labour.html", "source": "Seguridad Social, SEPE", "period": f"{period:%b %Y}", "expected": True,
+                    "page": "labour.html", "source": "Seguridad Social, SEPE", "period": i18n.month_year(period), "expected": True,
                     "ids": ["afiliados", "paro_registrado"]})
     return out
 
@@ -167,11 +169,12 @@ def releases(store: Store, today: pd.Timestamp | None = None) -> list[dict]:
     """Every known release, in date order."""
     today = pd.Timestamp(today or madrid_today()).normalize()
     events = ine_releases(store) + social_security_releases(today) + ecb_releases()
+    events = [{**e, "label": _(e["label"])} for e in events]
     return sorted(events, key=lambda e: (e["when"], e["label"]))
 
 
 def _day_label(d: pd.Timestamp) -> str:
-    return f"{d:%a} {d.day} {d:%b}"
+    return i18n.wd_day_mon(d)
 
 
 def window(store: Store, today: pd.Timestamp | None = None, before: int = 7, after: int = 61) -> list[dict]:
@@ -182,7 +185,7 @@ def window(store: Store, today: pd.Timestamp | None = None, before: int = 7, aft
         day = e["when"].normalize()
         if today - pd.Timedelta(days=before) <= day <= today + pd.Timedelta(days=after):
             days.setdefault(day, []).append({**e, "time": f"{e['when']:%H:%M}"})
-    return [{"date": d, "label": f"{d:%A} {d.day} {d:%B %Y}", "past": d < today, "today": d == today, "events": evs}
+    return [{"date": d, "label": i18n.capital(i18n.long_date(d)), "past": d < today, "today": d == today, "events": evs}
             for d, evs in sorted(days.items())]
 
 
@@ -203,11 +206,11 @@ def month_grids(days: list[dict], today: pd.Timestamp, count: int = 4) -> list[d
         for i in range(start.days_in_month):
             day = start + pd.Timedelta(days=i)
             evs = events.get(day, [])
-            cells.append({"date": f"{day:%Y-%m-%d}", "day": day.day, "long": f"{day:%A} {day.day} {day:%B %Y}",
+            cells.append({"date": f"{day:%Y-%m-%d}", "day": day.day, "long": i18n.capital(i18n.long_date(day)),
                           "weekend": day.weekday() >= 5, "events": evs,
                           "last": max(e["time"] for e in evs) if evs else ""})
         cells += [None] * (-len(cells) % 7)
-        out.append({"key": f"{start:%Y-%m}", "title": f"{start:%B %Y}", "cells": cells})
+        out.append({"key": f"{start:%Y-%m}", "title": i18n.capital(i18n.long_month_year(start)), "cells": cells})
     return out
 
 

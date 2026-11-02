@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% from "macros.html" import chart_card %}
 
-{% block title %}Central bank stance · EconPulse Spain{% endblock %}
-{% block description %}Twelve central banks side by side: their latest decisions, what they said, where they are in the cycle and when they meet next.{% endblock %}
+{% block title %}{{ _("Central bank stance") }} · {{ brand }}{% endblock %}
+{% block description %}{{ _("Twelve central banks side by side: their latest decisions, what they said, where they are in the cycle and when they meet next.") }}{% endblock %}
 
 {% macro phase_badge(r) -%}<span class="badge phase phase-{{ r.phase_class }}">{{ r.phase }}</span>{%- endmacro %}
 {% macro tilt_badge(t) -%}{% if t %}<span class="badge tilt tilt-{{ t | lower }}">{{ t | upper }}</span>{% endif %}{%- endmacro %}
@@ -17,11 +17,11 @@
     <p><strong>From Econvitals.</strong> This page shows the
       <a href="{{ econvitals_page }}" target="_blank" rel="noopener">Global Central Bank Stance Matrix</a> built by
       Econvitals (econvitals.org, by Jason Furman), which places its own text, charts and estimates in the public domain
-      (<a href="{{ econvitals_terms }}" target="_blank" rel="noopener">CC0 1.0</a>). EconPulse Spain takes its data once a
+      (<a href="{{ econvitals_terms }}" target="_blank" rel="noopener">CC0 1.0</a>). Macroscope Spain takes its data once a
       day and lays it out here, with thanks. The underlying data remain their publishers': policy rates from the BIS and
       the central banks, desk calls from the named banks' research, market odds from the markets named in each row.</p>
     {% if s %}<p class="secondary">Data through {{ s.as_of }} · built by Econvitals {{ s.built[:10] }} ·
-      fetched by EconPulse {{ s.fetched_at[:16] | replace("T", " ") }} UTC</p>{% endif %}
+      fetched by Macroscope {{ s.fetched_at[:16] | replace("T", " ") }} UTC</p>{% endif %}
   </div>
 
   {% if not s %}
@@ -130,7 +130,7 @@
   <section class="block" aria-labelledby="method">
     <h2 id="method">Method and sources</h2>
     <div class="prose">
-      <p>Everything on this page is Econvitals' work, shown as published; EconPulse Spain only arranges it. Econvitals'
+      <p>Everything on this page is Econvitals' work, shown as published; Macroscope Spain only arranges it. Econvitals'
         own description of its method (public domain):</p>
       <blockquote class="note">{{ s.method }}</blockquote>
       <p class="note">Desk calls: {{ s.desk_source }}. Market odds: {{ s.market_sources | join(", ") }}. Policy rates:
@@ -144,11 +144,11 @@
 
 {% block scripts %}
   {% if charts_file %}
-  <script src="assets/plotly-basic.min.js?v={{ build_id }}"></script>
+  <script src="{{ root }}assets/plotly-basic.min.js?v={{ build_id }}"></script>
   <script src="{{ charts_file }}?v={{ build_id }}"></script>
   {% endif %}
 {% endblock %}
 
 {% block after_scripts %}
-  <script src="assets/stance.js?v={{ build_id }}"></script>
+  <script src="{{ root }}assets/stance.js?v={{ build_id }}"></script>
 {% endblock %}

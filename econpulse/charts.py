@@ -34,7 +34,7 @@ from collections import Counter
 
 import pandas as pd
 
-from . import transforms
+from . import i18n, transforms
 from .registry import Indicator
 from .snapshot import period_label
 from .sources import CALCULATED_FROM, SOURCE_NAMES, derived
@@ -61,7 +61,7 @@ HOME_CHARTS = [
     {
         "id": "registrations",
         "title": "Social Security registrations",
-        "subtitle": "Monthly change, thousands, seasonally adjusted by EconPulse",
+        "subtitle": "Monthly change, thousands, seasonally adjusted by Macroscope",
         "kind": "bar", "signed": True, "unit": "k", "decimals": 1, "start": "2022-01-01",
         "series": [("afiliados", "sa_diff", "Monthly change")],
         "link": "labour.html",
@@ -86,7 +86,7 @@ def _sources(inds: list[Indicator], by_id: dict[str, Indicator]) -> str:
     names = [n for ind in inds for n in source_names(ind, by_id)]
     calc = SOURCE_NAMES.get("derived", "derived")
     # The calculation credit goes last, once.
-    return "; ".join([n for n in dict.fromkeys(names) if n != calc] + ([calc] if calc in names else []))
+    return "; ".join(i18n._(n) for n in [n for n in dict.fromkeys(names) if n != calc] + ([calc] if calc in names else []))
 
 
 def build_chart(definition: dict, by_id: dict[str, Indicator], store: Store) -> dict | None:
@@ -115,12 +115,19 @@ def build_chart(definition: dict, by_id: dict[str, Indicator], store: Store) -> 
         s = s[s.index >= start].round(4)
         if s.empty:
             continue
-        series.append({"name": name, "x": [d.strftime("%Y-%m-%d") for d in s.index], "y": s.tolist(), **opts})
+        series.append({"name": i18n._(name), "x": [d.strftime("%Y-%m-%d") for d in s.index], "y": s.tolist(), **opts})
         sources.append(ind)
         freqs.append(freq)
     if not series:
         return None
     spec = {k: v for k, v in definition.items() if k not in ("series", "start")}
+    for key in ("title", "subtitle", "x_title"):        # in the language being written
+        if spec.get(key):
+            spec[key] = i18n._(spec[key])
+    if spec.get("unit") in ("bp", "% of GDP"):
+        spec["unit"] = i18n._(spec["unit"])
+    if spec.get("ref_lines"):
+        spec["ref_lines"] = [{**r, "label": i18n._(r["label"])} if r.get("label") else r for r in spec["ref_lines"]]
     spec["series"] = series
     spec["freq"] = min(freqs, key=FREQ_ORDER.index)
     spec["source"] = _sources(sources, by_id)

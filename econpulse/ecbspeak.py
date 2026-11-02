@@ -1,5 +1,5 @@
 """ECB-speak (site/ecb-speak.html): how hawkish or dovish the ECB's Governing Council sounds,
-after Econvitals' Fedspeak Tracker, scored with EconPulse's word lists (speechscore.py), not an AI.
+after Econvitals' Fedspeak Tracker, scored with Macroscope's word lists (speechscore.py), not an AI.
 
 Speeches of Governing Council members since September 2022:
     Executive Board          the ECB's own full-text file of its speeches
@@ -393,7 +393,7 @@ def charts(a: dict) -> dict:
     absolute, relative = rows("absolute"), rows("relative")
     base = {"id": "speak-standings", "kind": "dots", "unit": "", "decimals": 0, "left": "dovish", "right": "hawkish",
             "title": "Current standings", "subtitle": "Score, −100 dovish to +100 hawkish",
-            "source": "ECB and BIS speeches; EconPulse word-list scores"}
+            "source": "ECB and BIS speeches; Macroscope word-list scores"}
     standings = {**base, "rows": absolute, "x_range": [-100, 100]}
     relative_spec = {**base, "rows": relative,
                      "x_range": _span([v for r in relative for v in [r["stance"], *(r["range"] or []), *(r["recent"] or [])]])}
@@ -405,7 +405,7 @@ def charts(a: dict) -> dict:
                 "series": [{"name": "Committee", "x": x, "y": comm["tone"].round(1).tolist(), "color": "ink"},
                            {"name": "Most hawkish quarter of members", "x": x, "y": comm["p75"].round(1).tolist(), "dash": "dot"},
                            {"name": "Most dovish quarter", "x": x, "y": comm["p25"].round(1).tolist(), "dash": "dot"}],
-                "source": "ECB and BIS speeches; EconPulse word-list scores"}
+                "source": "ECB and BIS speeches; Macroscope word-list scores"}
     return {"charts": [standings, timeline], "relative": relative_spec}
 
 

@@ -6,7 +6,8 @@ whose data is missing shows a dash instead of breaking the page.
 
 import pandas as pd
 
-from . import transforms
+from . import i18n, transforms
+from .i18n import _
 from .registry import Indicator
 from .snapshot import fmt_change, fmt_value, period_label
 from .store import Store
@@ -49,7 +50,7 @@ def inflation(d: _Data) -> dict:
 
     def core():
         s = d.series("core_cpi")
-        flash = " (flash)" if d.store.load_catalog().get("core_cpi", {}).get("flash") else ""
+        flash = _(" (flash)") if d.store.load_catalog().get("core_cpi", {}).get("flash") else ""
         return fmt_value(s.iloc[-1], "%", 1), d.period("core_cpi", s) + flash
 
     def core_pace():
@@ -57,17 +58,17 @@ def inflation(d: _Data) -> dict:
         return fmt_value(s.iloc[-1], "%", 1), d.period("core_cpi_index", s)
 
     return {
-        "title": "Is inflation coming back to 2%?",
+        "title": _("Is inflation coming back to 2%?"),
         "rows": [
-            _row("HICP inflation, past 12 months", hicp),
-            _row("Core CPI, past 12 months", core),
-            _row("Core CPI, recent pace (3-month annualised, SA)", core_pace),
+            _row(_("HICP inflation, past 12 months"), hicp),
+            _row(_("Core CPI, past 12 months"), core),
+            _row(_("Core CPI, recent pace (3-month annualised, SA)"), core_pace),
         ],
-        "text": ("The ECB targets 2% inflation on the harmonised index (HICP) for the euro area as a whole. "
+        "text": _("The ECB targets 2% inflation on the harmonised index (HICP) for the euro area as a whole. "
                  "Core inflation leaves out energy and unprocessed food to show the underlying trend; "
                  "the 3-month pace shows where it is heading."),
         "link": "inflation.html",
-        "link_label": "Inflation",
+        "link_label": _("Inflation"),
     }
 
 
@@ -78,54 +79,55 @@ def labour(d: _Data) -> dict:
 
     def three_month():
         s = d.series("afiliados", "sa_diff")
-        return fmt_change(s.tail(3).mean(), "thousands", 1) + " per month", ""
+        return fmt_change(s.tail(3).mean(), "thousands", 1) + _(" per month"), ""
 
     def unemployment():
         s = d.series("unemployment_monthly")
         year_ago = s.get(s.index[-1] - pd.DateOffset(years=1))
-        vs = f"vs {fmt_value(year_ago, '%', 1)} a year ago" if year_ago is not None else ""
+        vs = _("vs {value} a year ago").format(value=fmt_value(year_ago, '%', 1)) if year_ago is not None else ""
         return fmt_value(s.iloc[-1], "%", 1), f"{d.period('unemployment_monthly', s)}, {vs}".strip(", ")
 
     return {
-        "title": "Is the labour market cooling?",
+        "title": _("Is the labour market cooling?"),
         "rows": [
-            _row("Social Security registrations, last month (SA)", last_month),
-            _row("3-month average (SA)", three_month),
-            _row("Unemployment rate (monthly, SA)", unemployment),
+            _row(_("Social Security registrations, last month (SA)"), last_month),
+            _row(_("3-month average (SA)"), three_month),
+            _row(_("Unemployment rate (monthly, SA)"), unemployment),
         ],
-        "text": ("Social Security registrations (afiliados) are Spain's closest equivalent to payrolls: "
-                 "the average number of people paying in each month. Seasonally adjusted by EconPulse, "
+        "text": _("Social Security registrations (afiliados) are Spain's closest equivalent to payrolls: "
+                 "the average number of people paying in each month. Seasonally adjusted by Macroscope, "
                  "so they show the trend rather than the summer and Christmas swings."),
         "link": "labour.html",
-        "link_label": "Labour market",
+        "link_label": _("Labour market"),
     }
 
 
 def growth(d: _Data) -> dict:
     def last_quarter():
         s = d.series("domestic_demand", "pop")
-        return fmt_value(s.iloc[-1], "%", 1) + " q/q", d.period("domestic_demand", s)
+        return fmt_value(s.iloc[-1], "%", 1) + " " + i18n.figures("q/q"), d.period("domestic_demand", s)
 
     def four_quarters():
         s = d.series("domestic_demand", "yoy")
-        return fmt_value(s.iloc[-1], "%", 1) + " y/y", ""
+        return fmt_value(s.iloc[-1], "%", 1) + " " + i18n.figures("y/y"), ""
 
     def gdp():
         q, y = d.series("gdp", "pop"), d.series("gdp", "yoy")
-        return f"{fmt_value(q.iloc[-1], '%', 1)} q/q", f"{fmt_value(y.iloc[-1], '%', 1)} y/y, {d.period('gdp', q)}"
+        qq, yy = i18n.figures("q/q"), i18n.figures("y/y")
+        return f"{fmt_value(q.iloc[-1], '%', 1)} {qq}", f"{fmt_value(y.iloc[-1], '%', 1)} {yy}, {d.period('gdp', q)}"
 
     return {
-        "title": "Is growth holding up?",
+        "title": _("Is growth holding up?"),
         "rows": [
-            _row("Domestic demand, last quarter", last_quarter),
-            _row("Domestic demand, past four quarters", four_quarters),
-            _row("Real GDP, last quarter", gdp),
+            _row(_("Domestic demand, last quarter"), last_quarter),
+            _row(_("Domestic demand, past four quarters"), four_quarters),
+            _row(_("Real GDP, last quarter"), gdp),
         ],
-        "text": ("Domestic demand, spending by Spanish households, firms and government, is the cleanest "
+        "text": _("Domestic demand, spending by Spanish households, firms and government, is the cleanest "
                  "read on the economy's own momentum, before exports and imports. Growth rates are not annualised, "
                  "following Spanish convention."),
         "link": "gdp.html",
-        "link_label": "GDP",
+        "link_label": _("GDP"),
     }
 
 
@@ -146,26 +148,26 @@ def borrowing_costs(d: _Data) -> dict:
 
     try:
         es, de, spread, base_date, latest = parts()
-        since = f"since {base_date.day} {base_date:%b %Y}"
         rows = [
-            {"label": f"Spain 10-year yield {since}", "value": fmt_change(es, "bp", 0), "note": ""},
-            {"label": "German Bund (euro-area rates)", "value": fmt_change(de, "bp", 0), "note": ""},
-            {"label": "Prima de riesgo (Spain-specific)", "value": fmt_change(spread, "bp", 0),
-             "note": f"to {latest.day} {latest:%b %Y}"},
+            {"label": _("Spain 10-year yield since {date}").format(date=i18n.day_month_year(base_date)),
+             "value": fmt_change(es, "bp", 0), "note": ""},
+            {"label": _("German Bund (euro-area rates)"), "value": fmt_change(de, "bp", 0), "note": ""},
+            {"label": _("Prima de riesgo (Spain-specific)"), "value": fmt_change(spread, "bp", 0),
+             "note": _("to {date}").format(date=i18n.day_month_year(latest))},
         ]
     except (LookupError, ValueError):
-        rows = [{"label": label, "value": DASH, "note": ""} for label in
+        rows = [{"label": _(label), "value": DASH, "note": ""} for label in
                 ("Spain 10-year yield this year", "German Bund (euro-area rates)", "Prima de riesgo (Spain-specific)")]
     return {
-        "title": "Why are Spain's borrowing costs moving?",
+        "title": _("Why are Spain's borrowing costs moving?"),
         "rows": rows,
-        "text": ("Spain's 10-year yield is the German Bund yield, which moves with euro-area interest rates and "
+        "text": _("Spain's 10-year yield is the German Bund yield, which moves with euro-area interest rates and "
                  "inflation expectations, plus the prima de riesgo, the extra return investors demand to hold "
                  "Spanish debt. Which part moved says whether the change is about the euro area or about Spain. "
                  "Here the prima de riesgo is the Spanish yield minus the Bund, so the parts add up; Banco de "
                  "España's headline spread (the tile above) uses benchmark bonds and can differ by a few bp."),
         "link": "financial.html",
-        "link_label": "Financial",
+        "link_label": _("Financial"),
     }
 
 

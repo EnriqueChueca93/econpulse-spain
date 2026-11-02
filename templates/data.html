@@ -1,28 +1,28 @@
 {% extends "base.html" %}
 {% from "macros.html" import indicator_table %}
 
-{% block title %}Data and sources · EconPulse Spain{% endblock %}
-{% block description %}Every series on EconPulse Spain, where it comes from, its latest value and whether it is up to date.{% endblock %}
+{% block title %}{{ _("Data and sources") }} · {{ brand }}{% endblock %}
+{% block description %}{{ _("Every series on Macroscope Spain, where it comes from, its latest value and whether it is up to date.") }}{% endblock %}
 
 {% block content %}
-  <h1>Data and sources</h1>
-  <p class="lede">Every series on the site, where it comes from, and whether it is up to date.</p>
+  <h1>{{ _("Data and sources") }}</h1>
+  <p class="lede">{{ _("Every series on the site, where it comes from, and whether it is up to date.") }}</p>
   {% if attention %}
-  <p class="notice">{{ attention | length }} of {{ total }} series need attention: {% for i in attention %}<a href="#ind-{{ i.id }}">{{ i.label }}</a>{% if not loop.last %}, {% endif %}{% endfor %}.</p>
+  <p class="notice">{{ _("%(n)s of %(total)s series need attention:", n=attention | length, total=total) }} {% for i in attention %}<a href="#ind-{{ i.id }}">{{ i.label }}</a>{% if not loop.last %}, {% endif %}{% endfor %}.</p>
   {% else %}
-  <p class="notice">All {{ total }} series were fetched successfully and are up to date. Next releases are on the <a href="calendar.html">calendar</a>.</p>
+  <p class="notice">{{ _("All %(total)s series were fetched successfully and are up to date.", total=total) }} {{ _("Next releases are on the") }} <a href="calendar.html">{{ _("calendar") }}</a>.</p>
   {% endif %}
-  <nav class="on-page" aria-label="On this page">
-    <a href="#by-source">By source</a>{% if workbook %}<a href="#sector-tables">IMF-style sector tables</a>{% endif %}
+  <nav class="on-page" aria-label="{{ _("On this page") }}">
+    <a href="#by-source">{{ _("By source") }}</a>{% if workbook %}<a href="#sector-tables">{{ _("IMF-style sector tables") }}</a>{% endif %}
     {%- for group in groups %}<a href="#sec-{{ group.id }}">{{ group.title }}</a>{% endfor %}
   </nav>
 
   <section aria-labelledby="by-source">
-    <h2 id="by-source">By source</h2>
+    <h2 id="by-source">{{ _("By source") }}</h2>
     <div class="table-scroll">
       <table class="data-table">
         <thead>
-          <tr><th scope="col">Source</th><th scope="col" class="num">Indicators</th><th scope="col" class="num">Up to date</th><th scope="col" class="num">Need attention</th><th scope="col">Last fetched</th></tr>
+          <tr><th scope="col">{{ _("Source") }}</th><th scope="col" class="num">{{ _("Indicators") }}</th><th scope="col" class="num">{{ _("Up to date") }}</th><th scope="col" class="num">{{ _("Need attention") }}</th><th scope="col">{{ _("Last fetched") }}</th></tr>
         </thead>
         <tbody>
           {% for row in source_summary %}
@@ -37,17 +37,15 @@
         </tbody>
       </table>
     </div>
-    <p class="note">"Need attention" counts series whose last update failed or that have stopped updating at the source:
-      each series is allowed a delay that suits how often it is published (10 days for daily data, about 4 months for
-      monthly, 8–9 months for quarterly). Run <code>python -m econpulse status</code> for details.</p>
+    <p class="note">{{ _("“Need attention” counts series whose last update failed or that have stopped updating at the source: each series is allowed a delay that suits how often it is published (10 days for daily data, about 4 months for monthly, 8–9 months for quarterly).") }} {{ _("Run") }} <code>python -m econpulse status</code> {{ _("for details.") }}</p>
   </section>
 
   {% if workbook %}
   <section aria-labelledby="sector-tables">
-    <h2 id="sector-tables">IMF-style sector tables</h2>
-    <p>The tables of the IMF's 2026 Article IV report for Spain, rebuilt from public data, with history from 2015:
-      <a href="{{ workbook }}" download>download the Excel workbook</a>. All of them are on the
-      <a href="sector-tables.html">Sector tables</a> page, in euros or as a percent of GDP, with charts; each is also on its section page:
+    <h2 id="sector-tables">{{ _("IMF-style sector tables") }}</h2>
+    <p>{{ _("The tables of the IMF's 2026 Article IV report for Spain, rebuilt from public data, with history from 2015:") }}
+      <a href="{{ workbook }}" download>{{ _("download the Excel workbook") }}</a>. {{ _("All of them are on the") }}
+      <a href="sector-tables.html">{{ _("Sector tables") }}</a> {{ _("page, in euros or as a percent of GDP, with charts; each is also on its section page:") }}
       {% for href, title in sector_tables %}<a href="{{ href }}">{{ title }}</a>{% if not loop.last %}, {% endif %}{% endfor %}.</p>
   </section>
   {% endif %}

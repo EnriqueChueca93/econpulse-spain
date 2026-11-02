@@ -1,7 +1,7 @@
 """Every industry: monthly Social Security registrations by industry (site/industry-detail.html).
 
 After Econvitals' industry employment detail: for each industry, the monthly change in registrations (bars)
-and its 3-month average (line), seasonally adjusted by EconPulse, with a table of the level and the changes
+and its 3-month average (line), seasonally adjusted by Macroscope, with a table of the level and the changes
 over 1, 3 and 12 months. Registrations are monthly averages of the general scheme and the self-employed by
 two-digit activity (CNAE) from the Social Security's yearly workbooks (sources/afiliacion.py), from 2021.
 The groups keep their boundaries across the 2026 change to CNAE-2025; the two moves that cross them (motor
@@ -84,11 +84,11 @@ def summary_table(data: Data) -> dict | None:
         rows += [Row(indicator_id(gid), label, indent=indent + 1, season="ours") for gid, label, _, indent, _ in items]
     return build_table(Table(
         title="Registrations by industry",
-        caption="Thousands; average change per month, seasonally adjusted by EconPulse for 1 and 3 months",
+        caption="Thousands; average change per month, seasonally adjusted by Macroscope for 1 and 3 months",
         columns=[Level("latest"), AvgChange("1-mo", 1), AvgChange("3-mo", 3), AvgChange("12-mo", 12), Change("12-mo %", 12)],
         rows=rows,
         note=("The 12-month columns use the registrations as published; the 1- and 3-month columns are seasonally "
-              "adjusted by EconPulse."),
+              "adjusted by Macroscope."),
     ), data)
 
 
@@ -109,7 +109,7 @@ def chart(group_id: str, label: str, data: Data) -> dict | None:
             "kind": "bar", "signed": True, "unit": "k", "decimals": 1, "freq": "M", "ref_lines": [],
             "series": [{"name": "Monthly change", "x": iso(change), "y": change.tolist()},
                        {"name": "3-month average", "kind": "line", "color": "ink", "x": iso(average), "y": average.tolist()}],
-            "source": f"{ind.source_name} (afiliación media por actividad); EconPulse seasonal adjustment"}
+            "source": f"{ind.source_name} (afiliación media por actividad); Macroscope seasonal adjustment"}
 
 
 def moves(data: Data) -> list[str]:

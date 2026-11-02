@@ -29,7 +29,7 @@ def free_port(start: int = FIRST_PORT, tries: int = 50) -> int:
 
 
 class Handler(http.server.SimpleHTTPRequestHandler):
-    def log_message(self, *args) -> None:   # keep the window for EconPulse's own messages
+    def log_message(self, *args) -> None:   # keep the window for Macroscope's own messages
         pass
 
     def end_headers(self) -> None:
@@ -43,7 +43,7 @@ def serve(site_dir: Path = SITE_DIR, port: int | None = None, open_browser: bool
     port = port or free_port()
     server = http.server.ThreadingHTTPServer(("127.0.0.1", port), functools.partial(Handler, directory=str(site_dir)))
     url = f"http://localhost:{port}/"
-    print(f"\nEconPulse Spain is running at {url}\nClose this window, or press Ctrl+C, to stop it.\n", flush=True)
+    print(f"\nMacroscope Spain is running at {url}\nClose this window, or press Ctrl+C, to stop it.\n", flush=True)
     if open_browser:
         threading.Timer(0.5, webbrowser.open, args=(url,)).start()
     try:

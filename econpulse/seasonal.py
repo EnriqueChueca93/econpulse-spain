@@ -1,7 +1,7 @@
 """Seasonal adjustment for series the source publishes unadjusted (CPI index, registrations).
 
 Method: STL decomposition (statsmodels, robust to outliers such as the 2020 shock)
-on the log of the series, estimated from 2010 onwards. This is an EconPulse
+on the log of the series, estimated from 2010 onwards. This is a Macroscope
 estimate, not an official figure, and it is labelled "SA" wherever it is shown.
 
 The seasonal factors are smoothed with a local constant (seasonal_deg=0), not the

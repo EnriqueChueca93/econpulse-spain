@@ -14,7 +14,7 @@ def test_every_page_has_its_own_description_and_previews(tmp_path):
     site = tmp_path / "site"
     labour = (site / "labour.html").read_text(encoding="utf-8")
     assert 'rel="icon" href="assets/favicon.svg"' in labour and (site / "assets" / "favicon.svg").exists()
-    assert '<meta property="og:title" content="Labour market · EconPulse Spain">' in labour
+    assert '<meta property="og:title" content="Labour market · Macroscope Spain">' in labour
     descriptions = set()
     for page in site.glob("*.html"):
         html = page.read_text(encoding="utf-8")
@@ -35,8 +35,8 @@ def test_chart_cards_offer_csv_and_tables_keep_their_labels(tmp_path):
 def test_not_found_page(tmp_path):
     build_site(load_registry(), full_store(tmp_path), site_dir=tmp_path / "site")
     html = (tmp_path / "site" / "404.html").read_text(encoding="utf-8")
-    assert "<h1>Page not found</h1>" in html and '<base href="/econpulse-spain/">' in html
-    assert SITE_URL.endswith("/econpulse-spain/") and 'href="trade.html"' in html and 'aria-current="page"' not in html
+    assert "<h1>Page not found</h1>" in html and '<base href="/macroscope-spain/">' in html
+    assert SITE_URL.endswith("/macroscope-spain/") and 'href="trade.html"' in html and 'aria-current="page"' not in html
 
 
 def test_search_index(tmp_path):

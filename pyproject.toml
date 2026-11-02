@@ -1,5 +1,5 @@
 [project]
-name = "econpulse-spain"
+name = "macroscope-spain"
 version = "0.1.0"
 description = "A running read on the health of the Spanish economy"
 requires-python = ">=3.11"

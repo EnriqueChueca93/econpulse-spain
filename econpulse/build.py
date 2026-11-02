@@ -13,9 +13,10 @@ from urllib.parse import urlparse
 from pathlib import Path
 
 import pandas as pd
-from jinja2 import Environment, FileSystemLoader, select_autoescape
+from jinja2 import ChoiceLoader, Environment, FileSystemLoader, select_autoescape
 
-from . import __version__, analytics, budget, changes, ecbspeak, feed, fiscal, industries, peers, schedule, search, sectortables, stance, surprises, tools, trade
+from . import __version__, analytics, budget, changes, ecbspeak, feed, fiscal, i18n, industries, peers, schedule, search, sectortables, stance, surprises, tools, trade
+from .i18n import _
 from .charts import build_home_charts
 from .config import SITE_DIR, SITE_URL, STATIC_DIR, TEMPLATES_DIR
 from .pages import PAGES, block_indicator_ids, build_page, indicator_anchors
@@ -41,7 +42,7 @@ SECTION_PAGES = {
     "pensions": ("Pensions", "The Social Security's contributory pensions: how many and how much, by class, scheme and region, what they cost, new and ended pensions, and the maximum and minimum amounts; Spain against its comparators, the ageing population, the 2023 reform and what the official assessments say.", 29),
     "international": ("International", "Spain next to the euro area and ten comparators: France, Germany, Italy, the Netherlands, Portugal, Poland, the United Kingdom, the United States, Canada and Japan; growth, jobs, prices, public finances and the IMF's outlook.", 6),
     "regions": ("Regions", "The 17 autonomous communities: unemployment, house prices, inflation and income per head.", 6),
-    "analysis": ("Analysis", "EconPulse's own readings: the economy against its history, data surprises, a GDP nowcast, what forecasters expect, the 10-year yield split in two, and Taylor rules.", 7),
+    "analysis": ("Analysis", "Macroscope's own readings: the economy against its history, data surprises, a GDP nowcast, what forecasters expect, the 10-year yield split in two, and Taylor rules.", 7),
 }
 
 NAV = ([("index.html", "Home")] + [(f"{s}.html", t) for s, (t, _, _) in SECTION_PAGES.items()]
@@ -50,7 +51,7 @@ NAV = ([("index.html", "Home")] + [(f"{s}.html", t) for s, (t, _, _) in SECTION_
 COMMUNITIES_EXPLORER = ("budget-explorer.html#level=regions", "Budget explorer: the autonomous communities")
 # What each tab's dropdown lists besides the sections of a section page (anchors or other pages).
 NAV_EXTRA = {
-    "index.html": [("#key-indicators", "Key indicators"), ("#readings", "EconPulse readings"), ("#whats-new", "What's new"),
+    "index.html": [("#key-indicators", "Key indicators"), ("#readings", "Macroscope readings"), ("#whats-new", "What's new"),
                    ("#four-questions", "The economy in four questions"), ("#charts", "Charts")],
     "tools.html": [("#trend", "Economy vs pre-COVID trend"), ("#taylor", "Taylor rule"), ("#rates", "Interest rate decomposer"),
                    ("fiscal-explorer.html", "Fiscal Explorer"), ("budget-explorer.html", "Budget explorer"),
@@ -77,8 +78,8 @@ def nav_items(section_pages: dict, updated: set[str] = frozenset()) -> list[dict
             children = [(f"#{b['id']}", b["title"]) for b in section_pages[section]["blocks"]] + NAV_SUBPAGES.get(href, [])
         else:
             children = NAV_EXTRA.get(href, [])
-        items.append({"href": href, "label": label, "id": section,
-                      "children": [{"href": (link := c if not c.startswith("#") else href + c), "title": t,
+        items.append({"href": href, "label": _(label), "id": section,
+                      "children": [{"href": (link := c if not c.startswith("#") else href + c), "title": _(t),
                                     "new": link in updated} for c, t in children]})
     return items
 
@@ -88,11 +89,12 @@ def write_data_js(path: Path, name: str, data) -> None:
     path.write_text(f"window.EP = window.EP || {{}};\nwindow.EP.{name} = {payload};\n", encoding="utf-8")
 
 
-def _madrid_time(iso: str | None) -> str:
+def _madrid_time(iso: str | None, zone: bool = True) -> str:
+    """"2 Nov 2026, 18:42 Madrid time" (without the zone: "2 Nov 2026, 18:42")."""
     if not iso:
-        return "never"
+        return _("never")
     t = datetime.fromisoformat(iso).astimezone(MADRID)
-    return f"{t.day} {t:%b %Y}, {t:%H:%M} Madrid time"
+    return f"{i18n.day_month_year(t)}, {t:%H:%M}" + (f" {_('Madrid time')}" if zone else "")
 
 
 def _source_summary(items: list[dict]) -> list[dict]:
@@ -108,7 +110,7 @@ def _source_summary(items: list[dict]) -> list[dict]:
         if item["fetched_at"] and (row["fetched_at"] is None or item["fetched_at"] > row["fetched_at"]):
             row["fetched_at"] = item["fetched_at"]
     for row in rows.values():
-        row["fetched"] = _madrid_time(row["fetched_at"]).replace(" Madrid time", "")
+        row["fetched"] = _madrid_time(row["fetched_at"], zone=False)
     return sorted(rows.values(), key=lambda r: -r["total"])
 
 
@@ -119,8 +121,28 @@ def _copy_assets(site_dir: Path) -> None:
     (site_dir / "assets" / "plotly.min.js").unlink(missing_ok=True)
 
 
-def build_site(indicators: list[Indicator], store: Store | None = None, site_dir: Path = SITE_DIR) -> Path:
+def build_site(indicators: list[Indicator], store: Store | None = None, site_dir: Path = SITE_DIR,
+               languages: tuple[str, ...] = i18n.LANGUAGES) -> Path:
+    """The site in English at site_dir, and in Spanish under site_dir/es (they share site_dir/assets)."""
     store = store or Store()
+    _copy_assets(site_dir)
+    i18n.missing.clear()
+    index = None
+    for lang in languages:
+        with i18n.using(lang):
+            page = _build_language(indicators, store, site_dir, lang)
+        index = index or page
+    return index
+
+
+def _counterpart(filename: str, lang: str) -> str:
+    """The same page in the other language, from this one."""
+    return f"es/{filename}" if lang == "en" else f"../{filename}"
+
+
+def _build_language(indicators: list[Indicator], store: Store, site_root: Path, lang: str) -> Path:
+    site_dir = site_root if lang == "en" else site_root / lang
+    root = "" if lang == "en" else "../"          # where assets/, the feed and the workbook are, from a page
     snapshot = build_snapshot(indicators, store)
     items = snapshot["indicators"]
     by_id = {i["id"]: i for i in items}
@@ -134,12 +156,14 @@ def build_site(indicators: list[Indicator], store: Store | None = None, site_dir
     write_data_js(data_dir / "snapshot.js", "snapshot", snapshot)
     write_data_js(data_dir / "charts.js", "charts", charts)
     (data_dir / "snapshot.json").write_text(json.dumps(snapshot, ensure_ascii=False, indent=1), encoding="utf-8")
-    _copy_assets(site_dir)
 
     # The build stamp goes on every asset URL so browsers never show a cached, older snapshot.
     build_id = "".join(ch for ch in snapshot["generated_at"] if ch.isdigit())[:14]
-    env = Environment(loader=FileSystemLoader(TEMPLATES_DIR), autoescape=select_autoescape(["html"]),
-                      trim_blocks=True, lstrip_blocks=True)
+    # A page with much prose has a Spanish template of its own (templates/es/); the rest mark text with _().
+    loaders = [FileSystemLoader(TEMPLATES_DIR / lang)] if lang != "en" else []
+    env = Environment(loader=ChoiceLoader(loaders + [FileSystemLoader(TEMPLATES_DIR)]), autoescape=select_autoescape(["html"]),
+                      trim_blocks=True, lstrip_blocks=True, extensions=["jinja2.ext.i18n"])
+    env.install_gettext_callables(gettext=_, ngettext=i18n.ngettext, newstyle=True)
     section_pages = {s: build_page(s, indicators, store) for s in SECTION_PAGES}   # the navigation lists their sections
     # Sections with figures from the past week get an "updated" mark, also in the tabs' dropdowns.
     today = pd.Timestamp(madrid_today())
@@ -172,8 +196,12 @@ def build_site(indicators: list[Indicator], store: Store | None = None, site_dir
         "version": __version__,
         "build_id": build_id,
         "built": _madrid_time(snapshot["generated_at"]),
-        "as_of": _madrid_time(snapshot["data_as_of"]).replace(" Madrid time", ""),
-        "sources": list(dict.fromkeys(i.source_name for i in indicators if not i.is_derived)),
+        "as_of": _madrid_time(snapshot["data_as_of"], zone=False),
+        "sources": list(dict.fromkeys(_(i.source_name) for i in indicators if not i.is_derived)),
+        "lang": lang,
+        "root": root,
+        "brand": f"Macroscope {_('Spain')}",
+        "site_url": SITE_URL,
         "nav": nav_items(section_pages, updated),
         "coming_up": coming,
     }
@@ -181,7 +209,9 @@ def build_site(indicators: list[Indicator], store: Store | None = None, site_dir
     def render(template: str, filename: str, **context) -> Path:
         path = site_dir / filename
         active = context.pop("active", filename)   # a tool page highlights "Tools" in the navigation
-        html = env.get_template(template).render(**common, active=active, **context)
+        counterpart = context.pop("counterpart", _counterpart(filename, lang))
+        html = env.get_template(template).render(**common, active=active, page_file=filename,
+                                                 counterpart=counterpart, **context)
         path.write_text(html, encoding="utf-8")
         return path
 
@@ -189,15 +219,18 @@ def build_site(indicators: list[Indicator], store: Store | None = None, site_dir
     for r in recent:
         r["page"] = section_link(r["ids"], r["page"])
     whats_new = {**changes.latest_notes(store), "recent": recent}
+    registry = {i.id: i for i in indicators}
     for note in whats_new["notes"]:
         note["page"] = section_link([note["id"]], note["page"])
+        note["text"] = changes.note_text(note, registry.get(note["id"]))
     for key in ("at", "updated_at", "started_at"):
-        whats_new[key] = _madrid_time(whats_new[key]).replace(" Madrid time", "") if whats_new[key] else None
+        whats_new[key] = _madrid_time(whats_new[key], zone=False) if whats_new[key] else None
     index = render("index.html", "index.html", tiles=[by_id[t] for t in snapshot["tiles"]],
                    questions=snapshot["questions"], charts=charts, readings=snapshot["readings"],
                    whats_new=whats_new)
-    page_charts = [("index.html", "Home", charts)]      # (page, title, charts), for the site search
+    page_charts = [("index.html", _("Home"), charts)]      # (page, title, charts), for the site search
     for section, (title, intro, batch) in SECTION_PAGES.items():
+        title, intro = _(title), _(intro)
         page = section_pages[section]
         page_charts.append((f"{section}.html", title, page["charts"]))
         charts_file = None
@@ -207,18 +240,20 @@ def build_site(indicators: list[Indicator], store: Store | None = None, site_dir
         render("section.html", f"{section}.html", page={"title": title, "intro": intro, "batch": batch},
                blocks=page["blocks"], charts_file=charts_file, picker=peers.picker() if section in ("international", "housing", "pensions") else None,
                items=[i for i in items if i["section"] == section], subpages=NAV_SUBPAGES.get(f"{section}.html", []))
-    groups = [{"id": s, "title": t, "items": [i for i in items if i["section"] == s]} for s, (t, _, _) in SECTION_PAGES.items()]
+    groups = [{"id": s, "title": _(t), "items": [i for i in items if i["section"] == s]} for s, (t, *_rest) in SECTION_PAGES.items()]
     attention = [i for i in items if i["status"] != "ok" or i["out_of_date"]]
-    workbook = sectortables.write_workbook(readings_data, data_dir / sectortables.WORKBOOK, built=common["built"])
+    # The Excel workbook is in English only: the Spanish pages link to the English one.
+    workbook = (sectortables.write_workbook(readings_data, data_dir / sectortables.WORKBOOK, built=common["built"]) if lang == "en"
+                else (site_root / "data" / sectortables.WORKBOOK).exists())
     detail = industries.page(readings_data)
     if detail["charts"]:
         write_data_js(data_dir / "charts-industries.js", "charts", detail["charts"])
     render("industry-detail.html", "industry-detail.html", active="labour.html", table=detail["table"],
            sections=detail["sections"], moves=detail["moves"],
            charts_file="data/charts-industries.js" if detail["charts"] else None)
-    page_charts.append(("industry-detail.html", "Every industry", detail["charts"]))
+    page_charts.append(("industry-detail.html", _("Every industry"), detail["charts"]))
     goods = trade.page(readings_data)
-    page_charts.append(("trade.html", "Trade", goods["charts"]))
+    page_charts.append(("trade.html", _("Trade"), goods["charts"]))
     if goods["charts"]:
         write_data_js(data_dir / "charts-trade.js", "charts", goods["charts"])
     render("trade.html", "trade.html", active="activity.html", facts=goods["facts"], table=goods["table"], overview=goods["overview"],
@@ -226,14 +261,14 @@ def build_site(indicators: list[Indicator], store: Store | None = None, site_dir
            updated=trade_updated,
            charts_file="data/charts-trade.js" if goods["charts"] else None)
     sector = sectortables.page(readings_data)
-    page_charts.append(("sector-tables.html", "Sector tables", sector["charts"]))
+    page_charts.append(("sector-tables.html", _("Sector tables"), sector["charts"]))
     if sector["charts"]:
         write_data_js(data_dir / "charts-sectortables.js", "charts", sector["charts"])
     render("sector-tables.html", "sector-tables.html", sections=sector["sections"],
            charts_file="data/charts-sectortables.js" if sector["charts"] else None,
-           workbook=f"data/{sectortables.WORKBOOK}" if workbook else None)
+           workbook=f"{root}data/{sectortables.WORKBOOK}" if workbook else None)
     render("data.html", "data.html", source_summary=_source_summary(items), groups=[g for g in groups if g["items"]],
-           attention=attention, total=len(items), workbook=f"data/{sectortables.WORKBOOK}" if workbook else None,
+           attention=attention, total=len(items), workbook=f"{root}data/{sectortables.WORKBOOK}" if workbook else None,
            sector_tables=[(f"{t.section}.html#{t.block}", f"{t.label}. {t.title}") for t in sectortables.TABLES])
     days = schedule.window(store, today)
     for day in days:
@@ -245,13 +280,15 @@ def build_site(indicators: list[Indicator], store: Store | None = None, site_dir
             e["page"] = section_link(e.get("ids", []), e["page"])
     months = schedule.month_grids(ahead, today)
     render("calendar.html", "calendar.html", days=days, recent=recent, months=months, today_iso=f"{today:%Y-%m-%d}",
+           weekday_heads=[_(w) for w in ("Mo", "Tu", "We", "Th", "Fr", "Sa", "Su")],
            map_open=schedule.first_open(months, datetime.now(MADRID)), calendar_page=schedule.INE_CALENDAR_PAGE)
     counts = {}
     for i in items:
         counts[i["source"]] = counts.get(i["source"], 0) + 1
     render("about.html", "about.html", total=len(items), source_counts=sorted(counts.items(), key=lambda kv: -kv[1]))
-    render("404.html", "404.html", active="", site_path=urlparse(SITE_URL).path or "/")
-    (site_dir / feed.FEED_FILE).write_text(feed.build_feed(store), encoding="utf-8", newline="\n")
+    if lang == "en":                  # GitHub Pages serves the root's 404 page for any address; the feed is English
+        render("404.html", "404.html", active="", site_path=urlparse(SITE_URL).path or "/", counterpart="es/index.html")
+        (site_dir / feed.FEED_FILE).write_text(feed.build_feed(store), encoding="utf-8", newline="\n")
     write_data_js(data_dir / "tools.js", "tools", tools.tools_data(Data(indicators, store)))
     render("tools.html", "tools.html", taylor_defaults={"r_star": analytics.R_STAR})
     fx = fiscal.explorer_data(Data(indicators, store))
@@ -278,10 +315,10 @@ def build_site(indicators: list[Indicator], store: Store | None = None, site_dir
     render("stance.html", "stance.html", active="tools.html", s=stance.page(store), charts=stance_charts,
            charts_file="data/charts-stance.js" if stance_charts else None,
            econvitals_page=stance.PAGE, econvitals_terms=stance.TERMS)
-    page_charts += [("ecb-speak.html", "ECB-speak", speak["charts"] if speak else []),
-                    ("stance.html", "Central bank stance", stance_charts or [])]
+    page_charts += [("ecb-speak.html", _("ECB-speak"), speak["charts"] if speak else []),
+                    ("stance.html", _("Central bank stance"), stance_charts or [])]
     # Trade is no longer a tab of its own (it sits under Economic activity), but its sections stay searchable.
-    trade_tab = {"href": "trade.html", "label": "Trade", "children": [{"href": f"trade.html#{s}", "title": t} for s, t in trade.PAGE]}
+    trade_tab = {"href": "trade.html", "label": _("Trade"), "children": [{"href": f"trade.html#{s}", "title": _(t)} for s, t in trade.PAGE]}
     write_data_js(data_dir / "search.js", "search",
                   search.build_index(common["nav"] + [trade_tab], page_charts, items, anchors))
     return index
@@ -289,7 +326,7 @@ def build_site(indicators: list[Indicator], store: Store | None = None, site_dir
 
 def _search_anchors(section_pages: dict, items: list[dict]) -> dict[str, tuple[str, str]]:
     """Indicator id -> (where the site shows it, that page's title), for the site search."""
-    titles = {f"{s}.html": t for s, (t, _, _) in SECTION_PAGES.items()}
+    titles = {f"{s}.html": _(t) for s, (t, *_rest) in SECTION_PAGES.items()}
     home = {item["id"]: item["section"] for item in items}
     anchors = {i: (href, titles[href.split("#")[0]]) for i, href in indicator_anchors(section_pages, home).items()}
     for item in items:
@@ -297,7 +334,7 @@ def _search_anchors(section_pages: dict, items: list[dict]) -> dict[str, tuple[s
         if ind_id in anchors:
             continue
         if (part := trade.indicator_section(ind_id)):
-            anchors[ind_id] = (f"trade.html#{part}", "Trade")
+            anchors[ind_id] = (f"trade.html#{part}", _("Trade"))
         elif ind_id.startswith("ind_"):
-            anchors[ind_id] = (f"industry-detail.html#fig-{ind_id.replace('_', '-')}", "Every industry")
+            anchors[ind_id] = (f"industry-detail.html#fig-{ind_id.replace('_', '-')}", _("Every industry"))
     return anchors

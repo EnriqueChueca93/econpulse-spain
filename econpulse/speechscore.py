@@ -1,4 +1,4 @@
-"""Hawkish/dovish word-list scoring of central bankers' speeches (no AI): EconPulse's own lists.
+"""Hawkish/dovish word-list scoring of central bankers' speeches (no AI): Macroscope's own lists.
 
 Each speech is split into sentences and searched for phrases that signal a tighter or an
 easier monetary policy stance: price pressures rising or easing, risks to inflation on the

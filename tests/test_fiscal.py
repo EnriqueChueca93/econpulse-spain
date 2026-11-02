@@ -24,7 +24,7 @@ def rows(raw):
 def test_the_commission_baseline_is_reproduced(raw, rows):
     dsm = {int(y): v for y, v in raw["dsm"]["baseline"]["debt"].items()}
     last = max(dsm)
-    assert last == 2036 and rows[last]["source"] == "Commission" and rows[last + 1]["source"] == "EconPulse extension"
+    assert last == 2036 and rows[last]["source"] == "Commission" and rows[last + 1]["source"] == "Macroscope extension"
     # The derived interest rate and growth, run through the debt equation, give the Commission's path back.
     d = rows[2024]["debt"]
     for y in range(2025, last + 1):

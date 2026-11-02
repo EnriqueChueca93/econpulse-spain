@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
-{% block title %}Budget explorer · EconPulse Spain{% endblock %}
-{% block description %}What Spain's public administrations spend and raise, by theme, since 1995: functions, types of spending and taxes.{% endblock %}
+{% block title %}{{ _("Budget explorer") }} · {{ brand }}{% endblock %}
+{% block description %}{{ _("What Spain's public administrations spend and raise, by theme, since 1995: functions, types of spending and taxes.") }}{% endblock %}
 
 {% macro figure(id, title, subtitle, source) -%}
   <figure class="card chart-card" id="fig-{{ id }}">
@@ -328,11 +328,11 @@
 {% endblock %}
 
 {% block scripts %}
-  <script src="assets/plotly-basic.min.js?v={{ build_id }}"></script>
+  <script src="{{ root }}assets/plotly-basic.min.js?v={{ build_id }}"></script>
   <script src="data/budget.js?v={{ build_id }}"></script>
 {% endblock %}
 
 {% block after_scripts %}
-  <script src="assets/budget.js?v={{ build_id }}"></script>
-  <script src="assets/pge.js?v={{ build_id }}"></script>
+  <script src="{{ root }}assets/budget.js?v={{ build_id }}"></script>
+  <script src="{{ root }}assets/pge.js?v={{ build_id }}"></script>
 {% endblock %}

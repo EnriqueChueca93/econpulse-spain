@@ -1,4 +1,4 @@
-# EconPulse Spain
+# Macroscope Spain
 
 A running read on the health of the Spanish economy, modelled on [econvitals.org](https://econvitals.org/).
 Python fetches official data (INE, Eurostat, ECB…) and builds a static website that opens straight from disk
@@ -27,8 +27,8 @@ python -m venv .venv
 
 ## The site online
 
-**https://enriquechueca93.github.io/econpulse-spain/** (repository:
-[EnriqueChueca93/econpulse-spain](https://github.com/EnriqueChueca93/econpulse-spain)).
+**https://enriquechueca93.github.io/macroscope-spain/** (repository:
+[EnriqueChueca93/macroscope-spain](https://github.com/EnriqueChueca93/macroscope-spain)).
 
 A GitHub Actions workflow ([.github/workflows/update.yml](.github/workflows/update.yml)) runs once a day at
 17:30 UTC (18:30 Madrid in winter, 19:30 in summer): it runs the offline tests, fetches the data, rebuilds the
@@ -39,9 +39,20 @@ repository's **Actions** tab, pick "Update and deploy" and click **Run workflow*
 Because the workflow commits data every day, run `git pull` before working locally. If a local update changed
 `data/` and you only want the code, `git checkout -- data` discards the local data before pulling.
 
+## Two languages
+
+The site is written in English, where everyone starts, and in Spanish under `site/es/`; the EN | ES switch beside
+the theme button opens the same page in the other language. One build writes both (`econpulse/build.py`, one pass
+per language, sharing `site/assets/`). Text marked for translation (`_("...")` in Python and the templates) takes its
+Spanish from `econpulse/locale/es.yaml`, which `scripts/write_catalogue.py` writes; the About page, mostly prose, has
+a Spanish template of its own (`templates/es/about.html`). The series use their official Spanish names from the
+registry. Numbers keep the English format in both languages; dates take Spanish month and day names. Text not
+translated yet stays in English, and `python -m econpulse build` says how much is left. The Excel workbook and the
+RSS feed are in English only.
+
 ## The site
 
-- **Home** (`site/index.html`): 18 key-indicator tiles (petrol and diesel at the pump among them), EconPulse readings (activity and inflation against their
+- **Home** (`site/index.html`): 18 key-indicator tiles (petrol and diesel at the pump among them), Macroscope readings (activity and inflation against their
   history and against a simple forecast, the GDP nowcast, the ECB rate against a Taylor rule), "The economy in four
   questions" and three charts.
 - **Labour market by sector**: Social Security registrations by sector and type of work (the ministry's own
@@ -77,7 +88,7 @@ Because the workflow commits data every day, run `git pull` before working local
   prices and interest rates, real pay and productivity, public finances, the current account and the IMF's outlook;
   the reader chooses up to three comparators to draw beside Spain), and the 17 autonomous communities.
 - **Pensions**: the Social Security's contributory pensions: how many and the average pension by class, scheme
-  and region, what they cost a year against GDP (an EconPulse estimate), the average pension after inflation,
+  and region, what they cost a year against GDP (a Macroscope estimate), the average pension after inflation,
   workers per pension, new and ended pensions, and the maximum and minimum amounts since 1990; spending and
   replacement rates against the comparators (Eurostat, OECD), the old-age dependency ratio projected to 2100,
   the social security funds' balance, the 2023 reform, and what the European Commission, AIReF and the Banco de
@@ -85,7 +96,7 @@ Because the workflow commits data every day, run `git pull` before working local
 - **Tools**: Economy vs pre-COVID trend, an interactive Taylor rule and an interest rate decomposer; change a
   setting and the numbers and charts recompute in the browser. **Fiscal Explorer** (`site/fiscal-explorer.html`):
   Spain's debt and deficits since 1970 and to 2070, starting from the European Commission's baseline (reproduced
-  exactly to 2036, extended by EconPulse on the Commission's long-term assumptions), with levers for the budget,
+  exactly to 2036, extended by Macroscope on the Commission's long-term assumptions), with levers for the budget,
   ageing costs, growth, inflation and interest rates, a goal-solver and shareable scenario links; after
   Econvitals' Fiscal Explorer. **Budget explorer** (`site/budget-explorer.html`, also under the Fiscal tab, and opened
   on the autonomous communities from the Regions tab): what
@@ -104,7 +115,7 @@ Because the workflow commits data every day, run `git pull` before working local
   each policy's or chapter's share of its budget spent, month by month, against an even pace and the year before.
   **ECB-speak** (`site/ecb-speak.html`): how hawkish or dovish the ECB's Governing
   Council sounds, from every member's speech since September 2022 (ECB and BIS full texts), scored with
-  EconPulse's published word lists rather than an AI; after Econvitals' Fedspeak Tracker. **Global central bank stance**
+  Macroscope's published word lists rather than an AI; after Econvitals' Fedspeak Tracker. **Global central bank stance**
   (`site/stance.html`): Econvitals' Global Central Bank Stance Matrix for twelve central banks, shown natively
   and credited (Econvitals places its own work in the public domain, CC0 1.0).
 - **Sector tables** (`site/sector-tables.html`): every IMF-style table on one page, with a switch between amounts
@@ -118,8 +129,8 @@ Because the workflow commits data every day, run `git pull` before working local
   and external debt, on the Economic activity page; Table 3, financial soundness, on the Financial page, from the IMF's own
   FSI database and the Banco de España; Table 6, monetary and credit indicators, on the ECB page) and all are in
   one Excel workbook,
-  `site/data/econpulse-spain-sector-tables.xlsx`, with history from 2015.
-- **Analysis**: EconPulse's own calculations, each explained on the page: activity and inflation composites,
+  `site/data/macroscope-spain-sector-tables.xlsx`, with history from 2015.
+- **Analysis**: Macroscope's own calculations, each explained on the page: activity and inflation composites,
   data surprises (the latest figures against a simple statistical forecast), a GDP nowcast with its track record
   (marked as a placeholder while the model is worked on),
   what forecasters expect for this year and next, the 10-year yield split into Bund and prima de riesgo, and
@@ -162,7 +173,7 @@ econpulse/            Python package
   sources/            one client per data provider: ine, eurostat, ecb, bde (Banco de España),
                       segsocial (Seguridad Social), ree (Red Eléctrica), oecd, bis, bls,
                       dbnomics, eia, worldbank, bundesbank, imf, bdeproj (Banco de España
-                      projections), funcas, hicpdist and ageing (EconPulse calculations from
+                      projections), funcas, hicpdist and ageing (Macroscope calculations from
                       Eurostat data), reg (Ministry of Labour layoffs), bel (the Ministry of
                       Labour's pension tables, old-format .xls read with xlrd), comext (Eurostat's
                       trade by product and partner), oilbulletin (the European Commission's
@@ -172,9 +183,10 @@ econpulse/            Python package
   transforms.py       y/y, m/m, q/q, 3-month annualised, changes
   store.py            data/series/<id>.csv + data/catalog.json
   fetch.py            fetches everything; one failing source never stops the rest
-  seasonal.py         EconPulse seasonal adjustment (STL), used by the sa_* transforms and tables
+  seasonal.py         Macroscope seasonal adjustment (STL), used by the sa_* transforms and tables
   snapshot.py         latest values, changes and display strings
   questions.py        "The economy in four questions" on the home page
+  i18n.py             the two languages: the Spanish catalogue (locale/es.yaml), dates in Spanish
   charts.py           chart specifications (data and wording; colours come from the CSS theme)
   tables.py           econvitals-style section tables (horizons, levels, market moves, contributions,
                       year to date) and panels (one row per country or region)
