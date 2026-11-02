@@ -10,46 +10,57 @@
     refreshed at every update. Social Security registrations are expected on the second working day of each month;
     ECB decisions follow the ECB's published schedule.</p>
 
-  {% if soon %}
-  {# The next three working days: the build writes a fortnight of them and static/calendar.js shows the three from
-     the viewer's own date (today while it still has releases to come); the first three from the build stand in
-     without scripts. #}
-  <section class="cal-soon" id="cal-soon" aria-labelledby="next-days">
-    <h2 id="next-days">The next three days</h2>
-    <p class="block-intro">The next three working days, today included while it still has releases to come. The
-      darker the day, the more releases it has: click one to see them.</p>
-    <div class="cal-heat" role="group" aria-label="The next three working days">
-      {% for d in soon %}
-      {% set n = d.events | length %}
-      <button type="button" class="cal-day heat-{{ [n, 4] | min }}" data-date="{{ d.date }}" data-last="{{ d.last }}"
-        data-count="{{ n }}" data-long="{{ d.long }}"{% if d.events %} data-first="{{ d.events[0].label }}"{% endif %}
-        aria-controls="cal-list-{{ d.date }}" aria-pressed="{{ 'true' if loop.index0 == soon_first else 'false' }}"
-        {%- if not (soon_first <= loop.index0 < soon_first + 3) %} hidden{% endif %}>
-        <span class="cal-weekday">{{ d.weekday }}</span><span class="cal-tag"></span>
-        <span class="cal-date">{{ d.day }}</span>
-        <span class="cal-count">{% if n %}{{ n }} release{{ "s" if n > 1 }}{% else %}No releases{% endif %}</span>
-      </button>
+  {% if months %}
+  {# The release map: the build writes four months of days and static/calendar.js shows the three from the viewer's
+     own month, marks today and opens the first day with releases still to come; without scripts the build's own
+     three show. #}
+  <section class="cal-map" id="cal-map" aria-labelledby="release-map">
+    <h2 id="release-map">Release map</h2>
+    <p class="block-intro">The next three months, day by day: the darker the day, the more releases it has, and the
+      number in its corner says how many. Click a day to see them.</p>
+    <p class="cal-legend"><span>Releases in a day</span>
+      {% for k, label in [(0, "0"), (1, "1"), (2, "2"), (3, "3"), (4, "4+")] %}<span class="cal-key"><span class="cal-swatch heat-{{ k }}" aria-hidden="true"></span>{{ label }}</span>{% endfor %}
+      <span class="cal-key"><span class="cal-today-key" aria-hidden="true"></span>today</span>
+    </p>
+    <div class="cal-months">
+      {% for m in months %}
+      <div class="cal-month" data-month="{{ m.key }}"{% if loop.index0 > 2 %} hidden{% endif %}>
+        <h3>{{ m.title }}</h3>
+        <div class="cal-grid">
+          {% for w in ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"] %}<span class="cal-head" aria-hidden="true">{{ w }}</span>{% endfor %}
+          {% for c in m.cells %}
+          {% if not c %}<span class="cal-blank"></span>
+          {% else %}
+          {% set n = c.events | length %}
+          {% set past = c.date < today_iso %}
+          {% set cls = "cal-cell heat-" ~ ([n, 4] | min) ~ (" is-weekend" if c.weekend else "") ~ (" is-past" if past else "") ~ (" is-today" if c.date == today_iso else "") %}
+          {% if n %}<button type="button" class="{{ cls }}" data-date="{{ c.date }}" data-last="{{ c.last }}"
+            aria-label="{{ c.long }}: {{ n }} release{{ 's' if n > 1 }}" aria-controls="cal-list-{{ c.date }}"
+            aria-pressed="{{ 'true' if c.date == map_open else 'false' }}"{% if past %} disabled{% endif %}><span class="cal-num">{{ c.day }}</span><span class="cal-n" aria-hidden="true">{{ n }}</span></button>
+          {%- else %}<span class="{{ cls }}" data-date="{{ c.date }}"><span class="cal-num">{{ c.day }}</span></span>{% endif %}
+          {% endif %}
+          {% endfor %}
+        </div>
+      </div>
       {% endfor %}
     </div>
-    <p class="cal-legend"><span>Releases</span>
-      {% for k, label in [(0, "0"), (1, "1"), (2, "2"), (3, "3"), (4, "4+")] %}<span class="cal-key"><span class="cal-swatch heat-{{ k }}" aria-hidden="true"></span>{{ label }}</span>{% endfor %}
-    </p>
-    {% for d in soon %}
-    <div class="cal-list" id="cal-list-{{ d.date }}"{% if loop.index0 != soon_first %} hidden{% endif %}>
-      <h3>{{ d.long }}</h3>
-      {% if d.events %}
+    {# The open day's releases; on phones static/calendar.js moves them under that day's month. #}
+    <div class="cal-panel">
+    {% for m in months %}{% for c in m.cells if c and c.events %}
+    <div class="cal-list" id="cal-list-{{ c.date }}"{% if c.date != map_open %} hidden{% endif %}>
+      <h3>{{ c.long }}</h3>
       <ul class="news-list">
-        {% for e in d.events %}
+        {% for e in c.events %}
         <li><span class="news-day">{{ e.time }}</span> <a href="{{ e.page }}">{{ e.label }}</a>{% if e.period %} · {{ e.period }}{% endif %}
           <span class="secondary">· {{ e.source }}</span>{% if e.expected %} <span class="badge badge-info">expected</span>{% endif %}</li>
         {% endfor %}
       </ul>
-      {% else %}
-      <p class="note">Nothing scheduled.</p>
-      {% endif %}
     </div>
-    {% endfor %}
-    <p class="note cal-none" hidden></p>
+    {% endfor %}{% endfor %}
+    </div>
+    <p class="note cal-none"{% if map_open %} hidden{% endif %}>Nothing scheduled in the next three months.</p>
+    <p class="note">INE puts out each year's calendar towards the end of the year before; until then the months ahead
+      show only the Social Security's and the ECB's dates.</p>
   </section>
   {% endif %}
 

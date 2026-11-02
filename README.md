@@ -124,8 +124,9 @@ Because the workflow commits data every day, run `git pull` before working local
   (marked as a placeholder while the model is worked on),
   what forecasters expect for this year and next, the 10-year yield split into Bund and prima de riesgo, and
   Taylor rules for the euro area and Spain.
-- **Calendar** (`site/calendar.html`): the next three working days, each shaded by its number of releases and
-  opened with a click, releases in the past week and the next two months; every page has a "Coming up" bar.
+- **Calendar** (`site/calendar.html`): a release map of the next three months, day by day, each day shaded by its
+  number of releases and opened with a click; releases in the past week and the next two months; every page has a
+  "Coming up" bar.
 - **Search** (every page): the header's search button, or `/` or Ctrl+K, finds any page, section, chart or
   series by its English or Spanish name and jumps to where the site shows it.
 - **What's new** (every page): a section whose figures arrived in the past week carries an "Updated" mark,

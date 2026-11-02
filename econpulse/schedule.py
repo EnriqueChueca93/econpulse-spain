@@ -186,28 +186,39 @@ def window(store: Store, today: pd.Timestamp | None = None, before: int = 7, aft
             for d, evs in sorted(days.items())]
 
 
-def coming_days(days: list[dict], today: pd.Timestamp, count: int = 15) -> list[dict]:
-    """The next `count` working days from `today` (weekends are left out: no source publishes then), each with
-    its releases from `window`, for the Calendar page's three-day view. The build writes a fortnight or so and
-    the page picks the three from the viewer's own date, so a build a day or two old still shows the right days."""
+MAP_AHEAD = 125   # days of releases the build gives the release map: to the end of the fourth month at most
+
+
+def month_grids(days: list[dict], today: pd.Timestamp, count: int = 4) -> list[dict]:
+    """Calendar months from today's, for the Calendar page's release map: each a run of cells, Monday first
+    (None before the 1st and after the last day), every day with its releases from `window`. The build writes
+    one month more than the page shows; the page picks the three from the viewer's own month, so a build from
+    the last day of a month still shows the right ones."""
     today = pd.Timestamp(today).normalize()
     events = {d["date"]: d["events"] for d in days}
-    out, day = [], today
-    while len(out) < count:
-        if day.weekday() < 5:
+    out = []
+    for k in range(count):
+        start = today.replace(day=1) + pd.DateOffset(months=k)
+        cells: list[dict | None] = [None] * start.weekday()
+        for i in range(start.days_in_month):
+            day = start + pd.Timedelta(days=i)
             evs = events.get(day, [])
-            out.append({"date": f"{day:%Y-%m-%d}", "weekday": f"{day:%A}", "day": f"{day.day} {day:%B}",
-                        "long": f"{day:%A} {day.day} {day:%B %Y}", "events": evs,
-                        "last": max(e["time"] for e in evs) if evs else ""})
-        day += pd.Timedelta(days=1)
+            cells.append({"date": f"{day:%Y-%m-%d}", "day": day.day, "long": f"{day:%A} {day.day} {day:%B %Y}",
+                          "weekend": day.weekday() >= 5, "events": evs,
+                          "last": max(e["time"] for e in evs) if evs else ""})
+        cells += [None] * (-len(cells) % 7)
+        out.append({"key": f"{start:%Y-%m}", "title": f"{start:%B %Y}", "cells": cells})
     return out
 
 
-def first_coming(days: list[dict], now: datetime) -> int:
-    """Which of `coming_days` the three-day view starts at: today while it still has releases to come
-    (Madrid time), otherwise the next working day."""
-    today = f"{now:%Y-%m-%d}"
-    return 1 if days and days[0]["date"] == today and days[0]["last"] <= f"{now:%H:%M}" else 0
+def first_open(months: list[dict], now: datetime) -> str | None:
+    """The day the release map opens on: the first with releases still to come (Madrid time)."""
+    today, clock = f"{now:%Y-%m-%d}", f"{now:%H:%M}"
+    for m in months[:3]:
+        for c in m["cells"]:
+            if c and c["events"] and (c["date"] > today or (c["date"] == today and c["last"] > clock)):
+                return c["date"]
+    return None
 
 
 def coming_up(store: Store, today: pd.Timestamp | None = None, count: int = 3, horizon: int = 21) -> dict:

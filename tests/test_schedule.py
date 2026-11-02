@@ -1,5 +1,6 @@
 """Batch 8: the release calendar, what-changed notes, and the Calendar, About and Data pages (no network)."""
 
+import re
 from datetime import datetime, timedelta, timezone
 
 import numpy as np
@@ -89,20 +90,22 @@ def test_calendar_views(store):
     assert "ECB monetary policy decision" in [e["label"] for d in schedule.window(store, today) for e in d["events"]]
 
 
-def test_the_next_three_days(store):
-    """Batch 32c: the coming working days with their releases, and where the three-day view starts."""
+def test_the_release_map(store):
+    """Batch 32c: four calendar months of days with their releases, Monday first, and the day it opens on."""
     store.save_json("calendar", {"events": schedule.parse_ics(ICS)})
-    today = pd.Timestamp("2026-11-12")                     # a Thursday, the day before the CPI
-    days = schedule.coming_days(schedule.window(store, today), today, count=6)
-    assert [d["date"] for d in days] == ["2026-11-12", "2026-11-13", "2026-11-16", "2026-11-17", "2026-11-18",
-                                         "2026-11-19"]                    # the weekend is left out
-    assert days[1]["weekday"] == "Friday" and days[1]["day"] == "13 November" and days[1]["last"] == "09:00"
-    assert [e["label"] for e in days[1]["events"]] == ["CPI and HICP, full data"] and days[0]["events"] == []
+    today = pd.Timestamp("2026-11-12")
+    months = schedule.month_grids(schedule.window(store, today, before=0, after=schedule.MAP_AHEAD), today)
+    assert [m["key"] for m in months] == ["2026-11", "2026-12", "2027-01", "2027-02"]
+    nov = months[0]
+    assert nov["title"] == "November 2026" and nov["cells"][:6] == [None] * 6     # 1 November 2026 is a Sunday
+    assert nov["cells"][6]["date"] == "2026-11-01" and nov["cells"][6]["weekend"] and len(nov["cells"]) % 7 == 0
+    day13 = next(c for c in nov["cells"] if c and c["date"] == "2026-11-13")
+    assert [e["label"] for e in day13["events"]] == ["CPI and HICP, full data"] and day13["last"] == "09:00"
+    assert day13["long"] == "Friday 13 November 2026"
     madrid = timezone(timedelta(hours=1))
-    assert schedule.first_coming(days, datetime(2026, 11, 12, 8, 0, tzinfo=madrid)) == 1   # nothing left today
-    friday = schedule.coming_days(schedule.window(store, today), pd.Timestamp("2026-11-13"), count=3)
-    assert schedule.first_coming(friday, datetime(2026, 11, 13, 8, 30, tzinfo=madrid)) == 0   # the CPI at 9:00
-    assert schedule.first_coming(friday, datetime(2026, 11, 13, 9, 0, tzinfo=madrid)) == 1    # out already
+    assert schedule.first_open(months, datetime(2026, 11, 12, 20, 0, tzinfo=madrid)) == "2026-11-13"
+    assert schedule.first_open(months, datetime(2026, 11, 13, 8, 30, tzinfo=madrid)) == "2026-11-13"   # at 9:00
+    assert schedule.first_open(months, datetime(2026, 11, 13, 9, 0, tzinfo=madrid)) > "2026-11-13"     # out already
 
 
 # ---------------------------------------------------------------- what changed
@@ -172,9 +175,9 @@ def test_calendar_about_and_data_pages_build(tmp_path):
     assert "All 1 series were fetched successfully" in (site / "data.html").read_text(encoding="utf-8")
     calendar = (site / "calendar.html").read_text(encoding="utf-8")
     assert "INE's own calendar" in calendar
-    # The next three days: a fortnight of working days, three shown, each shaded and with its own list.
-    assert '<h2 id="next-days">The next three days</h2>' in calendar and calendar.count('class="cal-day heat-') == 15
-    assert calendar.count('class="cal-list"') == 15 and 'src="assets/calendar.js?v=' in calendar
-    assert calendar.index('id="next-days"') < calendar.index('id="upcoming"')
-    shown = [c for c in calendar.split('<button type="button" class="cal-day')[1:] if " hidden>" not in c.split(">", 1)[0] + ">"]
-    assert len(shown) == 3
+    # The release map: four months of days written, three shown, a list for each day with releases.
+    assert '<h2 id="release-map">Release map</h2>' in calendar and 'src="assets/calendar.js?v=' in calendar
+    tags = re.findall(r'<div class="cal-month" data-month="[0-9-]+"( hidden)?>', calendar)
+    assert len(tags) == 4 and tags.count(" hidden") == 1
+    assert calendar.count('class="cal-list"') == calendar.count('<button type="button" class="cal-cell') > 0
+    assert calendar.index('id="release-map"') < calendar.index('id="upcoming"')
