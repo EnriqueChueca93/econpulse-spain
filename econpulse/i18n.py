@@ -169,7 +169,8 @@ _FIGURE_WORDS = [
     (r"% of GDP\b", "% del PIB"), (r"(?<=\d) bp\b", " pb"), (r"(?<=\d) mn\b", " mill."), (r"(?<=\d) bn\b", " mm"),
     (r"\bQ([1-4]) (\d{4})\b", r"T\1 \2"),
 ]
-_MONTH_WORDS = {m[:3]: es for m, es in zip(MONTHS, MON_ES)} | {m: es for m, es in zip(MONTHS, MONTHS_ES)}
+# Short names win where a month's full name is also its short one (May → may, as in "29 May 2026").
+_MONTH_WORDS = {m: es for m, es in zip(MONTHS, MONTHS_ES)} | {m[:3]: es for m, es in zip(MONTHS, MON_ES)}
 _MONTH_RE = re.compile(r"\b(" + "|".join(sorted(_MONTH_WORDS, key=len, reverse=True)) + r")\b(?= \d{4}| \d{1,2}\b|$)")
 
 

@@ -18,8 +18,9 @@ from econpulse.tables import Data, Heading, Panel, Table
 # The templates whose text is in Spanish (33a: the frame and the home page; 33b: the section pages); the
 # others follow in 33c-33d.
 SPANISH_TEMPLATES = ("base.html", "index.html", "calendar.html", "data.html", "404.html", "macros.html", "section.html")
-# The section pages in Spanish from Batch 33b, and from 33c-1.
-SPANISH_SECTIONS = ("gdp", "labour", "wages", "inflation", "financial", "ecb", "fiscal", "activity", "regions", "analysis")
+# The section pages in Spanish from Batch 33b, 33c-1 and 33c-2 (all of them).
+SPANISH_SECTIONS = ("gdp", "labour", "wages", "inflation", "financial", "ecb", "fiscal", "activity", "regions", "analysis",
+                    "housing", "pensions", "international")
 
 
 def test_every_marked_text_of_the_translated_pages_has_its_spanish():
@@ -42,6 +43,7 @@ def test_dates_and_figures_in_spanish():
         assert i18n.wd_day_mon(d) == "mar 3 nov"
         assert i18n.figures("0.6% q/q in Q3 2026, after 0.7% in Oct 2025") == "0.6% t/t in T3 2026, after 0.7% in oct 2025"
         assert i18n.figures("+465.5k y/y") == "+465.5k a/a" and i18n.figures("+1.2% m/m SA") == "+1.2% m/m desest."
+        assert i18n.figures("29 May 2026") == "29 may 2026" and i18n.figures("in May") == "in may"
         assert fmt_value(1.25, "% of GDP", 1) == "1.2% del PIB" and fmt_value(12.0, "bp", 0) == "12 pb"   # numbers stay English
         assert i18n._("Inflation") == "Inflación" and i18n._("Nothing like this") == "Nothing like this"
         assert i18n.missing.get("Nothing like this")

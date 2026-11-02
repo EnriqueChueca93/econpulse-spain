@@ -13,12 +13,16 @@ $/t: $/t
 '% change in average registrations, as published': Variación de la afiliación media, tal como se publica, %
 '% change in registered unemployment, as published': Variación del paro registrado, tal como se publica, %
 '% change on a year earlier': Variación interanual, %
+'% change on a year earlier (HICP in the EU, CPI elsewhere)': Variación interanual, % (IPCA en la UE, IPC en el resto)
 '% change on a year earlier: wage cost per worker (quarterly) and CPI (monthly)': 'Variación interanual, %: coste salarial por trabajador (trimestral) e IPC (mensual)'
 '% change on the previous quarter (bars) and on a year earlier (line)': Variación intertrimestral (barras) e interanual (línea), %
 '% change on the previous quarter; the last point is the nowcast for {q}': Variación intertrimestral, %; el último punto es la estimación adelantada de {q}
+'% change · European Commission (AMECO), {year}': Variación, % · Comisión Europea (AMECO), {year}
 '% change; contributions in percentage points': Variación, %; aportaciones en puntos porcentuales
 '% of GDP': '% del PIB'
 '% of GDP or € million': '% del PIB o millones de €'
+'% of GDP · IMF, {edition}': '% del PIB · FMI, {edition}'
+'% of GDP, an estimate: pensions × the average pension × {payments} payments': '% del PIB, estimación: número de pensiones × pensión media × {payments} pagas'
 '% of GDP, average of the past four quarters': '% del PIB, media de los últimos cuatro trimestres'
 '% of GDP, calendar year': '% del PIB, año natural'
 '% of GDP, calendar years': '% del PIB, años naturales'
@@ -26,36 +30,53 @@ $/t: $/t
 '% of GDP; baseline and three of the Commission''s four stress tests (all four are in DSA 2)': '% del PIB; escenario base y tres de las cuatro pruebas de tensión de la Comisión (las cuatro están en el DSA 2)'
 ? '% of GDP; the Commission''s baseline with the 10th and 90th percentiles of its stochastic projections, and the IMF''s projection'
 : '% del PIB; el escenario base de la Comisión con los percentiles 10 y 90 de sus proyecciones estocásticas, y la proyección del FMI'
+'% of GDP; the latest years are the IMF''s projections': '% del PIB; los últimos años son proyecciones del FMI'
 '% of all contracts, average of the past 12 months': '% del total de contratos, media de los últimos 12 meses'
 '% of contracts registered, average of the past 12 months': '% de los contratos registrados, media de los últimos 12 meses'
+'% of disposable income, seasonally adjusted': '% de la renta disponible, desestacionalizada'
 '% of each group''s population (participation, employment) or labour force (unemployment)': '% de la población de cada grupo (actividad, empleo) o de su población activa (paro)'
 '% of each group, seasonally adjusted': '% de cada grupo, desestacionalizado'
 '% of employees; the 2022 labour reform took effect that spring': '% de los asalariados; la reforma laboral de 2022 entró en vigor esa primavera'
 '% of exports and imports over the past 12 months': '% de las exportaciones y las importaciones de los últimos 12 meses'
+'% of gross disposable income': '% de la renta disponible bruta'
+'% of households, by tenure of their home': '% de los hogares, por régimen de tenencia de la vivienda'
+'% of housing loans to households': '% del crédito a los hogares para vivienda'
 '% of labour force': '% de la población activa'
+'% of pay above the maximum contribution base, by band': '% del salario que supera la base máxima de cotización, por tramos'
 '% of the employed who, a quarter later, are unemployed or out of the labour force': '% de los ocupados que, un trimestre después, están parados o fuera de la población activa'
+'% of the labour force': '% de la población activa'
 '% of the labour force (EPA)': '% de la población activa (EPA)'
+'% of the labour force, seasonally adjusted': '% de la población activa, desestacionalizado'
 '% of the labour force: Eurostat''s monthly estimate (adjusted) and the EPA (quarterly, unadjusted)': '% de la población activa: estimación mensual de Eurostat (desestacionalizada) y EPA (trimestral, sin desestacionalizar)'
 '% of the labour force; slack also counts the underemployed and people not looking': '% de la población activa; la holgura cuenta también a los subempleados y a quienes no buscan'
 '% of the population aged 15 and over, average of the past four quarters': '% de la población de 15 años y más, media de los últimos cuatro trimestres'
 '% of the unemployed who, a quarter later, are employed or out of the labour force': '% de los parados que, un trimestre después, están ocupados o fuera de la población activa'
 '% unless stated': '% salvo indicación'
+'% · IMF World Economic Outlook, {edition}': '% · Perspectivas de la economía mundial del FMI, {edition}'
+'% · changes on a year earlier in percentage points': '% · variaciones interanuales en puntos porcentuales'
+'% · spread in basis points': '% · diferencial en puntos básicos'
 '%(n)s of %(total)s series need attention:': '%(n)s de %(total)s series requieren atención:'
 '%(num)s release': '%(num)s publicación'
 '%(num)s releases': '%(num)s publicaciones'
 '%, average of the past four quarters': '%, media de los últimos cuatro trimestres'
 '%, daily': '%, diario'
 '%, daily; the gap between the lines is the prima de riesgo': '%, diaria; la distancia entre las líneas es la prima de riesgo'
+'%, end of month; the ECB sets the rate for the euro-area countries': '%, fin de mes; el BCE fija el tipo de los países de la zona del euro'
 '%, monthly': '%, mensual'
+'%, monthly average': '%, media mensual'
 '%, monthly averages: the German yield plus the prima de riesgo': '%, medias mensuales: la rentabilidad alemana más la prima de riesgo'
 '%, unless stated': '%, salvo indicación'
 '%: 12-month Euribor (daily) and the average rate on new mortgages (monthly)': '%: euríbor a 12 meses (diario) y tipo medio de las hipotecas nuevas (mensual)'
 '%: AAA forward rate one year ahead and the deposit rate': '%: tipo a plazo AAA a un año y tipo de depósito'
 '%: Euribor follows the ECB''s deposit rate and where markets expect it to go': '%: el euríbor sigue al tipo de depósito del BCE y a dónde esperan los mercados que vaya'
+'%: growth of housing loans on a year earlier, and the rate on new mortgages': '%: variación interanual del crédito para vivienda y tipo de las hipotecas nuevas'
 '%: the ECB deposit rate and euro-area inflation (HICP, headline and core)': '%: el tipo de depósito del BCE y la inflación de la zona del euro (IAPC, general y subyacente)'
+'%: the average loan against the home''s price, and the share of loans over 80% of it': '%: el préstamo medio frente al precio de la vivienda y la proporción de préstamos que superan el 80% de este'
 '%; changes in basis points': '%; variaciones en puntos básicos'
 '%; the gap with today''s deposit rate in basis points': '%; la diferencia con el tipo de depósito actual en puntos básicos'
 ', the equivalent of {share} of the hours worked.': ', el equivalente al {share} de las horas trabajadas.'
+0.6 points of pay (employer 0.5, worker 0.1): 0.6 puntos de cotización (empresa 0.5, trabajador 0.1)
+0.92%, 1% and 1.17% in three bands (up to 10%, 10-50% and over 50% above the base): 0.92%, 1% y 1.17% en tres tramos (hasta un 10%, entre un 10% y un 50% y más de un 50% por encima de la base)
 1 year ahead: A 1 año
 1-day: 1 día
 1-mo: 1 mes
@@ -66,9 +87,18 @@ $/t: $/t
 1-week: 1 semana
 1-yr: 1 año
 1-yr ago: Hace 1 año
+1-yr change: Variación en 1 año
+1.2 points of pay (employer 1.0, worker 0.2), rising by 0.1 a year from 2023: 1.2 puntos de cotización (empresa 1.0, trabajador 0.2), tras subir 0.1 al año desde 2023
+1.4% of GDP a year on average in 2022-2050: 1.4% del PIB al año de media en 2022-2050
+1.6% of GDP a year on average in 2022-2050 (1.4% in 2025): 1.6% del PIB al año de media en 2022-2050 (1.4% en 2025)
+10-50% above: Entre un 10% y un 50% por encima
 10-year: 10 años
+10-year bond: Bono a 10 años
 10-year government bond yields: Rentabilidad de la deuda pública a 10 años
+10-year yield: Rentabilidad a 10 años
+10-year yield minus Germany's, basis points, monthly averages: Rentabilidad a 10 años menos la de Alemania, puntos básicos, medias mensuales
 '10-year yields: Spain and Germany': 'Rentabilidades a 10 años: España y Alemania'
+100 = long-run average: 100 = media de largo plazo
 10th percentile: Percentil 10
 10y: 10a
 12 months to {month}: 12 meses hasta {month}
@@ -78,12 +108,24 @@ $/t: $/t
 12-month Euribor: Euríbor a 12 meses
 12-month Treasury bill: Letra del Tesoro a 12 meses
 12-month bill: Letra a 12 meses
+13.0% of GDP, under the 13.3% limit, so the rule is met: 13.0% del PIB, por debajo del límite del 13.3%, así que se cumple la regla
+13.1% of GDP: 13.1% del PIB
+13.1% of GDP, 28.3% of public non-financial spending: 13.1% del PIB, 28.3% del gasto público no financiero
+13.2% of GDP, under the 13.3% limit, so the rule is met: 13.2% del PIB, por debajo del límite del 13.3%, así que se cumple la regla
+14.6% of GDP (the Ageing Report updated with actual data; 15.4% as published): 14.6% del PIB (el Ageing Report actualizado con datos observados; 15.4% en la versión publicada)
 15-year: 15 años
 15y: 15a
 15–24: 15–24
+16.7% of GDP (EU 11.8%): 16.7% del PIB (UE 11.8%)
+17.3% of GDP: 17.3% del PIB
+17.3% of GDP (Ageing Report), 16.2% (AIReF); pensions from 11.1 million to 16.7 million: 17.3% del PIB (Ageing Report), 16.2% (AIReF); las pensiones, de 11.1 millones a 16.7 millones
 1y: 1a
 2 years ahead: A 2 años
 2% target: Objetivo del 2%
+'2014': '2014'
+'2015': '2015'
+23.9% of GDP in 2022, 29.0% in 2070: 23.9% del PIB en 2022, 29.0% en 2070
+237 in 2022, 146 in 2050, 137 in 2070: 237 en 2022, 146 en 2050, 137 en 2070
 25–54: 25–54
 25–54 (prime age): 25–54 (edad central)
 2y: 2a
@@ -101,10 +143,14 @@ $/t: $/t
 3m: 3m
 3y: 3a
 5-year: 5 años
+5.5%, 6% and 7% in the same bands: 5.5%, 6% y 7% en los mismos tramos
 55–64: 55–64
 5y: 5a
 6 months ahead: A 6 meses
 6-mo ann.: 6 meses anualiz.
+64.1% in 2022, 51.4% in 2070: 64.1% en 2022, 51.4% en 2070
+65+ per 100 aged 15-64: 65+ por cada 100 de 15-64 años
+65+ per 100 aged 15-64, projected: 65+ por cada 100 de 15-64 años, proyección
 6m: 6m
 9 months ahead: A 9 meses
 90th percentile: Percentil 90
@@ -113,6 +159,8 @@ $/t: $/t
 ': the fall comes from the population''s ageing; within age groups, participation has risen on balance.': ': la caída se debe al envejecimiento de la población; dentro de cada grupo de edad, la actividad ha subido en conjunto.'
 ; and {n} more: ; y {n} más
 ; diesel {gap}%: ; gasóleo {gap}%
+; retirement {amount}: ; jubilación {amount}
+; {ratio} in {year}: ; {ratio} en {year}
 ; {share}% of diesel's: ; {share}% del del gasóleo
 ; {value} three months earlier: ; {value} tres meses antes
 ? A Taylor rule turns inflation and slack into a suggested policy rate. Run on euro-area data it is a yardstick for the ECB; run on Spanish data it shows the rate Spain would get if it set its own, the cost of one rate for all.
@@ -122,13 +170,27 @@ A budget balance below zero is a deficit.: Un saldo presupuestario negativo es u
 : 'Unos pocos movimientos grandes de precios, como los de la energía, pueden zarandear la inflación general. Estas medidas miran toda la distribución de las variaciones de precios en unas 180 partidas detalladas de la cesta armonizada: la mediana ponderada es la tasa por encima de la cual sube la mitad de la cesta, y las medias recortadas promedian lo que queda tras quitar las subidas y bajadas más extremas. Cálculo de Macroscope con datos de Eurostat, con el método que usa el BCE para la zona del euro.'
 A month earlier: Un mes antes
 A negative balance is a deficit.: Un saldo negativo es un déficit.
+A new mortgage lends: Una hipoteca nueva financia
+A new mortgage takes: Una hipoteca nueva absorbe
+A new mortgage, % of household income: Hipoteca nueva, % de la renta del hogar
+A new retirement pension: Una pensión de jubilación nueva
+A retirement pension that ends: Una pensión de jubilación que causa baja
 A running read on the health of the Spanish economy.: Una lectura continua del estado de la economía española.
+A year earlier: Un año antes
 ? A z-score of +1 means one typical deviation above the 2013–present norm (Covid years left out). Weights fall by a quarter for each month a reading is older than the newest data.
 : Una puntuación z de +1 significa una desviación típica por encima de la norma de 2013 hasta hoy (sin los años de la COVID). Los pesos bajan una cuarta parte por cada mes que un dato es más antiguo que el más reciente.
 ? AAA yields are the ECB's estimate of the curve for AAA-rated euro-area governments, the closest thing to a risk-free euro rate. Banco de España's prima de riesgo uses benchmark bonds, so it differs a little from Spain's 10-year yield minus Germany's.
 : Las rentabilidades AAA son la estimación del BCE de la curva de los gobiernos de la zona del euro con calificación AAA, lo más parecido a un tipo del euro sin riesgo. La prima de riesgo del Banco de España usa bonos de referencia, así que difiere algo de la rentabilidad a 10 años de España menos la de Alemania.
+AI check (Claude): una IA (Claude)
+AI-checked: verificado por IA
 AI-checked rows only: solo filas verificadas por IA
 AIReF: AIReF
+AIReF's PDF of 29 May 2026 (Estudio 1/2026): el PDF de la AIReF del 29 de mayo de 2026 (Estudio 1/2026)
+AIReF's PDF of 31 March 2025 (Informe 2/25): el PDF de la AIReF del 31 de marzo de 2025 (Informe 2/25)
+AIReF's first check of the spending rule: Primera evaluación de la regla de gasto por la AIReF
+AIReF's follow-up check: La evaluación de seguimiento de la AIReF
+AIReF's own projection: Proyección propia de la AIReF
+AIReF's view of the rule: La opinión de la AIReF sobre la regla
 About: Acerca de
 About and methods: Acerca del sitio y métodos
 About the data: Sobre los datos
@@ -147,8 +209,10 @@ Administrative services: Actividades administrativas
 Adverse r − g: r − g adverso
 Affordability: Accesibilidad
 After inflation: Descontada la inflación
+Against end-2019 %: Frente a finales de 2019 %
 Against other countries: Frente a otros países
 Against the euro area: Frente a la zona del euro
+Age-related spending (pensions, health, long-term care, education): Gasto ligado al envejecimiento (pensiones, sanidad, cuidados de larga duración, educación)
 Aged 65 and over: 65 años y más
 Aged 65 and over, % of people 15 and over: 65 años y más, % de las personas de 15 años y más
 Aged 65 and over, % of people aged 15 and over, average of the past four quarters: 65 años y más, % de las personas de 15 años y más, media de los últimos cuatro trimestres
@@ -166,19 +230,33 @@ All %(n)s series in this section, with their sources: Las %(n)s series de esta s
 All %(total)s series were fetched successfully and are up to date.: Las %(total)s series se han descargado correctamente y están al día.
 All activities: Todas las actividades
 All ages: Todas las edades
+All commercial property: Todos los inmuebles comerciales
+All consumer prices: IPC general
 All contracts: Todos los contratos
+All credit secured on property: Todo el crédito con garantía inmobiliaria
 All goods: Todos los bienes
+All homes: Todas las viviendas
+All in force: Todas las vigentes
 All of them are on the: Todas están en la página de
 All partners: Todos los socios
 All pay: Salario total
+All pensions: Todas las pensiones
+All pensions, % of GDP (Eurostat): Todas las pensiones, % del PIB (Eurostat)
 All procedures: Todos los procedimientos
 All registrations: Toda la afiliación
 All registrations (general scheme and self-employed): Toda la afiliación (régimen general y autónomos)
+All retirement pensions in force: Todas las pensiones de jubilación en vigor
 All services: Todos los servicios
 All vacancies: Todas las vacantes
 All, 15–64: Total, 15–64
 Among the {items} detailed items with data, those with at least 0.2% of the basket. Eurostat's item names.: Entre las {items} partidas detalladas con datos, las que pesan al menos un 0.2% de la cesta. Nombres de las partidas traducidos de los de Eurostat.
+Amount: Cuantía
+Amount lent on them: Importe prestado
 An ageing population: Una población que envejece
+An average home costs: Una vivienda media cuesta
+? 'An average home is a free-market home of 93.75 m² at the appraised price; household income is gross disposable income. The mortgage takes a loan of 80% of the price at the going rate and term, before tax relief. Asking prices are what sellers ask on the portals, usually above the prices homes sell for. Sources: Banco de España, Ministry of Housing, Idealista, Fotocasa.'
+: 'La vivienda media es una vivienda libre de 93.75 m² a precio de tasación; la renta del hogar es la renta disponible bruta. La hipoteca financia el 80% del precio al tipo y el plazo vigentes, antes de deducciones fiscales. Los precios de oferta son los que piden los vendedores en los portales, normalmente por encima de los precios a los que se venden las viviendas. Fuentes: Banco de España, Ministerio de Vivienda, Idealista, Fotocasa.'
+An average home, years of household income: Vivienda media, años de renta del hogar
 ? 'An estimate of this quarter''s GDP growth before INE publishes it, from Social Security registrations, industrial production and last quarter''s growth (a bridge equation fitted on 2013 onwards, leaving out 2020-21). A placeholder: the model is still being worked on.'
 : 'Una estimación del crecimiento del PIB de este trimestre antes de que lo publique el INE, a partir de la afiliación a la Seguridad Social, la producción industrial y el crecimiento del trimestre anterior (una ecuación puente estimada desde 2013, sin 2020-21). Es provisional: el modelo aún está en desarrollo.'
 An older population: Una población más envejecida
@@ -188,29 +266,50 @@ Andalucía: Andalucía
 Annual inflation, %: Inflación anual, %
 Annual inflation, % change on a year earlier: Inflación anual, variación interanual, %
 Annual rate: Tasa anual
+Appraisals: Tasaciones
+Appraisals (Ministry of Housing): Tasaciones (Ministerio de Vivienda)
 Aragón: Aragón
 Arts and recreation: Actividades artísticas y recreativas
 Arts, entertainment and recreation: Actividades artísticas, recreativas y de entretenimiento
+As paid: Nominal
 ? As the baby-boom generations reach retirement, a growing share of adults are past working age, which pulls down the participation and employment rates of everyone aged 15 and over even when each age group works as much as before. Macroscope holds the population's mix by sex and five-year age group at its 2008 shares, letting each group's own rate move, to show how much of the change comes from ageing.
 : A medida que las generaciones del baby boom llegan a la jubilación, una parte creciente de los adultos ha pasado la edad de trabajar, lo que rebaja las tasas de actividad y de empleo del conjunto de mayores de 15 años aunque cada grupo de edad trabaje tanto como antes. Macroscope mantiene la composición de la población por sexo y grupos de cinco años de edad en sus pesos de 2008, dejando que se mueva la tasa de cada grupo, para mostrar cuánto del cambio se debe al envejecimiento.
+Asking price per m²: Precio de oferta por m²
+Asking prices, Fotocasa: Precios de oferta, Fotocasa
+Asking prices, Idealista: Precios de oferta, Idealista
 Asturias: Asturias
 At the 2008 age mix: Con la estructura de edades de 2008
 At the pump, € a litre: En surtidor, € por litro
 At the {year} age mix: Con la estructura de edades de {year}
 Average: Media
+Average amount, € a month: Importe medio, € al mes
+Average amount, € a month, annual: Importe medio, € al mes, anual
 Average change per month, thousands: Variación media mensual, miles
 Average daily demand, % change on a year earlier: Demanda media diaria, variación interanual, %
+Average gross pension spending in 2022-2050: Gasto bruto medio en pensiones en 2022-2050
 ? Average monthly Social Security registrations by sector and by type of work, from the ministry's monthly workbooks. The 1- and 3-month changes use the ministry's own seasonal adjustment; the 12-month change, the figures as published. From January 2026 the sectors follow the new classification of activities (CNAE-2025); Macroscope links construction and services across the change, which moved real estate development from one to the other. Every industry, month by month, is on its own page (Labour market menu, or the chart's More link).
 : La afiliación media a la Seguridad Social por sectores y por tipo de trabajo, de los ficheros mensuales del ministerio. Las variaciones de 1 y 3 meses usan la desestacionalización del propio ministerio; la de 12 meses, las cifras publicadas. Desde enero de 2026 los sectores siguen la nueva clasificación de actividades (CNAE-2025); Macroscope enlaza la construcción y los servicios a través del cambio, que pasó la promoción inmobiliaria de uno a otro. Todas las actividades, mes a mes, tienen su propia página (menú Mercado laboral, o el enlace Más del gráfico).
+Average mortgage: Hipoteca media
 Average of the forecasts above: Media de las previsiones anteriores
 Average of the past four quarters, % change on the four before: Media de los últimos cuatro trimestres, variación sobre los cuatro anteriores, %
+Average pension: Pensión media
+Average pension by class: Pensión media por clase
+Average pension by region: Pensión media por comunidades
+Average pension by scheme: Pensión media por régimen
+'Average pension, annual average, {year} = 100: as paid, and after consumer prices': 'Pensión media, media anual, {year} = 100: nominal y descontados los precios de consumo'
 Average price on Mondays, taxes included, € a litre; dotted, the euro area: Precio medio de los lunes, impuestos incluidos, € por litro; en punteado, la zona del euro
 Average pump price in Spain, taxes included, on Mondays (European Commission, Weekly Oil Bulletin).: Precio medio en surtidor en España, impuestos incluidos, los lunes (Comisión Europea, Boletín Petrolero semanal).
 Average pump price of automotive diesel in Spain, taxes included, on Mondays (European Commission, Weekly Oil Bulletin).: Precio medio en surtidor del gasóleo de automoción en España, impuestos incluidos, los lunes (Comisión Europea, Boletín Petrolero semanal).
+Average retirement pension by region: Pensión media de jubilación por comunidades
+Average retirement, € a month: Pensión media de jubilación, € al mes
 Average rise agreed for the year in agreements registered so far, %: Subida media pactada para el año en los convenios registrados hasta ahora, %
 Average surprise over the past four months, newest weighted most; above 0 = above forecast: Sorpresa media de los últimos cuatro meses, con más peso para las más recientes; por encima de 0 = por encima de la previsión
+Average term: Plazo medio
+Average term of new mortgages: Plazo medio de las hipotecas nuevas
 ? 'Average wage cost per worker by activity, from INE''s labour cost survey: gross pay including bonuses, before the worker''s tax and contributions, for full-time and part-time employees together, a month and per hour actually worked, with the share that comes from bonuses and extra months'' pay. Averages of four quarters, as bonuses make pay seasonal.'
 : 'El coste salarial medio por trabajador en cada actividad, de la encuesta de coste laboral del INE: salario bruto con pagas extraordinarias, antes de impuestos y cotizaciones del trabajador, para asalariados a tiempo completo y parcial juntos, al mes y por hora efectiva de trabajo, con la parte que procede de pagas extraordinarias y atrasos. Medias de cuatro trimestres, porque las pagas extraordinarias hacen estacional el salario.'
+Average {value}: Media {value}
+Average, € a month: Media, € al mes
 BIS: BPI
 Bad loans: Morosidad
 Bad-loan ratio: Tasa de morosidad
@@ -218,24 +317,33 @@ Bad-loan ratio, %: Tasa de morosidad, %
 Balance: Saldo
 Balance of payments: Balanza de pagos
 Balance of positive minus negative answers: Saldo de respuestas positivas menos negativas
+Balance of the pension system at its lowest, in 2053: Saldo del sistema de pensiones en su punto más bajo, en 2053
 Balance over the past 12 months, € billion: Saldo de los últimos 12 meses, miles de millones de €
+Balance with the rest of the world, % of GDP: Saldo con el resto del mundo, % del PIB
 Balance without energy: Saldo sin energía
 Banco de España: Banco de España
 Banco de España's 10-year spread over the German Bund.: Diferencial a 10 años frente al Bund alemán, del Banco de España.
+Bank of Canada: Banco de Canadá
+Bank of England: Banco de Inglaterra
+Bank of Japan: Banco de Japón
+Banks' loans for commercial property: Crédito bancario a inmuebles comerciales
 Baseline: Escenario base
 Basis points, to {day}, the latest day with both yields: Puntos básicos, hasta el {day}, último día con ambas rentabilidades
 Basket rising faster than 2%: Cesta que sube más del 2%
 Basket rising faster than 5%: Cesta que sube más del 5%
 Before interest (primary balance): Sin intereses (saldo primario)
+Before notaries: Ante notario
 ? 'Behind the unemployment rate, people move all the time: some of the unemployed find work or give up looking, and some of the employed lose their jobs or leave the labour force. Eurostat follows the same people from one quarter to the next in the labour force survey. More of the unemployed find a job each quarter than before the pandemic, and fewer workers lose theirs.'
 : 'Detrás de la tasa de paro, la gente se mueve todo el tiempo: algunos parados encuentran trabajo o dejan de buscarlo, y algunos ocupados pierden su empleo o salen de la población activa. Eurostat sigue a las mismas personas de un trimestre al siguiente en la encuesta de población activa. Cada trimestre encuentran empleo más parados que antes de la pandemia, y menos ocupados pierden el suyo.'
 Belgium: Bélgica
+Benefit ratio (average pension against average wage): Tasa de beneficio (pensión media sobre el salario medio)
 Benefits: Prestaciones
 Beveridge curve: Curva de Beveridge
 Bond yields and the prima de riesgo: Rentabilidad de los bonos y prima de riesgo
 Bonds and rates: Bonos y tipos
 Bonuses and extras %: Pagas extra %
 Bonuses, extra months' pay and arrears, % of pay over the past four quarters: Pagas extraordinarias, pagos de vencimiento superior al mes y atrasos, % del salario en los últimos cuatro trimestres
+Borrowing costs over Germany: Coste de financiación frente a Alemania
 Brazil: Brasil
 Brent crude: Petróleo Brent
 Brent crude in euros: Petróleo Brent en euros
@@ -243,10 +351,17 @@ Brent crude, dollars: Petróleo Brent, dólares
 Brent crude, euros: Petróleo Brent, euros
 British pounds: Libras esterlinas
 Budget balance: Saldo presupuestario
+Budget balance {year}: Saldo presupuestario {year}
 Budget balance, past four quarters: Saldo presupuestario, últimos cuatro trimestres
+? Budget balances, the interest governments pay and their debt, all as a share of GDP, from the IMF's World Economic Outlook, with where it expects debt to be by the end of its projections.
+: Los saldos presupuestarios, los intereses que pagan las administraciones públicas y su deuda, todo en porcentaje del PIB, según las Perspectivas de la economía mundial del FMI, con el nivel de deuda que prevé al final de sus proyecciones.
 Budget explorer: Explorador presupuestario
 'Budget explorer: the autonomous communities': 'Explorador presupuestario: las comunidades autónomas'
+Builders and developers: Constructoras y promotoras
+Building: Construcción
 Building and households: Construcción y hogares
+Building costs, % on a year: Costes de construcción, % interanual
+Building permits: Visados de obra nueva
 Bundesbank: Bundesbank
 Business and consumer surveys: Encuestas a empresas y consumidores
 Business services: Servicios empresariales
@@ -272,6 +387,7 @@ CPI inflation: Inflación del IPC
 CPI rents, % change on a year earlier: Alquileres en el IPC, variación interanual, %
 CPI, % change on a year earlier: IPC, variación interanual, %
 Calendar: Calendario
+Canada: Canadá
 Canarias: Canarias
 Cantabria: Cantabria
 Capital goods: Bienes de equipo
@@ -282,9 +398,11 @@ Castilla y León: Castilla y León
 Castilla-La Mancha: Castilla-La Mancha
 Cataluña: Cataluña
 Central bank stance: Orientación de los bancos centrales
+Ceuta y Melilla: Ceuta y Melilla
 Change: Variación
 Change on a year: Variación en un año
 'Change on the month before, thousands, seasonally adjusted; line: 3-month average': 'Variación sobre el mes anterior, miles, desestacionalizada; línea: media de 3 meses'
+Change, %: Variación, %
 ? Changes compare the past 12 months with the 12 months before. All goods, by country of destination for exports and of origin for imports.
 : Las variaciones comparan los últimos 12 meses con los 12 anteriores. Todos los bienes, por país de destino de las exportaciones y de origen de las importaciones.
 ? Changes compare the past 12 months with the 12 months before. Product groups gather chapters of the Harmonised System (see About the data).
@@ -294,21 +412,27 @@ Change on a year: Variación en un año
 Charts: Gráficos
 ? Charts and detailed tables for this page arrive in Batch %(batch)s of the build plan. For now, here is every indicator tracked, with its latest reading.
 : Los gráficos y las tablas de esta página llegan en la fase %(batch)s del plan. Por ahora, estos son los indicadores que se siguen, con su último dato.
+Checked by {by} on {date} against {against}.: Verificado el {date} por {by}, cotejado con {against}.
+Checked by {by} on {date}.: Verificado el {date} por {by}.
 Chemicals: Productos químicos
 Chemicals and plastics: Química y plásticos
 China: China
 Chocolate, cocoa and cocoa-based food products: Chocolate, cacao y productos a base de cacao
+Class: Clase
 Clear all: Quitar todos
+Coal mining: Minería del Carbón
 Coffee and coffee substitutes: Café y sucedáneos
 Collective dismissals: Despidos colectivos
 Collective dismissals and temporary layoffs: Despidos colectivos y ERTE
 Coming up: Próximamente
 Commercial property: Inmuebles comerciales
+Commercial property prices: Precios de los inmuebles comerciales
 Commission: Comisión
 Commission baseline: Escenario base de la Comisión
 'Compare Spain with:': 'Comparar España con:'
 Compensation per employee: Remuneración por asalariado
 Compensation per employee (national accounts): Remuneración por asalariado (contabilidad nacional)
+Compensation per employee after consumer prices, % change on 2019: Remuneración por asalariado descontados los precios de consumo, variación sobre 2019, %
 Components: Componentes
 Computer programming and information services: Programación informática y servicios de información
 Comunitat Valenciana: Comunitat Valenciana
@@ -337,6 +461,8 @@ Contrib. y/y: Aport. a/a
 ? 'Contributions are percentage points of GDP growth, as published by INE: domestic and external demand add up to GDP growth, give or take rounding.'
 : 'Las aportaciones son puntos porcentuales del crecimiento del PIB, tal como las publica el INE: la demanda nacional y la externa suman el crecimiento del PIB, salvo redondeo.'
 Contributions to GDP growth on a year earlier, percentage points: Aportaciones al crecimiento interanual del PIB, puntos porcentuales
+Contributors per 100 pensioners: Cotizantes por cada 100 pensionistas
+Contributory pensions: Pensiones contributivas
 Copper (monthly): Cobre (mensual)
 Copy a link to the chart %(title)s: Copiar un enlace al gráfico %(title)s
 Copy link: Copiar enlace
@@ -351,9 +477,11 @@ Core HICP inflation: Inflación subyacente del IPCA
 ? Core HICP leaves out energy, food, alcohol and tobacco. Horizons under 12 months are annualised and use Macroscope seasonal adjustment, because Eurostat publishes these indices unadjusted. The 12-month column matches the published annual rates.
 : El IAPC subyacente deja fuera la energía, los alimentos, el alcohol y el tabaco. Los horizontes de menos de 12 meses están anualizados y usan la desestacionalización de Macroscope, porque Eurostat publica estos índices sin desestacionalizar. La columna de 12 meses coincide con las tasas anuales publicadas.
 Core HICP, % change on a year earlier: IAPC subyacente, variación interanual, %
+Core inflation: Inflación subyacente
 'Core inflation: Spain and the euro area': 'Inflación subyacente: España y la zona del euro'
 Countries drawn beside Spain on the charts: Países que se dibujan junto a España en los gráficos
 Countries outside the EU: Países de fuera de la UE
+Country: País
 Current account: Cuenta corriente
 Current account balance: Saldo por cuenta corriente
 Current account, % of GDP (past 4 quarters): Cuenta corriente, % del PIB (últimos 4 trimestres)
@@ -375,8 +503,17 @@ Day-ahead market, daily average, €/MWh: Mercado diario, media del día, €/MW
 Day-ahead price: Precio del mercado diario
 Debt: Deuda
 Debt at year end: Deuda a final de año
+Debt in {year}: Deuda en {year}
+Debt secured on property: Deuda con garantía inmobiliaria
+? Debt service is what households pay in interest and principal (BIS). The saving rate is the share of disposable income not spent (INE).
+: El servicio de la deuda es lo que pagan los hogares en intereses y devolución del principal (BPI). La tasa de ahorro es la parte de la renta disponible que no se gasta (INE).
+Debt service, % of disposable income: Servicio de la deuda, % de la renta disponible
+Debt since 2019, pp: Deuda desde 2019, pp
 Debt sustainability: Sostenibilidad de la deuda
+Debt {year}: Deuda {year}
+Debt {year} (projected): Deuda {year} (proyección)
 Deficit and debt: Déficit y deuda
+Deflated by consumer prices, 2015 = 100: Deflactados por los precios de consumo, 2015 = 100
 Demand: Demanda
 Deposit facility: Facilidad de depósito
 Deposit facility rate: Tipo de la facilidad de depósito
@@ -388,6 +525,7 @@ Diesel before taxes: Gasóleo antes de impuestos
 Diesel pre-tax: Gasóleo sin impuestos
 Diesel, Spain: Gasóleo, España
 Diesel, euro area: Gasóleo, zona del euro
+Disability: Incapacidad permanente
 Dismissals: Despidos
 Dollars: Dólares
 Domestic demand: Demanda nacional
@@ -406,11 +544,14 @@ ECB rate vs Taylor rule: Tipo del BCE frente a la regla de Taylor
 ECB rates since 2019: Tipos del BCE desde 2019
 ECB-speak: ECB-speak
 EPA: EPA
+EU: UE
 EU limit: Límite de la UE
 EU reference: Referencia de la UE
 EUR/USD: EUR/USD
 ? Each item's annual rate is weighted by its share of household spending that year. The 10% trimmed mean drops 5% of the basket at each end of the distribution, the 30% one drops 15%. Run on euro-area data, the trimmed means match the ECB's own within about 0.05 points on average (2018–2025) and the median within about 0.15; the ECB's series stopped in December 2025. Detailed items start in 2015 for Spain and 2017 for the euro area.
 : La tasa anual de cada partida se pondera por su peso en el gasto de los hogares de ese año. La media recortada al 10% quita el 5% de la cesta en cada extremo de la distribución; la del 30%, el 15%. Con datos de la zona del euro, las medias recortadas coinciden con las del propio BCE con una diferencia media de unos 0.05 puntos (2018–2025) y la mediana, de unos 0.15; las series del BCE se interrumpieron en diciembre de 2025. Las partidas detalladas empiezan en 2015 para España y en 2017 para la zona del euro.
+? Each month new pensions are granted and others end, mostly on the pensioner's death. New retirement pensions, earned on higher pay, are larger than those that end, so the average pension rises faster than pensions are revalued.
+: Cada mes se reconocen pensiones nuevas y otras causan baja, sobre todo por fallecimiento del pensionista. Las nuevas pensiones de jubilación, generadas con salarios más altos, son mayores que las que causan baja, por lo que la pensión media sube más deprisa que la revalorización de las pensiones.
 'Each point is a quarter: unemployment against vacancies (four-quarter average)': 'Cada punto es un trimestre: paro frente a vacantes (media de cuatro trimestres)'
 ? Each row is the latest close its source has published; a date next to a row means it differs from the rest. Monthly rows are monthly averages. For the euro, a rise means a stronger euro.
 : Cada fila es el último cierre que ha publicado su fuente; una fecha junto a una fila indica que difiere del resto. Las filas mensuales son medias mensuales. Para el euro, una subida significa un euro más fuerte.
@@ -438,12 +579,14 @@ Employment and ageing: Empleo y envejecimiento
 : 'Los contratos de trabajo registrados cada mes en el servicio público de empleo. La reforma laboral en vigor desde 2022 restringió los contratos temporales: los indefinidos, incluidos los fijos discontinuos, pasaron de cerca de uno de cada diez contratos nuevos en 2019–21 a cerca de cuatro de cada diez desde entonces.'
 Employment rate: Tasa de empleo
 Employment rate by age: Tasa de empleo por edad
+Employment rate, 15-64: Tasa de empleo, 15-64
 Employment rate, ages 15 and over, %, average of the past four quarters: Tasa de empleo, 15 años y más, %, media de los últimos cuatro trimestres
 Employment rate, ages 25–54, %, average of the past four quarters: Tasa de empleo, 25–54 años, %, media de los últimos cuatro trimestres
 Employment, 1-yr change: Empleo, variación en 1 año
 Employment, thousands: Ocupados, miles
 End-{prev_year}: Final de {prev_year}
 End-{year}: Final de {year}
+Ended: Bajas
 Energy: Energía
 Energy and expectations: Energía y expectativas
 Energy and fresh food: Energía y alimentos frescos
@@ -464,17 +607,22 @@ Euro area AAA: Zona del euro AAA
 Euro-area AAA forward rates by horizon, %: Tipos a plazo AAA de la zona del euro por horizonte, %
 Europe Brent spot price (US Energy Information Administration); published with a few days' lag.: Precio al contado del Brent europeo (Administración de Información Energética de EE. UU.); se publica con unos días de retraso.
 European Commission: Comisión Europea
+European Commission (AMECO): Comisión Europea (AMECO)
 European Commission (Weekly Oil Bulletin): Comisión Europea (Boletín Petrolero semanal)
 European Commission (via DBnomics): Comisión Europea (vía DBnomics)
+European Commission, 2024 Ageing Report (Table II.1.64), entered by hand: Comisión Europea, Ageing Report 2024 (cuadro II.1.64), datos introducidos a mano
 European Union: Unión Europea
 European natural gas: Gas natural europeo
 European natural gas (monthly): Gas natural europeo (mensual)
 Euros: Euros
 Eurostat: Eurostat
 Eurostat (Comext): Eurostat (Comext)
+Eurostat (EUROPOP2023 projections): Eurostat (proyecciones EUROPOP2023)
 Eurostat (Macroscope calculation): Eurostat (cálculo de Macroscope)
 Eurostat (balance of payments): Eurostat (balanza de pagos)
 Eurostat (national accounts): Eurostat (contabilidad nacional)
+Eurostat's baseline: escenario central de Eurostat
+Eurostat's baseline; EU {eu}: escenario central de Eurostat; UE {eu}
 ? 'Eurostat''s labour force survey (INE''s EPA, on Eurostat''s age bands: INE''s own figures start at 16). Changes are on the same quarter a year earlier, in percentage points, as the figures are not seasonally adjusted. Rates for small groups, such as citizens of other EU countries, move more from one quarter to the next because fewer people are surveyed.'
 : 'La encuesta de población activa de Eurostat (la EPA del INE, con los tramos de edad de Eurostat: las cifras propias del INE empiezan a los 16 años). Las variaciones son sobre el mismo trimestre del año anterior, en puntos porcentuales, porque las cifras no están desestacionalizadas. Las tasas de los grupos pequeños, como los ciudadanos de otros países de la UE, se mueven más de un trimestre a otro porque se encuesta a menos personas.'
 Eurostat's labour market transitions, from the labour force survey's panel of households.: Las transiciones en el mercado laboral de Eurostat, a partir del panel de hogares de la encuesta de población activa.
@@ -533,6 +681,7 @@ Financial stress, euro area: Tensión financiera, zona del euro
 Find a job: Encuentran empleo
 ? Firms in difficulty can dismiss groups of workers (despidos colectivos, through an ERE) or, under an ERTE, suspend contracts or cut working hours for a time, keeping people on the payroll while unemployment benefits cover part of their pay. The Ministry of Labour counts the workers affected by the procedures of each month. Figures start in January 2023; December 2023 is missing, as the ministry published only that year's total.
 : Las empresas en dificultades pueden despedir a grupos de trabajadores (despidos colectivos, mediante un ERE) o, con un ERTE, suspender contratos o reducir la jornada durante un tiempo, manteniendo a los trabajadores en plantilla mientras la prestación por desempleo cubre parte de su salario. El Ministerio de Trabajo cuenta los trabajadores afectados por los procedimientos de cada mes. Las cifras empiezan en enero de 2023; falta diciembre de 2023, porque el ministerio solo publicó el total de ese año.
+First-year payments, % of household gross income: Pagos del primer año, % de la renta bruta del hogar
 Fiscal: Fiscal
 Fiscal Explorer: Explorador fiscal
 Fixed investment: Inversión en capital fijo
@@ -549,29 +698,47 @@ Forecaster: Institución
 Forecasters' publications (see table), AI-checked; Macroscope nowcast: publicaciones de cada institución (véase la tabla), verificadas por IA; estimación adelantada de Macroscope
 Forecasts for {year}: Previsiones para {year}
 Forward rate: Tipo a plazo
+Fotocasa: Fotocasa
+Fourth quarter of 2019 = 100: Cuarto trimestre de 2019 = 100
 Fr: Vi
 France: Francia
+Free-market: Libres
 From one quarter to the next: De un trimestre al siguiente
 Fruit and vegetables: Frutas y hortalizas
 Fruit-bearing vegetables, fresh or chilled: Hortalizas de fruto, frescas o refrigeradas
 Full time: Jornada completa
 Furniture, other manufacturing and repair: Muebles, otras manufacturas y reparación
 GDP: PIB
+GDP against the end of 2019: El PIB frente a finales de 2019
 GDP and its components: El PIB y sus componentes
 GDP deflator: Deflactor del PIB
 GDP growth: Crecimiento del PIB
+? 'GDP growth compares the latest quarter with a year earlier; a period after a figure means it is older than the others''. Against end-2019 compares real GDP with the fourth quarter of 2019, the last before the pandemic. GDP per head at purchasing power (international dollars) is the IMF''s World Economic Outlook figure for {year}. Sources: INE, Eurostat, OECD, US BEA, IMF.'
+: 'El crecimiento del PIB compara el último trimestre con el mismo de un año antes; un periodo junto a una cifra indica que es más antigua que las demás. La columna frente a finales de 2019 compara el PIB real con el cuarto trimestre de 2019, el último antes de la pandemia. El PIB per cápita en paridad de poder adquisitivo (dólares internacionales) es la cifra de las Perspectivas de la economía mundial del FMI para {year}. Fuentes: INE, Eurostat, OCDE, BEA de EE. UU., FMI.'
 GDP growth forecast, {year}: Previsión de crecimiento del PIB, {year}
 GDP growth forecasts: Previsiones de crecimiento del PIB
+GDP growth in {year}: Crecimiento del PIB en {year}
+GDP growth {year}: Crecimiento del PIB {year}
+GDP growth, y/y: Crecimiento del PIB, a/a
+GDP growth, y/y %: Crecimiento del PIB, a/a %
 'GDP growth: model and official figures': 'Crecimiento del PIB: modelo y datos oficiales'
 GDP nowcast (placeholder): Estimación adelantada del PIB (provisional)
 GDP nowcast (placeholder), {q}: Estimación adelantada del PIB (provisional), {q}
+GDP per head at purchasing power: PIB per cápita en paridad de poder adquisitivo
 GDP per head by region: PIB per cápita por comunidades
+GDP per head, PPP $ ({year}): PIB per cápita, $ PPA ({year})
 GDP per head, Spain = 100: PIB per cápita, España = 100
+GDP since the end of 2019: El PIB desde finales de 2019
 GDP, first estimate: PIB, avance
 GDP, full quarterly accounts: PIB, contabilidad trimestral completa
 GWh: GWh
 Galicia: Galicia
 Gap with the 2% target: Diferencia con el objetivo del 2%
+General Social Security Law, transitional provision 43 (article 1.43 of the decree): Ley General de la Seguridad Social, disposición transitoria 43.ª (artículo 1.43 del decreto)
+General government net lending, % of GDP (negative = deficit): Capacidad o necesidad de financiación de las AA. PP., % del PIB (negativo = déficit)
+? 'General government, from the IMF''s World Economic Outlook ({edition}): {year} is mostly outturn, and the IMF''s estimate where the year''s accounts are not final. The budget balance is net lending (a negative figure is a deficit); the primary balance leaves out interest, so net interest (paid less received) is the gap between the two. Debt is gross debt; the last column is the IMF''s projection for {last}.'
+: 'Administraciones públicas, según las Perspectivas de la economía mundial del FMI ({edition}): {year} es sobre todo dato observado, y estimación del FMI donde las cuentas del año no son definitivas. El saldo presupuestario es la capacidad o necesidad de financiación (una cifra negativa es un déficit); el saldo primario excluye los intereses, así que los intereses netos (pagados menos cobrados) son la diferencia entre ambos. La deuda es la deuda bruta; la última columna es la proyección del FMI para {last}.'
+General scheme: Régimen General
 German Bund (euro-area rates): Bund alemán (tipos de la zona del euro)
 'German Bund: euro-wide rates': 'Bund alemán: tipos de toda la zona del euro'
 German yield: Rentabilidad alemana
@@ -586,9 +753,19 @@ Government: Gobierno
 Government consumption: Consumo de las AA. PP.
 Government debt: Deuda pública
 Government deficit and debt, the IMF-style fiscal tables, and debt sustainability.: El déficit y la deuda de las Administraciones públicas, los cuadros fiscales al estilo del FMI y la sostenibilidad de la deuda.
+Government of Spain: Gobierno de España
 Government operations: Operaciones de las administraciones públicas
+Granted: Altas
+? Granted and ended in the month (tables PEN-10 and PEN-11); the monthly figures start in March and April 2025, so year-to-date changes appear from 2027.
+: Altas y bajas del mes (cuadros PEN-10 y PEN-11); las cifras mensuales empiezan en marzo y abril de 2025, así que las variaciones en lo que va de año aparecen a partir de 2027.
+Gross debt, % of GDP: Deuda bruta, % del PIB
+Gross debt, % of GDP; the latest years are the IMF's projections: Deuda bruta, % del PIB; los últimos años son proyecciones del FMI
+Gross public pension spending, % of GDP, European Commission 2024 Ageing Report: Gasto público bruto en pensiones, % del PIB, Ageing Report 2024 de la Comisión Europea
+Gross rental yield: Rentabilidad bruta del alquiler
+Gross rental yield on housing and Spain's 10-year government yield, %: Rentabilidad bruta del alquiler de vivienda y rentabilidad de la deuda pública española a 10 años, %
 Group: Grupo
 Growth: Crecimiento
+Growth in {year}: Crecimiento en {year}
 HICP: IPCA
 HICP inflation: Inflación del IPCA
 HICP inflation, % change on a year earlier: Inflación del IAPC, variación interanual, %
@@ -611,6 +788,13 @@ Health: Actividades sanitarias
 Health and social work: Sanidad y servicios sociales
 Home: Inicio
 Home sales: Compraventa de viviendas
+Homes over 5 years old: Viviendas de más de 5 años
+Homes per household: Viviendas por hogar
+Homes sold over 12 months: Viviendas vendidas en 12 meses
+Homes started: Viviendas iniciadas
+Homes started and new households: Viviendas iniciadas y hogares nuevos
+Homes started, past 12 months: Viviendas iniciadas, últimos 12 meses
+Homes up to 5 years old: Viviendas de hasta 5 años
 Horizon: Horizonte
 ? Horizons under 12 months are annualised and use Macroscope seasonal adjustment, because INE publishes these indices unadjusted. The 12-month column matches the published annual rates.
 : Los horizontes de menos de 12 meses están anualizados y usan la desestacionalización de Macroscope, porque el INE publica estos índices sin desestacionalizar. La columna de 12 meses coincide con las tasas anuales publicadas.
@@ -631,17 +815,50 @@ Hours worked by activity: Horas trabajadas por actividad
 Hours worked, millions a quarter: Horas trabajadas, millones por trimestre
 Hours, unless stated: Horas, salvo indicación
 House prices: Precios de la vivienda
+House prices against incomes: Precios de la vivienda frente a la renta
+House prices against rents: Precios de la vivienda frente a los alquileres
+House prices and income: Precio de la vivienda y renta
+? House prices are not seasonally adjusted; the quarterly change is as INE reports it. The rents quarterly change uses Macroscope seasonal adjustment.
+: Los precios de la vivienda no están desestacionalizados; la variación trimestral es la que publica el INE. La variación trimestral de los alquileres usa la desestacionalización de Macroscope.
 House prices by region: Precios de la vivienda por comunidades
+House prices deflated by the CPI, Q1 2007 = 100: Precios de la vivienda deflactados por el IPC, T1 2007 = 100
 ? House prices, affordability and rents, Spain against its comparators, building and households, sales, mortgages and credit, household wealth, and commercial property.
 : Los precios de la vivienda, la accesibilidad y los alquileres, España frente a sus comparables, la construcción y los hogares, las compraventas, las hipotecas y el crédito, la riqueza de los hogares y el sector inmobiliario comercial.
 House prices, y/y: Precios de la vivienda, a/a
 Household consumption: Consumo de los hogares
+Household debt: Deuda de los hogares
+Household debt, % of GDP: Deuda de los hogares, % del PIB
+Household debt, % of disposable income: Deuda de los hogares, % de la renta disponible
 Household finances and wealth: Finanzas y riqueza de los hogares
+Household saving rate: Tasa de ahorro de los hogares
+Household wealth: Riqueza de los hogares
+? Households and non-profit institutions serving them, from the Banco de España. Net financial wealth is savings and investments less debts.
+: Hogares e instituciones sin fines de lucro al servicio de los hogares, del Banco de España. La riqueza financiera neta es el ahorro y las inversiones menos las deudas.
 Households as employers: Hogares como empleadores
 Households expecting faster price rises over the next 12 months, net balance: Hogares que esperan subidas de precios más rápidas en los próximos 12 meses, saldo neto
+Households renting: Hogares que viven de alquiler
+Households' housing loans: Crédito a los hogares para vivienda
 Housing: Vivienda
+Housing loans: Crédito a la vivienda
+Housing loans and mortgage rates: Crédito para vivienda y tipos hipotecarios
+Housing loans gone bad: Morosidad del crédito a la vivienda
+Housing loans, growth on a year earlier: Crédito para vivienda, variación interanual
+Housing wealth: Riqueza inmobiliaria
+Housing wealth, % of disposable income: Riqueza inmobiliaria, % de la renta disponible
+Housing wealth, € bn: Riqueza inmobiliaria, mm €
+? How fast each economy is growing, how far it has come since the end of 2019, the last quarter before the pandemic, and how rich it is per head at purchasing power.
+: A qué ritmo crece cada economía, cuánto ha avanzado desde finales de 2019, el último trimestre antes de la pandemia, y cuál es su PIB per cápita en paridad de poder adquisitivo.
 ? 'How fast pay is rising in each activity, and how it has done against prices since 2019. Growth compares averages of four quarters: the latest quarter alone can jump or fall when bonuses come at a different time of the year, above all in the activities that pay large ones.'
 : 'A qué ritmo suben los salarios en cada actividad y cómo les ha ido frente a los precios desde 2019. El crecimiento compara medias de cuatro trimestres: el último trimestre por sí solo puede saltar o caer cuando las pagas extraordinarias llegan en otro momento del año, sobre todo en las actividades que las pagan grandes.'
+? How many homes are being started against how fast the number of households grows. Starts come from the Ministry of Housing (free-market homes since 1980, protected ones since 1970), permits from the architects' associations, and households from INE's labour force survey.
+: Cuántas viviendas se inician frente al ritmo al que crece el número de hogares. Las viviendas iniciadas proceden del Ministerio de Vivienda (las libres desde 1980, las protegidas desde 1970), los visados de obra nueva de los colegios de arquitectos técnicos y los hogares de la encuesta de población activa (EPA) del INE.
+? How many homes are bought with a mortgage, how much is lent against the price and for how long, how many housing loans go bad, and how much of the economy's debt is secured on property.
+: Cuántas viviendas se compran con hipoteca, cuánto se presta frente al precio y a qué plazo, cuántos préstamos para vivienda entran en mora y qué parte de la deuda de la economía tiene garantía inmobiliaria.
+? 'How many homes change hands, new and second-hand, counted two ways: sales entered in the property registers (INE) and deeds signed before notaries (Ministry of Housing).'
+: 'Cuántas viviendas cambian de manos, nuevas y de segunda mano, contadas de dos formas: las compraventas inscritas en los registros de la propiedad (INE) y las escrituras firmadas ante notario (Ministerio de Vivienda).'
+? How many households rent, what renting a home out pays against its price, and how fast rents are rising against prices in general.
+: Cuántos hogares viven de alquiler, qué rentabilidad da alquilar una vivienda frente a su precio y a qué ritmo suben los alquileres frente a los precios en general.
+How much new mortgages lend: Cuánto financian las hipotecas nuevas
 How much of pay is bonuses and extras: Cuánto del salario son pagas extraordinarias
 How price rises are spread across the basket: Cómo se reparten las subidas de precios en la cesta
 How they are made: Cómo se hacen
@@ -651,6 +868,9 @@ IBEX 35: IBEX 35
 IMF: FMI
 IMF (WEO): FMI (WEO)
 IMF World Economic Outlook: Perspectivas de la economía mundial del FMI
+IMF World Economic Outlook, {edition}: Perspectivas de la economía mundial del FMI, {edition}
+IMF projection, %: Proyección del FMI, %
+IMF, {edition}: FMI, {edition}
 IMF-style external accounts: Sector exterior al estilo del FMI
 IMF-style financial soundness indicators: Indicadores de solidez financiera al estilo del FMI
 IMF-style government operations: Operaciones de las AA. PP. al estilo del FMI
@@ -662,20 +882,27 @@ INE dates come from: Las fechas del INE proceden del
 ? INE puts out each year's calendar towards the end of the year before; until then the months ahead show only the Social Security's and the ECB's dates.
 : El INE publica el calendario de cada año hacia el final del anterior; hasta entonces, los meses siguientes solo muestran las fechas de la Seguridad Social y del BCE.
 INE to {quarter}, then the Q4 nowcast: INE hasta {quarter}, después la estimación adelantada del T4
+INE's house price index, built from notarised sales, for new and second-hand homes.: El índice de precios de vivienda (IPV) del INE, elaborado a partir de las compraventas ante notario, para la vivienda nueva y la de segunda mano.
 INE's own calendar: calendario del propio INE
 ? INE's quarterly household survey, the official measure of unemployment. It is not seasonally adjusted, so the comparison with a year earlier is the cleanest.
 : La encuesta trimestral a hogares del INE, la medida oficial del paro. No está desestacionalizada, así que la comparación con un año antes es la más limpia.
+INE, Eurostat, OECD, US BEA: INE, Eurostat, OCDE, BEA de EE. UU.
+Idealista: Idealista
 Illes Balears: Illes Balears
 Import prices: Precios de importación
 Import prices by type of good: Precios de importación por tipo de bien
 Imports: Importaciones
 Imports of goods: Importaciones de bienes
 Imports of services: Importaciones de servicios
+In 2050, projected: En 2050, proyección
 In Spain: En España
 ? In the four quarters to {quarter}, pay per worker ranged from {low_pay} a month in {low} to {high_pay} in {high}, {times} times as much.
 : En los cuatro trimestres hasta {quarter}, el coste salarial por trabajador fue desde {low_pay} al mes en {low} hasta {high_pay} en {high}, {times} veces más.
+Index: Índice
 Index (0 to 1) or %: Índice (de 0 a 1) o %
 Index or balance: Índice o saldo
+Index, 2014 = 100: Índice, 2014 = 100
+Index, 2014 = 100; changes in %: Índice, 2014 = 100; variaciones en %
 Index, 2021 = 100: Índice, 2021 = 100
 Index, 2021 = 100 · {month}: Índice, 2021 = 100 · {month}
 Index, daily close: Índice, cierre diario
@@ -683,6 +910,8 @@ Index, long-run average = 100: Índice, media de largo plazo = 100
 India: India
 Indicator: Indicador
 Indicators: Indicadores
+Industrial: Naves industriales
+Industrial buildings: Naves industriales
 Industrial goods: Bienes industriales
 Industrial goods except energy: Bienes industriales sin energía
 Industrial goods, % change on a year earlier: Bienes industriales, variación interanual, %
@@ -704,10 +933,18 @@ Inflation forecast, {year}: Previsión de inflación, {year}
 Inflation is the CPI for {names}.: La inflación es la del IPC para {names}.
 Inflation is the HICP for {hicp} and the CPI for {cpi}.: La inflación es la del IPCA para {hicp}, y la del IPC para {cpi}.
 Inflation is the HICP for {names}.: La inflación es la del IPCA para {names}.
+? 'Inflation is the harmonised index (HICP) in the EU and each country''s CPI elsewhere; core inflation leaves out food and energy, where a current measure is available. 10-year yields are monthly averages. The euro-area countries share the ECB''s deposit rate; the US rate is the mid-point of the Fed''s target range. Sources: INE, Eurostat, ECB, OECD, BIS, US BLS and BEA.'
+: 'La inflación es la del índice armonizado (IPCA) en la UE y la del IPC de cada país en el resto; la subyacente excluye los alimentos y la energía, donde hay una medida actual. Las rentabilidades a 10 años son medias mensuales. Los países de la zona del euro comparten el tipo de depósito del BCE; el tipo de EE. UU. es el punto medio de la horquilla objetivo de la Reserva Federal. Fuentes: INE, Eurostat, BCE, OCDE, BPI, BLS y BEA de EE. UU.'
+? 'Inflation on a year earlier (HICP in the EU, CPI elsewhere). 10-year yields and spreads over Germany''s are monthly averages; spreads are shown for the euro-area countries. Sources: INE, Eurostat, ECB, OECD, BIS, US BLS.'
+: 'Inflación interanual (IPCA en la UE, IPC en el resto). Las rentabilidades a 10 años y los diferenciales con Alemania son medias mensuales; los diferenciales se muestran para los países de la zona del euro. Fuentes: INE, Eurostat, BCE, OCDE, BPI, BLS de EE. UU.'
 Inflation vs history: Inflación frente a su historia
+Inflation {year}: Inflación {year}
+? Inflation, policy rates and what governments pay to borrow for ten years. Spain, France, Germany, Italy, the Netherlands and Portugal share the ECB's rates; Poland, the UK, the US, Canada and Japan set their own.
+: La inflación, los tipos oficiales y lo que pagan los Estados por endeudarse a diez años. España, Francia, Alemania, Italia, los Países Bajos y Portugal comparten los tipos del BCE; Polonia, el Reino Unido, EE. UU., Canadá y Japón fijan los suyos.
 Information and IT: Información y comunicaciones
 Information and communication: Información y comunicaciones
 Information, finance and business services: Información, finanzas y servicios a empresas
+'Informe Anual 2023, capítulo 2: Retos estructurales de la economía española (section 9.2, the public pension system)': 'Informe Anual 2023, capítulo 2: Retos estructurales de la economía española (apartado 9.2, el sistema público de pensiones)'
 Input: Variable
 Inside core inflation: Dentro de la inflación subyacente
 Insurance and pensions: Seguros y pensiones
@@ -715,17 +952,21 @@ Intellectual property: Propiedad intelectual
 Interest: Intereses
 Interest on the debt: Intereses de la deuda
 Interest paid: Intereses pagados
+Interest paid less interest received, % of GDP: Intereses pagados menos intereses cobrados, % del PIB
 Interest rate decomposer: Descomposición de los tipos de interés
+Intergenerational equity contribution (MEI), 2023: Mecanismo de Equidad Intergeneracional (MEI), 2023
 Intermediate goods: Bienes intermedios
 International: Internacional
 International organisations: Organismos internacionales
 International tourists: Turistas internacionales
 Investment: Inversión
+Investment in housing, real, % on a year: Inversión en vivienda, en volumen, % interanual
 Is growth holding up?: ¿Aguanta el crecimiento?
 Is inflation coming back to 2%?: ¿Vuelve la inflación al 2%?
 Is the labour market cooling?: ¿Se enfría el mercado laboral?
 Italy: Italia
 Item: Concepto
+Its conclusion: Su conclusión
 Japan: Japón
 Japanese yen: Yenes japoneses
 Job vacancies, average of the past four quarters: Vacantes, media de los últimos cuatro trimestres
@@ -752,11 +993,13 @@ Largest supplier: Principal proveedor
 Last change: Último cambio
 Last fetched: Última descarga
 Latest: Último
+Latest and a year earlier: Último dato y un año antes
 Latest close; rates move in basis points (bp), prices in %: Último cierre; los tipos se mueven en puntos básicos (pb), los precios en %
 Latest figures against the statistical forecast · index for {month}: Últimos datos frente a la previsión estadística · índice de {month}
 Latest month: Último mes
 Latest month with every input · {month}: Último mes con todos los datos · {month}
 Latest month, not seasonally adjusted; changes in %: Último mes, sin desestacionalizar; variaciones en %
+Latest month; changes in %: Último mes; variaciones en %
 Latest official, {q}: Último dato oficial, {q}
 Latest qtr y/y %: Último trim. a/a %
 Latest quarters: Últimos trimestres
@@ -767,12 +1010,20 @@ Leave the labour force: Salen de la población activa
 Leisure and other services: Ocio y otros servicios
 Level: Nivel
 Liquid fuels: Combustibles líquidos
+Living alone: Sin cónyuge (unidad económica unipersonal)
+Loan growth: Crecimiento del crédito
+Loan to value: Préstamo/valor
+? Loan-to-value and terms of new mortgages on homes from the property registrars; non-performing loans and credit from the Banco de España.
+: La relación préstamo-valor y los plazos de las hipotecas nuevas sobre viviendas, de los registradores de la propiedad; la morosidad y el crédito, del Banco de España.
+Long-run average: Media de largo plazo
 Long-term unemployment rate: Tasa de paro de larga duración
 Lose their job: Pierden el empleo
 Losing or leaving a job: Perder o dejar el empleo
 Lower primary balance: Menor saldo primario
 Lower secondary: Primera etapa de secundaria
 Lower secondary at most: Primera etapa de secundaria como máximo
+MEI: MEI
+MEI from 2029 to 2050: MEI de 2029 a 2050
 Machinery: Maquinaria
 Machinery and equipment: Maquinaria y bienes de equipo
 Macroscope calculation: cálculo de Macroscope
@@ -798,16 +1049,26 @@ Market: Mercado
 Market-implied path: La senda que descuenta el mercado
 Markets: Mercados
 Maturity: Plazo
+Maximum: Máxima
 Maximum and minimum pensions: Pensiones máximas y mínimas
+Maximum contribution base, 2024-2050: Base máxima de cotización, 2024-2050
+Maximum pension: Pensión máxima
+Maximum pension, 2025-2050: Pensión máxima, 2025-2050
 Measure: Medida
 Meat, fish and dairy: Carne, pescado y lácteos
 Men: Hombres
 Metals and metal products: Metalurgia y productos metálicos
 Metals and ores: Metales y minerales
 Mexico: México
+'Minimum retirement pension at 65: with a dependent spouse': 'Pensión mínima de jubilación a los 65 años: con cónyuge a cargo'
+Minimum retirement pension with a dependent spouse: Pensión mínima de jubilación con cónyuge a cargo
+Minimum, dependent spouse: Mínima, con cónyuge a cargo
+Minimum, living alone: Mínima, sin cónyuge
+Minimum, with a dependent spouse: Mínima, con cónyuge a cargo
 Mining: Industrias extractivas
 Mining and quarrying: Industrias extractivas
 Ministerio de Trabajo: Ministerio de Trabajo
+Ministry of Housing: Ministerio de Vivienda
 Mo: Lu
 Model: Modelo
 Monetary and credit: Indicadores monetarios y crediticios
@@ -824,32 +1085,65 @@ More: Más
 Morocco: Marruecos
 ? 'Mortgage check: a €{principal}, {years}-year variable-rate mortgage at Euribor + {margin} pp, reset at {month}''s average 12-month Euribor ({now}%{so_far}), costs €{payment} a month: {change} a reset at the rate a year earlier ({then}%).'
 : 'Prueba hipotecaria: una hipoteca de {principal} € a {years} años a tipo variable, euríbor + {margin} pp, revisada al euríbor a 12 meses medio de {month} ({now}%{so_far}), cuesta {payment} € al mes: {change} una revisión al tipo de hace un año ({then}%).'
+Mortgage market: Mercado hipotecario
+Mortgage rate: Tipo hipotecario
 Mortgages: Hipotecas
 Mortgages and credit: Hipotecas y crédito
+? Mortgages come from the property registers (INE), new lending from banks' reports to the ECB, which include renegotiated loans.
+: Las hipotecas proceden de los registros de la propiedad (INE); el nuevo crédito, de la información que los bancos envían al BCE, que incluye los préstamos renegociados.
+Mortgages on homes: Hipotecas sobre viviendas
 ? 'Most Spanish mortgages are variable-rate: once or twice a year the payment resets to the 12-month Euribor plus a fixed margin, so ECB decisions reach households quickly.'
 : 'La mayoría de las hipotecas españolas son a tipo variable: una o dos veces al año la cuota se revisa al euríbor a 12 meses más un diferencial fijo, así que las decisiones del BCE llegan pronto a los hogares.'
 ? Most of the swing is in bonuses and other extra payments, which came at a different time of the year; the chart below shows them quarter by quarter.
 : La mayor parte de la oscilación está en las pagas extraordinarias y otros pagos, que llegaron en otro momento del año; el gráfico de abajo los muestra trimestre a trimestre.
 Motor vehicles and other transport equipment: Vehículos de motor y otro material de transporte
 Murcia: Murcia
+National Bank of Poland: Banco Nacional de Polonia
 National accounts, seasonally adjusted: Contabilidad nacional, desestacionalizada
 Navarra: Navarra
 Need attention: Requieren atención
+Net financial: Financiera neta
+Net financial wealth: Riqueza financiera neta
+Net financial wealth, % of disposable income: Riqueza financiera neta, % de la renta disponible
+Net interest paid by governments: Intereses netos pagados por las administraciones públicas
+Net interest {year}: Intereses netos {year}
+Net lending (+) or borrowing (−), % of GDP: Capacidad (+) o necesidad (−) de financiación, % del PIB
+Net, for an average earner, % of net pay: Neta, para un trabajador con el salario medio, % del salario neto
 Netherlands: Países Bajos
+New: Nuevas
 New and ended pensions: Altas y bajas de pensiones
+New and second-hand sales: Compraventas de vivienda nueva y de segunda mano
 'New figures: %(what)s': 'Nuevas cifras: %(what)s'
+New homes: Vivienda nueva
+New homes in building permits: Viviendas en visados de obra nueva
+New homes in building permits, past 12 months: Viviendas en visados de obra nueva, últimos 12 meses
+New homes in permits, past 12 months, thousands: Viviendas en visados de obra nueva, últimos 12 meses, miles
+New households: Hogares nuevos
+New households, over a year: Hogares nuevos, en un año
+New mortgage lending by banks: Nuevo crédito hipotecario de los bancos
 New mortgages: Hipotecas nuevas
+New mortgages, % of the home's price: Hipotecas nuevas, % del precio de la vivienda
 New mortgages, average rate: Hipotecas nuevas, tipo medio
+New pensions: Pensiones nuevas
 New rates take effect a few days after the decision is announced (on the Wednesday after it, since 2024).: Los nuevos tipos entran en vigor unos días después de anunciarse la decisión (el miércoles siguiente, desde 2024).
+New retirement pensions: Pensiones de jubilación nuevas
+New, ended and all retirement pensions: 'Pensiones de jubilación: nuevas, bajas y todas las vigentes'
 Next decision: Próxima decisión
 Next releases are on the: Las próximas publicaciones están en el
 Nigeria: Nigeria
+? No contributory pension can exceed the maximum, whatever was paid in; pensioners with little other income are topped up to the minimum. Both are set every year in the budget.
+: Ninguna pensión contributiva puede superar la pensión máxima, se haya cotizado lo que se haya cotizado; a los pensionistas con pocos ingresos más se les complementa la pensión hasta la mínima. Ambas cuantías se fijan cada año en los Presupuestos Generales del Estado.
 No indicators in this section yet.: Todavía no hay indicadores en esta sección.
 No previous job: Sin empleo anterior
 No releases found for the coming weeks. The calendar fills in at the next data update.: No hay publicaciones previstas para las próximas semanas. El calendario se completa en la próxima actualización de datos.
 Nominal GDP: PIB nominal
 Non-EU: De fuera de la UE
 Non-energy industrial goods: Bienes industriales sin energía
+Non-performing: Dudosos
+Non-performing housing loans: Morosidad del crédito a la vivienda
+Non-performing housing loans, %: Tasa de morosidad del crédito a la vivienda, %
+? Not seasonally adjusted. Banks' shares of loans come from the Banco de España's financial soundness indicators, whose definitions changed in 2017 and 2022.
+: Sin desestacionalizar. Las proporciones del crédito bancario proceden de los indicadores de solidez financiera del Banco de España, cuyas definiciones cambiaron en 2017 y 2022.
 ? 'Not seasonally adjusted. Mining, energy, water and real estate are left out: INE does not publish their vacancies in many quarters.'
 : 'Sin desestacionalizar. Se dejan fuera las industrias extractivas, la energía, el agua y las actividades inmobiliarias: el INE no publica sus vacantes en muchos trimestres.'
 Notes on what each update changes start with the next data update after %(when)s.: Las notas sobre lo que cambia en cada actualización empiezan con la primera actualización de datos posterior al %(when)s.
@@ -857,10 +1151,25 @@ Notes on what each update changes start with the next data update.: Las notas so
 Nothing scheduled in the next three months.: No hay nada previsto en los próximos tres meses.
 OECD: OCDE
 OECD Economic Outlook: Perspectivas económicas de la OCDE
+OECD analytical house prices: Indicadores analíticos de precios de la vivienda de la OCDE
+OECD analytical house prices · {period}: Indicadores analíticos de precios de la vivienda de la OCDE · {period}
+OECD, Pensions at a Glance: OCDE, Pensions at a Glance
+OECD, Social Expenditure Database: OCDE, base de datos de gasto social (SOCX)
+OECD, net: OCDE, neta
+OECD, {year}: OCDE, {year}
+Occupational diseases: Enfermedades profesionales
+Of which to builders and developers: Del cual, a constructoras y promotoras
+Offices: Oficinas
 Official: Oficial
 Official (INE): Oficial (INE)
+Old-age and survivors' pensions, % of GDP: Pensiones de jubilación y supervivencia, % del PIB
+Old-age and survivors' pensions, % of GDP (OECD): Pensiones de jubilación y supervivencia, % del PIB (OCDE)
+Old-age and survivors' pensions, % of GDP, latest year ({first}-{last}): Pensiones de jubilación y supervivencia, % del PIB, último año disponible ({first}-{last})
+Old-age dependency in 2050: Tasa de dependencia en 2050
+Old-age dependency ratio: Tasa de dependencia de las personas mayores
 Olive oil and fats: Aceite de oliva y grasas
 On this page: En esta página
+Orphans: Orfandad
 Other EU: Otros de la UE
 Other EU countries: Otros países de la UE
 Other business services: Otros servicios empresariales
@@ -875,11 +1184,15 @@ Output by sector (gross value added): Producción por sectores (valor añadido b
 ? Output per job and per hour worked, and the labour cost of each unit of output. INE publishes these as changes on a year earlier.
 : La producción por puesto de trabajo y por hora trabajada, y el coste laboral de cada unidad producida. El INE los publica como variaciones interanuales.
 Outside the EU: Fuera de la UE
+Over 50% above: Más de un 50% por encima
 Over AAA: Sobre AAA
 Over Germany: Sobre Alemania
 Over deposit rate: Sobre el tipo de depósito
+Over the past decade: En la última década
 Overnight visitors only (FRONTUR "turistas"); same-day visitors are left out.: Solo visitantes que pernoctan (los «turistas» de FRONTUR); se excluyen los excursionistas.
 Overtime: Horas extraordinarias
+Own: En propiedad
+Owning and renting: Propiedad y alquiler
 Page not found: Página no encontrada
 Part time: Jornada parcial
 Participation: Actividad
@@ -894,8 +1207,10 @@ Participation, 15 and over: Actividad, 15 años y más
 Partner: Socio
 Passenger transport by air, international: Transporte aéreo internacional de pasajeros
 Passenger transport by train: Transporte de pasajeros por ferrocarril
+Past 12 months: Últimos 12 meses
 Past 12 months, % change on the 12 months before: Últimos 12 meses, variación sobre los 12 anteriores, %
 Past 12 months, millions: Últimos 12 meses, millones
+Past 12 months, thousands: Últimos 12 meses, miles
 Past 12 months, thousands of cars: Últimos 12 meses, miles de turismos
 Past 12 months, € billion: Últimos 12 meses, miles de millones de €
 Past four quarters against 2019, deflated by the CPI, % change: Últimos cuatro trimestres frente a 2019, deflactados por el IPC, variación, %
@@ -911,8 +1226,33 @@ Pay per hour by activity: Salario por hora por actividad
 Pay since 2019, after inflation: Salarios desde 2019, descontada la inflación
 Pay since {year}, after inflation: Salarios desde {year}, descontada la inflación
 País Vasco: País Vasco
+Peak, in 2050: Máximo, en 2050
+Pension replacement rates: Tasas de sustitución de las pensiones
+Pension spending: Gasto en pensiones
+? Pension spending (Eurostat) covers all pensions, public and private, including disability; public pensions (OECD) cover public old-age and survivors' pensions only, and come a few years late. The replacement rate is what a man on the average wage who starts work at 22 would get from mandatory schemes, as % of his net pay before retiring. Eurostat covers EU countries only.
+: El gasto en pensiones (Eurostat) abarca todas las pensiones, públicas y privadas, incluidas las de incapacidad; las pensiones públicas (OCDE) solo cubren las pensiones públicas de jubilación y supervivencia, y llegan con unos años de retraso. La tasa de sustitución es lo que cobraría de los sistemas obligatorios un hombre con el salario medio que empieza a trabajar a los 22 años, en % de su salario neto antes de jubilarse. Eurostat solo cubre los países de la UE.
+Pension spending in 2023 (contributory, non-contributory and civil servants'): Gasto en pensiones en 2023 (contributivas, no contributivas y de Clases Pasivas)
+Pension spending in Spain and the EU: Gasto en pensiones en España y la UE
+Pension spending, % of GDP: Gasto en pensiones, % del PIB
 Pensions: Pensiones
+Pensions and ageing: Pensiones y envejecimiento
+Pensions and average pensions in each autonomous community, where the pensioner lives.: Número de pensiones y pensión media en cada comunidad autónoma, según dónde vive el pensionista.
+? Pensions are paid from the contributions of those at work, so the balance between older people and people of working age weighs on them. Spain's will shift faster than most of Europe's as the large generations born in the 1960s and 1970s retire.
+: Las pensiones se pagan con las cotizaciones de quienes trabajan, así que el equilibrio entre las personas mayores y las que están en edad de trabajar pesa sobre ellas. En España cambiará más deprisa que en la mayor parte de Europa a medida que se jubilen las numerosas generaciones nacidas en los años sesenta y setenta.
+? 'Pensions by the Social Security scheme the pensioner paid into: employees in the General scheme, the self-employed, and the smaller special schemes.'
+: 'Las pensiones según el régimen de la Seguridad Social en el que cotizó el pensionista: los asalariados del Régimen General, los autónomos y los regímenes especiales más pequeños.'
+Pensions ended: Bajas de pensiones
+Pensions ended, thousands: Bajas de pensiones, miles
+Pensions granted: Altas de pensiones
+Pensions granted and ended: Altas y bajas de pensiones
+Pensions granted, thousands: Altas de pensiones, miles
+Pensions in force on the first of the month: Pensiones en vigor el día 1 de cada mes
 Pensions today: Las pensiones hoy
+Pensions, thousands: Pensiones, miles
+People 65+ per 100 aged 15-64: Personas de 65 años o más por cada 100 de 15-64
+People aged 15-24, % of the labour force that age: Personas de 15 a 24 años, % de la población activa de esa edad
+People aged 15-64 in work, % of the population that age: Personas de 15 a 64 años con empleo, % de la población de esa edad
+People aged 65 and over per 100 aged 15-64; dotted, Eurostat's projection: Personas de 65 años o más por cada 100 de 15 a 64 años; en punteado, la proyección de Eurostat
 People employed, thousands: Ocupados, miles
 Per employee a month, average of the past four quarters: Por asalariado al mes, media de los últimos cuatro trimestres
 ? 'Per hour worked the range is {low_pay} in {low} to {high_pay} in {high}, {times} times as much: part-time work, more common in the lower-paid activities, explains a little of the monthly gap.'
@@ -920,6 +1260,8 @@ Per employee a month, average of the past four quarters: Por asalariado al mes, 
 Period: Periodo
 Permanent: Indefinidos
 Permanent contracts and the 2022 reform: Los contratos indefinidos y la reforma de 2022
+Permanent disability: Incapacidad permanente
+Permits: Visados
 Petrol: Gasolina
 Petrol (Euro-super 95): Gasolina (Eurosúper 95)
 Petrol and diesel at the pump: Gasolina y gasóleo en el surtidor
@@ -930,19 +1272,33 @@ Petrol, euro area: Gasolina, zona del euro
 Petroleum, chemicals and pharmaceuticals: Refino, química y farmacia
 Pharmaceuticals: Productos farmacéuticos
 Plastics and rubber: Plástico y caucho
+Points of pay, employer and worker together; 1.2 from 2029 to 2050: Puntos porcentuales de cotización, empresa y trabajador juntos; 1.2 de 2029 a 2050
 Poland: Polonia
+Policy rate: Tipo oficial
 Policy rates: Tipos oficiales
 Portugal: Portugal
 Previous: Anterior
 Price expectations: Expectativas de precios
 Price per barrel, in dollars and in euros, daily: Precio por barril, en dólares y en euros, diario
+Price per m²: Precio por m²
+Price per m², appraisals: Precio por m², tasaciones
+Price per square metre: Precio por metro cuadrado
+Price to income: Precio/renta
+Price to rent: Precio/alquiler
+Price-to-income ratio, 100 = the country's long-run average: Ratio precio/renta, 100 = media de largo plazo del país
+Price-to-rent ratio, 100 = the country's long-run average: Ratio precio/alquiler, 100 = media de largo plazo del país
+Prices: Precios
 Prices and interest rates: Precios y tipos de interés
 Prices and jobs: Precios y empleo
+? Prices of offices, shops and industrial buildings, from the Banco de España's commercial property price index, and how much of banks' lending goes to property.
+: Los precios de oficinas, locales comerciales y naves industriales, del índice de precios de inmuebles comerciales del Banco de España, y qué parte del crédito bancario va al sector inmobiliario.
 Prima de riesgo: Prima de riesgo
 Prima de riesgo (Spain-specific): Prima de riesgo (propia de España)
 Prima de riesgo since 2008: La prima de riesgo desde 2008
 Prima de riesgo, 10-year: Prima de riesgo, 10 años
 'Prima de riesgo: Spain-specific': 'Prima de riesgo: factores propios de España'
+Primary balance {year}: Saldo primario {year}
+Prime (the best properties and locations): Prime (los mejores inmuebles y ubicaciones)
 'Prime-age employment: Spain and the euro area': 'Empleo en edad central: España y la zona del euro'
 Processed food: Alimentos elaborados
 Processed food, drinks and tobacco: Alimentos elaborados, bebidas y tabaco
@@ -958,26 +1314,45 @@ Productivity and unit labour costs: Productividad y costes laborales unitarios
 Productivity per full-time equivalent job: Productividad por puesto equivalente a tiempo completo
 Productivity per hour worked: Productividad por hora trabajada
 Productivity per hour, pay per employee and unit labour cost, % change on a year earlier: Productividad por hora, remuneración por asalariado y coste laboral unitario, variación interanual, %
+Productivity since 2019: Productividad desde 2019
+Productivity, {year}: Productividad, {year}
 Professional services: Actividades profesionales
 Professional, scientific and technical: Actividades profesionales, científicas y técnicas
+Projected pension spending: Proyección del gasto en pensiones
+Projections it cites for 2050: Proyecciones que cita para 2050
+Protected: Protegidas
+? 'Protected homes are state-supported homes sold or let at capped prices. Until 1979 the ministry counted only protected homes, so the totals start in 1980. Households grow with the population and as households get smaller. Sources: Ministry of Housing, Ministry of Transport (permits and costs), INE (households and investment), via the Banco de España.'
+: 'Las viviendas protegidas cuentan con ayuda pública y se venden o alquilan a precios limitados. Hasta 1979 el ministerio solo contaba las viviendas protegidas, así que los totales empiezan en 1980. Los hogares crecen con la población y a medida que se hacen más pequeños. Fuentes: Ministerio de Vivienda, Ministerio de Transportes (visados y costes), INE (hogares e inversión), a través del Banco de España.'
 Provisional monthly figures (Estadística de Regulación de Empleo); each year's final figures differ slightly.: Cifras mensuales provisionales (Estadística de Regulación de Empleo); las cifras definitivas de cada año difieren ligeramente.
 Public administration: Administración pública
 Public administration and defence: Administración pública y defensa
+Public debt in 2050 with policies unchanged: Deuda pública en 2050 con las políticas actuales
 Public debt under the Commission's stress tests: La deuda pública en las pruebas de tensión de la Comisión
 'Public debt: baselines and fan chart': 'Deuda pública: escenarios base y gráfico de abanico'
 Public finances: Finanzas públicas
+Public pensions, % of GDP: Pensiones públicas, % del PIB
+Public spending on pensions: Gasto público en pensiones
 'Pump prices: Spain and the euro area': 'Precios en surtidor: España y la zona del euro'
 Purchase of jewellery and watches: Compra de joyería y relojería
+Q1 2007: T1 2007
+Q4 2019: T4 2019
 Q4 {growth}: T4 {growth}
 Quarter: Trimestre
+Quarterly: Trimestral
 RSS feed: Canal RSS (en inglés)
 Range of the panel: Horquilla del panel
 Rankings by product: Clasificaciones por producto
 Rate: Tipo
 Rate the rule suggests: Tipo que sugiere la regla
 Rates and inflation: Tipos e inflación
+Real Decreto-ley 2/2023, entered by hand: Real Decreto-ley 2/2023, datos introducidos a mano
+Real GDP and GDP per head · {period}: PIB real y PIB per cápita · {period}
 Real GDP growth: Crecimiento del PIB real
+Real GDP per person employed, % change on 2019: PIB real por ocupado, variación sobre 2019, %
+Real GDP since 2019: PIB real desde 2019
+Real GDP, % change on a year earlier: PIB real, variación interanual, %
 Real GDP, % change on a year earlier, {year} and {following}: PIB real, variación interanual, %, {year} y {following}
+Real GDP, % change on the fourth quarter of 2019: PIB real, variación sobre el cuarto trimestre de 2019, %
 Real GDP, last quarter: PIB real, último trimestre
 Real GDP, q/q: PIB real, t/t
 Real estate: Actividades inmobiliarias
@@ -986,6 +1361,18 @@ Real fixed investment, % change on a year earlier: Inversión real en capital fi
 Real gross value added, % change on a year earlier: Valor añadido bruto real, variación interanual, %
 Real growth: Crecimiento real
 Real growth, seasonally and calendar adjusted by INE. Following Spanish practice, quarterly growth is not annualised.: Crecimiento real, corregido de efectos estacionales y de calendario por el INE. Como es habitual en España, el crecimiento trimestral no se anualiza.
+Real house prices: Precios reales de la vivienda
+Real house prices since the boom: Precios reales de la vivienda desde el boom
+? 'Real pay is compensation per employee (wages and employers'' social contributions) deflated by consumer prices; productivity is real GDP per person employed. Annual figures from the European Commission''s AMECO database: {year} is partly the Commission''s estimate. Not available for Canada, whose AMECO figures stop in 2024.'
+: 'Los salarios reales son la remuneración por asalariado (sueldos y cotizaciones sociales a cargo de los empleadores) deflactada por los precios de consumo; la productividad es el PIB real por ocupado. Cifras anuales de la base de datos AMECO de la Comisión Europea: {year} es en parte una estimación de la Comisión. No disponible para Canadá, cuyas cifras en AMECO terminan en 2024.'
+Real pay since 2019: Salarios reales desde 2019
+? Real pay, compensation per employee after consumer prices, and productivity, output per person employed, over the past year and since 2019, from the European Commission's AMECO database.
+: Los salarios reales, la remuneración por asalariado descontada la inflación, y la productividad, la producción por ocupado, en el último año y desde 2019, según la base de datos AMECO de la Comisión Europea.
+Real pay, {year}: Salarios reales, {year}
+? 'Real prices are house prices deflated by consumer prices. The two ratios compare house prices with disposable income per head and with rents, each against the country''s own long-run average (the OECD''s standardised ratios): above 100, homes are dearer than usual against incomes or rents. The OECD publishes no standardised ratios for Poland, and none against rents for the United States after 2024; some countries'' figures come a few quarters late.'
+: 'Los precios reales son los precios de la vivienda deflactados por los precios de consumo. Las dos ratios comparan los precios de la vivienda con la renta disponible por habitante y con los alquileres, cada una frente a la media de largo plazo del propio país (las ratios estandarizadas de la OCDE): por encima de 100, la vivienda está más cara de lo habitual en relación con la renta o los alquileres. La OCDE no publica ratios estandarizadas para Polonia, ni frente a los alquileres para Estados Unidos después de 2024; las cifras de algunos países llegan con unos trimestres de retraso.'
+Real prices since 2015 %: Precios reales desde 2015 %
+Real prices, 1-yr %: Precios reales, 1 año %
 Real sector: Sector real
 Real wage cost per worker: Coste salarial real por trabajador
 Real wages: Salarios reales
@@ -994,11 +1381,14 @@ Red Eléctrica: Red Eléctrica
 Region: Comunidad
 Regional GDP: PIB regional
 Regions: Regiones
+Registered (INE): Inscritas (INE)
+Registered sales: Compraventas inscritas
 Registered unemployed: Parados registrados
 Registered unemployment: Paro registrado
 ? Registered unemployment by the sector of the last job, from the public employment service (SEPE), and the number of people receiving unemployment benefits.
 : El paro registrado por el sector del último empleo, del Servicio Público de Empleo Estatal (SEPE), y el número de beneficiarios de prestaciones por desempleo.
 'Registered unemployment: monthly change': 'Paro registrado: variación mensual'
+Registered workers per contributory pension, annual averages: Afiliados a la Seguridad Social por pensión contributiva, medias anuales
 Registrations: Afiliación
 Registrations and registered unemployment: Afiliación y paro registrado
 Registrations by industry: Afiliación por actividad
@@ -1012,15 +1402,26 @@ Release calendar: Calendario de publicaciones
 Release map: Mapa de publicaciones
 Released in the past week: Publicado en la última semana
 Releases in a day: Publicaciones en un día
+Rent: De alquiler
+Rental yield: Rentabilidad del alquiler
+Rental yield and the 10-year bond: Rentabilidad del alquiler y bono a 10 años
 Rents: Alquileres
+Rents (CPI): Alquileres (IPC)
+Rents and consumer prices: Alquileres y precios de consumo
 Rents and renting: Alquileres
+Replacement rate: Tasa de sustitución
+Replacement rate, %: Tasa de sustitución, %
 Research and development: Investigación y desarrollo
 Residential care and social work: Asistencia en establecimientos residenciales y servicios sociales
 Restaurants and bars: Restaurantes y bares
 Results: Resultados
+Retail: Locales
+Retail premises: Locales comerciales
 Retail sales: Comercio minorista
 Retail sales, real: Ventas minoristas, en términos reales
 Retail sales, y/y: Ventas minoristas, a/a
+Retirement: Jubilación
+Retirement pensions that ended: Pensiones de jubilación que causaron baja
 Revenue: Ingresos
 Revenue and spending: Ingresos y gastos
 Rise agreed in collective agreements, this year: Subida pactada en convenios colectivos, este año
@@ -1036,12 +1437,23 @@ Rule, euro area: Regla, zona del euro
 : 'Regla: {r_star}% de tipo real neutral + inflación + 0.5 × (inflación − 2%) − brecha de paro (la regla de Taylor de 1993, con una brecha de producción igual al doble de la brecha de paro). El paro tendencial es una tendencia estadística (filtro de Hodrick–Prescott), así que la última brecha es incierta. Una regla es una vara de medir, no una previsión de lo que hará el BCE.'
 Run: Ejecute
 SA: desest.
+SOVI (pre-1967 old-age insurance): SOVI (seguro de vejez anterior a 1967)
 Sa: Sá
 Sales: Compraventas
+Sales entered in the property registers in the month (INE).: Compraventas inscritas en los registros de la propiedad en el mes (INE).
+Same, 2050: Ídem, 2050
+Saving rate: Tasa de ahorro
+Saving rate, % of disposable income (SA): Tasa de ahorro, % de la renta disponible (desest.)
+Scheme: Régimen
+? Schemes (regímenes) group workers by how they paid in. Farm workers and domestic employees joined the General scheme in 2012. Pensions for work accidents and occupational diseases are counted apart from the scheme the worker belonged to. SOVI pays the old-age insurance in force before 1967 (table PEN-2).
+: Los regímenes agrupan a los trabajadores según cómo cotizaron. Los trabajadores agrarios y los empleados de hogar se integraron en el Régimen General en 2012. Las pensiones por accidentes de trabajo y enfermedades profesionales se cuentan aparte del régimen al que pertenecía el trabajador. El SOVI (Seguro Obligatorio de Vejez e Invalidez) paga el seguro de vejez vigente antes de 1967 (cuadro PEN-2).
+Sea workers: Trabajadores del Mar
 Search: Buscar
 Search series, charts and sections, in English or Spanish: Busque series, gráficos y secciones, en español o en inglés
 Search the site: Buscar en el sitio
 Search the site (press / or Ctrl+K): Buscar en el sitio (pulse / o Ctrl+K)
+Second-hand: Segunda mano
+Second-hand homes: Vivienda de segunda mano
 Secondary-market yield, all trades in non-stripped bonds with about 10 years to maturity.: Rentabilidad en el mercado secundario, todas las operaciones con bonos no segregados con unos 10 años de vida residual.
 Sections: Secciones
 Sections of %(page)s: Secciones de %(page)s
@@ -1049,6 +1461,7 @@ Sector tables: Tablas sectoriales
 See the ECB calendar: Ver el calendario del BCE
 Seguridad Social: Seguridad Social
 Seguridad Social, SEPE: Seguridad Social, SEPE
+Seguridad Social, {source}; Macroscope calculation: Seguridad Social, {source}; cálculo de Macroscope
 Selected items: Partidas seleccionadas
 Self-employed: Autónomos
 Sentiment: Confianza
@@ -1059,16 +1472,22 @@ Services exports by type: Exportaciones de servicios por tipo
 Services inflation: Inflación de los servicios
 Services surplus: Superávit de servicios
 Services, including tourism: Servicios, incluido el turismo
+? Set each year in the budget and published a year (table PEN-31); shown here over the 14 payments. Pensions below the minimum are topped up (complemento a mínimos) for pensioners whose other income is low.
+: Se fijan cada año en los Presupuestos y se publican en cómputo anual (cuadro PEN-31); aquí se muestran divididas entre las 14 pagas. Las pensiones por debajo de la mínima se completan (complemento a mínimos) cuando el pensionista tiene pocos ingresos más.
+Share lending more than 80%: Proporción que financia más del 80%
 Share of basket: Peso en la cesta
 Share of exports %: '% de las exportaciones'
 Share of the HICP basket, by weight, in each band of annual inflation (%): Parte de la cesta del IAPC, por ponderación, en cada tramo de inflación anual (%)
 Share of the HICP basket, by weight, with annual inflation above 2% and above 5%: Parte de la cesta del IAPC, por ponderación, con inflación anual por encima del 2% y del 5%
 Share of the basket: Parte de la cesta
+Share over 80%: Más del 80%
 Shares: Porcentajes
 Show all: Mostrar todos
 Show data: Ver los datos
 Sick leave: Incapacidad temporal
 Sick leave took {now} a month per employee in the four quarters to {quarter}, against {then} in 2019 ({change}): La incapacidad temporal supuso {now} al mes por asalariado en los cuatro trimestres hasta {quarter}, frente a {then} en 2019 ({change})
+Signed before notaries (Ministry of Housing): Firmadas ante notario (Ministerio de Vivienda)
+Signed before notaries, past 12 months, thousands: Firmadas ante notario, últimos 12 meses, miles
 ? Since 2023 the model's typical (root mean square) error is {rmse} pp, against {naive} pp for repeating the previous quarter and {mean} pp for the post-2013 average. The inputs were chosen with this same test, and it uses complete quarters of data, so real-time errors, with months still missing, will be larger.
 : Desde 2023, el error típico del modelo (la raíz del error cuadrático medio) es de {rmse} pp, frente a {naive} pp si se repite el trimestre anterior y {mean} pp con la media desde 2013. Las variables se eligieron con esta misma prueba, que usa trimestres de datos completos, así que los errores en tiempo real, con meses aún por publicar, serán mayores.
 Since the last update: Desde la última actualización
@@ -1084,12 +1503,17 @@ Social Security registrations (SA): Afiliados a la Seguridad Social (desest.)
 ? 'Social Security registrations (afiliados) are Spain''s closest equivalent to payrolls: the average number of people paying in each month. Seasonally adjusted by Macroscope, so they show the trend rather than the summer and Christmas swings.'
 : 'La afiliación a la Seguridad Social es lo más parecido en España a las nóminas (payrolls) de Estados Unidos: el número medio de personas que cotizan cada mes. Macroscope la desestacionaliza, de modo que muestra la tendencia y no las oscilaciones del verano y la Navidad.'
 Social Security registrations, last month (SA): Afiliación a la Seguridad Social, último mes (desest.)
+Social security funds' balance: Saldo de las Administraciones de Seguridad Social
+Solidarity contribution on pay above the maximum base, 2025: Cotización de solidaridad sobre el salario que supera la base máxima, 2025
+Solidarity contribution, 2045: Cotización de solidaridad, 2045
 Source: Fuente
 'Source: %(source)s': 'Fuente: %(source)s'
 Spain: España
 Spain 10-year yield: Rentabilidad del bono a 10 años de España
 Spain 10-year yield since {date}: Bono español a 10 años desde el {date}
 Spain 10-year yield this year: Bono español a 10 años en lo que va de año
+Spain = 100: España = 100
+Spain = 100, IMF figures for {year}: España = 100, cifras del FMI para {year}
 Spain = 100, current prices: España = 100, precios corrientes
 Spain and its comparators: España y sus comparables
 Spain and the euro area: España y la zona del euro
@@ -1099,6 +1523,8 @@ Spain and the safest euro-area bonds: España y los bonos más seguros de la zon
 ? Spain is one of the world's most visited countries. Arrivals and spending come from INE's border surveys (FRONTUR, EGATUR), receipts from the balance of payments.
 : España es uno de los países más visitados del mundo. Las llegadas y el gasto proceden de las encuestas en frontera del INE (FRONTUR, EGATUR); los ingresos, de la balanza de pagos.
 Spain minus euro area: España menos zona del euro
+? 'Spain next to the euro area and ten comparators: France, Germany, Italy, the Netherlands, Portugal and Poland in the EU, and the United Kingdom, the United States, Canada and Japan. The sections below take growth, jobs, prices and interest rates, the public finances, the current account and the IMF''s outlook in turn.'
+: 'España junto a la zona del euro y diez comparables: Francia, Alemania, Italia, los Países Bajos, Portugal y Polonia en la UE, y el Reino Unido, Estados Unidos, Canadá y Japón. Las secciones siguientes repasan, una a una, el crecimiento, el empleo, los precios y los tipos de interés, las finanzas públicas, la balanza por cuenta corriente y las perspectivas del FMI.'
 ? 'Spain next to the euro area and ten comparators: France, Germany, Italy, the Netherlands, Portugal, Poland, the United Kingdom, the United States, Canada and Japan; growth, jobs, prices, public finances and the IMF''s outlook.'
 : 'España junto a la zona del euro y diez comparables: Francia, Alemania, Italia, los Países Bajos, Portugal, Polonia, el Reino Unido, Estados Unidos, Canadá y Japón; crecimiento, empleo, precios, finanzas públicas y las previsiones del FMI.'
 ? Spain's 10-year yield is the German Bund yield, which moves with euro-area interest rates and inflation expectations, plus the prima de riesgo, the extra return investors demand to hold Spanish debt. Which part moved says whether the change is about the euro area or about Spain. Here the prima de riesgo is the Spanish yield minus the Bund, so the parts add up; Banco de España's headline spread (the tile above) uses benchmark bonds and can differ by a few bp.
@@ -1111,6 +1537,9 @@ Spain's 10-year yield, in two parts: La rentabilidad a 10 años de España, en d
 : Las 17 comunidades autónomas de España difieren mucho en paro, precios de la vivienda y renta per cápita. Las cifras regionales proceden de la encuesta de población activa, el índice de precios de vivienda, el IPC y la contabilidad regional del INE.
 ? Spain's exports and imports of services by type, from the balance of payments. Tourism is the largest single item, but the other services together bring in more than half of exports.
 : Las exportaciones e importaciones de servicios de España por tipo, según la balanza de pagos. El turismo es la mayor partida, pero los demás servicios juntos aportan más de la mitad de las exportaciones.
+Spain's gross public pension spending, 2022: Gasto público bruto en pensiones de España, 2022
+? 'Spain''s house prices next to its comparators'', from the OECD: real prices, and prices against incomes and against rents, each next to its own long-run average. The chips choose which countries the chart draws beside Spain.'
+: 'Los precios de la vivienda en España junto a los de sus comparables, según la OCDE: precios reales y precios frente a la renta y frente a los alquileres, cada uno junto a su propia media de largo plazo. Los botones eligen qué países se dibujan en el gráfico junto a España.'
 ? Spain's own consumer price index. Core inflation leaves out energy and unprocessed food, the most volatile prices; INE splits the rest into services, goods and processed food.
 : El índice de precios de consumo de España. La inflación subyacente deja fuera la energía y los alimentos no elaborados, los precios más volátiles; el INE divide el resto en servicios, bienes y alimentos elaborados.
 ? Spain's yield is the German yield plus the prima de riesgo, so the two parts add up to the total. A rising Bund means rates are rising across the euro area; a rising prima de riesgo is about Spain.
@@ -1120,9 +1549,15 @@ Spanish: Españoles
 ? Spanish bond yields and the prima de riesgo, Euribor, the IBEX 35, the euro and commodities, and the IMF-style financial soundness indicators.
 : La rentabilidad de la deuda española y la prima de riesgo, el euríbor, el IBEX 35, el euro y las materias primas, y los indicadores de solidez financiera al estilo del FMI.
 Spanish government bonds: Deuda pública española
+? Spanish households have paid down much of the debt they took on in the boom; most mortgages are variable-rate, so rates matter quickly. Their homes are most of what they own.
+: Los hogares españoles han reducido buena parte de la deuda que contrajeron durante el boom; la mayoría de las hipotecas son a tipo variable, así que los tipos de interés se notan enseguida. Su vivienda es la mayor parte de lo que poseen.
 Spanish yield curve: Curva de tipos española
 Spending: Demanda
+Spending net of the revenue measures, against the limit: Gasto neto de las medidas de ingresos, frente al límite
+Spending rule, checked by AIReF every three years from March 2025: Regla de gasto, evaluada por la AIReF cada tres años desde marzo de 2025
+Spread over Germany: Diferencial con Alemania
 Start work: Empiezan a trabajar
+Statistical Annex, country table for Spain: anexo estadístico, cuadro de España
 Status: Estado
 Stone, ceramics and glass: Piedra, cerámica y vidrio
 Stop looking: Dejan de buscar
@@ -1136,10 +1571,14 @@ Suspensions: Suspensiones
 Swiss francs: Francos suizos
 Switch between light and dark theme: Cambiar entre tema claro y oscuro
 Switzerland: Suiza
+Table 1: cuadro 1
 ? 'Table 1 of the IMF''s 2026 Article IV report for Spain, rebuilt from public data: actual years from INE, Eurostat and the ECB, projections from the IMF''s World Economic Outlook database. That database publishes only some of the report''s lines, so the others show … in the projection years.'
 : 'El cuadro 1 del informe del Artículo IV de 2026 del FMI sobre España, reconstruido con datos públicos: los años observados, del INE, Eurostat y el BCE; las proyecciones, de la base de datos del World Economic Outlook del FMI. Esa base publica solo algunas líneas del informe, así que las demás muestran … en los años de proyección.'
 ? 'Table 3 of the IMF''s 2026 Article IV report for Spain: bank capital, asset quality and profitability from the IMF''s own Financial Soundness Indicators database, banks'' domestic exposures from the Banco de España, and corporate, household and housing indicators.'
 : 'El cuadro 3 del informe del Artículo IV de 2026 del FMI sobre España: capital, calidad de los activos y rentabilidad de los bancos de la base de datos de indicadores de solidez financiera del propio FMI, las exposiciones domésticas de los bancos del Banco de España, e indicadores de empresas, hogares y vivienda.'
+Table I.1.6: cuadro I.1.6
+Table I.1.9: cuadro I.1.9
+Table II.1.64; Statistical Annex, country table for Spain: cuadro II.1.64; anexo estadístico, cuadro de España
 ? 'Tables 2a and 2b of the IMF''s 2026 Article IV report for Spain: revenue, spending and the balances in euros and in % of GDP, from Eurostat''s accounts for the general government. The World Economic Outlook projects only the totals, so the other lines show … in the projection years.'
 : 'Los cuadros 2a y 2b del informe del Artículo IV de 2026 del FMI sobre España: ingresos, gastos y saldos en euros y en % del PIB, de las cuentas de las Administraciones públicas de Eurostat. El World Economic Outlook solo proyecta los totales, así que las demás líneas muestran … en los años de proyección.'
 ? 'Tables 4 and 5 of the IMF''s 2026 Article IV report for Spain: the balance of payments, in euros and in % of GDP, and external debt by sector and instrument, from Eurostat. The World Economic Outlook projects only the current account, so the other lines show … in the projection years.'
@@ -1165,7 +1604,10 @@ That page doesn't exist, or it has moved. Every page on the site is below.: Esa 
 The 1- and 3-month columns are seasonally adjusted by Macroscope; the 12-month column uses the published data.: Las columnas de 1 y 3 meses están desestacionalizadas por Macroscope; la de 12 meses usa los datos publicados.
 The 12-month columns use the registrations as published; the 1- and 3-month columns are seasonally adjusted by Macroscope.: Las columnas de 12 meses usan la afiliación tal como se publica; las de 1 y 3 meses están desestacionalizadas por Macroscope.
 'The 17 autonomous communities: unemployment, house prices, inflation and income per head.': 'Las 17 comunidades autónomas: paro, precios de la vivienda, inflación y renta per cápita.'
+The 2023 pension reform: La reforma de las pensiones de 2023
 The 2023 reform: La reforma de 2023
+The 2024 Ageing Report: El Ageing Report de 2024
+The Banco de España's annual report: El informe anual del Banco de España
 ? The Banco de España's balance sheet in the Eurosystem, bank lending and deposits, and interest rates, at the end of each year. The Article IV report for Spain has no monetary table, since the ECB sets policy for the euro area; this one follows the IMF's layout for other countries.
 : El balance del Banco de España en el Eurosistema, el crédito y los depósitos bancarios y los tipos de interés, a final de cada año. El informe del Artículo IV sobre España no tiene cuadro monetario, porque el BCE fija la política de la zona del euro; este sigue el formato del FMI para otros países.
 The ECB rate and what a Taylor rule suggests: El tipo del BCE y lo que sugiere una regla de Taylor
@@ -1178,11 +1620,19 @@ The ECB rate and what a Taylor rule suggests: El tipo del BCE y lo que sugiere u
 The EU's share of Spain's goods trade: El peso de la UE en el comercio de bienes de España
 ? The European Commission asks firms and households every month how things are going. Surveys come out before the hard data they foreshadow.
 : La Comisión Europea pregunta cada mes a empresas y hogares cómo van las cosas. Las encuestas se publican antes que los datos que anticipan.
+? The European Commission's Ageing Report projects pension spending for every EU country; AIReF, Spain's fiscal watchdog, checks the spending rule; the Banco de España weighs in its annual report. Their figures are entered by hand from each document, linked, and marked until an AI has checked them against the publisher's own text.
+: El Ageing Report de la Comisión Europea proyecta el gasto en pensiones de cada país de la UE; la AIReF, la autoridad fiscal independiente de España, evalúa la regla de gasto; el Banco de España opina en su informe anual. Sus cifras se introducen a mano a partir de cada documento, que se enlaza, y quedan marcadas hasta que una IA las ha cotejado con el texto de la propia institución.
 The FUNCAS Panel is the average of about 19 forecasters (banks, research institutes, consultancies).: El Panel de FUNCAS es la media de unas 19 instituciones (bancos, institutos de análisis y consultoras).
 The IMF's outlook: Las perspectivas del FMI
+? 'The IMF''s projections: real GDP growth and average consumer price inflation over the year, and the unemployment rate on each country''s own definition (so the levels compare less well than the changes). The IMF updates them in April and October. The forecasters followed for Spain alone are on the Analysis page.'
+: 'Proyecciones del FMI: crecimiento del PIB real e inflación media de los precios de consumo en el año, y tasa de paro según la definición de cada país (por eso los niveles se comparan peor que las variaciones). El FMI las actualiza en abril y octubre. Las previsiones de otras instituciones, que se siguen solo para España, están en la página de Análisis.'
 ? 'The Social Security''s contributory pensions: how many and how much, by class, scheme and region, what they cost, new and ended pensions, and the maximum and minimum amounts; Spain against its comparators, the ageing population, the 2023 reform and what the official assessments say.'
 : 'Las pensiones contributivas de la Seguridad Social: cuántas son y de qué cuantía, por clase, régimen y comunidad, lo que cuestan, las altas y las bajas, y las cuantías máximas y mínimas; España frente a sus comparables, el envejecimiento de la población, la reforma de 2023 y lo que dicen las evaluaciones oficiales.'
+? 'The Social Security''s contributory pensions: paid for by contributions and earned by working, for retirement, widowhood, permanent disability, orphans and family members. Non-contributory pensions, for people who paid in too little, and civil servants'' pensions (Clases Pasivas) are not included.'
+: 'Las pensiones contributivas de la Seguridad Social: se financian con cotizaciones y se generan trabajando, por jubilación, viudedad, incapacidad permanente, orfandad y en favor de familiares. No se incluyen las pensiones no contributivas, para quienes cotizaron demasiado poco, ni las de los funcionarios (Clases Pasivas).'
 The autonomous communities: Las comunidades autónomas
+The average pension and prices: La pensión media y los precios
+The chapter prints no date; 2024 comes from the PDF's creation date (30 April 2024) and its latest references.: El capítulo no lleva fecha; 2024 sale de la fecha de creación del PDF (30 de abril de 2024) y de sus referencias más recientes.
 The current account: La balanza por cuenta corriente
 The deposit rate since 1999: El tipo de depósito desde 1999
 The economy against its history: La economía frente a su historia
@@ -1195,6 +1645,7 @@ The euro, per euro: El euro, por euro
 The government's deficit figures leave out the extraordinary spending after the DANA floods.: Las cifras de déficit del Gobierno no incluyen el gasto extraordinario tras las inundaciones de la DANA.
 The harmonised index is the measure the ECB targets, built the same way in every euro-area country.: El índice armonizado es la medida que sigue el objetivo del BCE, elaborada igual en todos los países de la zona del euro.
 The inactive: Los inactivos
+The intergenerational equity contribution (MEI): El Mecanismo de Equidad Intergeneracional (MEI)
 ? The labour cost survey (ETCL) is not seasonally adjusted and bonuses move between quarters, so pay is compared with a year earlier. The collective-agreements figure is the average rise agreed for the current year in agreements registered so far, not a change on a year earlier.
 : La encuesta de coste laboral (ETCL) no está desestacionalizada y las pagas extraordinarias cambian de trimestre, así que los salarios se comparan con un año antes. La cifra de convenios es la subida media pactada para el año en curso en los convenios registrados hasta ahora, no una variación interanual.
 ? The labour force survey by group, from Eurostat. Employment rates have risen for every group since 2019, most for women and people aged 55–64, and prime-age employment (25–54) is closing in on the euro area's. Charts show averages of the past four quarters, as the figures are not seasonally adjusted.
@@ -1215,14 +1666,22 @@ The page you asked for is not on Macroscope Spain.: La página que busca no est�
 The quarterly balance is not seasonally adjusted, so it is averaged over four quarters.: El saldo trimestral no está desestacionalizado, así que se promedia en cuatro trimestres.
 The rate expected a year ahead: El tipo esperado dentro de un año
 The reference rate for most Spanish variable-rate mortgages.: El índice de referencia de la mayoría de las hipotecas a tipo variable en España.
+? 'The reform of March 2023 added revenue rather than cutting pensions: a growing earmarked contribution (the MEI) that feeds the reserve fund, a higher maximum contribution base, a new solidarity contribution on pay above it, and a spending rule that AIReF checks every three years. Its figures are entered by hand from the decree in the Boletín Oficial del Estado.'
+: 'La reforma de marzo de 2023 añadió ingresos en lugar de recortar pensiones: una cotización finalista creciente (el MEI) que nutre el Fondo de Reserva, una base máxima de cotización más alta, una nueva cotización de solidaridad sobre el salario que la supera y una regla de gasto que la AIReF evalúa cada tres años. Sus cifras se introducen a mano a partir del decreto publicado en el Boletín Oficial del Estado.'
+? The registers record a sale when its deed is registered, usually a month or two after it is signed, and the two sources count a home as new differently, so their split differs. Before 2007 the registered sales came quarterly from the registrars.
+: Los registros anotan una compraventa cuando se inscribe su escritura, normalmente uno o dos meses después de firmarla, y las dos fuentes definen la vivienda nueva de forma distinta, así que su desglose difiere. Antes de 2007 las compraventas inscritas procedían de los registradores, con periodicidad trimestral.
 'The sectors add up to slightly less than the total: a few registrations have no activity recorded.': 'Los sectores suman algo menos que el total: unos pocos afiliados no tienen actividad registrada.'
+The solidarity contribution: La cotización de solidaridad
 'The tables of the IMF''s 2026 Article IV report for Spain, rebuilt from public data, with history from 2015:': 'Las tablas del informe del Artículo IV del FMI sobre España de 2026, reconstruidas con datos públicos, con historia desde 2015:'
 The trade balance and energy: El saldo comercial y la energía
 The unemployed: Los parados
 Their spending: Su gasto
 ? 'There is no free feed of the swap rates traders use to price ECB decisions. As a rough stand-in, these are forward rates on AAA euro-area government bonds: the short-term rate the bond market implies for each future date. They include a term premium, so they tend to overstate the expected path, more so further out.'
 : 'No hay una fuente gratuita de los tipos swap que usan los operadores para anticipar las decisiones del BCE. Como aproximación, estos son los tipos a plazo de la deuda pública AAA de la zona del euro: el tipo a corto plazo que el mercado de bonos descuenta para cada fecha futura. Incluyen una prima por plazo, así que tienden a exagerar la senda esperada, más cuanto más lejos.'
+This year: Este año
 Thousands: Miles
+Thousands a year: Miles al año
+'Thousands over a year: homes started in the past 12 months, and the rise in households': 'Miles en un año: viviendas iniciadas en los últimos 12 meses y aumento del número de hogares'
 Thousands registered over the past 12 months: Miles registrados en los últimos 12 meses
 Thousands, as published: Miles, tal como se publican
 Thousands, as published, and % change on a year earlier: Miles, tal como se publican, y variación interanual, %
@@ -1235,6 +1694,9 @@ Time: Hora
 Today: Hoy
 Tools: Herramientas
 Total labour cost per worker: Coste laboral total por trabajador
+Total return on housing: Rentabilidad total de la vivienda
+Total wealth, % of disposable income: Riqueza total, % de la renta disponible
+Totals over 12 months; changes on a year earlier: Totales de 12 meses; variaciones interanuales
 Tourism: Turismo
 Tourism and other services exports: Exportaciones de turismo y de otros servicios
 Tourism and travel: Turismo y viajes
@@ -1271,6 +1733,7 @@ Türkiye: Turquía
 US BEA (via DBnomics): BEA de EE. UU. (vía DBnomics)
 US BLS: BLS de EE. UU.
 US EIA: EIA de EE. UU.
+US Federal Reserve: Reserva Federal
 US dollars: Dólares estadounidenses
 US dollars per euro, ECB reference rate.: Dólares estadounidenses por euro, tipo de cambio de referencia del BCE.
 US dollars per euro, daily: Dólares por euro, diario
@@ -1280,6 +1743,8 @@ Under 25s, % of the labour force, seasonally adjusted: Menores de 25 años, % de
 Underlying inflation: Inflación subyacente
 Unemployment: Paro
 Unemployment (EPA): Paro (EPA)
+? 'Unemployment and youth unemployment are seasonally adjusted monthly rates; youth unemployment and the employment rate follow the OECD''s harmonised definitions (people aged 15 to 24, and 15 to 64), and Eurostat''s for the euro area (under 25). Sources: Eurostat, OECD, US BLS.'
+: 'El paro y el paro juvenil son tasas mensuales desestacionalizadas; el paro juvenil y la tasa de empleo siguen las definiciones armonizadas de la OCDE (personas de 15 a 24 años, y de 15 a 64), y las de Eurostat para la zona del euro (menores de 25). Fuentes: Eurostat, OCDE, BLS de EE. UU.'
 Unemployment benefit recipients: Beneficiarios de prestaciones por desempleo
 Unemployment by citizenship: Paro por nacionalidad
 Unemployment by education: Paro por nivel educativo
@@ -1289,6 +1754,7 @@ Unemployment by sector: Paro por sectores
 ? 'Unemployment comes from the labour force survey (EPA), not seasonally adjusted. Ceuta and Melilla are left out: their survey samples are small.'
 : 'El paro procede de la encuesta de población activa (EPA), sin desestacionalizar. Se dejan fuera Ceuta y Melilla: sus muestras son pequeñas.'
 Unemployment gap: Brecha de paro
+Unemployment in {year}: Paro en {year}
 Unemployment rate: Tasa de paro
 Unemployment rate (EPA): Tasa de paro (EPA)
 Unemployment rate (monthly, SA): Tasa de paro (mensual, desest.)
@@ -1297,11 +1763,15 @@ Unemployment rate, change over 3 months: Tasa de paro, variación en 3 meses
 Unemployment rate, monthly change: Tasa de paro, variación mensual
 ? 'Unemployment understates how much spare labour there is. Eurostat''s measure of slack adds part-timers who want more hours and people who could work but are not looking. Vacancies show the other side: the posts firms are trying to fill.'
 : 'El paro subestima cuánta mano de obra hay disponible. La medida de holgura de Eurostat añade a quienes trabajan a tiempo parcial y quieren más horas y a quienes podrían trabajar pero no buscan. Las vacantes muestran el otro lado: los puestos que las empresas intentan cubrir.'
+Unemployment {year}: Paro {year}
 Unemployment, 1-yr change: Paro, variación en 1 año
+? Unemployment, for everyone and for people under 25, and the share of people aged 15 to 64 in work. Spain's unemployment and youth unemployment are the highest of the group.
+: El paro, total y de los menores de 25 años, y el porcentaje de personas de 15 a 64 años con empleo. El paro y el paro juvenil de España son los más altos del grupo.
 Unit labour cost: Coste laboral unitario
 United Kingdom: Reino Unido
 United States: Estados Unidos
 Unprocessed food: Alimentos no elaborados
+Up to 10% above the base: Hasta un 10% por encima de la base
 Up to date: Al día
 Updated %(day)s: Actualizado el %(day)s
 Updated in the past week: Actualizado en la última semana
@@ -1324,6 +1794,7 @@ Wages: Salarios
 Wages and prices: Salarios y precios
 Water and waste: Agua y residuos
 We: Mi
+Wealth: Riqueza
 Weight: Peso
 Weighted average of z-scores, monthly; 0 = the 2013–present norm: Media ponderada de las puntuaciones z, mensual; 0 = la norma de 2013 hasta hoy
 Weighted median: Mediana ponderada
@@ -1331,41 +1802,60 @@ Weighted median: Mediana ponderada
 ? 'What Spain earns from the rest of the world against what it pays: trade, tourism, income and transfers. A surplus means Spain lends to the rest of the world.'
 : 'Lo que España ingresa del resto del mundo frente a lo que paga: comercio, turismo, rentas y transferencias. Un superávit significa que España presta al resto del mundo.'
 'What Spain produces, and who is spending: households, firms, government and the rest of the world.': 'Lo que produce España y quién gasta: hogares, empresas, Administraciones públicas y el resto del mundo.'
+? 'What Spain spends on pensions and how generous they are, next to its comparators: spending from Eurostat (EU countries, all pensions) and the OECD (every comparator, public old-age and survivors'' pensions), and the OECD''s replacement rates. The chips choose the countries drawn beside Spain.'
+: 'Lo que España gasta en pensiones y lo generosas que son, junto a sus comparables: el gasto según Eurostat (países de la UE, todas las pensiones) y la OCDE (todos los comparables, pensiones públicas de jubilación y supervivencia), y las tasas de sustitución de la OCDE. Los botones eligen los países que se dibujan junto a España.'
 ? What Spanish industry charges abroad and what it pays for industrial goods bought from abroad. When export prices rise faster than import prices, the terms of trade improve and the same exports pay for more imports.
 : Lo que cobra la industria española en el extranjero y lo que paga por los bienes industriales que compra fuera. Cuando los precios de exportación suben más deprisa que los de importación, la relación real de intercambio mejora y las mismas exportaciones pagan más importaciones.
+What a new mortgage takes: Esfuerzo de acceso con una hipoteca nueva
+? What an average home costs against what households earn, and what a new mortgage takes from their income, from the Banco de España's housing indicators, with prices per square metre from mortgage appraisals and asking prices on the two largest property portals.
+: Lo que cuesta una vivienda media frente a lo que ganan los hogares y la parte de su renta que se lleva una hipoteca nueva (el esfuerzo de acceso), según los indicadores del mercado de la vivienda del Banco de España, con los precios por metro cuadrado de las tasaciones hipotecarias y los precios de oferta de los dos mayores portales inmobiliarios.
+What contributory pensions cost: Lo que cuestan las pensiones contributivas
 What drives annual growth: Qué impulsa el crecimiento anual
 ? 'What drives the debt ratio, in the IMF''s layout (DSA 1: Eurostat for past years, the World Economic Outlook for projections), and how it fares under stress, from the European Commission''s Debt Sustainability Monitor (DSA 2), since the IMF does not publish its own stress tests as data. The Fiscal Explorer runs the Commission''s baseline to 2070.'
 : 'Qué mueve la ratio de deuda, con el formato del FMI (DSA 1: Eurostat para los años pasados, el World Economic Outlook para las proyecciones), y cómo se comporta en escenarios de tensión, del Debt Sustainability Monitor de la Comisión Europea (DSA 2), ya que el FMI no publica sus propias pruebas de tensión como datos. El Explorador fiscal proyecta el escenario base de la Comisión hasta 2070.'
+? 'What each economy earns from the rest of the world, less what it pays: trade in goods and services, income and transfers. Spain has run a surplus every year since 2012, after a deficit of 9.4% of GDP in 2007, before the financial crisis.'
+: 'Lo que cada economía ingresa del resto del mundo, menos lo que le paga: el comercio de bienes y servicios, las rentas y las transferencias. España registra superávit todos los años desde 2012, tras un déficit del 9.4% del PIB en 2007, antes de la crisis financiera.'
 ? What employers pay per worker and per hour (INE's quarterly labour cost survey, ETCL), pay in the national accounts, and rises agreed in collective agreements.
 : Lo que pagan las empresas por trabajador y por hora (la Encuesta Trimestral de Coste Laboral del INE, ETCL), la remuneración en la contabilidad nacional y las subidas pactadas en los convenios colectivos.
 What forecasters expect: Qué esperan los analistas
 What markets expect: Qué esperan los mercados
 What moves the 10-year yield: Qué mueve el bono a 10 años
+? What the IMF expects for growth, inflation and unemployment this year and next, from its latest World Economic Outlook. Its forecasts for Spain sit next to the other forecasters' on the Analysis page.
+: Lo que espera el FMI para el crecimiento, la inflación y el paro este año y el próximo, según sus últimas Perspectivas de la economía mundial. Sus previsiones para España figuran junto a las de las demás instituciones en la página de Análisis.
 ? What the Spanish state pays to borrow at each maturity, and the extra it pays over the safest euro-area governments. The prima de riesgo is the gap with Germany at 10 years.
 : Lo que paga el Estado español por endeudarse a cada plazo, y lo que paga de más frente a los gobiernos más seguros de la zona del euro. La prima de riesgo es la diferencia con Alemania a 10 años.
 What the official assessments say: Qué dicen las evaluaciones oficiales
 What the {q} nowcast is built on: En qué se basa la estimación adelantada de {q}
+What they cost: Lo que cuestan
 What's new: Novedades
 ? 'When the figures on Macroscope Spain are published: the release calendar of INE, the Banco de España, Eurostat and the other sources, in Madrid time.'
 : 'Cuándo se publican las cifras de Macroscope España: el calendario de publicaciones del INE, el Banco de España, Eurostat y las demás fuentes, en hora de Madrid.'
 When the figures on this site are published. Times are Madrid time.: Cuándo se publican las cifras de este sitio. Las horas son de Madrid.
 ? 'Where Spain''s goods go and where they come from: the EU and the largest partners, over the past 12 months. Most exports go to the EU; imports lean more on China and on energy suppliers.'
 : 'Adónde van los bienes de España y de dónde vienen: la UE y los principales socios, en los últimos 12 meses. La mayor parte de las exportaciones va a la UE; las importaciones dependen más de China y de los proveedores de energía.'
+? 'Where the pensioner lives. Average pensions follow past pay: highest in the País Vasco, Asturias and Madrid, lowest in Extremadura and Galicia (tables PEN-19, PEN-20 and PEN-24).'
+: 'Según dónde vive el pensionista. Las pensiones medias siguen a los salarios del pasado: son más altas en el País Vasco, Asturias y Madrid y más bajas en Extremadura y Galicia (cuadros PEN-19, PEN-20 y PEN-24).'
 Where the unemployed go: Adónde van los parados
 Where the vacancies are: Dónde están las vacantes
 'Who works: age, sex, citizenship and education': 'Quién trabaja: edad, sexo, nacionalidad y estudios'
 Wholesale: Mayoristas
 Wholesale and retail trade: Comercio al por mayor y al por menor
 Why are Spain's borrowing costs moving?: ¿Por qué se mueve el coste de financiación de España?
+Widowhood: Viudedad
+? 'Widowhood pensions go mostly to women; family-support pensions, under 50,000, are counted in the total but not shown. Source: Ministry of Labour, Boletín de Estadísticas Laborales (table PEN-1), from Social Security records.'
+: 'Las pensiones de viudedad las cobran sobre todo mujeres; las pensiones en favor de familiares, menos de 50,000, se cuentan en el total pero no se muestran. Fuente: Ministerio de Trabajo, Boletín de Estadísticas Laborales (cuadro PEN-1), a partir de los registros de la Seguridad Social.'
+With a spouse who is not dependent: Con cónyuge no a cargo
 ? 'With three quarters published, {year} is largely decided: even with no growth at all in the fourth quarter, GDP would grow {flat} on {previous}. The forecasts differ mainly in what they expect for {following}.'
 : 'Con tres trimestres publicados, {year} está en gran parte decidido: aunque el PIB no creciera nada en el cuarto trimestre, aumentaría un {flat} respecto a {previous}. Las previsiones difieren sobre todo en lo que esperan para {following}.'
 Women: Mujeres
 Women and men at prime age: Mujeres y hombres en edad central
 Wood, paper and printing: Madera, papel y artes gráficas
+Work accidents: Accidentes de trabajo
 'Worker flows: finding and losing jobs': 'Flujos laborales: encontrar y perder empleo'
 Workers affected: Trabajadores afectados
 Workers affected each month: Trabajadores afectados cada mes
 Workers affected over the past 12 months: Trabajadores afectados en los últimos 12 meses
+Workers per pension: Afiliados por pensión
 ? Workers registered with the Social Security (afiliados), the earliest monthly read on jobs, and job seekers registered at public employment offices (paro registrado).
 : Los afiliados a la Seguridad Social, el primer dato mensual sobre el empleo, y los demandantes de empleo inscritos en las oficinas públicas de empleo (paro registrado).
 World Bank: Banco Mundial
@@ -1374,13 +1864,32 @@ YTD y/y: En el año, a/a
 Year before: Año anterior
 Year to date: En lo que va de año
 Year to date sums the months since January and compares them with the same months a year earlier.: En lo que va de año suma los meses desde enero y los compara con los mismos meses del año anterior.
+Years of a household's gross income an average home costs: Años de renta disponible bruta de un hogar que cuesta una vivienda media
 Yield by maturity, %: Rentabilidad por plazo, %
 'Yield by maturity, %: Spain against the AAA euro-area curve': 'Rentabilidad por plazo, %: España frente a la curva AAA de la zona del euro'
+Yield of the revenue measures: Recaudación de las medidas de ingresos
+Yield of the revenue measures adopted since 2020: Recaudación de las medidas de ingresos adoptadas desde 2020
 Yield, %; changes and the spread over AAA euro-area bonds in basis points: Rentabilidad, %; variaciones y diferencial sobre la deuda AAA de la zona del euro en puntos básicos
 Youth unemployment: Paro juvenil
+a month: al mes
+a month, granted in {month}: al mes, reconocida en {month}
+a month, granted in {month} · {change} on the average retirement pension: al mes, reconocida en {month} · {change} sobre la pensión media de jubilación
+a month, retirement at 65: al mes, jubilación a los 65 años
+a month, {month}: al mes, {month}
+'a month, {month}: newer pensions replace smaller ones': 'al mes, {month}: las pensiones nuevas sustituyen a otras más bajas'
+a year's rent over the price · {period}: un año de alquiler sobre el precio · {period}
+a year's rent over the price · {period}; 10-year bond {bond}: un año de alquiler sobre el precio · {period}; bono a 10 años, {bond}
+about 123% of GDP; ageing adds about 52 points, 33.9 of them from pensions: en torno al 123% del PIB; el envejecimiento añade unos 52 puntos, 33.9 de ellos por las pensiones
 about {n} thousand registrations of {what}: unos {n} mil afiliados de {what}
 above expectations: por encima de lo esperado
+additional measures will very probably be needed; relying only on higher contributions could harm jobs and competitiveness: muy probablemente harán falta medidas adicionales; confiar solo en cotizaciones más altas podría dañar el empleo y la competitividad
+additional provision 2 of the decree: disposición adicional 2.ª del decreto
+additional provision 53: disposición adicional 53.ª
+all pensions, {year} (Eurostat): todas las pensiones, {year} (Eurostat)
+all pensions, {year}; EU {eu} (Eurostat): todas las pensiones, {year}; UE {eu} (Eurostat)
 annual avg., %: media anual, %
+? average gross pension spending in 2022-2050 (Ageing Report) at most 15% of GDP, adjusted by the gap between the revenue measures' yield and 1.7% of GDP
+: gasto bruto medio en pensiones en 2022-2050 (Ageing Report) de como máximo el 15% del PIB, ajustado por la diferencia entre lo que recauden las medidas de ingresos y el 1.7% del PIB
 average of the four quarters to {quarter}: media de los cuatro trimestres hasta {quarter}
 average of {n}; range {low} to {high}: media de {n}; entre {low} y {high}
 average without the 15% extremes at each end: media sin el 15% de los extremos de cada lado
@@ -1394,6 +1903,8 @@ close to normal: cerca de lo normal
 cooler than normal: más baja de lo normal
 core CPI: IPC subyacente
 deposit rate minus the euro-area rule: tipo de depósito menos la regla de la zona del euro
+'disposable income: savings and investments less debts · {period}': 'la renta disponible: ahorro e inversiones menos deudas · {period}'
+'disposable income: savings and investments less debts · {period}; the highest since {year}': 'la renta disponible: ahorro e inversiones menos deudas · {period}; la más alta desde {year}'
 download the Excel workbook: descargue el libro de Excel (en inglés)
 each age group's rate today, weighted as in {year}: la tasa actual de cada grupo de edad, ponderada como en {year}
 'energy alone: {amount}': 'solo la energía: {amount}'
@@ -1404,6 +1915,7 @@ for details.: para ver los detalles.
 four quarters to {quarter}: cuatro trimestres hasta {quarter}
 four quarters to {quarter} on the four before: cuatro trimestres hasta {quarter} sobre los cuatro anteriores
 four quarters to {quarter}, {change} on a year earlier: cuatro trimestres hasta {quarter}, {change} interanual
+from 2027 no lower than the poverty threshold for a two-adult household: desde 2027, no inferior al umbral de la pobreza de un hogar de dos adultos
 half the basket is rising faster than this: la mitad de la cesta sube más que esto
 homes: viviendas
 hotter than normal: más alta de lo normal
@@ -1412,9 +1924,11 @@ hours: horas
 in line with expectations: en línea con lo esperado
 in {n} day: dentro de {n} día
 in {n} days: dentro de {n} días
+'in {year}, an estimate: pensions × the average pension × {payments} payments': 'en {year}, estimación: número de pensiones × pensión media × {payments} pagas'
 industrial goods, {month} on a year earlier: bienes industriales, {month}, variación interanual
 lowest to highest: de la más baja a la más alta
 m/m: m/m
+met formally, but no guarantee of sustainability; AIReF proposes redesigning it: se cumple formalmente, pero no garantiza la sostenibilidad; la AIReF propone rediseñarla
 mn: mill.
 mn hours: mill. de horas
 monthly readings; the rest is projected: datos mensuales; el resto se proyecta
@@ -1422,41 +1936,95 @@ mortgages: hipotecas
 motor vehicle repair, from trade to other services: reparación de vehículos de motor, del comercio a otros servicios
 never: nunca
 no data: sin datos
+non-performing · {period}; {peak}: créditos dudosos · {period}; {peak}
 not updating: sin actualizar
 o.w. conversions from temporary: de ellos, conversiones de temporales
 o.w. fijo discontinuo: de ellos, fijos discontinuos
 o.w. fijo discontinuo (seasonal permanent): de ellos, fijos discontinuos
+of a household's gross income · {period}; {avg} on average since 1987: de la renta disponible bruta de un hogar · {period}; {avg} de media desde 1987
+of household income in the first year · {period}; {avg} on average: de la renta del hogar el primer año · {period}; {avg} de media
+of net pay, for an average earner (OECD, {year}); {rank}: del salario neto, para un trabajador con el salario medio (OCDE, {year}); {rank}
+of new mortgages on homes · {period}: de las hipotecas nuevas sobre viviendas · {period}
 of people 15 and over, from {then} in {year}: de las personas de 15 años y más, desde el {then} de {year}
 of petrol's: del de la gasolina
+of the home's price on average · {period}: del precio de la vivienda, de media · {period}
+of the home's price on average · {period}; {over} of mortgages lend more than 80%: del precio de la vivienda, de media · {period}; el {over} de las hipotecas financia más del 80%
+of their loans · {period}: del crédito total · {period}
+of their loans · {period}; housing loans {homes}: del crédito total · {period}; crédito a la vivienda, {homes}
 of which housing: de la cual, vivienda
 ok: correcto
+on a year · {period}; {index} against 100 in 2014: en un año · {period}; índice {index}, frente a 100 en 2014
+on the 1st of {month}: a 1 de {month}
 on the participation rate: sobre la tasa de actividad
 or labelled as a Macroscope calculation.: o las señaladas como cálculo de Macroscope.
+over a year · {period}; {total} million in all: en un año · {period}; {total} millones en total
+owed by households · {period}; {peak}: de los hogares · {period}; {peak}
 'page, in euros or as a percent of GDP, with charts; each is also on its section page:': '(en euros o en porcentaje del PIB, con gráficos); cada una está también en la página de su sección:'
+past 12 months · {period}: últimos 12 meses · {period}
+past 12 months · {period}, {change} on a year: últimos 12 meses · {period}, {change} en un año
+past 12 months · {period}; {peak} at the {year} peak: últimos 12 meses · {period}; {peak} en el máximo de {year}
+past 12 months · {period}; {share} protected; {peak} at the {year} peak: últimos 12 meses · {period}; {share} protegidas; {peak} en el máximo de {year}
+past 12 months, to {month}: últimos 12 meses, hasta {month}
 pay per worker against the CPI, all activities: salario por trabajador frente al IPC, todas las actividades
+pension spending from 12.7% of GDP in 2022 to 16.1% in 2050: gasto en pensiones del 12.7% del PIB en 2022 al 16.1% en 2050
+pension spending from 13% of GDP in 2025 to 16.4% in 2050: gasto en pensiones del 13% del PIB en 2025 al 16.4% en 2050
 persons: personas
 petrol in Spain against the euro-area average: la gasolina en España frente a la media de la zona del euro
 pp: pp
+projected: proyección
 q/q: t/t
 real estate development, from construction to real estate: promoción inmobiliaria, de la construcción a las actividades inmobiliarias
 real, %: real, %
 ? refreshed at every update. Social Security registrations are expected on the second working day of each month; ECB decisions follow the ECB's published schedule.
 : que se renueva en cada actualización. La afiliación a la Seguridad Social se espera el segundo día hábil de cada mes; las decisiones del BCE siguen el calendario que publica el BCE.
+registered with the Social Security, {period}: trabajadores en alta en la Seguridad Social, {period}
+rent plus the rise in price, over a year · {period}: alquiler más la subida del precio, en un año · {period}
+rises each year by inflation plus 1.2 points: sube cada año con la inflación más 1.2 puntos
+rises each year by the pensions' revaluation plus 0.115 points: sube cada año con la revalorización de las pensiones más 0.115 puntos
 seasonally adjusted by Macroscope: desestacionalizado por Macroscope
+section 9.2: apartado 9.2
+section on the pension spending projections: apartado sobre las proyecciones del gasto en pensiones
+section on the sustainability of public finances: apartado sobre la sostenibilidad de las finanzas públicas
 share of spending, by weight: parte del gasto, por ponderación
 'stale: last update failed': 'desfasada: falló la última actualización'
 stronger than normal: más fuerte de lo normal
+summary: resumen
+summary and conclusions: resumen y conclusiones
+summary and recommendations: resumen y recomendaciones
+summary and section on the revenue measures: resumen y apartado sobre las medidas de ingresos
+the BOE text of Real Decreto-ley 2/2023 (BOE-A-2023-6967), read independently: el texto del Real Decreto-ley 2/2023 en el BOE (BOE-A-2023-6967), leído de forma independiente
+the Banco de España's PDF of chapter 2 of its 2023 Annual Report: el PDF del capítulo 2 del Informe Anual 2023 del Banco de España
+? 'the Commission''s PDF (Institutional Paper 279, April 2024): Tables 1, I.1.6, I.1.9, II.1.64 and the country table for Spain'
+: 'el PDF de la Comisión (Institutional Paper 279, abril de 2024): cuadros 1, I.1.6, I.1.9 y II.1.64 y el cuadro de España'
+the fastest of {n} · {when}: el más rápido de los {n} · {when}
+the fifth highest of the {n} countries: la quinta más alta de los {n} países
+the fourth highest of the {n} countries: la cuarta más alta de los {n} países
+the highest of the {n} countries: la más alta de los {n} países
+the highest of {n} · {when}: la cifra más alta de los {n} · {when}
+the largest rise of {n} · {when}: la mayor subida de los {n} · {when}
+the latest edition: la última edición
 the one-size-fits-all gap: la brecha del tipo único para todos
 the same as: lo mismo que
+the second highest of the {n} countries: la segunda más alta de los {n} países
+the third highest of the {n} countries: la tercera más alta de los {n} países
+the {rank}th highest of the {n} countries: la {rank}.ª más alta de los {n} países
 to {date}: hasta el {date}
 today: hoy
 took effect {day}: en vigor desde el {day}
+transitional provision 38: disposición transitoria 38.ª
+transitional provision 39: disposición transitoria 39.ª
+transitional provision 42: disposición transitoria 42.ª
+transitional provision 43: disposición transitoria 43.ª
+up 1.1 points of GDP, with over a million more pensions: 1.1 puntos de PIB más, con más de un millón de pensiones adicionales
 vehicles: vehículos
 via {source}: vía {source}
 vs {value} a year ago: frente al {value} hace un año
 weaker than normal: más débil de lo normal
+what households' homes are worth · {period}: lo que valen las viviendas de los hogares · {period}
+what households' homes are worth · {period}; {times} times their disposable income ({peak} at the {year} peak): lo que valen las viviendas de los hogares · {period}; {times} veces su renta disponible ({peak} en el máximo de {year})
 y/y: a/a
 y/y %: a/a %
+y/y, {period}: a/a, {period}
 years: años
 z-score: Puntuación z
 ? '{activity} swings most from quarter to quarter: pay per worker was {when}, but the average of the past four quarters fell {change}.'
@@ -1484,14 +2052,30 @@ z-score: Puntuación z
 '{month} average': media de {month}
 '{names} and {last}': '{names} y {last}'
 '{names} figures are taken from the FUNCAS Panel''s reference table, which lists each with the month it was published.': Las cifras de {names} proceden de la tabla de referencia del Panel de FUNCAS, que indica el mes en que se publicó cada una.
+'{name}, projected': '{name}, proyección'
+'{n} million': '{n} millones'
 '{n} of {total}': '{n} de {total}'
+'{rank} fastest of {n} · {when}': el {rank}.º más rápido de los {n} · {when}
+'{rank} highest of {n} · {when}': la {rank}.ª cifra más alta de los {n} · {when}
+'{rank} largest rise of {n} · {when}': la {rank}.ª mayor subida de los {n} · {when}
 '{share}% of services exports': el {share}% de las exportaciones de servicios
 '{share}% of services exports, {change} on a year earlier': el {share}% de las exportaciones de servicios, {change} interanual
+'{source} · {period}, {change} on a year': '{source} · {period}, {change} en un año'
+'{source}, Eurostat; Macroscope calculation': '{source}, Eurostat; cálculo de Macroscope'
+'{source}, INE; Macroscope calculation': '{source}, INE; cálculo de Macroscope'
+'{value} at the {year} peak': '{value} en el máximo de {year}'
 '{verdict}, {month}; {above} of {total} recent figures above': '{verdict}, {month}; {above} de {total} datos recientes por encima'
+'{year} census': censo de {year}
+'{year} census; {before} in {before_year}': censo de {year}; {before} en {before_year}
+'{year}; EU {eu}': '{year}; UE {eu}'
+'{year}; EU {eu} (Eurostat)': '{year}; UE {eu} (Eurostat)'
+'{year}; {owners} own their home': '{year}; el {owners} tiene la vivienda en propiedad'
 ± {error} pp typical error: ± {error} pp de error típico
 ? '“Need attention” counts series whose last update failed or that have stopped updating at the source: each series is allowed a delay that suits how often it is published (10 days for daily data, about 4 months for monthly, 8–9 months for quarterly).'
 : '«Requieren atención» cuenta las series cuya última actualización falló o que han dejado de actualizarse en la fuente: cada serie tiene un plazo acorde con la frecuencia con que se publica (10 días para los datos diarios, unos 4 meses para los mensuales y de 8 a 9 meses para los trimestrales).'
 € a month: € al mes
+€ a month, annual averages: € al mes, medias anuales
+€ a month, of 14 payments a year: € al mes, en 14 pagas al año
 € an hour: € por hora
 € and % · averages of the past four quarters · through {period}: € y % · medias de los últimos cuatro trimestres · hasta {period}
 € billion over the past 12 months: Miles de millones de € en los últimos 12 meses
@@ -1499,7 +2083,9 @@ z-score: Puntuación z
 € billion over the past four quarters: Miles de millones de € en los últimos cuatro trimestres
 € billion over the past four quarters · through {period}: Miles de millones de € en los últimos cuatro trimestres · hasta {period}
 € bn: mm €
+€ bn and % of gross disposable income: mm € y % de la renta disponible bruta
 € mn: mill. €
+€ per m²: € por m²
 € thousand: miles de €
 €/MWh: €/MWh
 €/bbl: €/bbl
@@ -1510,4 +2096,6 @@ z-score: Puntuación z
 €STR, overnight market rate: €STR, tipo de mercado a un día
 €{amount} less than: '{amount} € menos que'
 €{amount} more than: '{amount} € más que'
+€{amount} trillion: '{amount} billones de €'
 €{price} a litre: '{price} € el litro'
+−3.1% of GDP (contributions less spending): −3.1% del PIB (cotizaciones menos gasto)

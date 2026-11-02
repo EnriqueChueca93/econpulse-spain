@@ -446,8 +446,11 @@ from catalogue_sections_1 import PAIRS as SECTIONS_1   # noqa: E402  Batch 33b
 from catalogue_sections_2 import PAIRS as SECTIONS_2   # noqa: E402  Batch 33c
 from catalogue_analysis import PAIRS as ANALYSIS       # noqa: E402  Batch 33c
 from catalogue_trade import PAIRS as TRADE             # noqa: E402  Batch 33c
+from catalogue_housing import PAIRS as HOUSING         # noqa: E402  Batch 33c
+from catalogue_pensions import PAIRS as PENSIONS       # noqa: E402  Batch 33c
+from catalogue_international import PAIRS as INTERNATIONAL   # noqa: E402  Batch 33c
 
-for part in (SECTIONS_1, SECTIONS_2, ANALYSIS, TRADE):
+for part in (SECTIONS_1, SECTIONS_2, ANALYSIS, TRADE, HOUSING, PENSIONS, INTERNATIONAL):
     add(part)
 
 
