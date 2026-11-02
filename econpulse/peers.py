@@ -403,9 +403,17 @@ def productivity_ranking(data: Data) -> dict | None:
 
 
 # ---------------------------------------------------------------- choosing comparators on the charts
-# The page's line charts carry every country's series, each tagged with its country; the reader picks up
-# to three comparators (static/app.js), drawn beside Spain, and the rankings colour the same countries.
+# The page's line charts carry every country's series, each tagged with its country; the reader picks any
+# number of comparators (static/app.js), drawn beside Spain, and the rankings colour the same countries.
 DEFAULT_PICK = ["ea", "de", "us"]
+# Each comparator's palette slot and line style, fixed whatever the order it is picked in (Batch 34a). Only
+# four palette colours stay apart for every reader when drawn together, so the eleven come in three line
+# styles, each holding colours that pass the palette validator's all-pairs checks in light and dark: solid
+# blue, orange and aqua (the default three); dashed blue, yellow, magenta and green; dotted violet, yellow,
+# magenta and green. End labels and the legend name every line as well.
+COUNTRY_STYLE = {"ea": (1, "solid"), "de": (2, "solid"), "us": (3, "solid"),
+                 "fr": (1, "dash"), "it": (4, "dash"), "uk": (5, "dash"), "pt": (6, "dash"),
+                 "nl": (7, "dot"), "pl": (4, "dot"), "ca": (5, "dot"), "jp": (6, "dot")}
 CENTRAL_BANKS = [("ecb_deposit_rate", "ECB deposit rate", ["es", "ea", "fr", "de", "it", "nl", "pt"]),
                  ("policy_rate_pl", "National Bank of Poland", ["pl"]), ("policy_rate_uk", "Bank of England", ["uk"]),
                  ("us_fed_funds", "US Federal Reserve", ["us"]), ("policy_rate_ca", "Bank of Canada", ["ca"]),
@@ -413,8 +421,9 @@ CENTRAL_BANKS = [("ecb_deposit_rate", "ECB deposit rate", ["es", "ea", "fr", "de
 
 
 def picker() -> dict:
-    """What the page's chooser offers: every comparator and the euro area (Spain is always drawn)."""
-    return {"countries": [(s, label) for s, label in COUNTRIES if s != "es"], "default": DEFAULT_PICK, "max": 3}
+    """What the page's chooser offers: every comparator and the euro area (Spain is always drawn), each with
+    its palette slot and line style."""
+    return {"countries": [(s, label, *COUNTRY_STYLE[s]) for s, label in COUNTRIES if s != "es"], "default": DEFAULT_PICK}
 
 
 def chart_series(measure: str, **opts) -> list[tuple]:

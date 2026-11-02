@@ -88,7 +88,7 @@ RSS feed are in English only.
   household wealth and commercial property prices) and household debt, Spain against the euro area and ten comparators (France, Germany, Italy, the
   Netherlands, Portugal, Poland, the UK, the US, Canada and Japan: growth and GDP since 2019, GDP per head, jobs,
   prices and interest rates, real pay and productivity, public finances, the current account and the IMF's outlook;
-  the reader chooses up to three comparators to draw beside Spain), and the 17 autonomous communities.
+  the reader chooses any number of comparators to draw beside Spain, each in a fixed colour and line style), and the 17 autonomous communities.
 - **Pensions**: the Social Security's contributory pensions: how many and the average pension by class, scheme
   and region, what they cost a year against GDP (a Macroscope estimate), the average pension after inflation,
   workers per pension, new and ended pensions, and the maximum and minimum amounts since 1990; spending and

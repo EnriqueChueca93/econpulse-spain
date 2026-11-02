@@ -24,6 +24,7 @@
   --series-4: #eda100;
   --series-5: #e87ba4;
   --series-6: #008300;
+  --series-7: #6250d6;   /* violet: a picked country's line only (Batch 34a) */
   /* The calendar's days, shaded by their number of releases: series 1 mixed into the surface (16-64%). */
   --heat-1: #dae7f5;  --heat-2: #b9d2ef;  --heat-3: #97bde9;  --heat-4: #76a8e3;
   --serif: Georgia, "Times New Roman", serif;
@@ -53,6 +54,7 @@
     --series-4: #c98500;
     --series-5: #d55181;
     --series-6: #008300;
+    --series-7: #9085e9;
     --heat-1: #202e3e;  --heat-2: #253f5e;  --heat-3: #2a507f;  --heat-4: #2e62a0;
   }
 }
@@ -79,6 +81,7 @@
   --series-4: #c98500;
   --series-5: #d55181;
   --series-6: #008300;
+  --series-7: #9085e9;
   --heat-1: #202e3e;  --heat-2: #253f5e;  --heat-3: #2a507f;  --heat-4: #2e62a0;
 }
 
@@ -593,20 +596,25 @@ body.search-on { overflow: hidden; }
 }
 .chip:hover { color: var(--text); background: var(--hover); }
 .chip[aria-pressed="true"] { color: var(--text); border-color: var(--text); font-weight: 600; }
-.chip[aria-disabled="true"] { opacity: 0.45; cursor: not-allowed; }
-.chip-swatch { width: 10px; height: 10px; border-radius: 50%; border: 1px solid var(--axis); flex: none; }
+/* A short stroke in the country's colour and line style (solid, dashed or dotted), grey while not picked */
+.chip-swatch { width: 16px; height: 0; border-top: 3px solid var(--axis); flex: none; }
+.chip-all { border-style: dashed; }
 @media (hover: none) { .chip { padding: 7px 12px; } }   /* a bigger target on touch screens */
-.chip[aria-pressed="true"] .chip-swatch { border-color: transparent; }
 .section-bar-inner { display: flex; align-items: center; gap: 4px 16px; }
-.section-bar-toggle { flex: none; max-width: 45%; }
-.bar-chips { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; padding: 4px 0; min-width: 0; }
-.bar-chips::-webkit-scrollbar { display: none; }
-.bar-chips .chip { flex: none; padding: 2px 8px; font-size: 12px; }
-@media (max-width: 640px) {
-  .section-bar-inner { flex-wrap: wrap; }
-  .section-bar-toggle { max-width: 100%; padding-bottom: 2px; }
-  .bar-chips { width: 100%; padding-top: 0; }
+.section-bar-toggle { flex: 1 1 auto; min-width: 0; max-width: 60%; }
+/* The chooser in the bar: "Countries (n)", opening every chip, wrapped, in a panel under the bar */
+.bar-countries { position: relative; margin-left: auto; flex: none; }
+.bar-countries-toggle {
+  display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; font: 13px var(--sans); color: var(--text);
+  background: var(--surface); border: 1px solid var(--border); border-radius: 999px; cursor: pointer;
 }
+.bar-countries-toggle:hover { background: var(--hover); }
+.bar-countries-count { font-weight: 600; }
+.bar-chips {
+  position: absolute; right: 0; top: calc(100% + 8px); width: min(560px, calc(100vw - 32px)); padding: 12px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 8px; box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
+}
+.bar-chips[hidden] { display: none; }
 
 /* Not found */
 .lost-list { margin-top: 18px; }

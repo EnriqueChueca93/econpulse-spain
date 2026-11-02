@@ -73,7 +73,19 @@ def test_international_page_blocks(tmp_path):
     spain = gdp["series"][0]
     assert spain["name"] == "Spain" and spain["y"][spain["x"].index("2019-10-01")] == 100
     assert charts["unemployment-ranking"]["pick"] and charts["gdp-2019-ranking"]["pick"]
-    assert peers.picker() == {"countries": peers.COUNTRIES[1:], "default": ["ea", "de", "us"], "max": 3}
+    # No limit on how many (Batch 34a): every comparator has a fixed colour and line style, the default three
+    # solid; within a line style no colour repeats, and each style keeps to colours the palette validator
+    # passes all-pairs (slots: 1 blue, 2 orange, 3 aqua, 4 yellow, 5 magenta, 6 green, 7 violet).
+    choice = peers.picker()
+    assert choice["default"] == ["ea", "de", "us"] and "max" not in choice
+    assert [c[:2] for c in choice["countries"]] == peers.COUNTRIES[1:]
+    styles = {slug: (slot, dash) for slug, _label, slot, dash in choice["countries"]}
+    assert all(styles[s][1] == "solid" for s in choice["default"])
+    by_dash = {}
+    for slot, dash in styles.values():
+        by_dash.setdefault(dash, []).append(slot)
+    assert all(len(set(slots)) == len(slots) for slots in by_dash.values())
+    assert sorted(by_dash["solid"]) == [1, 2, 3] and sorted(by_dash["dash"]) == [1, 4, 5, 6] and sorted(by_dash["dot"]) == [4, 5, 6, 7]
     policy = dict((name, opts["countries"]) for _, _, name, opts in peers.policy_series())
     assert policy["ECB deposit rate"] == ["es", "ea", "fr", "de", "it", "nl", "pt"] and policy["Bank of Japan"] == ["jp"]
 

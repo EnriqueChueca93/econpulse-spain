@@ -20,11 +20,12 @@
       <p class="block-intro">{{ b.intro }}</p>
       {% if b.picker and picker %}
       {# The comparators drawn beside Spain on this page's line charts, and coloured in its rankings (static/app.js). #}
-      <div class="country-picker" id="country-picker" data-max="{{ picker.max }}"
-           data-default="{{ picker.default | join(',') }}">
-        <span class="picker-label">{{ _("Compare Spain with up to %(n)s:", n=picker.max) }}</span>
+      <div class="country-picker" id="country-picker" data-default="{{ picker.default | join(',') }}">
+        <span class="picker-label">{{ _("Compare Spain with:") }}</span>
         <span class="picker-chips" role="group" aria-label="{{ _("Countries drawn beside Spain on the charts") }}">
-          {%- for slug, label in picker.countries %}<button type="button" class="chip" data-country="{{ slug }}" aria-pressed="false"><span class="chip-swatch" aria-hidden="true"></span>{{ _(label) }}</button>{% endfor -%}
+          {%- for slug, label, slot, dash in picker.countries %}<button type="button" class="chip" data-country="{{ slug }}" data-slot="{{ slot }}" data-dash="{{ dash }}" aria-pressed="false"><span class="chip-swatch" aria-hidden="true"></span>{{ _(label) }}</button>{% endfor -%}
+          <button type="button" class="chip chip-all" data-pick="all">{{ _("Show all") }}</button>
+          <button type="button" class="chip chip-all" data-pick="none">{{ _("Clear all") }}</button>
         </span>
       </div>
       {% endif %}

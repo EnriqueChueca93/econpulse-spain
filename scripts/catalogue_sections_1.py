@@ -70,7 +70,9 @@ PAIRS.update({
     "Macroscope seasonal adjustment": "desestacionalización de Macroscope",
     "Eurostat; Macroscope calculation": "Eurostat; cálculo de Macroscope",
     # the section template
-    "Compare Spain with up to %(n)s:": "Comparar España con hasta %(n)s:",
+    "Compare Spain with:": "Comparar España con:",
+    "Show all": "Mostrar todos",
+    "Clear all": "Quitar todos",
     "Countries drawn beside Spain on the charts": "Países que se dibujan junto a España en los gráficos",
     "All %(n)s series in this section, with their sources": "Las %(n)s series de esta sección, con sus fuentes",
     "Charts and detailed tables for this page arrive in Batch %(batch)s of the build plan. For now, here is every indicator tracked, with its latest reading.":

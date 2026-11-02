@@ -143,6 +143,7 @@ def test_international_page_has_the_comparator_chooser(tmp_path):
 
     build_site(load_registry(), comparator_store(tmp_path), site_dir=tmp_path / "site")
     html = (tmp_path / "site" / "international.html").read_text(encoding="utf-8")
-    assert 'id="country-picker" data-max="3"' in html and 'data-default="ea,de,us"' in html
+    assert 'id="country-picker" data-default="ea,de,us"' in html and "data-max" not in html
     assert html.count('class="chip" data-country=') == 11 and 'data-country="es"' not in html
+    assert 'data-country="nl" data-slot="7" data-dash="dot"' in html and 'data-pick="all"' in html and 'data-pick="none"' in html
     assert 'id="country-picker"' not in (tmp_path / "site" / "labour.html").read_text(encoding="utf-8")

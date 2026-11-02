@@ -18,7 +18,7 @@
     "Loading the index…": "Cargando el índice…", "The search index could not be loaded.": "No se pudo cargar el índice de búsqueda.",
     "On this page": "En esta página", "Sections of this page": "Secciones de esta página", "Top": "Arriba",
     "Back to the top of the page": "Volver al principio de la página", "Reading": "Lectura", " to ": " a ",
-    "Copy a link to the section": "Copiar un enlace a la sección"
+    "Copy a link to the section": "Copiar un enlace a la sección", "Countries": "Países"
   };
   function t(s) { return LANG === "es" && ES[s] !== undefined ? ES[s] : s; }
 
@@ -128,12 +128,13 @@
 
   // ---------------------------------------------------------------- chosen comparators (International page)
   // Charts flagged `pick` carry every country's series, tagged `country` (or `countries`, for a central
-  // bank). The reader picks up to three comparators: they are drawn beside Spain, which is in text ink,
-  // and each keeps its colour while it stays picked. Rankings flagged `pick` colour the same countries and
-  // grey the others. The choice is remembered in this browser.
+  // bank). The reader picks any number of comparators (Batch 34a): they are drawn beside Spain, which is in
+  // text ink. Each country has its own colour and line style (econpulse/peers.py, COUNTRY_STYLE, on the
+  // chips as data-slot and data-dash), the same whatever order it is picked in. Rankings flagged `pick`
+  // colour the same countries and grey the others. The choice is remembered in this browser.
   var picker = document.getElementById("country-picker");
-  var pickMax = picker ? (+picker.getAttribute("data-max") || 3) : 3;
-  var picked = [], pickSlot = {}, pickCodes = { Spain: "es" };
+  var picked = [], pickStyle = {}, pickCodes = { Spain: "es" };
+  var CSS_DASH = { solid: "solid", dash: "dashed", dot: "dotted" };
 
   function savePicks() {
     try { localStorage.setItem("ep-peers", JSON.stringify(picked)); } catch (e) { /* storage blocked: lasts this visit */ }
@@ -141,31 +142,30 @@
 
   function togglePick(code) {
     var at = picked.indexOf(code);
-    if (at >= 0) {
-      picked.splice(at, 1);
-      delete pickSlot[code];
-    } else if (picked.length < pickMax) {
-      var used = picked.map(function (c) { return pickSlot[c]; });
-      pickSlot[code] = [1, 2, 3].filter(function (n) { return used.indexOf(n) < 0; })[0];
-      picked.push(code);
-    }
+    if (at >= 0) picked.splice(at, 1);
+    else if (pickStyle[code]) picked.push(code);
   }
 
   function renderChips() {
-    Array.prototype.forEach.call(document.querySelectorAll(".country-chips .chip, .picker-chips .chip"), function (b) {
+    Array.prototype.forEach.call(document.querySelectorAll(".picker-chips .chip[data-country]"), function (b) {
       var code = b.getAttribute("data-country"), on = picked.indexOf(code) >= 0;
       b.setAttribute("aria-pressed", String(on));
-      b.setAttribute("aria-disabled", String(!on && picked.length >= pickMax));
-      b.title = !on && picked.length >= pickMax ? (LANG === "es" ? "Hasta " + pickMax + " a la vez: quite uno antes"
-                                                               : "Up to " + pickMax + " at a time: untick one first") : "";
       var swatch = b.querySelector(".chip-swatch");
-      if (swatch) swatch.style.background = on ? "var(--series-" + pickSlot[code] + ")" : "";   // follows the theme
+      if (swatch) {   // a short stroke in the country's colour and line style; follows the theme
+        swatch.style.borderTopColor = on ? "var(--series-" + pickStyle[code].slot + ")" : "";
+        swatch.style.borderTopStyle = CSS_DASH[pickStyle[code].dash] || "solid";
+      }
+    });
+    Array.prototype.forEach.call(document.querySelectorAll(".bar-countries-count"), function (n) {
+      n.textContent = String(picked.length);
     });
   }
 
   if (picker) {
-    Array.prototype.forEach.call(picker.querySelectorAll(".chip"), function (b) {
-      pickCodes[b.textContent.trim()] = b.getAttribute("data-country");
+    Array.prototype.forEach.call(picker.querySelectorAll(".chip[data-country]"), function (b) {
+      var code = b.getAttribute("data-country");
+      pickCodes[b.textContent.trim()] = code;
+      pickStyle[code] = { slot: +b.getAttribute("data-slot") || 1, dash: b.getAttribute("data-dash") || "solid" };
     });
     var savedPicks = null;
     try { savedPicks = JSON.parse(localStorage.getItem("ep-peers") || "null"); } catch (e) { /* no saved choice */ }
@@ -185,7 +185,7 @@
     var isSpain = function (s) { return seriesCountries(s).indexOf("es") >= 0; };
     var chosen = function (s) { return seriesCountries(s).filter(function (c) { return picked.indexOf(c) >= 0; })[0]; };
     var series = spec.series.filter(function (s) { return isSpain(s) || chosen(s); }).map(function (s) {
-      return Object.assign({}, s, isSpain(s) ? { color: "ink" } : { slot: pickSlot[chosen(s)] });
+      return Object.assign({}, s, isSpain(s) ? { color: "ink" } : { slot: pickStyle[chosen(s)].slot, dash: pickStyle[chosen(s)].dash });
     });
     if (series.every(isSpain) && spec.pick_default) {
       series = series.concat(spec.series.filter(function (s) {
@@ -257,7 +257,7 @@
         if (label === spec.highlight) return ink;
         if (!spec.pick || !picker) return token("--series-1");
         var code = pickCodes[label];
-        return picked.indexOf(code) >= 0 ? token("--series-" + pickSlot[code]) : token("--axis");
+        return picked.indexOf(code) >= 0 ? token("--series-" + pickStyle[code].slot) : token("--axis");
       }) },
       hovertemplate: "<b>%{x" + format + "</b>  %{y}<extra></extra>"
     }];
@@ -413,15 +413,16 @@
     if (spec.kind === "xy") return drawXY(el, spec);
     if (spec.pick) spec = pickView(spec);
     // Fixed slot order, never cycled: a spec has at most six palette series (slots 4 to 6 come dashed, as some
-    // of their colours sit close to the first three's).
-    var colors = [1, 2, 3, 4, 5, 6].map(function (n) { return token("--series-" + n); });
+    // of their colours sit close to the first three's). Slot 7 (violet) serves only a picked country's line.
+    var colors = [1, 2, 3, 4, 5, 6, 7].map(function (n) { return token("--series-" + n); });
     var surface = token("--surface"), ink = token("--text"), ink2 = token("--text-2");
     var muted = token("--muted"), grid = token("--grid"), axis = token("--axis");
     var multi = spec.series.length > 1;
     // Curves (yields by maturity, rates by horizon) have a category axis instead of dates.
     var category = spec.x_kind === "category";
     // On narrow (phone-width) charts the legend names the lines; end labels would squeeze the plot.
-    var endLabels = multi && el.clientWidth >= 480;
+    // With many lines (every comparator picked) the end labels would pile up: the legend names them instead.
+    var endLabels = multi && el.clientWidth >= 480 && spec.series.length <= 6;
     var valueFormat = ":" + (spec.signed ? "+" : "") + "." + spec.decimals + "f}" + suffix(spec);
 
     // Dense bar charts (monthly bars over many years) drop the gaps and rounding, which would read as stripes.
@@ -755,9 +756,10 @@
   document.addEventListener("click", function (event) {
     var chip = event.target.closest && event.target.closest(".picker-chips .chip");
     if (!chip || !picker) return;
-    var code = chip.getAttribute("data-country");
-    if (picked.indexOf(code) < 0 && picked.length >= pickMax) return;   // full: untick one first
-    togglePick(code);
+    var all = chip.getAttribute("data-pick");
+    if (all === "all") picked = Object.keys(pickStyle);
+    else if (all === "none") picked = [];
+    else togglePick(chip.getAttribute("data-country"));
     savePicks();
     renderChips();
     drawAll();
@@ -1108,10 +1110,33 @@
       'aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>' +
       '<nav class="section-bar-menu" aria-label="' + t("Sections of this page") + '" hidden></nav></div>';
     var toggle = bar.querySelector("button"), current = bar.querySelector("strong"), menu = bar.querySelector("nav");
+    // On a page with the country chooser, the bar also carries it: "Countries (n)", which opens every chip,
+    // wrapped, none cut off (a row of chips ran off the edge before Batch 34a).
+    var countries = null, countriesToggle = null, barChips = null;
     if (picker) {
-      var barChips = picker.querySelector(".picker-chips").cloneNode(true);
+      countries = document.createElement("div");
+      countries.className = "bar-countries";
+      countries.innerHTML = '<button type="button" class="bar-countries-toggle" aria-expanded="false">' + t("Countries") +
+        ' <span class="bar-countries-count"></span><svg viewBox="0 0 10 6" width="10" height="6" aria-hidden="true">' +
+        '<path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>';
+      barChips = picker.querySelector(".picker-chips").cloneNode(true);
       barChips.classList.add("bar-chips");
-      bar.querySelector(".section-bar-inner").appendChild(barChips);
+      barChips.hidden = true;
+      countries.appendChild(barChips);
+      bar.querySelector(".section-bar-inner").appendChild(countries);
+      countriesToggle = countries.querySelector("button");
+    }
+    function setCountries(open) {
+      if (!countries) return;
+      barChips.hidden = !open;
+      countriesToggle.setAttribute("aria-expanded", String(open));
+    }
+    if (countries) {
+      countriesToggle.addEventListener("click", function () { setMenu(false); setCountries(barChips.hidden); });
+      document.addEventListener("click", function (e) { if (!countries.contains(e.target)) setCountries(false); });
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && !barChips.hidden) { setCountries(false); countriesToggle.focus(); }
+      });
     }
     var copies = links.map(function (a) {
       var m = document.createElement("a");
@@ -1122,12 +1147,13 @@
       return m;
     });
     document.body.appendChild(bar);
+    if (countries) renderChips();      // the copies' state and the count, now they are in the page
 
     function setMenu(open) {
       menu.hidden = !open;
       toggle.setAttribute("aria-expanded", String(open));
     }
-    toggle.addEventListener("click", function () { setMenu(menu.hidden); });
+    toggle.addEventListener("click", function () { setCountries(false); setMenu(menu.hidden); });
     menu.addEventListener("click", function (e) { if (e.target.closest("a")) setMenu(false); });
     document.addEventListener("click", function (e) { if (!bar.contains(e.target)) setMenu(false); });
     document.addEventListener("keydown", function (e) {
@@ -1139,7 +1165,7 @@
       pending = false;
       var past = nav.getBoundingClientRect().bottom < 0;
       bar.hidden = !past;
-      if (!past) setMenu(false);
+      if (!past) { setMenu(false); setCountries(false); }
       var at = -1;
       for (var i = 0; i < heads.length; i++) if (heads[i].getBoundingClientRect().top < 90) at = i;
       [links, copies].forEach(function (group) {
