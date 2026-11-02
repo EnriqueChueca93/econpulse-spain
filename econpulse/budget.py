@@ -867,11 +867,18 @@ def parse_execution_detail(content: bytes) -> dict:
     return out
 
 
-def month_summary(detail: dict, year: int) -> dict:
-    """One month's totals to date, for the year's path: spending, revenue, cash, a year earlier too."""
+def month_summary(detail: dict, year: int, policies: dict | None = None) -> dict:
+    """One month's totals to date, for the year's path: spending, revenue, cash, a year earlier too; and for the
+    pace of spending, each chapter's final appropriations and obligations (this year and the year before) and,
+    from table GTOS 016, each policy's (this year only)."""
     def pick(part, row, col, y):
         return detail.get(part, {}).get(row, {}).get(str(y), {}).get(col)
-    return {"spending": pick("chapters", "nonfinancial", "obligations", year),
+    out = {"chapters": {k: [pick("chapters", k, "final", year), pick("chapters", k, "obligations", year),
+                            pick("chapters", k, "final", year - 1), pick("chapters", k, "obligations", year - 1)]
+                        for k in detail.get("chapters", {})}}
+    if policies is not None:
+        out["policies"] = {k: [round(v["final"], 1), round(v["obligations"], 1)] for k, v in policies.items()}
+    return out | {"spending": pick("chapters", "nonfinancial", "obligations", year),
             "spending_prev": pick("chapters", "nonfinancial", "obligations", year - 1),
             "revenue": pick("revenue", "nonfinancial", "rights", year),
             "revenue_prev": pick("revenue", "nonfinancial", "rights", year - 1),
@@ -905,22 +912,22 @@ def refresh_state_budget(saved: dict | None) -> dict:
         base = "https://www.igae.pap.hacienda.gob.es"
         december = (f"/sitios/igae/es-ES/Contabilidad/ContabilidadPublica/CPE/EjecucionPresupuestaria/Documents/"
                     f"MENSUAL%20DICIEMBRE%20{year - 1}.xlsx")
-        # The latest month and the previous December in full; the year's other months for their totals only,
-        # once each (the IGAE lists only the current year's workbooks, so the monthly path is kept as it grows).
+        # The latest month and the previous December in full; the year's other months for their totals and the
+        # pace only, once each (the IGAE lists only the current year's workbooks, so the monthly path is kept as it
+        # grows; a month kept before the pace was added is read again).
         wanted = [(year, month, files[(year, month)], True), (year - 1, 12, files.get((year - 1, 12), december), True)]
         wanted += [(y, m, url, False) for (y, m), url in sorted(files.items())
-                   if y == year and m != month and str(m) not in months.get(str(y), {})]
+                   if y == year and m != month and "policies" not in months.get(str(y), {}).get(str(m), {})]
         for y, mo, url, full in wanted:
             try:
                 content = http.get(url if url.startswith("http") else base + url).content
                 detail = parse_execution_detail(content)
-                if full:
-                    got = parse_execution(content)
+                got = parse_execution(content)
             except Exception:
                 if (y, mo) == (year, month):
                     raise
                 continue                                    # an older December that is not online: keep what we had
-            months.setdefault(str(y), {})[str(mo)] = month_summary(detail, y)
+            months.setdefault(str(y), {})[str(mo)] = month_summary(detail, y, got["policies"])
             if full:
                 execution[str(y)] = {**got, "detail": detail}
     return {"spending": {str(y): v for y, v in sorted(budget["spending"].items())},
@@ -977,6 +984,31 @@ def detail_for_page(detail: dict, year: int) -> dict:
                                    key=lambda r: -r.get("credits", 0)), "total": mrr.get("total")} if mrr else None}
 
 
+def pace_for_page(months: dict) -> dict:
+    """{year: {"policies"|"chapters": {code: {"final": [12], "obligations": [12]}}}} in € mn: each month's final
+    appropriations and obligations to date. A year's chapters also come from the next year's year-earlier columns,
+    so the year before the first kept workbook has its months too."""
+    years = sorted({int(y) for y in months} | {int(y) - 1 for y in months})
+    out = {}
+    for y in years:
+        own, after = months.get(str(y), {}), months.get(str(y + 1), {})
+        part = {"policies": {}, "chapters": {}}
+        for m in range(1, 13):
+            here, later = own.get(str(m), {}), after.get(str(m), {})
+            for code, (final, spent) in here.get("policies", {}).items():
+                row = part["policies"].setdefault(code, {"final": [None] * 12, "obligations": [None] * 12})
+                row["final"][m - 1], row["obligations"][m - 1] = final, spent
+            for code in set(here.get("chapters", {})) | set(later.get("chapters", {})):
+                mine, theirs = here.get("chapters", {}).get(code), later.get("chapters", {}).get(code)
+                pair = mine[:2] if mine and mine[1] is not None else theirs[2:] if theirs and theirs[3] is not None else None
+                if pair:
+                    row = part["chapters"].setdefault(code, {"final": [None] * 12, "obligations": [None] * 12})
+                    row["final"][m - 1], row["obligations"][m - 1] = pair
+        if part["policies"] or part["chapters"]:
+            out[str(y)] = part
+    return out
+
+
 def state_budget_data(saved: dict, gdp: dict[int, float]) -> dict | None:
     """The State's budget for the page: series by policy and chapter, and the execution tables."""
     sb = saved.get("state_budget")
@@ -1007,6 +1039,9 @@ def state_budget_data(saved: dict, gdp: dict[int, float]) -> dict | None:
         "execution": execution,
         "months": {y: {k: [m.get(str(n), {}).get(k) for n in range(1, 13)] for k in MONTH_KEYS}
                    for y, m in sb.get("months", {}).items()},
+        "pace": pace_for_page(sb.get("months", {})),
+        "pace_items": {"policies": [{"code": k, "label": labels[k]} for k, _, _ in POLICIES],
+                       "chapters": [{"code": k, "label": label} for k, label, _ in EXEC_CHAPTERS]},
         "pages": {"sepg": SEPG_PAGE, "igae": EXECUTION_PAGE},
     }
 

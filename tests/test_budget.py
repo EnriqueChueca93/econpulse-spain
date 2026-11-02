@@ -1,4 +1,4 @@
-"""Batches 30a-30d: the Budget explorer, from the IGAE's and the budget office's workbooks (no network)."""
+"""Batches 30a-31c: the Budget explorer, from the IGAE's and the budget office's workbooks (no network)."""
 
 import io
 
@@ -352,7 +352,11 @@ def test_parse_the_execution_detail():
     assert d["mrr"]["total"]["obligations"] == 15070.0
     assert d["transfers"] == {"regions_current": {"2026": {"final": 40000.0, "obligations": 21500.0, "payments": 21400.0},
                                                   "2025": {"final": 38000.0, "obligations": 20000.0, "payments": 19900.0}}}
-    assert budget.month_summary(d, 2026) == {"spending": 170765.6, "spending_prev": 153262.1, "revenue": 165075.8,
+    summary = budget.month_summary(d, 2026)
+    assert summary["chapters"]["nonfinancial"] == [281404.8, 170765.6, 269509.0, 153262.1] and "policies" not in summary
+    policies = budget.parse_execution(DETAIL_BOOK)["policies"]
+    assert budget.month_summary(d, 2026, policies)["policies"]["defence"] == [21669.3, 7884.0]
+    assert {k: summary[k] for k in budget.MONTH_KEYS} == {"spending": 170765.6, "spending_prev": 153262.1, "revenue": 165075.8,
                                              "revenue_prev": 144507.6, "cash": -34578.5, "cash_prev": -30216.1,
                                              "borrowing": -51926.2, "borrowing_prev": -74315.3, "mrr": 15070.0}
 
@@ -375,7 +379,7 @@ def test_the_execution_detail_for_the_page():
 
 def test_each_months_totals_are_kept(monkeypatch):
     sepg = '<a href="/sitios/sepg/es-ES/x/Documents/2025-P/01%20Presupuestos%20Generales%20del%20Estado%20Consolidados.xlsx">'
-    igae = "".join(f'<a href="/sitios/igae/x/Documents/MENSUAL%20{m}%202026.xlsx">' for m in ("AGOSTO", "JULIO", "JUNIO"))
+    igae = "".join(f'<a href="/sitios/igae/x/Documents/MENSUAL%20{m}%202026.xlsx">' for m in ("AGOSTO", "JULIO", "JUNIO", "MAYO"))
     asked = []
 
     class Reply:
@@ -385,11 +389,32 @@ def test_each_months_totals_are_kept(monkeypatch):
             self.content = DETAIL_BOOK if "MENSUAL" in url else BUDGET_BOOK
 
     monkeypatch.setattr(budget.http, "get", lambda url, **_: Reply(url))
-    sb = budget.refresh_state_budget({"months": {"2026": {"6": {"spending": 1.0}}}})
+    kept = {"spending": 1.0, "policies": {}}
+    sb = budget.refresh_state_budget({"months": {"2026": {"6": kept, "5": {"spending": 2.0}}}})
     assert "MENSUAL%20JULIO%202026.xlsx" in asked and "MENSUAL%20JUNIO%202026.xlsx" not in asked     # June was kept
-    assert sorted(sb["months"]["2026"], key=int) == ["6", "7", "8"] and sb["months"]["2026"]["6"] == {"spending": 1.0}
+    assert "MENSUAL%20MAYO%202026.xlsx" in asked                                # May was kept before the pace: read again
+    assert sorted(sb["months"]["2026"], key=int) == ["5", "6", "7", "8"] and sb["months"]["2026"]["6"] == kept
+    assert sb["months"]["2026"]["5"]["policies"]["defence"] == [21669.3, 7884.0]
     assert sb["months"]["2025"]["12"]["spending"] == 153262.1                   # the December file, read for its own year
     assert sb["execution"]["2026"]["detail"]["cash"]["deficit"]["2026"]["value"] == -34578.5
     page = budget.state_budget_data({"state_budget": sb}, {})
-    assert page["months"]["2026"]["spending"][5:9] == [1.0, 170765.6, 170765.6, None]
+    assert page["months"]["2026"]["spending"][4:9] == [170765.6, 1.0, 170765.6, 170765.6, None]
     assert page["execution"][0]["detail"]["taxes"][0]["code"] == "irpf"
+    defence = page["pace"]["2026"]["policies"]["defence"]
+    assert defence["final"][4:8] == [21669.3, None, 21669.3, 21669.3] and defence["obligations"][7] == 7884.0
+    assert page["pace"]["2025"]["chapters"]["nonfinancial"]["obligations"][4:8] == [153262.1, None, 153262.1, 153262.1]
+    assert page["pace_items"]["chapters"][0] == {"code": "ch1", "label": "Pay of staff"}
+
+
+def test_the_pace_of_spending():
+    months = {"2026": {"1": {"policies": {"defence": [12062.2, 473.6]}, "chapters": {"ch6": [19000.0, 300.0, 18000.0, 250.0]}},
+                       "2": {"policies": {"defence": [12766.2, 1481.0]}, "chapters": {"ch6": [19100.0, 900.0, 18100.0, None]}}},
+              "2025": {"12": {"policies": {"defence": [17465.0, 17267.8]}, "chapters": {"ch6": [18500.0, 16500.0, 17000.0, 15000.0]}}}}
+    pace = budget.pace_for_page(months)
+    assert sorted(pace) == ["2024", "2025", "2026"]
+    assert pace["2026"]["policies"]["defence"]["obligations"][:3] == [473.6, 1481.0, None]
+    assert pace["2026"]["policies"]["defence"]["final"][:2] == [12062.2, 12766.2]
+    # 2025's chapters: January from the 2026 workbook's year-earlier columns (February's is missing), December its own.
+    assert pace["2025"]["chapters"]["ch6"]["obligations"] == [250.0] + [None] * 10 + [16500.0]
+    assert pace["2025"]["policies"]["defence"]["final"][11] == 17465.0
+    assert pace["2024"]["chapters"]["ch6"]["obligations"][11] == 15000.0 and pace["2024"]["policies"] == {}

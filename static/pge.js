@@ -1,7 +1,7 @@
 // EconPulse Spain: the Budget explorer's section on the State's budget (Batch 30c). What the Presupuestos
 // Generales del Estado plan by spending policy and revenue chapter (the consolidated budget, by year in force),
-// and how much of its own budget the State has spent, from data/budget.js (econpulse/budget.py). Charts are
-// drawn by the site's own renderer (EP.render).
+// and how much of its own budget the State has spent, and how fast, from data/budget.js (econpulse/budget.py).
+// Charts are drawn by the site's own renderer (EP.render).
 (function () {
   "use strict";
 
@@ -141,14 +141,16 @@
     }).sort(function (a, b) { return b.r.final - a.r.final; });
     var byPct = rows.slice().sort(function (a, b) { return b.pct - a.pct; });
     $("pge-ex-title").textContent = "How much has been spent, " + when;
-    $("pge-ex-subtitle").textContent = "Obligations recognised, % of each policy's final appropriations";
+    $("pge-ex-subtitle").textContent = "Obligations recognised, % of each policy's final appropriations" +
+      (ex.full_year ? "" : "; dashed, an even pace (a twelfth of the year a month)");
     render({ id: "pge-ex", kind: "hbar", unit: "%", decimals: 0, x_title: "", freq: "A",
-             ref_lines: [{ y: +(t.obligations / t.final * 100).toFixed(2), label: "All policies" }],
+             ref_lines: [{ y: +(t.obligations / t.final * 100).toFixed(2), label: "All policies" }].concat(
+               ex.full_year ? [] : [{ y: +(ex.month / 12 * 100).toFixed(2), label: "Even pace", dash: "dash" }]),
              series: [{ name: "Spent", x: byPct.map(function (x) { return short(x.r.label); }), y: byPct.map(function (x) { return +x.pct.toFixed(2); }) }] });
     $("pge-ex-caption").textContent = "The State's budget, " + when + " · € bn";
     var html = rows.map(function (x) {
       var r = x.r, ch = r.initial ? (r.final / r.initial - 1) * 100 : null;
-      return "<tr><th scope=\"row\">" + r.label + '</th><td class="num">' + bn(r.initial) + '</td><td class="num">' + bn(r.final) + '</td><td class="num">' +
+      return '<tr class="bx-row" data-pace="p:' + r.code + '" tabindex="0"><th scope="row">' + r.label + '</th><td class="num">' + bn(r.initial) + '</td><td class="num">' + bn(r.final) + '</td><td class="num">' +
              (ch === null ? "–" : (ch > 0 ? "+" : ch < 0 ? "−" : "") + Math.abs(ch).toFixed(1) + "%") + '</td><td class="num">' + bn(r.obligations) +
              '</td><td class="num">' + x.pct.toFixed(1) + "%</td></tr>";
     }).join("");
@@ -157,7 +159,93 @@
             (chT > 0 ? "+" : "−") + Math.abs(chT).toFixed(1) + '%</td><td class="num">' + bn(t.obligations) + '</td><td class="num">' +
             (t.obligations / t.final * 100).toFixed(1) + "%</td></tr>";
     $("pge-ex-table").querySelector("tbody").innerHTML = html;
+    drawPace(ex);
     drawDetail(ex, when);
+  }
+
+  // ---------------------------------------------------------------- the pace of spending
+  // A policy's or chapter's obligations to date against its final appropriations, month by month, beside an
+  // even pace and the year before (chapters have it month by month; policies only from the kept workbooks).
+  var MONTH_NAMES = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October",
+                     "November", "December"];
+  var pace = { item: "p:TOTAL", view: "pct" };
+  function given(v) { return v !== null && v !== undefined; }
+  function paceOf(year, key) {
+    var y = S.pace && S.pace[year], part = key.charAt(0) === "p" ? "policies" : "chapters";
+    var row = y && y[part] ? y[part][key.slice(2)] : null;
+    return row && row.final.some(function (v) { return v > 0; }) ? row : null;
+  }
+  function lastMonth(values) {
+    var n = values.length;
+    while (n && !given(values[n - 1])) n--;
+    return n;
+  }
+  function paceItems() {
+    var any = function (key) { return Object.keys(S.pace).some(function (y) { return paceOf(+y, key); }); };
+    var opt = function (key, label) { return '<option value="' + key + '">' + label + "</option>"; };
+    var group = function (title, list, prefix) {
+      var html = list.filter(function (it) { return it.code !== "TOTAL" && any(prefix + it.code); })
+        .map(function (it) { return opt(prefix + it.code, it.label); }).join("");
+      return html ? '<optgroup label="' + title + '">' + html + "</optgroup>" : "";
+    };
+    return (any("p:TOTAL") ? opt("p:TOTAL", "The State's whole budget") : "") + group("Spending policies", S.pace_items.policies, "p:") +
+           group("Chapters", S.pace_items.chapters, "c:");
+  }
+
+  function drawPace(ex) {
+    var sel = $("pge-pace-item");
+    if (!sel || !S.pace || !Object.keys(S.pace).length) return;
+    if (!sel.options.length) sel.innerHTML = paceItems();
+    var y = ex.year;
+    if (!paceOf(y, pace.item)) pace.item = paceOf(y, "p:TOTAL") ? "p:TOTAL" : "c:nonfinancial";
+    sel.value = pace.item;
+    var now = paceOf(y, pace.item), before = paceOf(y - 1, pace.item);
+    if (!now || !sel.options.length) { $("pge-pace-facts").innerHTML = ""; return; }
+    Array.prototype.forEach.call(document.querySelectorAll("[data-pace-view]"), function (b) {
+      b.setAttribute("aria-pressed", String(b.getAttribute("data-pace-view") === pace.view));
+    });
+    var label = sel.options[sel.selectedIndex].text;
+    var n = lastMonth(now.obligations), spent = now.obligations[n - 1], budget = now.final[n - 1];
+    var share = spent / budget * 100, even = n / 12 * 100, gap = spent - budget * n / 12;
+    var facts = [fact("Spent to the end of " + MONTH_NAMES[n - 1] + " " + y, share.toFixed(1) + "% of the budget",
+                      "an even pace is " + even.toFixed(1) + "%; €" + bn(spent) + " bn of €" + bn(budget) + " bn"),
+                 fact(gap >= 0 ? "Ahead of an even pace" : "Behind an even pace", "€" + Math.abs(gap / 1000).toFixed(1) + " bn",
+                      "obligations against a twelfth of the budget a month")];
+    if (before && given(before.obligations[n - 1]) && before.final[n - 1]) {
+      facts.push(fact("A year earlier", (before.obligations[n - 1] / before.final[n - 1] * 100).toFixed(1) + "%",
+                      "spent by the end of " + MONTH_NAMES[n - 1] + " " + (y - 1)));
+    } else if (before && given(before.obligations[11]) && before.final[11]) {
+      facts.push(fact((y - 1) + " in full", (before.obligations[11] / before.final[11] * 100).toFixed(1) + "%",
+                      "of its final budget spent by December"));
+    }
+    $("pge-pace-facts").innerHTML = facts.join("");
+
+    var upTo = function (values) { var k = lastMonth(values); return { x: MONTHS.slice(0, k), y: values.slice(0, k) }; };
+    var series = [];
+    var add = function (name, values, style) {
+      var cut = upTo(values);
+      if (cut.y.some(given)) series.push(Object.assign({ name: name, x: cut.x, y: cut.y }, style));
+    };
+    var ratio = function (row) {
+      return row.obligations.map(function (v, i) { return given(v) && row.final[i] ? +(v / row.final[i] * 100).toFixed(2) : null; });
+    };
+    var inBn = function (values) { return values.map(function (v) { return given(v) ? +(v / 1000).toFixed(2) : null; }); };
+    if (pace.view === "pct") {
+      add("Even pace", MONTHS.map(function (_, i) { return +((i + 1) / 12 * 100).toFixed(2); }), { color: "muted", dash: "dot" });
+      add(String(y), ratio(now), { slot: 1 });
+      if (before) add(String(y - 1), ratio(before), { slot: 1, dash: "dot" });
+    } else {
+      add("Budget, " + y, inBn(now.final), { color: "ink" });
+      add("Even pace", now.final.map(function (v, i) { return given(v) ? +(v * (i + 1) / 12 / 1000).toFixed(2) : null; }), { color: "muted", dash: "dot" });
+      add("Spent, " + y, inBn(now.obligations), { slot: 1 });
+      if (before) add("Spent, " + (y - 1), inBn(before.obligations), { slot: 1, dash: "dot" });
+    }
+    $("pge-pace-title").textContent = label + ": the pace of spending, " + y;
+    $("pge-pace-subtitle").textContent = pace.view === "pct"
+      ? "Obligations recognised to date, % of the final appropriations at each month's end; dotted, an even pace" + (before ? " and " + (y - 1) : "")
+      : "€ bn: the final appropriations, the obligations recognised to date and an even pace";
+    render({ id: "pge-pace", kind: "line", x_kind: "category", unit: pace.view === "pct" ? "%" : "", decimals: 1,
+             freq: "A", series: series });
   }
 
   // ---------------------------------------------------------------- the rest of the execution report
@@ -177,6 +265,26 @@
   function row(cells, cls, indent) {
     return "<tr" + (cls ? ' class="' + cls + '"' : "") + '><th scope="row"' + (indent ? ' class="indent-' + indent + '"' : "") + ">" + cells[0] + "</th>" +
            cells.slice(1).map(function (c) { return '<td class="num">' + c + "</td>"; }).join("") + "</tr>";
+  }
+
+  // The pace: the item, the measure, and a policy picked from the table above.
+  function currentEx() { return S.execution.filter(function (e) { return e.year === state.exYear; })[0] || S.execution[0]; }
+  if ($("pge-pace-item")) {
+    $("pge-pace-item").addEventListener("change", function (e) { pace.item = e.target.value; drawPace(currentEx()); });
+    Array.prototype.forEach.call(document.querySelectorAll("[data-pace-view]"), function (b) {
+      b.addEventListener("click", function () { pace.view = b.getAttribute("data-pace-view"); drawPace(currentEx()); });
+    });
+    var choose = function (row) {
+      if (!paceOf(currentEx().year, row.getAttribute("data-pace"))) return;
+      pace.item = row.getAttribute("data-pace");
+      drawPace(currentEx());
+      $("bx-pge-pace").scrollIntoView({ block: "start" });
+    };
+    $("pge-ex-table").addEventListener("click", function (e) { var row = e.target.closest("tr[data-pace]"); if (row) choose(row); });
+    $("pge-ex-table").addEventListener("keydown", function (e) {
+      var row = e.target.closest("tr[data-pace]");
+      if (row && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); choose(row); }
+    });
   }
 
   // A year's month-by-month totals: from its own workbooks, or from the next year's "a year earlier" columns.

@@ -26,7 +26,7 @@
   <p class="lede">What Spain's public administrations spend, on what, and where the money comes from, every year since
     1995: spending by function (health, education, pensions, defence...), by type (pay, purchases, benefits, interest...)
     and revenue tax by tax, for the State, the Social Security, the autonomous communities together and each of the 17.
-    Choose the administration and the measure; click a row to follow it over time.</p>
+    Choose the administration and the measure, tick the items to follow over time, and compare any two years.</p>
 
   <div class="tool-controls bx-controls" role="group" aria-label="What to show">
     <label>Administration
@@ -61,9 +61,16 @@
   <div class="facts bx-facts" id="bx-facts" aria-live="polite"></div>
 
   <nav class="bx-crumbs" id="bx-crumbs" aria-label="Where you are"></nav>
+  <div class="bx-picker" role="group" aria-labelledby="bx-picks-label">
+    <span class="picker-label" id="bx-picks-label">Draw over time (up to six)</span>
+    <span class="bx-chips" id="bx-picks"></span>
+  </div>
   <div class="charts">
     {{ figure("bx-mix", "Spending by function", "", "IGAE, national accounts of the public administrations") }}
     {{ figure("bx-trend", "Over time", "", "IGAE, national accounts of the public administrations") }}
+  </div>
+  <div class="charts charts-single">
+    {{ figure("bx-two", "Two years compared", "", "IGAE, national accounts of the public administrations; Eurostat (GDP deflator)") }}
   </div>
 
   <div class="stat">
@@ -72,22 +79,34 @@
       <table class="data-table stat-table bx-table" id="bx-table">
         <thead><tr><th scope="col" id="bx-col-item">Item</th><th scope="col" class="num" id="bx-col-year"></th>
           <th scope="col" class="num">Share</th><th scope="col" class="num" id="bx-col-base"></th>
-          <th scope="col" class="num" id="bx-col-change">Change</th></tr></thead>
+          <th scope="col" class="num" id="bx-col-change">Change</th>
+          <th scope="col" class="num" id="bx-col-real" hidden>After inflation</th></tr></thead>
         <tbody></tbody>
       </table>
     </div>
-    <p class="note">Click a row to draw it over time (up to three at once); rows marked ▸ open into their parts.</p>
+    <p class="note">Click a row, or tick it above the charts, to draw it over time (up to six at once); rows marked ▸ open
+      into their parts. After inflation: the change at constant prices (GDP deflator).</p>
   </div>
 
   <section class="block" id="bx-compare" aria-labelledby="bx-compare-h" hidden>
     <h2 id="bx-compare-h">The communities side by side</h2>
     <p class="block-intro">One function, type of spending or source of revenue across the 17 communities, in the measure
-      chosen above: per person or as a share of each community's own GDP compares them best. Click a community to open it.</p>
+      chosen above: per person or as a share of each community's own GDP compares them best. In one year, in two years
+      side by side, and over time for the communities you pick (euros are at constant prices in these two). Click a
+      community in the table to open it.</p>
     <div class="tool-controls bx-controls">
       <label>Compare <select id="bx-cmp-item"></select></label>
     </div>
     <div class="charts">
       {{ figure("bx-cmp", "The communities", "", "IGAE; Eurostat (population)") }}
+      {{ figure("bx-cmp-two", "Two years compared", "", "IGAE; Eurostat (population, GDP deflator)") }}
+    </div>
+    <div class="charts charts-single">
+      {{ figure("bx-cmp-trend", "Over time", "", "IGAE; Eurostat (population, GDP deflator)") }}
+    </div>
+    <div class="bx-picker" role="group" aria-labelledby="bx-cmp-picks-label">
+      <span class="picker-label" id="bx-cmp-picks-label">Communities to draw (up to six)</span>
+      <span class="bx-chips" id="bx-cmp-picks"></span>
     </div>
     <div class="stat">
       <p class="stat-caption" id="bx-cmp-caption"></p>
@@ -158,8 +177,29 @@
       </div>
       <p class="note">All chapters, so public debt includes the repayment of maturing debt. Transfers within the State's public
         sector are mostly to the Social Security and the State's agencies. Spent: obligations recognised (obligaciones
-        reconocidas netas).</p>
+        reconocidas netas). Click a policy to see the pace of its spending below.</p>
     </div>
+
+    <h3 class="bx-sub" id="bx-pge-pace">The pace of spending</h3>
+    <p class="block-intro">How fast the State is spending a policy's or chapter's budget in the year chosen above: the
+      obligations recognised so far as a share of its final appropriations, month by month, against an even pace (a twelfth
+      of the year's budget a month). Spending is not spread evenly through the year, as some payments go out monthly and
+      others bunch towards December, so the year before is the better yardstick where it is shown.</p>
+    <div class="tool-controls bx-controls" role="group" aria-label="The pace of spending">
+      <label>Policy or chapter <select id="pge-pace-item"></select></label>
+      <span role="group" aria-label="Measure">
+        <button type="button" class="tool-button" data-pace-view="pct" aria-pressed="true">% of the budget</button>
+        <button type="button" class="tool-button" data-pace-view="eur" aria-pressed="false">€ bn</button>
+      </span>
+    </div>
+    <div class="facts" id="pge-pace-facts" aria-live="polite"></div>
+    <div class="charts charts-single">
+      {{ figure("pge-pace", "The pace of spending", "", "IGAE, execution of the State budget") }}
+    </div>
+    <p class="note">Policies month by month from January 2026: the IGAE lists only the current year's monthly workbooks, and
+      they are kept here as they come out; for 2025 there is its year-end figure. Each workbook also gives the chapters for
+      the same months a year earlier, so they show both years. The final appropriations change during the year (supplements,
+      extensions, transfers between policies), so a jump in the budget lowers the share spent.</p>
 
     <h3 class="bx-sub" id="bx-pge-year">The year so far</h3>
     <p class="block-intro">The State's revenue and spending month by month, added up from January, against the same

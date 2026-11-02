@@ -214,7 +214,7 @@
     var s = spec.series[0];
     var surface = token("--surface"), ink = token("--text"), ink2 = token("--text-2");
     var muted = token("--muted"), grid = token("--grid"), axis = token("--axis");
-    el.style.height = Math.max(220, s.x.length * 22 + 56) + "px";
+    el.style.height = Math.max(220, s.x.length * 22 + 41 + Math.max(1, (spec.ref_lines || []).length) * 15) + "px";
     var format = ":." + spec.decimals + "f}" + suffix(spec);
     var traces = [{
       type: "bar", orientation: "h", x: s.y, y: s.x, showlegend: false,
@@ -227,15 +227,15 @@
       hovertemplate: "<b>%{x" + format + "</b>  %{y}<extra></extra>"
     }];
     var shapes = [], annotations = [];
-    (spec.ref_lines || []).forEach(function (r) {
-      shapes.push({ type: "line", yref: "paper", y0: 0, y1: 1, x0: r.y, x1: r.y, line: { color: ink2, width: 1, dash: "dot" } });
-      annotations.push({ x: r.y, xref: "x", y: 1, yref: "paper", yanchor: "bottom", showarrow: false,
+    (spec.ref_lines || []).forEach(function (r, i) {
+      shapes.push({ type: "line", yref: "paper", y0: 0, y1: 1, x0: r.y, x1: r.y, line: { color: ink2, width: 1, dash: r.dash || "dot" } });
+      annotations.push({ x: r.y, xref: "x", y: 1, yref: "paper", yanchor: "bottom", yshift: i * 15, showarrow: false,
         text: r.label + " " + fmt(r.y, spec), font: { size: 11, color: ink2 } });
     });
     var layout = {
       paper_bgcolor: surface, plot_bgcolor: surface,
       font: { family: token("--sans") || "system-ui, sans-serif", size: 12, color: ink2 },
-      margin: { l: 10, r: 18, t: annotations.length ? 24 : 8, b: 30 },
+      margin: { l: 10, r: 18, t: annotations.length ? 9 + annotations.length * 15 : 8, b: 30 },
       hovermode: "closest", hoverlabel: { bgcolor: surface, bordercolor: grid, font: { color: ink, size: 12 } },
       yaxis: { type: "category", autorange: "reversed", automargin: true, fixedrange: true, ticks: "",
         tickfont: { color: ink2, size: 12 } },
@@ -328,15 +328,58 @@
     window.Plotly.react(el, traces, layout, config);
   }
 
+  // The same items in two years: a hollow dot for the earlier year, a filled one for the later, joined by a
+  // thin bar, one row per item in the order given (a highlighted row's dot in text ink). The hover gives the
+  // row's note (its change).
+  function drawDumbbell(el, spec) {
+    var surface = token("--surface"), ink = token("--text"), ink2 = token("--text-2");
+    var muted = token("--muted"), grid = token("--grid"), axis = token("--axis"), blue = token("--series-1");
+    var rows = spec.rows;
+    el.style.height = Math.max(220, rows.length * 26 + 76) + "px";
+    var labels = rows.map(function (r) { return r.label; });
+    var link = { x: [], y: [] };
+    rows.forEach(function (r) {
+      if (r.a === null || r.a === undefined || r.b === null || r.b === undefined) return;
+      link.x.push(r.a, r.b, null); link.y.push(r.label, r.label, null);
+    });
+    var format = ":." + spec.decimals + "f}" + suffix(spec);
+    var traces = [
+      { type: "scatter", mode: "lines", x: link.x, y: link.y, hoverinfo: "skip", showlegend: false,
+        line: { color: axis, width: 3 } },
+      { type: "scatter", mode: "markers", name: spec.a_name, x: rows.map(function (r) { return r.a; }), y: labels,
+        marker: { size: 10, color: surface, line: { color: ink2, width: 2 } },
+        hovertemplate: "<b>%{x" + format + "</b>  " + spec.a_name + "<extra>%{y}</extra>" },
+      { type: "scatter", mode: "markers", name: spec.b_name, x: rows.map(function (r) { return r.b; }), y: labels,
+        marker: { size: 11, color: rows.map(function (r) { return r.highlight ? ink : blue; }), line: { color: surface, width: 2 } },
+        customdata: rows.map(function (r) { return r.note || ""; }),
+        hovertemplate: "<b>%{x" + format + "</b>  " + spec.b_name + "<br>%{customdata}<extra>%{y}</extra>" }
+    ];
+    var layout = {
+      paper_bgcolor: surface, plot_bgcolor: surface,
+      font: { family: token("--sans") || "system-ui, sans-serif", size: 12, color: ink2 },
+      margin: { l: 10, r: 18, t: 30, b: 30 }, showlegend: true,
+      legend: { orientation: "h", x: 0, xanchor: "left", y: 1.0, yanchor: "bottom", font: { size: 12, color: ink2 } },
+      hovermode: "closest", hoverlabel: { bgcolor: surface, bordercolor: grid, font: { color: ink, size: 12 } },
+      yaxis: { type: "category", categoryorder: "array", categoryarray: labels, autorange: "reversed", automargin: true,
+        fixedrange: true, ticks: "", tickfont: { color: ink2, size: 12 } },
+      xaxis: { gridcolor: grid, zeroline: true, zerolinecolor: axis, fixedrange: true, tickfont: { color: muted },
+        ticksuffix: suffix(spec), automargin: true }
+    };
+    var config = Object.assign({ toImageButtonOptions: { filename: "econpulse-" + spec.id, scale: 2 } }, CONFIG_BASE);
+    window.Plotly.react(el, traces, layout, config);
+  }
+
   function draw(spec) {
     var el = document.getElementById("chart-" + spec.id);
     if (!el || !window.Plotly) return;
     if (spec.kind === "hbar") return drawRanking(el, spec);
+    if (spec.kind === "dumbbell") return drawDumbbell(el, spec);
     if (spec.kind === "dots") return drawDots(el, spec);
     if (spec.kind === "xy") return drawXY(el, spec);
     if (spec.pick) spec = pickView(spec);
-    // Fixed slot order, never cycled: a spec has at most three palette series.
-    var colors = [token("--series-1"), token("--series-2"), token("--series-3")];
+    // Fixed slot order, never cycled: a spec has at most six palette series (slots 4 to 6 come dashed, as some
+    // of their colours sit close to the first three's).
+    var colors = [1, 2, 3, 4, 5, 6].map(function (n) { return token("--series-" + n); });
     var surface = token("--surface"), ink = token("--text"), ink2 = token("--text-2");
     var muted = token("--muted"), grid = token("--grid"), axis = token("--axis");
     var multi = spec.series.length > 1;
@@ -463,7 +506,7 @@
   // The windows worth offering: a window must be clearly shorter than the data. Annual charts are short,
   // and often end in projections, so they keep their whole span.
   function rangeOptions(spec) {
-    if (spec.x_kind === "category" || ["hbar", "xy", "dots"].indexOf(spec.kind) >= 0 || spec.freq === "A" ||
+    if (spec.x_kind === "category" || ["hbar", "xy", "dots", "dumbbell"].indexOf(spec.kind) >= 0 || spec.freq === "A" ||
         !spec.series || !spec.series.length) return [];
     var span = dateSpan(spec);
     if (!span) return [];
@@ -581,6 +624,21 @@
     var category = spec.x_kind === "category";
     var head = table.createTHead().insertRow();
     if (spec.kind === "xy") return fillXYTable(spec, holder, table, head);
+    if (spec.kind === "dumbbell") {
+      [spec.x_title || "Item", spec.a_name, spec.b_name, "Change"].forEach(function (h) {
+        var th = document.createElement("th"); th.scope = "col"; th.textContent = h; head.appendChild(th);
+      });
+      var rb = table.createTBody();
+      spec.rows.forEach(function (r) {
+        var tr = rb.insertRow();
+        tr.insertCell().textContent = r.label;
+        tr.insertCell().textContent = r.a === null || r.a === undefined ? "–" : fmt(r.a, spec);
+        tr.insertCell().textContent = r.b === null || r.b === undefined ? "–" : fmt(r.b, spec);
+        tr.insertCell().textContent = r.note || "–";
+      });
+      holder.appendChild(table);
+      return;
+    }
     if (spec.kind === "dots") {
       ["Member", "Stance", "Latest", "Range over the year"].forEach(function (h) {
         var th = document.createElement("th"); th.scope = "col"; th.textContent = h; head.appendChild(th);
@@ -684,7 +742,8 @@
   function presize(spec) {
     var el = document.getElementById("chart-" + spec.id);
     if (!el) return;
-    if (spec.kind === "hbar") el.style.height = Math.max(220, spec.series[0].x.length * 22 + 56) + "px";
+    if (spec.kind === "hbar") el.style.height = Math.max(220, spec.series[0].x.length * 22 + 41 + Math.max(1, (spec.ref_lines || []).length) * 15) + "px";
+    if (spec.kind === "dumbbell") el.style.height = Math.max(220, spec.rows.length * 26 + 76) + "px";
     if (spec.kind === "dots") el.style.height = Math.max(220, spec.rows.length * 30 + 70) + "px";
   }
 
@@ -727,6 +786,9 @@
       var path = spec.series[0];
       return [[spec.x_title || "Period", spec.x_label, spec.y_label]].concat(
         path.x.map(function (x, i) { return [path.text[i], x, path.y[i]]; }));
+    }
+    if (spec.kind === "dumbbell") {
+      return [[spec.x_title || "Item", spec.a_name + unit, spec.b_name + unit]].concat(spec.rows.map(function (r) { return [r.label, r.a, r.b]; }));
     }
     if (spec.kind === "dots") {
       return [["Member", "Stance", "Lowest over the year", "Highest over the year"]].concat(spec.rows.map(function (r) {
