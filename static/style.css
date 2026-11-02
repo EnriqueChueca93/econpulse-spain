@@ -289,6 +289,19 @@ code { font-size: 13px; background: var(--hover); padding: 1px 5px; border-radiu
 @media (max-width: 880px) {
   .stat-table tbody th, .stat-table thead th:first-child { box-shadow: inset -1px 0 0 var(--grid); }
 }
+/* On phones the label column is held to a narrow width and its text wraps (the table's title too), so the
+   figures beside it stay in view while the table scrolls sideways. */
+@media (max-width: 640px) {
+  .stat-table th, .stat-table td { padding: 6px 8px; }
+  .stat-table tbody th, .stat-table thead th:first-child {
+    width: 10em; min-width: 10em; white-space: normal; font-size: 13px; line-height: 1.3; overflow-wrap: anywhere;
+  }
+  .stat-table thead th:first-child { font-size: 14px; }
+  .stat-table .indent-1 { padding-left: 16px; }
+  .stat-table .indent-2 { padding-left: 24px; }
+  .stat-table .indent-3 { padding-left: 32px; }
+  .stat-table .group-row td span { left: 8px; }
+}
 .stat-table .highlight-row th, .stat-table .highlight-row td { font-weight: 600; background: var(--hover); }
 .flash-note, .callout { margin: 0 0 20px; }
 .facts {

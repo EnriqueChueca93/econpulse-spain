@@ -6,7 +6,7 @@ import pandas as pd
 import pytest
 
 from econpulse import trade
-from econpulse.build import NAV, build_site
+from econpulse.build import NAV, NAV_SUBPAGES, build_site
 from econpulse.registry import load_registry
 from econpulse.sources import comext
 from econpulse.store import Store
@@ -95,12 +95,17 @@ def test_trade_page(tmp_path):
     assert [s["id"] for s in page["sections"]] == ["group-food", "group-materials", "group-chemicals", "group-manufactures"]
 
 
-def test_trade_tab_is_built(tmp_path):
+def test_trade_page_is_built_under_economic_activity(tmp_path):
     store = trade_store(tmp_path)
-    assert ("trade.html", "Trade") in NAV
+    assert "trade.html" not in dict(NAV) and ("trade.html", "Trade in goods and services") in NAV_SUBPAGES["activity.html"]
+    assert dict(NAV)["activity.html"] == "Economic activity and external accounts"
     build_site(load_registry(), store, site_dir=tmp_path / "site")
     html = (tmp_path / "site" / "trade.html").read_text(encoding="utf-8")
-    assert 'aria-current="page">Trade</a>' in html and 'id="fig-trade-vehicles"' in html
+    assert 'aria-current="page">Economic activity and external accounts</a>' in html and 'id="fig-trade-vehicles"' in html
+    assert '<a href="trade.html">Trade in goods and services</a>' in html     # in the tab's dropdown
+    assert "<h1>Economic activity and external accounts</h1>" in (tmp_path / "site" / "activity.html").read_text(encoding="utf-8")
+    index = (tmp_path / "site" / "data" / "search.js").read_text(encoding="utf-8")
+    assert '"Trade by partner","Trade","trade.html#partners"' in index      # its sections are still searchable
     assert "Vehicles and parts (87)" in html and (tmp_path / "site" / "data" / "charts-trade.js").exists()
 
 

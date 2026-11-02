@@ -8,9 +8,10 @@
   <h1>{{ page.title }}</h1>
   <p class="lede">{{ page.intro }}</p>
   {% if blocks %}
-    {% if blocks | length > 1 %}
+    {% if blocks | length > 1 or subpages %}
     <nav class="on-page" aria-label="On this page">
       {% for b in blocks %}<a href="#{{ b.id }}"{% if b.updated %} class="has-new" title="Updated {{ b.updated.day }}"{% endif %}>{{ b.title }}</a>{% endfor %}
+      {% for href, title in subpages %}<a href="{{ href }}">{{ title }} <span aria-hidden="true">&rarr;</span></a>{% endfor %}
     </nav>
     {% endif %}
     {% for b in blocks %}

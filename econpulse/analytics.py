@@ -334,7 +334,7 @@ def nowcast_facts(data: Data) -> list[dict]:
     last_q, last_v = n["last_gdp"]
     months = sum(c["months"] for c in n["coverage"])
     return [
-        {"label": f"GDP nowcast, {q}", "value": _fmt_signed(n["value"], 1, "%"), "sub": f"q/q; {band}"},
+        {"label": f"GDP nowcast (placeholder), {q}", "value": _fmt_signed(n["value"], 1, "%"), "sub": f"q/q; {band}"},
         {"label": f"Latest official, {period_label(last_q, 'Q')}", "value": _fmt_signed(last_v, 1, "%"), "sub": "q/q, INE"},
         {"label": f"Data in hand for {q}", "value": f"{months} of {3 * len(n['coverage'])}",
          "sub": "monthly readings; the rest is projected"},

@@ -131,7 +131,8 @@ def test_updated_sections_are_marked_and_linked(tmp_path):
     trade = (site / "trade.html").read_text(encoding="utf-8")
     assert 'Exports, imports and the balance <span class="badge badge-ok badge-updated" title="New figures: ' \
            'Goods exports (Comext) (Aug 2026)">Updated' in trade
-    assert '<a href="#overview" class="has-new"' in trade and '<a href="trade.html#overview" class="has-new"' in trade
+    # The page's own section list, and the Economic activity tab's link to it (Trade is no longer a tab: Batch 32a).
+    assert '<a href="#overview" class="has-new"' in trade and '<a href="trade.html" class="has-new"' in trade
     index = (site / "index.html").read_text(encoding="utf-8")
     assert '<a href="trade.html#overview">Goods exports (Comext): €401,843 mn in Aug 2026.</a>' in index
 

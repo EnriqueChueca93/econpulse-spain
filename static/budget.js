@@ -559,6 +559,15 @@
     });
   }
 
+  // A link to the explorer itself (the menus' "the autonomous communities") starts again from what it names.
+  window.addEventListener("hashchange", function () {
+    if (location.hash.indexOf("level=") < 0) return;
+    state.parent = null; state.selected = null; state.cmp = null; state.regions = null; state.total = true; state.all = true;
+    readHash();
+    syncControls();
+    draw();
+  });
+
   readHash();
   syncControls();
   draw();

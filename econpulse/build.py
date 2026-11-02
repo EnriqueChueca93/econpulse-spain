@@ -36,7 +36,7 @@ SECTION_PAGES = {
     "financial": ("Financial", "Spanish bond yields and the prima de riesgo, Euribor, the IBEX 35, the euro and commodities, and the IMF-style financial soundness indicators.", 5),
     "ecb": ("ECB", "Spain has no monetary policy of its own: the European Central Bank sets rates for the whole euro area. The IMF-style monetary table shows what that means for the Banco de España and Spanish banks.", 5),
     "fiscal": ("Fiscal", "Government deficit and debt, the IMF-style fiscal tables, and debt sustainability.", 6),
-    "activity": ("Activity", "Industry, retail, sentiment surveys, tourism, electricity demand, the external accounts and the IMF-style balance of payments and external debt tables.", 6),
+    "activity": ("Economic activity and external accounts", "Industry, retail, sentiment surveys, tourism, electricity demand, the external accounts and the IMF-style balance of payments and external debt tables; trade in goods and services has a page of its own.", 6),
     "housing": ("Housing", "House prices, affordability and rents, Spain against its comparators, building and households, sales, mortgages and credit, household wealth, and commercial property.", 6),
     "pensions": ("Pensions", "The Social Security's contributory pensions: how many and how much, by class, scheme and region, what they cost, new and ended pensions, and the maximum and minimum amounts; Spain against its comparators, the ageing population, the 2023 reform and what the official assessments say.", 29),
     "international": ("International", "Spain next to the euro area and ten comparators: France, Germany, Italy, the Netherlands, Portugal, Poland, the United Kingdom, the United States, Canada and Japan; growth, jobs, prices, public finances and the IMF's outlook.", 6),
@@ -45,23 +45,25 @@ SECTION_PAGES = {
 }
 
 NAV = ([("index.html", "Home")] + [(f"{s}.html", t) for s, (t, _, _) in SECTION_PAGES.items()]
-       + [("trade.html", "Trade"), ("sector-tables.html", "Sector tables"), ("tools.html", "Tools"), ("calendar.html", "Calendar"),
-          ("data.html", "Data")])
+       + [("sector-tables.html", "Sector tables"), ("tools.html", "Tools"), ("calendar.html", "Calendar"), ("data.html", "Data")])
+# The Budget explorer opened on the autonomous communities (all of them together, and side by side).
+COMMUNITIES_EXPLORER = ("budget-explorer.html#level=regions", "Budget explorer: the autonomous communities")
 # What each tab's dropdown lists besides the sections of a section page (anchors or other pages).
 NAV_EXTRA = {
     "index.html": [("#key-indicators", "Key indicators"), ("#readings", "EconPulse readings"), ("#whats-new", "What's new"),
                    ("#four-questions", "The economy in four questions"), ("#charts", "Charts")],
     "tools.html": [("#trend", "Economy vs pre-COVID trend"), ("#taylor", "Taylor rule"), ("#rates", "Interest rate decomposer"),
                    ("fiscal-explorer.html", "Fiscal Explorer"), ("budget-explorer.html", "Budget explorer"),
-                   ("ecb-speak.html", "ECB-speak"),
+                   COMMUNITIES_EXPLORER, ("ecb-speak.html", "ECB-speak"),
                    ("stance.html", "Global central bank stance")],
     "calendar.html": [("#recent", "Released in the past week"), ("#upcoming", "The next two months")],
     "sector-tables.html": [(f"#{section_id}", title) for section_id, title, *_ in sectortables.PAGE],
-    "trade.html": [(f"#{section_id}", title) for section_id, title in trade.PAGE],
 }
 # Pages a section tab's dropdown lists after that page's own sections.
 NAV_SUBPAGES = {"labour.html": [("industry-detail.html", "Every industry")],
-                "fiscal.html": [("budget-explorer.html", "Budget explorer")]}
+                "fiscal.html": [("budget-explorer.html", "Budget explorer")],
+                "activity.html": [("trade.html", "Trade in goods and services")],
+                "regions.html": [COMMUNITIES_EXPLORER]}
 
 
 def nav_items(section_pages: dict, updated: set[str] = frozenset()) -> list[dict]:
@@ -155,7 +157,7 @@ def build_site(indicators: list[Indicator], store: Store | None = None, site_dir
         if (part := trade.indicator_section(ind_id)):
             trade_parts.setdefault(part, []).append(ind_id)
     trade_updated = {part: changes.updated_mark(ids, fresh, labels) for part, ids in trade_parts.items()}
-    updated |= {f"trade.html#{part}" for part in trade_updated}
+    updated |= {f"trade.html#{part}" for part in trade_updated} | ({"trade.html"} if trade_updated else set())
     # Links to a release go to the section that shows its figures.
     anchors = _search_anchors(section_pages, items)
 
@@ -203,7 +205,7 @@ def build_site(indicators: list[Indicator], store: Store | None = None, site_dir
             write_data_js(site_dir / charts_file, "charts", page["charts"])
         render("section.html", f"{section}.html", page={"title": title, "intro": intro, "batch": batch},
                blocks=page["blocks"], charts_file=charts_file, picker=peers.picker() if section in ("international", "housing", "pensions") else None,
-               items=[i for i in items if i["section"] == section])
+               items=[i for i in items if i["section"] == section], subpages=NAV_SUBPAGES.get(f"{section}.html", []))
     groups = [{"id": s, "title": t, "items": [i for i in items if i["section"] == s]} for s, (t, _, _) in SECTION_PAGES.items()]
     attention = [i for i in items if i["status"] != "ok" or i["out_of_date"]]
     workbook = sectortables.write_workbook(readings_data, data_dir / sectortables.WORKBOOK, built=common["built"])
@@ -218,7 +220,7 @@ def build_site(indicators: list[Indicator], store: Store | None = None, site_dir
     page_charts.append(("trade.html", "Trade", goods["charts"]))
     if goods["charts"]:
         write_data_js(data_dir / "charts-trade.js", "charts", goods["charts"])
-    render("trade.html", "trade.html", facts=goods["facts"], table=goods["table"], overview=goods["overview"],
+    render("trade.html", "trade.html", active="activity.html", facts=goods["facts"], table=goods["table"], overview=goods["overview"],
            rankings=goods["rankings"], extras=goods["extras"], sections=goods["sections"], chapters=goods["chapters"], page_nav=trade.PAGE,
            updated=trade_updated,
            charts_file="data/charts-trade.js" if goods["charts"] else None)
@@ -272,8 +274,10 @@ def build_site(indicators: list[Indicator], store: Store | None = None, site_dir
            econvitals_page=stance.PAGE, econvitals_terms=stance.TERMS)
     page_charts += [("ecb-speak.html", "ECB-speak", speak["charts"] if speak else []),
                     ("stance.html", "Central bank stance", stance_charts or [])]
+    # Trade is no longer a tab of its own (it sits under Economic activity), but its sections stay searchable.
+    trade_tab = {"href": "trade.html", "label": "Trade", "children": [{"href": f"trade.html#{s}", "title": t} for s, t in trade.PAGE]}
     write_data_js(data_dir / "search.js", "search",
-                  search.build_index(common["nav"], page_charts, items, anchors))
+                  search.build_index(common["nav"] + [trade_tab], page_charts, items, anchors))
     return index
 
 

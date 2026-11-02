@@ -54,7 +54,7 @@ Because the workflow commits data every day, run `git pull` before working local
   survey, with hours lost to sick leave), vacancies by activity, and the workers affected by collective
   dismissals and temporary layoffs (ERE/ERTE, Ministry of Labour). The Wages page compares pay by activity a
   month and per hour, the share from bonuses, growth on four-quarter averages and pay since 2019 after inflation.
-- **Trade** (`site/trade.html`): goods exports and imports by product group (18 groups of HS chapters, Eurostat
+- **Trade** (`site/trade.html`, under the Economic activity and external accounts tab): goods exports and imports by product group (18 groups of HS chapters, Eurostat
   Comext) and by partner (the EU and 19 countries), totals over the past 12 months, rankings, the balance with and
   without energy, and every group since 2008; services trade by type (quarterly balance of payments); and export and
   import prices of industrial goods, with the terms of trade.
@@ -66,7 +66,7 @@ Because the workflow commits data every day, run `git pull` before working local
 - **Financial, ECB**: a markets table (1-day, 1-week, YTD, 1-year moves), the Spanish yield curve against the
   AAA euro-area curve, the prima de riesgo, Euribor with a mortgage check, ECB rates and decisions, the next
   ECB meeting and a market-implied rate path.
-- **Fiscal, Activity, Housing, International, Regions**: the public finances, activity and tourism, the housing
+- **Fiscal, Economic activity and external accounts, Housing, International, Regions**: the public finances, activity and tourism, the housing
   market (prices, affordability in years of income and mortgage effort, prices per m², rents and renting, and
   house prices against the comparators' on the OECD's ratios; homes started since 1980 against new households,
   sales registered and before notaries, mortgages' loan-to-value, term and arrears, debt secured on property,
@@ -85,7 +85,8 @@ Because the workflow commits data every day, run `git pull` before working local
   Spain's debt and deficits since 1970 and to 2070, starting from the European Commission's baseline (reproduced
   exactly to 2036, extended by EconPulse on the Commission's long-term assumptions), with levers for the budget,
   ageing costs, growth, inflation and interest rates, a goal-solver and shareable scenario links; after
-  Econvitals' Fiscal Explorer. **Budget explorer** (`site/budget-explorer.html`, also under the Fiscal tab): what
+  Econvitals' Fiscal Explorer. **Budget explorer** (`site/budget-explorer.html`, also under the Fiscal tab, and opened
+  on the autonomous communities from the Regions tab): what
   the State (central government), the Social Security, the autonomous communities together and each of the 17, and
   all public administrations spend and raise since 1995 (the communities one by one from 2000, by function from
   2012), by function (COFOG, with its groups), by type and tax by tax, from the IGAE's national accounts, in € bn, at
@@ -112,12 +113,13 @@ Because the workflow commits data every day, run `git pull` before working local
   the WEO does not publish a line). Each is on its section page (Table 1, main economic indicators, on the GDP
   page; Tables 2a and 2b, government operations, and the debt sustainability tables on the Fiscal page, the
   stress tests from the European Commission's Debt Sustainability Monitor; Tables 4 and 5, the balance of payments
-  and external debt, on the Activity page; Table 3, financial soundness, on the Financial page, from the IMF's own
+  and external debt, on the Economic activity page; Table 3, financial soundness, on the Financial page, from the IMF's own
   FSI database and the Banco de España; Table 6, monetary and credit indicators, on the ECB page) and all are in
   one Excel workbook,
   `site/data/econpulse-spain-sector-tables.xlsx`, with history from 2015.
 - **Analysis**: EconPulse's own calculations, each explained on the page: activity and inflation composites,
-  data surprises (the latest figures against a simple statistical forecast), a GDP nowcast with its track record,
+  data surprises (the latest figures against a simple statistical forecast), a GDP nowcast with its track record
+  (marked as a placeholder while the model is worked on),
   what forecasters expect for this year and next, the 10-year yield split into Bund and prima de riesgo, and
   Taylor rules for the euro area and Spain.
 - **Calendar** (`site/calendar.html`): releases in the past week and the next two months; every page has a

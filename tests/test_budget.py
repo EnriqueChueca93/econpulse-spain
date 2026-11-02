@@ -7,7 +7,7 @@ import pandas as pd
 import pytest
 
 from econpulse import budget
-from econpulse.build import NAV_EXTRA, NAV_SUBPAGES
+from econpulse.build import COMMUNITIES_EXPLORER, NAV_EXTRA, NAV_SUBPAGES
 from econpulse.registry import load_registry
 from econpulse.store import Store
 from econpulse.tables import Data
@@ -104,6 +104,9 @@ def test_explorer_data(tmp_path):
 def test_linked_from_fiscal_and_tools():
     assert ("budget-explorer.html", "Budget explorer") in NAV_SUBPAGES["fiscal.html"]
     assert ("budget-explorer.html", "Budget explorer") in NAV_EXTRA["tools.html"]
+    # The communities' explorer, under Regions and Tools (Batch 32a).
+    assert COMMUNITIES_EXPLORER == ("budget-explorer.html#level=regions", "Budget explorer: the autonomous communities")
+    assert COMMUNITIES_EXPLORER in NAV_SUBPAGES["regions.html"] and COMMUNITIES_EXPLORER in NAV_EXTRA["tools.html"]
     assert "population_es" in {i.id for i in load_registry()}
 
 

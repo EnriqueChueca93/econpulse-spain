@@ -2018,10 +2018,10 @@ PAGES: dict[str, list[dict]] = {
         },
         {
             "id": "nowcast",
-            "title": "GDP nowcast",
+            "title": "GDP nowcast (placeholder)",
             "intro": ("An estimate of this quarter's GDP growth before INE publishes it, from Social Security "
                       "registrations, industrial production and last quarter's growth (a bridge equation fitted "
-                      "on 2013 onwards, leaving out 2020-21)."),
+                      "on 2013 onwards, leaving out 2020-21). A placeholder: the model is still being worked on."),
             "facts": analytics.nowcast_facts,
             "uses": ["gdp"] + [i.id for i in analytics.NOWCAST_INPUTS],
             "tables": [analytics.nowcast_inputs_table, analytics.nowcast_record_table],

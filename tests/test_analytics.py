@@ -90,7 +90,7 @@ def test_nowcast_targets_the_next_quarter(tmp_path):
     assert np.isfinite(n["value"]) and n["rmse"] is not None and n["backtest"]
     assert n["rmse"] < n["naive_rmse"]  # GDP here is driven by the cycle the inputs track
     facts = analytics.nowcast_facts(data)
-    assert facts[0]["label"] == "GDP nowcast, Q3 2026" and facts[2]["value"] == "5 of 6"
+    assert facts[0]["label"] == "GDP nowcast (placeholder), Q3 2026" and facts[2]["value"] == "5 of 6"
 
 
 def test_ar1_extension():

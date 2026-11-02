@@ -5,11 +5,12 @@
 {% block description %}Spain's trade: goods by product group and partner, services by type, and export and import prices, with the balance with and without energy.{% endblock %}
 
 {% block content %}
+  <p class="back-link"><a href="activity.html">← Economic activity and external accounts</a></p>
   <h1>Trade</h1>
   <p class="lede">Spain's exports and imports of goods by product group and partner, its trade in services by type, and
     export and import prices. Flows are totals over the past 12 months (four quarters for services), which smooth out
     the seasons and the noise of single months. The current account as a whole is on the
-    <a href="activity.html">Activity</a> page.</p>
+    <a href="activity.html">Economic activity and external accounts</a> page.</p>
   {% if table %}
   <nav class="on-page" aria-label="On this page">
     {% for id, title in page_nav %}<a href="#{{ id }}"{% if updated[id] %} class="has-new" title="Updated {{ updated[id].day }}"{% endif %}>{{ title }}</a>{% endfor %}
