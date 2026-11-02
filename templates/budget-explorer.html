@@ -25,12 +25,18 @@
   {% else %}
   <p class="lede">What Spain's public administrations spend, on what, and where the money comes from, every year since
     1995: spending by function (health, education, pensions, defence...), by type (pay, purchases, benefits, interest...)
-    and revenue tax by tax. Choose the administration and the measure; click a row to follow it over time.</p>
+    and revenue tax by tax, for the State, the Social Security, the autonomous communities together and each of the 17.
+    Choose the administration and the measure; click a row to follow it over time.</p>
 
   <div class="tool-controls bx-controls" role="group" aria-label="What to show">
     <label>Administration
       <select id="bx-level">
-        {% for lv in bx.levels %}<option value="{{ lv.id }}">{{ lv.name }}</option>{% endfor %}
+        <optgroup label="Administrations">
+          {% for lv in bx.levels if not lv.community %}<option value="{{ lv.id }}">{{ lv.name }}</option>{% endfor %}
+        </optgroup>
+        <optgroup label="Autonomous communities">
+          {% for lv in bx.levels if lv.community %}<option value="{{ lv.id }}">{{ lv.name }}</option>{% endfor %}
+        </optgroup>
       </select></label>
     <span class="bx-views" role="group" aria-label="View">
       <button type="button" class="tool-button" data-bx-view="function" aria-pressed="true">Spending by function</button>
@@ -73,6 +79,28 @@
     <p class="note">Click a row to draw it over time (up to three at once); rows marked ▸ open into their parts.</p>
   </div>
 
+  <section class="block" id="bx-compare" aria-labelledby="bx-compare-h" hidden>
+    <h2 id="bx-compare-h">The communities side by side</h2>
+    <p class="block-intro">One function, type of spending or source of revenue across the 17 communities, in the measure
+      chosen above: per person or as a share of each community's own GDP compares them best. Click a community to open it.</p>
+    <div class="tool-controls bx-controls">
+      <label>Compare <select id="bx-cmp-item"></select></label>
+    </div>
+    <div class="charts">
+      {{ figure("bx-cmp", "The communities", "", "IGAE; Eurostat (population)") }}
+    </div>
+    <div class="stat">
+      <p class="stat-caption" id="bx-cmp-caption"></p>
+      <div class="table-scroll">
+        <table class="data-table stat-table bx-table" id="bx-cmp-table">
+          <thead><tr><th scope="col">Community</th><th scope="col" class="num" id="bx-cmp-col-year"></th>
+            <th scope="col" class="num" id="bx-cmp-col-base"></th><th scope="col" class="num">Change</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
   <section class="block" aria-labelledby="bx-method">
     <h2 id="bx-method">How to read it</h2>
     <div class="prose">
@@ -89,12 +117,24 @@
         as spending of the State and as revenue of whoever receives them (COFOG group 01.8, "transfers of a general
         character between different levels of government"). The switch leaves them out, to show what each administration
         spends on itself. For all public administrations together the accounts are consolidated, so they cancel out.</p>
+      <p><strong>The autonomous communities.</strong> Their spending by function is published community by community
+        from 2012, by division only; their revenue and spending by type from 2000, and their taxes one by one from 2012
+        (before then, all income tax counts as personal income tax). The regional share of personal income tax is the
+        communities' own tax; the shares of VAT and excise duties they receive under the financing system count as
+        transfers from the State, as do the system's funds. Navarra collects its taxes itself. In the País Vasco the three
+        provincial councils (Diputaciones Forales) collect them, and the accounts count those councils as local government,
+        so the Basque government's revenue arrives as transfers from them. A community's % of GDP uses its own GDP (from the
+        IGAE's figures as a share of it); per person, its population (Eurostat, the mean of 1 January of the year and the
+        next). The communities together are set against Spain's GDP and population.</p>
       <p><strong>Measures.</strong> Constant prices use the GDP deflator ({{ bx.price_year }} = 100), the price index of
         everything the economy produces; per person, Eurostat's average population; % of GDP, nominal GDP for the year.</p>
       <p class="note">Sources: IGAE, <a href="{{ bx.pages.cofog }}" target="_blank" rel="noopener">functional classification
         of spending</a>, <a href="{{ bx.pages.accounts }}" target="_blank" rel="noopener">non-financial operations</a> and
-        <a href="{{ bx.pages.taxes }}" target="_blank" rel="noopener">taxes and social contributions</a>; Eurostat (GDP and
-        its deflator, population). Downloaded {{ bx.fetched_day }}.</p>
+        <a href="{{ bx.pages.taxes }}" target="_blank" rel="noopener">taxes and social contributions</a>, and for the
+        communities one by one: <a href="{{ bx.pages.cofog_ccaa }}" target="_blank" rel="noopener">spending by function</a>,
+        <a href="{{ bx.pages.accounts_ccaa }}" target="_blank" rel="noopener">non-financial operations</a> and
+        <a href="{{ bx.pages.taxes_ccaa }}" target="_blank" rel="noopener">taxes</a>; Eurostat (GDP and its deflator,
+        population). Downloaded {{ bx.fetched_day }}.</p>
     </div>
   </section>
   {% endif %}

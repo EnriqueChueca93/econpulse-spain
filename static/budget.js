@@ -19,7 +19,7 @@
   };
   var VIEW_NAMES = { "function": "Spending by function", type: "Spending by type", revenue: "Revenue" };
   var state = { level: B.levels[0].id, view: "function", measure: "eur", exclude: false, year: null, base: null,
-                parent: null, selected: [] };
+                parent: null, selected: [], cmp: null };
 
   function $(id) { return document.getElementById(id); }
   function iso(year) { return year + "-01-01"; }
@@ -39,8 +39,19 @@
   function flowKey() { return state.view === "function" ? B.transfer_function : "transfers"; }
   function showFlows() { return lv().transfers && !state.exclude; }
 
-  function items() {
-    var level = lv(), out = [];
+  function hasData(v) { return v && v.some(function (x) { return x; }); }
+
+  // The parts an item opens into, if this administration has figures for them.
+  function childrenOf(it, level) {
+    if (state.view === "revenue" && it.code === "products") {
+      return level.product_items.some(function (p) { return hasData(level.products[p.code]); }) ? level.product_items : null;
+    }
+    if (state.view !== "function" || !it.children || !it.children.length) return null;
+    return it.children.some(function (c) { return hasData(level["function"][c.code]); }) ? it.children : null;
+  }
+
+  function items(levelArg) {
+    var level = levelArg || lv(), out = [];
     var list, values;
     if (state.view === "function") {
       list = state.parent ? find(B.functions, state.parent).children : B.functions;
@@ -48,37 +59,38 @@
     } else if (state.view === "type") {
       list = B.types; values = level.type;
     } else {
-      list = state.parent ? find(B.revenues, state.parent).children : B.revenues;
+      list = state.parent ? level.product_items : B.revenues;
       values = state.parent ? level.products : level.revenue;
     }
+    var flows = level.transfers && !state.exclude;
     list.forEach(function (it) {
       var v = values[it.code], label = it.label;
-      if (!v || !v.some(function (x) { return x; })) return;
-      if (it.code === flowKey() && !showFlows()) return;
-      // General public services hold the transfers to other administrations (group 01.8).
-      if (state.view === "function" && !state.parent && it.code === "01" && lv().transfers && !showFlows()) {
+      if (!hasData(v)) return;
+      if (it.code === flowKey() && !flows) return;
+      // General public services hold the transfers to other administrations (group 01.8), where it is published.
+      if (state.view === "function" && !state.parent && it.code === "01" && !flows && hasData(values[B.transfer_function])) {
         v = minus(v, values[B.transfer_function]);
         label += ", without transfers";
       }
-      out.push({ code: it.code, label: label, values: v,
-                 children: !state.parent && it.children && it.children.length ? it.children : null });
+      out.push({ code: it.code, label: label, values: v, children: state.parent ? null : childrenOf(it, level) });
     });
     return out;
   }
 
   // The total the items add up to: the administration's, or the parent's when drilled in.
-  function total() {
-    var level = lv();
+  function total(levelArg) {
+    var level = levelArg || lv();
+    var flows = level.transfers && !state.exclude;
     if (state.view === "function") {
       if (state.parent) {
         var p = level["function"][state.parent];
-        return state.parent === "01" && !showFlows() ? minus(p, level["function"][B.transfer_function]) : p;
+        return state.parent === "01" && !flows ? minus(p, level["function"][B.transfer_function]) : p;
       }
-      return showFlows() ? level["function"].TOTAL : minus(level["function"].TOTAL, level["function"][B.transfer_function]);
+      return flows ? level["function"].TOTAL : minus(level["function"].TOTAL, level["function"][B.transfer_function]);
     }
-    if (state.view === "type") return showFlows() ? level.type.TOTAL : minus(level.type.TOTAL, level.type.transfers);
+    if (state.view === "type") return flows ? level.type.TOTAL : minus(level.type.TOTAL, level.type.transfers);
     if (state.parent) return level.revenue[state.parent];
-    return showFlows() ? level.revenue.TOTAL : minus(level.revenue.TOTAL, level.revenue.transfers);
+    return flows ? level.revenue.TOTAL : minus(level.revenue.TOTAL, level.revenue.transfers);
   }
 
   function years() {
@@ -92,20 +104,23 @@
   }
 
   // ---------------------------------------------------------------- measures
-  function convert(values, tot) {
+  // A community's figures are set against its own GDP and population; the others against Spain's.
+  function convert(values, tot, levelArg) {
+    var level = levelArg || lv();
+    var gdp = level.gdp || B.gdp, population = level.population || B.population;
     return values.map(function (v, k) {
       if (v === null || v === undefined) return null;
       switch (state.measure) {
         case "eur": return v / 1000;
         case "real": return B.prices[k] ? v / 1000 * 100 / B.prices[k] : null;
-        case "gdp": return B.gdp[k] ? v / B.gdp[k] * 100 : null;
-        case "person": return B.population[k] && B.prices[k] ? v * 1e6 / B.population[k] * 100 / B.prices[k] : null;
+        case "gdp": return gdp[k] ? v / gdp[k] * 100 : null;
+        case "person": return population[k] && B.prices[k] ? v * 1e6 / population[k] * 100 / B.prices[k] : null;
         case "share": return tot && tot[k] ? v / tot[k] * 100 : null;
       }
       return null;
     });
   }
-  function at(series, year) { var k = Y.indexOf(year); return k < 0 ? null : series[k]; }
+  function at(series, year) { var k = Y.indexOf(year); return k < 0 || !series ? null : series[k]; }
   function fmt(v, m) {
     if (v === null || v === undefined || isNaN(v)) return "–";
     var d = m.decimals;
@@ -172,17 +187,92 @@
     render({ id: "bx-trend", kind: "line", unit: m.unit === "%" ? "%" : "", decimals: m.decimals, freq: "A", series: series });
 
     table(rows, totConv, m, where, yearLabel);
+    compare(m, yearLabel);
     writeHash();
+  }
+
+  // ---------------------------------------------------------------- the communities side by side
+  var COMMUNITIES = B.levels.filter(function (l) { return l.community; });
+  var REGIONS = find(B.levels.map(function (l) { return { code: l.id, level: l }; }), "regions");
+
+  function compareChoices() {
+    var list = state.view === "function" ? B.functions : state.view === "type" ? B.types : B.revenues;
+    return [{ code: "TOTAL", label: state.view === "revenue" ? "All revenue" : "All spending" }].concat(list.filter(function (it) {
+      return COMMUNITIES.some(function (c) {
+        var t = state.view === "function" ? c["function"] : state.view === "type" ? c.type : c.revenue;
+        return hasData(t[it.code]);
+      });
+    }));
+  }
+
+  function compareValues(level, code) {
+    var saved = state.parent;
+    state.parent = null;
+    var tot = total(level), values;
+    if (code === "TOTAL") values = tot;
+    else {
+      var it = find(items(level), code);
+      values = it ? it.values : null;
+    }
+    state.parent = saved;
+    return values ? convert(values, tot, level) : null;
+  }
+
+  function compare(m, yearLabel) {
+    var box = $("bx-compare");
+    if (!box) return;
+    var show = COMMUNITIES.length && (lv().community || lv().id === "regions");
+    box.hidden = !show;
+    if (!show) return;
+    var sel = $("bx-cmp-item"), choices = compareChoices();
+    if (!find(choices, state.cmp)) state.cmp = state.view === "function" ? "07" : "TOTAL";
+    if (!find(choices, state.cmp)) state.cmp = "TOTAL";
+    var want = choices.map(function (c) { return '<option value="' + c.code + '"' + (c.code === state.cmp ? " selected" : "") + ">" + c.label + "</option>"; }).join("");
+    if (sel.innerHTML !== want) sel.innerHTML = want;
+    sel.value = state.cmp;
+    var label = find(choices, state.cmp).label;
+    var rows = COMMUNITIES.map(function (c) {
+      var v = compareValues(c, state.cmp);
+      return { level: c, now: v ? at(v, state.year) : null, then: v ? at(v, state.base) : null };
+    }).filter(function (r) { return r.now !== null && r.now !== undefined; })
+      .sort(function (a, b) { return b.now - a.now; });
+    var all = REGIONS ? compareValues(REGIONS.level, state.cmp) : null;
+    $("bx-cmp-title").textContent = label + ", " + yearLabel;
+    $("bx-cmp-subtitle").textContent = "The 17 communities · " + m.label;
+    var ref = all && state.measure !== "eur" && state.measure !== "real" ? at(all, state.year) : null;
+    render({ id: "bx-cmp", kind: "hbar", unit: m.unit, decimals: m.decimals, x_title: "", freq: "A",
+             highlight: lv().community ? lv().name : null,
+             ref_lines: ref !== null && ref !== undefined ? [{ y: +ref.toFixed(4), label: "All communities" }] : [],
+             series: [{ name: label, x: rows.map(function (r) { return r.level.name; }), y: rows.map(function (r) { return +r.now.toFixed(4); }) }] });
+    $("bx-cmp-caption").textContent = label + " · " + m.label;
+    $("bx-cmp-col-year").textContent = yearLabel;
+    $("bx-cmp-col-base").textContent = state.base;
+    var html = rows.map(function (r) {
+      return '<tr class="bx-cmp-row' + (r.level.id === state.level ? " highlight-row" : "") + '" data-level="' + r.level.id + '" tabindex="0">' +
+             '<th scope="row">' + r.level.name + '</th><td class="num">' + fmt(r.now, m) + '</td><td class="num">' + fmt(r.then, m) +
+             '</td><td class="num">' + change(r.now, r.then) + "</td></tr>";
+    }).join("");
+    if (all) {
+      html += '<tr class="bx-total"><th scope="row">All communities</th><td class="num">' + fmt(at(all, state.year), m) +
+              '</td><td class="num">' + fmt(at(all, state.base), m) + '</td><td class="num">' + change(at(all, state.year), at(all, state.base)) + "</td></tr>";
+    }
+    $("bx-cmp-table").querySelector("tbody").innerHTML = html;
   }
 
   function facts(tot, list) {
     var k = Y.indexOf(state.year), level = lv(), out = [];
+    var gdp = level.gdp || B.gdp, population = level.population || B.population;
     var raw = at(tot, state.year);
     var noun = state.view === "revenue" ? "Revenue" : "Spending";
     if (raw !== null && raw !== undefined) {
       out.push([noun + " in " + state.year, "€" + (raw / 1000).toLocaleString("en-GB", { maximumFractionDigits: 1, minimumFractionDigits: 1 }) + " bn",
-                B.gdp[k] ? (raw / B.gdp[k] * 100).toFixed(1) + "% of GDP" : ""]);
-      if (B.population[k]) out.push(["A person", "€" + Math.round(raw * 1e6 / B.population[k]).toLocaleString("en-GB"), "in " + state.year + ", at that year's prices"]);
+                gdp[k] ? (raw / gdp[k] * 100).toFixed(1) + "% of " + (level.community ? "its GDP" : "GDP") : ""]);
+      if (population[k]) out.push(["A person", "€" + Math.round(raw * 1e6 / population[k]).toLocaleString("en-GB"), "in " + state.year + ", at that year's prices"]);
+    }
+    if (level.balance && level.balance[k] !== null && level.balance[k] !== undefined) {
+      var bal = level.balance[k];
+      out.push(["Balance in " + state.year, (bal >= 0 ? "+€" : "−€") + (Math.abs(bal) / 1000).toFixed(2) + " bn",
+                (bal >= 0 ? "a surplus" : "a deficit") + (gdp[k] ? ", " + (Math.abs(bal) / gdp[k] * 100).toFixed(1) + "% of its GDP" : "")]);
     }
     if (level.transfers && !state.parent) {
       var table = state.view === "function" ? level["function"] : state.view === "type" ? level.type : level.revenue;
@@ -248,7 +338,7 @@
   function writeHash() {
     var h = "level=" + state.level + "&view=" + state.view + "&measure=" + state.measure + "&year=" + state.year +
             "&base=" + state.base + (state.exclude ? "&exclude=1" : "") + (state.parent ? "&parent=" + state.parent : "") +
-            "&sel=" + state.selected.join(",");
+            "&sel=" + state.selected.join(",") + (state.cmp ? "&cmp=" + state.cmp : "");
     history.replaceState(null, "", "#" + h);
   }
   function readHash() {
@@ -263,6 +353,7 @@
       if (k === "exclude") state.exclude = v === "1";
       if (k === "parent") state.parent = v || null;
       if (k === "sel") state.selected = v ? v.split(",") : [];
+      if (k === "cmp") state.cmp = v || null;
     });
   }
 
@@ -299,6 +390,19 @@
     var row = e.target.closest("tr.bx-row");
     if (row && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); toggle(row.getAttribute("data-code")); }
   });
+  if ($("bx-cmp-item")) {
+    $("bx-cmp-item").addEventListener("change", function (e) { state.cmp = e.target.value; draw(); });
+    // A community's row opens that community above.
+    var pick = function (row) {
+      state.level = row.getAttribute("data-level"); state.parent = null; state.selected = [];
+      syncControls(); draw(); $("bx-level").scrollIntoView({ block: "center" });
+    };
+    $("bx-cmp-table").addEventListener("click", function (e) { var row = e.target.closest("tr.bx-cmp-row"); if (row) pick(row); });
+    $("bx-cmp-table").addEventListener("keydown", function (e) {
+      var row = e.target.closest("tr.bx-cmp-row");
+      if (row && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); pick(row); }
+    });
+  }
   function toggle(code) {
     var i = state.selected.indexOf(code);
     if (i >= 0) state.selected.splice(i, 1);

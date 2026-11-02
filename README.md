@@ -86,9 +86,11 @@ Because the workflow commits data every day, run `git pull` before working local
   exactly to 2036, extended by EconPulse on the Commission's long-term assumptions), with levers for the budget,
   ageing costs, growth, inflation and interest rates, a goal-solver and shareable scenario links; after
   Econvitals' Fiscal Explorer. **Budget explorer** (`site/budget-explorer.html`, also under the Fiscal tab): what
-  the State (central government), the Social Security and all public administrations spend and raise since 1995,
-  by function (COFOG, with its groups), by type and tax by tax, from the IGAE's national accounts, in € bn, at
-  constant prices, % of GDP, per person or as a share, with flows between administrations shown apart or left out.
+  the State (central government), the Social Security, the autonomous communities together and each of the 17, and
+  all public administrations spend and raise since 1995 (the communities one by one from 2000, by function from
+  2012), by function (COFOG, with its groups), by type and tax by tax, from the IGAE's national accounts, in € bn, at
+  constant prices, % of GDP (each community's own), per person or as a share, with flows between administrations
+  shown apart or left out, each community's balance, and the communities side by side.
   **ECB-speak** (`site/ecb-speak.html`): how hawkish or dovish the ECB's Governing
   Council sounds, from every member's speech since September 2022 (ECB and BIS full texts), scored with
   EconPulse's published word lists rather than an AI; after Econvitals' Fedspeak Tracker. **Global central bank stance**
@@ -175,8 +177,9 @@ econpulse/            Python package
   feed.py             the RSS feed of those notes (site/feed.xml; absolute links use config.SITE_URL)
   stance.py           the central bank stance page, from Econvitals' public data (saved to data/stance.json)
   fiscal.py           the Fiscal Explorer's baseline and data (the levers run in static/fiscal.js)
-  budget.py           the Budget explorer's data: the IGAE workbooks read into data/budget.json at fetch time
-                      (the explorer runs in static/budget.js)
+  budget.py           the Budget explorer's data: the IGAE workbooks read into data/budget.json at fetch time,
+                      the per-community ones cached in data/budget_regional.json (the explorer runs in
+                      static/budget.js)
   ecbspeak.py         ECB-speak: collects the Governing Council's speeches (data/ecbspeak.json) and analyses them
   speechscore.py      the hawkish/dovish word lists and the score
   fiscal_baseline.json  the Commission's Spain baseline, extracted by scripts/extract_fiscal_baseline.py
