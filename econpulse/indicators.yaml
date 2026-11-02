@@ -276,6 +276,11 @@ ameco_areas: &ameco_areas
   - {slug: us, code: USA, area_name: United States, area_name_es: Estados Unidos}
   - {slug: jp, code: JPN, area_name: Japan, area_name_es: Japón}
 
+# The OECD's standardised house price ratios (against each country's long-run average): none for Poland,
+# and the United States' price-to-rent ratio stops in 2024.
+house_income_areas: &house_income_areas "ESP+FRA+DEU+ITA+NLD+PRT+GBR+USA+CAN+JPN"
+house_rent_areas: &house_rent_areas "ESP+FRA+DEU+ITA+NLD+PRT+GBR+CAN+JPN"
+
 indicators:
 
   # ---------------------------------------------------------------- GDP (INE CNTR)
@@ -2544,6 +2549,197 @@ indicators:
     transforms: [yoy, level]
     max_age_days: 900
     notes: GDP at 2015 prices per person employed, thousands of national currency (AMECO); compare its growth, not its level.
+
+  # ---------------------------------------------------------------- Housing: affordability and valuation (Batch 28a)
+  # The Banco de España's housing indicators (table si_1_5): what a home costs against household income, the
+  # share of income a new mortgage takes, prices per square metre, rental yields and tenure.
+  - id: house_price_income
+    label: "House price to income"
+    label_es: "Precio de la vivienda / renta bruta disponible por hogar"
+    section: housing
+    source: bde
+    key: D_TKB57110_IPV
+    freq: Q
+    unit: years
+    decimals: 1
+    change_unit: "%"
+    notes: Years of a household's gross disposable income an average free-market home of 93.75 m2 costs (Banco de España).
+
+  - id: mortgage_effort
+    label: "Mortgage effort"
+    label_es: "Esfuerzo teórico anual sin deducciones"
+    section: housing
+    source: bde
+    key: D_TKB57210_IPV
+    freq: Q
+    unit: "%"
+    change_unit: pp
+    notes: First-year payments on a new mortgage for an average home, as a share of a household's gross income, before tax relief (Banco de España).
+
+  - id: price_m2_appraisal
+    label: "Price per m2, appraisals"
+    label_es: "Precio medio del m2 de la vivienda libre tasada"
+    section: housing
+    source: bde
+    key: DHIVTNOAPLPMMUVT_RLI.T
+    freq: Q
+    unit: "€/m²"
+    decimals: 0
+    transforms: [level, yoy]
+    notes: Ministry of Housing, from appraisals for mortgages.
+
+  - id: price_m2_new
+    label: "Price per m2, homes up to 5 years old"
+    label_es: "Precio medio del m2 de la vivienda libre tasada, hasta 5 años"
+    section: housing
+    source: bde
+    key: DHIVTNOAPLPMMUVT_VVN_RLI.T
+    freq: Q
+    unit: "€/m²"
+    decimals: 0
+    transforms: [level, yoy]
+
+  - id: price_m2_used
+    label: "Price per m2, homes over 5 years old"
+    label_es: "Precio medio del m2 de la vivienda libre tasada, más de 5 años"
+    section: housing
+    source: bde
+    key: DHIVTNOAPLPMMUVT_VVU_RLI.T
+    freq: Q
+    unit: "€/m²"
+    decimals: 0
+    transforms: [level, yoy]
+
+  - id: price_m2_idealista
+    label: "Asking price per m2, second-hand homes (Idealista)"
+    label_es: "Precio de oferta del m2, vivienda de segunda mano (Idealista)"
+    section: housing
+    source: bde
+    key: D_1KB56100_IDEA
+    freq: M
+    unit: "€/m²"
+    decimals: 0
+    transforms: [level, yoy]
+    notes: Asking prices of listings, from the portal, as published by the Banco de España.
+
+  - id: price_m2_fotocasa
+    label: "Asking price per m2, second-hand homes (Fotocasa)"
+    label_es: "Precio de oferta del m2, vivienda de segunda mano (Fotocasa)"
+    section: housing
+    source: bde
+    key: D_1KB56100_FOTO
+    freq: M
+    unit: "€/m²"
+    decimals: 0
+    transforms: [level, yoy]
+    notes: Asking prices of listings, from the portal, as published by the Banco de España.
+
+  - id: rental_yield
+    label: "Gross rental yield on housing"
+    label_es: "Rentabilidad bruta de la vivienda por alquiler"
+    section: housing
+    source: bde
+    key: D_TKR60REA_VIV_IPV
+    freq: Q
+    unit: "%"
+    change_unit: pp
+    notes: A year's rent as a share of the home's price, before costs and taxes (Banco de España, from INE and the Ministry of Housing).
+
+  - id: housing_return
+    label: "Total annual return on housing"
+    label_es: "Rentabilidad anual de la vivienda"
+    section: housing
+    source: bde
+    key: D_TKR600RV_VIV_IPV
+    freq: Q
+    unit: "%"
+    change_unit: pp
+    notes: Rental yield plus the rise in the home's price over the year (Banco de España).
+
+  - id: tenure_owners
+    label: "Households owning their home"
+    label_es: "Hogares con vivienda en propiedad"
+    section: housing
+    source: bde
+    key: D_AKR620PP
+    freq: A
+    unit: "%"
+    change_unit: pp
+    max_age_days: 900
+
+  - id: tenure_renters
+    label: "Households renting their home"
+    label_es: "Hogares con vivienda en alquiler"
+    section: housing
+    source: bde
+    key: D_AKR620PA
+    freq: A
+    unit: "%"
+    change_unit: pp
+    max_age_days: 900
+
+  # The OECD's analytical house prices for Spain and its comparators: real prices, and price-to-income and
+  # price-to-rent ratios (indices; the page compares each with its own long-run average, as the OECD does).
+  - id: real_hpi_{slug}
+    for_each: *comparators
+    label: "Real house prices, {name}"
+    label_es: "Precio real de la vivienda, {name_es}"
+    section: housing
+    source: oecd
+    key: "OECD.ECO.MPD,DSD_AN_HOUSE_PRICES@DF_HOUSE_PRICES,1.0/{oecd}.Q.RHP."
+    params: {batch: *comparator_areas}
+    freq: Q
+    unit: index
+    transforms: [yoy, level]
+    max_age_days: 450            # the OECD publishes some countries two or three quarters late
+    notes: Nominal house prices deflated by consumer prices (OECD analytical house prices).
+
+  - id: price_income_{slug}
+    for_each:
+      - {slug: es, oecd: ESP, name: Spain, name_es: España}
+      - {slug: fr, oecd: FRA, name: France, name_es: Francia}
+      - {slug: de, oecd: DEU, name: Germany, name_es: Alemania}
+      - {slug: it, oecd: ITA, name: Italy, name_es: Italia}
+      - {slug: nl, oecd: NLD, name: Netherlands, name_es: Países Bajos}
+      - {slug: pt, oecd: PRT, name: Portugal, name_es: Portugal}
+      - {slug: uk, oecd: GBR, name: United Kingdom, name_es: Reino Unido}
+      - {slug: us, oecd: USA, name: United States, name_es: Estados Unidos}
+      - {slug: ca, oecd: CAN, name: Canada, name_es: Canadá}
+      - {slug: jp, oecd: JPN, name: Japan, name_es: Japón}
+    label: "House price to income ratio, {name}"
+    label_es: "Ratio precio de la vivienda / renta, {name_es} (media de largo plazo = 100)"
+    section: housing
+    source: oecd
+    key: "OECD.ECO.MPD,DSD_AN_HOUSE_PRICES@DF_HOUSE_PRICES,1.0/{oecd}.Q.HPI_YDH_AVG."
+    params: {batch: *house_income_areas}
+    freq: Q
+    unit: index
+    transforms: [level, diff_yoy]
+    max_age_days: 450            # the OECD publishes some countries two or three quarters late
+    notes: House prices over disposable income per head, against the country's long-run average = 100 (the OECD's standardised ratio); not published for Poland.
+
+  - id: price_rent_{slug}
+    for_each:
+      - {slug: es, oecd: ESP, name: Spain, name_es: España}
+      - {slug: fr, oecd: FRA, name: France, name_es: Francia}
+      - {slug: de, oecd: DEU, name: Germany, name_es: Alemania}
+      - {slug: it, oecd: ITA, name: Italy, name_es: Italia}
+      - {slug: nl, oecd: NLD, name: Netherlands, name_es: Países Bajos}
+      - {slug: pt, oecd: PRT, name: Portugal, name_es: Portugal}
+      - {slug: uk, oecd: GBR, name: United Kingdom, name_es: Reino Unido}
+      - {slug: ca, oecd: CAN, name: Canada, name_es: Canadá}
+      - {slug: jp, oecd: JPN, name: Japan, name_es: Japón}
+    label: "House price to rent ratio, {name}"
+    label_es: "Ratio precio de la vivienda / alquiler, {name_es} (media de largo plazo = 100)"
+    section: housing
+    source: oecd
+    key: "OECD.ECO.MPD,DSD_AN_HOUSE_PRICES@DF_HOUSE_PRICES,1.0/{oecd}.Q.HPI_RPI_AVG."
+    params: {batch: *house_rent_areas}
+    freq: Q
+    unit: index
+    transforms: [level, diff_yoy]
+    max_age_days: 450            # the OECD publishes some countries two or three quarters late
+    notes: House prices over rents, against the country's long-run average = 100 (the OECD's standardised ratio); not for Poland or, after 2024, the United States.
 
   # ---------------------------------------------------------------- Regions (one entry per autonomous community)
   - id: unemployment_{slug}

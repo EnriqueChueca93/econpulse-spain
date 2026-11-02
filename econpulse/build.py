@@ -199,7 +199,7 @@ def build_site(indicators: list[Indicator], store: Store | None = None, site_dir
             charts_file = f"data/charts-{section}.js"
             write_data_js(site_dir / charts_file, "charts", page["charts"])
         render("section.html", f"{section}.html", page={"title": title, "intro": intro, "batch": batch},
-               blocks=page["blocks"], charts_file=charts_file, picker=peers.picker() if section == "international" else None,
+               blocks=page["blocks"], charts_file=charts_file, picker=peers.picker() if section in ("international", "housing") else None,
                items=[i for i in items if i["section"] == section])
     groups = [{"id": s, "title": t, "items": [i for i in items if i["section"] == s]} for s, (t, _, _) in SECTION_PAGES.items()]
     attention = [i for i in items if i["status"] != "ok" or i["out_of_date"]]

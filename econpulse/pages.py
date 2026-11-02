@@ -8,7 +8,7 @@ lists the indicators those functions read. Sections without blocks yet show thei
 (see build.SECTION_PAGES for the batch that fills them).
 """
 
-from . import analytics, demography, forecasts, peers, policy, sectortables, surprises, underlying, workstats
+from . import analytics, demography, forecasts, housing, peers, policy, sectortables, surprises, underlying, workstats
 from .charts import build_chart, build_curve, build_ranking, build_xy
 from .registry import Indicator
 from .snapshot import fmt_value, period_label
@@ -1234,6 +1234,80 @@ PAGES: dict[str, list[dict]] = {
             ],
         },
         {
+            "id": "affordability",
+            "title": "Affordability",
+            "intro": ("What an average home costs against what households earn, and what a new mortgage takes from "
+                      "their income, from the Banco de España's housing indicators, with prices per square metre from "
+                      "mortgage appraisals and asking prices on the two largest property portals."),
+            "facts": housing.affordability_facts,
+            "tables": [Table(
+                title="Affordability",
+                caption="Latest and a year earlier",
+                columns=[Level("latest"), Level("year", "A year earlier")],
+                rows=[
+                    Row("house_price_income", "An average home, years of household income", flow=False),
+                    Row("mortgage_effort", "A new mortgage, % of household income", flow=False),
+                    Heading("Price per m²"),
+                    Row("price_m2_appraisal", "Appraisals (Ministry of Housing)", indent=1, flow=False),
+                    Row("price_m2_new", "Homes up to 5 years old", indent=2, flow=False),
+                    Row("price_m2_used", "Homes over 5 years old", indent=2, flow=False),
+                    Row("price_m2_idealista", "Asking prices, Idealista", indent=1, flow=False),
+                    Row("price_m2_fotocasa", "Asking prices, Fotocasa", indent=1, flow=False),
+                ],
+                note=("An average home is a free-market home of 93.75 m² at the appraised price; household income is "
+                      "gross disposable income. The mortgage takes a loan of 80% of the price at the going rate and "
+                      "term, before tax relief. Asking prices are what sellers ask on the portals, usually above the "
+                      "prices homes sell for. Sources: Banco de España, Ministry of Housing, Idealista, Fotocasa."),
+            )],
+            "charts": [
+                housing.price_income_chart,
+                housing.effort_chart,
+                {"id": "price-m2", "title": "Price per square metre", "subtitle": "€ per m²",
+                 "kind": "line", "unit": "€/m²", "decimals": 0, "start": "2006-01-01",
+                 "series": [("price_m2_appraisal", "level", "Appraisals"), ("price_m2_idealista", "level", "Idealista"),
+                            ("price_m2_fotocasa", "level", "Fotocasa")]},
+            ],
+        },
+        {
+            "id": "renting",
+            "title": "Rents and renting",
+            "intro": ("How many households rent, what renting a home out pays against its price, and how fast rents are "
+                      "rising against prices in general."),
+            "facts": housing.renting_facts,
+            "tables": [],
+            "charts": [
+                {"id": "tenure", "title": "Owning and renting", "subtitle": "% of households, by tenure of their home",
+                 "kind": "line", "unit": "%", "decimals": 1, "start": "1985-01-01",
+                 "series": [("tenure_owners", "level", "Own"), ("tenure_renters", "level", "Rent")]},
+                {"id": "rental-yield", "title": "Rental yield and the 10-year bond",
+                 "subtitle": "Gross rental yield on housing and Spain's 10-year government yield, %",
+                 "kind": "line", "unit": "%", "decimals": 1, "start": "2000-01-01",
+                 "series": [("rental_yield", "level", "Rental yield"), ("es_10y_monthly", "level", "10-year bond")]},
+                {"id": "rents-prices", "title": "Rents and consumer prices", "subtitle": "% change on a year earlier",
+                 "kind": "line", "unit": "%", "decimals": 1, "start": "2015-01-01",
+                 "series": [("cpi_rent_index", "yoy", "Rents (CPI)"), ("cpi_index", "yoy", "All consumer prices")]},
+            ],
+        },
+        {
+            "id": "valuation",
+            "title": "Against other countries",
+            "intro": ("Spain's house prices next to its comparators', from the OECD: real prices, and prices against "
+                      "incomes and against rents, each next to its own long-run average. The chips choose which countries "
+                      "the chart draws beside Spain."),
+            "picker": True,
+            "uses": sorted(set(peers.IDS["real_hpi"].values())
+                           | {f"price_income_{s}" for s, _ in housing.COMPARATORS if s != "pl"}
+                           | {f"price_rent_{s}" for s, _ in housing.COMPARATORS if s not in ("pl", "us")}),
+            "tables": [housing.valuation_table],
+            "charts": [
+                housing.price_income_ranking,
+                housing.price_rent_ranking,
+                {"id": "real-hpi-peers", "title": "Real house prices", "subtitle": "Deflated by consumer prices, 2015 = 100",
+                 "kind": "line", "unit": "", "decimals": 1, "start": "2000-01-01", "pick": True,
+                 "ref_lines": [{"y": 100, "label": "2015"}], "series": peers.chart_series("real_hpi")},
+            ],
+        },
+        {
             "id": "sales",
             "title": "Sales, mortgages and permits",
             "intro": ("How many homes change hands, how many are bought with a mortgage, and how many new ones "
@@ -1382,6 +1456,7 @@ PAGES: dict[str, list[dict]] = {
                       "below take growth, jobs, prices and interest rates, the public finances, the current account and "
                       "the IMF's outlook in turn."),
             "facts": peers.facts,
+            "picker": True,
             "uses": sorted(peers.IDS["level"].values()),
             "tables": [Panel(
                 title="Country",
@@ -1768,6 +1843,7 @@ def build_page(section: str, indicators: list[Indicator], store: Store) -> dict:
         if not tables and not specs:
             continue
         blocks.append({"id": block["id"], "title": block["title"], "intro": block["intro"], "facts": facts,
-                       "tables": tables, "callout": callout, "charts": specs, "flash": flash})
+                       "tables": tables, "callout": callout, "charts": specs, "flash": flash,
+                       "picker": block.get("picker", False)})
         charts += specs
     return {"blocks": blocks, "charts": charts}

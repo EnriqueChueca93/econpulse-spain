@@ -74,8 +74,9 @@ def fetch(key: str, params: dict | None = None, **_) -> FetchResult:
     params = params or {}
     flow, series = key.split("/", 1)
     fmt = "csvfilewithlabels" if params.get("edition") else "csv"
+    start = str(params.get("start", "1990"))      # {start: 1960} for the whole history, e.g. for long-run averages
     if not params.get("batch"):
-        return parse(http.get(f"{BASE}/{flow}/{series}", params={"format": fmt, "startPeriod": "1990"}).text)
+        return parse(http.get(f"{BASE}/{flow}/{series}", params={"format": fmt, "startPeriod": start}).text)
     # The area is not always the first part of the key (the national accounts have Q.Y.GBR...): it is the
     # part that is one of the batch's areas.
     areas, parts = params["batch"].split("+"), series.split(".")
@@ -84,14 +85,15 @@ def fetch(key: str, params: dict | None = None, **_) -> FetchResult:
         raise ValueError(f"no area of the batch {params['batch']} in the key {series}")
     area = parts[at]
     url = f"{BASE}/{flow}/" + ".".join(params["batch"] if i == at else part for i, part in enumerate(parts))
+    key = f"{url}|{start}"
     with _lock:
-        entry = _cache.get(url)
+        entry = _cache.get(key)
         if entry is None:
             try:
-                entry = parse_by_area(http.get(url, params={"format": "csv", "startPeriod": "1990"}).text)
+                entry = parse_by_area(http.get(url, params={"format": "csv", "startPeriod": start}).text)
             except Exception as e:
                 entry = e
-            _cache[url] = entry
+            _cache[key] = entry
     if isinstance(entry, Exception):
         raise entry
     if area not in entry:

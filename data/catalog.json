@@ -4886,6 +4886,15 @@
   "flash": false,
   "source_name": "Suministro de agua, actividades de saneamiento, gestión de residuos y descontaminación. Horas efectivas. Total Nacional. Tiempo de trabajo. Ambas jornadas. Número de Horas."
  },
+ "house_price_income": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:08:25+00:00",
+  "first_date": "1987-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 158,
+  "signature": "[\"bde\", \"D_TKB57110_IPV\", {}, 1.0]",
+  "source_name": "Estadísticas Generales. Edificación y vivienda. Accesibilidad a la vivienda. Precio de la vivienda/renta bruta por hogar"
+ },
  "house_prices": {
   "status": "ok",
   "fetched_at": "2026-11-01T21:22:31+00:00",
@@ -5139,6 +5148,15 @@
   "last_date": "2026-09-01",
   "n_obs": 273,
   "signature": "[\"ecb\", \"BSI/M.ES.N.A.A22.A.I.U2.2250.Z01.A\", {}, 1.0]"
+ },
+ "housing_return": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:08:25+00:00",
+  "first_date": "1987-10-01",
+  "last_date": "2026-04-01",
+  "n_obs": 155,
+  "signature": "[\"bde\", \"D_TKR600RV_VIV_IPV\", {}, 1.0]",
+  "source_name": "Estadísticas Generales. Edificación y vivienda. Rentabilidad anual de la vivienda"
  },
  "ibex35": {
   "status": "ok",
@@ -6222,6 +6240,15 @@
   "source_name": "Long-term unemployment by sex - quarterly data",
   "source_updated": "2026-10-26T23:00:00+0100"
  },
+ "mortgage_effort": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:08:25+00:00",
+  "first_date": "1987-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 158,
+  "signature": "[\"bde\", \"D_TKB57210_IPV\", {}, 1.0]",
+  "source_name": "Estadísticas Generales. Edificación y vivienda. Accesibilidad a la vivienda. Esfuerzo teórico anual sin deducciones"
+ },
  "mortgage_lending_homes": {
   "status": "ok",
   "fetched_at": "2026-11-01T21:22:31+00:00",
@@ -6991,6 +7018,203 @@
   "source_name": "Consumers confidence indicator and survey results - monthly data",
   "source_updated": "2026-10-29T11:00:00+0100"
  },
+ "price_income_ca": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:14:10+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 147,
+  "signature": "[\"oecd\", \"OECD.ECO.MPD,DSD_AN_HOUSE_PRICES@DF_HOUSE_PRICES,1.0/CAN.Q.HPI_YDH_AVG.\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+GBR+USA+CAN+JPN\"}, 1.0]"
+ },
+ "price_income_de": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:14:10+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 146,
+  "signature": "[\"oecd\", \"OECD.ECO.MPD,DSD_AN_HOUSE_PRICES@DF_HOUSE_PRICES,1.0/DEU.Q.HPI_YDH_AVG.\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+GBR+USA+CAN+JPN\"}, 1.0]"
+ },
+ "price_income_es": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:14:09+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 146,
+  "signature": "[\"oecd\", \"OECD.ECO.MPD,DSD_AN_HOUSE_PRICES@DF_HOUSE_PRICES,1.0/ESP.Q.HPI_YDH_AVG.\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+GBR+USA+CAN+JPN\"}, 1.0]"
+ },
+ "price_income_fr": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:14:10+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 146,
+  "signature": "[\"oecd\", \"OECD.ECO.MPD,DSD_AN_HOUSE_PRICES@DF_HOUSE_PRICES,1.0/FRA.Q.HPI_YDH_AVG.\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+GBR+USA+CAN+JPN\"}, 1.0]"
+ },
+ "price_income_it": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:14:10+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 146,
+  "signature": "[\"oecd\", \"OECD.ECO.MPD,DSD_AN_HOUSE_PRICES@DF_HOUSE_PRICES,1.0/ITA.Q.HPI_YDH_AVG.\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+GBR+USA+CAN+JPN\"}, 1.0]"
+ },
+ "price_income_jp": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:14:10+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2025-10-01",
+  "n_obs": 144,
+  "signature": "[\"oecd\", \"OECD.ECO.MPD,DSD_AN_HOUSE_PRICES@DF_HOUSE_PRICES,1.0/JPN.Q.HPI_YDH_AVG.\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+GBR+USA+CAN+JPN\"}, 1.0]"
+ },
+ "price_income_nl": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:14:10+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2025-10-01",
+  "n_obs": 144,
+  "signature": "[\"oecd\", \"OECD.ECO.MPD,DSD_AN_HOUSE_PRICES@DF_HOUSE_PRICES,1.0/NLD.Q.HPI_YDH_AVG.\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+GBR+USA+CAN+JPN\"}, 1.0]"
+ },
+ "price_income_pt": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:14:10+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 126,
+  "signature": "[\"oecd\", \"OECD.ECO.MPD,DSD_AN_HOUSE_PRICES@DF_HOUSE_PRICES,1.0/PRT.Q.HPI_YDH_AVG.\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+GBR+USA+CAN+JPN\"}, 1.0]"
+ },
+ "price_income_uk": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:14:10+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 146,
+  "signature": "[\"oecd\", \"OECD.ECO.MPD,DSD_AN_HOUSE_PRICES@DF_HOUSE_PRICES,1.0/GBR.Q.HPI_YDH_AVG.\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+GBR+USA+CAN+JPN\"}, 1.0]"
+ },
+ "price_income_us": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:14:10+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 146,
+  "signature": "[\"oecd\", \"OECD.ECO.MPD,DSD_AN_HOUSE_PRICES@DF_HOUSE_PRICES,1.0/USA.Q.HPI_YDH_AVG.\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+GBR+USA+CAN+JPN\"}, 1.0]"
+ },
+ "price_m2_appraisal": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:08:25+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 126,
+  "signature": "[\"bde\", \"DHIVTNOAPLPMMUVT_RLI.T\", {}, 1.0]",
+  "source_name": "Estadísticas Generales. Edificación y vivienda. Precio medio m2 de viviendas libres tasadas. Total nacional"
+ },
+ "price_m2_fotocasa": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:08:25+00:00",
+  "first_date": "2005-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 261,
+  "signature": "[\"bde\", \"D_1KB56100_FOTO\", {}, 1.0]",
+  "source_name": "Estadísticas Generales. Edificación y vivienda. Precio de la vivienda. Viviendas de segunda mano. Precio metro cuadrado. Fotocasa"
+ },
+ "price_m2_idealista": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:08:25+00:00",
+  "first_date": "2006-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 249,
+  "signature": "[\"bde\", \"D_1KB56100_IDEA\", {}, 1.0]",
+  "source_name": "Estadísticas Generales. Edificación y vivienda. Precio de la vivienda. Viviendas de segunda mano. Precio metro cuadrado. Idealista"
+ },
+ "price_m2_new": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:08:25+00:00",
+  "first_date": "2013-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 54,
+  "signature": "[\"bde\", \"DHIVTNOAPLPMMUVT_VVN_RLI.T\", {}, 1.0]",
+  "source_name": "Estadísticas Generales. Edificación y vivienda. Precio medio m2 de viviendas libres tasadas. Hasta 5 años"
+ },
+ "price_m2_used": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:08:25+00:00",
+  "first_date": "2013-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 54,
+  "signature": "[\"bde\", \"DHIVTNOAPLPMMUVT_VVU_RLI.T\", {}, 1.0]",
+  "source_name": "Estadísticas Generales. Edificación y vivienda. Precio medio m2 de viviendas libres tasadas. Mas de 5 años"
+ },
+ "price_rent_ca": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:14:10+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 147,
+  "signature": "[\"oecd\", \"OECD.ECO.MPD,DSD_AN_HOUSE_PRICES@DF_HOUSE_PRICES,1.0/CAN.Q.HPI_RPI_AVG.\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+GBR+CAN+JPN\"}, 1.0]"
+ },
+ "price_rent_de": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:14:10+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 146,
+  "signature": "[\"oecd\", \"OECD.ECO.MPD,DSD_AN_HOUSE_PRICES@DF_HOUSE_PRICES,1.0/DEU.Q.HPI_RPI_AVG.\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+GBR+CAN+JPN\"}, 1.0]"
+ },
+ "price_rent_es": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:14:10+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 146,
+  "signature": "[\"oecd\", \"OECD.ECO.MPD,DSD_AN_HOUSE_PRICES@DF_HOUSE_PRICES,1.0/ESP.Q.HPI_RPI_AVG.\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+GBR+CAN+JPN\"}, 1.0]"
+ },
+ "price_rent_fr": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:14:10+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 146,
+  "signature": "[\"oecd\", \"OECD.ECO.MPD,DSD_AN_HOUSE_PRICES@DF_HOUSE_PRICES,1.0/FRA.Q.HPI_RPI_AVG.\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+GBR+CAN+JPN\"}, 1.0]"
+ },
+ "price_rent_it": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:14:10+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2025-10-01",
+  "n_obs": 144,
+  "signature": "[\"oecd\", \"OECD.ECO.MPD,DSD_AN_HOUSE_PRICES@DF_HOUSE_PRICES,1.0/ITA.Q.HPI_RPI_AVG.\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+GBR+CAN+JPN\"}, 1.0]"
+ },
+ "price_rent_jp": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:14:10+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2025-10-01",
+  "n_obs": 144,
+  "signature": "[\"oecd\", \"OECD.ECO.MPD,DSD_AN_HOUSE_PRICES@DF_HOUSE_PRICES,1.0/JPN.Q.HPI_RPI_AVG.\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+GBR+CAN+JPN\"}, 1.0]"
+ },
+ "price_rent_nl": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:14:10+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2025-10-01",
+  "n_obs": 144,
+  "signature": "[\"oecd\", \"OECD.ECO.MPD,DSD_AN_HOUSE_PRICES@DF_HOUSE_PRICES,1.0/NLD.Q.HPI_RPI_AVG.\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+GBR+CAN+JPN\"}, 1.0]"
+ },
+ "price_rent_pt": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:14:10+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 146,
+  "signature": "[\"oecd\", \"OECD.ECO.MPD,DSD_AN_HOUSE_PRICES@DF_HOUSE_PRICES,1.0/PRT.Q.HPI_RPI_AVG.\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+GBR+CAN+JPN\"}, 1.0]"
+ },
+ "price_rent_uk": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:14:10+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 146,
+  "signature": "[\"oecd\", \"OECD.ECO.MPD,DSD_AN_HOUSE_PRICES@DF_HOUSE_PRICES,1.0/GBR.Q.HPI_RPI_AVG.\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+GBR+CAN+JPN\"}, 1.0]"
+ },
  "primary_balance": {
   "status": "ok",
   "fetched_at": "2026-11-01T21:23:23+00:00",
@@ -7153,6 +7377,94 @@
   "last_date": "2026-04-01",
   "n_obs": 78,
   "signature": "[\"derived\", \"deflate\", {\"a\": \"house_prices\", \"b\": \"cpi_index\", \"period\": \"Q\"}, 1.0]"
+ },
+ "real_hpi_ca": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:14:09+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 147,
+  "signature": "[\"oecd\", \"OECD.ECO.MPD,DSD_AN_HOUSE_PRICES@DF_HOUSE_PRICES,1.0/CAN.Q.RHP.\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]"
+ },
+ "real_hpi_de": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:14:08+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 146,
+  "signature": "[\"oecd\", \"OECD.ECO.MPD,DSD_AN_HOUSE_PRICES@DF_HOUSE_PRICES,1.0/DEU.Q.RHP.\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]"
+ },
+ "real_hpi_es": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:14:08+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 146,
+  "signature": "[\"oecd\", \"OECD.ECO.MPD,DSD_AN_HOUSE_PRICES@DF_HOUSE_PRICES,1.0/ESP.Q.RHP.\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]"
+ },
+ "real_hpi_fr": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:14:08+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 146,
+  "signature": "[\"oecd\", \"OECD.ECO.MPD,DSD_AN_HOUSE_PRICES@DF_HOUSE_PRICES,1.0/FRA.Q.RHP.\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]"
+ },
+ "real_hpi_it": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:14:08+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 146,
+  "signature": "[\"oecd\", \"OECD.ECO.MPD,DSD_AN_HOUSE_PRICES@DF_HOUSE_PRICES,1.0/ITA.Q.RHP.\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]"
+ },
+ "real_hpi_jp": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:14:09+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2025-10-01",
+  "n_obs": 144,
+  "signature": "[\"oecd\", \"OECD.ECO.MPD,DSD_AN_HOUSE_PRICES@DF_HOUSE_PRICES,1.0/JPN.Q.RHP.\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]"
+ },
+ "real_hpi_nl": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:14:08+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2025-10-01",
+  "n_obs": 144,
+  "signature": "[\"oecd\", \"OECD.ECO.MPD,DSD_AN_HOUSE_PRICES@DF_HOUSE_PRICES,1.0/NLD.Q.RHP.\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]"
+ },
+ "real_hpi_pl": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:14:09+00:00",
+  "first_date": "2005-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 86,
+  "signature": "[\"oecd\", \"OECD.ECO.MPD,DSD_AN_HOUSE_PRICES@DF_HOUSE_PRICES,1.0/POL.Q.RHP.\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]"
+ },
+ "real_hpi_pt": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:14:08+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 146,
+  "signature": "[\"oecd\", \"OECD.ECO.MPD,DSD_AN_HOUSE_PRICES@DF_HOUSE_PRICES,1.0/PRT.Q.RHP.\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]"
+ },
+ "real_hpi_uk": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:14:09+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 146,
+  "signature": "[\"oecd\", \"OECD.ECO.MPD,DSD_AN_HOUSE_PRICES@DF_HOUSE_PRICES,1.0/GBR.Q.RHP.\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]"
+ },
+ "real_hpi_us": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:14:09+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 146,
+  "signature": "[\"oecd\", \"OECD.ECO.MPD,DSD_AN_HOUSE_PRICES@DF_HOUSE_PRICES,1.0/USA.Q.RHP.\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]"
  },
  "real_pay_de": {
   "status": "ok",
@@ -7386,6 +7698,15 @@
   "n_obs": 57,
   "signature": "[\"afiliacion\", \"sa:services\", {\"bridge\": \"+68\"}, 0.001]",
   "source_name": "Afiliación media"
+ },
+ "rental_yield": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:08:25+00:00",
+  "first_date": "1987-10-01",
+  "last_date": "2026-07-01",
+  "n_obs": 156,
+  "signature": "[\"bde\", \"D_TKR60REA_VIV_IPV\", {}, 1.0]",
+  "source_name": "Estadísticas Generales. Edificación y vivienda. Rentabilidad de la vivienda bruta por alquiler. Acumulado en los doce últimos meses"
  },
  "retail_sales": {
   "status": "ok",
@@ -7763,6 +8084,24 @@
   "signature": "[\"ine\", \"EPA416256\", {}, 1.0]",
   "flash": false,
   "source_name": "Asalariados. Total Nacional. Ambos sexos. Temporal: Total. Porcentaje."
+ },
+ "tenure_owners": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:08:25+00:00",
+  "first_date": "1985-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 41,
+  "signature": "[\"bde\", \"D_AKR620PP\", {}, 1.0]",
+  "source_name": "Estadísticas Generales. Edificación y vivienda. Censos de viviendas. Régimen de tenencia de la vivienda principal. Propiedad"
+ },
+ "tenure_renters": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:08:25+00:00",
+  "first_date": "1985-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 41,
+  "signature": "[\"bde\", \"D_AKR620PA\", {}, 1.0]",
+  "source_name": "Estadísticas Generales. Edificación y vivienda. Censos de viviendas. Régimen de tenencia de la vivienda principal. Alquiler"
  },
  "terms_of_trade": {
   "status": "ok",

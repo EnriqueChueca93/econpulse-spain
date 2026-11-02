@@ -7293,6 +7293,307 @@
    "display": "0.7% y/y",
    "period": "Q2 2026",
    "flash": false
+  },
+  "house_price_income": {
+   "date": "2026-04-01",
+   "raw": 8.36,
+   "display": "8.4 years",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "mortgage_effort": {
+   "date": "2026-04-01",
+   "raw": 38.01,
+   "display": "38.0%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "price_m2_appraisal": {
+   "date": "2026-04-01",
+   "raw": 2355.0,
+   "display": "2,355 €/m²",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "price_m2_new": {
+   "date": "2026-04-01",
+   "raw": 2736.6,
+   "display": "2,737 €/m²",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "price_m2_used": {
+   "date": "2026-04-01",
+   "raw": 2342.5,
+   "display": "2,342 €/m²",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "price_m2_idealista": {
+   "date": "2026-09-01",
+   "raw": 2930.0,
+   "display": "2,930 €/m²",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "price_m2_fotocasa": {
+   "date": "2026-09-01",
+   "raw": 3136.0,
+   "display": "3,136 €/m²",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "rental_yield": {
+   "date": "2026-07-01",
+   "raw": 2.84,
+   "display": "2.8%",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "housing_return": {
+   "date": "2026-04-01",
+   "raw": 15.05,
+   "display": "15.1%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "tenure_owners": {
+   "date": "2025-01-01",
+   "raw": 73.3,
+   "display": "73.3%",
+   "period": "2025",
+   "flash": false
+  },
+  "tenure_renters": {
+   "date": "2025-01-01",
+   "raw": 20.2,
+   "display": "20.2%",
+   "period": "2025",
+   "flash": false
+  },
+  "real_hpi_es": {
+   "date": "2026-04-01",
+   "raw": 153.8861826,
+   "display": "8.7% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "real_hpi_fr": {
+   "date": "2026-04-01",
+   "raw": 100.4975182,
+   "display": "−3.0% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "real_hpi_de": {
+   "date": "2026-04-01",
+   "raw": 114.0922917,
+   "display": "−2.1% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "real_hpi_it": {
+   "date": "2026-04-01",
+   "raw": 95.37197322,
+   "display": "1.1% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "real_hpi_nl": {
+   "date": "2025-10-01",
+   "raw": 156.60322,
+   "display": "2.9% y/y",
+   "period": "Q4 2025",
+   "flash": false
+  },
+  "real_hpi_pt": {
+   "date": "2026-04-01",
+   "raw": 228.2524728,
+   "display": "13.0% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "real_hpi_pl": {
+   "date": "2026-04-01",
+   "raw": 146.1128582,
+   "display": "3.1% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "real_hpi_uk": {
+   "date": "2026-04-01",
+   "raw": 107.8421999,
+   "display": "0.4% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "real_hpi_us": {
+   "date": "2026-04-01",
+   "raw": 151.8912809,
+   "display": "−1.4% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "real_hpi_ca": {
+   "date": "2026-07-01",
+   "raw": 128.9003299,
+   "display": "−6.1% y/y",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "real_hpi_jp": {
+   "date": "2025-10-01",
+   "raw": 119.1032807,
+   "display": "2.4% y/y",
+   "period": "Q4 2025",
+   "flash": false
+  },
+  "price_income_es": {
+   "date": "2026-04-01",
+   "raw": 128.9095447,
+   "display": "128.9",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "price_income_fr": {
+   "date": "2026-04-01",
+   "raw": 105.0486405,
+   "display": "105.0",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "price_income_de": {
+   "date": "2026-04-01",
+   "raw": 84.67372629,
+   "display": "84.7",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "price_income_it": {
+   "date": "2026-04-01",
+   "raw": 88.97986277,
+   "display": "89.0",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "price_income_nl": {
+   "date": "2025-10-01",
+   "raw": 141.406982,
+   "display": "141.4",
+   "period": "Q4 2025",
+   "flash": false
+  },
+  "price_income_pt": {
+   "date": "2026-04-01",
+   "raw": 144.7124029,
+   "display": "144.7",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "price_income_pl": {
+   "date": "2026-04-01",
+   "raw": 96.73660216,
+   "display": "96.7",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "price_income_uk": {
+   "date": "2026-04-01",
+   "raw": 115.2787283,
+   "display": "115.3",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "price_income_us": {
+   "date": "2026-04-01",
+   "raw": 109.7514297,
+   "display": "109.8",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "price_income_ca": {
+   "date": "2026-07-01",
+   "raw": 138.3562509,
+   "display": "138.4",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "price_income_jp": {
+   "date": "2025-10-01",
+   "raw": 88.28122733,
+   "display": "88.3",
+   "period": "Q4 2025",
+   "flash": false
+  },
+  "price_rent_es": {
+   "date": "2026-04-01",
+   "raw": 169.041765,
+   "display": "169.0",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "price_rent_fr": {
+   "date": "2026-04-01",
+   "raw": 126.6952899,
+   "display": "126.7",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "price_rent_de": {
+   "date": "2026-04-01",
+   "raw": 110.6825789,
+   "display": "110.7",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "price_rent_it": {
+   "date": "2025-10-01",
+   "raw": 93.38480515,
+   "display": "93.4",
+   "period": "Q4 2025",
+   "flash": false
+  },
+  "price_rent_nl": {
+   "date": "2025-10-01",
+   "raw": 157.3245461,
+   "display": "157.3",
+   "period": "Q4 2025",
+   "flash": false
+  },
+  "price_rent_pt": {
+   "date": "2026-04-01",
+   "raw": 154.8197554,
+   "display": "154.8",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "price_rent_pl": {
+   "date": "2025-10-01",
+   "raw": 125.2308519,
+   "display": "125.2",
+   "period": "Q4 2025",
+   "flash": false
+  },
+  "price_rent_uk": {
+   "date": "2026-04-01",
+   "raw": 130.8784769,
+   "display": "130.9",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "price_rent_ca": {
+   "date": "2026-07-01",
+   "raw": 157.8937609,
+   "display": "157.9",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "price_rent_jp": {
+   "date": "2025-10-01",
+   "raw": 109.4140663,
+   "display": "109.4",
+   "period": "Q4 2025",
+   "flash": false
   }
  },
  "notes": [
@@ -7316,8 +7617,141 @@
    "page": "international.html",
    "text": "Core CPI, United States for Sep 2026 revised to 2.6% y/y, from 2.6% y/y.",
    "at": "2026-11-01T02:50:46+00:00"
+  },
+  {
+   "kind": "revision",
+   "id": "price_income_es",
+   "page": "housing.html",
+   "text": "House price to income ratio, Spain for Q2 2026 revised to 128.9, from 134.7.",
+   "at": "2026-11-02T00:14:15+00:00"
+  },
+  {
+   "kind": "revision",
+   "id": "price_income_fr",
+   "page": "housing.html",
+   "text": "House price to income ratio, France for Q2 2026 revised to 105.0, from 92.2.",
+   "at": "2026-11-02T00:14:15+00:00"
+  },
+  {
+   "kind": "revision",
+   "id": "price_income_de",
+   "page": "housing.html",
+   "text": "House price to income ratio, Germany for Q2 2026 revised to 84.7, from 103.0.",
+   "at": "2026-11-02T00:14:15+00:00"
+  },
+  {
+   "kind": "revision",
+   "id": "price_income_it",
+   "page": "housing.html",
+   "text": "House price to income ratio, Italy for Q2 2026 revised to 89.0, from 87.4.",
+   "at": "2026-11-02T00:14:15+00:00"
+  },
+  {
+   "kind": "revision",
+   "id": "price_income_nl",
+   "page": "housing.html",
+   "text": "House price to income ratio, Netherlands for Q4 2025 revised to 141.4, from 135.5.",
+   "at": "2026-11-02T00:14:15+00:00"
+  },
+  {
+   "kind": "revision",
+   "id": "price_income_pt",
+   "page": "housing.html",
+   "text": "House price to income ratio, Portugal for Q2 2026 revised to 144.7, from 182.0.",
+   "at": "2026-11-02T00:14:15+00:00"
+  },
+  {
+   "kind": "revision",
+   "id": "price_income_uk",
+   "page": "housing.html",
+   "text": "House price to income ratio, United Kingdom for Q2 2026 revised to 115.3, from 103.5.",
+   "at": "2026-11-02T00:14:15+00:00"
+  },
+  {
+   "kind": "revision",
+   "id": "price_income_us",
+   "page": "housing.html",
+   "text": "House price to income ratio, United States for Q2 2026 revised to 109.8, from 123.4.",
+   "at": "2026-11-02T00:14:15+00:00"
+  },
+  {
+   "kind": "revision",
+   "id": "price_income_ca",
+   "page": "housing.html",
+   "text": "House price to income ratio, Canada for Q3 2026 revised to 138.4, from 120.5.",
+   "at": "2026-11-02T00:14:15+00:00"
+  },
+  {
+   "kind": "revision",
+   "id": "price_income_jp",
+   "page": "housing.html",
+   "text": "House price to income ratio, Japan for Q4 2025 revised to 88.3, from 115.0.",
+   "at": "2026-11-02T00:14:15+00:00"
+  },
+  {
+   "kind": "revision",
+   "id": "price_rent_es",
+   "page": "housing.html",
+   "text": "House price to rent ratio, Spain for Q2 2026 revised to 169.0, from 172.0.",
+   "at": "2026-11-02T00:14:15+00:00"
+  },
+  {
+   "kind": "revision",
+   "id": "price_rent_fr",
+   "page": "housing.html",
+   "text": "House price to rent ratio, France for Q2 2026 revised to 126.7, from 113.1.",
+   "at": "2026-11-02T00:14:15+00:00"
+  },
+  {
+   "kind": "revision",
+   "id": "price_rent_de",
+   "page": "housing.html",
+   "text": "House price to rent ratio, Germany for Q2 2026 revised to 110.7, from 128.1.",
+   "at": "2026-11-02T00:14:15+00:00"
+  },
+  {
+   "kind": "revision",
+   "id": "price_rent_it",
+   "page": "housing.html",
+   "text": "House price to rent ratio, Italy for Q4 2025 revised to 93.4, from 103.5.",
+   "at": "2026-11-02T00:14:15+00:00"
+  },
+  {
+   "kind": "revision",
+   "id": "price_rent_nl",
+   "page": "housing.html",
+   "text": "House price to rent ratio, Netherlands for Q4 2025 revised to 157.3, from 166.5.",
+   "at": "2026-11-02T00:14:15+00:00"
+  },
+  {
+   "kind": "revision",
+   "id": "price_rent_pt",
+   "page": "housing.html",
+   "text": "House price to rent ratio, Portugal for Q2 2026 revised to 154.8, from 211.2.",
+   "at": "2026-11-02T00:14:15+00:00"
+  },
+  {
+   "kind": "revision",
+   "id": "price_rent_uk",
+   "page": "housing.html",
+   "text": "House price to rent ratio, United Kingdom for Q2 2026 revised to 130.9, from 109.8.",
+   "at": "2026-11-02T00:14:15+00:00"
+  },
+  {
+   "kind": "revision",
+   "id": "price_rent_ca",
+   "page": "housing.html",
+   "text": "House price to rent ratio, Canada for Q3 2026 revised to 157.9, from 118.2.",
+   "at": "2026-11-02T00:14:15+00:00"
+  },
+  {
+   "kind": "revision",
+   "id": "price_rent_jp",
+   "page": "housing.html",
+   "text": "House price to rent ratio, Japan for Q4 2025 revised to 109.4, from 139.7.",
+   "at": "2026-11-02T00:14:15+00:00"
   }
  ],
- "updated_at": "2026-11-02T00:04:12+00:00",
+ "updated_at": "2026-11-02T00:14:15+00:00",
  "started_at": "2026-10-31T23:31:49+00:00"
 }

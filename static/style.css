@@ -484,7 +484,7 @@ body.search-on { overflow: hidden; }
 }
 
 /* Choosing the comparators drawn beside Spain (International page); the chips also sit in the section bar */
-.country-picker { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; margin: 16px 0 0; font-size: 13px; }
+.country-picker { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; margin: 0 0 16px; font-size: 13px; }
 .picker-label { color: var(--text-2); }
 .picker-chips { display: flex; flex-wrap: wrap; gap: 6px; }
 .chip {

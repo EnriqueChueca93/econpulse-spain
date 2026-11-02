@@ -48,6 +48,8 @@ IDS: dict[str, dict] = {
     # AMECO (annual): real compensation per employee and real GDP per person employed; no Canada (it stops in 2024)
     "real_pay": {s: f"real_pay_{s}" for s, _ in COUNTRIES if s != "ca"},
     "productivity": {s: f"productivity_{s}" for s, _ in COUNTRIES if s != "ca"},
+    # The OECD's real house prices (the Housing page; no euro area)
+    "real_hpi": {s: f"real_hpi_{s}" for s, _ in COUNTRIES if s != "ea"},
 }
 BASE = pd.Timestamp("2019-10-01")            # the last quarter before the pandemic
 LABELS = dict(COUNTRIES)
@@ -184,7 +186,8 @@ def growth_table(data: Data) -> dict | None:
                      f"World Economic Outlook figure for {ppp_year()}. Sources: INE, Eurostat, OECD, US BEA, IMF.")}
 
 
-def _hbar(id_, title, subtitle, unit, decimals, date, freq, points, ref=None, source="") -> dict | None:
+def _hbar(id_, title, subtitle, unit, decimals, date, freq, points, ref=None, source="",
+          ref_label="Euro area") -> dict | None:
     if len(points) < 2:
         return None
     points = sorted(points, key=lambda p: p[1], reverse=True)
@@ -192,7 +195,7 @@ def _hbar(id_, title, subtitle, unit, decimals, date, freq, points, ref=None, so
             "pick": True,
             "subtitle": f"{subtitle} · {period_label(date, freq)}", "unit": unit, "decimals": decimals,
             "series": [{"name": title, "x": [p[0] for p in points], "y": [round(p[1], 3) for p in points]}],
-            "ref_lines": [{"y": round(ref, 3), "label": "Euro area"}] if ref is not None else [], "freq": None,
+            "ref_lines": [{"y": round(ref, 3), "label": ref_label}] if ref is not None else [], "freq": None,
             "source": source}
 
 
