@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% from "macros.html" import stat_table, chart_card %}
+
+{% block title %}Cuadros sectoriales · {{ brand }}{% endblock %}
+{% block description %}Los cuadros del FMI sobre España, reconstruidos con datos públicos: sector real, gobierno general, sostenibilidad de la deuda, bancos, balanza de pagos, deuda externa y dinero.{% endblock %}
+
+{% block content %}
+  <h1>Cuadros sectoriales</h1>
+  <p class="lede">Los cuadros del informe del Artículo IV de 2026 del FMI sobre España, reconstruidos con datos públicos y
+    actualizados a medida que se publican: los años observados, del INE, Eurostat, el Banco de España y el BCE; las
+    proyecciones, del World Economic Outlook del FMI. Cuando esa base de datos no tiene proyección para una línea, el
+    cuadro muestra &hellip; en su lugar.</p>
+  {% if sections %}
+  <div class="sector-controls">
+    <div class="tool-controls" role="group" aria-label="Mostrar los importes en">
+      <span class="secondary">Mostrar los importes en</span>
+      <button type="button" class="tool-button" data-sector-unit="amounts" aria-pressed="true">miles de millones de €</button>
+      <button type="button" class="tool-button" data-sector-unit="gdp" aria-pressed="false">% del PIB</button>
+    </div>
+  </div>
+  <p class="note">El selector cambia todos los importes: los porcentajes del PIB pasan a miles de millones de euros (con
+    el PIB nominal, la proyección del FMI para los años futuros; la de la Comisión para sus pruebas de tensión) y los
+    importes en euros pasan a porcentajes del PIB. Las tasas de crecimiento, los tipos de interés y las ratios sobre
+    cualquier otra magnitud que no sea el PIB no cambian. Los cuadros con datos trimestrales o mensuales tienen su propio
+    selector encima.
+    {% if workbook %}<a href="{{ workbook }}" download>Descargar todos los cuadros (Excel, en inglés)</a>, con historia
+    desde 2015.{% endif %}</p>
+  <nav class="on-page" aria-label="En esta página">
+    {% for s in sections %}<a href="#{{ s.id }}">{{ s.title }}</a>{% endfor %}
+  </nav>
+  <div class="sector-tables" id="sector-tables" data-unit="amounts">
+    {% for s in sections %}
+    <section class="block" aria-labelledby="{{ s.id }}">
+      <h2 id="{{ s.id }}">{{ s.title }}</h2>
+      <p class="block-intro">{{ s.intro }}</p>
+      {% for t in s.tables %}
+      <div class="freq-box" id="tbl-{{ t.id }}" data-freq="{{ t.views[0].freq }}">
+        {% if t.views | length > 1 %}
+        <div class="freq-controls" role="group" aria-label="Frecuencia de {{ t.title }}">
+          <span class="secondary">Mostrar</span>
+          {% for v in t.views %}<button type="button" class="tool-button" data-freq-choice="{{ v.freq }}"
+            aria-pressed="{{ 'true' if loop.first else 'false' }}">{{ v.label }}</button>{% endfor %}
+        </div>
+        {% endif %}
+        {% for v in t.views %}
+        <div class="freq-variant" data-freq="{{ v.freq }}">
+          {% if v.single %}{{ stat_table(v.single) }}{% else %}
+          <div class="unit-variant" data-variant="amounts">{{ stat_table(v.amounts) }}</div>
+          <div class="unit-variant" data-variant="gdp">{{ stat_table(v.gdp) }}</div>
+          {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+      {% endfor %}
+      {% if s.charts %}
+      <div class="charts">
+        {% for c in s.charts %}{{ chart_card(c) }}{% endfor %}
+      </div>
+      {% endif %}
+    </section>
+    {% endfor %}
+  </div>
+  {% else %}
+  <p class="notice">Los cuadros aparecen cuando se ha descargado la contabilidad nacional anual.</p>
+  {% endif %}
+{% endblock %}
+
+{% block scripts %}
+  {% if charts_file %}
+  <script src="{{ root }}assets/plotly-basic.min.js?v={{ build_id }}"></script>
+  <script src="{{ charts_file }}?v={{ build_id }}"></script>
+  {% endif %}
+{% endblock %}
+
+{% block after_scripts %}
+  <script>
+    (function () {
+      // Amounts or % of GDP; the choice is remembered in this browser.
+      var box = document.getElementById("sector-tables");
+      var buttons = document.querySelectorAll("[data-sector-unit]");
+      if (!box || !buttons.length) return;
+      function show(unit) {
+        box.setAttribute("data-unit", unit);
+        Array.prototype.forEach.call(buttons, function (b) {
+          b.setAttribute("aria-pressed", b.getAttribute("data-sector-unit") === unit ? "true" : "false");
+        });
+      }
+      var saved = null;
+      try { saved = localStorage.getItem("ep-sector-unit"); } catch (e) {}
+      if (saved === "gdp" || saved === "amounts") show(saved);
+      Array.prototype.forEach.call(buttons, function (b) {
+        b.addEventListener("click", function () {
+          var unit = b.getAttribute("data-sector-unit");
+          show(unit);
+          try { localStorage.setItem("ep-sector-unit", unit); } catch (e) {}
+        });
+      });
+
+      // Annual, quarterly or monthly, table by table; each choice is remembered too.
+      Array.prototype.forEach.call(document.querySelectorAll(".freq-box"), function (fbox) {
+        var choices = fbox.querySelectorAll("[data-freq-choice]"), key = "ep-sector-freq-" + fbox.id;
+        function pick(freq) {
+          if (!fbox.querySelector('.freq-variant[data-freq="' + freq + '"]')) return;
+          fbox.setAttribute("data-freq", freq);
+          Array.prototype.forEach.call(choices, function (c) {
+            c.setAttribute("aria-pressed", c.getAttribute("data-freq-choice") === freq ? "true" : "false");
+          });
+        }
+        var kept = null;
+        try { kept = localStorage.getItem(key); } catch (e) {}
+        if (kept) pick(kept);
+        Array.prototype.forEach.call(choices, function (c) {
+          c.addEventListener("click", function () {
+            var freq = c.getAttribute("data-freq-choice");
+            pick(freq);
+            try { localStorage.setItem(key, freq); } catch (e) {}
+          });
+        });
+      });
+    })();
+  </script>
+{% endblock %}

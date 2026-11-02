@@ -5867,7 +5867,7 @@ indicators:
 
   - id: fsi_q_regulatory_capital
     label: Banks' regulatory capital (FSI), quarterly
-    label_es: Banks' regulatory capital (FSI), trimestral
+    label_es: Capital regulador de los bancos (ISF), trimestral
     section: financial
     source: imf
     key: "IMF.STA,FSIBSIS/ESP.S12CFSI.TREGK_EUR.Q"
@@ -5878,7 +5878,7 @@ indicators:
 
   - id: fsi_q_tier1_capital
     label: Banks' Tier 1 capital (FSI), quarterly
-    label_es: Banks' Tier 1 capital (FSI), trimestral
+    label_es: Capital de nivel 1 de los bancos (ISF), trimestral
     section: financial
     source: imf
     key: "IMF.STA,FSIBSIS/ESP.S12CFSI.T1KXCSD_EUR.Q"
@@ -5889,7 +5889,7 @@ indicators:
 
   - id: fsi_q_rwa
     label: Banks' risk-weighted assets (FSI), quarterly
-    label_es: Banks' risk-weighted assets (FSI), trimestral
+    label_es: Activos ponderados por riesgo de los bancos (ISF), trimestral
     section: financial
     source: imf
     key: "IMF.STA,FSIBSIS/ESP.S12CFSI.RWA_EUR.Q"
@@ -5900,7 +5900,7 @@ indicators:
 
   - id: fsi_q_leverage_exposure
     label: Banks' leverage exposure measure (FSI), quarterly
-    label_es: Banks' leverage exposure measure (FSI), trimestral
+    label_es: Medida de exposición de apalancamiento de los bancos (ISF), trimestral
     section: financial
     source: imf
     key: "IMF.STA,FSIBSIS/ESP.S12CFSI.B3TXM_EUR.Q"
@@ -5911,7 +5911,7 @@ indicators:
 
   - id: fsi_q_total_assets
     label: Banks' total assets (FSI), quarterly
-    label_es: Banks' total assets (FSI), trimestral
+    label_es: Activo total de los bancos (ISF), trimestral
     section: financial
     source: imf
     key: "IMF.STA,FSIBSIS/ESP.S12CFSI.TA_A_EUR.Q"
@@ -5922,7 +5922,7 @@ indicators:
 
   - id: fsi_q_npl
     label: Banks' nonperforming loans (FSI), quarterly
-    label_es: Banks' nonperforming loans (FSI), trimestral
+    label_es: Préstamos en mora de los bancos (ISF), trimestral
     section: financial
     source: imf
     key: "IMF.STA,FSIBSIS/ESP.S12CFSI.NPF4_EUR.Q"
@@ -5933,7 +5933,7 @@ indicators:
 
   - id: fsi_q_gross_loans
     label: Banks' gross loans (FSI), quarterly
-    label_es: Banks' gross loans (FSI), trimestral
+    label_es: Préstamos brutos de los bancos (ISF), trimestral
     section: financial
     source: imf
     key: "IMF.STA,FSIBSIS/ESP.S12CFSI.GF4_A_EUR.Q"
@@ -5944,7 +5944,7 @@ indicators:
 
   - id: fsi_q_specific_provisions
     label: Banks' specific provisions (FSI), quarterly
-    label_es: Banks' specific provisions (FSI), trimestral
+    label_es: Provisiones específicas de los bancos (ISF), trimestral
     section: financial
     source: imf
     key: "IMF.STA,FSIBSIS/ESP.S12CFSI.SP_A_EUR.Q"
@@ -5955,7 +5955,7 @@ indicators:
 
   - id: fsi_q_income_before_tax
     label: Banks' net income before tax, year to date (FSI), quarterly
-    label_es: Banks' net income before tax, year to date (FSI), trimestral
+    label_es: Beneficio neto antes de impuestos de los bancos, acumulado del año (ISF), trimestral
     section: financial
     source: imf
     key: "IMF.STA,FSIBSIS/ESP.S12CFSI.NINCBTX_EUR.Q"
@@ -5966,7 +5966,7 @@ indicators:
 
   - id: fsi_q_average_assets
     label: Banks' average total assets (FSI), quarterly
-    label_es: Banks' average total assets (FSI), trimestral
+    label_es: Activo total medio de los bancos (ISF), trimestral
     section: financial
     source: imf
     key: "IMF.STA,FSIBSIS/ESP.S12CFSI.ATA_EUR.Q"
@@ -5977,7 +5977,7 @@ indicators:
 
   - id: fsi_q_income_after_tax
     label: Banks' net income after tax, annualised (FSI), quarterly
-    label_es: Banks' net income after tax, annualised (FSI), trimestral
+    label_es: Beneficio neto después de impuestos de los bancos, anualizado (ISF), trimestral
     section: financial
     source: imf
     key: "IMF.STA,FSIBSIS/ESP.S12CFSI.ANIAT_EUR.Q"
@@ -5988,7 +5988,7 @@ indicators:
 
   - id: fsi_q_average_capital
     label: Banks' average capital and reserves (FSI), quarterly
-    label_es: Banks' average capital and reserves (FSI), trimestral
+    label_es: Capital y reservas medios de los bancos (ISF), trimestral
     section: financial
     source: imf
     key: "IMF.STA,FSIBSIS/ESP.S12CFSI.ACR_EUR.Q"
@@ -5999,7 +5999,7 @@ indicators:
 
   - id: fsi_q_nfc_debt
     label: Nonfinancial corporations' debt (FSI), quarterly
-    label_es: Nonfinancial corporations' debt (FSI), trimestral
+    label_es: Deuda de las sociedades no financieras (ISF), trimestral
     section: financial
     source: imf
     key: "IMF.STA,FSIBSIS/ESP.S11.DEBT_L_EUR.Q"
@@ -6011,7 +6011,7 @@ indicators:
 
   - id: fsi_q_nfc_balance_sheet
     label: Nonfinancial corporations' balance sheet total (FSI), quarterly
-    label_es: Nonfinancial corporations' balance sheet total (FSI), trimestral
+    label_es: Balance total de las sociedades no financieras (ISF), trimestral
     section: financial
     source: imf
     key: "IMF.STA,FSIBSIS/ESP.S11.BST_EUR.Q"

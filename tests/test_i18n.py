@@ -158,3 +158,17 @@ def test_tables_charts_and_facts_are_written_in_spanish(tmp_path):
     assert facts[0]["sub"] == "30 oct 2026" and facts[1]["sub"] == "en vigor desde el 17 jun 2026"
     assert facts[2]["value"] == "17 dic 2026" and facts[2]["sub"] == "dentro de 45 días" and facts[1]["value"] == "−25 pb"
     assert decisions["title"] == "Fecha de entrada en vigor" and decisions["rows"][0]["label"] == "17 jun 2026"
+
+
+def test_the_imf_tables_in_spanish():
+    from econpulse import sectortables
+    table = sectortables.BY_ID["real-sector"]
+    assert sectortables.table_title(table).startswith("Table 1. ")
+    with i18n.using("es"):
+        assert sectortables.table_title(table).startswith("Cuadro 1. ")
+        assert i18n._("proj.") == "proy."
+        missing = sorted(r.label for t in sectortables.TABLES for r in t.rows
+                         if getattr(r, "label", None) and r.label not in i18n.catalogue())
+        assert not missing, missing
+    # The Excel workbook stays English, one folder up from the Spanish pages.
+    assert (TEMPLATES_DIR / "es" / "sector-tables.html").exists()

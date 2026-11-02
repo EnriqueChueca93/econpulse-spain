@@ -269,7 +269,7 @@ def _build_language(indicators: list[Indicator], store: Store, site_root: Path, 
            workbook=f"{root}data/{sectortables.WORKBOOK}" if workbook else None)
     render("data.html", "data.html", source_summary=_source_summary(items), groups=[g for g in groups if g["items"]],
            attention=attention, total=len(items), workbook=f"{root}data/{sectortables.WORKBOOK}" if workbook else None,
-           sector_tables=[(f"{t.section}.html#{t.block}", f"{t.label}. {t.title}") for t in sectortables.TABLES])
+           sector_tables=[(f"{t.section}.html#{t.block}", sectortables.table_title(t)) for t in sectortables.TABLES])
     days = schedule.window(store, today)
     for day in days:
         for e in day["events"]:

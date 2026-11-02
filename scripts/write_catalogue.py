@@ -90,7 +90,7 @@ add({
     "Released in the past week": "Publicado en la última semana",
     "The next two months": "Los próximos dos meses",
     "Real sector": "Sector real",
-    "Government operations": "Operaciones de las administraciones públicas",
+    "Government operations": "Operaciones de las Administraciones públicas",
     "Debt sustainability": "Sostenibilidad de la deuda",
     "Financial soundness": "Solidez financiera",
     "Balance of payments": "Balanza de pagos",
@@ -449,8 +449,10 @@ from catalogue_trade import PAIRS as TRADE             # noqa: E402  Batch 33c
 from catalogue_housing import PAIRS as HOUSING         # noqa: E402  Batch 33c
 from catalogue_pensions import PAIRS as PENSIONS       # noqa: E402  Batch 33c
 from catalogue_international import PAIRS as INTERNATIONAL   # noqa: E402  Batch 33c
+from catalogue_imf_a import PAIRS as IMF_A             # noqa: E402  Batch 33c-3
+from catalogue_imf_b import PAIRS as IMF_B             # noqa: E402  Batch 33c-3
 
-for part in (SECTIONS_1, SECTIONS_2, ANALYSIS, TRADE, HOUSING, PENSIONS, INTERNATIONAL):
+for part in (SECTIONS_1, SECTIONS_2, ANALYSIS, TRADE, HOUSING, PENSIONS, INTERNATIONAL, IMF_A, IMF_B):
     add(part)
 
 

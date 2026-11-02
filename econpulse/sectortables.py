@@ -23,8 +23,10 @@ from typing import Callable
 
 import pandas as pd
 
-from . import fiscal
+from . import fiscal, i18n
+from .charts import localise
 from .config import SITE_URL
+from .i18n import _
 from .snapshot import MINUS, period_label
 from .tables import Data
 
@@ -902,7 +904,7 @@ BY_ID = {t.id: t for t in TABLES}
 
 def _bop_unit_rows(in_gdp: bool) -> list:
     rows = []
-    for label, indent, ind, _ in BOP_LINES:
+    for label, indent, ind, _source in BOP_LINES:
         sign = -1 if ind == "bop_travel_debit" else 1
         ca = ind == "current_account_annual"
         proj = (W_CURRENT_ACCOUNT if in_gdp else W_CURRENT_ACCOUNT_BN) if ca else None
@@ -1040,7 +1042,7 @@ def _shares(e: Expr | None, projection: bool = False) -> Expr | None:
 
 def _with_unit(label: str, unit: str) -> str:
     """'Structural balance 1/' -> 'Structural balance (percent of potential GDP) 1/'."""
-    head, _, tail = label.rpartition(" ")
+    head, _space, tail = label.rpartition(" ")
     if head and tail.endswith("/") and tail[:-1].isdigit():
         return f"{head} ({unit}) {tail}"
     return f"{label} ({unit})"
@@ -1087,8 +1089,8 @@ def _spec(chart_id: str, title: str, subtitle: str, series: list, source: str, k
     series = [s for s in series if s["x"]]
     if not series:
         return None
-    return {"id": chart_id, "title": title, "subtitle": subtitle, "kind": kind, "unit": unit, "decimals": 1,
-            "freq": "A", "ref_lines": [], "series": series, "source": source, **options}
+    return localise({"id": chart_id, "title": title, "subtitle": subtitle, "kind": kind, "unit": unit, "decimals": 1,
+                     "freq": "A", "ref_lines": [], "series": series, "source": _(source), **options})
 
 
 def chart_growth(data: Data) -> dict | None:
@@ -1097,9 +1099,12 @@ def chart_growth(data: Data) -> dict | None:
         return None
     actual, proj = _path(data, published("gdp_growth_annual")), published("fc_imf_gdp")(data)
     proj = proj[(proj.index > span_[0]) & (proj.index <= span_[1])] if proj is not None else pd.Series(dtype=float)
-    return _spec("st-growth", "Real GDP growth", f"% change on the year before; actual to {span_[0]}, then the IMF's "
+    spec = _spec("st-growth", "Real GDP growth", "% change on the year before; actual to {year}, then the IMF's "
                  "projection", [_line("Actual", actual), _line("IMF projection", proj)],
                  "Eurostat; IMF World Economic Outlook", kind="bar", signed=True)
+    if spec:
+        spec["subtitle"] = spec["subtitle"].format(year=span_[0])
+    return spec
 
 
 def chart_saving(data: Data) -> dict | None:
@@ -1219,8 +1224,7 @@ def weo_edition(data: Data) -> str:
     published_on = data.store.load_catalog().get("fc_imf_gdp", {}).get("published")
     if not published_on:
         return ""
-    d = date.fromisoformat(published_on)
-    return f"{d:%B %Y}"
+    return i18n.long_month_year(date.fromisoformat(published_on))
 
 
 def dsm_edition(data: Data) -> str:
@@ -1230,21 +1234,25 @@ def dsm_edition(data: Data) -> str:
 
 def projections_phrase(table: SectorTable, data: Data) -> str:
     if table.kind == "dsm":
-        return "European Commission projections"
+        return _("European Commission projections")
     edition = weo_edition(data)
-    return f"IMF projections (World Economic Outlook{', ' + edition if edition else ''})"
+    return (_("IMF projections (World Economic Outlook, {edition})").format(edition=edition) if edition
+            else _("IMF projections (World Economic Outlook)"))
 
 
 def sources_line(table: SectorTable, data: Data) -> str:
     if table.sources:
-        return table.sources
+        return _(table.sources)
     if table.kind == "dsm":
-        return f"Source: {dsm_edition(data)}, Spain's country fiche."
+        return _("Source: {edition}, Spain's country fiche.").format(edition=dsm_edition(data))
     if table.kind == "actual":
-        return "Sources: Eurostat; Macroscope calculations."
+        return _("Sources: Eurostat; Macroscope calculations.")
     edition = weo_edition(data)
-    return ("Sources: INE, Eurostat and the ECB for actual years; IMF World Economic Outlook"
-            + (f" ({edition})" if edition else "") + " for projections; Macroscope calculations.")
+    if edition:
+        return _("Sources: INE, Eurostat and the ECB for actual years; IMF World Economic Outlook ({edition}) for "
+                 "projections; Macroscope calculations.").format(edition=edition)
+    return _("Sources: INE, Eurostat and the ECB for actual years; IMF World Economic Outlook for projections; "
+             "Macroscope calculations.")
 
 
 def values(table: SectorTable, data: Data, first: int, last: int, last_actual: int) -> list[dict]:
@@ -1272,6 +1280,16 @@ def fmt(v: float | None, decimals: int = 1) -> str:
     return MINUS + text if v < 0 and float(text.replace(",", "")) != 0 else text
 
 
+def table_title(table: SectorTable) -> str:
+    """"Table 1. Selected Economic Indicators" ("Cuadro 1. …" in Spanish; "DSA 1" stays)."""
+    label = _("Table {n}").format(n=table.label[6:]) if table.label.startswith("Table ") else _(table.label)
+    return f"{label}. {_(table.title)}"
+
+
+def _footnotes(table: SectorTable) -> str:
+    return " ".join(_(f) for f in table.footnotes)
+
+
 def web_table(table: SectorTable, data: Data) -> dict | None:
     """The table for its section page: the last actual years and the projections."""
     if table.freq != "A":
@@ -1284,27 +1302,29 @@ def web_table(table: SectorTable, data: Data) -> dict | None:
     rows = []
     for r in values(table, data, first, last, last_actual):
         if r["heading"]:
-            rows.append(r)
+            rows.append({**r, "label": _(r["label"])})
             continue
         line = r["line"]
-        rows.append({"heading": False, "label": r["label"], "label_es": "", "indent": line.indent, "period_note": "",
+        rows.append({"heading": False, "label": _(r["label"]), "label_es": "", "indent": line.indent, "period_note": "",
                      "url": data.by_id[line.link].source_url() if line.link in data.by_id else None,
                      "cells": [fmt(v, line.decimals) for v in r["cells"]]})
     n_proj = last - last_actual
     if table.kind == "dsm":
-        note = " ".join(table.footnotes) + " " + sources_line(table, data)
+        note = _footnotes(table) + " " + sources_line(table, data)
     elif table.kind == "actual":
-        note = " ".join(table.footnotes) + f" After the {REPORT_PREFIX}."
+        note = _footnotes(table) + " " + _("After the {report}.").format(report=_(REPORT_PREFIX))
     else:
-        note = (" ".join(table.footnotes) + f" {NA} not available: the IMF's database does not publish the line. "
-                f"After the {REPORT_PREFIX}; past years differ where the data have been revised since.")
+        note = _footnotes(table) + " " + _("{na} not available: the IMF's database does not publish the line. After the "
+                                           "{report}; past years differ where the data have been revised since.").format(
+            na=NA, report=_(REPORT_PREFIX))
     return {
-        "title": f"{table.label}. {table.title}",
-        "caption": (f"{table.unit} · actual data to {last_actual}"
-                    + (f", {projections_phrase(table, data)} from {last_actual + 1}" if n_proj else "")),
+        "title": table_title(table),
+        "caption": (_("{unit} · actual data to {year}").format(unit=_(table.unit), year=last_actual)
+                    + (_(", {projections} from {year}").format(projections=projections_phrase(table, data),
+                                                              year=last_actual + 1) if n_proj else "")),
         "through": str(last_actual),
         "columns": [str(y) for y in range(first, last + 1)],
-        "column_notes": [""] * table.web_actual + ["proj."] * n_proj,
+        "column_notes": [""] * table.web_actual + [_("proj.")] * n_proj,
         "rows": rows,
         "note": note,
     }
@@ -1319,11 +1339,12 @@ def facts(data: Data) -> list[dict]:
     span = years(data)
     if not span:
         return []
+    root = "../" if i18n.lang() == "es" else ""
     return [
-        {"label": "Actual data", "value": f"to {span[0]}", "sub": "INE, Eurostat, the ECB"},
-        {"label": "Projections", "value": f"IMF, {weo_edition(data) or 'WEO'}", "sub": "World Economic Outlook database",
-         "url": WEO_URL},
-        {"label": "Every table, from 2015", "value": "Excel workbook", "sub": WORKBOOK, "url": f"data/{WORKBOOK}"},
+        {"label": _("Actual data"), "value": _("to {year}").format(year=span[0]), "sub": _("INE, Eurostat, the ECB")},
+        {"label": _("Projections"), "value": _("IMF, {edition}").format(edition=weo_edition(data) or "WEO"),
+         "sub": _("World Economic Outlook database"), "url": WEO_URL},
+        {"label": _("Every table, from 2015"), "value": _("Excel workbook"), "sub": WORKBOOK, "url": f"{root}data/{WORKBOOK}"},
     ]
 
 
@@ -1332,17 +1353,19 @@ def dsa_facts(data: Data) -> list[dict]:
     weo = published("fc_imf_debt")(data)
     if weo is not None and not weo.empty:
         y = int(weo.index.max())
-        out.append({"label": f"Debt in {y}, IMF", "value": f"{fmt(weo[y])}% of GDP",
-                    "sub": f"World Economic Outlook{', ' + weo_edition(data) if weo_edition(data) else ''}"})
+        edition = weo_edition(data)
+        out.append({"label": _("Debt in {year}, IMF").format(year=y), "value": f"{fmt(weo[y])}{_('% of GDP')}",
+                    "sub": _("World Economic Outlook, {edition}").format(edition=edition) if edition
+                    else _("World Economic Outlook")})
     base = dsm("baseline", "debt")(data)
     if base is not None:
         y = int(base.index.max())
-        out.append({"label": f"Debt in {y}, European Commission", "value": f"{fmt(base[y])}% of GDP",
-                    "sub": "No-policy-change baseline"})
+        out.append({"label": _("Debt in {year}, European Commission").format(year=y), "value": f"{fmt(base[y])}{_('% of GDP')}",
+                    "sub": _("No-policy-change baseline")})
     s1 = data.cache.get("fiscal_baseline", {}).get("dsm", {}).get("gaps", {}).get("S1")
     if s1 is not None:
-        out.append({"label": "Sustainability gap S1, Commission", "value": f"{fmt(s1)}% of GDP",
-                    "sub": "Adjustment from 2027 that brings debt to 60% of GDP by 2070", "url": "fiscal-explorer.html"})
+        out.append({"label": _("Sustainability gap S1, Commission"), "value": f"{fmt(s1)}{_('% of GDP')}",
+                    "sub": _("Adjustment from 2027 that brings debt to 60% of GDP by 2070"), "url": "fiscal-explorer.html"})
     return out
 
 
@@ -1373,7 +1396,7 @@ def dsa_fan_chart(data: Data) -> dict | None:
             "subtitle": "% of GDP; the Commission's baseline with the 10th and 90th percentiles of its stochastic "
                         "projections, and the IMF's projection",
             "kind": "line", "unit": "%", "decimals": 1, "freq": "A", "ref_lines": [], "series": series,
-            "source": "European Commission (Debt Sustainability Monitor 2025); IMF World Economic Outlook"}
+            "source": _("European Commission (Debt Sustainability Monitor 2025); IMF World Economic Outlook")}
 
 
 def dsa_stress_chart(data: Data) -> dict | None:
@@ -1391,7 +1414,7 @@ def dsa_stress_chart(data: Data) -> dict | None:
     return {"id": "dsa-stress", "title": "Public debt under the Commission's stress tests",
             "subtitle": "% of GDP; baseline and three of the Commission's four stress tests (all four are in DSA 2)",
             "kind": "line", "unit": "%", "decimals": 1, "freq": "A", "ref_lines": [], "series": series,
-            "source": "European Commission (Debt Sustainability Monitor 2025)"}
+            "source": _("European Commission (Debt Sustainability Monitor 2025)")}
 
 
 # ---------------------------------------------------------------- the workbook
@@ -1600,20 +1623,20 @@ def period_web_table(table: SectorTable, data: Data) -> dict | None:
         if all(c is None for c in cells):
             continue
         if heading:
-            rows.append({"heading": True, "label": heading.label})
+            rows.append({"heading": True, "label": _(heading.label)})
             heading = None
-        rows.append({"heading": False, "label": r.label, "label_es": "", "indent": r.indent, "period_note": "",
+        rows.append({"heading": False, "label": _(r.label), "label_es": "", "indent": r.indent, "period_note": "",
                      "url": data.by_id[r.link].source_url() if r.link in data.by_id else None,
                      "cells": [fmt(c, r.decimals) for c in cells]})
-    word = PERIOD_WORD[table.freq].lower()
+    caption = {"Q": _("{unit} · quarterly data to {period}"), "M": _("{unit} · monthly data to {period}")}[table.freq]
     return {
-        "title": f"{table.label}. {table.title}",
-        "caption": f"{table.unit} · {word} data to {period_label(through, table.freq)}",
+        "title": table_title(table),
+        "caption": caption.format(unit=_(table.unit), period=period_label(through, table.freq)),
         "through": period_label(through, table.freq),
         "columns": [period_label(c, table.freq) for c in columns],
         "column_notes": None,
         "rows": rows,
-        "note": " ".join(table.footnotes) + f" Lines published only once a year are left out; {NA} not yet published.",
+        "note": _footnotes(table) + " " + _("Lines published only once a year are left out; {na} not yet published.").format(na=NA),
     }
 
 
@@ -1750,7 +1773,7 @@ def _bop_quarterly(in_gdp: bool) -> SectorTable:
     gdp_q, gdp_year = GDP_QUARTER, _gdp_year_to("Q")
     flow = (lambda e: _per_gdp(e, gdp_q)) if in_gdp else (lambda e: scaled(e, 1e-3))
     rows = []
-    for label, indent, ind, _ in BOP_LINES:
+    for label, indent, ind, _source in BOP_LINES:
         qid = _quarterly_id(ind)
         rows.append(Line(label, scaled(flow(at(qid, "Q")), -1 if ind == "bop_travel_debit" else 1), indent=indent,
                          source=f"{BPM6}, quarterly", link=qid))
@@ -2014,9 +2037,9 @@ PAGE = [
 def _view(freq: str, entry, data: Data) -> dict | None:
     if isinstance(entry, tuple):
         amounts, gdp = (web_table(x, data) for x in entry)
-        return {"freq": freq, "label": PERIOD_WORD[freq], "amounts": amounts, "gdp": gdp} if amounts and gdp else None
+        return {"freq": freq, "label": _(PERIOD_WORD[freq]), "amounts": amounts, "gdp": gdp} if amounts and gdp else None
     single = web_table(entry, data)
-    return {"freq": freq, "label": PERIOD_WORD[freq], "single": single} if single else None
+    return {"freq": freq, "label": _(PERIOD_WORD[freq]), "single": single} if single else None
 
 
 def page(data: Data) -> dict:
@@ -2032,6 +2055,6 @@ def page(data: Data) -> dict:
                 built.append({"id": f"{section_id}-{n}", "title": first["title"], "views": views})
         specs = [c for c in (fn(data) for fn in chart_fns) if c]
         if built or specs:
-            sections.append({"id": section_id, "title": title, "intro": intro, "tables": built, "charts": specs})
+            sections.append({"id": section_id, "title": _(title), "intro": _(intro), "tables": built, "charts": specs})
             charts += specs
     return {"sections": sections, "charts": charts}

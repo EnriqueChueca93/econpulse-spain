@@ -95,7 +95,7 @@ PAIRS.update({
         "por ocupado, en el último año y desde 2019, según la base de datos AMECO de la Comisión Europea.",
     # Public finances
     "Budget balances, the interest governments pay and their debt, all as a share of GDP, from the IMF's World Economic Outlook, with where it expects debt to be by the end of its projections.":
-        "Los saldos presupuestarios, los intereses que pagan las administraciones públicas y su deuda, todo en "
+        "Los saldos presupuestarios, los intereses que pagan las Administraciones públicas y su deuda, todo en "
         "porcentaje del PIB, según las Perspectivas de la economía mundial del FMI, con el nivel de deuda que prevé al "
         "final de sus proyecciones.",
     "Gross debt, % of GDP; the latest years are the IMF's projections":
@@ -194,7 +194,7 @@ PAIRS.update({
     "Budget balance": "Saldo presupuestario",
     "General government net lending, % of GDP (negative = deficit)":
         "Capacidad o necesidad de financiación de las AA. PP., % del PIB (negativo = déficit)",
-    "Net interest paid by governments": "Intereses netos pagados por las administraciones públicas",
+    "Net interest paid by governments": "Intereses netos pagados por las Administraciones públicas",
     "Interest paid less interest received, % of GDP": "Intereses pagados menos intereses cobrados, % del PIB",
     "Current account": "Cuenta corriente",
     "Balance with the rest of the world, % of GDP": "Saldo con el resto del mundo, % del PIB",
