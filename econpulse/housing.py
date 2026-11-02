@@ -1,15 +1,17 @@
-"""The Housing page's affordability and valuation blocks (Batch 28a).
+"""The Housing page's computed blocks: affordability and valuation (Batch 28a), and supply, credit,
+wealth and commercial property (Batch 28b).
 
 Affordability comes from the Banco de España's housing indicators (table si_1_5): what an average home
 costs in years of household income, the share of income a new mortgage takes, prices per square metre and
 rental yields. Valuation sets Spain against its comparators with the OECD's analytical house prices: real
 prices, and the OECD's standardised price-to-income and price-to-rent ratios, each against the country's
-own long-run average (= 100).
+own long-run average (= 100). Batch 28b adds the facts above the building, mortgage, wealth and commercial
+property blocks, from the same Banco de España table.
 """
 
 import pandas as pd
 
-from . import peers
+from . import peers, transforms
 from .snapshot import fmt_change, fmt_value, period_label
 from .tables import Data
 
@@ -167,3 +169,112 @@ def price_income_ranking(data: Data) -> dict | None:
 def price_rent_ranking(data: Data) -> dict | None:
     return _valuation_ranking(data, "price_rent", "price-rent-peers", "House prices against rents",
                               "Price-to-rent ratio, 100 = the country's long-run average")
+
+
+# ---------------------------------------------------------------- supply, sales, credit and wealth (Batch 28b)
+
+def _window(data: Data, ind_id: str, transform: str) -> pd.Series | None:
+    """A series after a transform (e.g. its 12-month total), or None without data."""
+    s = data.raw(ind_id)
+    if s is None or s.dropna().empty:
+        return None
+    out = transforms.apply(transform, s.dropna(), data.by_id[ind_id].freq)
+    return None if out.empty else out
+
+
+def _thousands(v: float) -> str:
+    """A count to the nearest thousand, e.g. 766,000."""
+    return f"{round(v, -3):,.0f}"
+
+
+def _peak(data: Data, ind_id: str) -> str:
+    """'63.3% at the 2010 peak', for a series in %."""
+    s = data.raw(ind_id).dropna()
+    return f"{fmt_value(float(s.max()), '%', 1)} at the {s.idxmax().year} peak"
+
+
+def supply_facts(data: Data) -> list[dict]:
+    out = []
+    starts = _window(data, "home_starts", "sum_1y")
+    if starts is not None:
+        share = _latest(data, "protected_share")
+        out.append({"label": "Homes started", "value": f"{starts.iloc[-1]:,.0f}",
+                    "sub": f"past 12 months · {period_label(starts.index[-1], 'M')}"
+                           + (f"; {share[0]:.0f}% protected" if share else "")
+                           + f"; {_thousands(starts.max())} at the {starts.idxmax().year} peak"})
+    permits = _window(data, "home_permits", "sum_1y")
+    if permits is not None:
+        before = permits.get(permits.index[-1] - pd.DateOffset(years=1))
+        change = f", {fmt_change((permits.iloc[-1] / before - 1) * 100, '%', 1)} on a year" if before else ""
+        out.append({"label": "New homes in building permits", "value": f"{permits.iloc[-1]:,.0f}",
+                    "sub": f"past 12 months · {period_label(permits.index[-1], 'M')}{change}"})
+    new = _window(data, "households", "diff_yoy")
+    if new is not None:
+        total = float(data.raw("households").dropna().iloc[-1]) / 1000
+        out.append({"label": "New households", "value": fmt_change(float(new.iloc[-1]) * 1000, "", 0).strip(),
+                    "sub": f"over a year · {period_label(new.index[-1], 'Q')}; {total:.1f} million in all"})
+    per = data.raw("homes_per_household")
+    if per is not None and not per.dropna().empty:
+        per = per.dropna()
+        before = per[per.index.year == per.index[-1].year - 20]
+        out.append({"label": "Homes per household", "value": f"{per.iloc[-1]:.2f}",
+                    "sub": f"{per.index[-1].year} census"
+                           + (f"; {before.iloc[-1]:.2f} in {before.index[-1].year}" if not before.empty else "")})
+    return out
+
+
+def credit_facts(data: Data) -> list[dict]:
+    out = []
+    ltv, over = _latest(data, "mortgage_ltv"), _latest(data, "mortgage_ltv80")
+    if ltv:
+        out.append({"label": "A new mortgage lends", "value": fmt_value(ltv[0], "%", 1),
+                    "sub": f"of the home's price on average · {period_label(ltv[1], ltv[2])}"
+                           + (f"; {fmt_value(over[0], '%', 1)} of mortgages lend more than 80%" if over else "")})
+    term = _latest(data, "mortgage_term")
+    if term:
+        out.append({"label": "Average term", "value": f"{term[0]:.1f} years",
+                    "sub": f"of new mortgages on homes · {period_label(term[1], term[2])}"})
+    npl = _latest(data, "housing_npl")
+    if npl:
+        out.append({"label": "Housing loans gone bad", "value": fmt_value(npl[0], "%", 2),
+                    "sub": f"non-performing · {period_label(npl[1], npl[2])}; {_peak(data, 'housing_npl')}"})
+    debt = _latest(data, "housing_credit_gdp")
+    if debt:
+        out.append({"label": "Housing loans", "value": fmt_value(debt[0], "% of GDP", 1),
+                    "sub": f"owed by households · {period_label(debt[1], debt[2])}; {_peak(data, 'housing_credit_gdp')}"})
+    return out
+
+
+def wealth_facts(data: Data) -> list[dict]:
+    out = []
+    homes, ratio = _latest(data, "housing_wealth"), _latest(data, "housing_wealth_income")
+    if homes:
+        sub = f"what households' homes are worth · {period_label(homes[1], homes[2])}"
+        if ratio:
+            s = data.raw("housing_wealth_income").dropna()
+            sub += (f"; {ratio[0] / 100:.1f} times their disposable income "
+                    f"({float(s.max()) / 100:.1f} at the {s.idxmax().year} peak)")
+        out.append({"label": "Housing wealth", "value": f"€{homes[0] / 1000:.2f} trillion", "sub": sub})
+    fin = _latest(data, "financial_wealth_income")
+    if fin:
+        s = data.raw("financial_wealth_income").dropna()
+        high = f"; the highest since {s.index[0].year}" if fin[0] >= float(s.max()) else ""
+        out.append({"label": "Net financial wealth", "value": f"{fin[0] / 100:.1f}×",
+                    "sub": f"disposable income: savings and investments less debts · {period_label(fin[1], fin[2])}{high}"})
+    return out
+
+
+def commercial_facts(data: Data) -> list[dict]:
+    out = []
+    for ind_id, label in (("cpp_all", "Commercial property prices"), ("cpp_offices", "Offices"),
+                          ("cpp_industrial", "Industrial buildings")):
+        v, before = _latest(data, ind_id), _year_back(data, ind_id)
+        if v and before:
+            out.append({"label": label, "value": fmt_change((v[0] / before - 1) * 100, "%", 1),
+                        "sub": f"on a year · {period_label(v[1], v[2])}; {v[0]:.1f} against 100 in 2014"})
+    cre, homes = _latest(data, "bank_cre_share"), _latest(data, "bank_housing_share")
+    if cre:
+        out.append({"label": "Banks' loans for commercial property", "value": fmt_value(cre[0], "%", 1),
+                    "sub": f"of their loans · {period_label(cre[1], cre[2])}"
+                           + (f"; housing loans {fmt_value(homes[0], '%', 1)}" if homes else "")})
+    return out

@@ -2678,6 +2678,321 @@ indicators:
     change_unit: pp
     max_age_days: 900
 
+  # ---------------------------------------------------------------- Housing: supply, demand and credit (Batch 28b)
+  # From the Banco de España's housing indicators (table si_1_5), which gather the Ministry of Housing's starts
+  # and notarised sales, INE's registered sales and households, and the Bank's own mortgage and wealth figures.
+  - id: home_starts
+    label: "Homes started"
+    label_es: "Viviendas iniciadas, total"
+    section: housing
+    source: bde
+    key: D_1KB02000
+    freq: M
+    unit: homes
+    decimals: 0
+    transforms: [sum_1y, yoy]
+    max_age_days: 240
+    notes: Homes whose construction began in the month, free-market and protected (Ministry of Housing). Published several months after the month it covers.
+
+  - id: home_starts_free
+    label: "Homes started, free-market"
+    label_es: "Viviendas iniciadas, libres"
+    section: housing
+    source: bde
+    key: D_1KB02100
+    freq: M
+    unit: homes
+    decimals: 0
+    transforms: [sum_1y, yoy]
+    max_age_days: 240
+    notes: Monthly since 1980 (Ministry of Housing).
+
+  - id: home_starts_protected
+    label: "Homes started, protected"
+    label_es: "Viviendas iniciadas, protegidas"
+    section: housing
+    source: bde
+    key: D_1KB02200
+    freq: M
+    unit: homes
+    decimals: 0
+    transforms: [sum_1y, yoy]
+    max_age_days: 240
+    notes: Protected (state-supported, price-capped) homes, built by public and private developers (Ministry of Housing).
+
+  - id: protected_share
+    label: "Protected homes, share of homes started"
+    label_es: "Viviendas iniciadas protegidas (acumuladas 12 meses), % del total"
+    section: housing
+    source: bde
+    key: D_1KB0220R
+    freq: M
+    unit: "%"
+    change_unit: pp
+    max_age_days: 240
+    notes: Protected homes as a share of all homes started over the past 12 months (Ministry of Housing).
+
+  - id: households
+    label: "Households"
+    label_es: "Hogares (EPA)"
+    section: housing
+    source: bde
+    key: DEPA202100.T
+    freq: Q
+    unit: thousands
+    decimals: 0
+    transforms: [level, diff_yoy]
+    notes: Number of households, in thousands, from INE's labour force survey (EPA, base 2021), as published by the Banco de España.
+
+  - id: homes_per_household
+    label: "Homes per household"
+    label_es: "Viviendas por hogar en función del parque de viviendas estimado"
+    section: housing
+    source: bde
+    key: D_TKB070AV_VISA
+    freq: Q                      # dated in the fourth quarter of each census year
+    unit: homes
+    decimals: 2
+    max_age_days: 4400           # census years only: 1981, 1991, 2001, 2011, 2021
+    notes: The estimated housing stock over the number of households, in census years (Banco de España, from INE).
+
+  - id: construction_costs
+    label: "Construction costs, buildings"
+    label_es: "Índice de costes de la construcción, edificios (base 2021)"
+    section: housing
+    source: bde
+    key: DCIIOM2021IND_D09F412.M
+    freq: M
+    unit: index
+    transforms: [yoy, level]
+    max_age_days: 240
+    notes: Labour and materials costs of building construction, 2021 = 100 (Ministry of Transport).
+
+  - id: home_sales_new
+    label: "Home sales, new homes"
+    label_es: "Compraventa de viviendas, vivienda nueva"
+    section: housing
+    source: bde
+    key: DHITINOAPLNCVUVT_VVN_RI.M
+    freq: M
+    unit: homes
+    decimals: 0
+    transforms: [sum_1y, yoy]
+    notes: Sales registered in the property registers (INE; the registrars before 2007), as published by the Banco de España.
+
+  - id: home_sales_used
+    label: "Home sales, second-hand homes"
+    label_es: "Compraventa de viviendas, vivienda usada"
+    section: housing
+    source: bde
+    key: DHITINOAPLNCVUVT_VVU_RI.M
+    freq: M
+    unit: homes
+    decimals: 0
+    transforms: [sum_1y, yoy]
+    notes: Sales registered in the property registers (INE; the registrars before 2007), as published by the Banco de España.
+
+  - id: notary_sales
+    label: "Home sales before notaries"
+    label_es: "Transacciones de compraventa de viviendas ante notario, total"
+    section: housing
+    source: bde
+    key: D_TKB56900
+    freq: Q
+    unit: homes
+    decimals: 0
+    transforms: [sum_1y, yoy]
+    notes: Sales of homes signed before notaries in the quarter (Ministry of Housing).
+
+  - id: notary_sales_new
+    label: "Home sales before notaries, new homes"
+    label_es: "Transacciones de compraventa de viviendas ante notario, vivienda nueva"
+    section: housing
+    source: bde
+    key: D_TKB56921
+    freq: Q
+    unit: homes
+    decimals: 0
+    transforms: [sum_1y, yoy]
+
+  - id: notary_sales_used
+    label: "Home sales before notaries, second-hand homes"
+    label_es: "Transacciones de compraventa de viviendas ante notario, vivienda de segunda mano"
+    section: housing
+    source: bde
+    key: D_TKB56925
+    freq: Q
+    unit: homes
+    decimals: 0
+    transforms: [sum_1y, yoy]
+
+  - id: mortgage_ltv
+    label: "Loan-to-value of new mortgages"
+    label_es: "Ratio préstamo-valor (RPV) de transacción"
+    section: housing
+    source: bde
+    key: DHIRINOAPLCPRUVT_TRPV.T
+    freq: Q
+    unit: "%"
+    change_unit: pp
+    notes: The average new mortgage on a home as a share of its sale price (Banco de España, from the property registrars).
+
+  - id: mortgage_ltv80
+    label: "New mortgages above 80% of the price"
+    label_es: "Porcentaje de préstamos con RPV > 80%"
+    section: housing
+    source: bde
+    key: DHIRINOAPLCPRUVT_TPRPVS81.T
+    freq: Q
+    unit: "%"
+    change_unit: pp
+    notes: Share of new mortgages on homes that lend more than 80% of the sale price (Banco de España, from the property registrars).
+
+  - id: mortgage_term
+    label: "Average term of new mortgages"
+    label_es: "Plazo medio de las hipotecas"
+    section: housing
+    source: bde
+    key: DHIRINOAPLDMDUVT.T
+    freq: Q
+    unit: years
+    scale: 0.08333333333333333   # published in months
+    decimals: 1
+    change_unit: "%"
+    notes: Average term of new mortgages on homes, published in months (property registrars).
+
+  - id: housing_npl
+    label: "Non-performing housing loans"
+    label_es: "Ratio de dudosidad del crédito a los hogares para adquisición de vivienda"
+    section: housing
+    source: bde
+    key: D_IMVCDHOGR
+    freq: Q
+    unit: "%"
+    decimals: 2
+    change_unit: pp
+    notes: Doubtful loans to households for house purchase, as a share of all such loans (Banco de España).
+
+  - id: housing_credit_gdp
+    label: "Housing loans to households, % of GDP"
+    label_es: "Crédito a los hogares para adquisición de vivienda, % del PIB"
+    section: housing
+    source: bde
+    key: D_IMVCHOGVP
+    freq: Q
+    unit: "% of GDP"
+    change_unit: pp
+
+  - id: property_credit_gdp
+    label: "Credit secured on property, % of GDP"
+    label_es: "Crédito con garantía inmobiliaria, total de la economía, % del PIB"
+    section: housing
+    source: bde
+    key: D_IMVCHIPTP_EDT
+    freq: Q
+    unit: "% of GDP"
+    change_unit: pp
+    notes: All credit secured on real estate, to households and firms (Banco de España).
+
+  - id: developer_credit_gdp
+    label: "Property-secured credit to builders and developers, % of GDP"
+    label_es: "Crédito con garantía inmobiliaria a construcción y actividades inmobiliarias, % del PIB"
+    section: housing
+    source: bde
+    key: D_IMVCHIPTP_ECAI
+    freq: Q
+    unit: "% of GDP"
+    change_unit: pp
+    notes: Credit secured on real estate to construction and real estate firms (Banco de España).
+
+  - id: housing_wealth
+    label: "Households' housing wealth"
+    label_es: "Riqueza inmobiliaria residencial de los hogares"
+    section: housing
+    source: bde
+    key: D_TKB070C0_ESTI
+    freq: Q
+    unit: "€ bn"
+    scale: 0.001
+    decimals: 0
+    transforms: [level, yoy]
+    notes: The estimated value of the homes households own (Banco de España).
+
+  - id: housing_wealth_income
+    label: "Housing wealth, % of disposable income"
+    label_es: "Riqueza inmobiliaria de los hogares e ISFLSH, % de la renta disponible bruta"
+    section: housing
+    source: bde
+    key: D_TKB070CR_RDB
+    freq: Q
+    unit: "%"
+    decimals: 0
+    change_unit: pp
+    notes: Households' and non-profits' property wealth over their gross disposable income (Banco de España).
+
+  - id: financial_wealth_income
+    label: "Net financial wealth, % of disposable income"
+    label_es: "Riqueza financiera neta de los hogares e ISFLSH, % de la renta disponible bruta"
+    section: housing
+    source: bde
+    key: D_IMVAFNHOGPH
+    freq: Q
+    unit: "%"
+    decimals: 0
+    change_unit: pp
+    notes: Households' and non-profits' financial assets less their debts, over their gross disposable income (Banco de España).
+
+  - id: total_wealth_income
+    label: "Total wealth, % of disposable income"
+    label_es: "Riqueza total de los hogares e ISFLSH, % de la renta disponible bruta"
+    section: housing
+    source: bde
+    key: D_TKB070CT_RDB
+    freq: Q
+    unit: "%"
+    decimals: 0
+    change_unit: pp
+    notes: Property and net financial wealth together, over gross disposable income (Banco de España).
+
+  - id: cpp_{slug}
+    for_each:
+      - {slug: all, code: OX, name: "all", name_es: "índice general"}
+      - {slug: retail, code: OL, name: "retail premises", name_es: "locales comerciales"}
+      - {slug: offices, code: OO, name: "offices", name_es: "oficinas"}
+      - {slug: industrial, code: "NO", name: "industrial buildings", name_es: "naves industriales"}
+      - {slug: prime, code: PR, name: "prime", name_es: "prime"}
+    label: "Commercial property prices, {name}"
+    label_es: "Índice de precios de inmuebles comerciales (base 2014), {name_es}"
+    section: housing
+    source: bde
+    key: "DHIPCA2014PICU{code}.T"
+    freq: Q
+    unit: index
+    transforms: [yoy, level]
+    notes: The Banco de España's commercial property price index, 2014 = 100; prime covers the best properties in the best locations.
+
+  - id: bank_housing_share
+    label: "Housing loans, share of banks' loans"
+    label_es: "Proporción de préstamos para vivienda sobre el total de préstamos brutos"
+    section: housing
+    source: bde
+    key: DSI.S122.RR._Z._Z._Z.PRT.T
+    freq: Q
+    unit: "%"
+    change_unit: pp
+    notes: Loans for house purchase as a share of deposit institutions' gross loans (Banco de España, financial soundness indicators).
+
+  - id: bank_cre_share
+    label: "Commercial property loans, share of banks' loans"
+    label_es: "Proporción de préstamos para inmuebles comerciales sobre el total de préstamos brutos"
+    section: housing
+    source: bde
+    key: DSI.S122.CR._Z._Z._Z.PRT.T
+    freq: Q
+    unit: "%"
+    change_unit: pp
+    notes: Loans for commercial real estate as a share of deposit institutions' gross loans (Banco de España, financial soundness indicators).
+
   # The OECD's analytical house prices for Spain and its comparators: real prices, and price-to-income and
   # price-to-rent ratios (indices; the page compares each with its own long-run average, as the OECD does).
   - id: real_hpi_{slug}

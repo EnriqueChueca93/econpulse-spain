@@ -122,6 +122,15 @@
   "n_obs": 284,
   "signature": "[\"derived\", \"divide\", {\"a\": \"mortgage_lending_homes\", \"b\": \"mortgages_homes\", \"scale\": 1000000}, 1.0]"
  },
+ "bank_cre_share": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T01:59:35+00:00",
+  "first_date": "2017-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 38,
+  "signature": "[\"bde\", \"DSI.S122.CR._Z._Z._Z.PRT.T\", {}, 1.0]",
+  "source_name": "ISF. Proporción de préstamos para inmuebles comerciales sobre el total de préstamos brutos. Sociedades de depósito, excepto banco central. Proporción sobre el total"
+ },
  "bank_credit_business": {
   "status": "ok",
   "fetched_at": "2026-11-01T21:22:55+00:00",
@@ -175,6 +184,15 @@
   "n_obs": 776,
   "signature": "[\"bde\", \"D_BEEP0000N\", {}, 1.0]",
   "source_name": "Entidades de crédito y EFC. Balance agregado estados supervisión. Pasivo. Depósitos. Residentes en España. Otros sectores residentes"
+ },
+ "bank_housing_share": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T01:59:35+00:00",
+  "first_date": "2012-10-01",
+  "last_date": "2026-04-01",
+  "n_obs": 51,
+  "signature": "[\"bde\", \"DSI.S122.RR._Z._Z._Z.PRT.T\", {}, 1.0]",
+  "source_name": "ISF. Proporción de préstamos para vivienda sobre el total de préstamos brutos. Sociedades de depósito, excepto banco central. Proporción sobre el total"
  },
  "bank_loans_osr": {
   "status": "ok",
@@ -972,6 +990,15 @@
   "source_name": "Economic sentiment and confidence indicators by sector - monthly data",
   "source_updated": "2026-10-29T11:00:00+0100"
  },
+ "construction_costs": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T01:59:34+00:00",
+  "first_date": "2005-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 261,
+  "signature": "[\"bde\", \"DCIIOM2021IND_D09F412.M\", {}, 1.0]",
+  "source_name": "Estadísticas Generales. Índice costes construcción. Ponderado de mano de obra y consumo de materiales. Base 2021. Construcción de edificios"
+ },
  "consumer_confidence": {
   "status": "ok",
   "fetched_at": "2026-11-01T21:22:31+00:00",
@@ -1476,6 +1503,51 @@
   "flash": false,
   "source_name": "Comunitat Valenciana. Índice general. Variación anual."
  },
+ "cpp_all": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T01:59:34+00:00",
+  "first_date": "2014-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 50,
+  "signature": "[\"bde\", \"DHIPCA2014PICUOX.T\", {}, 1.0]",
+  "source_name": "Índice de precios de inmuebles comerciales. Año base 2014. Índice general"
+ },
+ "cpp_industrial": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T01:59:34+00:00",
+  "first_date": "2014-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 50,
+  "signature": "[\"bde\", \"DHIPCA2014PICUNO.T\", {}, 1.0]",
+  "source_name": "Índice de precios de inmuebles comerciales. Año base 2014. Naves industriales"
+ },
+ "cpp_offices": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T01:59:34+00:00",
+  "first_date": "2014-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 50,
+  "signature": "[\"bde\", \"DHIPCA2014PICUOO.T\", {}, 1.0]",
+  "source_name": "Índice de precios de inmuebles comerciales. Año base 2014. Oficinas"
+ },
+ "cpp_prime": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T01:59:35+00:00",
+  "first_date": "2014-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 50,
+  "signature": "[\"bde\", \"DHIPCA2014PICUPR.T\", {}, 1.0]",
+  "source_name": "Índice de precios de inmuebles comerciales. Año base 2014. Prime"
+ },
+ "cpp_retail": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T01:59:34+00:00",
+  "first_date": "2014-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 50,
+  "signature": "[\"bde\", \"DHIPCA2014PICUOL.T\", {}, 1.0]",
+  "source_name": "Índice de precios de inmuebles comerciales. Año base 2014. Locales comerciales"
+ },
  "current_account": {
   "status": "ok",
   "fetched_at": "2026-11-01T21:22:31+00:00",
@@ -1596,6 +1668,15 @@
   "last_date": "2026-08-01",
   "n_obs": 320,
   "signature": "[\"ecb\", \"MIR/M.ES.B.L22.F.R.A.2250.EUR.N\", {}, 1.0]"
+ },
+ "developer_credit_gdp": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T01:59:34+00:00",
+  "first_date": "1998-10-01",
+  "last_date": "2026-04-01",
+  "n_obs": 111,
+  "signature": "[\"bde\", \"D_IMVCHIPTP_ECAI\", {}, 1.0]",
+  "source_name": "Crédito con garantía inmobiliaria para los sectores de la construcción y las actividades inmobiliarias. Como porcentaje del PIBpm corriente"
  },
  "domestic_demand": {
   "status": "ok",
@@ -2846,6 +2927,15 @@
   "n_obs": 38,
   "signature": "[\"oecd\", \"OECD.ECO.MAD,DSD_EO@DF_EO,/ESP.UNR.A\", {\"edition\": true}, 1.0]",
   "edition": "Economic Outlook 119"
+ },
+ "financial_wealth_income": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T01:59:34+00:00",
+  "first_date": "1999-10-01",
+  "last_date": "2026-04-01",
+  "n_obs": 107,
+  "signature": "[\"bde\", \"D_IMVAFNHOGPH\", {}, 1.0]",
+  "source_name": "Estadísticas Generales. Contabilidad nacional. Año base 2020. Riqueza financiera neta de los hogares e ISFLSH como proporción de la renta disponible bruta"
  },
  "flow_emp_inac": {
   "status": "ok",
@@ -4649,6 +4739,60 @@
   "flash": false,
   "source_name": "Total Nacional. Compraventa. Total viviendas. Número."
  },
+ "home_sales_new": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T01:59:34+00:00",
+  "first_date": "2004-03-01",
+  "last_date": "2026-08-01",
+  "n_obs": 248,
+  "signature": "[\"bde\", \"DHITINOAPLNCVUVT_VVN_RI.M\", {}, 1.0]",
+  "source_name": "Estadísticas Generales. Edificación y vivienda. Compraventa de viviendas. Total vivienda nueva"
+ },
+ "home_sales_used": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T01:59:34+00:00",
+  "first_date": "2004-03-01",
+  "last_date": "2026-08-01",
+  "n_obs": 248,
+  "signature": "[\"bde\", \"DHITINOAPLNCVUVT_VVU_RI.M\", {}, 1.0]",
+  "source_name": "Estadísticas Generales. Edificación y vivienda. Compraventa de viviendas. Total vivienda usada"
+ },
+ "home_starts": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T01:59:33+00:00",
+  "first_date": "1970-01-01",
+  "last_date": "2026-06-01",
+  "n_obs": 678,
+  "signature": "[\"bde\", \"D_1KB02000\", {}, 1.0]",
+  "source_name": "Estadísticas Generales. Edificación y vivienda. Viviendas iniciadas. Total"
+ },
+ "home_starts_free": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T01:59:34+00:00",
+  "first_date": "1980-01-01",
+  "last_date": "2026-06-01",
+  "n_obs": 558,
+  "signature": "[\"bde\", \"D_1KB02100\", {}, 1.0]",
+  "source_name": "Estadísticas Generales. Edificación y vivienda. Viviendas iniciadas. Libres"
+ },
+ "home_starts_protected": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T01:59:34+00:00",
+  "first_date": "1970-01-01",
+  "last_date": "2026-06-01",
+  "n_obs": 678,
+  "signature": "[\"bde\", \"D_1KB02200\", {}, 1.0]",
+  "source_name": "Estadísticas Generales. Edificación y vivienda. Viviendas iniciadas. Protegidas"
+ },
+ "homes_per_household": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T01:59:34+00:00",
+  "first_date": "1981-10-01",
+  "last_date": "2021-10-01",
+  "n_obs": 5,
+  "signature": "[\"bde\", \"D_TKB070AV_VISA\", {}, 1.0]",
+  "source_name": "Estadísticas Generales. Edificación y vivienda. Viviendas por hogar en función del parque de viviendas estimado"
+ },
  "hotel_nights_foreign": {
   "status": "ok",
   "fetched_at": "2026-11-01T21:22:31+00:00",
@@ -5141,6 +5285,24 @@
   "source_name": "Key indicators for sector accounts - annual data",
   "source_updated": "2026-10-28T11:00:00+0100"
  },
+ "households": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T01:59:34+00:00",
+  "first_date": "2002-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 99,
+  "signature": "[\"bde\", \"DEPA202100.T\", {}, 1.0]",
+  "source_name": "Estadísticas Generales. INE. EPA. Base 2021. Hogares. Total nacional. Ambos sexos"
+ },
+ "housing_credit_gdp": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T01:59:34+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 126,
+  "signature": "[\"bde\", \"D_IMVCHOGVP\", {}, 1.0]",
+  "source_name": "Crédito hipotecario. Crédito a los hogares para adquisición de viviendas. Saldo en porcentaje del PIB"
+ },
  "housing_loans_growth": {
   "status": "ok",
   "fetched_at": "2026-11-01T21:22:38+00:00",
@@ -5148,6 +5310,15 @@
   "last_date": "2026-09-01",
   "n_obs": 273,
   "signature": "[\"ecb\", \"BSI/M.ES.N.A.A22.A.I.U2.2250.Z01.A\", {}, 1.0]"
+ },
+ "housing_npl": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T01:59:34+00:00",
+  "first_date": "1988-10-01",
+  "last_date": "2026-04-01",
+  "n_obs": 151,
+  "signature": "[\"bde\", \"D_IMVCDHOGR\", {}, 1.0]",
+  "source_name": "Crédito hipotecario. Créditos dudosos a los hogares para adquisicion de viviendas. Ratio de dudosidad"
  },
  "housing_return": {
   "status": "ok",
@@ -5157,6 +5328,24 @@
   "n_obs": 155,
   "signature": "[\"bde\", \"D_TKR600RV_VIV_IPV\", {}, 1.0]",
   "source_name": "Estadísticas Generales. Edificación y vivienda. Rentabilidad anual de la vivienda"
+ },
+ "housing_wealth": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T01:59:34+00:00",
+  "first_date": "1980-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 186,
+  "signature": "[\"bde\", \"D_TKB070C0_ESTI\", {}, 0.001]",
+  "source_name": "Estadísticas Generales. Riqueza inmobiliaria residencial de los hogares"
+ },
+ "housing_wealth_income": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T01:59:34+00:00",
+  "first_date": "1999-10-01",
+  "last_date": "2026-04-01",
+  "n_obs": 107,
+  "signature": "[\"bde\", \"D_TKB070CR_RDB\", {}, 1.0]",
+  "source_name": "Estadísticas Generales. Contabilidad nacional. Año base 2020. Riqueza inmobiliaria de los hogares e ISFLSH como proporción de la renta disponible bruta"
  },
  "ibex35": {
   "status": "ok",
@@ -6259,6 +6448,24 @@
   "flash": false,
   "source_name": "Viviendas. Importe de hipotecas. Total Nacional. Base nueva. Mensual."
  },
+ "mortgage_ltv": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T01:59:34+00:00",
+  "first_date": "2004-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 90,
+  "signature": "[\"bde\", \"DHIRINOAPLCPRUVT_TRPV.T\", {}, 1.0]",
+  "source_name": "Estadísticas Generales. Edificación y vivienda. Accesibilidad a la vivienda. RPV de transacción"
+ },
+ "mortgage_ltv80": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T01:59:34+00:00",
+  "first_date": "2004-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 90,
+  "signature": "[\"bde\", \"DHIRINOAPLCPRUVT_TPRPVS81.T\", {}, 1.0]",
+  "source_name": "Estadísticas Generales. Edificación y vivienda. Accesibilidad a la vivienda. Porcentaje de préstamos con RPV>80%"
+ },
  "mortgage_rate": {
   "status": "ok",
   "fetched_at": "2026-11-01T21:22:38+00:00",
@@ -6266,6 +6473,15 @@
   "last_date": "2026-08-01",
   "n_obs": 320,
   "signature": "[\"ecb\", \"MIR/M.ES.B.A2C.A.R.A.2250.EUR.N\", {}, 1.0]"
+ },
+ "mortgage_term": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T01:59:34+00:00",
+  "first_date": "2004-04-01",
+  "last_date": "2026-04-01",
+  "n_obs": 89,
+  "signature": "[\"bde\", \"DHIRINOAPLDMDUVT.T\", {}, 0.08333333333333333]",
+  "source_name": "Estadísticas Generales. Edificación y vivienda. Accesibilidad a la vivienda. Plazo medio de las hipotecas. Meses"
  },
  "mortgages_homes": {
   "status": "ok",
@@ -6352,6 +6568,33 @@
   "signature": "[\"eurostat\", \"bop_iip6_q\", {\"bop_item\": \"FA\", \"currency\": \"MIO_EUR\", \"freq\": \"Q\", \"geo\": \"ES\", \"partner\": \"WRL_REST\", \"sector10\": \"S1\", \"sectpart\": \"S1\", \"stk_flow\": \"N_LE\"}, 1.0]",
   "source_name": "International investment position - quarterly and annual data (BPM6)",
   "source_updated": "2026-10-29T11:00:00+0100"
+ },
+ "notary_sales": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T01:59:34+00:00",
+  "first_date": "2004-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 90,
+  "signature": "[\"bde\", \"D_TKB56900\", {}, 1.0]",
+  "source_name": "Estadísticas Generales. Edificación y vivienda. Transacciones de compraventa. Ante notario. Total"
+ },
+ "notary_sales_new": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T01:59:34+00:00",
+  "first_date": "2004-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 90,
+  "signature": "[\"bde\", \"D_TKB56921\", {}, 1.0]",
+  "source_name": "Estadísticas Generales. Edificación y vivienda. Transacciones de compraventa. Ante notario. Vivienda nueva"
+ },
+ "notary_sales_used": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T01:59:34+00:00",
+  "first_date": "2004-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 90,
+  "signature": "[\"bde\", \"D_TKB56925\", {}, 1.0]",
+  "source_name": "Estadísticas Generales. Edificación y vivienda. Transacciones de compraventa. Ante notario. Vivienda de segunda mano"
  },
  "npl_ratio": {
   "status": "ok",
@@ -7350,6 +7593,24 @@
   "signature": "[\"dbnomics\", \"AMECO/RVGDE/USA.1.1.0.0.RVGDE\", {\"batch\": \"ESP+EA20+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]",
   "source_updated": "2026-05-22"
  },
+ "property_credit_gdp": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T01:59:34+00:00",
+  "first_date": "1999-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 110,
+  "signature": "[\"bde\", \"D_IMVCHIPTP_EDT\", {}, 1.0]",
+  "source_name": "Crédito con garantía inmobiliaria para el total de la economía. Como porcentaje del PIBpm corriente"
+ },
+ "protected_share": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T01:59:34+00:00",
+  "first_date": "1981-01-01",
+  "last_date": "2026-06-01",
+  "n_obs": 546,
+  "signature": "[\"bde\", \"D_1KB0220R\", {}, 1.0]",
+  "source_name": "Estadísticas Generales. Edificación y vivienda. Viviendas iniciadas. Protegidas (acumuladas 12 meses) en % del total"
+ },
  "public_investment_annual": {
   "status": "ok",
   "fetched_at": "2026-11-01T21:22:31+00:00",
@@ -8126,6 +8387,15 @@
   "last_date": "2026-09-01",
   "n_obs": 261,
   "signature": "[\"derived\", \"divide\", {\"a\": \"export_prices_all\", \"b\": \"import_prices_all\", \"scale\": 100}, 1.0]"
+ },
+ "total_wealth_income": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T01:59:34+00:00",
+  "first_date": "1999-10-01",
+  "last_date": "2026-04-01",
+  "n_obs": 107,
+  "signature": "[\"bde\", \"D_TKB070CT_RDB\", {}, 1.0]",
+  "source_name": "Estadísticas Generales. Contabilidad nacional. Año base 2020. Riqueza total de los hogares e ISFLSH como proporción de la renta disponible bruta"
  },
  "tourism_receipts": {
   "status": "ok",

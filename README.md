@@ -68,7 +68,9 @@ Because the workflow commits data every day, run `git pull` before working local
   ECB meeting and a market-implied rate path.
 - **Fiscal, Activity, Housing, International, Regions**: the public finances, activity and tourism, the housing
   market (prices, affordability in years of income and mortgage effort, prices per m², rents and renting, and
-  house prices against the comparators' on the OECD's ratios) and household debt, Spain against the euro area and ten comparators (France, Germany, Italy, the
+  house prices against the comparators' on the OECD's ratios; homes started since 1980 against new households,
+  sales registered and before notaries, mortgages' loan-to-value, term and arrears, debt secured on property,
+  household wealth and commercial property prices) and household debt, Spain against the euro area and ten comparators (France, Germany, Italy, the
   Netherlands, Portugal, Poland, the UK, the US, Canada and Japan: growth and GDP since 2019, GDP per head, jobs,
   prices and interest rates, real pay and productivity, public finances, the current account and the IMF's outlook;
   the reader chooses up to three comparators to draw beside Spain), and the 17 autonomous communities.
@@ -168,7 +170,8 @@ econpulse/            Python package
   industries.py       the Every industry page: registrations by group of activities, charts and table
   demography.py       the Labour page's rates by group and the ageing figures (from sources/ageing.py)
   workstats.py        hours, vacancies and pay by activity, and layoffs (Labour and Wages pages)
-  housing.py          the Housing page's affordability, renting and valuation against the comparators
+  housing.py          the Housing page's affordability, renting and valuation against the comparators, and the
+                      facts above its building, mortgage, wealth and commercial property blocks
   peers.py            Spain and its comparators (International page): series, GDP since 2019, the IMF's
                       figures by year, pay and productivity, ranks
   trade.py            the Trade page: goods by product group and partner, services by type, prices

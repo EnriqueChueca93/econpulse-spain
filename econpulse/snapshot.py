@@ -39,7 +39,7 @@ def fmt_value(v: float, unit: str, decimals: int) -> str:
     n = _num(v, decimals, thousands=True)
     sign, digits = (MINUS, n[1:]) if n.startswith(MINUS) else ("", n)
     if unit == "%":
-        return f"{_num(v, decimals)}%"
+        return f"{_num(v, decimals, thousands=True)}%"
     if unit == "% of GDP":
         return f"{_num(v, decimals)}% of GDP"
     if unit == "bp":
@@ -52,6 +52,8 @@ def fmt_value(v: float, unit: str, decimals: int) -> str:
         return f"{sign}${digits}"
     if unit == "€ mn":
         return f"{sign}€{digits} mn"
+    if unit == "€ bn":
+        return f"{sign}€{digits} bn"
     if unit == "€":
         return f"{sign}€{digits}"
     return f"{n} {unit}"  # e.g. "224.9 €/MWh", "93,858 vehicles"

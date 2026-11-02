@@ -7594,6 +7594,209 @@
    "display": "109.4",
    "period": "Q4 2025",
    "flash": false
+  },
+  "home_starts": {
+   "date": "2026-06-01",
+   "raw": 16367.0,
+   "display": "149,516 homes 12-mo total",
+   "period": "Jun 2026",
+   "flash": false
+  },
+  "home_starts_free": {
+   "date": "2026-06-01",
+   "raw": 10369.0,
+   "display": "128,301 homes 12-mo total",
+   "period": "Jun 2026",
+   "flash": false
+  },
+  "home_starts_protected": {
+   "date": "2026-06-01",
+   "raw": 5998.0,
+   "display": "21,215 homes 12-mo total",
+   "period": "Jun 2026",
+   "flash": false
+  },
+  "protected_share": {
+   "date": "2026-06-01",
+   "raw": 14.19,
+   "display": "14.2%",
+   "period": "Jun 2026",
+   "flash": false
+  },
+  "households": {
+   "date": "2026-07-01",
+   "raw": 20073.9,
+   "display": "20,074k",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "construction_costs": {
+   "date": "2026-09-01",
+   "raw": 126.76,
+   "display": "8.4% y/y",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "home_sales_new": {
+   "date": "2026-08-01",
+   "raw": 10521.0,
+   "display": "152,445 homes 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "home_sales_used": {
+   "date": "2026-08-01",
+   "raw": 38798.0,
+   "display": "548,204 homes 12-mo total",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "notary_sales": {
+   "date": "2026-04-01",
+   "raw": 182637.0,
+   "display": "724,863 homes 4-qtr total",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "notary_sales_new": {
+   "date": "2026-04-01",
+   "raw": 19440.0,
+   "display": "70,551 homes 4-qtr total",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "notary_sales_used": {
+   "date": "2026-04-01",
+   "raw": 163197.0,
+   "display": "654,312 homes 4-qtr total",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "mortgage_ltv": {
+   "date": "2026-04-01",
+   "raw": 63.7,
+   "display": "63.7%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "mortgage_ltv80": {
+   "date": "2026-04-01",
+   "raw": 9.6,
+   "display": "9.6%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "mortgage_term": {
+   "date": "2026-04-01",
+   "raw": 25.41666667,
+   "display": "25.4 years",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "housing_npl": {
+   "date": "2026-04-01",
+   "raw": 1.45,
+   "display": "1.4%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "housing_credit_gdp": {
+   "date": "2026-04-01",
+   "raw": 30.24,
+   "display": "30.2% of GDP",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "property_credit_gdp": {
+   "date": "2026-04-01",
+   "raw": 28.48,
+   "display": "28.5% of GDP",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "developer_credit_gdp": {
+   "date": "2026-04-01",
+   "raw": 5.59,
+   "display": "5.6% of GDP",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "housing_wealth": {
+   "date": "2026-04-01",
+   "raw": 8185.944,
+   "display": "8,186 € bn",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "housing_wealth_income": {
+   "date": "2026-04-01",
+   "raw": 752.58,
+   "display": "753%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "financial_wealth_income": {
+   "date": "2026-04-01",
+   "raw": 258.6,
+   "display": "259%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "total_wealth_income": {
+   "date": "2026-04-01",
+   "raw": 1011.19,
+   "display": "1011%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "cpp_all": {
+   "date": "2026-04-01",
+   "raw": 102.97,
+   "display": "5.9% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "cpp_retail": {
+   "date": "2026-04-01",
+   "raw": 97.49,
+   "display": "3.9% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "cpp_offices": {
+   "date": "2026-04-01",
+   "raw": 123.41,
+   "display": "9.9% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "cpp_industrial": {
+   "date": "2026-04-01",
+   "raw": 121.23,
+   "display": "12.3% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "cpp_prime": {
+   "date": "2026-04-01",
+   "raw": 132.95,
+   "display": "9.7% y/y",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "bank_housing_share": {
+   "date": "2026-04-01",
+   "raw": 29.14,
+   "display": "29.1%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "bank_cre_share": {
+   "date": "2026-04-01",
+   "raw": 4.0,
+   "display": "4.0%",
+   "period": "Q2 2026",
+   "flash": false
   }
  },
  "notes": [
@@ -7752,6 +7955,6 @@
    "at": "2026-11-02T00:14:15+00:00"
   }
  ],
- "updated_at": "2026-11-02T00:14:15+00:00",
+ "updated_at": "2026-11-02T01:59:39+00:00",
  "started_at": "2026-10-31T23:31:49+00:00"
 }
