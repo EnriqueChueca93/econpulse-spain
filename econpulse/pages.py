@@ -8,7 +8,8 @@ lists the indicators those functions read. Sections without blocks yet show thei
 (see build.SECTION_PAGES for the batch that fills them).
 """
 
-from . import analytics, demography, forecasts, housing, peers, policy, sectortables, surprises, underlying, workstats
+from . import (analytics, demography, forecasts, housing, peers, pensions, policy, sectortables, surprises,
+               underlying, workstats)
 from .charts import build_chart, build_curve, build_ranking, build_xy
 from .registry import Indicator
 from .snapshot import fmt_value, period_label
@@ -1532,6 +1533,114 @@ PAGES: dict[str, list[dict]] = {
                  "ref_lines": [{"y": 100, "label": "2014"}],
                  "series": [("cpp_all", "level", "All", {"color": "ink"}), ("cpp_offices", "level", "Offices"),
                             ("cpp_retail", "level", "Retail"), ("cpp_industrial", "level", "Industrial")]},
+            ],
+        },
+    ],
+    # ------------------------------------------------------------------ Pensions
+    "pensions": [
+        {
+            "id": "overview",
+            "title": "Pensions today",
+            "intro": ("The Social Security's contributory pensions: paid for by contributions and earned by working, "
+                      "for retirement, widowhood, permanent disability, orphans and family members. Non-contributory "
+                      "pensions, for people who paid in too little, and civil servants' pensions (Clases Pasivas) are "
+                      "not included."),
+            "facts": pensions.overview_facts,
+            "uses": pensions.COST_USES,
+            "tables": [pensions.CLASS_TABLE],
+            "charts": [
+                {"id": "pension-average-class", "title": "Average pension by class",
+                 "subtitle": "€ a month, annual averages", "kind": "line", "unit": "€", "decimals": 0,
+                 "start": "2016-01-01",
+                 "series": [("pension_avg_total_annual", "level", "All pensions", {"color": "ink"}),
+                            ("pension_avg_retirement_annual", "level", "Retirement"),
+                            ("pension_avg_disability_annual", "level", "Disability"),
+                            ("pension_avg_widowhood_annual", "level", "Widowhood")]},
+                pensions.real_chart,
+                pensions.cost_chart,
+                pensions.workers_chart,
+            ],
+        },
+        {
+            "id": "new",
+            "title": "New and ended pensions",
+            "intro": ("Each month new pensions are granted and others end, mostly on the pensioner's death. New "
+                      "retirement pensions, earned on higher pay, are larger than those that end, so the average "
+                      "pension rises faster than pensions are revalued."),
+            "facts": pensions.new_facts,
+            "tables": [Table(
+                title="Pensions",
+                caption="Latest month; changes in %",
+                columns=[Level("latest"), Change("y/y", 12), YearToDate("Year to date")],
+                rows=[
+                    Row("new_pensions_total", "Pensions granted, thousands"),
+                    Row("new_pensions_retirement", "Retirement", indent=1),
+                    Row("ended_pensions_total", "Pensions ended, thousands"),
+                    Heading("Average amount, € a month"),
+                    Row("new_pension_avg_total", "New pensions", indent=1, flow=False),
+                    Row("new_pension_avg_retirement", "New retirement pensions", indent=1, flow=False),
+                    Row("ended_pension_avg_retirement", "Retirement pensions that ended", indent=1, flow=False),
+                    Row("pension_avg_retirement", "All retirement pensions in force", indent=1, flow=False),
+                ],
+                note=("Granted and ended in the month (tables PEN-10 and PEN-11); the monthly figures start in March "
+                      "and April 2025, so year-to-date changes appear from 2027."),
+            )],
+            "charts": [
+                {"id": "retirement-new-ended", "title": "New, ended and all retirement pensions",
+                 "subtitle": "Average amount, € a month, annual", "kind": "line", "unit": "€", "decimals": 0,
+                 "start": "2016-01-01",
+                 "series": [("new_pension_avg_retirement_annual", "level", "New"),
+                            ("pension_avg_retirement_annual", "level", "All in force", {"color": "ink"}),
+                            ("ended_pension_avg_retirement_annual", "level", "Ended")]},
+                {"id": "pensions-flows", "title": "Pensions granted and ended", "subtitle": "Thousands a year",
+                 "kind": "line", "unit": "k", "decimals": 0, "start": "2016-01-01",
+                 "series": [("new_pensions_total_annual", "level", "Granted"),
+                            ("ended_pensions_total_annual", "level", "Ended")]},
+            ],
+        },
+        {
+            "id": "schemes",
+            "title": "By scheme",
+            "intro": ("Pensions by the Social Security scheme the pensioner paid into: employees in the General "
+                      "scheme, the self-employed, and the smaller special schemes."),
+            "tables": [pensions.SCHEME_TABLE],
+            "charts": [
+                {"id": "pension-scheme-ranking", "kind": "hbar", "title": "Average pension by scheme",
+                 "subtitle": "€ a month", "unit": "€", "decimals": 0, "x_title": "Scheme",
+                 "items": [(f"pension_avg_scheme_{s}", label) for s, label in pensions.SCHEMES],
+                 "ref_from": [("pension_avg_total", "All pensions")]},
+            ],
+        },
+        {
+            "id": "regions",
+            "title": "By region",
+            "intro": "Pensions and average pensions in each autonomous community, where the pensioner lives.",
+            "tables": [pensions.REGION_TABLE],
+            "charts": [
+                {"id": "pension-region-ranking", "kind": "hbar", "title": "Average pension by region",
+                 "subtitle": "€ a month", "unit": "€", "decimals": 0,
+                 "items": [(f"pension_avg_reg_{s}", label) for s, label in pensions.REGIONS],
+                 "ref_from": [("pension_avg_total", "Spain")]},
+                {"id": "retirement-region-ranking", "kind": "hbar", "title": "Average retirement pension by region",
+                 "subtitle": "€ a month", "unit": "€", "decimals": 0,
+                 "items": [(f"retirement_avg_reg_{s}", label) for s, label in pensions.REGIONS],
+                 "ref_from": [("pension_avg_retirement", "Spain")]},
+            ],
+        },
+        {
+            "id": "limits",
+            "title": "Maximum and minimum pensions",
+            "intro": ("No contributory pension can exceed the maximum, whatever was paid in; pensioners with little "
+                      "other income are topped up to the minimum. Both are set every year in the budget."),
+            "facts": pensions.limits_facts,
+            "tables": [pensions.LIMITS_TABLE],
+            "charts": [
+                {"id": "pension-limits", "title": "Maximum and minimum pensions",
+                 "subtitle": "€ a month, of 14 payments a year", "kind": "line", "unit": "€", "decimals": 0,
+                 "start": "1990-01-01",
+                 "series": [("pension_max", "level", "Maximum", {"color": "ink"}),
+                            ("pension_min_spouse", "level", "Minimum, dependent spouse"),
+                            ("pension_min_single", "level", "Minimum, living alone")]},
             ],
         },
     ],

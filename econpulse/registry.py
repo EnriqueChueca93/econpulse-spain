@@ -13,7 +13,7 @@ from .sources import derived
 
 SECTIONS = (
     "gdp", "labour", "wages", "inflation", "financial", "ecb",
-    "fiscal", "activity", "housing", "international", "regions", "analysis",
+    "fiscal", "activity", "housing", "pensions", "international", "regions", "analysis",
 )
 
 # How old the latest observation may get before we flag the series as not updating.

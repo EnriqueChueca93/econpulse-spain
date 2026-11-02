@@ -1874,6 +1874,42 @@
   "flash": false,
   "source_name": "Total Nacional. Tasa de empleo de la población. Ambos sexos. Total."
  },
+ "ended_pension_avg_retirement": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-03-01",
+  "last_date": "2026-08-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen11\", {\"col\": 6}, 1.0]",
+  "source_name": "BEL PEN11"
+ },
+ "ended_pension_avg_retirement_annual": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2016-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 10,
+  "signature": "[\"bel\", \"pen11\", {\"col\": 6}, 1.0]",
+  "source_name": "BEL PEN11"
+ },
+ "ended_pensions_total": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-03-01",
+  "last_date": "2026-08-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen11\", {\"col\": 1}, 1.0]",
+  "source_name": "BEL PEN11"
+ },
+ "ended_pensions_total_annual": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2016-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 10,
+  "signature": "[\"bel\", \"pen11\", {\"col\": 1}, 1.0]",
+  "source_name": "BEL PEN11"
+ },
  "ere_dismissals": {
   "status": "ok",
   "fetched_at": "2026-11-01T21:23:12+00:00",
@@ -6531,6 +6567,78 @@
   "n_obs": 284,
   "signature": "[\"ecb\", \"MIR/M.ES.B.A2C.A.B.A.2250.EUR.N\", {}, 1.0]"
  },
+ "new_pension_avg_retirement": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-03-01",
+  "last_date": "2026-08-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen10\", {\"col\": \"6\"}, 1.0]",
+  "source_name": "BEL PEN10"
+ },
+ "new_pension_avg_retirement_annual": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2016-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 10,
+  "signature": "[\"bel\", \"pen10\", {\"col\": \"6\"}, 1.0]",
+  "source_name": "BEL PEN10"
+ },
+ "new_pension_avg_total": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-03-01",
+  "last_date": "2026-08-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen10\", {\"col\": \"2\"}, 1.0]",
+  "source_name": "BEL PEN10"
+ },
+ "new_pension_avg_total_annual": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2016-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 10,
+  "signature": "[\"bel\", \"pen10\", {\"col\": \"2\"}, 1.0]",
+  "source_name": "BEL PEN10"
+ },
+ "new_pensions_retirement": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-03-01",
+  "last_date": "2026-08-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen10\", {\"col\": \"5\"}, 1.0]",
+  "source_name": "BEL PEN10"
+ },
+ "new_pensions_retirement_annual": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2016-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 10,
+  "signature": "[\"bel\", \"pen10\", {\"col\": \"5\"}, 1.0]",
+  "source_name": "BEL PEN10"
+ },
+ "new_pensions_total": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-03-01",
+  "last_date": "2026-08-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen10\", {\"col\": \"1\"}, 1.0]",
+  "source_name": "BEL PEN10"
+ },
+ "new_pensions_total_annual": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2016-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 10,
+  "signature": "[\"bel\", \"pen10\", {\"col\": \"1\"}, 1.0]",
+  "source_name": "BEL PEN10"
+ },
  "nfc_loan_rate": {
   "status": "ok",
   "fetched_at": "2026-11-01T21:22:56+00:00",
@@ -7198,6 +7306,672 @@
   "signature": "[\"ine\", \"ETCL1731\", {}, 1.0]",
   "flash": false,
   "source_name": "Ambas jornadas. Suministro de agua, actividades de saneamiento, gestión de residuos y descontaminación. Coste salarial total. Costes salariales. Total Nacional. Euros."
+ },
+ "pension_avg_disability": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen1\", {\"col\": \"4\"}, 1.0]",
+  "source_name": "BEL PEN1"
+ },
+ "pension_avg_disability_annual": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2016-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 10,
+  "signature": "[\"bel\", \"pen1\", {\"col\": \"4\"}, 1.0]",
+  "source_name": "BEL PEN1"
+ },
+ "pension_avg_orphans": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen1\", {\"col\": \"10\"}, 1.0]",
+  "source_name": "BEL PEN1"
+ },
+ "pension_avg_orphans_annual": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2016-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 10,
+  "signature": "[\"bel\", \"pen1\", {\"col\": \"10\"}, 1.0]",
+  "source_name": "BEL PEN1"
+ },
+ "pension_avg_reg_andalucia": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen20\", {\"col\": \"1\", \"sheet\": \"0\"}, 1.0]",
+  "source_name": "BEL PEN20"
+ },
+ "pension_avg_reg_aragon": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen20\", {\"col\": \"2\", \"sheet\": \"0\"}, 1.0]",
+  "source_name": "BEL PEN20"
+ },
+ "pension_avg_reg_asturias": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen20\", {\"col\": \"3\", \"sheet\": \"0\"}, 1.0]",
+  "source_name": "BEL PEN20"
+ },
+ "pension_avg_reg_baleares": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen20\", {\"col\": \"4\", \"sheet\": \"0\"}, 1.0]",
+  "source_name": "BEL PEN20"
+ },
+ "pension_avg_reg_canarias": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen20\", {\"col\": \"5\", \"sheet\": \"0\"}, 1.0]",
+  "source_name": "BEL PEN20"
+ },
+ "pension_avg_reg_cantabria": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen20\", {\"col\": \"6\", \"sheet\": \"0\"}, 1.0]",
+  "source_name": "BEL PEN20"
+ },
+ "pension_avg_reg_castilla_leon": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen20\", {\"col\": \"8\", \"sheet\": \"0\"}, 1.0]",
+  "source_name": "BEL PEN20"
+ },
+ "pension_avg_reg_castilla_mancha": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen20\", {\"col\": \"7\", \"sheet\": \"0\"}, 1.0]",
+  "source_name": "BEL PEN20"
+ },
+ "pension_avg_reg_cataluna": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen20\", {\"col\": \"9\", \"sheet\": \"0\"}, 1.0]",
+  "source_name": "BEL PEN20"
+ },
+ "pension_avg_reg_ceuta_melilla": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen20\", {\"col\": \"9\", \"sheet\": \"1\"}, 1.0]",
+  "source_name": "BEL PEN20"
+ },
+ "pension_avg_reg_extremadura": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen20\", {\"col\": \"2\", \"sheet\": \"1\"}, 1.0]",
+  "source_name": "BEL PEN20"
+ },
+ "pension_avg_reg_galicia": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen20\", {\"col\": \"3\", \"sheet\": \"1\"}, 1.0]",
+  "source_name": "BEL PEN20"
+ },
+ "pension_avg_reg_madrid": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen20\", {\"col\": \"4\", \"sheet\": \"1\"}, 1.0]",
+  "source_name": "BEL PEN20"
+ },
+ "pension_avg_reg_murcia": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen20\", {\"col\": \"5\", \"sheet\": \"1\"}, 1.0]",
+  "source_name": "BEL PEN20"
+ },
+ "pension_avg_reg_navarra": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen20\", {\"col\": \"6\", \"sheet\": \"1\"}, 1.0]",
+  "source_name": "BEL PEN20"
+ },
+ "pension_avg_reg_pais_vasco": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen20\", {\"col\": \"7\", \"sheet\": \"1\"}, 1.0]",
+  "source_name": "BEL PEN20"
+ },
+ "pension_avg_reg_rioja": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen20\", {\"col\": \"8\", \"sheet\": \"1\"}, 1.0]",
+  "source_name": "BEL PEN20"
+ },
+ "pension_avg_reg_valenciana": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen20\", {\"col\": \"1\", \"sheet\": \"1\"}, 1.0]",
+  "source_name": "BEL PEN20"
+ },
+ "pension_avg_retirement": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen1\", {\"col\": \"6\"}, 1.0]",
+  "source_name": "BEL PEN1"
+ },
+ "pension_avg_retirement_annual": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2016-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 10,
+  "signature": "[\"bel\", \"pen1\", {\"col\": \"6\"}, 1.0]",
+  "source_name": "BEL PEN1"
+ },
+ "pension_avg_scheme_accidents": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen2\", {\"col\": \"6\", \"sheet\": \"1\"}, 1.0]",
+  "source_name": "BEL PEN2"
+ },
+ "pension_avg_scheme_coal": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen2\", {\"col\": \"6\", \"sheet\": \"0\"}, 1.0]",
+  "source_name": "BEL PEN2"
+ },
+ "pension_avg_scheme_diseases": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen2\", {\"col\": \"8\", \"sheet\": \"1\"}, 1.0]",
+  "source_name": "BEL PEN2"
+ },
+ "pension_avg_scheme_general": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen2\", {\"col\": \"4\", \"sheet\": \"0\"}, 1.0]",
+  "source_name": "BEL PEN2"
+ },
+ "pension_avg_scheme_sea": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen2\", {\"col\": \"2\", \"sheet\": \"1\"}, 1.0]",
+  "source_name": "BEL PEN2"
+ },
+ "pension_avg_scheme_self_employed": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen2\", {\"col\": \"8\", \"sheet\": \"0\"}, 1.0]",
+  "source_name": "BEL PEN2"
+ },
+ "pension_avg_scheme_sovi": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen2\", {\"col\": \"10\", \"sheet\": \"1\"}, 1.0]",
+  "source_name": "BEL PEN2"
+ },
+ "pension_avg_total": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen1\", {\"col\": \"2\"}, 1.0]",
+  "source_name": "BEL PEN1"
+ },
+ "pension_avg_total_annual": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2016-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 10,
+  "signature": "[\"bel\", \"pen1\", {\"col\": \"2\"}, 1.0]",
+  "source_name": "BEL PEN1"
+ },
+ "pension_avg_widowhood": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen1\", {\"col\": \"8\"}, 1.0]",
+  "source_name": "BEL PEN1"
+ },
+ "pension_avg_widowhood_annual": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2016-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 10,
+  "signature": "[\"bel\", \"pen1\", {\"col\": \"8\"}, 1.0]",
+  "source_name": "BEL PEN1"
+ },
+ "pension_max": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:45+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2026-01-01",
+  "n_obs": 37,
+  "signature": "[\"bel\", \"pen31\", {\"block\": \"0\", \"col\": \"1\"}, 0.07142857142857142]",
+  "source_name": "BEL PEN31"
+ },
+ "pension_min_other": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:45+00:00",
+  "first_date": "2009-01-01",
+  "last_date": "2026-01-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen31\", {\"block\": \"1\", \"col\": \"3\"}, 0.07142857142857142]",
+  "source_name": "BEL PEN31"
+ },
+ "pension_min_single": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:45+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2026-01-01",
+  "n_obs": 37,
+  "signature": "[\"bel\", \"pen31\", {\"block\": \"1\", \"col\": \"2\"}, 0.07142857142857142]",
+  "source_name": "BEL PEN31"
+ },
+ "pension_min_spouse": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:45+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2026-01-01",
+  "n_obs": 37,
+  "signature": "[\"bel\", \"pen31\", {\"block\": \"1\", \"col\": \"1\"}, 0.07142857142857142]",
+  "source_name": "BEL PEN31"
+ },
+ "pensions_disability": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen1\", {\"col\": \"3\"}, 1.0]",
+  "source_name": "BEL PEN1"
+ },
+ "pensions_disability_annual": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2016-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 10,
+  "signature": "[\"bel\", \"pen1\", {\"col\": \"3\"}, 1.0]",
+  "source_name": "BEL PEN1"
+ },
+ "pensions_orphans": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen1\", {\"col\": \"9\"}, 1.0]",
+  "source_name": "BEL PEN1"
+ },
+ "pensions_orphans_annual": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2016-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 10,
+  "signature": "[\"bel\", \"pen1\", {\"col\": \"9\"}, 1.0]",
+  "source_name": "BEL PEN1"
+ },
+ "pensions_reg_andalucia": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen19\", {\"col\": \"1\", \"sheet\": \"0\"}, 1.0]",
+  "source_name": "BEL PEN19"
+ },
+ "pensions_reg_aragon": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen19\", {\"col\": \"2\", \"sheet\": \"0\"}, 1.0]",
+  "source_name": "BEL PEN19"
+ },
+ "pensions_reg_asturias": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen19\", {\"col\": \"3\", \"sheet\": \"0\"}, 1.0]",
+  "source_name": "BEL PEN19"
+ },
+ "pensions_reg_baleares": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen19\", {\"col\": \"4\", \"sheet\": \"0\"}, 1.0]",
+  "source_name": "BEL PEN19"
+ },
+ "pensions_reg_canarias": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen19\", {\"col\": \"5\", \"sheet\": \"0\"}, 1.0]",
+  "source_name": "BEL PEN19"
+ },
+ "pensions_reg_cantabria": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen19\", {\"col\": \"6\", \"sheet\": \"0\"}, 1.0]",
+  "source_name": "BEL PEN19"
+ },
+ "pensions_reg_castilla_leon": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen19\", {\"col\": \"8\", \"sheet\": \"0\"}, 1.0]",
+  "source_name": "BEL PEN19"
+ },
+ "pensions_reg_castilla_mancha": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen19\", {\"col\": \"7\", \"sheet\": \"0\"}, 1.0]",
+  "source_name": "BEL PEN19"
+ },
+ "pensions_reg_cataluna": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen19\", {\"col\": \"9\", \"sheet\": \"0\"}, 1.0]",
+  "source_name": "BEL PEN19"
+ },
+ "pensions_reg_ceuta_melilla": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen19\", {\"col\": \"9\", \"sheet\": \"1\"}, 1.0]",
+  "source_name": "BEL PEN19"
+ },
+ "pensions_reg_extremadura": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen19\", {\"col\": \"2\", \"sheet\": \"1\"}, 1.0]",
+  "source_name": "BEL PEN19"
+ },
+ "pensions_reg_galicia": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen19\", {\"col\": \"3\", \"sheet\": \"1\"}, 1.0]",
+  "source_name": "BEL PEN19"
+ },
+ "pensions_reg_madrid": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen19\", {\"col\": \"4\", \"sheet\": \"1\"}, 1.0]",
+  "source_name": "BEL PEN19"
+ },
+ "pensions_reg_murcia": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen19\", {\"col\": \"5\", \"sheet\": \"1\"}, 1.0]",
+  "source_name": "BEL PEN19"
+ },
+ "pensions_reg_navarra": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen19\", {\"col\": \"6\", \"sheet\": \"1\"}, 1.0]",
+  "source_name": "BEL PEN19"
+ },
+ "pensions_reg_pais_vasco": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen19\", {\"col\": \"7\", \"sheet\": \"1\"}, 1.0]",
+  "source_name": "BEL PEN19"
+ },
+ "pensions_reg_rioja": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen19\", {\"col\": \"8\", \"sheet\": \"1\"}, 1.0]",
+  "source_name": "BEL PEN19"
+ },
+ "pensions_reg_valenciana": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen19\", {\"col\": \"1\", \"sheet\": \"1\"}, 1.0]",
+  "source_name": "BEL PEN19"
+ },
+ "pensions_retirement": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:38+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen1\", {\"col\": \"5\"}, 1.0]",
+  "source_name": "BEL PEN1"
+ },
+ "pensions_retirement_annual": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2016-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 10,
+  "signature": "[\"bel\", \"pen1\", {\"col\": \"5\"}, 1.0]",
+  "source_name": "BEL PEN1"
+ },
+ "pensions_scheme_accidents": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen2\", {\"col\": \"5\", \"sheet\": \"1\"}, 1.0]",
+  "source_name": "BEL PEN2"
+ },
+ "pensions_scheme_coal": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen2\", {\"col\": \"5\", \"sheet\": \"0\"}, 1.0]",
+  "source_name": "BEL PEN2"
+ },
+ "pensions_scheme_diseases": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen2\", {\"col\": \"7\", \"sheet\": \"1\"}, 1.0]",
+  "source_name": "BEL PEN2"
+ },
+ "pensions_scheme_general": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen2\", {\"col\": \"3\", \"sheet\": \"0\"}, 1.0]",
+  "source_name": "BEL PEN2"
+ },
+ "pensions_scheme_sea": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen2\", {\"col\": \"1\", \"sheet\": \"1\"}, 1.0]",
+  "source_name": "BEL PEN2"
+ },
+ "pensions_scheme_self_employed": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen2\", {\"col\": \"7\", \"sheet\": \"0\"}, 1.0]",
+  "source_name": "BEL PEN2"
+ },
+ "pensions_scheme_sovi": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen2\", {\"col\": \"9\", \"sheet\": \"1\"}, 1.0]",
+  "source_name": "BEL PEN2"
+ },
+ "pensions_total": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:38+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen1\", {\"col\": \"1\"}, 1.0]",
+  "source_name": "BEL PEN1"
+ },
+ "pensions_total_annual": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2016-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 10,
+  "signature": "[\"bel\", \"pen1\", {\"col\": \"1\"}, 1.0]",
+  "source_name": "BEL PEN1"
+ },
+ "pensions_widowhood": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:38+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen1\", {\"col\": \"7\"}, 1.0]",
+  "source_name": "BEL PEN1"
+ },
+ "pensions_widowhood_annual": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2016-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 10,
+  "signature": "[\"bel\", \"pen1\", {\"col\": \"7\"}, 1.0]",
+  "source_name": "BEL PEN1"
  },
  "persons_na": {
   "status": "ok",
@@ -7978,6 +8752,168 @@
   "signature": "[\"ine\", \"ICM4093\", {}, 1.0]",
   "flash": false,
   "source_name": "Total Nacional. Cifra de negocio a precios constantes. General. Comercio al por menor, excepto de vehículos de motor y motocicletas. Índice. Datos ajustados de estacionalidad y calendario."
+ },
+ "retirement_avg_reg_andalucia": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:44+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen24\", {\"col\": \"1\", \"sheet\": \"0\"}, 1.0]",
+  "source_name": "BEL PEN24"
+ },
+ "retirement_avg_reg_aragon": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:45+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen24\", {\"col\": \"2\", \"sheet\": \"0\"}, 1.0]",
+  "source_name": "BEL PEN24"
+ },
+ "retirement_avg_reg_asturias": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:45+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen24\", {\"col\": \"3\", \"sheet\": \"0\"}, 1.0]",
+  "source_name": "BEL PEN24"
+ },
+ "retirement_avg_reg_baleares": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:45+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen24\", {\"col\": \"4\", \"sheet\": \"0\"}, 1.0]",
+  "source_name": "BEL PEN24"
+ },
+ "retirement_avg_reg_canarias": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:45+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen24\", {\"col\": \"5\", \"sheet\": \"0\"}, 1.0]",
+  "source_name": "BEL PEN24"
+ },
+ "retirement_avg_reg_cantabria": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:45+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen24\", {\"col\": \"6\", \"sheet\": \"0\"}, 1.0]",
+  "source_name": "BEL PEN24"
+ },
+ "retirement_avg_reg_castilla_leon": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:45+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen24\", {\"col\": \"8\", \"sheet\": \"0\"}, 1.0]",
+  "source_name": "BEL PEN24"
+ },
+ "retirement_avg_reg_castilla_mancha": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:45+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen24\", {\"col\": \"7\", \"sheet\": \"0\"}, 1.0]",
+  "source_name": "BEL PEN24"
+ },
+ "retirement_avg_reg_cataluna": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:45+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen24\", {\"col\": \"9\", \"sheet\": \"0\"}, 1.0]",
+  "source_name": "BEL PEN24"
+ },
+ "retirement_avg_reg_ceuta_melilla": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:45+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen24\", {\"col\": \"9\", \"sheet\": \"1\"}, 1.0]",
+  "source_name": "BEL PEN24"
+ },
+ "retirement_avg_reg_extremadura": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:45+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen24\", {\"col\": \"2\", \"sheet\": \"1\"}, 1.0]",
+  "source_name": "BEL PEN24"
+ },
+ "retirement_avg_reg_galicia": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:45+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen24\", {\"col\": \"3\", \"sheet\": \"1\"}, 1.0]",
+  "source_name": "BEL PEN24"
+ },
+ "retirement_avg_reg_madrid": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:45+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen24\", {\"col\": \"4\", \"sheet\": \"1\"}, 1.0]",
+  "source_name": "BEL PEN24"
+ },
+ "retirement_avg_reg_murcia": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:45+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen24\", {\"col\": \"5\", \"sheet\": \"1\"}, 1.0]",
+  "source_name": "BEL PEN24"
+ },
+ "retirement_avg_reg_navarra": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:45+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen24\", {\"col\": \"6\", \"sheet\": \"1\"}, 1.0]",
+  "source_name": "BEL PEN24"
+ },
+ "retirement_avg_reg_pais_vasco": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:45+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen24\", {\"col\": \"7\", \"sheet\": \"1\"}, 1.0]",
+  "source_name": "BEL PEN24"
+ },
+ "retirement_avg_reg_rioja": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:45+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen24\", {\"col\": \"8\", \"sheet\": \"1\"}, 1.0]",
+  "source_name": "BEL PEN24"
+ },
+ "retirement_avg_reg_valenciana": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T02:31:45+00:00",
+  "first_date": "2025-04-01",
+  "last_date": "2026-09-01",
+  "n_obs": 18,
+  "signature": "[\"bel\", \"pen24\", {\"col\": \"1\", \"sheet\": \"1\"}, 1.0]",
+  "source_name": "BEL PEN24"
  },
  "revenue_annual": {
   "status": "ok",

@@ -7696,7 +7696,7 @@
   "housing_npl": {
    "date": "2026-04-01",
    "raw": 1.45,
-   "display": "1.4%",
+   "display": "1.45%",
    "period": "Q2 2026",
    "flash": false
   },
@@ -7724,7 +7724,7 @@
   "housing_wealth": {
    "date": "2026-04-01",
    "raw": 8185.944,
-   "display": "8,186 € bn",
+   "display": "€8,186 bn",
    "period": "Q2 2026",
    "flash": false
   },
@@ -7745,7 +7745,7 @@
   "total_wealth_income": {
    "date": "2026-04-01",
    "raw": 1011.19,
-   "display": "1011%",
+   "display": "1,011%",
    "period": "Q2 2026",
    "flash": false
   },
@@ -7796,6 +7796,741 @@
    "raw": 4.0,
    "display": "4.0%",
    "period": "Q2 2026",
+   "flash": false
+  },
+  "homes_per_household": {
+   "date": "2021-10-01",
+   "raw": 1.41,
+   "display": "1.41 homes",
+   "period": "Q4 2021",
+   "flash": false
+  },
+  "pensions_total": {
+   "date": "2026-09-01",
+   "raw": 10547.42,
+   "display": "10,547k",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pensions_retirement": {
+   "date": "2026-09-01",
+   "raw": 6760.14,
+   "display": "6,760k",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pensions_widowhood": {
+   "date": "2026-09-01",
+   "raw": 2343.84,
+   "display": "2,344k",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pensions_disability": {
+   "date": "2026-09-01",
+   "raw": 1060.55,
+   "display": "1,061k",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pensions_orphans": {
+   "date": "2026-09-01",
+   "raw": 335.9,
+   "display": "336k",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pension_avg_total": {
+   "date": "2026-09-01",
+   "raw": 1374.57,
+   "display": "€1,375",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pension_avg_retirement": {
+   "date": "2026-09-01",
+   "raw": 1576.1,
+   "display": "€1,576",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pension_avg_widowhood": {
+   "date": "2026-09-01",
+   "raw": 976.32,
+   "display": "€976",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pension_avg_disability": {
+   "date": "2026-09-01",
+   "raw": 1254.89,
+   "display": "€1,255",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pension_avg_orphans": {
+   "date": "2026-09-01",
+   "raw": 552.37,
+   "display": "€552",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pensions_total_annual": {
+   "date": "2025-01-01",
+   "raw": 10354.59,
+   "display": "10,355k",
+   "period": "2025",
+   "flash": false
+  },
+  "pensions_retirement_annual": {
+   "date": "2025-01-01",
+   "raw": 6594.14,
+   "display": "6,594k",
+   "period": "2025",
+   "flash": false
+  },
+  "pensions_widowhood_annual": {
+   "date": "2025-01-01",
+   "raw": 2348.27,
+   "display": "2,348k",
+   "period": "2025",
+   "flash": false
+  },
+  "pensions_disability_annual": {
+   "date": "2025-01-01",
+   "raw": 1026.94,
+   "display": "1,027k",
+   "period": "2025",
+   "flash": false
+  },
+  "pensions_orphans_annual": {
+   "date": "2025-01-01",
+   "raw": 338.74,
+   "display": "339k",
+   "period": "2025",
+   "flash": false
+  },
+  "pension_avg_total_annual": {
+   "date": "2025-01-01",
+   "raw": 1311.7,
+   "display": "€1,312",
+   "period": "2025",
+   "flash": false
+  },
+  "pension_avg_retirement_annual": {
+   "date": "2025-01-01",
+   "raw": 1506.06,
+   "display": "€1,506",
+   "period": "2025",
+   "flash": false
+  },
+  "pension_avg_widowhood_annual": {
+   "date": "2025-01-01",
+   "raw": 934.91,
+   "display": "€935",
+   "period": "2025",
+   "flash": false
+  },
+  "pension_avg_disability_annual": {
+   "date": "2025-01-01",
+   "raw": 1208.64,
+   "display": "€1,209",
+   "period": "2025",
+   "flash": false
+  },
+  "pension_avg_orphans_annual": {
+   "date": "2025-01-01",
+   "raw": 525.45,
+   "display": "€525",
+   "period": "2025",
+   "flash": false
+  },
+  "pensions_scheme_general": {
+   "date": "2026-09-01",
+   "raw": 7941.38,
+   "display": "7,941.4k",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pensions_scheme_self_employed": {
+   "date": "2026-09-01",
+   "raw": 2025.15,
+   "display": "2,025.2k",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pensions_scheme_sea": {
+   "date": "2026-09-01",
+   "raw": 113.83,
+   "display": "113.8k",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pensions_scheme_coal": {
+   "date": "2026-09-01",
+   "raw": 55.41,
+   "display": "55.4k",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pensions_scheme_accidents": {
+   "date": "2026-09-01",
+   "raw": 203.29,
+   "display": "203.3k",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pensions_scheme_diseases": {
+   "date": "2026-09-01",
+   "raw": 31.05,
+   "display": "31.1k",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pensions_scheme_sovi": {
+   "date": "2026-09-01",
+   "raw": 177.29,
+   "display": "177.3k",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pension_avg_scheme_general": {
+   "date": "2026-09-01",
+   "raw": 1490.81,
+   "display": "€1,491",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pension_avg_scheme_self_employed": {
+   "date": "2026-09-01",
+   "raw": 958.41,
+   "display": "€958",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pension_avg_scheme_sea": {
+   "date": "2026-09-01",
+   "raw": 1404.53,
+   "display": "€1,405",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pension_avg_scheme_coal": {
+   "date": "2026-09-01",
+   "raw": 2382.04,
+   "display": "€2,382",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pension_avg_scheme_accidents": {
+   "date": "2026-09-01",
+   "raw": 1378.31,
+   "display": "€1,378",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pension_avg_scheme_diseases": {
+   "date": "2026-09-01",
+   "raw": 1610.49,
+   "display": "€1,610",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pension_avg_scheme_sovi": {
+   "date": "2026-09-01",
+   "raw": 541.66,
+   "display": "€542",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "new_pensions_total": {
+   "date": "2026-08-01",
+   "raw": 46.94,
+   "display": "46.9k",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "new_pensions_retirement": {
+   "date": "2026-08-01",
+   "raw": 28.8,
+   "display": "28.8k",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "new_pension_avg_total": {
+   "date": "2026-08-01",
+   "raw": 1445.76,
+   "display": "€1,446",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "new_pension_avg_retirement": {
+   "date": "2026-08-01",
+   "raw": 1711.41,
+   "display": "€1,711",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "new_pensions_total_annual": {
+   "date": "2025-01-01",
+   "raw": 629.0,
+   "display": "629k",
+   "period": "2025",
+   "flash": false
+  },
+  "new_pensions_retirement_annual": {
+   "date": "2025-01-01",
+   "raw": 375.32,
+   "display": "375k",
+   "period": "2025",
+   "flash": false
+  },
+  "new_pension_avg_total_annual": {
+   "date": "2025-01-01",
+   "raw": 1363.27,
+   "display": "€1,363",
+   "period": "2025",
+   "flash": false
+  },
+  "new_pension_avg_retirement_annual": {
+   "date": "2025-01-01",
+   "raw": 1628.43,
+   "display": "€1,628",
+   "period": "2025",
+   "flash": false
+  },
+  "ended_pensions_total": {
+   "date": "2026-08-01",
+   "raw": 34.98,
+   "display": "35.0k",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "ended_pensions_total_annual": {
+   "date": "2025-01-01",
+   "raw": 455.09,
+   "display": "455k",
+   "period": "2025",
+   "flash": false
+  },
+  "ended_pension_avg_retirement": {
+   "date": "2026-08-01",
+   "raw": 1380.11,
+   "display": "€1,380",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "ended_pension_avg_retirement_annual": {
+   "date": "2025-01-01",
+   "raw": 1323.91,
+   "display": "€1,324",
+   "period": "2025",
+   "flash": false
+  },
+  "pensions_reg_andalucia": {
+   "date": "2026-09-01",
+   "raw": 1740.3,
+   "display": "1,740.3k",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pensions_reg_aragon": {
+   "date": "2026-09-01",
+   "raw": 322.2,
+   "display": "322.2k",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pensions_reg_asturias": {
+   "date": "2026-09-01",
+   "raw": 303.8,
+   "display": "303.8k",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pensions_reg_baleares": {
+   "date": "2026-09-01",
+   "raw": 217.2,
+   "display": "217.2k",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pensions_reg_canarias": {
+   "date": "2026-09-01",
+   "raw": 384.6,
+   "display": "384.6k",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pensions_reg_cantabria": {
+   "date": "2026-09-01",
+   "raw": 150.7,
+   "display": "150.7k",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pensions_reg_castilla_mancha": {
+   "date": "2026-09-01",
+   "raw": 412.5,
+   "display": "412.5k",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pensions_reg_castilla_leon": {
+   "date": "2026-09-01",
+   "raw": 641.1,
+   "display": "641.1k",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pensions_reg_cataluna": {
+   "date": "2026-09-01",
+   "raw": 1827.3,
+   "display": "1,827.3k",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pensions_reg_valenciana": {
+   "date": "2026-09-01",
+   "raw": 1086.0,
+   "display": "1,086.0k",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pensions_reg_extremadura": {
+   "date": "2026-09-01",
+   "raw": 250.1,
+   "display": "250.1k",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pensions_reg_galicia": {
+   "date": "2026-09-01",
+   "raw": 792.2,
+   "display": "792.2k",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pensions_reg_madrid": {
+   "date": "2026-09-01",
+   "raw": 1306.3,
+   "display": "1,306.3k",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pensions_reg_murcia": {
+   "date": "2026-09-01",
+   "raw": 274.0,
+   "display": "274.0k",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pensions_reg_navarra": {
+   "date": "2026-09-01",
+   "raw": 150.7,
+   "display": "150.7k",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pensions_reg_pais_vasco": {
+   "date": "2026-09-01",
+   "raw": 592.8,
+   "display": "592.8k",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pensions_reg_rioja": {
+   "date": "2026-09-01",
+   "raw": 76.5,
+   "display": "76.5k",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pensions_reg_ceuta_melilla": {
+   "date": "2026-09-01",
+   "raw": 19.0,
+   "display": "19.0k",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pension_avg_reg_andalucia": {
+   "date": "2026-09-01",
+   "raw": 1238.59,
+   "display": "€1,239",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pension_avg_reg_aragon": {
+   "date": "2026-09-01",
+   "raw": 1451.0,
+   "display": "€1,451",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pension_avg_reg_asturias": {
+   "date": "2026-09-01",
+   "raw": 1580.45,
+   "display": "€1,580",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pension_avg_reg_baleares": {
+   "date": "2026-09-01",
+   "raw": 1283.9,
+   "display": "€1,284",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pension_avg_reg_canarias": {
+   "date": "2026-09-01",
+   "raw": 1254.84,
+   "display": "€1,255",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pension_avg_reg_cantabria": {
+   "date": "2026-09-01",
+   "raw": 1444.12,
+   "display": "€1,444",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pension_avg_reg_castilla_mancha": {
+   "date": "2026-09-01",
+   "raw": 1291.98,
+   "display": "€1,292",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pension_avg_reg_castilla_leon": {
+   "date": "2026-09-01",
+   "raw": 1377.41,
+   "display": "€1,377",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pension_avg_reg_cataluna": {
+   "date": "2026-09-01",
+   "raw": 1427.66,
+   "display": "€1,428",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pension_avg_reg_valenciana": {
+   "date": "2026-09-01",
+   "raw": 1273.32,
+   "display": "€1,273",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pension_avg_reg_extremadura": {
+   "date": "2026-09-01",
+   "raw": 1174.87,
+   "display": "€1,175",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pension_avg_reg_galicia": {
+   "date": "2026-09-01",
+   "raw": 1186.25,
+   "display": "€1,186",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pension_avg_reg_madrid": {
+   "date": "2026-09-01",
+   "raw": 1585.18,
+   "display": "€1,585",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pension_avg_reg_murcia": {
+   "date": "2026-09-01",
+   "raw": 1231.89,
+   "display": "€1,232",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pension_avg_reg_navarra": {
+   "date": "2026-09-01",
+   "raw": 1568.58,
+   "display": "€1,569",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pension_avg_reg_pais_vasco": {
+   "date": "2026-09-01",
+   "raw": 1685.58,
+   "display": "€1,686",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pension_avg_reg_rioja": {
+   "date": "2026-09-01",
+   "raw": 1363.81,
+   "display": "€1,364",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pension_avg_reg_ceuta_melilla": {
+   "date": "2026-09-01",
+   "raw": 1388.23,
+   "display": "€1,388",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "retirement_avg_reg_andalucia": {
+   "date": "2026-09-01",
+   "raw": 1432.99,
+   "display": "€1,433",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "retirement_avg_reg_aragon": {
+   "date": "2026-09-01",
+   "raw": 1647.59,
+   "display": "€1,648",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "retirement_avg_reg_asturias": {
+   "date": "2026-09-01",
+   "raw": 1839.2,
+   "display": "€1,839",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "retirement_avg_reg_baleares": {
+   "date": "2026-09-01",
+   "raw": 1454.98,
+   "display": "€1,455",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "retirement_avg_reg_canarias": {
+   "date": "2026-09-01",
+   "raw": 1458.85,
+   "display": "€1,459",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "retirement_avg_reg_cantabria": {
+   "date": "2026-09-01",
+   "raw": 1662.31,
+   "display": "€1,662",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "retirement_avg_reg_castilla_mancha": {
+   "date": "2026-09-01",
+   "raw": 1488.34,
+   "display": "€1,488",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "retirement_avg_reg_castilla_leon": {
+   "date": "2026-09-01",
+   "raw": 1571.24,
+   "display": "€1,571",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "retirement_avg_reg_cataluna": {
+   "date": "2026-09-01",
+   "raw": 1611.13,
+   "display": "€1,611",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "retirement_avg_reg_valenciana": {
+   "date": "2026-09-01",
+   "raw": 1452.27,
+   "display": "€1,452",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "retirement_avg_reg_extremadura": {
+   "date": "2026-09-01",
+   "raw": 1347.46,
+   "display": "€1,347",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "retirement_avg_reg_galicia": {
+   "date": "2026-09-01",
+   "raw": 1358.84,
+   "display": "€1,359",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "retirement_avg_reg_madrid": {
+   "date": "2026-09-01",
+   "raw": 1798.64,
+   "display": "€1,799",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "retirement_avg_reg_murcia": {
+   "date": "2026-09-01",
+   "raw": 1430.04,
+   "display": "€1,430",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "retirement_avg_reg_navarra": {
+   "date": "2026-09-01",
+   "raw": 1759.66,
+   "display": "€1,760",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "retirement_avg_reg_pais_vasco": {
+   "date": "2026-09-01",
+   "raw": 1910.31,
+   "display": "€1,910",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "retirement_avg_reg_rioja": {
+   "date": "2026-09-01",
+   "raw": 1524.51,
+   "display": "€1,525",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "retirement_avg_reg_ceuta_melilla": {
+   "date": "2026-09-01",
+   "raw": 1713.25,
+   "display": "€1,713",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "pension_max": {
+   "date": "2026-01-01",
+   "raw": 3359.6,
+   "display": "€3,360",
+   "period": "2026",
+   "flash": false
+  },
+  "pension_min_spouse": {
+   "date": "2026-01-01",
+   "raw": 1256.6,
+   "display": "€1,257",
+   "period": "2026",
+   "flash": false
+  },
+  "pension_min_single": {
+   "date": "2026-01-01",
+   "raw": 936.2,
+   "display": "€936",
+   "period": "2026",
+   "flash": false
+  },
+  "pension_min_other": {
+   "date": "2026-01-01",
+   "raw": 888.7,
+   "display": "€889",
+   "period": "2026",
    "flash": false
   }
  },
@@ -7955,6 +8690,6 @@
    "at": "2026-11-02T00:14:15+00:00"
   }
  ],
- "updated_at": "2026-11-02T01:59:39+00:00",
+ "updated_at": "2026-11-02T02:31:50+00:00",
  "started_at": "2026-10-31T23:31:49+00:00"
 }

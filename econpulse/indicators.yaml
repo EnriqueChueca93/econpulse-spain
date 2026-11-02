@@ -281,6 +281,44 @@ ameco_areas: &ameco_areas
 house_income_areas: &house_income_areas "ESP+FRA+DEU+ITA+NLD+PRT+GBR+USA+CAN+JPN"
 house_rent_areas: &house_rent_areas "ESP+FRA+DEU+ITA+NLD+PRT+GBR+CAN+JPN"
 
+# Contributory pensions by class: the column of each class's number in the BEL tables PEN-1, PEN-10 and
+# PEN-11 (its average amount is the next column).
+pension_classes: &pension_classes
+  - {cls: total, name: "", name_es: "", n: 1, a: 2}
+  - {cls: retirement, name: ", retirement", name_es: ", jubilación", n: 5, a: 6}
+  - {cls: widowhood, name: ", widowhood", name_es: ", viudedad", n: 7, a: 8}
+  - {cls: disability, name: ", permanent disability", name_es: ", incapacidad permanente", n: 3, a: 4}
+  - {cls: orphans, name: ", orphans", name_es: ", orfandad", n: 9, a: 10}
+# Schemes (regímenes) in PEN-2: sheet, and the column of the number (the average is the next column).
+pension_schemes: &pension_schemes
+  - {scheme: general, name: "General scheme", name_es: "Régimen General", sheet: 0, n: 3, a: 4}
+  - {scheme: self_employed, name: "Self-employed", name_es: "Trabajadores autónomos", sheet: 0, n: 7, a: 8}
+  - {scheme: sea, name: "Sea workers", name_es: "Trabajadores del mar", sheet: 1, n: 1, a: 2}
+  - {scheme: coal, name: "Coal mining", name_es: "Minería del carbón", sheet: 0, n: 5, a: 6}
+  - {scheme: accidents, name: "Work accidents", name_es: "Accidentes de trabajo", sheet: 1, n: 5, a: 6}
+  - {scheme: diseases, name: "Occupational diseases", name_es: "Enfermedades profesionales", sheet: 1, n: 7, a: 8}
+  - {scheme: sovi, name: "SOVI (pre-1967 old-age insurance)", name_es: "SOVI", sheet: 1, n: 9, a: 10}
+# Regions in PEN-19, PEN-20 and PEN-24: sheet and column (Ceuta and Melilla are published together).
+pension_regions: &pension_regions
+  - {slug: andalucia, name: Andalucía, sheet: 0, col: 1}
+  - {slug: aragon, name: Aragón, sheet: 0, col: 2}
+  - {slug: asturias, name: Asturias, sheet: 0, col: 3}
+  - {slug: baleares, name: Illes Balears, sheet: 0, col: 4}
+  - {slug: canarias, name: Canarias, sheet: 0, col: 5}
+  - {slug: cantabria, name: Cantabria, sheet: 0, col: 6}
+  - {slug: castilla_mancha, name: Castilla-La Mancha, sheet: 0, col: 7}
+  - {slug: castilla_leon, name: Castilla y León, sheet: 0, col: 8}
+  - {slug: cataluna, name: Cataluña, sheet: 0, col: 9}
+  - {slug: valenciana, name: Comunitat Valenciana, sheet: 1, col: 1}
+  - {slug: extremadura, name: Extremadura, sheet: 1, col: 2}
+  - {slug: galicia, name: Galicia, sheet: 1, col: 3}
+  - {slug: madrid, name: Madrid, sheet: 1, col: 4}
+  - {slug: murcia, name: Murcia, sheet: 1, col: 5}
+  - {slug: navarra, name: Navarra, sheet: 1, col: 6}
+  - {slug: pais_vasco, name: País Vasco, sheet: 1, col: 7}
+  - {slug: rioja, name: La Rioja, sheet: 1, col: 8}
+  - {slug: ceuta_melilla, name: Ceuta y Melilla, sheet: 1, col: 9}
+
 indicators:
 
   # ---------------------------------------------------------------- GDP (INE CNTR)
@@ -7340,3 +7378,268 @@ indicators:
     decimals: 1
     transforms: [level, yoy]
     notes: The export deflator of goods divided by the import deflator of goods (national accounts), 2015 = 100.
+
+  # ---------------------------------------------------------------- Pensions (Batch 29a)
+  # Contributory pensions of the Social Security system, from the Ministry of Labour's statistics bulletin
+  # (tables PEN-1 to PEN-31, sources/bel.py). Monthly series start with the bulletin's last 18 months
+  # (April 2025) and grow from there; annual averages go back to 2016, maximum and minimum amounts to 1990.
+  - id: pensions_{cls}
+    for_each: *pension_classes
+    label: "Contributory pensions{name}"
+    label_es: "Pensiones contributivas en vigor{name_es}"
+    section: pensions
+    source: bel
+    key: pen1
+    params: {col: "{n}"}
+    freq: M
+    unit: thousands
+    decimals: 0
+    transforms: [level, yoy]
+    notes: Pensions in force on the first of the month, in thousands (Ministry of Labour, BEL table PEN-1, from Social Security records).
+
+  - id: pension_avg_{cls}
+    for_each: *pension_classes
+    label: "Average pension{name}"
+    label_es: "Pensión media{name_es}"
+    section: pensions
+    source: bel
+    key: pen1
+    params: {col: "{a}"}
+    freq: M
+    unit: "€"
+    decimals: 0
+    transforms: [level, yoy]
+    notes: Average monthly amount of the pensions in force on the first of the month, in euros; paid 14 times a year, except work-accident pensions, paid 12 times with the extra payments spread over the year (BEL table PEN-1).
+
+  - id: pensions_{cls}_annual
+    for_each: *pension_classes
+    label: "Contributory pensions{name}, annual average"
+    label_es: "Pensiones contributivas en vigor{name_es}, media anual"
+    section: pensions
+    source: bel
+    key: pen1
+    params: {col: "{n}"}
+    freq: A
+    unit: thousands
+    decimals: 0
+    transforms: [level, yoy]
+    notes: Average over the year of the pensions in force each month, in thousands (BEL table PEN-1).
+
+  - id: pension_avg_{cls}_annual
+    for_each: *pension_classes
+    label: "Average pension{name}, annual average"
+    label_es: "Pensión media{name_es}, media anual"
+    section: pensions
+    source: bel
+    key: pen1
+    params: {col: "{a}"}
+    freq: A
+    unit: "€"
+    decimals: 0
+    transforms: [level, yoy]
+    notes: Average over the year of the average monthly pension, in euros (BEL table PEN-1).
+
+  - id: pensions_scheme_{scheme}
+    for_each: *pension_schemes
+    label: "Contributory pensions, {name}"
+    label_es: "Pensiones contributivas en vigor, {name_es}"
+    section: pensions
+    source: bel
+    key: pen2
+    params: {sheet: "{sheet}", col: "{n}"}
+    freq: M
+    unit: thousands
+    decimals: 1
+    transforms: [level, yoy]
+    notes: Pensions in force on the first of the month, in thousands (BEL table PEN-2). Farm workers and domestic employees joined the General scheme in 2012.
+
+  - id: pension_avg_scheme_{scheme}
+    for_each: *pension_schemes
+    label: "Average pension, {name}"
+    label_es: "Pensión media, {name_es}"
+    section: pensions
+    source: bel
+    key: pen2
+    params: {sheet: "{sheet}", col: "{a}"}
+    freq: M
+    unit: "€"
+    decimals: 0
+    transforms: [level, yoy]
+    notes: Average monthly amount of the pensions in force on the first of the month, in euros (BEL table PEN-2).
+
+  - id: new_pensions_{cls}
+    for_each:
+      - {cls: total, name: "", name_es: "", n: 1, a: 2}
+      - {cls: retirement, name: ", retirement", name_es: ", jubilación", n: 5, a: 6}
+    label: "New pensions{name}"
+    label_es: "Altas de pensiones{name_es}"
+    section: pensions
+    source: bel
+    key: pen10
+    params: {col: "{n}"}
+    freq: M
+    unit: thousands
+    decimals: 1
+    transforms: [level, sum_1y, yoy]
+    notes: Pensions granted in the month, in thousands (BEL table PEN-10).
+
+  - id: new_pension_avg_{cls}
+    for_each:
+      - {cls: total, name: "", name_es: "", n: 1, a: 2}
+      - {cls: retirement, name: ", retirement", name_es: ", jubilación", n: 5, a: 6}
+    label: "Average new pension{name}"
+    label_es: "Importe medio de las altas{name_es}"
+    section: pensions
+    source: bel
+    key: pen10
+    params: {col: "{a}"}
+    freq: M
+    unit: "€"
+    decimals: 0
+    transforms: [level, yoy]
+    notes: Average monthly amount of the pensions granted in the month, in euros (BEL table PEN-10).
+
+  - id: new_pensions_{cls}_annual
+    for_each:
+      - {cls: total, name: "", name_es: "", n: 1, a: 2}
+      - {cls: retirement, name: ", retirement", name_es: ", jubilación", n: 5, a: 6}
+    label: "New pensions{name}, a year"
+    label_es: "Altas de pensiones{name_es}, total anual"
+    section: pensions
+    source: bel
+    key: pen10
+    params: {col: "{n}"}
+    freq: A
+    unit: thousands
+    decimals: 0
+    transforms: [level, yoy]
+    notes: Pensions granted over the year, in thousands (BEL table PEN-10).
+
+  - id: new_pension_avg_{cls}_annual
+    for_each:
+      - {cls: total, name: "", name_es: "", n: 1, a: 2}
+      - {cls: retirement, name: ", retirement", name_es: ", jubilación", n: 5, a: 6}
+    label: "Average new pension{name}, annual"
+    label_es: "Importe medio de las altas{name_es}, anual"
+    section: pensions
+    source: bel
+    key: pen10
+    params: {col: "{a}"}
+    freq: A
+    unit: "€"
+    decimals: 0
+    transforms: [level, yoy]
+    notes: Average monthly amount of the pensions granted over the year, in euros (BEL table PEN-10).
+
+  - id: ended_pensions_total
+    label: "Pensions ended"
+    label_es: "Bajas de pensiones"
+    section: pensions
+    source: bel
+    key: pen11
+    params: {col: 1}
+    freq: M
+    unit: thousands
+    decimals: 1
+    transforms: [level, sum_1y, yoy]
+    notes: Pensions that ended in the month, mostly on the pensioner's death, in thousands (BEL table PEN-11).
+
+  - id: ended_pensions_total_annual
+    label: "Pensions ended, a year"
+    label_es: "Bajas de pensiones, total anual"
+    section: pensions
+    source: bel
+    key: pen11
+    params: {col: 1}
+    freq: A
+    unit: thousands
+    decimals: 0
+    transforms: [level, yoy]
+    notes: Pensions that ended over the year, in thousands (BEL table PEN-11).
+
+  - id: ended_pension_avg_retirement
+    label: "Average ended retirement pension"
+    label_es: "Importe medio de las bajas de jubilación"
+    section: pensions
+    source: bel
+    key: pen11
+    params: {col: 6}
+    freq: M
+    unit: "€"
+    decimals: 0
+    transforms: [level, yoy]
+    notes: Average monthly amount of the retirement pensions that ended in the month, in euros (BEL table PEN-11).
+
+  - id: ended_pension_avg_retirement_annual
+    label: "Average ended retirement pension, annual"
+    label_es: "Importe medio de las bajas de jubilación, anual"
+    section: pensions
+    source: bel
+    key: pen11
+    params: {col: 6}
+    freq: A
+    unit: "€"
+    decimals: 0
+    transforms: [level, yoy]
+    notes: Average monthly amount of the retirement pensions that ended over the year, in euros (BEL table PEN-11).
+
+  - id: pensions_reg_{slug}
+    for_each: *pension_regions
+    label: "Contributory pensions, {name}"
+    label_es: "Pensiones contributivas en vigor, {name}"
+    section: pensions
+    source: bel
+    key: pen19
+    params: {sheet: "{sheet}", col: "{col}"}
+    freq: M
+    unit: thousands
+    decimals: 1
+    transforms: [level, yoy]
+    notes: Pensions in force on the first of the month, in thousands (BEL table PEN-19).
+
+  - id: pension_avg_reg_{slug}
+    for_each: *pension_regions
+    label: "Average pension, {name}"
+    label_es: "Pensión media, {name}"
+    section: pensions
+    source: bel
+    key: pen20
+    params: {sheet: "{sheet}", col: "{col}"}
+    freq: M
+    unit: "€"
+    decimals: 0
+    transforms: [level, yoy]
+    notes: Average monthly amount of the pensions in force on the first of the month, in euros (BEL table PEN-20).
+
+  - id: retirement_avg_reg_{slug}
+    for_each: *pension_regions
+    label: "Average retirement pension, {name}"
+    label_es: "Pensión media de jubilación, {name}"
+    section: pensions
+    source: bel
+    key: pen24
+    params: {sheet: "{sheet}", col: "{col}"}
+    freq: M
+    unit: "€"
+    decimals: 0
+    transforms: [level, yoy]
+    notes: Average monthly amount of the retirement pensions in force on the first of the month, in euros (BEL table PEN-24).
+
+  - id: pension_{kind}
+    for_each:
+      - {kind: max, block: 0, col: 1, name: "Maximum pension", name_es: "Pensión máxima"}
+      - {kind: min_spouse, block: 1, col: 1, name: "Minimum retirement pension at 65, with a dependent spouse", name_es: "Pensión mínima de jubilación, titular con 65 años, con cónyuge a cargo"}
+      - {kind: min_single, block: 1, col: 2, name: "Minimum retirement pension at 65, living alone", name_es: "Pensión mínima de jubilación, titular con 65 años, sin cónyuge"}
+      - {kind: min_other, block: 1, col: 3, name: "Minimum retirement pension at 65, with a spouse not dependent", name_es: "Pensión mínima de jubilación, titular con 65 años, con cónyuge no a cargo"}
+    label: "{name}"
+    label_es: "{name_es}"
+    section: pensions
+    source: bel
+    key: pen31
+    params: {block: "{block}", col: "{col}"}
+    freq: A
+    unit: "€"
+    scale: 0.07142857142857142   # published a year; a month of the 14 payments
+    decimals: 0
+    transforms: [level, yoy]
+    notes: The year's amount set in the budget, published in euros a year (BEL table PEN-31) and shown a month, over the 14 payments.

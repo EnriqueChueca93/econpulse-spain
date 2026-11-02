@@ -74,6 +74,9 @@ Because the workflow commits data every day, run `git pull` before working local
   Netherlands, Portugal, Poland, the UK, the US, Canada and Japan: growth and GDP since 2019, GDP per head, jobs,
   prices and interest rates, real pay and productivity, public finances, the current account and the IMF's outlook;
   the reader chooses up to three comparators to draw beside Spain), and the 17 autonomous communities.
+- **Pensions**: the Social Security's contributory pensions: how many and the average pension by class, scheme
+  and region, what they cost a year against GDP (an EconPulse estimate), the average pension after inflation,
+  workers per pension, new and ended pensions, and the maximum and minimum amounts since 1990.
 - **Tools**: Economy vs pre-COVID trend, an interactive Taylor rule and an interest rate decomposer; change a
   setting and the numbers and charts recompute in the browser. **Fiscal Explorer** (`site/fiscal-explorer.html`):
   Spain's debt and deficits since 1970 and to 2070, starting from the European Commission's baseline (reproduced
@@ -138,7 +141,8 @@ econpulse/            Python package
                       segsocial (Seguridad Social), ree (Red Eléctrica), oecd, bis, bls,
                       dbnomics, eia, worldbank, bundesbank, imf, bdeproj (Banco de España
                       projections), funcas, hicpdist and ageing (EconPulse calculations from
-                      Eurostat data), reg (Ministry of Labour layoffs), comext (Eurostat's
+                      Eurostat data), reg (Ministry of Labour layoffs), bel (the Ministry of
+                      Labour's pension tables, old-format .xls read with xlrd), comext (Eurostat's
                       trade by product and partner), fred (local use only),
                       derived; webtables.py reads
                       the HTML tables of the sources that publish web pages
@@ -172,6 +176,8 @@ econpulse/            Python package
   workstats.py        hours, vacancies and pay by activity, and layoffs (Labour and Wages pages)
   housing.py          the Housing page's affordability, renting and valuation against the comparators, and the
                       facts above its building, mortgage, wealth and commercial property blocks
+  pensions.py         the Pensions page: its tables, facts and the cost, real pension and workers-per-pension
+                      calculations
   peers.py            Spain and its comparators (International page): series, GDP since 2019, the IMF's
                       figures by year, pay and productivity, ranks
   trade.py            the Trade page: goods by product group and partner, services by type, prices
