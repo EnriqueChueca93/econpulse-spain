@@ -1676,24 +1676,20 @@
   "signature": "[\"ree\", \"spot_price\", {}, 1.0]"
  },
  "emp_rate_ca": {
-  "status": "stale",
-  "fetched_at": "2026-11-01T22:25:29+00:00",
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:03:22+00:00",
   "first_date": "1990-01-01",
   "last_date": "2026-07-01",
   "n_obs": 147,
-  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/CAN..._Z.Y._T.Y15T64..Q\", {}, 1.0]",
-  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN..._Z.Y._T.Y15T64..Q?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
-  "failed_at": "2026-11-01T22:50:04+00:00"
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/CAN..._Z.Y._T.Y15T64..Q\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]"
  },
  "emp_rate_de": {
-  "status": "stale",
-  "fetched_at": "2026-11-01T22:25:29+00:00",
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:03:22+00:00",
   "first_date": "2005-01-01",
   "last_date": "2026-04-01",
   "n_obs": 86,
-  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/DEU..._Z.Y._T.Y15T64..Q\", {}, 1.0]",
-  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN..._Z.Y._T.Y15T64..Q?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
-  "failed_at": "2026-11-01T22:50:04+00:00"
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/DEU..._Z.Y._T.Y15T64..Q\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]"
  },
  "emp_rate_ea": {
   "status": "ok",
@@ -1706,84 +1702,76 @@
   "source_updated": "2026-10-26T23:00:00+0100"
  },
  "emp_rate_es": {
-  "status": "stale",
-  "fetched_at": "2026-11-01T22:25:28+00:00",
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:03:22+00:00",
   "first_date": "1999-01-01",
   "last_date": "2026-04-01",
   "n_obs": 110,
-  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/ESP..._Z.Y._T.Y15T64..Q\", {}, 1.0]",
-  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN..._Z.Y._T.Y15T64..Q?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
-  "failed_at": "2026-11-01T22:50:04+00:00"
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/ESP..._Z.Y._T.Y15T64..Q\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]"
  },
  "emp_rate_fr": {
-  "status": "stale",
-  "fetched_at": "2026-11-01T22:25:29+00:00",
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:03:22+00:00",
   "first_date": "2003-01-01",
   "last_date": "2026-04-01",
   "n_obs": 94,
-  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/FRA..._Z.Y._T.Y15T64..Q\", {}, 1.0]",
-  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN..._Z.Y._T.Y15T64..Q?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
-  "failed_at": "2026-11-01T22:50:04+00:00"
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/FRA..._Z.Y._T.Y15T64..Q\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]"
  },
  "emp_rate_it": {
-  "status": "stale",
-  "fetched_at": "2026-11-01T22:25:29+00:00",
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:03:22+00:00",
   "first_date": "1998-01-01",
   "last_date": "2026-04-01",
   "n_obs": 114,
-  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/ITA..._Z.Y._T.Y15T64..Q\", {}, 1.0]",
-  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN..._Z.Y._T.Y15T64..Q?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
-  "failed_at": "2026-11-01T22:50:04+00:00"
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/ITA..._Z.Y._T.Y15T64..Q\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]"
  },
  "emp_rate_jp": {
-  "status": "error",
-  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN..._Z.Y._T.Y15T64..Q?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
-  "failed_at": "2026-11-01T22:50:04+00:00"
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:03:22+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 146,
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/JPN..._Z.Y._T.Y15T64..Q\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]"
  },
  "emp_rate_nl": {
-  "status": "error",
-  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN..._Z.Y._T.Y15T64..Q?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
-  "failed_at": "2026-11-01T22:50:04+00:00"
- },
- "emp_rate_pl": {
-  "status": "stale",
-  "fetched_at": "2026-11-01T22:25:29+00:00",
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:03:22+00:00",
   "first_date": "2000-01-01",
   "last_date": "2026-04-01",
   "n_obs": 106,
-  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/POL..._Z.Y._T.Y15T64..Q\", {}, 1.0]",
-  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN..._Z.Y._T.Y15T64..Q?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
-  "failed_at": "2026-11-01T22:50:04+00:00"
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/NLD..._Z.Y._T.Y15T64..Q\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]"
+ },
+ "emp_rate_pl": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:03:22+00:00",
+  "first_date": "2000-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 106,
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/POL..._Z.Y._T.Y15T64..Q\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]"
  },
  "emp_rate_pt": {
-  "status": "stale",
-  "fetched_at": "2026-11-01T22:25:29+00:00",
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:03:22+00:00",
   "first_date": "1998-01-01",
   "last_date": "2026-04-01",
   "n_obs": 114,
-  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/PRT..._Z.Y._T.Y15T64..Q\", {}, 1.0]",
-  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN..._Z.Y._T.Y15T64..Q?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
-  "failed_at": "2026-11-01T22:50:04+00:00"
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/PRT..._Z.Y._T.Y15T64..Q\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]"
  },
  "emp_rate_uk": {
-  "status": "stale",
-  "fetched_at": "2026-11-01T22:25:29+00:00",
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:03:22+00:00",
   "first_date": "1990-01-01",
   "last_date": "2026-04-01",
   "n_obs": 146,
-  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/GBR..._Z.Y._T.Y15T64..Q\", {}, 1.0]",
-  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN..._Z.Y._T.Y15T64..Q?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
-  "failed_at": "2026-11-01T22:50:04+00:00"
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/GBR..._Z.Y._T.Y15T64..Q\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]"
  },
  "emp_rate_us": {
-  "status": "stale",
-  "fetched_at": "2026-11-01T22:25:29+00:00",
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:03:22+00:00",
   "first_date": "1990-01-01",
   "last_date": "2026-07-01",
   "n_obs": 146,
-  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/USA..._Z.Y._T.Y15T64..Q\", {}, 1.0]",
-  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN..._Z.Y._T.Y15T64..Q?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
-  "failed_at": "2026-11-01T22:50:04+00:00"
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,1.0/USA..._Z.Y._T.Y15T64..Q\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]"
  },
  "employment_epa": {
   "status": "ok",
@@ -3208,14 +3196,12 @@
   "source_updated": "2026-10-22T23:00:00+0200"
  },
  "gdp_growth_ca": {
-  "status": "stale",
-  "fetched_at": "2026-11-01T21:22:40+00:00",
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:04:07+00:00",
   "first_date": "1990-01-01",
   "last_date": "2026-07-01",
   "n_obs": 147,
-  "signature": "[\"oecd\", \"OECD.SDD.NAD,DSD_NAMAIN1@DF_QNA_EXPENDITURE_GROWTH_OECD,/Q..CAN.S1..B1GQ......GY.\", {}, 1.0]",
-  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.NAD,DSD_NAMAIN1@DF_QNA_EXPENDITURE_GROWTH_OECD,/GBR+CAN+JPN..CAN.S1..B1GQ......GY.?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
-  "failed_at": "2026-11-01T22:48:43+00:00"
+  "signature": "[\"oecd\", \"OECD.SDD.NAD,DSD_NAMAIN1@DF_QNA_EXPENDITURE_GROWTH_OECD,/Q..CAN.S1..B1GQ......GY.\", {\"batch\": \"GBR+CAN+JPN\"}, 1.0]"
  },
  "gdp_growth_de": {
   "status": "ok",
@@ -3258,9 +3244,12 @@
   "source_updated": "2026-10-30T23:00:00+0100"
  },
  "gdp_growth_jp": {
-  "status": "error",
-  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.NAD,DSD_NAMAIN1@DF_QNA_EXPENDITURE_GROWTH_OECD,/GBR+CAN+JPN..JPN.S1..B1GQ......GY.?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
-  "failed_at": "2026-11-01T22:48:53+00:00"
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:04:07+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 146,
+  "signature": "[\"oecd\", \"OECD.SDD.NAD,DSD_NAMAIN1@DF_QNA_EXPENDITURE_GROWTH_OECD,/Q..JPN.S1..B1GQ......GY.\", {\"batch\": \"GBR+CAN+JPN\"}, 1.0]"
  },
  "gdp_growth_nl": {
   "status": "ok",
@@ -3293,24 +3282,20 @@
   "source_updated": "2026-10-30T23:00:00+0100"
  },
  "gdp_growth_uk": {
-  "status": "stale",
-  "fetched_at": "2026-11-01T21:22:40+00:00",
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:04:07+00:00",
   "first_date": "1990-01-01",
   "last_date": "2026-04-01",
   "n_obs": 146,
-  "signature": "[\"oecd\", \"OECD.SDD.NAD,DSD_NAMAIN1@DF_QNA_EXPENDITURE_GROWTH_OECD,/Q..GBR.S1..B1GQ......GY.\", {}, 1.0]",
-  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.NAD,DSD_NAMAIN1@DF_QNA_EXPENDITURE_GROWTH_OECD,/GBR+CAN+JPN..GBR.S1..B1GQ......GY.?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
-  "failed_at": "2026-11-01T22:48:33+00:00"
+  "signature": "[\"oecd\", \"OECD.SDD.NAD,DSD_NAMAIN1@DF_QNA_EXPENDITURE_GROWTH_OECD,/Q..GBR.S1..B1GQ......GY.\", {\"batch\": \"GBR+CAN+JPN\"}, 1.0]"
  },
  "gdp_level_ca": {
-  "status": "stale",
-  "fetched_at": "2026-11-01T22:25:27+00:00",
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:04:08+00:00",
   "first_date": "1990-01-01",
   "last_date": "2026-07-01",
   "n_obs": 147,
-  "signature": "[\"oecd\", \"OECD.SDD.NAD,DSD_NAMAIN1@DF_QNA,/Q.Y.CAN.S1..B1GQ._Z._Z._Z.XDC.LR.LA.T0102\", {}, 0.001]",
-  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.NAD,DSD_NAMAIN1@DF_QNA,/GBR+USA+CAN+JPN.Y.CAN.S1..B1GQ._Z._Z._Z.XDC.LR.LA.T0102?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
-  "failed_at": "2026-11-01T22:49:34+00:00"
+  "signature": "[\"oecd\", \"OECD.SDD.NAD,DSD_NAMAIN1@DF_QNA,/Q.Y.CAN.S1..B1GQ._Z._Z._Z.XDC.LR.LA.T0102\", {\"batch\": \"GBR+USA+CAN+JPN\"}, 0.001]"
  },
  "gdp_level_de": {
   "status": "ok",
@@ -3353,9 +3338,12 @@
   "source_updated": "2026-10-30T23:00:00+0100"
  },
  "gdp_level_jp": {
-  "status": "error",
-  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.NAD,DSD_NAMAIN1@DF_QNA,/GBR+USA+CAN+JPN.Y.JPN.S1..B1GQ._Z._Z._Z.XDC.LR.LA.T0102?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
-  "failed_at": "2026-11-01T22:49:44+00:00"
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:04:08+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 146,
+  "signature": "[\"oecd\", \"OECD.SDD.NAD,DSD_NAMAIN1@DF_QNA,/Q.Y.JPN.S1..B1GQ._Z._Z._Z.XDC.LR.LA.T0102\", {\"batch\": \"GBR+USA+CAN+JPN\"}, 0.001]"
  },
  "gdp_level_nl": {
   "status": "ok",
@@ -3388,24 +3376,20 @@
   "source_updated": "2026-10-30T23:00:00+0100"
  },
  "gdp_level_uk": {
-  "status": "stale",
-  "fetched_at": "2026-11-01T22:25:27+00:00",
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:04:08+00:00",
   "first_date": "1990-01-01",
   "last_date": "2026-04-01",
   "n_obs": 146,
-  "signature": "[\"oecd\", \"OECD.SDD.NAD,DSD_NAMAIN1@DF_QNA,/Q.Y.GBR.S1..B1GQ._Z._Z._Z.XDC.LR.LA.T0102\", {}, 0.001]",
-  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.NAD,DSD_NAMAIN1@DF_QNA,/GBR+USA+CAN+JPN.Y.GBR.S1..B1GQ._Z._Z._Z.XDC.LR.LA.T0102?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
-  "failed_at": "2026-11-01T22:49:14+00:00"
+  "signature": "[\"oecd\", \"OECD.SDD.NAD,DSD_NAMAIN1@DF_QNA,/Q.Y.GBR.S1..B1GQ._Z._Z._Z.XDC.LR.LA.T0102\", {\"batch\": \"GBR+USA+CAN+JPN\"}, 0.001]"
  },
  "gdp_level_us": {
-  "status": "stale",
-  "fetched_at": "2026-11-01T22:25:27+00:00",
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:04:08+00:00",
   "first_date": "1990-01-01",
   "last_date": "2026-07-01",
   "n_obs": 147,
-  "signature": "[\"oecd\", \"OECD.SDD.NAD,DSD_NAMAIN1@DF_QNA,/Q.Y.USA.S1..B1GQ._Z._Z._Z.XDC.LR.LA.T0102\", {}, 0.001]",
-  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.NAD,DSD_NAMAIN1@DF_QNA,/GBR+USA+CAN+JPN.Y.USA.S1..B1GQ._Z._Z._Z.XDC.LR.LA.T0102?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
-  "failed_at": "2026-11-01T22:49:24+00:00"
+  "signature": "[\"oecd\", \"OECD.SDD.NAD,DSD_NAMAIN1@DF_QNA,/Q.Y.USA.S1..B1GQ._Z._Z._Z.XDC.LR.LA.T0102\", {\"batch\": \"GBR+USA+CAN+JPN\"}, 0.001]"
  },
  "gdp_nominal": {
   "status": "ok",
@@ -8532,14 +8516,12 @@
   "source_name": "Tasa de paro de la población. Ambos sexos. Balears, Illes. Total."
  },
  "unemployment_ca": {
-  "status": "stale",
-  "fetched_at": "2026-11-01T21:22:41+00:00",
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:03:18+00:00",
   "first_date": "1990-01-01",
   "last_date": "2026-09-01",
   "n_obs": 441,
-  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/CAN..._Z.Y._T.Y_GE15..M\", {}, 1.0]",
-  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/GBR+CAN+JPN..._Z.Y._T.Y_GE15..M?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
-  "failed_at": "2026-11-01T22:49:03+00:00"
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/CAN..._Z.Y._T.Y_GE15..M\", {\"batch\": \"GBR+CAN+JPN\"}, 1.0]"
  },
  "unemployment_canarias": {
   "status": "ok",
@@ -8662,9 +8644,12 @@
   "source_updated": "2026-10-30T11:00:00+0100"
  },
  "unemployment_jp": {
-  "status": "error",
-  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/GBR+CAN+JPN..._Z.Y._T.Y_GE15..M?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
-  "failed_at": "2026-11-01T22:49:03+00:00"
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:03:18+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 440,
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/JPN..._Z.Y._T.Y_GE15..M\", {\"batch\": \"GBR+CAN+JPN\"}, 1.0]"
  },
  "unemployment_madrid": {
   "status": "ok",
@@ -8757,14 +8742,12 @@
   "source_name": "Tasa de paro de la población. Ambos sexos. Rioja, La. Total."
  },
  "unemployment_uk": {
-  "status": "stale",
-  "fetched_at": "2026-11-01T21:22:41+00:00",
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:03:18+00:00",
   "first_date": "1990-01-01",
   "last_date": "2026-07-01",
   "n_obs": 439,
-  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/GBR..._Z.Y._T.Y_GE15..M\", {}, 1.0]",
-  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/GBR+CAN+JPN..._Z.Y._T.Y_GE15..M?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
-  "failed_at": "2026-11-01T22:49:03+00:00"
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/GBR..._Z.Y._T.Y_GE15..M\", {\"batch\": \"GBR+CAN+JPN\"}, 1.0]"
  },
  "unemployment_valenciana": {
   "status": "ok",
@@ -9781,24 +9764,20 @@
   "published": "2026-10-13"
  },
  "youth_unemp_ca": {
-  "status": "stale",
-  "fetched_at": "2026-11-01T22:25:28+00:00",
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:03:22+00:00",
   "first_date": "1990-01-01",
   "last_date": "2026-09-01",
   "n_obs": 441,
-  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/CAN..._Z.Y._T.Y15T24..M\", {}, 1.0]",
-  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN..._Z.Y._T.Y15T24..M?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
-  "failed_at": "2026-11-01T22:50:04+00:00"
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/CAN..._Z.Y._T.Y15T24..M\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]"
  },
  "youth_unemp_de": {
-  "status": "stale",
-  "fetched_at": "2026-11-01T22:25:28+00:00",
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:03:22+00:00",
   "first_date": "1991-01-01",
   "last_date": "2026-08-01",
   "n_obs": 428,
-  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/DEU..._Z.Y._T.Y15T24..M\", {}, 1.0]",
-  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN..._Z.Y._T.Y15T24..M?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
-  "failed_at": "2026-11-01T22:49:54+00:00"
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/DEU..._Z.Y._T.Y15T24..M\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]"
  },
  "youth_unemp_ea": {
   "status": "ok",
@@ -9811,84 +9790,76 @@
   "source_updated": "2026-10-30T11:00:00+0100"
  },
  "youth_unemp_es": {
-  "status": "stale",
-  "fetched_at": "2026-11-01T22:25:27+00:00",
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:03:22+00:00",
   "first_date": "1990-01-01",
   "last_date": "2026-08-01",
   "n_obs": 440,
-  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/ESP..._Z.Y._T.Y15T24..M\", {}, 1.0]",
-  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN..._Z.Y._T.Y15T24..M?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
-  "failed_at": "2026-11-01T22:49:54+00:00"
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/ESP..._Z.Y._T.Y15T24..M\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]"
  },
  "youth_unemp_fr": {
-  "status": "stale",
-  "fetched_at": "2026-11-01T22:25:28+00:00",
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:03:22+00:00",
   "first_date": "1990-01-01",
   "last_date": "2026-08-01",
   "n_obs": 440,
-  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/FRA..._Z.Y._T.Y15T24..M\", {}, 1.0]",
-  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN..._Z.Y._T.Y15T24..M?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
-  "failed_at": "2026-11-01T22:49:54+00:00"
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/FRA..._Z.Y._T.Y15T24..M\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]"
  },
  "youth_unemp_it": {
-  "status": "stale",
-  "fetched_at": "2026-11-01T22:25:28+00:00",
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:03:22+00:00",
   "first_date": "1990-01-01",
   "last_date": "2026-08-01",
   "n_obs": 440,
-  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/ITA..._Z.Y._T.Y15T24..M\", {}, 1.0]",
-  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN..._Z.Y._T.Y15T24..M?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
-  "failed_at": "2026-11-01T22:49:54+00:00"
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/ITA..._Z.Y._T.Y15T24..M\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]"
  },
  "youth_unemp_jp": {
-  "status": "error",
-  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN..._Z.Y._T.Y15T24..M?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
-  "failed_at": "2026-11-01T22:50:04+00:00"
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:03:22+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 440,
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/JPN..._Z.Y._T.Y15T24..M\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]"
  },
  "youth_unemp_nl": {
-  "status": "error",
-  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN..._Z.Y._T.Y15T24..M?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
-  "failed_at": "2026-11-01T22:49:54+00:00"
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:03:22+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2026-08-01",
+  "n_obs": 440,
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/NLD..._Z.Y._T.Y15T24..M\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]"
  },
  "youth_unemp_pl": {
-  "status": "stale",
-  "fetched_at": "2026-11-01T22:25:28+00:00",
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:03:22+00:00",
   "first_date": "1997-01-01",
   "last_date": "2026-08-01",
   "n_obs": 356,
-  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/POL..._Z.Y._T.Y15T24..M\", {}, 1.0]",
-  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN..._Z.Y._T.Y15T24..M?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
-  "failed_at": "2026-11-01T22:50:04+00:00"
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/POL..._Z.Y._T.Y15T24..M\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]"
  },
  "youth_unemp_pt": {
-  "status": "stale",
-  "fetched_at": "2026-11-01T22:25:28+00:00",
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:03:22+00:00",
   "first_date": "1990-01-01",
   "last_date": "2026-08-01",
   "n_obs": 440,
-  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/PRT..._Z.Y._T.Y15T24..M\", {}, 1.0]",
-  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN..._Z.Y._T.Y15T24..M?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
-  "failed_at": "2026-11-01T22:49:54+00:00"
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/PRT..._Z.Y._T.Y15T24..M\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]"
  },
  "youth_unemp_uk": {
-  "status": "stale",
-  "fetched_at": "2026-11-01T22:25:28+00:00",
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:03:22+00:00",
   "first_date": "1990-01-01",
   "last_date": "2026-07-01",
   "n_obs": 439,
-  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/GBR..._Z.Y._T.Y15T24..M\", {}, 1.0]",
-  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN..._Z.Y._T.Y15T24..M?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
-  "failed_at": "2026-11-01T22:50:04+00:00"
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/GBR..._Z.Y._T.Y15T24..M\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]"
  },
  "youth_unemp_us": {
-  "status": "stale",
-  "fetched_at": "2026-11-01T22:25:28+00:00",
+  "status": "ok",
+  "fetched_at": "2026-11-02T00:03:22+00:00",
   "first_date": "1990-01-01",
   "last_date": "2026-09-01",
   "n_obs": 440,
-  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/USA..._Z.Y._T.Y15T24..M\", {}, 1.0]",
-  "error": "RetryError: HTTPSConnectionPool(host='sdmx.oecd.org', port=443): Max retries exceeded with url: /public/rest/data/OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN..._Z.Y._T.Y15T24..M?format=csv&startPeriod=1990 (Caused by ResponseError('too many 429 error responses'))",
-  "failed_at": "2026-11-01T22:50:04+00:00"
+  "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,1.0/USA..._Z.Y._T.Y15T24..M\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]"
  },
  "youth_unemployment": {
   "status": "ok",

@@ -7244,6 +7244,55 @@
    "display": "0.4% y/y",
    "period": "2027",
    "flash": false
+  },
+  "unemployment_jp": {
+   "date": "2026-08-01",
+   "raw": 2.5,
+   "display": "2.5%",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "youth_unemp_nl": {
+   "date": "2026-08-01",
+   "raw": 8.8,
+   "display": "8.8%",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "youth_unemp_jp": {
+   "date": "2026-08-01",
+   "raw": 3.5,
+   "display": "3.5%",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "emp_rate_nl": {
+   "date": "2026-04-01",
+   "raw": 82.01396,
+   "display": "82.0%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "emp_rate_jp": {
+   "date": "2026-04-01",
+   "raw": 80.49023,
+   "display": "80.5%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "gdp_growth_jp": {
+   "date": "2026-04-01",
+   "raw": 0.726654038,
+   "display": "0.7%",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "gdp_level_jp": {
+   "date": "2026-04-01",
+   "raw": 598722.7133,
+   "display": "0.7% y/y",
+   "period": "Q2 2026",
+   "flash": false
   }
  },
  "notes": [
@@ -7269,6 +7318,6 @@
    "at": "2026-11-01T02:50:46+00:00"
   }
  ],
- "updated_at": "2026-11-01T22:52:31+00:00",
+ "updated_at": "2026-11-02T00:04:12+00:00",
  "started_at": "2026-10-31T23:31:49+00:00"
 }

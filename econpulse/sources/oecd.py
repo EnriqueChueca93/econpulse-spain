@@ -76,8 +76,14 @@ def fetch(key: str, params: dict | None = None, **_) -> FetchResult:
     fmt = "csvfilewithlabels" if params.get("edition") else "csv"
     if not params.get("batch"):
         return parse(http.get(f"{BASE}/{flow}/{series}", params={"format": fmt, "startPeriod": "1990"}).text)
-    area, rest = series.split(".", 1)
-    url = f"{BASE}/{flow}/{params['batch']}.{rest}"
+    # The area is not always the first part of the key (the national accounts have Q.Y.GBR...): it is the
+    # part that is one of the batch's areas.
+    areas, parts = params["batch"].split("+"), series.split(".")
+    at = next((i for i, part in enumerate(parts) if part in areas), None)
+    if at is None:
+        raise ValueError(f"no area of the batch {params['batch']} in the key {series}")
+    area = parts[at]
+    url = f"{BASE}/{flow}/" + ".".join(params["batch"] if i == at else part for i, part in enumerate(parts))
     with _lock:
         entry = _cache.get(url)
         if entry is None:
@@ -89,5 +95,5 @@ def fetch(key: str, params: dict | None = None, **_) -> FetchResult:
     if isinstance(entry, Exception):
         raise entry
     if area not in entry:
-        raise ValueError(f"OECD returned no {area} series for {rest}")
+        raise ValueError(f"OECD returned no {area} series for {series}")
     return entry[area]

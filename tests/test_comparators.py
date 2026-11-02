@@ -138,8 +138,10 @@ def test_batched_requests_share_one_answer(monkeypatch):
     assert jp.series.iloc[-1] == 0.7 and es.series.iloc[-1] == 2.5 and es.meta["published"] == "2026-10-13"
     assert oecd.fetch("FLOW/JPN.M.UR", {"batch": "ESP+JPN"}).series.iloc[-1] == 4.0
     assert oecd.fetch("FLOW/ESP.M.UR", {"batch": "ESP+JPN"}).series.iloc[-1] == 22.7
+    assert oecd.fetch("QNA/Q.Y.JPN.S1", {"batch": "ESP+JPN"}).series.iloc[-1] == 4.0   # the area need not come first
+    assert calls[-1].endswith("/QNA/Q.Y.ESP+JPN.S1")
     assert dbnomics.fetch("AMECO/RWCDC/JPN.3.1.0.0.RWCDC", {"batch": "ESP+JPN"}).series.iloc[-1] == 97.6
-    assert len(calls) == 3 and calls[0].endswith("/IMF.RES,WEO/ESP+JPN.NGDP_RPCH.A") and "ESP+JPN.M.UR" in calls[1]
+    assert len(calls) == 4 and calls[0].endswith("/IMF.RES,WEO/ESP+JPN.NGDP_RPCH.A") and "ESP+JPN.M.UR" in calls[1]
     with pytest.raises(ValueError):
         imf.fetch("IMF.RES,WEO/FRA.NGDP_RPCH.A", {"batch": "ESP+JPN"})     # not in the shared answer
     for client in (imf, oecd, dbnomics):
