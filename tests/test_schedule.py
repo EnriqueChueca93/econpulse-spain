@@ -89,6 +89,22 @@ def test_calendar_views(store):
     assert "ECB monetary policy decision" in [e["label"] for d in schedule.window(store, today) for e in d["events"]]
 
 
+def test_the_next_three_days(store):
+    """Batch 32c: the coming working days with their releases, and where the three-day view starts."""
+    store.save_json("calendar", {"events": schedule.parse_ics(ICS)})
+    today = pd.Timestamp("2026-11-12")                     # a Thursday, the day before the CPI
+    days = schedule.coming_days(schedule.window(store, today), today, count=6)
+    assert [d["date"] for d in days] == ["2026-11-12", "2026-11-13", "2026-11-16", "2026-11-17", "2026-11-18",
+                                         "2026-11-19"]                    # the weekend is left out
+    assert days[1]["weekday"] == "Friday" and days[1]["day"] == "13 November" and days[1]["last"] == "09:00"
+    assert [e["label"] for e in days[1]["events"]] == ["CPI and HICP, full data"] and days[0]["events"] == []
+    madrid = timezone(timedelta(hours=1))
+    assert schedule.first_coming(days, datetime(2026, 11, 12, 8, 0, tzinfo=madrid)) == 1   # nothing left today
+    friday = schedule.coming_days(schedule.window(store, today), pd.Timestamp("2026-11-13"), count=3)
+    assert schedule.first_coming(friday, datetime(2026, 11, 13, 8, 30, tzinfo=madrid)) == 0   # the CPI at 9:00
+    assert schedule.first_coming(friday, datetime(2026, 11, 13, 9, 0, tzinfo=madrid)) == 1    # out already
+
+
 # ---------------------------------------------------------------- what changed
 
 def _save(store, ind_id, values, start="2026-01-01", freq="MS"):
@@ -154,4 +170,11 @@ def test_calendar_about_and_data_pages_build(tmp_path):
     home = (site / "index.html").read_text(encoding="utf-8")
     assert 'class="release-bar"' in home and "calendar.html" in home and 'href="about.html"' in home
     assert "All 1 series were fetched successfully" in (site / "data.html").read_text(encoding="utf-8")
-    assert "INE's own calendar" in (site / "calendar.html").read_text(encoding="utf-8")
+    calendar = (site / "calendar.html").read_text(encoding="utf-8")
+    assert "INE's own calendar" in calendar
+    # The next three days: a fortnight of working days, three shown, each shaded and with its own list.
+    assert '<h2 id="next-days">The next three days</h2>' in calendar and calendar.count('class="cal-day heat-') == 15
+    assert calendar.count('class="cal-list"') == 15 and 'src="assets/calendar.js?v=' in calendar
+    assert calendar.index('id="next-days"') < calendar.index('id="upcoming"')
+    shown = [c for c in calendar.split('<button type="button" class="cal-day')[1:] if " hidden>" not in c.split(">", 1)[0] + ">"]
+    assert len(shown) == 3

@@ -8917,6 +8917,48 @@
    "display": "49,359,198 persons",
    "period": "2025",
    "flash": false
+  },
+  "petrol_price": {
+   "date": "2026-10-26",
+   "raw": 1.751107673,
+   "display": "1.751 €/l",
+   "period": "26 Oct 2026",
+   "flash": false
+  },
+  "diesel_price": {
+   "date": "2026-10-26",
+   "raw": 1.887798911,
+   "display": "1.888 €/l",
+   "period": "26 Oct 2026",
+   "flash": false
+  },
+  "petrol_price_pretax": {
+   "date": "2026-10-26",
+   "raw": 1.174506423,
+   "display": "1.175 €/l",
+   "period": "26 Oct 2026",
+   "flash": false
+  },
+  "diesel_price_pretax": {
+   "date": "2026-10-26",
+   "raw": 1.381164389,
+   "display": "1.381 €/l",
+   "period": "26 Oct 2026",
+   "flash": false
+  },
+  "petrol_price_ea": {
+   "date": "2026-10-26",
+   "raw": 2.03202432,
+   "display": "2.032 €/l",
+   "period": "26 Oct 2026",
+   "flash": false
+  },
+  "diesel_price_ea": {
+   "date": "2026-10-26",
+   "raw": 2.201234453,
+   "display": "2.201 €/l",
+   "period": "26 Oct 2026",
+   "flash": false
   }
  },
  "notes": [
@@ -9075,6 +9117,6 @@
    "at": "2026-11-02T00:14:15+00:00"
   }
  ],
- "updated_at": "2026-11-02T05:16:48+00:00",
+ "updated_at": "2026-11-02T16:52:48+00:00",
  "started_at": "2026-10-31T23:31:49+00:00"
 }

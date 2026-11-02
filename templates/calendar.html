@@ -10,6 +10,49 @@
     refreshed at every update. Social Security registrations are expected on the second working day of each month;
     ECB decisions follow the ECB's published schedule.</p>
 
+  {% if soon %}
+  {# The next three working days: the build writes a fortnight of them and static/calendar.js shows the three from
+     the viewer's own date (today while it still has releases to come); the first three from the build stand in
+     without scripts. #}
+  <section class="cal-soon" id="cal-soon" aria-labelledby="next-days">
+    <h2 id="next-days">The next three days</h2>
+    <p class="block-intro">The next three working days, today included while it still has releases to come. The
+      darker the day, the more releases it has: click one to see them.</p>
+    <div class="cal-heat" role="group" aria-label="The next three working days">
+      {% for d in soon %}
+      {% set n = d.events | length %}
+      <button type="button" class="cal-day heat-{{ [n, 4] | min }}" data-date="{{ d.date }}" data-last="{{ d.last }}"
+        data-count="{{ n }}" data-long="{{ d.long }}"{% if d.events %} data-first="{{ d.events[0].label }}"{% endif %}
+        aria-controls="cal-list-{{ d.date }}" aria-pressed="{{ 'true' if loop.index0 == soon_first else 'false' }}"
+        {%- if not (soon_first <= loop.index0 < soon_first + 3) %} hidden{% endif %}>
+        <span class="cal-weekday">{{ d.weekday }}</span><span class="cal-tag"></span>
+        <span class="cal-date">{{ d.day }}</span>
+        <span class="cal-count">{% if n %}{{ n }} release{{ "s" if n > 1 }}{% else %}No releases{% endif %}</span>
+      </button>
+      {% endfor %}
+    </div>
+    <p class="cal-legend"><span>Releases</span>
+      {% for k, label in [(0, "0"), (1, "1"), (2, "2"), (3, "3"), (4, "4+")] %}<span class="cal-key"><span class="cal-swatch heat-{{ k }}" aria-hidden="true"></span>{{ label }}</span>{% endfor %}
+    </p>
+    {% for d in soon %}
+    <div class="cal-list" id="cal-list-{{ d.date }}"{% if loop.index0 != soon_first %} hidden{% endif %}>
+      <h3>{{ d.long }}</h3>
+      {% if d.events %}
+      <ul class="news-list">
+        {% for e in d.events %}
+        <li><span class="news-day">{{ e.time }}</span> <a href="{{ e.page }}">{{ e.label }}</a>{% if e.period %} · {{ e.period }}{% endif %}
+          <span class="secondary">· {{ e.source }}</span>{% if e.expected %} <span class="badge badge-info">expected</span>{% endif %}</li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <p class="note">Nothing scheduled.</p>
+      {% endif %}
+    </div>
+    {% endfor %}
+    <p class="note cal-none" hidden></p>
+  </section>
+  {% endif %}
+
   {% if recent %}
   <section aria-labelledby="recent">
     <h2 id="recent">Released in the past week</h2>
@@ -51,3 +94,5 @@
     {% endif %}
   </section>
 {% endblock %}
+
+{% block after_scripts %}<script src="assets/calendar.js?v={{ build_id }}"></script>{% endblock %}

@@ -41,7 +41,7 @@ Because the workflow commits data every day, run `git pull` before working local
 
 ## The site
 
-- **Home** (`site/index.html`): 16 key-indicator tiles, EconPulse readings (activity and inflation against their
+- **Home** (`site/index.html`): 18 key-indicator tiles (petrol and diesel at the pump among them), EconPulse readings (activity and inflation against their
   history and against a simple forecast, the GDP nowcast, the ECB rate against a Taylor rule), "The economy in four
   questions" and three charts.
 - **Labour market by sector**: Social Security registrations by sector and type of work (the ministry's own
@@ -62,7 +62,9 @@ Because the workflow commits data every day, run `git pull` before working local
   a month ago, a year ago; contributions to growth) and 25 charts, each with a data table, a PNG and a CSV download
   and, for long time series, buttons for the last 5 or 10 years.
   The Inflation page also measures underlying inflation across the ~180 detailed HICP items: weighted median,
-  10% and 30% trimmed means, how widespread price rises are, and the items rising fastest and slowest.
+  10% and 30% trimmed means, how widespread price rises are, and the items rising fastest and slowest. Its energy
+  section has petrol and diesel at the pump, each Monday since 2005, with and before taxes and against the euro area
+  (the European Commission's Weekly Oil Bulletin).
 - **Financial, ECB**: a markets table (1-day, 1-week, YTD, 1-year moves), the Spanish yield curve against the
   AAA euro-area curve, the prima de riesgo, Euribor with a mortgage check, ECB rates and decisions, the next
   ECB meeting and a market-implied rate path.
@@ -122,8 +124,8 @@ Because the workflow commits data every day, run `git pull` before working local
   (marked as a placeholder while the model is worked on),
   what forecasters expect for this year and next, the 10-year yield split into Bund and prima de riesgo, and
   Taylor rules for the euro area and Spain.
-- **Calendar** (`site/calendar.html`): releases in the past week and the next two months; every page has a
-  "Coming up" bar.
+- **Calendar** (`site/calendar.html`): the next three working days, each shaded by its number of releases and
+  opened with a click, releases in the past week and the next two months; every page has a "Coming up" bar.
 - **Search** (every page): the header's search button, or `/` or Ctrl+K, finds any page, section, chart or
   series by its English or Spanish name and jumps to where the site shows it.
 - **What's new** (every page): a section whose figures arrived in the past week carries an "Updated" mark,
@@ -162,7 +164,8 @@ econpulse/            Python package
                       projections), funcas, hicpdist and ageing (EconPulse calculations from
                       Eurostat data), reg (Ministry of Labour layoffs), bel (the Ministry of
                       Labour's pension tables, old-format .xls read with xlrd), comext (Eurostat's
-                      trade by product and partner), fred (local use only),
+                      trade by product and partner), oilbulletin (the European Commission's
+                      Weekly Oil Bulletin: pump prices), fred (local use only),
                       derived; webtables.py reads
                       the HTML tables of the sources that publish web pages
   transforms.py       y/y, m/m, q/q, 3-month annualised, changes
@@ -179,6 +182,7 @@ econpulse/            Python package
   analytics.py        composites, GDP nowcast, 10-year decomposition, Taylor rules
   surprises.py        data surprises: each figure against a one-step AR(1) forecast
   underlying.py       underlying inflation on the Inflation page (the measures come from sources/hicpdist.py)
+  fuel.py             the Inflation page's facts on petrol and diesel (from sources/oilbulletin.py)
   forecasts.py        the forecasters' table, read automatically, with the AI check (data/forecast_checks.json)
   forecasts.yaml      optional overrides by hand, for an edition the automatic sources have not picked up
   tools.py            data for the interactive tools (the browser does the arithmetic, static/tools.js)

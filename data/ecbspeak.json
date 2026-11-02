@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-11-02T05:16:46+00:00",
+ "updated_at": "2026-11-02T16:52:17+00:00",
  "rebuilt_at": "2026-11-01T06:28:54+00:00",
  "ecb_modified": "Sun, 01 Nov 2026 05:21:10 GMT",
  "ecb_last": "2026-10-30",
@@ -17328,6 +17328,57 @@
    "dovish": 2,
    "score": null,
    "policy_share": 0.02
+  },
+  {
+   "id": "https://www.bis.org/speeches/20261102-next-day-securities-settlement-tokenisation-and-transformation-europes-financial-infrastructure",
+   "date": "2026-11-02",
+   "speaker": "Piero Cipollone",
+   "key": "cipollone",
+   "institution": "ECB",
+   "seat": "ECB Executive Board",
+   "title": "Executive Board",
+   "speech_title": "Next-day securities settlement, tokenisation and the transformation of Europe’s financial infrastructure",
+   "url": "https://www.bis.org/speeches/20261102-next-day-securities-settlement-tokenisation-and-transformation-europes-financial-infrastructure",
+   "source": "BIS",
+   "words": 1503,
+   "hawkish": 0,
+   "dovish": 0,
+   "score": null,
+   "policy_share": 0.0
+  },
+  {
+   "id": "https://www.bis.org/speeches/20261102-ai-adoption-europe",
+   "date": "2026-11-02",
+   "speaker": "Philip R Lane",
+   "key": "lane",
+   "institution": "ECB",
+   "seat": "ECB Executive Board",
+   "title": "Executive Board",
+   "speech_title": "AI adoption in Europe",
+   "url": "https://www.bis.org/speeches/20261102-ai-adoption-europe",
+   "source": "BIS",
+   "words": 255,
+   "hawkish": 0,
+   "dovish": 1,
+   "score": null,
+   "policy_share": 0.0
+  },
+  {
+   "id": "https://www.bis.org/speeches/20261102-savings-changing-society",
+   "date": "2026-11-02",
+   "speaker": "Fabio Panetta",
+   "key": "panetta",
+   "institution": "IT",
+   "seat": "IT",
+   "title": "Governor",
+   "speech_title": "Savings in a changing society",
+   "url": "https://www.bis.org/speeches/20261102-savings-changing-society",
+   "source": "BIS",
+   "words": 327,
+   "hawkish": 0,
+   "dovish": 0,
+   "score": null,
+   "policy_share": 0.2
   }
  ]
 }

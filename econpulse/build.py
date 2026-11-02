@@ -56,7 +56,8 @@ NAV_EXTRA = {
                    ("fiscal-explorer.html", "Fiscal Explorer"), ("budget-explorer.html", "Budget explorer"),
                    COMMUNITIES_EXPLORER, ("ecb-speak.html", "ECB-speak"),
                    ("stance.html", "Global central bank stance")],
-    "calendar.html": [("#recent", "Released in the past week"), ("#upcoming", "The next two months")],
+    "calendar.html": [("#next-days", "The next three days"), ("#recent", "Released in the past week"),
+                      ("#upcoming", "The next two months")],
     "sector-tables.html": [(f"#{section_id}", title) for section_id, title, *_ in sectortables.PAGE],
 }
 # Pages a section tab's dropdown lists after that page's own sections.
@@ -238,8 +239,9 @@ def build_site(indicators: list[Indicator], store: Store | None = None, site_dir
     for day in days:
         for e in day["events"]:
             e["page"] = section_link(e.get("ids", []), e["page"])
-    render("calendar.html", "calendar.html", days=days, recent=recent,
-           calendar_page=schedule.INE_CALENDAR_PAGE)
+    soon = schedule.coming_days(days, today)
+    render("calendar.html", "calendar.html", days=days, recent=recent, soon=soon,
+           soon_first=schedule.first_coming(soon, datetime.now(MADRID)), calendar_page=schedule.INE_CALENDAR_PAGE)
     counts = {}
     for i in items:
         counts[i["source"]] = counts.get(i["source"], 0) + 1

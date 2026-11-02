@@ -8,7 +8,7 @@ lists the indicators those functions read. Sections without blocks yet show thei
 (see build.SECTION_PAGES for the batch that fills them).
 """
 
-from . import (analytics, demography, forecasts, housing, peers, pensions, policy, sectortables, surprises,
+from . import (analytics, demography, forecasts, fuel, housing, peers, pensions, policy, sectortables, surprises,
                underlying, workstats)
 from .charts import build_chart, build_curve, build_ranking, build_xy
 from .registry import Indicator
@@ -818,19 +818,44 @@ PAGES: dict[str, list[dict]] = {
             "id": "pressures",
             "title": "Energy and expectations",
             "intro": ("Energy costs reach consumer prices quickly, and households' expectations feed into "
-                      "wage bargaining."),
+                      "wage bargaining. Petrol and diesel are each Monday's average pump price, from the European "
+                      "Commission's Weekly Oil Bulletin; before taxes means before the hydrocarbons duty and VAT."),
+            "facts": fuel.facts,
             "tables": [Table(
                 title="Indicator",
                 caption="Latest reading and earlier values",
                 columns=LEVELS,
                 rows=[
+                    Heading("At the pump, € a litre"),
+                    Row("petrol_price", "Petrol (Euro-super 95)"),
+                    Row("diesel_price", "Diesel"),
+                    Row("petrol_price_pretax", "Petrol before taxes"),
+                    Row("diesel_price_pretax", "Diesel before taxes"),
+                    Row("petrol_price_ea", "Petrol, euro area"),
+                    Row("diesel_price_ea", "Diesel, euro area"),
+                    Heading("Wholesale"),
                     Row("electricity_price", "Electricity, day-ahead market"),
                     Row("brent_eur", "Brent crude in euros"),
                     Row("gas_eu", "European natural gas"),
+                    Heading("Expectations"),
                     Row("price_expectations", "Consumers' price expectations (balance)"),
                 ],
             )],
             "charts": [
+                {"id": "fuel", "title": "Petrol and diesel at the pump",
+                 "subtitle": "Spain, average price on Mondays, € a litre; dashed, before taxes",
+                 "kind": "line", "unit": "€/l", "decimals": 3, "start": "2015-01-01", "date_format": "%-d %b %Y",
+                 "series": [("petrol_price", "level", "Petrol", {"slot": 1}),
+                            ("diesel_price", "level", "Diesel", {"slot": 2}),
+                            ("petrol_price_pretax", "level", "Petrol pre-tax", {"slot": 1, "dash": "dash"}),
+                            ("diesel_price_pretax", "level", "Diesel pre-tax", {"slot": 2, "dash": "dash"})]},
+                {"id": "fuel-ea", "title": "Pump prices: Spain and the euro area",
+                 "subtitle": "Average price on Mondays, taxes included, € a litre; dotted, the euro area",
+                 "kind": "line", "unit": "€/l", "decimals": 3, "start": "2015-01-01", "date_format": "%-d %b %Y",
+                 "series": [("petrol_price", "level", "Petrol, Spain", {"slot": 1}),
+                            ("petrol_price_ea", "level", "Petrol, euro area", {"slot": 1, "dash": "dot"}),
+                            ("diesel_price", "level", "Diesel, Spain", {"slot": 2}),
+                            ("diesel_price_ea", "level", "Diesel, euro area", {"slot": 2, "dash": "dot"})]},
                 {"id": "electricity", "title": "Electricity price", "subtitle": "Day-ahead market, daily average, €/MWh",
                  "kind": "line", "unit": "€/MWh", "decimals": 0, "start": "2025-01-01", "date_format": "%-d %b %Y",
                  "series": [("electricity_price", "level", "Day-ahead price")]},

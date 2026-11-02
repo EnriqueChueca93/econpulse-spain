@@ -186,6 +186,30 @@ def window(store: Store, today: pd.Timestamp | None = None, before: int = 7, aft
             for d, evs in sorted(days.items())]
 
 
+def coming_days(days: list[dict], today: pd.Timestamp, count: int = 15) -> list[dict]:
+    """The next `count` working days from `today` (weekends are left out: no source publishes then), each with
+    its releases from `window`, for the Calendar page's three-day view. The build writes a fortnight or so and
+    the page picks the three from the viewer's own date, so a build a day or two old still shows the right days."""
+    today = pd.Timestamp(today).normalize()
+    events = {d["date"]: d["events"] for d in days}
+    out, day = [], today
+    while len(out) < count:
+        if day.weekday() < 5:
+            evs = events.get(day, [])
+            out.append({"date": f"{day:%Y-%m-%d}", "weekday": f"{day:%A}", "day": f"{day.day} {day:%B}",
+                        "long": f"{day:%A} {day.day} {day:%B %Y}", "events": evs,
+                        "last": max(e["time"] for e in evs) if evs else ""})
+        day += pd.Timedelta(days=1)
+    return out
+
+
+def first_coming(days: list[dict], now: datetime) -> int:
+    """Which of `coming_days` the three-day view starts at: today while it still has releases to come
+    (Madrid time), otherwise the next working day."""
+    today = f"{now:%Y-%m-%d}"
+    return 1 if days and days[0]["date"] == today and days[0]["last"] <= f"{now:%H:%M}" else 0
+
+
 def coming_up(store: Store, today: pd.Timestamp | None = None, count: int = 3, horizon: int = 21) -> dict:
     """The 'Today / Coming up' bar: today's releases and the next few after it."""
     today = pd.Timestamp(today or madrid_today()).normalize()

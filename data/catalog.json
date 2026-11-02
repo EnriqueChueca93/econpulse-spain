@@ -1678,6 +1678,33 @@
   "signature": "[\"bde\", \"D_IMVCHIPTP_ECAI\", {}, 1.0]",
   "source_name": "Crédito con garantía inmobiliaria para los sectores de la construcción y las actividades inmobiliarias. Como porcentaje del PIBpm corriente"
  },
+ "diesel_price": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T16:52:15+00:00",
+  "first_date": "2005-01-03",
+  "last_date": "2026-10-26",
+  "n_obs": 1089,
+  "signature": "[\"oilbulletin\", \"ES_price_with_tax_diesel\", {}, 1.0]",
+  "url": "https://energy.ec.europa.eu/document/download/906e60ca-8b6a-44e7-8589-652854d2fd3f_en?filename=Weekly_Oil_Bulletin_Prices_History_maticni_4web.xlsx"
+ },
+ "diesel_price_ea": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T16:52:15+00:00",
+  "first_date": "2005-01-03",
+  "last_date": "2026-10-26",
+  "n_obs": 1090,
+  "signature": "[\"oilbulletin\", \"EUR_price_with_tax_diesel\", {}, 1.0]",
+  "url": "https://energy.ec.europa.eu/document/download/906e60ca-8b6a-44e7-8589-652854d2fd3f_en?filename=Weekly_Oil_Bulletin_Prices_History_maticni_4web.xlsx"
+ },
+ "diesel_price_pretax": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T16:52:15+00:00",
+  "first_date": "2005-01-03",
+  "last_date": "2026-10-26",
+  "n_obs": 1089,
+  "signature": "[\"oilbulletin\", \"ES_price_wo_tax_diesel\", {}, 1.0]",
+  "url": "https://energy.ec.europa.eu/document/download/906e60ca-8b6a-44e7-8589-652854d2fd3f_en?filename=Weekly_Oil_Bulletin_Prices_History_maticni_4web.xlsx"
+ },
  "domestic_demand": {
   "status": "ok",
   "fetched_at": "2026-11-01T21:22:22+00:00",
@@ -8222,6 +8249,33 @@
   "signature": "[\"eurostat\", \"namq_10_a10_e\", {\"geo\": \"ES\", \"na_item\": \"EMP_DC\", \"nace_r2\": \"TOTAL\", \"s_adj\": \"SCA\", \"unit\": \"THS_PER\"}, 1.0]",
   "source_name": "Employment by main industry (NACE Rev.2) - national accounts - quarterly data",
   "source_updated": "2026-10-30T23:00:00+0100"
+ },
+ "petrol_price": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T16:52:15+00:00",
+  "first_date": "2005-01-03",
+  "last_date": "2026-10-26",
+  "n_obs": 1088,
+  "signature": "[\"oilbulletin\", \"ES_price_with_tax_euro95\", {}, 1.0]",
+  "url": "https://energy.ec.europa.eu/document/download/906e60ca-8b6a-44e7-8589-652854d2fd3f_en?filename=Weekly_Oil_Bulletin_Prices_History_maticni_4web.xlsx"
+ },
+ "petrol_price_ea": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T16:52:15+00:00",
+  "first_date": "2005-01-03",
+  "last_date": "2026-10-26",
+  "n_obs": 1090,
+  "signature": "[\"oilbulletin\", \"EUR_price_with_tax_euro95\", {}, 1.0]",
+  "url": "https://energy.ec.europa.eu/document/download/906e60ca-8b6a-44e7-8589-652854d2fd3f_en?filename=Weekly_Oil_Bulletin_Prices_History_maticni_4web.xlsx"
+ },
+ "petrol_price_pretax": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T16:52:15+00:00",
+  "first_date": "2005-01-03",
+  "last_date": "2026-10-26",
+  "n_obs": 1089,
+  "signature": "[\"oilbulletin\", \"ES_price_wo_tax_euro95\", {}, 1.0]",
+  "url": "https://energy.ec.europa.eu/document/download/906e60ca-8b6a-44e7-8589-652854d2fd3f_en?filename=Weekly_Oil_Bulletin_Prices_History_maticni_4web.xlsx"
  },
  "policy_rate_ca": {
   "status": "ok",

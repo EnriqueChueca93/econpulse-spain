@@ -11,11 +11,12 @@
 #                ageing (participation adjusted for the population's ageing, from Eurostat's LFS) |
 #                reg (Ministry of Labour: collective dismissals and temporary layoffs) |
 #                comext (Eurostat Comext: goods trade by HS chapter) |
+#                oilbulletin (European Commission's Weekly Oil Bulletin: petrol and diesel pump prices) |
 #                fred | derived  (FRED does not answer GitHub's servers, so the online site avoids it)
 #   key, params  what to ask the source for (see econpulse/sources/<source>.py)
 #   freq         D | M | Q | A
 #   unit         unit of the stored series: "%", "% of GDP", "bp", "pp", "thousands", "$/bbl", "€/MWh",
-#                "€ mn", "€", or a plain number shown without suffix: "index", "balance", "rate"
+#                "€ mn", "€", "€/l" (a litre), or a plain number shown without suffix: "index", "balance", "rate"
 #   scale        multiply fetched values (default 1), e.g. 0.001 for persons -> thousands
 #   transforms   how to show it; the first one is the headline (level, pop, yoy, ann3m, saar, diff, diff_yoy;
 #                sa_pop, sa_diff… first apply EconPulse seasonal adjustment)
@@ -1114,8 +1115,90 @@ indicators:
     unit: "€/MWh"
     decimals: 0
     change_unit: "%"
-    tile: 15
+    tile: 16
     notes: Daily average of the Iberian day-ahead market price for Spain.
+
+  # Pump prices: each Monday's average in Spain and the euro area, with and before duties and taxes (Batch 32b).
+
+  - id: petrol_price
+    label: "Petrol (Euro-super 95)"
+    label_es: "Precio de la gasolina 95"
+    section: inflation
+    source: oilbulletin
+    key: ES_price_with_tax_euro95
+    freq: D
+    unit: "€/l"
+    decimals: 3
+    change_unit: "%"
+    max_age_days: 21
+    tile: 17
+    notes: "Average pump price in Spain, taxes included, on Mondays (European Commission, Weekly Oil Bulletin)."
+
+  - id: diesel_price
+    label: "Diesel"
+    label_es: "Precio del gasóleo de automoción"
+    section: inflation
+    source: oilbulletin
+    key: ES_price_with_tax_diesel
+    freq: D
+    unit: "€/l"
+    decimals: 3
+    change_unit: "%"
+    max_age_days: 21
+    tile: 18
+    notes: "Average pump price of automotive diesel in Spain, taxes included, on Mondays (European Commission, Weekly Oil Bulletin)."
+
+  - id: petrol_price_pretax
+    label: "Petrol before taxes"
+    label_es: "Precio de la gasolina 95 antes de impuestos"
+    section: inflation
+    source: oilbulletin
+    key: ES_price_wo_tax_euro95
+    freq: D
+    unit: "€/l"
+    decimals: 3
+    change_unit: "%"
+    max_age_days: 21
+    notes: "Average pump price in Spain before duties and taxes (European Commission, Weekly Oil Bulletin)."
+
+  - id: diesel_price_pretax
+    label: "Diesel before taxes"
+    label_es: "Precio del gasóleo de automoción antes de impuestos"
+    section: inflation
+    source: oilbulletin
+    key: ES_price_wo_tax_diesel
+    freq: D
+    unit: "€/l"
+    decimals: 3
+    change_unit: "%"
+    max_age_days: 21
+    notes: "Average pump price of automotive diesel in Spain before duties and taxes (European Commission, Weekly Oil Bulletin)."
+
+  - id: petrol_price_ea
+    label: "Petrol (Euro-super 95), euro area"
+    label_es: "Precio de la gasolina 95, zona del euro"
+    section: inflation
+    source: oilbulletin
+    key: EUR_price_with_tax_euro95
+    freq: D
+    unit: "€/l"
+    decimals: 3
+    change_unit: "%"
+    max_age_days: 21
+    notes: "Euro-area average pump price, taxes included, weighted by each country's consumption (European Commission, Weekly Oil Bulletin)."
+
+  - id: diesel_price_ea
+    label: "Diesel, euro area"
+    label_es: "Precio del gasóleo de automoción, zona del euro"
+    section: inflation
+    source: oilbulletin
+    key: EUR_price_with_tax_diesel
+    freq: D
+    unit: "€/l"
+    decimals: 3
+    change_unit: "%"
+    max_age_days: 21
+    notes: "Euro-area average pump price of automotive diesel, taxes included, weighted by each country's consumption (European Commission, Weekly Oil Bulletin)."
 
   # ---------------------------------------------------------------- Activity
   - id: industrial_production
@@ -1904,7 +1987,7 @@ indicators:
     unit: rate
     decimals: 4
     change_unit: "%"
-    tile: 16
+    tile: 14
     notes: US dollars per euro, ECB reference rate.
 
   - id: eurgbp
@@ -1952,7 +2035,7 @@ indicators:
     freq: D
     unit: "$/bbl"
     change_unit: "%"
-    tile: 14
+    tile: 15
     notes: Europe Brent spot price (US Energy Information Administration); published with a few days' lag.
 
   - id: brent_eur

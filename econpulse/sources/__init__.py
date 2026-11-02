@@ -6,7 +6,7 @@ Clients with INCREMENTAL = True can't serve full history in one request; when gi
 """
 
 from . import (afiliacion, ageing, bde, bdeproj, bel, bis, bls, bundesbank, comext, dbnomics, ecb, eia, eurostat, fred, funcas, hicpdist, imf, ine,
-               oecd, ree, reg, segsocial, worldbank)
+               oecd, oilbulletin, ree, reg, segsocial, worldbank)
 
 CLIENTS = {
     "ine": ine,
@@ -32,6 +32,7 @@ CLIENTS = {
     "reg": reg,
     "bel": bel,
     "comext": comext,
+    "oilbulletin": oilbulletin,
 }
 
 # Computed from other indicators after fetching; see derived.py.
@@ -61,6 +62,7 @@ SOURCE_NAMES = {
     "reg": "Ministerio de Trabajo",
     "bel": "Ministerio de Trabajo",
     "comext": "Eurostat (Comext)",
+    "oilbulletin": "European Commission (Weekly Oil Bulletin)",
     DERIVED: "EconPulse calculation",
 }
 
