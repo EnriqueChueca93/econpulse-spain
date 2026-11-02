@@ -179,6 +179,19 @@ code { font-size: 13px; background: var(--hover); padding: 1px 5px; border-radiu
 .badge-ok { background: var(--ok-bg); color: var(--ok-text); }
 .badge-ok a { color: inherit; }
 
+/* Documents whose figures are entered by hand (Pensions page), with their AI-check status. */
+.documents { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; margin: 0 0 16px; }
+.doc-card { padding: 14px 16px; }
+.doc-head { margin: 0 0 4px; font-size: 0.85rem; color: var(--text-2); }
+.doc-publisher { font-weight: 600; color: var(--text); }
+.doc-title { margin: 0 0 2px; font-size: 1.05rem; }
+.doc-source { margin: 0 0 10px; font-size: 0.8rem; color: var(--text-2); }
+.doc-figures { margin: 0; }
+.doc-figures dt { font-size: 0.85rem; color: var(--text-2); margin-top: 8px; }
+.doc-figures dd { margin: 2px 0 0; font-variant-numeric: tabular-nums; }
+.doc-where { display: block; font-size: 0.75rem; color: var(--muted); }
+@media (max-width: 400px) { .documents { grid-template-columns: 1fr; } }
+
 /* Four questions */
 .questions { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
 .question { padding: 18px 20px; display: flex; flex-direction: column; }

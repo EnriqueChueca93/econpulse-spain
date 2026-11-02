@@ -38,7 +38,7 @@ SECTION_PAGES = {
     "fiscal": ("Fiscal", "Government deficit and debt, the IMF-style fiscal tables, and debt sustainability.", 6),
     "activity": ("Activity", "Industry, retail, sentiment surveys, tourism, electricity demand, the external accounts and the IMF-style balance of payments and external debt tables.", 6),
     "housing": ("Housing", "House prices, affordability and rents, Spain against its comparators, building and households, sales, mortgages and credit, household wealth, and commercial property.", 6),
-    "pensions": ("Pensions", "The Social Security's contributory pensions: how many and how much, by class, scheme and region, what they cost, new and ended pensions, and the maximum and minimum amounts.", 29),
+    "pensions": ("Pensions", "The Social Security's contributory pensions: how many and how much, by class, scheme and region, what they cost, new and ended pensions, and the maximum and minimum amounts; Spain against its comparators, the ageing population, the 2023 reform and what the official assessments say.", 29),
     "international": ("International", "Spain next to the euro area and ten comparators: France, Germany, Italy, the Netherlands, Portugal, Poland, the United Kingdom, the United States, Canada and Japan; growth, jobs, prices, public finances and the IMF's outlook.", 6),
     "regions": ("Regions", "The 17 autonomous communities: unemployment, house prices, inflation and income per head.", 6),
     "analysis": ("Analysis", "EconPulse's own readings: the economy against its history, data surprises, a GDP nowcast, what forecasters expect, the 10-year yield split in two, and Taylor rules.", 7),
@@ -200,7 +200,7 @@ def build_site(indicators: list[Indicator], store: Store | None = None, site_dir
             charts_file = f"data/charts-{section}.js"
             write_data_js(site_dir / charts_file, "charts", page["charts"])
         render("section.html", f"{section}.html", page={"title": title, "intro": intro, "batch": batch},
-               blocks=page["blocks"], charts_file=charts_file, picker=peers.picker() if section in ("international", "housing") else None,
+               blocks=page["blocks"], charts_file=charts_file, picker=peers.picker() if section in ("international", "housing", "pensions") else None,
                items=[i for i in items if i["section"] == section])
     groups = [{"id": s, "title": t, "items": [i for i in items if i["section"] == s]} for s, (t, _, _) in SECTION_PAGES.items()]
     attention = [i for i in items if i["status"] != "ok" or i["out_of_date"]]

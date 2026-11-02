@@ -7,9 +7,11 @@
     list    print the latest values from the data already saved (no download)
     status  freshness report: what failed, what has stopped updating, per source
     forecasts  the forecasters' latest figures, and which await an AI check
+    assessments  the pension documents entered by hand, and which await an AI check
     confirm <id> [<id> ...] [--against TEXT] [--note TEXT] [--by NAME]
-            record that an AI checked those forecasters' current figures against the
-            publisher's own document (see econpulse/forecasts.py)
+            record that an AI checked those forecasters' current figures, or a pension
+            document's, against the publisher's own document (see econpulse/forecasts.py
+            and econpulse/pensions.py)
     serve [--update] [--no-build] [--port N] [--no-browser]
             build the site from the saved data (or fetch fresh data first with --update),
             serve it on this computer and open it in the browser; EconPulse.exe runs this
@@ -19,7 +21,7 @@ import argparse
 import sys
 import time
 
-from . import changes, ecbspeak, forecasts, schedule, serve, stance
+from . import changes, ecbspeak, forecasts, pensions, schedule, serve, stance
 from .build import build_site
 from .fetch import fetch_all
 from .registry import load_registry
@@ -119,13 +121,31 @@ def print_forecasts(data: Data) -> int:
     return len(waiting)
 
 
+def print_assessments(store) -> int:
+    """The pension documents entered by hand; returns how many await an AI check."""
+    docs = pensions.documents(store)
+    for d in sorted(docs, key=lambda d: (d.status != pensions.PENDING, d.id)):
+        print(f"{d.id} ({d.publisher}, {d.published}): {d.status}; fingerprint {pensions.fingerprint(d.raw)}")
+        print(f"    source: {d.url}")
+        for f in d.figures:
+            print(f"    {f['label']}: {f['value']}" + (f" [{f['where']}]" if f.get("where") else ""))
+        if d.check:
+            print(f"    checked by {d.check['checked_by']} on {d.check['checked_at']}"
+                  + (f" against {d.check['checked_against']}" if d.check.get("checked_against") else ""))
+    waiting = [d.id for d in docs if d.status == pensions.PENDING]
+    if waiting:
+        print(f"\nAwaiting an AI check: {', '.join(waiting)}. Compare each with its source, then run\n"
+              f"  python -m econpulse confirm {' '.join(waiting)}")
+    return len(waiting)
+
+
 def main(argv: list[str] | None = None) -> int:
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
     parser = argparse.ArgumentParser(prog="econpulse", description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("command", choices=["fetch", "build", "update", "list", "status", "forecasts", "confirm",
-                                            "serve"])
+    parser.add_argument("command", choices=["fetch", "build", "update", "list", "status", "forecasts", "assessments",
+                                            "confirm", "serve"])
     parser.add_argument("ids", nargs="*", help="forecaster ids, for confirm")
     parser.add_argument("--only", help="comma-separated indicator ids to fetch (default: all)")
     parser.add_argument("--against", default="", help="confirm: what the figures were compared with")
@@ -172,11 +192,18 @@ def main(argv: list[str] | None = None) -> int:
     if args.command == "forecasts":
         print_forecasts(Data(indicators, store))
 
+    if args.command == "assessments":
+        print_assessments(store)
+
     if args.command == "confirm":
         if not args.ids:
             parser.error("confirm needs one or more forecaster ids (see python -m econpulse forecasts)")
         data = Data(indicators, store)
         for forecaster_id in args.ids:
+            if forecaster_id in pensions.document_ids():
+                record = pensions.confirm(store, forecaster_id, args.by, args.note, args.against)
+                print(f"Confirmed {forecaster_id}: fingerprint {record['fingerprint']}")
+                continue
             try:
                 record = forecasts.confirm(data, forecaster_id, args.by, args.note, args.against)
             except ValueError as e:

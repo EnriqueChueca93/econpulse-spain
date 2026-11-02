@@ -1,4 +1,5 @@
-"""The Pensions page's computed blocks (Batch 29a): contributory pensions of the Social Security system.
+"""The Pensions page's computed blocks: contributory pensions of the Social Security system (Batch 29a), and
+their sustainability and comparisons (Batch 29b).
 
 The figures come from the Ministry of Labour's statistics bulletin (tables PEN-1 to PEN-31, sources/bel.py):
 monthly series of the pensions in force, new and ended pensions, by class, scheme and region, which start in
@@ -6,11 +7,26 @@ April 2025 and grow month by month; annual averages since 2016; and the maximum 
 1990. EconPulse adds three calculations: what pensions cost in a year (the average number of pensions times
 the average pension times the 14 payments, against nominal GDP), the average pension after inflation, and
 registered workers per pension.
+
+Batch 29b compares Spain with its comparators (Eurostat, the OECD), shows the ageing population, and sets out
+the 2023 reform and the official assessments, whose figures are entered by hand in pension_assessments.yaml.
+Each document there is marked "awaiting AI check" until `python -m econpulse confirm <id>` records that an AI
+compared its figures with the publisher's own text (data/pension_checks.json); changing a figure needs a new
+check.
 """
 
-import pandas as pd
+import hashlib
+import json
+from dataclasses import dataclass
+from datetime import datetime
+from pathlib import Path
 
+import pandas as pd
+import yaml
+
+from . import peers
 from .snapshot import fmt_change, fmt_value, period_label
+from .sources.base import MADRID
 from .tables import Data, Level, Change, Panel, PanelColumn, PanelRow
 
 CLASSES = [("total", "All pensions"), ("retirement", "Retirement"), ("widowhood", "Widowhood"),
@@ -251,3 +267,294 @@ def workers_chart(data: Data) -> dict | None:
             "subtitle": "Registered workers per contributory pension, annual averages",
             "freq": "A", "source": f"Seguridad Social, {SOURCE}; EconPulse calculation",
             "series": [{"name": "Workers per pension", "x": _years(yearly.index), "y": yearly.round(3).tolist()}]}
+
+
+# ---------------------------------------------------------------- sustainability and comparisons (Batch 29b)
+
+DOCS_FILE = Path(__file__).with_name("pension_assessments.yaml")
+CHECKS = "pension_checks"             # data/pension_checks.json
+CHECKED, PENDING = "AI-checked", "awaiting AI check"
+EU_AREAS = [("es", "Spain"), ("fr", "France"), ("de", "Germany"), ("it", "Italy"), ("nl", "Netherlands"),
+            ("pt", "Portugal"), ("pl", "Poland"), ("eu", "EU")]
+COMPARISON_USES = ([f"pension_spending_{s}" for s, _ in EU_AREAS] + [f"ss_balance_{s}" for s, _ in EU_AREAS]
+                   + [f"old_age_dep_{s}" for s, _ in EU_AREAS] + [f"old_age_dep_proj_{s}" for s, _ in EU_AREAS]
+                   + [f"public_pensions_{s}" for s, _ in peers.COUNTRIES if s != "ea"]
+                   + [f"replacement_rate_{s}" for s, _ in peers.COUNTRIES if s != "ea"])
+
+
+@dataclass
+class Document:
+    """A document whose figures were entered by hand (pension_assessments.yaml)."""
+    id: str
+    publisher: str
+    title: str
+    short: str
+    published: str
+    url: str
+    figures: list
+    raw: dict
+    status: str = PENDING
+    check: dict | None = None
+
+
+def fingerprint(raw: dict) -> str:
+    """Identifies a document's figures: any change to them needs a new check."""
+    return hashlib.sha256(json.dumps(raw, sort_keys=True, ensure_ascii=False, default=str).encode()).hexdigest()[:12]
+
+
+def documents(store, path: Path = DOCS_FILE) -> list[Document]:
+    raw = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+    checks = store.load_json(CHECKS, {}) if store is not None else {}
+    out = []
+    for d in raw.get("documents") or []:
+        doc = Document(id=d["id"], publisher=d["publisher"], title=d["title"], short=d.get("short", d["title"]),
+                       published=str(d.get("published", "")), url=d["url"], figures=d.get("figures") or [], raw=d)
+        record = checks.get(doc.id)
+        if record and record.get("fingerprint") == fingerprint(d):
+            doc.status, doc.check = CHECKED, record
+        out.append(doc)
+    return out
+
+
+def confirm(store, doc_id: str, by: str, note: str = "", against: str = "") -> dict:
+    """Record that an AI compared this document's figures with the publisher's own text."""
+    doc = next((d for d in documents(store) if d.id == doc_id), None)
+    if doc is None:
+        raise ValueError(f"no pension document {doc_id!r}")
+    checks = store.load_json(CHECKS, {})
+    record = {"fingerprint": fingerprint(doc.raw), "checked_by": by,
+              "checked_at": datetime.now(MADRID).strftime("%Y-%m-%d %H:%M")}
+    if against:
+        record["checked_against"] = against
+    if note:
+        record["note"] = note
+    checks[doc_id] = record
+    store.save_json(CHECKS, dict(sorted(checks.items())))
+    return record
+
+
+def document_ids(path: Path = DOCS_FILE) -> set[str]:
+    return {d["id"] for d in (yaml.safe_load(path.read_text(encoding="utf-8")) or {}).get("documents") or []}
+
+
+def _card(doc: Document) -> dict:
+    check = ""
+    if doc.check:
+        check = (f"Checked by {doc.check['checked_by']} on {doc.check['checked_at'][:10]}"
+                 + (f" against {doc.check['checked_against']}" if doc.check.get("checked_against") else "") + ".")
+        if doc.check.get("note"):
+            check += " " + doc.check["note"]
+    return {"id": doc.id, "publisher": doc.publisher, "title": doc.title, "short": doc.short, "published": doc.published,
+            "url": doc.url, "figures": doc.figures, "status": doc.status, "pending": doc.status == PENDING,
+            "check_note": check}
+
+
+def _doc(data: Data, doc_id: str) -> Document | None:
+    docs = data.cache.get("pension_documents")
+    if docs is None:
+        docs = data.cache["pension_documents"] = documents(data.store)
+    return next((d for d in docs if d.id == doc_id), None)
+
+
+def reform_documents(data: Data) -> list[dict]:
+    doc = _doc(data, "reform2023")
+    return [_card(doc)] if doc else []
+
+
+def assessment_documents(data: Data) -> list[dict]:
+    return [_card(d) for i in ("ageing_report_2024", "airef_2026", "airef_2025", "bde_2023") if (d := _doc(data, i))]
+
+
+def _status_note(doc: Document) -> str:
+    return f" · {PENDING}" if doc.status == PENDING else ""
+
+
+# ---------------------------------------------------------------- comparisons
+
+def _last(data: Data, ind_id: str) -> tuple[float, int] | None:
+    s = _clean(data, ind_id)
+    return None if s is None else (float(s.iloc[-1]), s.index[-1].year)
+
+
+def _at(data: Data, ind_id: str, year: int) -> float | None:
+    s = _clean(data, ind_id)
+    if s is None:
+        return None
+    v = s.get(pd.Timestamp(year, 1, 1))
+    return None if v is None or pd.isna(v) else float(v)
+
+
+def _ordinal(n: int) -> str:
+    return {1: "the", 2: "the second", 3: "the third", 4: "the fourth", 5: "the fifth"}.get(n, f"the {n}th")
+
+
+def comparison_facts(data: Data) -> list[dict]:
+    out = []
+    es, eu = _last(data, "pension_spending_es"), _last(data, "pension_spending_eu")
+    if es:
+        out.append({"label": "Pension spending", "value": fmt_value(es[0], "% of GDP", 1),
+                    "sub": f"all pensions, {es[1]}" + (f"; EU {fmt_value(eu[0], '%', 1)}" if eu else "") + " (Eurostat)"})
+    rates = {s: v for s, _ in peers.COUNTRIES if s != "ea" and (v := _last(data, f"replacement_rate_{s}"))}
+    if "es" in rates:
+        rank = sorted(rates, key=lambda s: -rates[s][0]).index("es") + 1
+        out.append({"label": "Replacement rate", "value": fmt_value(rates["es"][0], "%", 1),
+                    "sub": f"of net pay, for an average earner (OECD, {rates['es'][1]}); "
+                           f"{_ordinal(rank)} highest of the {len(rates)} countries"})
+    bal, eu_bal = _last(data, "ss_balance_es"), _last(data, "ss_balance_eu")
+    if bal:
+        out.append({"label": "Social security funds' balance", "value": fmt_change(bal[0], "% of GDP", 1),
+                    "sub": f"{bal[1]}" + (f"; EU {fmt_change(eu_bal[0], '%', 1)}" if eu_bal else "") + " (Eurostat)"})
+    return out
+
+
+def comparison_table(data: Data) -> dict | None:
+    if _last(data, "replacement_rate_es") is None and _last(data, "pension_spending_es") is None:
+        return None
+    spend_year = (_last(data, "pension_spending_es") or (0, None))[1]
+    oecd_year = (_last(data, "public_pensions_es") or (0, None))[1]
+    dep_year = (_last(data, "old_age_dep_es") or (0, None))[1]
+
+    def cell(ind_id, year=None, usual=None):
+        if year is not None:
+            v = _at(data, ind_id, year)
+            return "–" if v is None else fmt_value(v, "", 1).strip()
+        last = _last(data, ind_id)
+        if last is None:
+            return "–"
+        text = fmt_value(last[0], "", 1).strip()
+        return text if usual is None or last[1] == usual else {"value": text, "note": str(last[1])}
+
+    rows = []
+    for slug, label in [*[(s, l) for s, l in peers.COUNTRIES if s != "ea"], ("eu", "EU")]:
+        rows.append({"heading": False, "label": label, "label_es": "", "indent": 0, "period_note": "", "url": None,
+                     "highlight": slug == "es",
+                     "cells": [cell(f"pension_spending_{slug}", usual=spend_year),
+                               cell(f"public_pensions_{slug}", usual=oecd_year),
+                               cell(f"replacement_rate_{slug}"),
+                               cell(f"old_age_dep_{slug}", usual=dep_year),
+                               cell(f"old_age_dep_proj_{slug}", year=2050)]})
+    return {"title": "Country", "caption": "Pensions and ageing", "through": "",
+            "columns": ["Pension spending, % of GDP", "Public pensions, % of GDP", "Replacement rate, %",
+                        "65+ per 100 aged 15-64", "Same, 2050"],
+            "column_notes": [f"Eurostat, {spend_year}" if spend_year else "Eurostat", f"OECD, {oecd_year}" if oecd_year else "OECD",
+                             "OECD, net", f"Eurostat, {dep_year}" if dep_year else "Eurostat", "projected"],
+            "rows": rows,
+            "note": ("Pension spending (Eurostat) covers all pensions, public and private, including disability; public "
+                     "pensions (OECD) cover public old-age and survivors' pensions only, and come a few years late. The "
+                     "replacement rate is what a man on the average wage who starts work at 22 would get from mandatory "
+                     "schemes, as % of his net pay before retiring. Eurostat covers EU countries only.")}
+
+
+def replacement_ranking(data: Data) -> dict | None:
+    points = {s: v for s, _ in peers.COUNTRIES if s != "ea" and (v := _last(data, f"replacement_rate_{s}"))}
+    if "es" not in points:
+        return None
+    return peers._hbar("replacement-ranking", "Pension replacement rates", "Net, for an average earner, % of net pay",
+                       "%", 1, pd.Timestamp(points["es"][1], 1, 1), "A",
+                       [(peers.LABELS[s], v[0]) for s, v in points.items()], source="OECD, Pensions at a Glance")
+
+
+def public_pensions_ranking(data: Data) -> dict | None:
+    points = {s: v for s, _ in peers.COUNTRIES if s != "ea" and (v := _last(data, f"public_pensions_{s}"))}
+    if "es" not in points:
+        return None
+    spec = peers._hbar("public-pensions-ranking", "Public spending on pensions",
+                       "Old-age and survivors' pensions, % of GDP", "%", 1, pd.Timestamp(points["es"][1], 1, 1), "A",
+                       [(peers.LABELS[s], v[0]) for s, v in points.items()], source="OECD, Social Expenditure Database")
+    years = sorted({v[1] for v in points.values()})
+    if spec and len(years) > 1:
+        spec["subtitle"] = f"Old-age and survivors' pensions, % of GDP, latest year ({years[0]}-{years[-1]})"
+    return spec
+
+
+def dependency_chart(data: Data) -> dict | None:
+    series = []
+    for slug, name, style in (("es", "Spain", {"color": "ink"}), ("eu", "EU", {"slot": 1})):
+        past, future = _clean(data, f"old_age_dep_{slug}"), _clean(data, f"old_age_dep_proj_{slug}")
+        if past is None:
+            continue
+        series.append({"name": name, "x": [d.strftime("%Y-%m-%d") for d in past.index], "y": past.round(2).tolist(), **style})
+        if future is not None:
+            future = future[future.index > past.index[-1]]
+            series.append({"name": f"{name}, projected", "x": [d.strftime("%Y-%m-%d") for d in future.index],
+                           "y": future.round(2).tolist(), "dash": "dot", **style})
+    if not series:
+        return None
+    return {"id": "old-age-dependency", "title": "Old-age dependency ratio", "kind": "line", "unit": "", "decimals": 1,
+            "subtitle": "People aged 65 and over per 100 aged 15-64; dotted, Eurostat's projection", "freq": "A",
+            "source": "Eurostat (EUROPOP2023 projections)", "series": series}
+
+
+def dependency_ranking(data: Data) -> dict | None:
+    points = [(label, v) for s, label in EU_AREAS if (v := _at(data, f"old_age_dep_proj_{s}", 2050)) is not None]
+    if not any(label == "Spain" for label, _ in points):
+        return None
+    return peers._hbar("dependency-2050-ranking", "Old-age dependency in 2050", "65+ per 100 aged 15-64, projected",
+                       "", 1, pd.Timestamp(2050, 1, 1), "A", points, source="Eurostat (EUROPOP2023 projections)")
+
+
+def ageing_facts(data: Data) -> list[dict]:
+    out = []
+    now, eu = _last(data, "old_age_dep_es"), _last(data, "old_age_dep_eu")
+    if now:
+        out.append({"label": "People 65+ per 100 aged 15-64", "value": f"{now[0]:.1f}",
+                    "sub": f"{now[1]}" + (f"; EU {eu[0]:.1f}" if eu else "")})
+    y2050, eu2050 = _at(data, "old_age_dep_proj_es", 2050), _at(data, "old_age_dep_proj_eu", 2050)
+    if y2050 is not None:
+        out.append({"label": "In 2050, projected", "value": f"{y2050:.1f}",
+                    "sub": "Eurostat's baseline" + (f"; EU {eu2050:.1f}" if eu2050 is not None else "")})
+    return out
+
+
+# ---------------------------------------------------------------- outlook and the reform (figures entered by hand)
+
+def projection_chart(data: Data) -> dict | None:
+    doc = _doc(data, "ageing_report_2024")
+    proj = (doc.raw.get("projection") if doc else None) or {}
+    years = proj.get("years")
+    if not years or "es" not in proj:
+        return None
+    labels = dict(peers.COUNTRIES)
+    series = [{"name": labels[s], "x": _years(years), "y": proj[s], "country": s} for s in proj if s in labels]
+    return {"id": "pension-projection", "title": "Projected pension spending",
+            "subtitle": f"Gross public pension spending, % of GDP, European Commission 2024 Ageing Report{_status_note(doc)}",
+            "kind": "line", "unit": "%", "decimals": 1, "freq": "A", "pick": True,
+            "source": "European Commission, 2024 Ageing Report (Table II.1.64), entered by hand", "series": series}
+
+
+def balance_chart(data: Data) -> dict | None:
+    series = []
+    for slug, name, style in (("es", "Spain", {"color": "ink"}), ("eu", "EU", {})):
+        s = _clean(data, f"ss_balance_{slug}")
+        if s is not None:
+            series.append({"name": name, "x": [d.strftime("%Y-%m-%d") for d in s.index], "y": s.round(2).tolist(), **style})
+    if not series:
+        return None
+    return {"id": "ss-balance", "title": "Social security funds' balance", "kind": "line", "unit": "%", "decimals": 1,
+            "subtitle": "Net lending (+) or borrowing (−), % of GDP", "freq": "A", "source": "Eurostat",
+            "ref_lines": [{"y": 0, "label": "Balance"}], "series": series}
+
+
+def mei_chart(data: Data) -> dict | None:
+    doc = _doc(data, "reform2023")
+    mei = (doc.raw.get("mei") if doc else None) or {}
+    if not mei:
+        return None
+    years = [y for y in sorted(mei) if y < 2050]
+    return {"id": "mei", "title": "The intergenerational equity contribution (MEI)", "kind": "bar", "unit": "",
+            "decimals": 1, "freq": "A", "source": "Real Decreto-ley 2/2023, entered by hand",
+            "subtitle": f"Points of pay, employer and worker together; 1.2 from 2029 to 2050{_status_note(doc)}",
+            "series": [{"name": "MEI", "x": _years(years), "y": [mei[y] for y in years]}]}
+
+
+def solidarity_chart(data: Data) -> dict | None:
+    doc = _doc(data, "reform2023")
+    sol = (doc.raw.get("solidarity") if doc else None) or {}
+    if not sol:
+        return None
+    years = sorted(sol)
+    bands = ["Up to 10% above the base", "10-50% above", "Over 50% above"]
+    return {"id": "solidarity", "title": "The solidarity contribution", "kind": "line", "unit": "%", "decimals": 2,
+            "subtitle": f"% of pay above the maximum contribution base, by band{_status_note(doc)}", "freq": "A",
+            "source": "Real Decreto-ley 2/2023, entered by hand",
+            "series": [{"name": name, "x": _years(years), "y": [sol[y][i] for y in years]} for i, name in enumerate(bands)]}

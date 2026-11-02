@@ -40,6 +40,23 @@
       {% endif %}
       {% for t in b.tables %}{{ stat_table(t) }}{% endfor %}
       {% if b.callout %}<p class="notice callout">{{ b.callout }}</p>{% endif %}
+      {% if b.documents %}
+      {# Figures entered by hand from a document (econpulse/pension_assessments.yaml), with their AI-check status. #}
+      <div class="documents">
+        {% for d in b.documents %}
+        <article class="card doc-card" id="doc-{{ d.id }}">
+          <p class="doc-head"><span class="doc-publisher">{{ d.publisher }}</span> · {{ d.published }}
+            {% if d.pending %}<span class="badge badge-warn">{{ d.status }}</span>{% else %}<span class="badge badge-ok" title="{{ d.check_note }}">{{ d.status }}</span>{% endif %}</p>
+          <h3 class="doc-title"><a href="{{ d.url }}" target="_blank" rel="noopener">{{ d.short }}</a></h3>
+          <p class="doc-source">{{ d.title }}</p>
+          <dl class="doc-figures">
+            {% for f in d.figures %}<dt>{{ f.label }}</dt><dd>{{ f.value }}{% if f.where %}<span class="doc-where">{{ f.where }}</span>{% endif %}</dd>{% endfor %}
+          </dl>
+          {% if d.check_note %}<p class="note">{{ d.check_note }}</p>{% endif %}
+        </article>
+        {% endfor %}
+      </div>
+      {% endif %}
       {% if b.flash %}<p class="notice flash-note">{{ b.flash }}</p>{% endif %}
       {% if b.charts %}
       <div class="charts">

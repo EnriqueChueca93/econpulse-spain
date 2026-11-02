@@ -70,7 +70,7 @@ def test_registry_and_tab():
     inds = load_registry()
     ids = {i.id for i in inds}
     assert page_indicator_ids("pensions") <= ids
-    assert sum(i.section == "pensions" for i in inds) == 104
+    assert sum(i.source == "bel" for i in inds) == 104
     assert {"pensions_total", "pension_avg_retirement_annual", "pension_max", "retirement_avg_reg_ceuta_melilla"} <= ids
     tabs = [href for href, _ in NAV]
     assert tabs.index("pensions.html") == tabs.index("housing.html") + 1 and "pensions" in SECTION_PAGES

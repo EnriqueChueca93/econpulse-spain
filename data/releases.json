@@ -8532,6 +8532,384 @@
    "display": "€889",
    "period": "2026",
    "flash": false
+  },
+  "pension_spending_es": {
+   "date": "2024-01-01",
+   "raw": 13.19,
+   "display": "13.2% of GDP",
+   "period": "2024",
+   "flash": false
+  },
+  "pension_spending_fr": {
+   "date": "2024-01-01",
+   "raw": 14.98,
+   "display": "15.0% of GDP",
+   "period": "2024",
+   "flash": false
+  },
+  "pension_spending_de": {
+   "date": "2024-01-01",
+   "raw": 11.67,
+   "display": "11.7% of GDP",
+   "period": "2024",
+   "flash": false
+  },
+  "pension_spending_it": {
+   "date": "2024-01-01",
+   "raw": 15.85,
+   "display": "15.8% of GDP",
+   "period": "2024",
+   "flash": false
+  },
+  "pension_spending_nl": {
+   "date": "2024-01-01",
+   "raw": 11.25,
+   "display": "11.2% of GDP",
+   "period": "2024",
+   "flash": false
+  },
+  "pension_spending_pt": {
+   "date": "2024-01-01",
+   "raw": 12.94,
+   "display": "12.9% of GDP",
+   "period": "2024",
+   "flash": false
+  },
+  "pension_spending_pl": {
+   "date": "2024-01-01",
+   "raw": 11.61,
+   "display": "11.6% of GDP",
+   "period": "2024",
+   "flash": false
+  },
+  "pension_spending_eu": {
+   "date": "2024-01-01",
+   "raw": 12.57,
+   "display": "12.6% of GDP",
+   "period": "2024",
+   "flash": false
+  },
+  "old_age_dep_es": {
+   "date": "2025-01-01",
+   "raw": 31.2,
+   "display": "31.2%",
+   "period": "2025",
+   "flash": false
+  },
+  "old_age_dep_fr": {
+   "date": "2025-01-01",
+   "raw": 35.5,
+   "display": "35.5%",
+   "period": "2025",
+   "flash": false
+  },
+  "old_age_dep_de": {
+   "date": "2025-01-01",
+   "raw": 35.9,
+   "display": "35.9%",
+   "period": "2025",
+   "flash": false
+  },
+  "old_age_dep_it": {
+   "date": "2025-01-01",
+   "raw": 39.0,
+   "display": "39.0%",
+   "period": "2025",
+   "flash": false
+  },
+  "old_age_dep_nl": {
+   "date": "2025-01-01",
+   "raw": 32.4,
+   "display": "32.4%",
+   "period": "2025",
+   "flash": false
+  },
+  "old_age_dep_pt": {
+   "date": "2025-01-01",
+   "raw": 38.6,
+   "display": "38.6%",
+   "period": "2025",
+   "flash": false
+  },
+  "old_age_dep_pl": {
+   "date": "2025-01-01",
+   "raw": 32.7,
+   "display": "32.7%",
+   "period": "2025",
+   "flash": false
+  },
+  "old_age_dep_eu": {
+   "date": "2025-01-01",
+   "raw": 34.5,
+   "display": "34.5%",
+   "period": "2025",
+   "flash": false
+  },
+  "old_age_dep_proj_es": {
+   "date": "2100-01-01",
+   "raw": 64.3,
+   "display": "64.3%",
+   "period": "2100",
+   "flash": false
+  },
+  "old_age_dep_proj_fr": {
+   "date": "2100-01-01",
+   "raw": 59.2,
+   "display": "59.2%",
+   "period": "2100",
+   "flash": false
+  },
+  "old_age_dep_proj_de": {
+   "date": "2100-01-01",
+   "raw": 56.9,
+   "display": "56.9%",
+   "period": "2100",
+   "flash": false
+  },
+  "old_age_dep_proj_it": {
+   "date": "2100-01-01",
+   "raw": 65.7,
+   "display": "65.7%",
+   "period": "2100",
+   "flash": false
+  },
+  "old_age_dep_proj_nl": {
+   "date": "2100-01-01",
+   "raw": 58.4,
+   "display": "58.4%",
+   "period": "2100",
+   "flash": false
+  },
+  "old_age_dep_proj_pt": {
+   "date": "2100-01-01",
+   "raw": 58.9,
+   "display": "58.9%",
+   "period": "2100",
+   "flash": false
+  },
+  "old_age_dep_proj_pl": {
+   "date": "2100-01-01",
+   "raw": 60.1,
+   "display": "60.1%",
+   "period": "2100",
+   "flash": false
+  },
+  "old_age_dep_proj_eu": {
+   "date": "2100-01-01",
+   "raw": 59.7,
+   "display": "59.7%",
+   "period": "2100",
+   "flash": false
+  },
+  "ss_balance_es": {
+   "date": "2025-01-01",
+   "raw": -0.3,
+   "display": "−0.3% of GDP",
+   "period": "2025",
+   "flash": false
+  },
+  "ss_balance_fr": {
+   "date": "2025-01-01",
+   "raw": -0.2,
+   "display": "−0.2% of GDP",
+   "period": "2025",
+   "flash": false
+  },
+  "ss_balance_de": {
+   "date": "2025-01-01",
+   "raw": 0.0,
+   "display": "0.0% of GDP",
+   "period": "2025",
+   "flash": false
+  },
+  "ss_balance_it": {
+   "date": "2025-01-01",
+   "raw": 0.5,
+   "display": "0.5% of GDP",
+   "period": "2025",
+   "flash": false
+  },
+  "ss_balance_nl": {
+   "date": "2025-01-01",
+   "raw": 0.8,
+   "display": "0.8% of GDP",
+   "period": "2025",
+   "flash": false
+  },
+  "ss_balance_pt": {
+   "date": "2025-01-01",
+   "raw": 2.3,
+   "display": "2.3% of GDP",
+   "period": "2025",
+   "flash": false
+  },
+  "ss_balance_pl": {
+   "date": "2025-01-01",
+   "raw": -0.1,
+   "display": "−0.1% of GDP",
+   "period": "2025",
+   "flash": false
+  },
+  "ss_balance_eu": {
+   "date": "2025-01-01",
+   "raw": 0.2,
+   "display": "0.2% of GDP",
+   "period": "2025",
+   "flash": false
+  },
+  "public_pensions_es": {
+   "date": "2021-01-01",
+   "raw": 12.282,
+   "display": "12.3% of GDP",
+   "period": "2021",
+   "flash": false
+  },
+  "public_pensions_fr": {
+   "date": "2022-01-01",
+   "raw": 13.396,
+   "display": "13.4% of GDP",
+   "period": "2022",
+   "flash": false
+  },
+  "public_pensions_de": {
+   "date": "2021-01-01",
+   "raw": 10.791,
+   "display": "10.8% of GDP",
+   "period": "2021",
+   "flash": false
+  },
+  "public_pensions_it": {
+   "date": "2021-01-01",
+   "raw": 16.089,
+   "display": "16.1% of GDP",
+   "period": "2021",
+   "flash": false
+  },
+  "public_pensions_nl": {
+   "date": "2021-01-01",
+   "raw": 6.444,
+   "display": "6.4% of GDP",
+   "period": "2021",
+   "flash": false
+  },
+  "public_pensions_pt": {
+   "date": "2021-01-01",
+   "raw": 12.919,
+   "display": "12.9% of GDP",
+   "period": "2021",
+   "flash": false
+  },
+  "public_pensions_pl": {
+   "date": "2021-01-01",
+   "raw": 11.187,
+   "display": "11.2% of GDP",
+   "period": "2021",
+   "flash": false
+  },
+  "public_pensions_uk": {
+   "date": "2022-01-01",
+   "raw": 7.072,
+   "display": "7.1% of GDP",
+   "period": "2022",
+   "flash": false
+  },
+  "public_pensions_us": {
+   "date": "2023-01-01",
+   "raw": 7.314,
+   "display": "7.3% of GDP",
+   "period": "2023",
+   "flash": false
+  },
+  "public_pensions_ca": {
+   "date": "2022-01-01",
+   "raw": 5.867,
+   "display": "5.9% of GDP",
+   "period": "2022",
+   "flash": false
+  },
+  "public_pensions_jp": {
+   "date": "2022-01-01",
+   "raw": 9.154,
+   "display": "9.2% of GDP",
+   "period": "2022",
+   "flash": false
+  },
+  "replacement_rate_es": {
+   "date": "2024-01-01",
+   "raw": 86.3,
+   "display": "86.3%",
+   "period": "2024",
+   "flash": false
+  },
+  "replacement_rate_fr": {
+   "date": "2024-01-01",
+   "raw": 70.0,
+   "display": "70.0%",
+   "period": "2024",
+   "flash": false
+  },
+  "replacement_rate_de": {
+   "date": "2024-01-01",
+   "raw": 53.3,
+   "display": "53.3%",
+   "period": "2024",
+   "flash": false
+  },
+  "replacement_rate_it": {
+   "date": "2024-01-01",
+   "raw": 79.0,
+   "display": "79.0%",
+   "period": "2024",
+   "flash": false
+  },
+  "replacement_rate_nl": {
+   "date": "2024-01-01",
+   "raw": 96.0,
+   "display": "96.0%",
+   "period": "2024",
+   "flash": false
+  },
+  "replacement_rate_pt": {
+   "date": "2024-01-01",
+   "raw": 92.7,
+   "display": "92.7%",
+   "period": "2024",
+   "flash": false
+  },
+  "replacement_rate_pl": {
+   "date": "2024-01-01",
+   "raw": 40.6,
+   "display": "40.6%",
+   "period": "2024",
+   "flash": false
+  },
+  "replacement_rate_uk": {
+   "date": "2024-01-01",
+   "raw": 54.2,
+   "display": "54.2%",
+   "period": "2024",
+   "flash": false
+  },
+  "replacement_rate_us": {
+   "date": "2024-01-01",
+   "raw": 51.3,
+   "display": "51.3%",
+   "period": "2024",
+   "flash": false
+  },
+  "replacement_rate_ca": {
+   "date": "2024-01-01",
+   "raw": 45.1,
+   "display": "45.1%",
+   "period": "2024",
+   "flash": false
+  },
+  "replacement_rate_jp": {
+   "date": "2024-01-01",
+   "raw": 42.4,
+   "display": "42.4%",
+   "period": "2024",
+   "flash": false
   }
  },
  "notes": [
@@ -8690,6 +9068,6 @@
    "at": "2026-11-02T00:14:15+00:00"
   }
  ],
- "updated_at": "2026-11-02T02:31:50+00:00",
+ "updated_at": "2026-11-02T03:04:14+00:00",
  "started_at": "2026-10-31T23:31:49+00:00"
 }

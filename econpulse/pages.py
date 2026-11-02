@@ -1643,6 +1643,64 @@ PAGES: dict[str, list[dict]] = {
                             ("pension_min_single", "level", "Minimum, living alone")]},
             ],
         },
+        {
+            "id": "comparison",
+            "title": "Against other countries",
+            "intro": ("What Spain spends on pensions and how generous they are, next to its comparators: spending from "
+                      "Eurostat (EU countries, all pensions) and the OECD (every comparator, public old-age and survivors' "
+                      "pensions), and the OECD's replacement rates. The chips choose the countries drawn beside Spain."),
+            "picker": True,
+            "facts": pensions.comparison_facts,
+            "uses": pensions.COMPARISON_USES,
+            "tables": [pensions.comparison_table],
+            "charts": [
+                pensions.replacement_ranking,
+                pensions.public_pensions_ranking,
+                {"id": "public-pensions-peers", "title": "Public spending on pensions",
+                 "subtitle": "Old-age and survivors' pensions, % of GDP (OECD)", "kind": "line", "unit": "%",
+                 "decimals": 1, "start": "2000-01-01", "pick": True,
+                 "series": [(f"public_pensions_{s}", "level", label, {"country": s}) for s, label in peers.COUNTRIES
+                            if s != "ea"]},
+                {"id": "pension-spending-eu", "title": "Pension spending in Spain and the EU",
+                 "subtitle": "All pensions, % of GDP (Eurostat)", "kind": "line", "unit": "%", "decimals": 1,
+                 "start": "1995-01-01",
+                 "series": [("pension_spending_es", "level", "Spain", {"color": "ink"}),
+                            ("pension_spending_eu", "level", "EU")]},
+            ],
+        },
+        {
+            "id": "ageing",
+            "title": "An ageing population",
+            "intro": ("Pensions are paid from the contributions of those at work, so the balance between older people "
+                      "and people of working age weighs on them. Spain's will shift faster than most of Europe's as the "
+                      "large generations born in the 1960s and 1970s retire."),
+            "facts": pensions.ageing_facts,
+            "tables": [],
+            "charts": [pensions.dependency_chart, pensions.dependency_ranking],
+        },
+        {
+            "id": "reform",
+            "title": "The 2023 reform",
+            "intro": ("The reform of March 2023 added revenue rather than cutting pensions: a growing earmarked "
+                      "contribution (the MEI) that feeds the reserve fund, a higher maximum contribution base, a new "
+                      "solidarity contribution on pay above it, and a spending rule that AIReF checks every three years. "
+                      "Its figures are entered by hand from the decree in the Boletín Oficial del Estado."),
+            "documents": pensions.reform_documents,
+            "tables": [],
+            "charts": [pensions.mei_chart, pensions.solidarity_chart],
+        },
+        {
+            "id": "assessments",
+            "title": "What the official assessments say",
+            "intro": ("The European Commission's Ageing Report projects pension spending for every EU country; AIReF, "
+                      "Spain's fiscal watchdog, checks the spending rule; the Banco de España weighs in its annual report. "
+                      "Their figures are entered by hand from each document, linked, and marked until an AI has checked "
+                      "them against the publisher's own text."),
+            "documents": pensions.assessment_documents,
+            "uses": ["ss_balance_es", "ss_balance_eu"],
+            "tables": [],
+            "charts": [pensions.projection_chart, pensions.balance_chart],
+        },
     ],
     # ------------------------------------------------------------------ Fiscal
     "fiscal": [
@@ -2111,10 +2169,11 @@ def build_page(section: str, indicators: list[Indicator], store: Store) -> dict:
         flash = _flash_note(block, tables, data)
         facts = block["facts"](data) if "facts" in block else []
         callout = block["callout"](data) if "callout" in block else None
-        if not tables and not specs:
+        documents = block["documents"](data) if "documents" in block else []
+        if not tables and not specs and not documents:
             continue
         blocks.append({"id": block["id"], "title": block["title"], "intro": block["intro"], "facts": facts,
                        "tables": tables, "callout": callout, "charts": specs, "flash": flash,
-                       "picker": block.get("picker", False)})
+                       "picker": block.get("picker", False), "documents": documents})
         charts += specs
     return {"blocks": blocks, "charts": charts}

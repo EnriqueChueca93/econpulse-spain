@@ -319,6 +319,17 @@ pension_regions: &pension_regions
   - {slug: rioja, name: La Rioja, sheet: 1, col: 8}
   - {slug: ceuta_melilla, name: Ceuta y Melilla, sheet: 1, col: 9}
 
+# Spain, its EU comparators and the EU in Eurostat's pension, population and government statistics.
+pension_eu_areas: &pension_eu_areas
+  - {slug: es, geo: ES, name: Spain, name_es: España}
+  - {slug: fr, geo: FR, name: France, name_es: Francia}
+  - {slug: de, geo: DE, name: Germany, name_es: Alemania}
+  - {slug: it, geo: IT, name: Italy, name_es: Italia}
+  - {slug: nl, geo: NL, name: Netherlands, name_es: Países Bajos}
+  - {slug: pt, geo: PT, name: Portugal, name_es: Portugal}
+  - {slug: pl, geo: PL, name: Poland, name_es: Polonia}
+  - {slug: eu, geo: EU27_2020, name: EU, name_es: UE}
+
 indicators:
 
   # ---------------------------------------------------------------- GDP (INE CNTR)
@@ -7643,3 +7654,85 @@ indicators:
     decimals: 0
     transforms: [level, yoy]
     notes: The year's amount set in the budget, published in euros a year (BEL table PEN-31) and shown a month, over the 14 payments.
+
+  # ---------------------------------------------------------------- Pensions: sustainability and comparisons (Batch 29b)
+  - id: pension_spending_{slug}
+    for_each: *pension_eu_areas
+    label: "Pension spending, {name}"
+    label_es: "Gasto en pensiones, {name_es} (% del PIB)"
+    section: pensions
+    source: eurostat
+    key: spr_exp_pens
+    params: {geo: "{geo}", spdepb: TOTAL, spdepm: TOTAL, unit: PC_GDP}
+    freq: A
+    unit: "% of GDP"
+    change_unit: pp
+    max_age_days: 1100           # published about 18 months after the year ends
+    notes: All pensions, public and private, as % of GDP (Eurostat, social protection statistics, ESSPROS); old-age, early-retirement, disability and survivors' pensions.
+
+  - id: old_age_dep_{slug}
+    for_each: *pension_eu_areas
+    label: "Old-age dependency ratio, {name}"
+    label_es: "Tasa de dependencia de mayores, {name_es}"
+    section: pensions
+    source: eurostat
+    key: demo_pjanind
+    params: {geo: "{geo}", indic_de: OLDDEP1}
+    freq: A
+    unit: "%"
+    change_unit: pp
+    notes: People aged 65 and over per 100 people aged 15 to 64, on 1 January (Eurostat).
+
+  - id: old_age_dep_proj_{slug}
+    for_each: *pension_eu_areas
+    label: "Old-age dependency ratio, projected, {name}"
+    label_es: "Tasa de dependencia de mayores, proyección, {name_es}"
+    section: pensions
+    source: eurostat
+    key: proj_23ndbi
+    params: {geo: "{geo}", indic_de: OLDDEP1, projection: BSL}
+    freq: A
+    unit: "%"
+    change_unit: pp
+    notes: People aged 65 and over per 100 people aged 15 to 64, Eurostat's EUROPOP2023 baseline projection to 2100.
+
+  - id: ss_balance_{slug}
+    for_each: *pension_eu_areas
+    label: "Social security funds' balance, {name}"
+    label_es: "Capacidad o necesidad de financiación de los fondos de la seguridad social, {name_es}"
+    section: pensions
+    source: eurostat
+    key: gov_10a_main
+    params: {geo: "{geo}", sector: S1314, na_item: B9, unit: PC_GDP}
+    freq: A
+    unit: "% of GDP"
+    change_unit: pp
+    notes: Net lending (+) or borrowing (-) of the social security funds (sector S1314), as % of GDP (Eurostat, government finance statistics). In Spain the sector includes the Social Security and the public employment service.
+
+  - id: public_pensions_{slug}
+    for_each: *comparators
+    label: "Public spending on pensions, {name}"
+    label_es: "Gasto público en pensiones de jubilación y supervivencia, {name_es} (% del PIB)"
+    section: pensions
+    source: oecd
+    key: "OECD.ELS.SPD,DSD_SOCX_AGG@DF_PUB_OLD,/{oecd}.A.SOCX.PT_B1GQ.ES10.C.TP01._Z"
+    params: {batch: *comparator_areas, start: 1990}
+    freq: A
+    unit: "% of GDP"
+    change_unit: pp
+    max_age_days: 1900           # the OECD's social expenditure figures come three or four years late
+    notes: Public cash spending on old-age and survivors' pensions, as % of GDP (OECD Social Expenditure Database, SOCX).
+
+  - id: replacement_rate_{slug}
+    for_each: *comparators
+    label: "Net pension replacement rate, {name}"
+    label_es: "Tasa de sustitución neta de las pensiones, {name_es}"
+    section: pensions
+    source: oecd
+    key: "OECD.ELS.SPD,DSD_PAG@DF_PRR,/{oecd}.A.NPRR100.PT_EARN_N_PRE_RET_INC.M._Z.M"
+    params: {batch: *comparator_areas}
+    freq: A
+    unit: "%"
+    change_unit: pp
+    max_age_days: 1500           # Pensions at a Glance comes out every two years
+    notes: The pension a man on the average wage who starts work at 22 in the reference year would get from mandatory schemes, as % of his net pay before retirement (OECD, Pensions at a Glance).

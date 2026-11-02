@@ -1,0 +1,33 @@
+{
+ "ageing_report_2024": {
+  "fingerprint": "c6677c483bf3",
+  "checked_by": "AI check (Claude)",
+  "checked_at": "2026-11-02 04:18",
+  "checked_against": "the Commission's PDF (Institutional Paper 279, April 2024): Tables 1, I.1.6, I.1.9, II.1.64 and the country table for Spain"
+ },
+ "airef_2025": {
+  "fingerprint": "4319119ded58",
+  "checked_by": "AI check (Claude)",
+  "checked_at": "2026-11-02 04:18",
+  "checked_against": "AIReF's PDF of 31 March 2025 (Informe 2/25)"
+ },
+ "airef_2026": {
+  "fingerprint": "52d89192c06f",
+  "checked_by": "AI check (Claude)",
+  "checked_at": "2026-11-02 04:18",
+  "checked_against": "AIReF's PDF of 29 May 2026 (Estudio 1/2026)"
+ },
+ "bde_2023": {
+  "fingerprint": "39d973eb7f41",
+  "checked_by": "AI check (Claude)",
+  "checked_at": "2026-11-02 04:18",
+  "checked_against": "the Banco de España's PDF of chapter 2 of its 2023 Annual Report",
+  "note": "The chapter prints no date; 2024 comes from the PDF's creation date (30 April 2024) and its latest references."
+ },
+ "reform2023": {
+  "fingerprint": "1bfe2cfbbc6f",
+  "checked_by": "AI check (Claude)",
+  "checked_at": "2026-11-02 04:18",
+  "checked_against": "the BOE text of Real Decreto-ley 2/2023 (BOE-A-2023-6967), read independently"
+ }
+}

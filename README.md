@@ -76,7 +76,10 @@ Because the workflow commits data every day, run `git pull` before working local
   the reader chooses up to three comparators to draw beside Spain), and the 17 autonomous communities.
 - **Pensions**: the Social Security's contributory pensions: how many and the average pension by class, scheme
   and region, what they cost a year against GDP (an EconPulse estimate), the average pension after inflation,
-  workers per pension, new and ended pensions, and the maximum and minimum amounts since 1990.
+  workers per pension, new and ended pensions, and the maximum and minimum amounts since 1990; spending and
+  replacement rates against the comparators (Eurostat, OECD), the old-age dependency ratio projected to 2100,
+  the social security funds' balance, the 2023 reform, and what the European Commission, AIReF and the Banco de
+  España say, with their figures entered by hand and marked until an AI has checked them.
 - **Tools**: Economy vs pre-COVID trend, an interactive Taylor rule and an interest rate decomposer; change a
   setting and the numbers and charts recompute in the browser. **Fiscal Explorer** (`site/fiscal-explorer.html`):
   Spain's debt and deficits since 1970 and to 2070, starting from the European Commission's baseline (reproduced
@@ -177,7 +180,9 @@ econpulse/            Python package
   housing.py          the Housing page's affordability, renting and valuation against the comparators, and the
                       facts above its building, mortgage, wealth and commercial property blocks
   pensions.py         the Pensions page: its tables, facts and the cost, real pension and workers-per-pension
-                      calculations
+                      calculations; comparisons, ageing, and the documents entered by hand, with their AI check
+                      (data/pension_checks.json)
+  pension_assessments.yaml  the 2023 reform and the official assessments, entered by hand from each document
   peers.py            Spain and its comparators (International page): series, GDP since 2019, the IMF's
                       figures by year, pay and productivity, ranks
   trade.py            the Trade page: goods by product group and partner, services by type, prices
@@ -234,6 +239,17 @@ figures with the publisher's own document, and only then runs `confirm`, which r
 fingerprint in `data/forecast_checks.json`; `--note` adds a caveat under the table. Commit that file. The
 daily run's `status` step lists forecasts awaiting a check. To show an edition the automatic sources have
 not picked up yet, enter it by hand in `econpulse/forecasts.yaml` (the comment at its top explains how).
+
+The Pensions page's reform and official assessments work the same way, with figures entered by hand in
+`econpulse/pension_assessments.yaml` (each with where in the document it comes from):
+
+```bash
+.venv/Scripts/python -m econpulse assessments                   # the documents, and which await a check
+.venv/Scripts/python -m econpulse confirm airef_2026 --against "AIReF's PDF of 29 May 2026"
+```
+
+`confirm` records the document's fingerprint in `data/pension_checks.json`; changing any of its figures
+marks it "awaiting AI check" again.
 
 ## Updating the Fiscal Explorer's baseline
 

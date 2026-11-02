@@ -6713,6 +6713,166 @@
   "signature": "[\"bde\", \"D_BEEA2020\", {}, 1.0]",
   "source_name": "Ratio de créditos dudosos"
  },
+ "old_age_dep_de": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T03:04:04+00:00",
+  "first_date": "1960-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 66,
+  "signature": "[\"eurostat\", \"demo_pjanind\", {\"geo\": \"DE\", \"indic_de\": \"OLDDEP1\"}, 1.0]",
+  "source_name": "Population structure indicators at national level",
+  "source_updated": "2026-09-25T23:00:00+0200"
+ },
+ "old_age_dep_es": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T03:04:04+00:00",
+  "first_date": "1960-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 65,
+  "signature": "[\"eurostat\", \"demo_pjanind\", {\"geo\": \"ES\", \"indic_de\": \"OLDDEP1\"}, 1.0]",
+  "source_name": "Population structure indicators at national level",
+  "source_updated": "2026-09-25T23:00:00+0200"
+ },
+ "old_age_dep_eu": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T03:04:04+00:00",
+  "first_date": "2001-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 24,
+  "signature": "[\"eurostat\", \"demo_pjanind\", {\"geo\": \"EU27_2020\", \"indic_de\": \"OLDDEP1\"}, 1.0]",
+  "source_name": "Population structure indicators at national level",
+  "source_updated": "2026-09-25T23:00:00+0200"
+ },
+ "old_age_dep_fr": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T03:04:04+00:00",
+  "first_date": "1991-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 35,
+  "signature": "[\"eurostat\", \"demo_pjanind\", {\"geo\": \"FR\", \"indic_de\": \"OLDDEP1\"}, 1.0]",
+  "source_name": "Population structure indicators at national level",
+  "source_updated": "2026-09-25T23:00:00+0200"
+ },
+ "old_age_dep_it": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T03:04:04+00:00",
+  "first_date": "1960-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 66,
+  "signature": "[\"eurostat\", \"demo_pjanind\", {\"geo\": \"IT\", \"indic_de\": \"OLDDEP1\"}, 1.0]",
+  "source_name": "Population structure indicators at national level",
+  "source_updated": "2026-09-25T23:00:00+0200"
+ },
+ "old_age_dep_nl": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T03:04:04+00:00",
+  "first_date": "1960-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 66,
+  "signature": "[\"eurostat\", \"demo_pjanind\", {\"geo\": \"NL\", \"indic_de\": \"OLDDEP1\"}, 1.0]",
+  "source_name": "Population structure indicators at national level",
+  "source_updated": "2026-09-25T23:00:00+0200"
+ },
+ "old_age_dep_pl": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T03:04:04+00:00",
+  "first_date": "1960-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 42,
+  "signature": "[\"eurostat\", \"demo_pjanind\", {\"geo\": \"PL\", \"indic_de\": \"OLDDEP1\"}, 1.0]",
+  "source_name": "Population structure indicators at national level",
+  "source_updated": "2026-09-25T23:00:00+0200"
+ },
+ "old_age_dep_proj_de": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T03:04:04+00:00",
+  "first_date": "2022-01-01",
+  "last_date": "2100-01-01",
+  "n_obs": 79,
+  "signature": "[\"eurostat\", \"proj_23ndbi\", {\"geo\": \"DE\", \"indic_de\": \"OLDDEP1\", \"projection\": \"BSL\"}, 1.0]",
+  "source_name": "Demographic balances and indicators by type of projection",
+  "source_updated": "2026-05-13T23:00:00+0200"
+ },
+ "old_age_dep_proj_es": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T03:04:04+00:00",
+  "first_date": "2022-01-01",
+  "last_date": "2100-01-01",
+  "n_obs": 79,
+  "signature": "[\"eurostat\", \"proj_23ndbi\", {\"geo\": \"ES\", \"indic_de\": \"OLDDEP1\", \"projection\": \"BSL\"}, 1.0]",
+  "source_name": "Demographic balances and indicators by type of projection",
+  "source_updated": "2026-05-13T23:00:00+0200"
+ },
+ "old_age_dep_proj_eu": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T03:04:04+00:00",
+  "first_date": "2022-01-01",
+  "last_date": "2100-01-01",
+  "n_obs": 79,
+  "signature": "[\"eurostat\", \"proj_23ndbi\", {\"geo\": \"EU27_2020\", \"indic_de\": \"OLDDEP1\", \"projection\": \"BSL\"}, 1.0]",
+  "source_name": "Demographic balances and indicators by type of projection",
+  "source_updated": "2026-05-13T23:00:00+0200"
+ },
+ "old_age_dep_proj_fr": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T03:04:04+00:00",
+  "first_date": "2022-01-01",
+  "last_date": "2100-01-01",
+  "n_obs": 79,
+  "signature": "[\"eurostat\", \"proj_23ndbi\", {\"geo\": \"FR\", \"indic_de\": \"OLDDEP1\", \"projection\": \"BSL\"}, 1.0]",
+  "source_name": "Demographic balances and indicators by type of projection",
+  "source_updated": "2026-05-13T23:00:00+0200"
+ },
+ "old_age_dep_proj_it": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T03:04:04+00:00",
+  "first_date": "2022-01-01",
+  "last_date": "2100-01-01",
+  "n_obs": 79,
+  "signature": "[\"eurostat\", \"proj_23ndbi\", {\"geo\": \"IT\", \"indic_de\": \"OLDDEP1\", \"projection\": \"BSL\"}, 1.0]",
+  "source_name": "Demographic balances and indicators by type of projection",
+  "source_updated": "2026-05-13T23:00:00+0200"
+ },
+ "old_age_dep_proj_nl": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T03:04:04+00:00",
+  "first_date": "2022-01-01",
+  "last_date": "2100-01-01",
+  "n_obs": 79,
+  "signature": "[\"eurostat\", \"proj_23ndbi\", {\"geo\": \"NL\", \"indic_de\": \"OLDDEP1\", \"projection\": \"BSL\"}, 1.0]",
+  "source_name": "Demographic balances and indicators by type of projection",
+  "source_updated": "2026-05-13T23:00:00+0200"
+ },
+ "old_age_dep_proj_pl": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T03:04:04+00:00",
+  "first_date": "2022-01-01",
+  "last_date": "2100-01-01",
+  "n_obs": 79,
+  "signature": "[\"eurostat\", \"proj_23ndbi\", {\"geo\": \"PL\", \"indic_de\": \"OLDDEP1\", \"projection\": \"BSL\"}, 1.0]",
+  "source_name": "Demographic balances and indicators by type of projection",
+  "source_updated": "2026-05-13T23:00:00+0200"
+ },
+ "old_age_dep_proj_pt": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T03:04:04+00:00",
+  "first_date": "2022-01-01",
+  "last_date": "2100-01-01",
+  "n_obs": 79,
+  "signature": "[\"eurostat\", \"proj_23ndbi\", {\"geo\": \"PT\", \"indic_de\": \"OLDDEP1\", \"projection\": \"BSL\"}, 1.0]",
+  "source_name": "Demographic balances and indicators by type of projection",
+  "source_updated": "2026-05-13T23:00:00+0200"
+ },
+ "old_age_dep_pt": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T03:04:04+00:00",
+  "first_date": "1960-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 66,
+  "signature": "[\"eurostat\", \"demo_pjanind\", {\"geo\": \"PT\", \"indic_de\": \"OLDDEP1\"}, 1.0]",
+  "source_name": "Population structure indicators at national level",
+  "source_updated": "2026-09-25T23:00:00+0200"
+ },
  "paro_agriculture": {
   "status": "ok",
   "fetched_at": "2026-11-01T21:23:02+00:00",
@@ -7658,6 +7818,86 @@
   "signature": "[\"bel\", \"pen31\", {\"block\": \"1\", \"col\": \"1\"}, 0.07142857142857142]",
   "source_name": "BEL PEN31"
  },
+ "pension_spending_de": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T03:04:03+00:00",
+  "first_date": "1991-01-01",
+  "last_date": "2024-01-01",
+  "n_obs": 34,
+  "signature": "[\"eurostat\", \"spr_exp_pens\", {\"geo\": \"DE\", \"spdepb\": \"TOTAL\", \"spdepm\": \"TOTAL\", \"unit\": \"PC_GDP\"}, 1.0]",
+  "source_name": "Expenditure on pensions by type of pension and means-testing",
+  "source_updated": "2026-10-26T23:00:00+0100"
+ },
+ "pension_spending_es": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T03:04:03+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2024-01-01",
+  "n_obs": 30,
+  "signature": "[\"eurostat\", \"spr_exp_pens\", {\"geo\": \"ES\", \"spdepb\": \"TOTAL\", \"spdepm\": \"TOTAL\", \"unit\": \"PC_GDP\"}, 1.0]",
+  "source_name": "Expenditure on pensions by type of pension and means-testing",
+  "source_updated": "2026-10-26T23:00:00+0100"
+ },
+ "pension_spending_eu": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T03:04:04+00:00",
+  "first_date": "2008-01-01",
+  "last_date": "2024-01-01",
+  "n_obs": 17,
+  "signature": "[\"eurostat\", \"spr_exp_pens\", {\"geo\": \"EU27_2020\", \"spdepb\": \"TOTAL\", \"spdepm\": \"TOTAL\", \"unit\": \"PC_GDP\"}, 1.0]",
+  "source_name": "Expenditure on pensions by type of pension and means-testing",
+  "source_updated": "2026-10-26T23:00:00+0100"
+ },
+ "pension_spending_fr": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T03:04:03+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2024-01-01",
+  "n_obs": 35,
+  "signature": "[\"eurostat\", \"spr_exp_pens\", {\"geo\": \"FR\", \"spdepb\": \"TOTAL\", \"spdepm\": \"TOTAL\", \"unit\": \"PC_GDP\"}, 1.0]",
+  "source_name": "Expenditure on pensions by type of pension and means-testing",
+  "source_updated": "2026-10-26T23:00:00+0100"
+ },
+ "pension_spending_it": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T03:04:03+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2024-01-01",
+  "n_obs": 30,
+  "signature": "[\"eurostat\", \"spr_exp_pens\", {\"geo\": \"IT\", \"spdepb\": \"TOTAL\", \"spdepm\": \"TOTAL\", \"unit\": \"PC_GDP\"}, 1.0]",
+  "source_name": "Expenditure on pensions by type of pension and means-testing",
+  "source_updated": "2026-10-26T23:00:00+0100"
+ },
+ "pension_spending_nl": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T03:04:04+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2024-01-01",
+  "n_obs": 30,
+  "signature": "[\"eurostat\", \"spr_exp_pens\", {\"geo\": \"NL\", \"spdepb\": \"TOTAL\", \"spdepm\": \"TOTAL\", \"unit\": \"PC_GDP\"}, 1.0]",
+  "source_name": "Expenditure on pensions by type of pension and means-testing",
+  "source_updated": "2026-10-26T23:00:00+0100"
+ },
+ "pension_spending_pl": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T03:04:04+00:00",
+  "first_date": "2000-01-01",
+  "last_date": "2024-01-01",
+  "n_obs": 25,
+  "signature": "[\"eurostat\", \"spr_exp_pens\", {\"geo\": \"PL\", \"spdepb\": \"TOTAL\", \"spdepm\": \"TOTAL\", \"unit\": \"PC_GDP\"}, 1.0]",
+  "source_name": "Expenditure on pensions by type of pension and means-testing",
+  "source_updated": "2026-10-26T23:00:00+0100"
+ },
+ "pension_spending_pt": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T03:04:04+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2024-01-01",
+  "n_obs": 30,
+  "signature": "[\"eurostat\", \"spr_exp_pens\", {\"geo\": \"PT\", \"spdepb\": \"TOTAL\", \"spdepm\": \"TOTAL\", \"unit\": \"PC_GDP\"}, 1.0]",
+  "source_name": "Expenditure on pensions by type of pension and means-testing",
+  "source_updated": "2026-10-26T23:00:00+0100"
+ },
  "pensions_disability": {
   "status": "ok",
   "fetched_at": "2026-11-02T02:31:44+00:00",
@@ -8395,6 +8635,94 @@
   "source_name": "Government revenue, expenditure and main aggregates",
   "source_updated": "2026-10-21T11:00:00+0200"
  },
+ "public_pensions_ca": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T03:04:07+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2022-01-01",
+  "n_obs": 33,
+  "signature": "[\"oecd\", \"OECD.ELS.SPD,DSD_SOCX_AGG@DF_PUB_OLD,/CAN.A.SOCX.PT_B1GQ.ES10.C.TP01._Z\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\", \"start\": 1990}, 1.0]"
+ },
+ "public_pensions_de": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T03:04:06+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2021-01-01",
+  "n_obs": 32,
+  "signature": "[\"oecd\", \"OECD.ELS.SPD,DSD_SOCX_AGG@DF_PUB_OLD,/DEU.A.SOCX.PT_B1GQ.ES10.C.TP01._Z\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\", \"start\": 1990}, 1.0]"
+ },
+ "public_pensions_es": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T03:04:06+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2021-01-01",
+  "n_obs": 32,
+  "signature": "[\"oecd\", \"OECD.ELS.SPD,DSD_SOCX_AGG@DF_PUB_OLD,/ESP.A.SOCX.PT_B1GQ.ES10.C.TP01._Z\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\", \"start\": 1990}, 1.0]"
+ },
+ "public_pensions_fr": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T03:04:06+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2022-01-01",
+  "n_obs": 33,
+  "signature": "[\"oecd\", \"OECD.ELS.SPD,DSD_SOCX_AGG@DF_PUB_OLD,/FRA.A.SOCX.PT_B1GQ.ES10.C.TP01._Z\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\", \"start\": 1990}, 1.0]"
+ },
+ "public_pensions_it": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T03:04:06+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2021-01-01",
+  "n_obs": 32,
+  "signature": "[\"oecd\", \"OECD.ELS.SPD,DSD_SOCX_AGG@DF_PUB_OLD,/ITA.A.SOCX.PT_B1GQ.ES10.C.TP01._Z\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\", \"start\": 1990}, 1.0]"
+ },
+ "public_pensions_jp": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T03:04:07+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2022-01-01",
+  "n_obs": 33,
+  "signature": "[\"oecd\", \"OECD.ELS.SPD,DSD_SOCX_AGG@DF_PUB_OLD,/JPN.A.SOCX.PT_B1GQ.ES10.C.TP01._Z\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\", \"start\": 1990}, 1.0]"
+ },
+ "public_pensions_nl": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T03:04:06+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2021-01-01",
+  "n_obs": 32,
+  "signature": "[\"oecd\", \"OECD.ELS.SPD,DSD_SOCX_AGG@DF_PUB_OLD,/NLD.A.SOCX.PT_B1GQ.ES10.C.TP01._Z\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\", \"start\": 1990}, 1.0]"
+ },
+ "public_pensions_pl": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T03:04:07+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2021-01-01",
+  "n_obs": 32,
+  "signature": "[\"oecd\", \"OECD.ELS.SPD,DSD_SOCX_AGG@DF_PUB_OLD,/POL.A.SOCX.PT_B1GQ.ES10.C.TP01._Z\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\", \"start\": 1990}, 1.0]"
+ },
+ "public_pensions_pt": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T03:04:06+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2021-01-01",
+  "n_obs": 32,
+  "signature": "[\"oecd\", \"OECD.ELS.SPD,DSD_SOCX_AGG@DF_PUB_OLD,/PRT.A.SOCX.PT_B1GQ.ES10.C.TP01._Z\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\", \"start\": 1990}, 1.0]"
+ },
+ "public_pensions_uk": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T03:04:07+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2022-01-01",
+  "n_obs": 33,
+  "signature": "[\"oecd\", \"OECD.ELS.SPD,DSD_SOCX_AGG@DF_PUB_OLD,/GBR.A.SOCX.PT_B1GQ.ES10.C.TP01._Z\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\", \"start\": 1990}, 1.0]"
+ },
+ "public_pensions_us": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T03:04:07+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2023-01-01",
+  "n_obs": 34,
+  "signature": "[\"oecd\", \"OECD.ELS.SPD,DSD_SOCX_AGG@DF_PUB_OLD,/USA.A.SOCX.PT_B1GQ.ES10.C.TP01._Z\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\", \"start\": 1990}, 1.0]"
+ },
  "public_wages_annual": {
   "status": "ok",
   "fetched_at": "2026-11-01T21:22:31+00:00",
@@ -8743,6 +9071,94 @@
   "signature": "[\"bde\", \"D_TKR60REA_VIV_IPV\", {}, 1.0]",
   "source_name": "Estadísticas Generales. Edificación y vivienda. Rentabilidad de la vivienda bruta por alquiler. Acumulado en los doce últimos meses"
  },
+ "replacement_rate_ca": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T03:04:07+00:00",
+  "first_date": "2024-01-01",
+  "last_date": "2024-01-01",
+  "n_obs": 1,
+  "signature": "[\"oecd\", \"OECD.ELS.SPD,DSD_PAG@DF_PRR,/CAN.A.NPRR100.PT_EARN_N_PRE_RET_INC.M._Z.M\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]"
+ },
+ "replacement_rate_de": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T03:04:07+00:00",
+  "first_date": "2024-01-01",
+  "last_date": "2024-01-01",
+  "n_obs": 1,
+  "signature": "[\"oecd\", \"OECD.ELS.SPD,DSD_PAG@DF_PRR,/DEU.A.NPRR100.PT_EARN_N_PRE_RET_INC.M._Z.M\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]"
+ },
+ "replacement_rate_es": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T03:04:07+00:00",
+  "first_date": "2024-01-01",
+  "last_date": "2024-01-01",
+  "n_obs": 1,
+  "signature": "[\"oecd\", \"OECD.ELS.SPD,DSD_PAG@DF_PRR,/ESP.A.NPRR100.PT_EARN_N_PRE_RET_INC.M._Z.M\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]"
+ },
+ "replacement_rate_fr": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T03:04:07+00:00",
+  "first_date": "2024-01-01",
+  "last_date": "2024-01-01",
+  "n_obs": 1,
+  "signature": "[\"oecd\", \"OECD.ELS.SPD,DSD_PAG@DF_PRR,/FRA.A.NPRR100.PT_EARN_N_PRE_RET_INC.M._Z.M\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]"
+ },
+ "replacement_rate_it": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T03:04:07+00:00",
+  "first_date": "2024-01-01",
+  "last_date": "2024-01-01",
+  "n_obs": 1,
+  "signature": "[\"oecd\", \"OECD.ELS.SPD,DSD_PAG@DF_PRR,/ITA.A.NPRR100.PT_EARN_N_PRE_RET_INC.M._Z.M\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]"
+ },
+ "replacement_rate_jp": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T03:04:07+00:00",
+  "first_date": "2024-01-01",
+  "last_date": "2024-01-01",
+  "n_obs": 1,
+  "signature": "[\"oecd\", \"OECD.ELS.SPD,DSD_PAG@DF_PRR,/JPN.A.NPRR100.PT_EARN_N_PRE_RET_INC.M._Z.M\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]"
+ },
+ "replacement_rate_nl": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T03:04:07+00:00",
+  "first_date": "2024-01-01",
+  "last_date": "2024-01-01",
+  "n_obs": 1,
+  "signature": "[\"oecd\", \"OECD.ELS.SPD,DSD_PAG@DF_PRR,/NLD.A.NPRR100.PT_EARN_N_PRE_RET_INC.M._Z.M\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]"
+ },
+ "replacement_rate_pl": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T03:04:07+00:00",
+  "first_date": "2024-01-01",
+  "last_date": "2024-01-01",
+  "n_obs": 1,
+  "signature": "[\"oecd\", \"OECD.ELS.SPD,DSD_PAG@DF_PRR,/POL.A.NPRR100.PT_EARN_N_PRE_RET_INC.M._Z.M\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]"
+ },
+ "replacement_rate_pt": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T03:04:07+00:00",
+  "first_date": "2024-01-01",
+  "last_date": "2024-01-01",
+  "n_obs": 1,
+  "signature": "[\"oecd\", \"OECD.ELS.SPD,DSD_PAG@DF_PRR,/PRT.A.NPRR100.PT_EARN_N_PRE_RET_INC.M._Z.M\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]"
+ },
+ "replacement_rate_uk": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T03:04:07+00:00",
+  "first_date": "2024-01-01",
+  "last_date": "2024-01-01",
+  "n_obs": 1,
+  "signature": "[\"oecd\", \"OECD.ELS.SPD,DSD_PAG@DF_PRR,/GBR.A.NPRR100.PT_EARN_N_PRE_RET_INC.M._Z.M\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]"
+ },
+ "replacement_rate_us": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T03:04:07+00:00",
+  "first_date": "2024-01-01",
+  "last_date": "2024-01-01",
+  "n_obs": 1,
+  "signature": "[\"oecd\", \"OECD.ELS.SPD,DSD_PAG@DF_PRR,/USA.A.NPRR100.PT_EARN_N_PRE_RET_INC.M._Z.M\", {\"batch\": \"ESP+FRA+DEU+ITA+NLD+PRT+POL+GBR+USA+CAN+JPN\"}, 1.0]"
+ },
  "retail_sales": {
   "status": "ok",
   "fetched_at": "2026-11-01T21:22:31+00:00",
@@ -9043,6 +9459,86 @@
   "last_date": "2026-09-01",
   "n_obs": 399,
   "signature": "[\"derived\", \"subtract\", {\"a\": \"bond10_pt\", \"b\": \"de_10y_monthly\", \"scale\": 100}, 1.0]"
+ },
+ "ss_balance_de": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T03:04:05+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 31,
+  "signature": "[\"eurostat\", \"gov_10a_main\", {\"geo\": \"DE\", \"na_item\": \"B9\", \"sector\": \"S1314\", \"unit\": \"PC_GDP\"}, 1.0]",
+  "source_name": "Government revenue, expenditure and main aggregates",
+  "source_updated": "2026-10-21T11:00:00+0200"
+ },
+ "ss_balance_es": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T03:04:04+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 31,
+  "signature": "[\"eurostat\", \"gov_10a_main\", {\"geo\": \"ES\", \"na_item\": \"B9\", \"sector\": \"S1314\", \"unit\": \"PC_GDP\"}, 1.0]",
+  "source_name": "Government revenue, expenditure and main aggregates",
+  "source_updated": "2026-10-21T11:00:00+0200"
+ },
+ "ss_balance_eu": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T03:04:05+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 31,
+  "signature": "[\"eurostat\", \"gov_10a_main\", {\"geo\": \"EU27_2020\", \"na_item\": \"B9\", \"sector\": \"S1314\", \"unit\": \"PC_GDP\"}, 1.0]",
+  "source_name": "Government revenue, expenditure and main aggregates",
+  "source_updated": "2026-10-21T11:00:00+0200"
+ },
+ "ss_balance_fr": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T03:04:04+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 31,
+  "signature": "[\"eurostat\", \"gov_10a_main\", {\"geo\": \"FR\", \"na_item\": \"B9\", \"sector\": \"S1314\", \"unit\": \"PC_GDP\"}, 1.0]",
+  "source_name": "Government revenue, expenditure and main aggregates",
+  "source_updated": "2026-10-21T11:00:00+0200"
+ },
+ "ss_balance_it": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T03:04:05+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 31,
+  "signature": "[\"eurostat\", \"gov_10a_main\", {\"geo\": \"IT\", \"na_item\": \"B9\", \"sector\": \"S1314\", \"unit\": \"PC_GDP\"}, 1.0]",
+  "source_name": "Government revenue, expenditure and main aggregates",
+  "source_updated": "2026-10-21T11:00:00+0200"
+ },
+ "ss_balance_nl": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T03:04:05+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 31,
+  "signature": "[\"eurostat\", \"gov_10a_main\", {\"geo\": \"NL\", \"na_item\": \"B9\", \"sector\": \"S1314\", \"unit\": \"PC_GDP\"}, 1.0]",
+  "source_name": "Government revenue, expenditure and main aggregates",
+  "source_updated": "2026-10-21T11:00:00+0200"
+ },
+ "ss_balance_pl": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T03:04:05+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 31,
+  "signature": "[\"eurostat\", \"gov_10a_main\", {\"geo\": \"PL\", \"na_item\": \"B9\", \"sector\": \"S1314\", \"unit\": \"PC_GDP\"}, 1.0]",
+  "source_name": "Government revenue, expenditure and main aggregates",
+  "source_updated": "2026-10-21T11:00:00+0200"
+ },
+ "ss_balance_pt": {
+  "status": "ok",
+  "fetched_at": "2026-11-02T03:04:05+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 31,
+  "signature": "[\"eurostat\", \"gov_10a_main\", {\"geo\": \"PT\", \"na_item\": \"B9\", \"sector\": \"S1314\", \"unit\": \"PC_GDP\"}, 1.0]",
+  "source_name": "Government revenue, expenditure and main aggregates",
+  "source_updated": "2026-10-21T11:00:00+0200"
  },
  "svc_exp_business": {
   "status": "ok",
