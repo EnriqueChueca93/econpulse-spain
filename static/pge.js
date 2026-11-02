@@ -157,6 +157,112 @@
             (chT > 0 ? "+" : "−") + Math.abs(chT).toFixed(1) + '%</td><td class="num">' + bn(t.obligations) + '</td><td class="num">' +
             (t.obligations / t.final * 100).toFixed(1) + "%</td></tr>";
     $("pge-ex-table").querySelector("tbody").innerHTML = html;
+    drawDetail(ex, when);
+  }
+
+  // ---------------------------------------------------------------- the rest of the execution report
+  var MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  function pct(a, b) { return a === null || a === undefined || !b ? "–" : (a / b * 100).toFixed(1) + "%"; }
+  function growth(a, b) {
+    if (a === null || a === undefined || !b) return "–";
+    var c = (a / b - 1) * 100;
+    return (c > 0 ? "+" : c < 0 ? "−" : "") + Math.abs(c).toFixed(1) + "%";
+  }
+  function signedBn(v) { return v === null || v === undefined ? "–" : (v < 0 ? "−€" : "+€") + Math.abs(v / 1000).toFixed(1) + " bn"; }
+  function fill(id, html) { var el = $(id); if (el) el.querySelector("tbody").innerHTML = html; }
+  function fact(label, value, sub) {
+    return '<div class="fact"><span class="fact-label">' + label + '</span><span class="fact-value">' + value +
+           '</span><span class="fact-sub">' + sub + "</span></div>";
+  }
+  function row(cells, cls, indent) {
+    return "<tr" + (cls ? ' class="' + cls + '"' : "") + '><th scope="row"' + (indent ? ' class="indent-' + indent + '"' : "") + ">" + cells[0] + "</th>" +
+           cells.slice(1).map(function (c) { return '<td class="num">' + c + "</td>"; }).join("") + "</tr>";
+  }
+
+  // A year's month-by-month totals: from its own workbooks, or from the next year's "a year earlier" columns.
+  function path(year, key) {
+    var own = S.months[year], next = S.months[year + 1];
+    return MONTHS.map(function (_, i) {
+      var v = own && own[key] ? own[key][i] : null;
+      if ((v === null || v === undefined) && next && next[key + "_prev"]) v = next[key + "_prev"][i];
+      return v === undefined ? null : v;
+    });
+  }
+
+  function drawDetail(ex, when) {
+    var d = ex.detail || {};
+    var y = ex.year;
+    if ($("chart-pge-path")) {
+      var last = ex.full_year ? 12 : ex.month;
+      var names = MONTHS.slice(0, last);
+      var cut = function (a) { return a.slice(0, last).map(function (v) { return v === null ? null : +(v / 1000).toFixed(2); }); };
+      render({ id: "pge-path", kind: "line", x_kind: "category", unit: "", decimals: 1, freq: "A",
+               series: [{ name: "Revenue " + y, x: names, y: cut(path(y, "revenue")), slot: 1 },
+                        { name: "Revenue " + (y - 1), x: names, y: cut(path(y - 1, "revenue")), slot: 1, dash: "dot" },
+                        { name: "Spending " + y, x: names, y: cut(path(y, "spending")), slot: 2 },
+                        { name: "Spending " + (y - 1), x: names, y: cut(path(y - 1, "spending")), slot: 2, dash: "dot" }] });
+      $("pge-path-title").textContent = "Revenue and spending so far, " + y;
+      $("pge-path-subtitle").textContent = "€ bn, added up from January; dotted, " + (y - 1);
+      render({ id: "pge-cash", kind: "line", x_kind: "category", unit: "", decimals: 1, freq: "A", ref_lines: [{ y: 0, label: "" }],
+               series: [{ name: String(y), x: names, y: cut(path(y, "cash")), color: "ink" },
+                        { name: String(y - 1), x: names, y: cut(path(y - 1, "cash")), color: "muted", dash: "dot" }] });
+      $("pge-cash-title").textContent = "Cash balance so far, " + y;
+      $("pge-cash-subtitle").textContent = "€ bn, collected less paid since January (negative: a deficit)";
+      var c = d.cash || {}, facts = [];
+      if (c.deficit) facts.push(fact("Cash balance, " + when, signedBn(c.deficit.value), "a year earlier " + signedBn(c.deficit.prev)));
+      if (c.borrowing) {
+        facts.push(fact("Net borrowing need", "€" + Math.abs(c.borrowing.value / 1000).toFixed(1) + " bn",
+                        "a year earlier €" + Math.abs(c.borrowing.prev / 1000).toFixed(1) + " bn"));
+      }
+      var nfR = (d.revenue || []).filter(function (r) { return r.code === "nonfinancial"; })[0];
+      var nfS = (d.chapters || []).filter(function (r) { return r.code === "nonfinancial"; })[0];
+      if (nfR) facts.push(fact("Revenue due", "€" + bn(nfR.rights) + " bn", growth(nfR.rights, nfR.rights_prev) + " on a year earlier"));
+      if (nfS) facts.push(fact("Spending", "€" + bn(nfS.obligations) + " bn", growth(nfS.obligations, nfS.obligations_prev) + " on a year earlier"));
+      $("pge-path-facts").innerHTML = facts.join("");
+    }
+
+    $("pge-rev-caption").textContent = "The State's revenue, " + when + " · € bn";
+    fill("pge-rev-table", (d.revenue || []).map(function (r) {
+      var total = r.code === "nonfinancial" || r.code === "total";
+      return row([r.label, bn(r.forecast), bn(r.rights), bn(r.collected), pct(r.rights, r.forecast), growth(r.collected, r.collected_prev)],
+                 total ? "bx-total" : "", r.indent);
+    }).join(""));
+
+    $("pge-tax-caption").textContent = "Net collection, " + when + " · € bn";
+    fill("pge-tax-table", (d.taxes || []).map(function (r) {
+      return row([r.label, bn(r.collected), bn(r.regions), bn(r.local), bn(r.state), growth(r.collected, r.collected_prev)],
+                 r.code === "nonfinancial" ? "bx-total" : "");
+    }).join(""));
+
+    $("pge-ch-caption").textContent = "The State's spending by chapter, " + when + " · € bn";
+    fill("pge-ch-table", (d.chapters || []).map(function (r) {
+      var total = r.code === "nonfinancial" || r.code === "total";
+      return row([r.label, bn(r.final), bn(r.committed), bn(r.obligations), pct(r.obligations, r.final), growth(r.obligations, r.obligations_prev)],
+                 total ? "bx-total" : "");
+    }).join(""));
+
+    var mrr = d.mrr;
+    $("pge-mrr-caption").textContent = "Recovery and Resilience Facility, " + when + " · € bn";
+    var mrrRows = mrr ? mrr.rows.filter(function (r) { return r.credits > 0 || r.obligations > 0; }).map(function (r) {
+      return row([r.label, bn(r.credits), bn(r.committed), bn(r.obligations), pct(r.obligations, r.credits), bn(r.payments)]);
+    }) : [];
+    if (mrr && mrr.total) {
+      var t = mrr.total;
+      mrrRows.push(row(["Total", bn(t.credits), bn(t.committed), bn(t.obligations), pct(t.obligations, t.credits), bn(t.payments)], "bx-total"));
+    }
+    fill("pge-mrr-table", mrrRows.join(""));
+
+    $("pge-tr-caption").textContent = "Transfers in the State's budget, " + when + " · € bn";
+    var tr = d.transfers || [];
+    var sum = function (k) { return tr.reduce(function (s, r) { return s + (r[k] || 0); }, 0); };
+    var trRows = tr.map(function (r) {
+      return row([r.label, bn(r.final), bn(r.obligations), pct(r.obligations, r.final), bn(r.obligations_prev), growth(r.obligations, r.obligations_prev)]);
+    });
+    if (tr.length) {
+      trRows.push(row(["Total", bn(sum("final")), bn(sum("obligations")), pct(sum("obligations"), sum("final")), bn(sum("obligations_prev")),
+                       growth(sum("obligations"), sum("obligations_prev"))], "bx-total"));
+    }
+    fill("pge-tr-table", trRows.join(""));
   }
 
   // ---------------------------------------------------------------- events

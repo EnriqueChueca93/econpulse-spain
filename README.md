@@ -92,7 +92,10 @@ Because the workflow commits data every day, run `git pull` before working local
   constant prices, % of GDP (each community's own), per person or as a share, with flows between administrations
   shown apart or left out, each community's balance, and the communities side by side; and the State's budget
   itself: the consolidated budget by spending policy and revenue chapter since 2014 (rolled-over years marked),
-  and the State's initial and final appropriations against what it has spent, policy by policy (IGAE, from 2025).
+  and the State's initial and final appropriations against what it has spent, policy by policy (IGAE, from 2025),
+  with the rest of the IGAE's monthly execution report: revenue and the big taxes (with the parts passed to the
+  regions and councils), spending by chapter, the cash deficit and borrowing need, the EU recovery funds by
+  ministry, transfers to the regions and councils, and the year so far month by month.
   **ECB-speak** (`site/ecb-speak.html`): how hawkish or dovish the ECB's Governing
   Council sounds, from every member's speech since September 2022 (ECB and BIS full texts), scored with
   EconPulse's published word lists rather than an AI; after Econvitals' Fedspeak Tracker. **Global central bank stance**

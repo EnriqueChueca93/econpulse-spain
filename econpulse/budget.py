@@ -705,6 +705,182 @@ def parse_execution(content: bytes) -> dict:
     return {"month": SPANISH_MONTHS[m[2]], "day": int(m[1]), "policies": spent}
 
 
+
+# ---------------------------------------------------------------- the budget's execution in depth (Batch 30d)
+# More tables of the same monthly IGAE workbook. Each gives the year to date and the same months of the year
+# before: revenue (ING 002), the collection of the big taxes with the parts passed to the regions and councils
+# (ING 012), spending by economic chapter (GTOS 004), the cash deficit and borrowing need (TES 015), the EU
+# recovery funds (MRR00) and transfers to the regions and local councils (TCC 45, 75, 46, 76).
+
+EXEC_CHAPTERS = [
+    ("ch1", "Pay of staff", ["1. gastos de personal"]),
+    ("ch2", "Purchases of goods and services", ["2. gastos en bienes"]),
+    ("ch3", "Interest", ["3. gastos financieros"]),
+    ("ch4", "Current transfers", ["4. transferencias corrientes"]),
+    ("ch5", "Contingency fund", ["5. fdo", "5. fondo"]),
+    ("ch6", "Investment", ["6. inversiones reales"]),
+    ("ch7", "Capital transfers", ["7. transferencias de capital"]),
+    ("nonfinancial", "Non-financial spending", ["total operaciones no financieras"]),
+    ("ch8", "Financial assets", ["8. activos financieros"]),
+    ("ch9", "Debt repayments", ["9. pasivos financieros"]),
+    ("total", "Total", ["totales", "t o t a l e s"]),
+]
+EXEC_REVENUE = [
+    ("ch1", "Direct taxes and social contributions", ["1. impuestos directos"]),
+    ("irpf", "Personal income tax", ["impuesto sobre la renta de las", "impuesto sobre la renta de personas"]),
+    ("corporate", "Corporate income tax", ["impuesto sobre sociedades"]),
+    ("nonresident", "Non-residents' income tax", ["impuesto sobre la renta de no"]),
+    ("ch2", "Indirect taxes", ["2. impuestos indirectos"]),
+    ("vat", "VAT", ["impuesto sobre el valor"]),
+    ("excise", "Excise duties", ["impuestos especiales"]),
+    ("ch3", "Fees, prices and other revenue", ["3. tasas"]),
+    ("ch4", "Current transfers", ["4. transferencias corrientes"]),
+    ("ch5", "Property income", ["5. ingresos patrimoniales"]),
+    ("ch6", "Sales of real investments", ["6. enajenacion"]),
+    ("ch7", "Capital transfers", ["7. transferencias de capital"]),
+    ("nonfinancial", "Non-financial revenue", ["total operaciones no financieras"]),
+    ("ch8", "Financial assets", ["8. activos financieros"]),
+    ("ch9", "Borrowing", ["9. pasivos financieros"]),
+    ("total", "Total", ["totales", "t o t a l e s"]),
+]
+EXEC_TAXES = [
+    ("irpf", "Personal income tax", ["impuesto sobre la renta de las", "impuesto sobre la renta de personas"]),
+    ("vat", "VAT", ["impuesto sobre el valor"]),
+    ("corporate", "Corporate income tax", ["impuesto sobre sociedades"]),
+    ("excise", "Excise duties", ["impuestos especiales"]),
+    ("nonresident", "Non-residents' income tax", ["impuesto sobre la renta de no"]),
+    ("nonfinancial", "All non-financial revenue", ["total operaciones no financieras"]),
+]
+EXEC_CASH = [
+    ("deficit", "Cash balance", ["1.- deficit"]),
+    ("receipts", "Receipts", ["1.1. cobros"]),
+    ("payments", "Payments", ["1.2. pagos"]),
+    ("assets", "Change in financial assets", ["2.- variacion de activos"]),
+    ("borrowing", "Net borrowing need", ["3.- necesidad"]),
+]
+EXEC_TRANSFERS = [("TCC 45", "regions_current", "To the regions, current"), ("TCC 75", "regions_capital", "To the regions, capital"),
+                  ("TCC 46", "local_current", "To local councils, current"), ("TCC 76", "local_capital", "To local councils, capital")]
+MINISTRIES = [
+    ("asuntos ext", "Foreign affairs, EU and cooperation"), ("presidencia", "Presidency, justice and parliament"),
+    ("defensa", "Defence"), ("hacienda", "Finance"), ("interior", "Interior"),
+    ("transportes", "Transport and sustainable mobility"), ("educacion", "Education, vocational training and sport"),
+    ("trabajo", "Labour and social economy"), ("industria", "Industry and tourism"),
+    ("agricultura", "Agriculture, fisheries and food"), ("politica territorial", "Territorial policy and democratic memory"),
+    ("transicion ecologica", "Ecological transition"), ("para la transicion ecologica", "Ecological transition"),
+    ("cultura", "Culture"), ("vivienda", "Housing and urban agenda"), ("sanidad", "Health"),
+    ("economia", "Economy, trade and business"), ("ciencia", "Science, innovation and universities"),
+    ("derechos soc", "Social rights, consumer affairs and Agenda 2030"), ("igualdad", "Equality"),
+    ("juventud", "Youth and children"), ("inclusion", "Inclusion, Social Security and migration"),
+    ("para la transf. digital", "Digital transformation and civil service"),
+    ("transformacion digital", "Digital transformation and civil service"),
+]
+
+
+def _row_key(label, table) -> str | None:
+    name = _norm(label)
+    return next((key for key, _, prefixes in table if any(name.startswith(p) for p in prefixes)), None)
+
+
+def _year_columns(rows, header: tuple) -> dict[int, tuple[int | None, str]]:
+    """Each value column's year (carried right from the first header row until another heading) and its name
+    (the lower header rows joined)."""
+    width = max(len(rows[r]) for r in header if r < len(rows))
+    out, current = {}, None
+    for c in range(1, width):
+        top = rows[header[0]][c] if c < len(rows[header[0]]) else None
+        if top not in (None, ""):
+            m = re.match(r"^\s*(\d{4})", str(top))
+            current = int(m[1]) if m else None
+        name = " ".join(_norm(rows[r][c]) for r in header[1:] if r < len(rows) and c < len(rows[r]) and rows[r][c])
+        out[c] = (current, name)
+    return out
+
+
+def _read(rows, wanted: dict[str, str], table, header=(1, 2)) -> dict[str, dict[str, dict[str, float]]]:
+    """{row key: {year: {column key: € mn}}} from a table with the year in the first header row."""
+    picks = {}
+    for c, (year, name) in _year_columns(rows, header).items():
+        for key, needle in wanted.items():
+            if year is not None and needle in name and (year, key) not in picks:
+                picks[(year, key)] = c
+    out = {}
+    for r in rows[max(header) + 1:]:
+        label = str(r[0] or "").strip() if r else ""
+        key = _row_key(label, table) if label else None
+        if not key or key in out:
+            continue
+        out[key] = {}
+        for (year, col), c in picks.items():
+            v = _num(r[c]) if c < len(r) else None
+            out[key].setdefault(str(year), {})[col] = round((v or 0.0) / 1000, 1)
+    return out
+
+
+def _mrr(rows) -> dict:
+    """EU recovery funds by ministry: appropriations, commitments, obligations and payments (€ mn)."""
+    head = rows[1]
+    cols = {"credits": next(c for c, v in enumerate(rows[2]) if v and "total" in _norm(v)),
+            **{key: next(c for c, v in enumerate(head) if v and text in _norm(v))
+               for key, text in (("committed", "comprometidos"), ("obligations", "obligaciones"), ("payments", "pagos"))}}
+    out, total = {}, None
+    for r in rows[3:]:
+        values = {k: round((_num(r[c]) or 0.0) / 1000, 1) for k, c in cols.items() if c < len(r)}
+        label = str(r[0] or "").strip()
+        if not label and any(_num(x) for x in r[1:]):
+            total = values
+            continue
+        name = next((en for es, en in MINISTRIES if _norm(label).startswith(es)), label.title())
+        if label and any(values.values()):
+            out[name] = {k: out.get(name, {}).get(k, 0.0) + v for k, v in values.items()}
+    return {"ministries": out, "total": total or {k: round(sum(m[k] for m in out.values()), 1) for k in cols}}
+
+
+def parse_execution_detail(content: bytes) -> dict:
+    """Revenue, tax collection, chapters, cash, EU funds and transfers to date, with the year before (€ mn)."""
+    wb = openpyxl.load_workbook(io.BytesIO(content), read_only=True, data_only=True)
+
+    def rows(name):
+        return list(wb[name].iter_rows(values_only=True)) if name in wb.sheetnames else None
+
+    out = {}
+    if (r := rows("GTOS 004")):
+        out["chapters"] = _read(r, {"final": "creditos", "committed": "comprometidos", "obligations": "obligaciones",
+                                    "payments": "pagos"}, EXEC_CHAPTERS)
+    if (r := rows("ING 002")):
+        out["revenue"] = _read(r, {"forecast": "previsiones", "rights": "derechos", "collected": "recaudacion"}, EXEC_REVENUE)
+    if (r := rows("ING 012")):
+        out["taxes"] = _read(r, {"applied": "aplicada", "pending": "pendiente", "regions": "cc.aa", "local": "ee.ll",
+                                 "state": "neta estado"}, EXEC_TAXES, header=(1, 2, 3))
+    if (r := rows("TES 015")):
+        out["cash"] = _read(r, {"value": ""}, EXEC_CASH, header=(1,))
+    mrr = next((n for n in wb.sheetnames if n.startswith("MRR00")), None)
+    if mrr:
+        out["mrr"] = _mrr(rows(mrr))
+    transfers = {}
+    for sheet, key, _ in EXEC_TRANSFERS:
+        if (r := rows(sheet)):
+            got = _read(r, {"final": "creditos", "obligations": "obligaciones", "payments": "pagos"},
+                        [("total", "Total", ["totales"])])
+            if got.get("total"):
+                transfers[key] = got["total"]
+    out["transfers"] = transfers
+    return out
+
+
+def month_summary(detail: dict, year: int) -> dict:
+    """One month's totals to date, for the year's path: spending, revenue, cash, a year earlier too."""
+    def pick(part, row, col, y):
+        return detail.get(part, {}).get(row, {}).get(str(y), {}).get(col)
+    return {"spending": pick("chapters", "nonfinancial", "obligations", year),
+            "spending_prev": pick("chapters", "nonfinancial", "obligations", year - 1),
+            "revenue": pick("revenue", "nonfinancial", "rights", year),
+            "revenue_prev": pick("revenue", "nonfinancial", "rights", year - 1),
+            "cash": pick("cash", "deficit", "value", year), "cash_prev": pick("cash", "deficit", "value", year - 1),
+            "borrowing": pick("cash", "borrowing", "value", year),
+            "borrowing_prev": pick("cash", "borrowing", "value", year - 1),
+            "mrr": (detail.get("mrr") or {}).get("total", {}).get("obligations")}
+
+
 def refresh_state_budget(saved: dict | None) -> dict:
     """The consolidated budget's series and the State's execution: the latest month, and the previous December."""
     saved = saved or {}
@@ -721,27 +897,35 @@ def refresh_state_budget(saved: dict | None) -> dict:
             budget[kind].update(part[kind])                 # the latest edition wins where they overlap
         budget["rolled_over"] |= set(part["rolled_over"])
     execution = dict(saved.get("execution", {}))
+    months = {y: dict(m) for y, m in saved.get("months", {}).items()}     # {year: {month: that month's totals}}
     files = {(int(y), SPANISH_MONTHS[m]): url for url, m, y in EXECUTION_FILE.findall(http.get(EXECUTION_PAGE).text)
              if m in SPANISH_MONTHS}
     if files:
         year, month = max(files)
-        wanted = [(year, month)] + [(year - 1, 12)]
         base = "https://www.igae.pap.hacienda.gob.es"
-        for y, mo in wanted:
-            url = files.get((y, mo)) or (f"{base}/sitios/igae/es-ES/Contabilidad/ContabilidadPublica/CPE/EjecucionPresupuestaria/"
-                                         f"Documents/MENSUAL%20DICIEMBRE%20{y}.xlsx" if mo == 12 else None)
-            if not url:
-                continue
+        december = (f"/sitios/igae/es-ES/Contabilidad/ContabilidadPublica/CPE/EjecucionPresupuestaria/Documents/"
+                    f"MENSUAL%20DICIEMBRE%20{year - 1}.xlsx")
+        # The latest month and the previous December in full; the year's other months for their totals only,
+        # once each (the IGAE lists only the current year's workbooks, so the monthly path is kept as it grows).
+        wanted = [(year, month, files[(year, month)], True), (year - 1, 12, files.get((year - 1, 12), december), True)]
+        wanted += [(y, m, url, False) for (y, m), url in sorted(files.items())
+                   if y == year and m != month and str(m) not in months.get(str(y), {})]
+        for y, mo, url, full in wanted:
             try:
-                got = parse_execution(http.get(url if url.startswith("http") else base + url).content)
+                content = http.get(url if url.startswith("http") else base + url).content
+                detail = parse_execution_detail(content)
+                if full:
+                    got = parse_execution(content)
             except Exception:
                 if (y, mo) == (year, month):
                     raise
                 continue                                    # an older December that is not online: keep what we had
-            execution[str(y)] = got
+            months.setdefault(str(y), {})[str(mo)] = month_summary(detail, y)
+            if full:
+                execution[str(y)] = {**got, "detail": detail}
     return {"spending": {str(y): v for y, v in sorted(budget["spending"].items())},
             "revenue": {str(y): v for y, v in sorted(budget["revenue"].items())},
-            "rolled_over": sorted(budget["rolled_over"]), "edition": latest, "execution": execution}
+            "rolled_over": sorted(budget["rolled_over"]), "edition": latest, "execution": execution, "months": months}
 
 
 def rolled_note(rolled: list[int], years: list[int]) -> str:
@@ -754,6 +938,43 @@ def rolled_note(rolled: list[int], years: list[int]) -> str:
     listed = ", ".join(str(y) for y in run[:-1]) + (" and " if len(run) > 1 else "") + str(run[-1])
     tense = "has stayed" if run[-1] == max(years) else "stayed"
     return f"the {run[0] - 1} budget {tense} in force in {listed}"
+
+
+MONTH_KEYS = ("spending", "spending_prev", "revenue", "revenue_prev", "cash", "cash_prev", "borrowing", "borrowing_prev", "mrr")
+INDENTED = {"irpf", "corporate", "nonresident", "vat", "excise"}      # the taxes under their chapters
+
+
+def detail_for_page(detail: dict, year: int) -> dict:
+    """The execution tables of one year, as rows the page can draw: this year and the year before."""
+    this, prev = str(year), str(year - 1)
+
+    def cell(part, row, col, y):
+        return detail.get(part, {}).get(row, {}).get(y, {}).get(col)
+
+    revenue = [{"code": k, "label": label, "indent": 1 if k in INDENTED else 0,
+                **{c: cell("revenue", k, c, this) for c in ("forecast", "rights", "collected")},
+                "rights_prev": cell("revenue", k, "rights", prev), "collected_prev": cell("revenue", k, "collected", prev)}
+               for k, label, _ in EXEC_REVENUE if k in detail.get("revenue", {})]
+    taxes = []
+    for k, label, _ in EXEC_TAXES:
+        if k not in detail.get("taxes", {}):
+            continue
+        now, before = detail["taxes"][k].get(this, {}), detail["taxes"][k].get(prev, {})
+        taxes.append({"code": k, "label": label, "collected": round(now.get("applied", 0) + now.get("pending", 0), 1),
+                      "regions": now.get("regions"), "local": now.get("local"), "state": now.get("state"),
+                      "collected_prev": round(before.get("applied", 0) + before.get("pending", 0), 1) if before else None})
+    chapters = [{"code": k, "label": label, **{c: cell("chapters", k, c, this) for c in ("final", "committed", "obligations", "payments")},
+                 "obligations_prev": cell("chapters", k, "obligations", prev)}
+                for k, label, _ in EXEC_CHAPTERS if k in detail.get("chapters", {})]
+    cash = {k: {"label": label, "value": cell("cash", k, "value", this), "prev": cell("cash", k, "value", prev)}
+            for k, label, _ in EXEC_CASH if k in detail.get("cash", {})}
+    mrr = detail.get("mrr") or {}
+    transfers = [{"code": key, "label": label, **{c: detail["transfers"][key].get(this, {}).get(c) for c in ("final", "obligations")},
+                  "obligations_prev": detail["transfers"][key].get(prev, {}).get("obligations")}
+                 for _, key, label in EXEC_TRANSFERS if key in detail.get("transfers", {})]
+    return {"revenue": revenue, "taxes": taxes, "chapters": chapters, "cash": cash, "transfers": transfers,
+            "mrr": {"rows": sorted(({"label": n, **v} for n, v in mrr.get("ministries", {}).items()),
+                                   key=lambda r: -r.get("credits", 0)), "total": mrr.get("total")} if mrr else None}
 
 
 def state_budget_data(saved: dict, gdp: dict[int, float]) -> dict | None:
@@ -773,7 +994,8 @@ def state_budget_data(saved: dict, gdp: dict[int, float]) -> dict | None:
             continue
         rows = [{"code": k, "label": labels[k], **ex["policies"][k]} for k, _, _ in POLICIES if k in ex["policies"]]
         execution.append({"year": int(y), "month": ex["month"], "through": f"{ex['day']} {month_names[ex['month']]} {y}",
-                          "full_year": ex["month"] == 12, "rows": rows, "total": ex["policies"]["TOTAL"]})
+                          "full_year": ex["month"] == 12, "rows": rows, "total": ex["policies"]["TOTAL"],
+                          "detail": detail_for_page(ex.get("detail") or {}, int(y))})
     return {
         "years": years, "rolled_over": sb["rolled_over"], "edition": sb.get("edition", ""),
         "rolled_note": rolled_note(sb["rolled_over"], years),
@@ -783,6 +1005,8 @@ def state_budget_data(saved: dict, gdp: dict[int, float]) -> dict | None:
         "revenues": [{"code": k, "label": labels[k]} for k in rev_keys],
         "revenue": {k: [sb["revenue"].get(str(y), {}).get(k) for y in years] for k in rev_keys + ["TOTAL"]},
         "execution": execution,
+        "months": {y: {k: [m.get(str(n), {}).get(k) for n in range(1, 13)] for k in MONTH_KEYS}
+                   for y, m in sb.get("months", {}).items()},
         "pages": {"sepg": SEPG_PAGE, "igae": EXECUTION_PAGE},
     }
 

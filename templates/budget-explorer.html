@@ -160,6 +160,82 @@
         sector are mostly to the Social Security and the State's agencies. Spent: obligations recognised (obligaciones
         reconocidas netas).</p>
     </div>
+
+    <h3 class="bx-sub" id="bx-pge-year">The year so far</h3>
+    <p class="block-intro">The State's revenue and spending month by month, added up from January, against the same
+      months a year earlier, and its cash balance: what it collected less what it paid. Non-financial operations only,
+      so borrowing and debt repayments are left out.</p>
+    <div class="facts" id="pge-path-facts" aria-live="polite"></div>
+    <div class="charts">
+      {{ figure("pge-path", "Revenue and spending so far", "", "IGAE, execution of the State budget") }}
+      {{ figure("pge-cash", "Cash balance so far", "", "IGAE, execution of the State budget") }}
+    </div>
+
+    <h3 class="bx-sub" id="bx-pge-revenue">Revenue</h3>
+    <p class="block-intro">What the budget expected, the rights recognised (revenue due to the State) and what it has
+      collected, by chapter and main tax, with the change in collection on the same months a year earlier.</p>
+    <div class="stat">
+      <p class="stat-caption" id="pge-rev-caption"></p>
+      <div class="table-scroll">
+        <table class="data-table stat-table bx-table" id="pge-rev-table">
+          <thead><tr><th scope="col">Revenue</th><th scope="col" class="num">Budgeted, € bn</th><th scope="col" class="num">Due, € bn</th><th scope="col" class="num">Collected, € bn</th><th scope="col" class="num">Due, % of budget</th><th scope="col" class="num">Collected, change</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p class="note">The State's revenue, net of the parts of income tax, VAT and excise duties passed to the regions and local councils (see the next table). A rolled-over budget keeps the old revenue forecasts.</p>
+    </div>
+
+    <h3 class="bx-sub" id="bx-pge-taxes">The big taxes, and who gets them</h3>
+    <p class="block-intro">Outside the País Vasco and Navarra, which collect their own, the Tax Agency collects income tax, VAT and excise duties for everyone; part goes to the regions
+      and local councils under their financing systems, and the rest is the State's.</p>
+    <div class="stat">
+      <p class="stat-caption" id="pge-tax-caption"></p>
+      <div class="table-scroll">
+        <table class="data-table stat-table bx-table" id="pge-tax-table">
+          <thead><tr><th scope="col">Tax</th><th scope="col" class="num">Collected, € bn</th><th scope="col" class="num">To the regions</th><th scope="col" class="num">To local councils</th><th scope="col" class="num">Kept by the State</th><th scope="col" class="num">Collected, change</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p class="note">Net collection to date (refunds deducted). The regions' and councils' shares are paid as monthly instalments on account, settled two years later.</p>
+    </div>
+
+    <h3 class="bx-sub" id="bx-pge-chapters">Spending by type</h3>
+    <div class="stat">
+      <p class="stat-caption" id="pge-ch-caption"></p>
+      <div class="table-scroll">
+        <table class="data-table stat-table bx-table" id="pge-ch-table">
+          <thead><tr><th scope="col">Chapter</th><th scope="col" class="num">Final, € bn</th><th scope="col" class="num">Committed, € bn</th><th scope="col" class="num">Spent, € bn</th><th scope="col" class="num">Spent, % of final</th><th scope="col" class="num">Spent, change</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p class="note">Economic chapters of the budget. Committed: spending authorised and contracted; spent: obligations recognised.</p>
+    </div>
+
+    <h3 class="bx-sub" id="bx-pge-mrr">EU recovery funds</h3>
+    <p class="block-intro">Spending financed by the EU's Recovery and Resilience Facility (the Mecanismo de Recuperación y
+      Resiliencia), by ministry: what is available, committed and spent.</p>
+    <div class="stat">
+      <p class="stat-caption" id="pge-mrr-caption"></p>
+      <div class="table-scroll">
+        <table class="data-table stat-table bx-table" id="pge-mrr-table">
+          <thead><tr><th scope="col">Ministry</th><th scope="col" class="num">Available, € bn</th><th scope="col" class="num">Committed, € bn</th><th scope="col" class="num">Spent, € bn</th><th scope="col" class="num">Spent, % of available</th><th scope="col" class="num">Paid, € bn</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p class="note">Available: appropriations after the year's changes, including funds carried over from earlier years.</p>
+    </div>
+
+    <h3 class="bx-sub" id="bx-pge-transfers">Transfers to the regions and local councils</h3>
+    <div class="stat">
+      <p class="stat-caption" id="pge-tr-caption"></p>
+      <div class="table-scroll">
+        <table class="data-table stat-table bx-table" id="pge-tr-table">
+          <thead><tr><th scope="col">Transfer</th><th scope="col" class="num">Final, € bn</th><th scope="col" class="num">Spent, € bn</th><th scope="col" class="num">Spent, % of final</th><th scope="col" class="num">Spent a year earlier</th><th scope="col" class="num">Change</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p class="note">Transfers in the State's budget (articles 45, 46, 75 and 76): the financing systems' funds and settlements, and grants. The regions' and councils' shares of the big taxes are not budget spending and appear in the taxes table above.</p>
+    </div>
     {% endif %}
   </section>
   {% endif %}

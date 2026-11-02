@@ -1,4 +1,4 @@
-"""Batch 30a: the Budget explorer, from the IGAE's national accounts workbooks (no network)."""
+"""Batches 30a-30d: the Budget explorer, from the IGAE's and the budget office's workbooks (no network)."""
 
 import io
 
@@ -204,7 +204,7 @@ BUDGET_BOOK = workbook({
             ["CAPÍTULOS 1 a 8", 220771.0, 220801.0, 220807.2]],
     "15": [["1.5. Ingresos"], ["Capítulos", "2023", "2023-P", "2024-P"], ["Impuestos directos", 269000.3, 269000.3, 269000.3],
            ["Impuestos indirectos", 57809.2, 57809.2, 57809.2], ["TOTAL CAPÍTULOS 1 a 8", 326809.5, 326809.5, 326809.5]]})
-EXECUTION_BOOK = workbook({
+EXECUTION_SHEETS = {
     "GTOS 016": [["Miles de euros"],
                  ["PRESUPUESTO DE GASTOS ESTADO DE EJECUCIÓN: ÁREAS DE GASTO Y POLÍTICAS HASTA EL 31 DE AGOSTO",
                   "CRÉDITOS DEFINITIVOS (1)", "OBLIGACIONES RECONOCIDAS NETAS (2)", "PAGOS REALIZADOS (3)"],
@@ -215,7 +215,8 @@ EXECUTION_BOOK = workbook({
                  ["1. Pensiones", 20508661, 15911213, 15910957],
                  ["TOTALES", 42178005, 23795169, 23717555]],
     "GTOS M03": [["Miles de euros"], ["PRESUPUESTO DE GASTOS MODIFICACIONES DE CREDITO", "CRÉDITOS EXTRAORDINARIOS (1)", "TOTAL MODIFICACIONES (10)"],
-                 [None], ["2. Defensa", 0, 9607135], ["1. Pensiones", 0, 50], ["TOTALES", 0, 9607185]]})
+                 [None], ["2. Defensa", 0, 9607135], ["1. Pensiones", 0, 50], ["TOTALES", 0, 9607185]]}
+EXECUTION_BOOK = workbook(EXECUTION_SHEETS)
 
 
 def test_budget_columns_and_policies():
@@ -262,3 +263,133 @@ def test_refresh_the_state_budget(monkeypatch):
     assert page["years"] == [2023, 2024, 2025] and page["gdp"] == [1_500_000.0, None, None]
     assert page["execution"][0]["year"] == 2026 and page["execution"][0]["through"] == "31 August 2026"
     assert [p["code"] for p in page["policies"]] == ["pensions", "defence", "research_civil", "research_military"]
+
+
+# ---------------------------------------------------------------- Batch 30d: the rest of the execution report
+
+DETAIL_SHEETS = {
+    "GTOS 004": [[None],
+                 ["PRESUPUESTO DE GASTOS\nESTADO DE EJECUCIÓN. CAPÍTULOS\nHASTA EL 31 DE AGOSTO", "2026", None, None, None,
+                  "2025", None, None, None, "% DE REALIZACIÓN"],
+                 [None, "CRÉDITOS DEFINITIVOS\n(1)", "GASTOS COMPROMETIDOS\n(2)", "OBLIGACIONES RECONOCIDAS NETAS\n(3)",
+                  "PAGOS REALIZADOS\n(4)", "CRÉDITOS DEFINITIVOS\n(5)", "GASTOS COMPROMETIDOS\n(6)",
+                  "OBLIGACIONES RECONOCIDAS NETAS\n(7)", "PAGOS REALIZADOS\n(8)", "3/1"],
+                 [None],
+                 ["1. GASTOS DE PERSONAL", 22605587, 21643051, 15175740, 15034406, 21733200, 20790212, 14313062, 14040236, 67.1],
+                 ["5. FDO. DE CONTINGENCIA Y OTROS IMPREV.", 512019, "-", "-", "-", 901188, "-", "-", "-", "-"],
+                 ["    TOTAL FDO. CONTINGENCIA Y OTROS IMPREV.", 512019, "-", "-", "-", 901188, "-", "-", "-", "-"],
+                 ["    TOTAL OPERACIONES NO FINANCIERAS", 281404759, 225585624, 170765635, 165324955, 269508959, 210000000,
+                  153262135, 149493295, 60.7],
+                 ["TOTALES", 462162489, 368546662, 280337134, 274260851, 414114569, 340000000, 250000000, 245000000, 60.7]],
+    "ING 002": [[None, "Miles de euros"],
+                ["PRESUPUESTO DE INGRESOS\nESTADO DE EJECUCIÓN\nHASTA EL 31 DE AGOSTO", "2026", None, None, "2025", None, None,
+                 "% DE REALIZACIÓN"],
+                [None, "PREVISIONES PRESUPUESTARIAS\n(1)", "DERECHOS RECONOCIDOS NETOS\n(2)", "RECAUDACIÓN      NETA\n(3)",
+                 "PREVISIONES PRESUPUESTARIAS\n(4)", "DERECHOS RECONOCIDOS NETOS\n(5)", "RECAUDACIÓN     NETA\n(6)", "3/2"],
+                [None],
+                ["1. IMPUESTOS DIRECTOS Y COTIZACIONES SOCIALES", 86428536, 86742505, 81608237, 86428536, 72945860, 70000000, 94.1],
+                ["   Impuesto sobre la renta de las personas físicas", 51629206, 60197668, 57002140, 51629206, 49974200, 47000000, 94.7],
+                ["   Impuesto sobre el patrimonio", 71585, 82873, 79185, 71585, 88381, 80000, 95.6],
+                ["               TOTAL OPERACIONES NO FINANCIERAS", 189005004, 165075815, 153499122, 189005004, 144507567,
+                 135020829, 93.0],
+                ["9. PASIVOS FINANCIEROS", "-", 132752671, 132752671, "-", 151587988, 151587988, 100.0],
+                ["               TOTAL OPERACIONES FINANCIERAS", 3539164, 139335339, 139275525, 3539164, 161525324, 161000000, 99.9]],
+    "ING 012": [[None, "Miles de euros"],
+                ["PRESUPUESTO DE INGRESOS\nRECAUDACIÓN NETA\nHASTA EL 31 DE AGOSTO", "2026", None, None, None, None,
+                 "2025", None, None, None, None, "TASAS VARIACIÓN 5/10"],
+                [None, "RECAUDACIÓN TOTAL", None, "RECAUDACIÓN CEDIDA", None, "REC. NETA ESTADO\n(6)",
+                 "RECAUDACIÓN TOTAL", None, "RECAUDACIÓN CEDIDA", None, "REC. NETA ESTADO\n(12)", None],
+                [None, "APLICADA\n(2)", "PENDIENTE     DE APLICAR\n(3)", "CC.AA.\n(4)", "EE.LL.\n(5)", None,
+                 "APLICADA\n(8)", "PENDIENTE     DE APLICAR\n(9)", "CC.AA.\n(10)", "EE.LL.\n(11)", None, None],
+                [None],
+                ["   Impuesto sobre la renta de las personas físicas", 109985897, -860, 51096715, 990691, 57897631,
+                 98000000, -500, 46000000, 900000, 51099500, 13.3],
+                ["   Impuesto sobre sociedades", 19102254, -17, "-", "-", 19102237, 16000000, "-", "-", "-", 16000000, 19.4],
+                ["               TOTAL OPERACIONES NO FINANCIERAS", 253297559, 1023763, 94981932, 1825799, 157513591,
+                 228125300, 1440600, 88372100, 1710800, 139483000, 12.9]],
+    "TES 015": [[None, None, None, "Miles de euros"],
+                ["DÉFICIT DE CAJA\nHASTA EL 31 DE AGOSTO", "2026\n(1)", "2025\n(2)", "TASAS  VARIACIÓN 1/2"],
+                [None],
+                ["1.- DÉFICIT (-) O SUPERÁVIT (+) DE CAJA NO FINANCIERO:", -34578494, -30216109, 14.4],
+                ["\t\t1.1. COBROS:", 157513591, 139482966, 12.9],
+                ["\t\t\tPresupuesto Corriente", 153499122, 135020829, 13.7],
+                ["3.- NECESIDAD (-) O CAPACIDAD (+) DE ENDEUDAMIENTO (1+2)", -51926213, -74315341, -30.1]],
+    "MRR00 26": [[None, "Miles de euros"],
+                 ["MECANISMO DE RECUPERACIÓN Y RESILIENCIA\nSECCIONES\nHASTA EL 31 DE AGOSTO", "CREDITOS PRESUPUESTARIOS",
+                  None, None, None, "AUTORIZACIONES\n(5)", "GASTOS COMPROMETIDOS\n(6)", "OBLIGACIONES RECONOCIDAS NETAS\n(7)",
+                  "PAGOS REALIZADOS\n(8)", "% DE REALIZACIÓN"],
+                 [None, "INICIALES\n(1)", "ADAPTACIÓN A.C.M. PRÓRROGA\n(2)", "MODIFICACIONES\n(3)",
+                  "TOTAL AJUSTADO 4=1-2+3\n(4)", None, None, None, None, "7/4"],
+                 ["DEFENSA", 170593, "-", -85827, 84766, 78475, 78475, 70000, 65000, 82.6],
+                 ["ECONOMÍA, COMERCIO Y EMPRESA", 1168107, "-", 14267050, 15435157, 15434549, 15434549, 15000000, 14000000, 97.2],
+                 ["IGUALDAD", "-", "-", "-", "-", "-", "-", "-", "-", "-"],
+                 [None, 1338700, "-", 14181223, 15519923, 15513024, 15513024, 15070000, 14065000, 97.1]],
+    "TCC 45": [[None, "Miles de euros"],
+               ["PRESUPUESTO DE GASTOS\nEJECUCIÓN ART. 45: COMUNIDADES AUTONOMAS\nHASTA EL 31 DE AGOSTO", "2026", None, None,
+                "2025", None, None, "% DE REALIZACIÓN"],
+               [None, "CRÉDITOS DEFINITIVOS\n(1)", "OBLIGACIONES RECONOCIDAS    NETAS\n(2)", "PAGOS REALIZADOS\n(3)",
+                "CRÉDITOS DEFINITIVOS\n(4)", "OBLIGACIONES RECONOCIDAS    NETAS\n(5)", "PAGOS REALIZADOS\n(6)", "2/1"],
+               ["Programas de servicios sociales", 204704, 99102, 18373, 204704, 150528, 150528, 48.4],
+               ["TOTALES", 40000000, 21500000, 21400000, 38000000, 20000000, 19900000, 53.8]]}
+DETAIL_BOOK = workbook({**EXECUTION_SHEETS, **DETAIL_SHEETS})
+
+
+def test_parse_the_execution_detail():
+    d = budget.parse_execution_detail(DETAIL_BOOK)
+    assert d["chapters"]["ch1"]["2026"] == {"final": 22605.6, "committed": 21643.1, "obligations": 15175.7, "payments": 15034.4}
+    assert d["chapters"]["ch5"]["2026"]["obligations"] == 0.0 and d["chapters"]["nonfinancial"]["2025"]["obligations"] == 153262.1
+    assert set(d["chapters"]) == {"ch1", "ch5", "nonfinancial", "total"}      # subtotals and "% realised" are left out
+    assert d["revenue"]["irpf"]["2026"] == {"forecast": 51629.2, "rights": 60197.7, "collected": 57002.1}
+    assert "ch9" in d["revenue"] and d["revenue"]["nonfinancial"]["2025"]["collected"] == 135020.8
+    assert d["taxes"]["irpf"]["2026"] == {"applied": 109985.9, "pending": -0.9, "regions": 51096.7, "local": 990.7, "state": 57897.6}
+    assert d["taxes"]["corporate"]["2026"]["regions"] == 0.0 and d["taxes"]["nonfinancial"]["2025"]["state"] == 139483.0
+    assert d["cash"] == {"deficit": {"2026": {"value": -34578.5}, "2025": {"value": -30216.1}},
+                         "receipts": {"2026": {"value": 157513.6}, "2025": {"value": 139483.0}},
+                         "borrowing": {"2026": {"value": -51926.2}, "2025": {"value": -74315.3}}}
+    assert d["mrr"]["ministries"] == {"Defence": {"credits": 84.8, "committed": 78.5, "obligations": 70.0, "payments": 65.0},
+                                      "Economy, trade and business": {"credits": 15435.2, "committed": 15434.5,
+                                                                      "obligations": 15000.0, "payments": 14000.0}}
+    assert d["mrr"]["total"]["obligations"] == 15070.0
+    assert d["transfers"] == {"regions_current": {"2026": {"final": 40000.0, "obligations": 21500.0, "payments": 21400.0},
+                                                  "2025": {"final": 38000.0, "obligations": 20000.0, "payments": 19900.0}}}
+    assert budget.month_summary(d, 2026) == {"spending": 170765.6, "spending_prev": 153262.1, "revenue": 165075.8,
+                                             "revenue_prev": 144507.6, "cash": -34578.5, "cash_prev": -30216.1,
+                                             "borrowing": -51926.2, "borrowing_prev": -74315.3, "mrr": 15070.0}
+
+
+def test_the_execution_detail_for_the_page():
+    page = budget.detail_for_page(budget.parse_execution_detail(DETAIL_BOOK), 2026)
+    irpf = next(r for r in page["revenue"] if r["code"] == "irpf")
+    assert irpf["indent"] == 1 and irpf["rights_prev"] == 49974.2 and irpf["collected_prev"] == 47000.0
+    assert [r["code"] for r in page["revenue"]] == ["ch1", "irpf", "nonfinancial", "ch9"]
+    tax = page["taxes"][0]
+    assert (tax["code"], tax["collected"], tax["regions"], tax["state"], tax["collected_prev"]) == \
+        ("irpf", 109985.0, 51096.7, 57897.6, 97999.5)
+    assert page["taxes"][-1]["code"] == "nonfinancial"
+    assert page["cash"]["deficit"] == {"label": "Cash balance", "value": -34578.5, "prev": -30216.1}
+    assert [r["label"] for r in page["mrr"]["rows"]] == ["Economy, trade and business", "Defence"]     # largest first
+    assert page["transfers"] == [{"code": "regions_current", "label": "To the regions, current", "final": 40000.0,
+                                  "obligations": 21500.0, "obligations_prev": 20000.0}]
+    assert budget.detail_for_page({}, 2026)["mrr"] is None
+
+
+def test_each_months_totals_are_kept(monkeypatch):
+    sepg = '<a href="/sitios/sepg/es-ES/x/Documents/2025-P/01%20Presupuestos%20Generales%20del%20Estado%20Consolidados.xlsx">'
+    igae = "".join(f'<a href="/sitios/igae/x/Documents/MENSUAL%20{m}%202026.xlsx">' for m in ("AGOSTO", "JULIO", "JUNIO"))
+    asked = []
+
+    class Reply:
+        def __init__(self, url):
+            asked.append(url.rsplit("/", 1)[-1])
+            self.text = sepg if "Estadisticas.aspx" in url else igae
+            self.content = DETAIL_BOOK if "MENSUAL" in url else BUDGET_BOOK
+
+    monkeypatch.setattr(budget.http, "get", lambda url, **_: Reply(url))
+    sb = budget.refresh_state_budget({"months": {"2026": {"6": {"spending": 1.0}}}})
+    assert "MENSUAL%20JULIO%202026.xlsx" in asked and "MENSUAL%20JUNIO%202026.xlsx" not in asked     # June was kept
+    assert sorted(sb["months"]["2026"], key=int) == ["6", "7", "8"] and sb["months"]["2026"]["6"] == {"spending": 1.0}
+    assert sb["months"]["2025"]["12"]["spending"] == 153262.1                   # the December file, read for its own year
+    assert sb["execution"]["2026"]["detail"]["cash"]["deficit"]["2026"]["value"] == -34578.5
+    page = budget.state_budget_data({"state_budget": sb}, {})
+    assert page["months"]["2026"]["spending"][5:9] == [1.0, 170765.6, 170765.6, None]
+    assert page["execution"][0]["detail"]["taxes"][0]["code"] == "irpf"

@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-11-02T06:44:03+00:00",
+ "fetched_at": "2026-11-02T07:06:39+00:00",
  "levels": {
   "central": {
    "function": {
@@ -33443,6 +33443,684 @@
       "payments": 274260.9,
       "initial": 380822.5
      }
+    },
+    "detail": {
+     "chapters": {
+      "ch1": {
+       "2026": {
+        "final": 22605.6,
+        "committed": 21643.1,
+        "obligations": 15175.7,
+        "payments": 15034.4
+       },
+       "2025": {
+        "final": 21733.2,
+        "committed": 20790.2,
+        "obligations": 14313.1,
+        "payments": 14040.2
+       }
+      },
+      "ch2": {
+       "2026": {
+        "final": 7357.5,
+        "committed": 5493.1,
+        "obligations": 3238.5,
+        "payments": 3136.6
+       },
+       "2025": {
+        "final": 7054.3,
+        "committed": 5209.9,
+        "obligations": 2990.6,
+        "payments": 2930.8
+       }
+      },
+      "ch3": {
+       "2026": {
+        "final": 32658.8,
+        "committed": 25351.9,
+        "obligations": 24169.8,
+        "payments": 24167.2
+       },
+       "2025": {
+        "final": 35865.5,
+        "committed": 24654.5,
+        "obligations": 23272.5,
+        "payments": 23270.0
+       }
+      },
+      "ch4": {
+       "2026": {
+        "final": 174244.4,
+        "committed": 141488.3,
+        "obligations": 109258.7,
+        "payments": 105212.2
+       },
+       "2025": {
+        "final": 159425.1,
+        "committed": 125199.7,
+        "obligations": 97318.9,
+        "payments": 95531.7
+       }
+      },
+      "ch5": {
+       "2026": {
+        "final": 512.0,
+        "committed": 0.0,
+        "obligations": 0.0,
+        "payments": 0.0
+       },
+       "2025": {
+        "final": 901.2,
+        "committed": 0.0,
+        "obligations": 0.0,
+        "payments": 0.0
+       }
+      },
+      "ch6": {
+       "2026": {
+        "final": 19810.9,
+        "committed": 14060.0,
+        "obligations": 5365.4,
+        "payments": 5203.4
+       },
+       "2025": {
+        "final": 17069.6,
+        "committed": 11597.1,
+        "obligations": 4927.0,
+        "payments": 4823.7
+       }
+      },
+      "ch7": {
+       "2026": {
+        "final": 24215.6,
+        "committed": 17549.2,
+        "obligations": 13557.5,
+        "payments": 12571.2
+       },
+       "2025": {
+        "final": 27460.1,
+        "committed": 13200.4,
+        "obligations": 10501.6,
+        "payments": 8896.9
+       }
+      },
+      "nonfinancial": {
+       "2026": {
+        "final": 281404.8,
+        "committed": 225585.6,
+        "obligations": 170765.6,
+        "payments": 165325.0
+       },
+       "2025": {
+        "final": 269509.0,
+        "committed": 200651.8,
+        "obligations": 153323.8,
+        "payments": 149493.3
+       }
+      },
+      "ch8": {
+       "2026": {
+        "final": 53549.1,
+        "committed": 18178.0,
+        "obligations": 14794.8,
+        "payments": 14159.1
+       },
+       "2025": {
+        "final": 47083.7,
+        "committed": 10994.0,
+        "obligations": 8279.8,
+        "payments": 4179.8
+       }
+      },
+      "ch9": {
+       "2026": {
+        "final": 127208.6,
+        "committed": 124783.0,
+        "obligations": 94776.7,
+        "payments": 94776.7
+       },
+       "2025": {
+        "final": 97521.9,
+        "committed": 95096.4,
+        "obligations": 87073.4,
+        "payments": 87073.4
+       }
+      },
+      "total": {
+       "2026": {
+        "final": 462162.5,
+        "committed": 368546.7,
+        "obligations": 280337.1,
+        "payments": 274260.9
+       },
+       "2025": {
+        "final": 414114.6,
+        "committed": 306742.1,
+        "obligations": 248677.0,
+        "payments": 240746.5
+       }
+      }
+     },
+     "revenue": {
+      "ch1": {
+       "2026": {
+        "forecast": 86428.5,
+        "rights": 86742.5,
+        "collected": 81608.2
+       },
+       "2025": {
+        "forecast": 86428.5,
+        "rights": 72945.9,
+        "collected": 69062.3
+       }
+      },
+      "irpf": {
+       "2026": {
+        "forecast": 51629.2,
+        "rights": 60197.7,
+        "collected": 57002.1
+       },
+       "2025": {
+        "forecast": 51629.2,
+        "rights": 49974.2,
+        "collected": 47613.1
+       }
+      },
+      "corporate": {
+       "2026": {
+        "forecast": 28518.6,
+        "rights": 20384.5,
+        "collected": 18506.8
+       },
+       "2025": {
+        "forecast": 28518.6,
+        "rights": 15989.6,
+        "collected": 14538.4
+       }
+      },
+      "nonresident": {
+       "2026": {
+        "forecast": 2681.4,
+        "rights": 4307.1,
+        "collected": 4262.2
+       },
+       "2025": {
+        "forecast": 2681.4,
+        "rights": 3608.5,
+        "collected": 3559.1
+       }
+      },
+      "ch2": {
+       "2026": {
+        "forecast": 57809.2,
+        "rights": 50520.5,
+        "collected": 46960.5
+       },
+       "2025": {
+        "forecast": 57809.2,
+        "rights": 50391.4,
+        "collected": 46897.7
+       }
+      },
+      "vat": {
+       "2026": {
+        "forecast": 42491.5,
+        "rights": 42771.3,
+        "collected": 39258.4
+       },
+       "2025": {
+        "forecast": 42491.5,
+        "rights": 40076.3,
+        "collected": 36623.7
+       }
+      },
+      "excise": {
+       "2026": {
+        "forecast": 9398.7,
+        "rights": 2985.0,
+        "collected": 2969.3
+       },
+       "2025": {
+        "forecast": 9398.7,
+        "rights": 6013.2,
+        "collected": 5993.5
+       }
+      },
+      "ch3": {
+       "2026": {
+        "forecast": 10778.9,
+        "rights": 8214.4,
+        "collected": 5349.4
+       },
+       "2025": {
+        "forecast": 10778.9,
+        "rights": 8014.8,
+        "collected": 5918.6
+       }
+      },
+      "ch4": {
+       "2026": {
+        "forecast": 13556.0,
+        "rights": 5435.2,
+        "collected": 5432.9
+       },
+       "2025": {
+        "forecast": 13556.0,
+        "rights": 5104.7,
+        "collected": 5104.5
+       }
+      },
+      "ch5": {
+       "2026": {
+        "forecast": 6170.9,
+        "rights": 5989.1,
+        "collected": 5985.1
+       },
+       "2025": {
+        "forecast": 6170.9,
+        "rights": 5418.9,
+        "collected": 5414.7
+       }
+      },
+      "ch6": {
+       "2026": {
+        "forecast": 106.2,
+        "rights": 7765.9,
+        "collected": 7754.6
+       },
+       "2025": {
+        "forecast": 106.2,
+        "rights": 2451.9,
+        "collected": 2442.9
+       }
+      },
+      "ch7": {
+       "2026": {
+        "forecast": 14155.1,
+        "rights": 408.4,
+        "collected": 408.4
+       },
+       "2025": {
+        "forecast": 14155.1,
+        "rights": 180.0,
+        "collected": 180.0
+       }
+      },
+      "nonfinancial": {
+       "2026": {
+        "forecast": 189005.0,
+        "rights": 165075.8,
+        "collected": 153499.1
+       },
+       "2025": {
+        "forecast": 189005.0,
+        "rights": 144507.6,
+        "collected": 135020.8
+       }
+      },
+      "ch8": {
+       "2026": {
+        "forecast": 3539.2,
+        "rights": 6582.7,
+        "collected": 6522.9
+       },
+       "2025": {
+        "forecast": 3539.2,
+        "rights": 9937.3,
+        "collected": 9826.8
+       }
+      },
+      "ch9": {
+       "2026": {
+        "forecast": 0.0,
+        "rights": 132752.7,
+        "collected": 132752.7
+       },
+       "2025": {
+        "forecast": 0.0,
+        "rights": 151588.0,
+        "collected": 151588.0
+       }
+      },
+      "total": {
+       "2026": {
+        "forecast": 192544.2,
+        "rights": 304411.2,
+        "collected": 292774.6
+       },
+       "2025": {
+        "forecast": 192544.2,
+        "rights": 306032.9,
+        "collected": 296435.6
+       }
+      }
+     },
+     "taxes": {
+      "irpf": {
+       "2026": {
+        "applied": 109985.9,
+        "pending": -0.9,
+        "regions": 51096.7,
+        "local": 990.7,
+        "state": 57897.6
+       },
+       "2025": {
+        "applied": 98512.8,
+        "pending": 3.9,
+        "regions": 49151.5,
+        "local": 964.1,
+        "state": 48401.0
+       }
+      },
+      "corporate": {
+       "2026": {
+        "applied": 19102.3,
+        "pending": -0.0,
+        "regions": 0.0,
+        "local": 0.0,
+        "state": 19102.2
+       },
+       "2025": {
+        "applied": 15336.0,
+        "pending": 4.3,
+        "regions": 0.0,
+        "local": 0.0,
+        "state": 15340.3
+       }
+      },
+      "nonresident": {
+       "2026": {
+        "applied": 4288.2,
+        "pending": 0.0,
+        "regions": 0.0,
+        "local": 0.0,
+        "state": 4288.2
+       },
+       "2025": {
+        "applied": 3591.0,
+        "pending": 0.1,
+        "regions": 0.0,
+        "local": 0.0,
+        "state": 3591.2
+       }
+      },
+      "vat": {
+       "2026": {
+        "applied": 74531.4,
+        "pending": -16.3,
+        "regions": 33746.7,
+        "local": 674.6,
+        "state": 40093.7
+       },
+       "2025": {
+        "applied": 69342.1,
+        "pending": -9.5,
+        "regions": 31317.1,
+        "local": 605.1,
+        "state": 37410.4
+       }
+      },
+      "excise": {
+       "2026": {
+        "applied": 13287.3,
+        "pending": 738.0,
+        "regions": 10138.5,
+        "local": 160.5,
+        "state": 3726.3
+       },
+       "2025": {
+        "applied": 14052.1,
+        "pending": 1163.0,
+        "regions": 7903.5,
+        "local": 141.6,
+        "state": 7170.0
+       }
+      },
+      "nonfinancial": {
+       "2026": {
+        "applied": 253297.6,
+        "pending": 1023.8,
+        "regions": 94981.9,
+        "local": 1825.8,
+        "state": 157513.6
+       },
+       "2025": {
+        "applied": 228125.3,
+        "pending": 1440.6,
+        "regions": 88372.1,
+        "local": 1710.8,
+        "state": 139483.0
+       }
+      }
+     },
+     "cash": {
+      "deficit": {
+       "2026": {
+        "value": -34578.5
+       },
+       "2025": {
+        "value": -30216.1
+       }
+      },
+      "receipts": {
+       "2026": {
+        "value": 157513.6
+       },
+       "2025": {
+        "value": 139483.0
+       }
+      },
+      "payments": {
+       "2026": {
+        "value": -192092.1
+       },
+       "2025": {
+        "value": -169699.1
+       }
+      },
+      "assets": {
+       "2026": {
+        "value": -17347.7
+       },
+       "2025": {
+        "value": -44099.2
+       }
+      },
+      "borrowing": {
+       "2026": {
+        "value": -51926.2
+       },
+       "2025": {
+        "value": -74315.3
+       }
+      }
+     },
+     "mrr": {
+      "ministries": {
+       "Foreign affairs, EU and cooperation": {
+        "credits": 6.5,
+        "committed": 6.5,
+        "obligations": 6.5,
+        "payments": 5.8
+       },
+       "Presidency, justice and parliament": {
+        "credits": 5.1,
+        "committed": 4.1,
+        "obligations": 3.9,
+        "payments": 3.9
+       },
+       "Defence": {
+        "credits": 84.8,
+        "committed": 73.2,
+        "obligations": 49.9,
+        "payments": 49.9
+       },
+       "Finance": {
+        "credits": 3.2,
+        "committed": 3.0,
+        "obligations": 2.8,
+        "payments": 2.8
+       },
+       "Interior": {
+        "credits": 114.7,
+        "committed": 108.9,
+        "obligations": 34.0,
+        "payments": 27.4
+       },
+       "Transport and sustainable mobility": {
+        "credits": 2426.2,
+        "committed": 2288.4,
+        "obligations": 1304.7,
+        "payments": 1268.1
+       },
+       "Education, vocational training and sport": {
+        "credits": 39.6,
+        "committed": 38.4,
+        "obligations": 38.3,
+        "payments": 20.5
+       },
+       "Labour and social economy": {
+        "credits": 149.4,
+        "committed": 70.5,
+        "obligations": 50.2,
+        "payments": 39.2
+       },
+       "Industry and tourism": {
+        "credits": 982.3,
+        "committed": 864.8,
+        "obligations": 841.4,
+        "payments": 211.4
+       },
+       "Agriculture, fisheries and food": {
+        "credits": 86.5,
+        "committed": 83.3,
+        "obligations": 81.6,
+        "payments": 78.1
+       },
+       "Territorial policy and democratic memory": {
+        "credits": 124.4,
+        "committed": 118.6,
+        "obligations": 20.4,
+        "payments": 20.4
+       },
+       "Ecological transition": {
+        "credits": 726.1,
+        "committed": 707.5,
+        "obligations": 195.7,
+        "payments": 186.0
+       },
+       "Culture": {
+        "credits": 8.6,
+        "committed": 3.8,
+        "obligations": 2.8,
+        "payments": 2.8
+       },
+       "Housing and urban agenda": {
+        "credits": 98.8,
+        "committed": 54.4,
+        "obligations": 29.2,
+        "payments": 28.9
+       },
+       "Health": {
+        "credits": 14.9,
+        "committed": 13.7,
+        "obligations": 11.3,
+        "payments": 11.1
+       },
+       "Economy, trade and business": {
+        "credits": 15435.2,
+        "committed": 15434.5,
+        "obligations": 15433.6,
+        "payments": 15433.6
+       },
+       "Science, innovation and universities": {
+        "credits": 327.9,
+        "committed": 327.7,
+        "obligations": 318.7,
+        "payments": 300.0
+       },
+       "Social rights, consumer affairs and Agenda 2030": {
+        "credits": 3.5,
+        "committed": 3.5,
+        "obligations": 0.9,
+        "payments": 0.9
+       },
+       "Youth and children": {
+        "credits": 1.1,
+        "committed": 1.1,
+        "obligations": 0.6,
+        "payments": 0.6
+       },
+       "Inclusion, Social Security and migration": {
+        "credits": 137.7,
+        "committed": 126.4,
+        "obligations": 52.2,
+        "payments": 50.8
+       },
+       "Digital transformation and civil service": {
+        "credits": 604.4,
+        "committed": 525.9,
+        "obligations": 519.5,
+        "payments": 456.4
+       }
+      },
+      "total": {
+       "credits": 21380.8,
+       "committed": 20858.3,
+       "obligations": 18998.4,
+       "payments": 18198.6
+      }
+     },
+     "transfers": {
+      "regions_current": {
+       "2026": {
+        "final": 35647.9,
+        "obligations": 13385.4,
+        "payments": 13304.7
+       },
+       "2025": {
+        "final": 33438.2,
+        "obligations": 13104.1,
+        "payments": 13077.4
+       }
+      },
+      "regions_capital": {
+       "2026": {
+        "final": 4024.6,
+        "obligations": 1418.9,
+        "payments": 1418.8
+       },
+       "2025": {
+        "final": 5742.6,
+        "obligations": 1029.3,
+        "payments": 1021.6
+       }
+      },
+      "local_current": {
+       "2026": {
+        "final": 28324.4,
+        "obligations": 15256.0,
+        "payments": 15256.0
+       },
+       "2025": {
+        "final": 26868.7,
+        "obligations": 15888.7,
+        "payments": 15888.7
+       }
+      },
+      "local_capital": {
+       "2026": {
+        "final": 3389.0,
+        "obligations": 1535.8,
+        "payments": 1533.3
+       },
+       "2025": {
+        "final": 3381.8,
+        "obligations": 2143.7,
+        "payments": 2140.3
+       }
+      }
+     }
     }
    },
    "2025": {
@@ -33611,6 +34289,795 @@
       "payments": 398547.5,
       "initial": 380822.5
      }
+    },
+    "detail": {
+     "chapters": {
+      "ch1": {
+       "2025": {
+        "final": 22966.3,
+        "committed": 22860.2,
+        "obligations": 22740.3,
+        "payments": 22491.5
+       },
+       "2024": {
+        "final": 21481.8,
+        "committed": 21296.1,
+        "obligations": 21157.0,
+        "payments": 20779.3
+       }
+      },
+      "ch2": {
+       "2025": {
+        "final": 7073.9,
+        "committed": 6571.6,
+        "obligations": 6243.6,
+        "payments": 6096.3
+       },
+       "2024": {
+        "final": 6670.0,
+        "committed": 6165.9,
+        "obligations": 5793.4,
+        "payments": 5463.6
+       }
+      },
+      "ch3": {
+       "2025": {
+        "final": 36096.5,
+        "committed": 35127.5,
+        "obligations": 35112.9,
+        "payments": 35094.8
+       },
+       "2024": {
+        "final": 36031.7,
+        "committed": 35457.2,
+        "obligations": 35454.0,
+        "payments": 35426.8
+       }
+      },
+      "ch4": {
+       "2025": {
+        "final": 167155.8,
+        "committed": 165764.4,
+        "obligations": 165482.7,
+        "payments": 163082.3
+       },
+       "2024": {
+        "final": 160719.1,
+        "committed": 156660.8,
+        "obligations": 156387.1,
+        "payments": 153898.4
+       }
+      },
+      "ch5": {
+       "2025": {
+        "final": 864.8,
+        "committed": 0.0,
+        "obligations": 0.0,
+        "payments": 0.0
+       },
+       "2024": {
+        "final": 0.0,
+        "committed": 0.0,
+        "obligations": 0.0,
+        "payments": 0.0
+       }
+      },
+      "ch6": {
+       "2025": {
+        "final": 16540.0,
+        "committed": 15458.4,
+        "obligations": 14754.6,
+        "payments": 13923.9
+       },
+       "2024": {
+        "final": 13583.0,
+        "committed": 12210.2,
+        "obligations": 11371.3,
+        "payments": 10334.2
+       }
+      },
+      "ch7": {
+       "2025": {
+        "final": 21767.7,
+        "committed": 19831.0,
+        "obligations": 19035.3,
+        "payments": 16310.9
+       },
+       "2024": {
+        "final": 25131.9,
+        "committed": 20286.4,
+        "obligations": 18532.6,
+        "payments": 12999.2
+       }
+      },
+      "nonfinancial": {
+       "2025": {
+        "final": 272465.0,
+        "committed": 265613.1,
+        "obligations": 263369.4,
+        "payments": 256999.7
+       },
+       "2024": {
+        "final": 263617.5,
+        "committed": 252076.6,
+        "obligations": 248695.4,
+        "payments": 238901.6
+       }
+      },
+      "ch8": {
+       "2025": {
+        "final": 63786.6,
+        "committed": 39884.7,
+        "obligations": 38453.3,
+        "payments": 20121.5
+       },
+       "2024": {
+        "final": 51294.9,
+        "committed": 44272.6,
+        "obligations": 41750.4,
+        "payments": 31063.9
+       }
+      },
+      "ch9": {
+       "2025": {
+        "final": 121514.8,
+        "committed": 121513.8,
+        "obligations": 121513.8,
+        "payments": 121426.3
+       },
+       "2024": {
+        "final": 118251.1,
+        "committed": 118117.8,
+        "obligations": 118117.8,
+        "payments": 118030.3
+       }
+      },
+      "total": {
+       "2025": {
+        "final": 457766.4,
+        "committed": 427011.5,
+        "obligations": 423336.4,
+        "payments": 398547.5
+       },
+       "2024": {
+        "final": 433163.5,
+        "committed": 414466.9,
+        "obligations": 408563.7,
+        "payments": 387995.8
+       }
+      }
+     },
+     "revenue": {
+      "ch1": {
+       "2025": {
+        "forecast": 86428.5,
+        "rights": 120530.4,
+        "collected": 117550.9
+       },
+       "2024": {
+        "forecast": 86428.5,
+        "rights": 105627.1,
+        "collected": 102634.7
+       }
+      },
+      "irpf": {
+       "2025": {
+        "forecast": 51629.2,
+        "rights": 66910.7,
+        "collected": 65245.5
+       },
+       "2024": {
+        "forecast": 51629.2,
+        "rights": 58250.2,
+        "collected": 56783.5
+       }
+      },
+      "corporate": {
+       "2025": {
+        "forecast": 28518.6,
+        "rights": 42496.4,
+        "collected": 41276.0
+       },
+       "2024": {
+        "forecast": 28518.6,
+        "rights": 39599.1,
+        "collected": 38147.6
+       }
+      },
+      "nonresident": {
+       "2025": {
+        "forecast": 2681.4,
+        "rights": 5076.7,
+        "collected": 5028.7
+       },
+       "2024": {
+        "forecast": 2681.4,
+        "rights": 4048.5,
+        "collected": 4003.3
+       }
+      },
+      "ch2": {
+       "2025": {
+        "forecast": 57809.2,
+        "rights": 67810.8,
+        "collected": 65697.8
+       },
+       "2024": {
+        "forecast": 57809.2,
+        "rights": 58444.1,
+        "collected": 55230.2
+       }
+      },
+      "vat": {
+       "2025": {
+        "forecast": 42491.5,
+        "rights": 50764.6,
+        "collected": 48704.0
+       },
+       "2024": {
+        "forecast": 42491.5,
+        "rights": 43041.7,
+        "collected": 39934.3
+       }
+      },
+      "excise": {
+       "2025": {
+        "forecast": 9398.7,
+        "rights": 10378.2,
+        "collected": 10349.7
+       },
+       "2024": {
+        "forecast": 9398.7,
+        "rights": 9411.0,
+        "collected": 9335.6
+       }
+      },
+      "ch3": {
+       "2025": {
+        "forecast": 10778.9,
+        "rights": 11515.2,
+        "collected": 8351.8
+       },
+       "2024": {
+        "forecast": 10778.9,
+        "rights": 15419.1,
+        "collected": 12953.0
+       }
+      },
+      "ch4": {
+       "2025": {
+        "forecast": 13556.0,
+        "rights": 9168.6,
+        "collected": 9147.0
+       },
+       "2024": {
+        "forecast": 13556.0,
+        "rights": 11391.1,
+        "collected": 11386.9
+       }
+      },
+      "ch5": {
+       "2025": {
+        "forecast": 6170.9,
+        "rights": 9383.4,
+        "collected": 9371.2
+       },
+       "2024": {
+        "forecast": 6170.9,
+        "rights": 9597.5,
+        "collected": 9574.2
+       }
+      },
+      "ch6": {
+       "2025": {
+        "forecast": 106.2,
+        "rights": 2612.4,
+        "collected": 2599.2
+       },
+       "2024": {
+        "forecast": 106.2,
+        "rights": 1080.1,
+        "collected": 1063.8
+       }
+      },
+      "ch7": {
+       "2025": {
+        "forecast": 14155.1,
+        "rights": 7174.6,
+        "collected": 7174.2
+       },
+       "2024": {
+        "forecast": 14155.1,
+        "rights": 11623.2,
+        "collected": 11623.2
+       }
+      },
+      "nonfinancial": {
+       "2025": {
+        "forecast": 189005.0,
+        "rights": 228195.6,
+        "collected": 219892.1
+       },
+       "2024": {
+        "forecast": 189005.0,
+        "rights": 213182.2,
+        "collected": 204466.0
+       }
+      },
+      "ch8": {
+       "2025": {
+        "forecast": 3539.2,
+        "rights": 12714.7,
+        "collected": 12516.4
+       },
+       "2024": {
+        "forecast": 3539.2,
+        "rights": 3932.5,
+        "collected": 3422.1
+       }
+      },
+      "ch9": {
+       "2025": {
+        "forecast": 0.0,
+        "rights": 192374.0,
+        "collected": 192374.0
+       },
+       "2024": {
+        "forecast": 0.0,
+        "rights": 173259.5,
+        "collected": 173259.5
+       }
+      },
+      "total": {
+       "2025": {
+        "forecast": 192544.2,
+        "rights": 433284.3,
+        "collected": 424782.5
+       },
+       "2024": {
+        "forecast": 192544.2,
+        "rights": 390374.2,
+        "collected": 381147.6
+       }
+      }
+     },
+     "taxes": {
+      "irpf": {
+       "2025": {
+        "applied": 142465.7,
+        "pending": 0.0,
+        "regions": 74377.3,
+        "local": 1708.1,
+        "state": 66380.3
+       },
+       "2024": {
+        "applied": 129408.3,
+        "pending": 0.0,
+        "regions": 69935.5,
+        "local": 1622.2,
+        "state": 57850.6
+       }
+      },
+      "corporate": {
+       "2025": {
+        "applied": 42265.8,
+        "pending": 0.0,
+        "regions": 0.0,
+        "local": 0.0,
+        "state": 42265.8
+       },
+       "2024": {
+        "applied": 39096.4,
+        "pending": 0.0,
+        "regions": 0.0,
+        "local": 0.0,
+        "state": 39096.4
+       }
+      },
+      "nonresident": {
+       "2025": {
+        "applied": 5397.0,
+        "pending": 0.0,
+        "regions": 0.0,
+        "local": 0.0,
+        "state": 5397.0
+       },
+       "2024": {
+        "applied": 4034.6,
+        "pending": 0.0,
+        "regions": 0.0,
+        "local": 0.0,
+        "state": 4034.6
+       }
+      },
+      "vat": {
+       "2025": {
+        "applied": 99532.4,
+        "pending": 0.0,
+        "regions": 48803.3,
+        "local": 1073.8,
+        "state": 49655.3
+       },
+       "2024": {
+        "applied": 90540.8,
+        "pending": 0.0,
+        "regions": 48744.5,
+        "local": 1080.5,
+        "state": 40715.7
+       }
+      },
+      "excise": {
+       "2025": {
+        "applied": 23083.1,
+        "pending": 0.0,
+        "regions": 12510.2,
+        "local": 209.2,
+        "state": 10363.8
+       },
+       "2024": {
+        "applied": 22128.2,
+        "pending": 0.0,
+        "regions": 12550.5,
+        "local": 225.3,
+        "state": 9352.4
+       }
+      },
+      "nonfinancial": {
+       "2025": {
+        "applied": 362805.2,
+        "pending": -30.5,
+        "regions": 135690.7,
+        "local": 2991.2,
+        "state": 224092.8
+       },
+       "2024": {
+        "applied": 342253.2,
+        "pending": -62.5,
+        "regions": 131230.6,
+        "local": 2928.0,
+        "state": 208032.2
+       }
+      }
+     },
+     "cash": {
+      "deficit": {
+       "2025": {
+        "value": -43834.5
+       },
+       "2024": {
+        "value": -44442.6
+       }
+      },
+      "receipts": {
+       "2025": {
+        "value": 224092.8
+       },
+       "2024": {
+        "value": 208032.2
+       }
+      },
+      "payments": {
+       "2025": {
+        "value": -267927.3
+       },
+       "2024": {
+        "value": -252474.8
+       }
+      },
+      "assets": {
+       "2025": {
+        "value": -28087.7
+       },
+       "2024": {
+        "value": -10122.8
+       }
+      },
+      "borrowing": {
+       "2025": {
+        "value": -71922.2
+       },
+       "2024": {
+        "value": -54565.4
+       }
+      }
+     },
+     "mrr": {
+      "ministries": {
+       "Foreign affairs, EU and cooperation": {
+        "credits": 101.6,
+        "committed": 93.8,
+        "obligations": 93.6,
+        "payments": 86.2
+       },
+       "Presidency, justice and parliament": {
+        "credits": 45.7,
+        "committed": 43.4,
+        "obligations": 40.6,
+        "payments": 40.6
+       },
+       "Defence": {
+        "credits": 164.3,
+        "committed": 91.3,
+        "obligations": 78.4,
+        "payments": 77.9
+       },
+       "Finance": {
+        "credits": 17.8,
+        "committed": 6.7,
+        "obligations": 4.2,
+        "payments": 4.2
+       },
+       "Interior": {
+        "credits": 216.0,
+        "committed": 147.9,
+        "obligations": 91.9,
+        "payments": 84.2
+       },
+       "Transport and sustainable mobility": {
+        "credits": 1935.7,
+        "committed": 1199.6,
+        "obligations": 739.8,
+        "payments": 617.4
+       },
+       "Education, vocational training and sport": {
+        "credits": 336.1,
+        "committed": 107.5,
+        "obligations": 67.2,
+        "payments": 46.6
+       },
+       "Labour and social economy": {
+        "credits": 355.1,
+        "committed": 245.3,
+        "obligations": 177.9,
+        "payments": 143.4
+       },
+       "Industry and tourism": {
+        "credits": 3821.0,
+        "committed": 3006.3,
+        "obligations": 2417.2,
+        "payments": 1188.6
+       },
+       "Agriculture, fisheries and food": {
+        "credits": 93.4,
+        "committed": 82.3,
+        "obligations": 67.5,
+        "payments": 63.3
+       },
+       "Territorial policy and democratic memory": {
+        "credits": 162.7,
+        "committed": 148.0,
+        "obligations": 27.7,
+        "payments": 27.7
+       },
+       "Ecological transition": {
+        "credits": 2371.3,
+        "committed": 1438.2,
+        "obligations": 758.8,
+        "payments": 598.3
+       },
+       "Culture": {
+        "credits": 81.0,
+        "committed": 77.1,
+        "obligations": 70.8,
+        "payments": 67.3
+       },
+       "Housing and urban agenda": {
+        "credits": 3813.9,
+        "committed": 3796.9,
+        "obligations": 3715.1,
+        "payments": 415.1
+       },
+       "Health": {
+        "credits": 59.0,
+        "committed": 50.5,
+        "obligations": 44.3,
+        "payments": 40.9
+       },
+       "Economy, trade and business": {
+        "credits": 14357.0,
+        "committed": 3537.8,
+        "obligations": 3537.4,
+        "payments": 2252.0
+       },
+       "Science, innovation and universities": {
+        "credits": 771.8,
+        "committed": 697.9,
+        "obligations": 655.5,
+        "payments": 102.7
+       },
+       "Social rights, consumer affairs and Agenda 2030": {
+        "credits": 172.9,
+        "committed": 169.2,
+        "obligations": 168.7,
+        "payments": 168.7
+       },
+       "Equality": {
+        "credits": 0.1,
+        "committed": 0.1,
+        "obligations": 0.0,
+        "payments": 0.0
+       },
+       "Youth and children": {
+        "credits": 62.1,
+        "committed": 0.9,
+        "obligations": 0.9,
+        "payments": 0.9
+       },
+       "Inclusion, Social Security and migration": {
+        "credits": 430.9,
+        "committed": 399.2,
+        "obligations": 288.3,
+        "payments": 82.7
+       },
+       "Digital transformation and civil service": {
+        "credits": 6147.4,
+        "committed": 5736.6,
+        "obligations": 5645.6,
+        "payments": 532.6
+       }
+      },
+      "total": {
+       "credits": 35516.7,
+       "committed": 21076.5,
+       "obligations": 18691.5,
+       "payments": 6641.4
+      }
+     },
+     "transfers": {
+      "regions_current": {
+       "2025": {
+        "final": 33994.6,
+        "obligations": 33288.0,
+        "payments": 32810.3
+       },
+       "2024": {
+        "final": 34567.2,
+        "obligations": 33723.4,
+        "payments": 33177.7
+       }
+      },
+      "regions_capital": {
+       "2025": {
+        "final": 3367.5,
+        "obligations": 2881.2,
+        "payments": 2822.6
+       },
+       "2024": {
+        "final": 5874.8,
+        "obligations": 4528.4,
+        "payments": 4480.4
+       }
+      },
+      "local_current": {
+       "2025": {
+        "final": 26837.8,
+        "obligations": 26645.0,
+        "payments": 26642.3
+       },
+       "2024": {
+        "final": 27673.5,
+        "obligations": 27060.4,
+        "payments": 26991.8
+       }
+      },
+      "local_capital": {
+       "2025": {
+        "final": 3285.7,
+        "obligations": 2503.4,
+        "payments": 2468.2
+       },
+       "2024": {
+        "final": 1496.2,
+        "obligations": 507.5,
+        "payments": 486.5
+       }
+      }
+     }
+    }
+   }
+  },
+  "months": {
+   "2026": {
+    "8": {
+     "spending": 170765.6,
+     "spending_prev": 153323.8,
+     "revenue": 165075.8,
+     "revenue_prev": 144507.6,
+     "cash": -34578.5,
+     "cash_prev": -30216.1,
+     "borrowing": -51926.2,
+     "borrowing_prev": -74315.3,
+     "mrr": 18998.4
+    },
+    "1": {
+     "spending": 15845.8,
+     "spending_prev": 13831.8,
+     "revenue": 17832.3,
+     "revenue_prev": 6479.0,
+     "cash": -4389.5,
+     "cash_prev": -9543.1,
+     "borrowing": -31563.1,
+     "borrowing_prev": -8886.1,
+     "mrr": 0.0
+    },
+    "2": {
+     "spending": 26815.3,
+     "spending_prev": 26684.3,
+     "revenue": 42165.7,
+     "revenue_prev": 36234.3,
+     "cash": 2160.7,
+     "cash_prev": -2279.3,
+     "borrowing": -24461.3,
+     "borrowing_prev": -22862.8,
+     "mrr": 37.8
+    },
+    "3": {
+     "spending": 45879.1,
+     "spending_prev": 40700.6,
+     "revenue": 51281.5,
+     "revenue_prev": 38401.0,
+     "cash": -4869.2,
+     "cash_prev": -6828.8,
+     "borrowing": -38698.5,
+     "borrowing_prev": -40378.8,
+     "mrr": 446.2
+    },
+    "4": {
+     "spending": 65551.7,
+     "spending_prev": 57698.1,
+     "revenue": 89220.6,
+     "revenue_prev": 66382.9,
+     "cash": 9960.6,
+     "cash_prev": 7912.7,
+     "borrowing": -30118.3,
+     "borrowing_prev": -36112.3,
+     "mrr": 1034.8
+    },
+    "5": {
+     "spending": 80270.0,
+     "spending_prev": 73441.0,
+     "revenue": 99113.9,
+     "revenue_prev": 88225.3,
+     "cash": 2906.5,
+     "cash_prev": 746.7,
+     "borrowing": -45146.0,
+     "borrowing_prev": -53661.3,
+     "mrr": 1526.3
+    },
+    "6": {
+     "spending": 116201.2,
+     "spending_prev": 105482.7,
+     "revenue": 106846.6,
+     "revenue_prev": 93492.7,
+     "cash": -34892.0,
+     "cash_prev": -27732.1,
+     "borrowing": -49570.7,
+     "borrowing_prev": -57967.5,
+     "mrr": 2650.9
+    },
+    "7": {
+     "spending": 159115.1,
+     "spending_prev": 145934.9,
+     "revenue": 137813.8,
+     "revenue_prev": 125999.5,
+     "cash": -38490.4,
+     "cash_prev": -35751.9,
+     "borrowing": -38757.2,
+     "borrowing_prev": -47440.6,
+     "mrr": 7216.6
+    }
+   },
+   "2025": {
+    "12": {
+     "spending": 263369.4,
+     "spending_prev": 248695.4,
+     "revenue": 228195.6,
+     "revenue_prev": 213182.2,
+     "cash": -43834.5,
+     "cash_prev": -44442.6,
+     "borrowing": -71922.2,
+     "borrowing_prev": -54565.4,
+     "mrr": 18691.5
     }
    }
   }
