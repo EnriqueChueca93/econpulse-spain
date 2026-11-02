@@ -103,6 +103,76 @@
   var specs = (window.EP && window.EP.charts) || [];
   var MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
+  // ---------------------------------------------------------------- chosen comparators (International page)
+  // Charts flagged `pick` carry every country's series, tagged `country` (or `countries`, for a central
+  // bank). The reader picks up to three comparators: they are drawn beside Spain, which is in text ink,
+  // and each keeps its colour while it stays picked. Rankings flagged `pick` colour the same countries and
+  // grey the others. The choice is remembered in this browser.
+  var picker = document.getElementById("country-picker");
+  var pickMax = picker ? (+picker.getAttribute("data-max") || 3) : 3;
+  var picked = [], pickSlot = {}, pickCodes = { Spain: "es" };
+
+  function savePicks() {
+    try { localStorage.setItem("ep-peers", JSON.stringify(picked)); } catch (e) { /* storage blocked: lasts this visit */ }
+  }
+
+  function togglePick(code) {
+    var at = picked.indexOf(code);
+    if (at >= 0) {
+      picked.splice(at, 1);
+      delete pickSlot[code];
+    } else if (picked.length < pickMax) {
+      var used = picked.map(function (c) { return pickSlot[c]; });
+      pickSlot[code] = [1, 2, 3].filter(function (n) { return used.indexOf(n) < 0; })[0];
+      picked.push(code);
+    }
+  }
+
+  function renderChips() {
+    Array.prototype.forEach.call(document.querySelectorAll(".country-chips .chip, .picker-chips .chip"), function (b) {
+      var code = b.getAttribute("data-country"), on = picked.indexOf(code) >= 0;
+      b.setAttribute("aria-pressed", String(on));
+      b.setAttribute("aria-disabled", String(!on && picked.length >= pickMax));
+      b.title = !on && picked.length >= pickMax ? "Up to " + pickMax + " at a time: untick one first" : "";
+      var swatch = b.querySelector(".chip-swatch");
+      if (swatch) swatch.style.background = on ? "var(--series-" + pickSlot[code] + ")" : "";   // follows the theme
+    });
+  }
+
+  if (picker) {
+    Array.prototype.forEach.call(picker.querySelectorAll(".chip"), function (b) {
+      pickCodes[b.textContent.trim()] = b.getAttribute("data-country");
+    });
+    var savedPicks = null;
+    try { savedPicks = JSON.parse(localStorage.getItem("ep-peers") || "null"); } catch (e) { /* no saved choice */ }
+    (Array.isArray(savedPicks) ? savedPicks : (picker.getAttribute("data-default") || "").split(",")).forEach(function (c) {
+      if (picker.querySelector('.chip[data-country="' + c + '"]') && picked.indexOf(c) < 0) togglePick(c);
+    });
+    renderChips();
+  }
+
+  function seriesCountries(s) { return s.countries || (s.country ? [s.country] : []); }
+
+  // The series a `pick` chart shows: Spain's (in ink) and the chosen countries' (in their colours). Where none
+  // of the chosen countries has a series (the spreads, for euro-area countries only), the chart's own
+  // defaults are drawn in grey.
+  function pickView(spec) {
+    if (!picker) return spec;
+    var isSpain = function (s) { return seriesCountries(s).indexOf("es") >= 0; };
+    var chosen = function (s) { return seriesCountries(s).filter(function (c) { return picked.indexOf(c) >= 0; })[0]; };
+    var series = spec.series.filter(function (s) { return isSpain(s) || chosen(s); }).map(function (s) {
+      return Object.assign({}, s, isSpain(s) ? { color: "ink" } : { slot: pickSlot[chosen(s)] });
+    });
+    if (series.every(isSpain) && spec.pick_default) {
+      series = series.concat(spec.series.filter(function (s) {
+        return !isSpain(s) && seriesCountries(s).some(function (c) { return spec.pick_default.indexOf(c) >= 0; });
+      }).map(function (s) { return Object.assign({}, s, { color: "muted" }); }));
+    }
+    var rank = function (s) { return isSpain(s) ? -1 : picked.indexOf(chosen(s)) >= 0 ? picked.indexOf(chosen(s)) : 9; };
+    series.sort(function (a, b) { return rank(a) - rank(b); });
+    return Object.assign({}, spec, { series: series });
+  }
+
   function token(name) {
     return getComputedStyle(root).getPropertyValue(name).trim();
   }
@@ -148,7 +218,12 @@
     var format = ":." + spec.decimals + "f}" + suffix(spec);
     var traces = [{
       type: "bar", orientation: "h", x: s.y, y: s.x, showlegend: false,
-      marker: { color: s.x.map(function (label) { return label === spec.highlight ? ink : token("--series-1"); }) },
+      marker: { color: s.x.map(function (label) {
+        if (label === spec.highlight) return ink;
+        if (!spec.pick || !picker) return token("--series-1");
+        var code = pickCodes[label];
+        return picked.indexOf(code) >= 0 ? token("--series-" + pickSlot[code]) : token("--axis");
+      }) },
       hovertemplate: "<b>%{x" + format + "</b>  %{y}<extra></extra>"
     }];
     var shapes = [], annotations = [];
@@ -259,6 +334,7 @@
     if (spec.kind === "hbar") return drawRanking(el, spec);
     if (spec.kind === "dots") return drawDots(el, spec);
     if (spec.kind === "xy") return drawXY(el, spec);
+    if (spec.pick) spec = pickView(spec);
     // Fixed slot order, never cycled: a spec has at most three palette series.
     var colors = [token("--series-1"), token("--series-2"), token("--series-3")];
     var surface = token("--surface"), ink = token("--text"), ink2 = token("--text-2");
@@ -277,7 +353,7 @@
     var slot = 0;
     spec.series.forEach(function (s) {
       // A total drawn in text colour takes no palette slot; a series can share a slot (a fan chart's bounds).
-      var color = s.color === "ink" ? ink : s.slot ? colors[s.slot - 1] : colors[slot++];
+      var color = s.color === "ink" ? ink : s.color === "muted" ? muted : s.slot ? colors[s.slot - 1] : colors[slot++];
       var kind = s.kind || spec.kind;
       // Value leads, name follows; the colored key comes from Plotly's swatch.
       var template = "<b>%{y" + valueFormat + "</b>  " + s.name + "<extra></extra>";
@@ -499,6 +575,7 @@
     var holder = document.querySelector('.chart-data[data-chart="' + spec.id + '"]');
     if (!holder) return;
     if (all === undefined && holder.querySelector("table")) return;
+    if (spec.pick) spec = pickView(spec);
     Array.prototype.forEach.call(holder.querySelectorAll("table, .note"), function (el) { holder.removeChild(el); });
     var table = document.createElement("table");
     var category = spec.x_kind === "category";
@@ -577,6 +654,21 @@
     holder.appendChild(table);
     holder.appendChild(caption);
   }
+
+  document.addEventListener("click", function (event) {
+    var chip = event.target.closest && event.target.closest(".picker-chips .chip");
+    if (!chip || !picker) return;
+    var code = chip.getAttribute("data-country");
+    if (picked.indexOf(code) < 0 && picked.length >= pickMax) return;   // full: untick one first
+    togglePick(code);
+    savePicks();
+    renderChips();
+    drawAll();
+    Array.prototype.forEach.call(document.querySelectorAll(".chart-data[open]"), function (holder) {
+      var spec = byId(holder.getAttribute("data-chart"));
+      if (spec && spec.pick) fillTable(spec, false);
+    });
+  });
 
   // ---------------------------------------------------------------- drawing as charts come into view
   // A page can carry 30 charts or more: each is drawn when it nears the screen, and a theme switch or
@@ -912,6 +1004,11 @@
       'aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>' +
       '<nav class="section-bar-menu" aria-label="Sections of this page" hidden></nav></div>';
     var toggle = bar.querySelector("button"), current = bar.querySelector("strong"), menu = bar.querySelector("nav");
+    if (picker) {
+      var barChips = picker.querySelector(".picker-chips").cloneNode(true);
+      barChips.classList.add("bar-chips");
+      bar.querySelector(".section-bar-inner").appendChild(barChips);
+    }
     var copies = links.map(function (a) {
       var m = document.createElement("a");
       m.href = a.getAttribute("href");

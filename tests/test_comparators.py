@@ -60,15 +60,22 @@ def test_growth_table_ranks_and_charts(tmp_path):
     assert facts["GDP since the end of 2019"]["sub"].startswith("11th largest rise of 11")
     ranking = peers.recovery_ranking(data)
     assert ranking["series"][0]["x"][0] == "Japan" and ranking["ref_lines"][0]["label"] == "Euro area"
-    chart = peers.recovery_chart(data)
-    assert [s["name"] for s in chart["series"]] == ["Spain", "Euro area", "United States"]
-    assert chart["series"][0]["y"][chart["series"][0]["x"].index("2019-10-01")] == 100
 
 
 def test_international_page_blocks(tmp_path):
     page = build_page("international", load_registry(), comparator_store(tmp_path))
     assert [b["id"] for b in page["blocks"]][:4] == ["peers", "growth", "jobs", "prices-rates"]
-    assert {"gdp-since-2019", "gdp-2019-ranking", "ppp-ranking", "unemployment-ranking"} <= {c["id"] for c in page["charts"]}
+    charts = {c["id"]: c for c in page["charts"]}
+    assert {"gdp-since-2019", "gdp-2019-ranking", "ppp-ranking", "unemployment-ranking"} <= set(charts)
+    # The line charts carry every country, tagged, for the reader to choose from; the rankings follow the choice.
+    gdp = charts["gdp-since-2019"]
+    assert gdp["pick"] and [s["country"] for s in gdp["series"]] == [slug for slug, _ in peers.COUNTRIES]
+    spain = gdp["series"][0]
+    assert spain["name"] == "Spain" and spain["y"][spain["x"].index("2019-10-01")] == 100
+    assert charts["unemployment-ranking"]["pick"] and charts["gdp-2019-ranking"]["pick"]
+    assert peers.picker() == {"countries": peers.COUNTRIES[1:], "default": ["ea", "de", "us"], "max": 3}
+    policy = dict((name, opts["countries"]) for _, _, name, opts in peers.policy_series())
+    assert policy["ECB deposit rate"] == ["es", "ea", "fr", "de", "it", "nl", "pt"] and policy["Bank of Japan"] == ["jp"]
 
 
 def test_public_finances_outlook_and_pay(tmp_path, monkeypatch):

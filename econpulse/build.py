@@ -15,7 +15,7 @@ from pathlib import Path
 import pandas as pd
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
-from . import __version__, analytics, changes, ecbspeak, feed, fiscal, industries, schedule, search, sectortables, stance, surprises, tools, trade
+from . import __version__, analytics, changes, ecbspeak, feed, fiscal, industries, peers, schedule, search, sectortables, stance, surprises, tools, trade
 from .charts import build_home_charts
 from .config import SITE_DIR, SITE_URL, STATIC_DIR, TEMPLATES_DIR
 from .pages import PAGES, block_indicator_ids, build_page, indicator_anchors
@@ -199,7 +199,7 @@ def build_site(indicators: list[Indicator], store: Store | None = None, site_dir
             charts_file = f"data/charts-{section}.js"
             write_data_js(site_dir / charts_file, "charts", page["charts"])
         render("section.html", f"{section}.html", page={"title": title, "intro": intro, "batch": batch},
-               blocks=page["blocks"], charts_file=charts_file,
+               blocks=page["blocks"], charts_file=charts_file, picker=peers.picker() if section == "international" else None,
                items=[i for i in items if i["section"] == section])
     groups = [{"id": s, "title": t, "items": [i for i in items if i["section"] == s]} for s, (t, _, _) in SECTION_PAGES.items()]
     attention = [i for i in items if i["status"] != "ok" or i["out_of_date"]]

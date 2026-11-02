@@ -69,8 +69,8 @@ Because the workflow commits data every day, run `git pull` before working local
 - **Fiscal, Activity, Housing, International, Regions**: the public finances, activity and tourism, the housing
   market and household debt, Spain against the euro area and ten comparators (France, Germany, Italy, the
   Netherlands, Portugal, Poland, the UK, the US, Canada and Japan: growth and GDP since 2019, GDP per head, jobs,
-  prices and interest rates, real pay and productivity, public finances, the current account and the IMF's outlook),
-  and the 17 autonomous communities.
+  prices and interest rates, real pay and productivity, public finances, the current account and the IMF's outlook;
+  the reader chooses up to three comparators to draw beside Spain), and the 17 autonomous communities.
 - **Tools**: Economy vs pre-COVID trend, an interactive Taylor rule and an interest rate decomposer; change a
   setting and the numbers and charts recompute in the browser. **Fiscal Explorer** (`site/fiscal-explorer.html`):
   Spain's debt and deficits since 1970 and to 2070, starting from the European Commission's baseline (reproduced

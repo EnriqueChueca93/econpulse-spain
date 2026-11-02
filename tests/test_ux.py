@@ -134,3 +134,14 @@ def test_updated_sections_are_marked_and_linked(tmp_path):
     assert '<a href="#overview" class="has-new"' in trade and '<a href="trade.html#overview" class="has-new"' in trade
     index = (site / "index.html").read_text(encoding="utf-8")
     assert '<a href="trade.html#overview">Goods exports (Comext): €401,843 mn in Aug 2026.</a>' in index
+
+
+def test_international_page_has_the_comparator_chooser(tmp_path):
+    """The chooser is on the International page only, with Spain left out (it is always drawn)."""
+    from test_comparators import comparator_store
+
+    build_site(load_registry(), comparator_store(tmp_path), site_dir=tmp_path / "site")
+    html = (tmp_path / "site" / "international.html").read_text(encoding="utf-8")
+    assert 'id="country-picker" data-max="3"' in html and 'data-default="ea,de,us"' in html
+    assert html.count('class="chip" data-country=') == 11 and 'data-country="es"' not in html
+    assert 'id="country-picker"' not in (tmp_path / "site" / "labour.html").read_text(encoding="utf-8")

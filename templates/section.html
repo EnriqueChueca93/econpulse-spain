@@ -13,6 +13,16 @@
       {% for b in blocks %}<a href="#{{ b.id }}"{% if b.updated %} class="has-new" title="Updated {{ b.updated.day }}"{% endif %}>{{ b.title }}</a>{% endfor %}
     </nav>
     {% endif %}
+    {% if picker %}
+    {# The comparators drawn beside Spain on this page's line charts, and coloured in its rankings (static/app.js). #}
+    <div class="country-picker" id="country-picker" data-max="{{ picker.max }}"
+         data-default="{{ picker.default | join(',') }}">
+      <span class="picker-label">Compare Spain with up to {{ picker.max }}:</span>
+      <span class="picker-chips" role="group" aria-label="Countries drawn beside Spain on the charts">
+        {%- for slug, label in picker.countries %}<button type="button" class="chip" data-country="{{ slug }}" aria-pressed="false"><span class="chip-swatch" aria-hidden="true"></span>{{ label }}</button>{% endfor -%}
+      </span>
+    </div>
+    {% endif %}
     {% for b in blocks %}
     <section class="block" aria-labelledby="{{ b.id }}">
       <h2 id="{{ b.id }}">{{ b.title }}{{ updated_badge(b.updated) }}</h2>

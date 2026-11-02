@@ -189,6 +189,7 @@ def _hbar(id_, title, subtitle, unit, decimals, date, freq, points, ref=None, so
         return None
     points = sorted(points, key=lambda p: p[1], reverse=True)
     return {"id": id_, "title": title, "kind": "hbar", "x_kind": "category", "x_title": "Country", "highlight": "Spain",
+            "pick": True,
             "subtitle": f"{subtitle} · {period_label(date, freq)}", "unit": unit, "decimals": decimals,
             "series": [{"name": title, "x": [p[0] for p in points], "y": [round(p[1], 3) for p in points]}],
             "ref_lines": [{"y": round(ref, 3), "label": "Euro area"}] if ref is not None else [], "freq": None,
@@ -211,23 +212,6 @@ def ppp_ranking(data: Data) -> dict | None:
     return _hbar("ppp-ranking", "GDP per head at purchasing power", f"Spain = 100, IMF figures for {ppp_year()}", "", 0,
                  pd.Timestamp(f"{ppp_year()}-01-01"), "A", [(LABELS[s], v / pp["es"] * 100) for s, v in pp.items()],
                  source="IMF World Economic Outlook")
-
-
-def recovery_chart(data: Data) -> dict | None:
-    """Real GDP since 2019, fourth quarter of 2019 = 100: Spain, the euro area and the United States."""
-    series = []
-    for slug in ("es", "ea", "us"):
-        s = data.raw(IDS["level"][slug])
-        base = s.get(BASE) if s is not None else None
-        if base:
-            s = (s.dropna() / float(base) * 100)
-            s = s[s.index >= "2019-01-01"].round(2)
-            series.append({"name": LABELS[slug], "x": [d.strftime("%Y-%m-%d") for d in s.index], "y": s.tolist()})
-    if len(series) < 2:
-        return None
-    return {"id": "gdp-since-2019", "title": "Real GDP since 2019", "subtitle": "Fourth quarter of 2019 = 100",
-            "kind": "line", "unit": "", "decimals": 1, "freq": "Q", "series": series,
-            "ref_lines": [{"y": 100, "label": "Q4 2019"}], "source": "INE, Eurostat, OECD"}
 
 
 # ---------------------------------------------------------------- the IMF's figures (Batch 27b)
@@ -413,3 +397,28 @@ def productivity_ranking(data: Data) -> dict | None:
                        "Real GDP per person employed, % change on 2019", "%",
                        value=lambda slug: annual_change(data, "productivity", slug, 2019, year),
                        source="European Commission (AMECO)")
+
+
+# ---------------------------------------------------------------- choosing comparators on the charts
+# The page's line charts carry every country's series, each tagged with its country; the reader picks up
+# to three comparators (static/app.js), drawn beside Spain, and the rankings colour the same countries.
+DEFAULT_PICK = ["ea", "de", "us"]
+CENTRAL_BANKS = [("ecb_deposit_rate", "ECB deposit rate", ["es", "ea", "fr", "de", "it", "nl", "pt"]),
+                 ("policy_rate_pl", "National Bank of Poland", ["pl"]), ("policy_rate_uk", "Bank of England", ["uk"]),
+                 ("us_fed_funds", "US Federal Reserve", ["us"]), ("policy_rate_ca", "Bank of Canada", ["ca"]),
+                 ("policy_rate_jp", "Bank of Japan", ["jp"])]
+
+
+def picker() -> dict:
+    """What the page's chooser offers: every comparator and the euro area (Spain is always drawn)."""
+    return {"countries": [(s, label) for s, label in COUNTRIES if s != "es"], "default": DEFAULT_PICK, "max": 3}
+
+
+def chart_series(measure: str, **opts) -> list[tuple]:
+    """A line chart's series for every country with this measure: (id, transform, label, {country})."""
+    return [(ref[0], ref[1], label, {"country": slug, **opts}) for slug, label in COUNTRIES if (ref := _ref(measure, slug))]
+
+
+def policy_series() -> list[tuple]:
+    """One series per central bank, tagged with the countries it sets rates for."""
+    return [(ind_id, "level", name, {"countries": countries, "month_end": True}) for ind_id, name, countries in CENTRAL_BANKS]

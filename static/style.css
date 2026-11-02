@@ -483,6 +483,31 @@ body.search-on { overflow: hidden; }
   background: var(--ok-text); vertical-align: middle;
 }
 
+/* Choosing the comparators drawn beside Spain (International page); the chips also sit in the section bar */
+.country-picker { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; margin: 16px 0 0; font-size: 13px; }
+.picker-label { color: var(--text-2); }
+.picker-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip {
+  display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; font: 13px var(--sans); color: var(--text-2);
+  background: var(--surface); border: 1px solid var(--border); border-radius: 999px; cursor: pointer;
+}
+.chip:hover { color: var(--text); background: var(--hover); }
+.chip[aria-pressed="true"] { color: var(--text); border-color: var(--text); font-weight: 600; }
+.chip[aria-disabled="true"] { opacity: 0.45; cursor: not-allowed; }
+.chip-swatch { width: 10px; height: 10px; border-radius: 50%; border: 1px solid var(--axis); flex: none; }
+@media (hover: none) { .chip { padding: 7px 12px; } }   /* a bigger target on touch screens */
+.chip[aria-pressed="true"] .chip-swatch { border-color: transparent; }
+.section-bar-inner { display: flex; align-items: center; gap: 4px 16px; }
+.section-bar-toggle { flex: none; max-width: 45%; }
+.bar-chips { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; padding: 4px 0; min-width: 0; }
+.bar-chips::-webkit-scrollbar { display: none; }
+.bar-chips .chip { flex: none; padding: 2px 8px; font-size: 12px; }
+@media (max-width: 640px) {
+  .section-bar-inner { flex-wrap: wrap; }
+  .section-bar-toggle { max-width: 100%; padding-bottom: 2px; }
+  .bar-chips { width: 100%; padding-top: 0; }
+}
+
 /* Not found */
 .lost-list { margin-top: 18px; }
 
@@ -513,7 +538,8 @@ body.search-on { overflow: hidden; }
 
 @media print {
   .site-nav, .nav-menu, .release-bar, .header-meta, .chart-actions, .chart-data, .to-top, .skip-link, .on-page,
-  .anchor, .all-series, .tool-controls, .range-buttons, .search-open, .search-panel, .section-bar { display: none !important; }
+  .anchor, .all-series, .tool-controls, .range-buttons, .search-open, .search-panel, .section-bar,
+  .country-picker { display: none !important; }
   body { background: #fff; }
   .site-header { border: 0; }
   .card, .stat, .facts, .notice, .tiles { break-inside: avoid; }

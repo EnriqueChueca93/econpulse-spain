@@ -109,12 +109,15 @@ def build_chart(definition: dict, by_id: dict[str, Indicator], store: Store) -> 
                 continue
             s = s / base * 100
         s = s * opts.pop("scale", 1)
+        freq = ind.freq
+        if opts.pop("month_end", False):          # a daily rate as its value at the end of each month
+            s, freq = s.resample("MS").last().dropna(), "M"
         s = s[s.index >= start].round(4)
         if s.empty:
             continue
         series.append({"name": name, "x": [d.strftime("%Y-%m-%d") for d in s.index], "y": s.tolist(), **opts})
         sources.append(ind)
-        freqs.append(ind.freq)
+        freqs.append(freq)
     if not series:
         return None
     spec = {k: v for k, v in definition.items() if k not in ("series", "start")}
