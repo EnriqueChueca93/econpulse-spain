@@ -2103,6 +2103,207 @@ indicators:
     decimals: 1
     change_unit: "%"
 
+  # ---------------------------------------------------------------- the monetary survey (Batch 35a)
+  # The IMF's Depository Corporations Survey for Spain (euro-area-wide residency), rebuilt monthly from the ECB's
+  # balance-sheet statistics and the Banco de España (sources/monsurvey.py); € billion, end of month.
+  - id: ms_nfa
+    label: "Net foreign assets (monetary survey)"
+    label_es: "Activos exteriores netos (panorama monetario)"
+    section: financial
+    source: monsurvey
+    key: nfa
+    freq: M
+    unit: "€ bn"
+    decimals: 1
+    change_unit: "%"
+
+  - id: ms_domestic_claims
+    label: "Domestic claims (monetary survey)"
+    label_es: "Activos internos (panorama monetario)"
+    section: financial
+    source: monsurvey
+    key: domestic_claims
+    freq: M
+    unit: "€ bn"
+    decimals: 1
+    change_unit: "%"
+
+  - id: ms_net_claims_gg
+    label: "Net claims on general government (monetary survey)"
+    label_es: "Activos netos frente a las Administraciones públicas (panorama monetario)"
+    section: financial
+    source: monsurvey
+    key: net_claims_gg
+    freq: M
+    unit: "€ bn"
+    decimals: 1
+    change_unit: "%"
+
+  - id: ms_claims_gg
+    label: "Claims on general government (monetary survey)"
+    label_es: "Activos frente a las Administraciones públicas (panorama monetario)"
+    section: financial
+    source: monsurvey
+    key: claims_gg
+    freq: M
+    unit: "€ bn"
+    decimals: 1
+    change_unit: "%"
+
+  - id: ms_gov_deposits
+    label: "Central government deposits (monetary survey)"
+    label_es: "Depósitos de la Administración central (panorama monetario)"
+    section: financial
+    source: monsurvey
+    key: gov_deposits
+    freq: M
+    unit: "€ bn"
+    decimals: 1
+    change_unit: "%"
+
+  - id: ms_claims_private
+    label: "Claims on the private sector and other financial corporations (monetary survey)"
+    label_es: "Activos frente al sector privado y otras sociedades financieras (panorama monetario)"
+    section: financial
+    source: monsurvey
+    key: claims_private
+    freq: M
+    unit: "€ bn"
+    decimals: 1
+    change_unit: "%"
+
+  - id: ms_loans_nfc
+    label: "Bank loans to non-financial corporations"
+    label_es: "Préstamos bancarios a sociedades no financieras"
+    section: financial
+    source: monsurvey
+    key: loans_nfc
+    freq: M
+    unit: "€ bn"
+    decimals: 1
+    change_unit: "%"
+
+  - id: ms_loans_households
+    label: "Bank loans to households"
+    label_es: "Préstamos bancarios a hogares"
+    section: financial
+    source: monsurvey
+    key: loans_households
+    freq: M
+    unit: "€ bn"
+    decimals: 1
+    change_unit: "%"
+
+  - id: ms_broad_money
+    label: "Broad money (monetary survey)"
+    label_es: "Dinero en sentido amplio (panorama monetario)"
+    section: financial
+    source: monsurvey
+    key: broad_money
+    freq: M
+    unit: "€ bn"
+    decimals: 1
+    change_unit: "%"
+
+  - id: ms_currency
+    label: "Currency in circulation (monetary survey)"
+    label_es: "Efectivo en circulación (panorama monetario)"
+    section: financial
+    source: monsurvey
+    key: currency
+    freq: M
+    unit: "€ bn"
+    decimals: 1
+    change_unit: "%"
+
+  - id: ms_transferable
+    label: "Transferable deposits (monetary survey)"
+    label_es: "Depósitos transferibles (panorama monetario)"
+    section: financial
+    source: monsurvey
+    key: transferable
+    freq: M
+    unit: "€ bn"
+    decimals: 1
+    change_unit: "%"
+
+  - id: ms_other_deposits
+    label: "Other deposits in broad money (monetary survey)"
+    label_es: "Otros depósitos incluidos en el dinero amplio (panorama monetario)"
+    section: financial
+    source: monsurvey
+    key: other_deposits
+    freq: M
+    unit: "€ bn"
+    decimals: 1
+    change_unit: "%"
+
+  - id: ms_securities_bm
+    label: "Debt securities in broad money (monetary survey)"
+    label_es: "Valores de deuda incluidos en el dinero amplio (panorama monetario)"
+    section: financial
+    source: monsurvey
+    key: securities_bm
+    freq: M
+    unit: "€ bn"
+    decimals: 1
+    change_unit: "%"
+
+  - id: ms_deposits_xbm
+    label: "Deposits excluded from broad money (monetary survey)"
+    label_es: "Depósitos excluidos del dinero amplio (panorama monetario)"
+    section: financial
+    source: monsurvey
+    key: deposits_xbm
+    freq: M
+    unit: "€ bn"
+    decimals: 1
+    change_unit: "%"
+
+  - id: ms_securities_xbm
+    label: "Debt securities excluded from broad money (monetary survey)"
+    label_es: "Valores de deuda excluidos del dinero amplio (panorama monetario)"
+    section: financial
+    source: monsurvey
+    key: securities_xbm
+    freq: M
+    unit: "€ bn"
+    decimals: 1
+    change_unit: "%"
+
+  - id: ms_equity
+    label: "Shares and other equity (monetary survey)"
+    label_es: "Acciones y otras participaciones (panorama monetario)"
+    section: financial
+    source: monsurvey
+    key: equity
+    freq: M
+    unit: "€ bn"
+    decimals: 1
+    change_unit: "%"
+
+  - id: ms_derivatives
+    label: "Financial derivatives (monetary survey)"
+    label_es: "Derivados financieros (panorama monetario)"
+    section: financial
+    source: monsurvey
+    key: derivatives
+    freq: M
+    unit: "€ bn"
+    decimals: 1
+    change_unit: "%"
+
+  - id: ms_oin
+    label: "Other items, net (monetary survey)"
+    label_es: "Otras partidas netas (panorama monetario)"
+    section: financial
+    source: monsurvey
+    key: oin
+    freq: M
+    unit: "€ bn"
+    decimals: 1
+    change_unit: "%"
+
   - id: eurusd
     label: EUR/USD
     label_es: Tipo de cambio dólar/euro

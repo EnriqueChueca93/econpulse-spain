@@ -14,6 +14,7 @@ $/t: $/t
 '% change in registered unemployment, as published': Variación del paro registrado, tal como se publica, %
 '% change on a year earlier': Variación interanual, %
 '% change on a year earlier (HICP in the EU, CPI elsewhere)': Variación interanual, % (IPCA en la UE, IPC en el resto)
+'% change on a year earlier, end-of-month stocks': Variación interanual, %, saldos de fin de mes
 '% change on a year earlier: wage cost per worker (quarterly) and CPI (monthly)': 'Variación interanual, %: coste salarial por trabajador (trimestral) e IPC (mensual)'
 '% change on the previous quarter (bars) and on a year earlier (line)': Variación intertrimestral (barras) e interanual (línea), %
 '% change on the previous quarter; the last point is the nowcast for {q}': Variación intertrimestral, %; el último punto es la estimación adelantada de {q}
@@ -526,6 +527,9 @@ Brent crude in euros: Petróleo Brent en euros
 Brent crude, dollars: Petróleo Brent, dólares
 Brent crude, euros: Petróleo Brent, euros
 British pounds: Libras esterlinas
+Broad money: Dinero en sentido amplio
+Broad money and lending: Dinero en sentido amplio y crédito
+Broad money liabilities: Pasivos incluidos en el dinero en sentido amplio
 Budget balance: Saldo presupuestario
 Budget balance {year}: Saldo presupuestario {year}
 Budget balance, past four quarters: Saldo presupuestario, últimos cuatro trimestres
@@ -619,6 +623,9 @@ Chemicals: Productos químicos
 Chemicals and plastics: Química y plásticos
 China: China
 Chocolate, cocoa and cocoa-based food products: Chocolate, cacao y productos a base de cacao
+Claims on general government: Activos frente a las Administraciones públicas
+Claims on the private sector: Activos frente al sector privado
+Claims on the private sector and other financial corporations: Activos frente al sector privado y otras sociedades financieras
 Class: Clase
 Clear all: Quitar todos
 Close; changes in %: Cierre; variaciones en %
@@ -672,6 +679,7 @@ Contribution of residual 3/: Contribución del residuo 3/
 ? 'Contributions are percentage points of GDP growth, as published by INE: domestic and external demand add up to GDP growth, give or take rounding.'
 : 'Las aportaciones son puntos porcentuales del crecimiento del PIB, tal como las publica el INE: la demanda nacional y la externa suman el crecimiento del PIB, salvo redondeo.'
 Contributions to GDP growth on a year earlier, percentage points: Aportaciones al crecimiento interanual del PIB, puntos porcentuales
+Contributions to broad money growth on a year earlier, percentage points: Aportaciones al crecimiento interanual del dinero en sentido amplio, puntos porcentuales
 'Contributions to growth: branches': 'Aportaciones al crecimiento: ramas de actividad'
 'Contributions to growth: demand': 'Aportaciones al crecimiento: demanda'
 'Contributions to quarterly growth: demand': 'Aportaciones al crecimiento trimestral: demanda'
@@ -708,6 +716,7 @@ Credit institutions' reserves and deposits: Reservas y depósitos de las entidad
 Credit to the private sector 2/: Crédito al sector privado 2/
 Credit to the private sector 6/: Crédito al sector privado 6/
 Croatian National Bank: Banco Nacional de Croacia
+Currency in circulation: Efectivo en circulación
 Current account: Cuenta corriente
 Current account balance: Saldo por cuenta corriente
 Current account balance 4/: Saldo por cuenta corriente 4/
@@ -750,6 +759,7 @@ Debt in {year}, European Commission: Deuda en {year}, Comisión Europea
 Debt in {year}, IMF: Deuda en {year}, FMI
 Debt secured on property: Deuda con garantía inmobiliaria
 Debt securities: Títulos de deuda
+Debt securities excluded from broad money: Valores de deuda excluidos del dinero en sentido amplio
 ? Debt service is what households pay in interest and principal (BIS). The saving rate is the share of disposable income not spent (INE).
 : El servicio de la deuda es lo que pagan los hogares en intereses y devolución del principal (BPI). La tasa de ahorro es la parte de la renta disponible que no se gasta (INE).
 Debt service, % of disposable income: Servicio de la deuda, % de la renta disponible
@@ -769,6 +779,7 @@ Deposit rate: Tipo de depósito
 'Deposit takers: consolidated basis': 'Sociedades captadoras de depósitos: base consolidada'
 'Deposit takers: domestic operations': 'Sociedades captadoras de depósitos: negocios en España'
 Deposits: Depósitos
+Deposits excluded from broad money: Depósitos excluidos del dinero en sentido amplio
 Deposits of other resident sectors 3/: Depósitos de otros sectores residentes 3/
 Deutsche Bundesbank: Deutsche Bundesbank
 ? 'Did the latest figures beat or miss expectations? Analysts'' forecasts for Spanish data are not freely available, so each figure is compared with a simple statistical forecast: what the indicator''s own past predicted. Above zero, the data came in stronger (or inflation hotter) than that forecast. Macroscope calculation, not a survey of forecasters.'
@@ -786,6 +797,7 @@ Dismissals: Despidos
 Does it track what the ECB did? The committee's tone averaged {listed}.: ¿Sigue lo que hizo el BCE? El tono medio del Consejo fue de {listed}.
 Dollars: Dólares
 Domestic business: Negocio en España
+Domestic claims: Activos internos
 Domestic demand: Demanda nacional
 Domestic demand, last quarter: Demanda interna, último trimestre
 Domestic demand, past four quarters: Demanda interna, últimos cuatro trimestres
@@ -798,6 +810,7 @@ Drinks and tobacco: Bebidas y tabaco
 Due in the next 12 months: Vence en los próximos 12 meses
 ECB: BCE
 ECB and BIS speeches; Macroscope word-list scores: Discursos del BCE y del BPI; puntuaciones de Macroscope con listas de palabras
+ECB and Banco de España (Macroscope calculation): BCE y Banco de España (cálculo de Macroscope)
 ECB composite indicator of systemic stress, 0 to 1, daily: Indicador compuesto de tensión sistémica del BCE, de 0 a 1, diario
 ECB deposit facility rate: Tipo de la facilidad de depósito del BCE
 ECB deposit facility rate (end of year): Tipo de la facilidad de depósito del BCE (fin de año)
@@ -806,6 +819,8 @@ ECB monetary policy decision: Decisión de política monetaria del BCE
 ECB rate vs Taylor rule: Tipo del BCE frente a la regla de Taylor
 ECB rates since 2019: Tipos del BCE desde 2019
 ECB-speak: ECB-speak
+ECB; Banco de España: BCE; Banco de España
+ECB; Banco de España; Macroscope calculation: BCE; Banco de España; cálculo de Macroscope
 EPA: EPA
 EU: UE
 EU = 100, purchasing power standards: UE = 100, estándares de poder de compra
@@ -1282,6 +1297,8 @@ In a cutting cycle (rule): En un ciclo de bajadas (regla)
 In a hiking cycle (rule): En un ciclo de subidas (regla)
 ? In euros the debt changes only through the deficit and other flows; growth and inflation lower the debt ratio, not the amount owed, so their effects appear only in the percent-of-GDP version.
 : En euros, la deuda solo varía por el déficit y otros flujos; el crecimiento y la inflación reducen la ratio de deuda, no el importe adeudado, por lo que sus efectos solo aparecen en la versión en porcentaje del PIB.
+? In the IMF's layout for euro-area members (euro-area-wide residency). Net claims on general government stand in for the IMF's net claims on central government, which public data can't split out. Claims on the private sector include banks' financial derivatives, as the IMF's do; the loans below them are a memo. Other items (net) balance the survey and hold, among others, the Banco de España's TARGET liability to the Eurosystem. Changes compare end-of-month stocks, so they include revaluations and reclassifications.
+: Con el formato del FMI para los miembros de la zona del euro (residencia en toda la zona del euro). Los activos netos frente a las Administraciones públicas sustituyen a los activos netos frente a la Administración central del FMI, que los datos públicos no permiten separar. Los activos frente al sector privado incluyen los derivados financieros de los bancos, como los del FMI; los préstamos que figuran debajo son una partida informativa. Las otras partidas (neto) cuadran el panorama e incluyen, entre otras, la deuda TARGET del Banco de España con el Eurosistema. Las variaciones comparan saldos de fin de mes, así que incluyen revalorizaciones y reclasificaciones.
 ? In the four quarters to {quarter}, pay per worker ranged from {low_pay} a month in {low} to {high_pay} in {high}, {times} times as much.
 : En los cuatro trimestres hasta {quarter}, el coste salarial por trabajador fue desde {low_pay} al mes en {low} hasta {high_pay} en {high}, {times} veces más.
 Index: Índice
@@ -1415,6 +1432,7 @@ Leave the labour force: Salen de la población activa
 Leisure and other services: Ocio y otros servicios
 Lending to banks: Préstamos a los bancos
 Lending to credit institutions (monetary policy operations): Crédito a entidades de crédito (operaciones de política monetaria)
+'Less: central government deposits': 'Menos: depósitos de la Administración central'
 Letras, Bonos and Obligaciones: Letras, Bonos y Obligaciones
 Level: Nivel
 Lines published only once a year are left out; {na} not yet published.: Se omiten las líneas que solo se publican una vez al año; {na} aún no publicado.
@@ -1432,6 +1450,7 @@ Loans, trade credits and other liabilities: Préstamos, créditos comerciales y 
 Long pause (rule): Pausa prolongada (regla)
 Long-run average: Media de largo plazo
 Long-term unemployment rate: Tasa de paro de larga duración
+Longer-term liabilities and other items: Pasivos a más largo plazo y otras partidas
 Lose their job: Pierden el empleo
 Losing or leaving a job: Perder o dejar el empleo
 Lower primary balance: Menor saldo primario
@@ -1497,6 +1516,8 @@ Mo: Lu
 Model: Modelo
 Monetary and Credit Indicators: Indicadores monetarios y crediticios
 Monetary and credit: Indicadores monetarios y crediticios
+Monetary survey: Panorama monetario
+'Money and credit: the monetary survey': 'Dinero y crédito: el panorama monetario'
 Monthly: Mensual
 Monthly (SA): Mensual (desest.)
 Monthly average, total system. The monthly change is seasonally adjusted by Macroscope; the y/y change is as published.: Media mensual, total del sistema. La variación mensual la desestacionaliza Macroscope; la interanual es la publicada.
@@ -1537,6 +1558,7 @@ Navarra: Navarra
 Need attention: Requieren atención
 Net acquisition of nonfinancial assets 2/: Adquisición neta de activos no financieros 2/
 Net acquisition of nonfinancial assets 3/: Adquisición neta de activos no financieros 3/
+Net claims on general government: Activos netos frente a las Administraciones públicas
 Net debt 5/: Deuda neta 5/
 Net exports (contribution to growth): Exportaciones netas (contribución al crecimiento)
 Net external debt: Deuda externa neta
@@ -1544,6 +1566,7 @@ Net external debt 2/: Deuda externa neta 2/
 Net financial: Financiera neta
 Net financial wealth: Riqueza financiera neta
 Net financial wealth, % of disposable income: Riqueza financiera neta, % de la renta disponible
+Net foreign assets: Activos exteriores netos
 Net interest paid by governments: Intereses netos pagados por las Administraciones públicas
 Net interest {year}: Intereses netos {year}
 Net international investment position: Posición de inversión internacional neta
@@ -1652,6 +1675,7 @@ Other EU: Otros de la UE
 Other EU countries: Otros países de la UE
 Other branches and net taxes: Otras ramas e impuestos netos
 Other business services: Otros servicios empresariales
+Other deposits: Otros depósitos
 Other expense: Otros gastos
 Other flows (stock-flow adjustment) 2/: Otros flujos (ajuste stock-flujo) 2/
 Other flows and residual: Otros flujos y residuo
@@ -1659,6 +1683,8 @@ Other food and feed: Otros alimentos y piensos
 Other goods: Otros bienes
 'Other identified flows: (minus) interest revenues 2/': 'Otros flujos identificados: (menos) ingresos por intereses 2/'
 Other investment: Otra inversión
+Other items (net): Otras partidas (neto)
+Other liabilities and items: Otros pasivos y partidas
 Other monetary financial institutions: Otras instituciones financieras monetarias
 Other permanent: Otros indefinidos
 Other resident sectors: Otros sectores residentes
@@ -2079,6 +2105,7 @@ Share of the basket: Parte de la cesta
 Share of {n} central banks hiking minus share cutting, %, monthly: Porcentaje de los {n} bancos centrales que suben tipos menos el de los que los bajan, %, mensual
 Share over 80%: Más del 80%
 Shares: Porcentajes
+Shares and other equity: Acciones y otras participaciones de capital
 Show all: Mostrar todos
 Show data: Ver los datos
 Sick leave: Incapacidad temporal
@@ -2264,6 +2291,8 @@ The FUNCAS Panel is the average of about 19 forecasters (banks, research institu
 The IBEX 35 since 2007: El IBEX 35 desde 2007
 ? 'The IMF''s main table for Spain: demand, saving and investment, prices, the labour market, and a summary of the external and public accounts.'
 : 'El cuadro principal del FMI para España: demanda, ahorro e inversión, precios, mercado laboral y un resumen de las cuentas externas y públicas.'
+? 'The IMF''s monetary survey for Spain: the consolidated balance sheet of the Banco de España and the banks, which sets the money they create (broad money) against what backs it: claims on the rest of the world, on the government and on the private sector. The IMF''s own figures end in February 2025; Macroscope rebuilds every line monthly from the ECB''s and the Banco de España''s statistics, within 0.2% of the IMF''s on average where both exist (2015 to 2025). As a euro-area member, Spain counts the whole euro area as domestic.'
+: 'El panorama monetario de España del FMI: el balance consolidado del Banco de España y de los bancos, que enfrenta el dinero que crean (el dinero en sentido amplio) con lo que lo respalda: activos frente al resto del mundo, frente a las Administraciones públicas y frente al sector privado. Las cifras del propio FMI terminan en febrero de 2025; Macroscope reconstruye cada línea mes a mes con las estadísticas del BCE y del Banco de España, con una diferencia media del 0.2% respecto a las del FMI donde existen ambas (de 2015 a 2025). Como miembro de la zona del euro, España considera interna toda la zona del euro.'
 The IMF's outlook: Las perspectivas del FMI
 ? 'The IMF''s projections: real GDP growth and average consumer price inflation over the year, and the unemployment rate on each country''s own definition (so the levels compare less well than the changes). The IMF updates them in April and October. The forecasters followed for Spain alone are on the Analysis page.'
 : 'Proyecciones del FMI: crecimiento del PIB real e inflación media de los precios de consumo en el año, y tasa de paro según la definición de cada país (por eso los niveles se comparan peor que las variaciones). El FMI las actualiza en abril y octubre. Las previsiones de otras instituciones, que se siguen solo para España, están en la página de Análisis.'
@@ -2387,6 +2416,7 @@ Trade in goods and services: Comercio de bienes y servicios
 Trade in services: Comercio de servicios
 Trade of goods balance: Balanza de bienes
 Trade, transport and hospitality: Comercio, transporte y hostelería
+Transferable deposits: Depósitos transferibles
 Transport: Transporte
 Transport and storage: Transporte y almacenamiento
 Trend unemployment: Paro tendencial
@@ -2519,6 +2549,7 @@ What's new: Novedades
 When the figures on this site are published. Times are Madrid time.: Cuándo se publican las cifras de este sitio. Las horas son de Madrid.
 ? 'Where Spain''s goods go and where they come from: the EU and the largest partners, over the past 12 months. Most exports go to the EU; imports lean more on China and on energy suppliers.'
 : 'Adónde van los bienes de España y de dónde vienen: la UE y los principales socios, en los últimos 12 meses. La mayor parte de las exportaciones va a la UE; las importaciones dependen más de China y de los proveedores de energía.'
+Where broad money growth comes from: De dónde viene el crecimiento del dinero en sentido amplio
 ? 'Where the pensioner lives. Average pensions follow past pay: highest in the País Vasco, Asturias and Madrid, lowest in Extremadura and Galicia (tables PEN-19, PEN-20 and PEN-24).'
 : 'Según dónde vive el pensionista. Las pensiones medias siguen a los salarios del pasado: son más altas en el País Vasco, Asturias y Madrid y más bajas en Extremadura y Galicia (cuadros PEN-19, PEN-20 y PEN-24).'
 Where the unemployed go: Adónde van los parados
@@ -2591,6 +2622,7 @@ bp: pb
 built %(when)s: generado el %(when)s
 calendar: calendario
 checked by AI: verificado por IA
+claims on the rest of the world less liabilities to it · {month}: activos frente al resto del mundo menos pasivos frente a él · {month}
 close of {day}: cierre del {day}
 close to normal: cerca de lo normal
 cooler than normal: más baja de lo normal
@@ -2665,7 +2697,10 @@ of the home's price on average · {period}; {over} of mortgages lend more than 8
 of their loans · {period}: del crédito total · {period}
 of their loans · {period}; housing loans {homes}: del crédito total · {period}; crédito a la vivienda, {homes}
 of which housing: de la cual, vivienda
+of which loans to households: de los cuales, préstamos a hogares
+of which loans to non-financial corporations: de los cuales, préstamos a sociedades no financieras
 ok: correcto
+on a year earlier · {month}: interanual · {month}
 on a year · {period}; {index} against 100 in 2014: en un año · {period}; índice {index}, frente a 100 en 2014
 on the 1st of {month}: a 1 de {month}
 on the participation rate: sobre la tasa de actividad
@@ -2777,6 +2812,7 @@ z-score: Puntuación z
 '{change} lower': '{change} más bajo'
 '{change} on a year': '{change} en un año'
 '{change} on a year earlier': '{change} interanual'
+'{change} on a year earlier · {month}': '{change} interanual · {month}'
 '{change}% on a year earlier': '{change}% interanual'
 '{cut} cut · {hold} hold · {hike} hike': '{cut} bajada · {hold} sin cambios · {hike} subida'
 '{date}': '{date}'
@@ -2843,6 +2879,7 @@ z-score: Puntuación z
 € billion over the past 12 months · through {period}: Miles de millones de € en los últimos 12 meses · hasta {period}
 € billion over the past four quarters: Miles de millones de € en los últimos cuatro trimestres
 € billion over the past four quarters · through {period}: Miles de millones de € en los últimos cuatro trimestres · hasta {period}
+€ billion, end of month; change on a year earlier in %: Miles de millones de €, fin de mes; variación interanual en %
 ? '€ billion, end of year: securities bought for monetary policy, lending to banks, and its TARGET balance (net position in the Eurosystem''s payment system)'
 : 'Miles de millones de €, fin de año: valores adquiridos con fines de política monetaria, préstamos a los bancos y su saldo TARGET (posición neta en el sistema de pagos del Eurosistema)'
 € bn: mm €

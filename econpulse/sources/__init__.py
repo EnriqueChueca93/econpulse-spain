@@ -6,7 +6,7 @@ Clients with INCREMENTAL = True can't serve full history in one request; when gi
 """
 
 from . import (afiliacion, ageing, bde, bdeproj, bel, bis, bls, bundesbank, comext, dbnomics, ecb, eia, eurostat, fred, funcas, hicpdist, imf, ine,
-               oecd, oilbulletin, ree, reg, segsocial, tesoro, worldbank)
+               monsurvey, oecd, oilbulletin, ree, reg, segsocial, tesoro, worldbank)
 
 CLIENTS = {
     "ine": ine,
@@ -34,6 +34,7 @@ CLIENTS = {
     "comext": comext,
     "oilbulletin": oilbulletin,
     "tesoro": tesoro,
+    "monsurvey": monsurvey,
 }
 
 # Computed from other indicators after fetching; see derived.py.
@@ -65,11 +66,12 @@ SOURCE_NAMES = {
     "comext": "Eurostat (Comext)",
     "oilbulletin": "European Commission (Weekly Oil Bulletin)",
     "tesoro": "Tesoro Público",
+    "monsurvey": "ECB and Banco de España (Macroscope calculation)",
     DERIVED: "Macroscope calculation",
 }
 
 # Macroscope calculations made while fetching, from another publisher's data: charts credit both.
-CALCULATED_FROM = {"hicpdist": "Eurostat", "ageing": "Eurostat"}
+CALCULATED_FROM = {"hicpdist": "Eurostat", "ageing": "Eurostat", "monsurvey": "ECB; Banco de España"}
 
 # DBnomics mirrors several agencies; credit the one behind the series (the key's first part).
 DBNOMICS_PROVIDERS = {"BEA": "US BEA (via DBnomics)", "AMECO": "European Commission (via DBnomics)"}

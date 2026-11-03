@@ -8,8 +8,8 @@ lists the indicators those functions read. Sections without blocks yet show thei
 (see build.SECTION_PAGES for the batch that fills them).
 """
 
-from . import (analytics, demography, equities, forecasts, fuel, gdpdetail, housing, peers, pensions, policy,
-               sectortables, statedebt, surprises, underlying, workstats)
+from . import (analytics, demography, equities, forecasts, fuel, gdpdetail, housing, monetary, peers, pensions,
+               policy, sectortables, statedebt, surprises, underlying, workstats)
 from .charts import build_chart, build_curve, build_ranking, build_xy, localise
 from .i18n import _
 from .registry import Indicator
@@ -1064,6 +1064,60 @@ PAGES: dict[str, list[dict]] = {
                  "subtitle": "Madrid exchange sector indices, last close of 2019 = 100",
                  "kind": "line", "unit": "", "decimals": 0, "start": "2019-12-31", "ref_lines": [{"y": 100, "label": "End of 2019"}],
                  "series": [(i, "level", label, {"rebase": "2019-12-31"}) for i, label in equities.SECTORS]},
+            ],
+        },
+        {
+            "id": "monetary-survey",
+            "title": "Money and credit: the monetary survey",
+            "intro": ("The IMF's monetary survey for Spain: the consolidated balance sheet of the Banco de España and the "
+                      "banks, which sets the money they create (broad money) against what backs it: claims on the rest of "
+                      "the world, on the government and on the private sector. The IMF's own figures end in February 2025; "
+                      "Macroscope rebuilds every line monthly from the ECB's and the Banco de España's statistics, within "
+                      "0.2% of the IMF's on average where both exist (2015 to 2025). As a euro-area member, Spain counts the "
+                      "whole euro area as domestic."),
+            "facts": monetary.facts,
+            "uses": monetary.USES,
+            "tables": [Table(
+                title="Monetary survey",
+                caption="€ billion, end of month; change on a year earlier in %",
+                columns=[Level("latest"), Level("year"), Change("y/y %", 12)],
+                rows=[
+                    Row("ms_nfa", "Net foreign assets"),
+                    Row("ms_domestic_claims", "Domestic claims"),
+                    Row("ms_net_claims_gg", "Net claims on general government", indent=1),
+                    Row("ms_claims_gg", "Claims on general government", indent=2),
+                    Row("ms_gov_deposits", "Less: central government deposits", indent=2),
+                    Row("ms_claims_private", "Claims on the private sector and other financial corporations", indent=1),
+                    Row("ms_loans_nfc", "of which loans to non-financial corporations", indent=2),
+                    Row("ms_loans_households", "of which loans to households", indent=2),
+                    Row("ms_broad_money", "Broad money liabilities"),
+                    Row("ms_currency", "Currency in circulation", indent=1),
+                    Row("ms_transferable", "Transferable deposits", indent=1),
+                    Row("ms_other_deposits", "Other deposits", indent=1),
+                    Row("ms_securities_bm", "Debt securities", indent=1),
+                    Heading("Other liabilities and items"),
+                    Row("ms_deposits_xbm", "Deposits excluded from broad money", indent=1),
+                    Row("ms_securities_xbm", "Debt securities excluded from broad money", indent=1),
+                    Row("ms_equity", "Shares and other equity", indent=1),
+                    Row("ms_derivatives", "Financial derivatives", indent=1),
+                    Row("ms_oin", "Other items (net)", indent=1),
+                ],
+                note=("In the IMF's layout for euro-area members (euro-area-wide residency). Net claims on general "
+                      "government stand in for the IMF's net claims on central government, which public data can't split "
+                      "out. Claims on the private sector include banks' financial derivatives, as the IMF's do; the loans "
+                      "below them are a memo. Other items (net) balance the survey and hold, among others, the Banco de "
+                      "España's TARGET liability to the Eurosystem. Changes compare end-of-month stocks, so they include "
+                      "revaluations and reclassifications."),
+            )],
+            "charts": [
+                monetary.sources_chart,
+                {"id": "money-credit-growth", "title": "Broad money and lending",
+                 "subtitle": "% change on a year earlier, end-of-month stocks", "kind": "line", "unit": "%", "decimals": 1,
+                 "start": "2011-06-01",
+                 "series": [("ms_broad_money", "yoy", "Broad money", {"color": "ink"}),
+                            ("ms_claims_private", "yoy", "Claims on the private sector"),
+                            ("ms_loans_households", "yoy", "Loans to households"),
+                            ("ms_loans_nfc", "yoy", "Loans to non-financial corporations")]},
             ],
         },
         {

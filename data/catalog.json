@@ -7079,6 +7079,150 @@
   "flash": false,
   "source_name": "Viviendas. Número de hipotecas. Total Nacional. Base nueva. Mensual."
  },
+ "ms_broad_money": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T04:05:20+00:00",
+  "first_date": "2010-06-01",
+  "last_date": "2026-09-01",
+  "n_obs": 196,
+  "signature": "[\"monsurvey\", \"broad_money\", {}, 1.0]"
+ },
+ "ms_claims_gg": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T04:05:20+00:00",
+  "first_date": "1999-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 333,
+  "signature": "[\"monsurvey\", \"claims_gg\", {}, 1.0]"
+ },
+ "ms_claims_private": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T04:05:20+00:00",
+  "first_date": "2005-06-01",
+  "last_date": "2026-08-01",
+  "n_obs": 255,
+  "signature": "[\"monsurvey\", \"claims_private\", {}, 1.0]"
+ },
+ "ms_currency": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T04:05:20+00:00",
+  "first_date": "1997-09-01",
+  "last_date": "2026-09-01",
+  "n_obs": 349,
+  "signature": "[\"monsurvey\", \"currency\", {}, 1.0]"
+ },
+ "ms_deposits_xbm": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T04:05:20+00:00",
+  "first_date": "2010-06-01",
+  "last_date": "2026-09-01",
+  "n_obs": 196,
+  "signature": "[\"monsurvey\", \"deposits_xbm\", {}, 1.0]"
+ },
+ "ms_derivatives": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T04:05:20+00:00",
+  "first_date": "2005-06-01",
+  "last_date": "2026-08-01",
+  "n_obs": 255,
+  "signature": "[\"monsurvey\", \"derivatives\", {}, 1.0]"
+ },
+ "ms_domestic_claims": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T04:05:20+00:00",
+  "first_date": "2005-06-01",
+  "last_date": "2026-08-01",
+  "n_obs": 255,
+  "signature": "[\"monsurvey\", \"domestic_claims\", {}, 1.0]"
+ },
+ "ms_equity": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T04:05:20+00:00",
+  "first_date": "1999-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 333,
+  "signature": "[\"monsurvey\", \"equity\", {}, 1.0]"
+ },
+ "ms_gov_deposits": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T04:05:20+00:00",
+  "first_date": "1999-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 333,
+  "signature": "[\"monsurvey\", \"gov_deposits\", {}, 1.0]"
+ },
+ "ms_loans_households": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T04:05:20+00:00",
+  "first_date": "2003-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 285,
+  "signature": "[\"monsurvey\", \"loans_households\", {}, 1.0]"
+ },
+ "ms_loans_nfc": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T04:05:20+00:00",
+  "first_date": "2003-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 285,
+  "signature": "[\"monsurvey\", \"loans_nfc\", {}, 1.0]"
+ },
+ "ms_net_claims_gg": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T04:05:20+00:00",
+  "first_date": "1999-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 333,
+  "signature": "[\"monsurvey\", \"net_claims_gg\", {}, 1.0]"
+ },
+ "ms_nfa": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T04:05:18+00:00",
+  "first_date": "1999-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 333,
+  "signature": "[\"monsurvey\", \"nfa\", {}, 1.0]"
+ },
+ "ms_oin": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T04:05:20+00:00",
+  "first_date": "2010-06-01",
+  "last_date": "2026-08-01",
+  "n_obs": 195,
+  "signature": "[\"monsurvey\", \"oin\", {}, 1.0]"
+ },
+ "ms_other_deposits": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T04:05:20+00:00",
+  "first_date": "2010-06-01",
+  "last_date": "2026-09-01",
+  "n_obs": 196,
+  "signature": "[\"monsurvey\", \"other_deposits\", {}, 1.0]"
+ },
+ "ms_securities_bm": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T04:05:20+00:00",
+  "first_date": "1997-09-01",
+  "last_date": "2026-09-01",
+  "n_obs": 349,
+  "signature": "[\"monsurvey\", \"securities_bm\", {}, 1.0]"
+ },
+ "ms_securities_xbm": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T04:05:20+00:00",
+  "first_date": "1999-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 333,
+  "signature": "[\"monsurvey\", \"securities_xbm\", {}, 1.0]"
+ },
+ "ms_transferable": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T04:05:20+00:00",
+  "first_date": "1999-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 333,
+  "signature": "[\"monsurvey\", \"transferable\", {}, 1.0]"
+ },
  "national_saving_annual": {
   "status": "ok",
   "fetched_at": "2026-11-03T00:05:44+00:00",
