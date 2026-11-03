@@ -46,6 +46,7 @@ add({
     "About and methods": "Acerca del sitio y métodos",
     "Data and freshness": "Datos y actualidad",
     "RSS feed": "Canal RSS",
+    "Privacy and cookies": "Privacidad y cookies",
     "Search the site": "Buscar en el sitio",
     "Search series, charts and sections, in English or Spanish": "Busque series, gráficos y secciones, en español o en inglés",
     "Results": "Resultados",

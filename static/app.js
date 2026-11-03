@@ -44,6 +44,20 @@
   }
   darkQuery.addEventListener("change", drawAll);
 
+  // ---------------------------------------------------------------- forget my choices (About, Privacy)
+  // Every choice the site remembers is in local storage under a key starting "ep-"; this clears them all.
+  Array.prototype.forEach.call(document.querySelectorAll("[data-forget-choices]"), function (b) {
+    b.addEventListener("click", function () {
+      try {
+        Object.keys(localStorage).forEach(function (k) { if (k.indexOf("ep-") === 0) localStorage.removeItem(k); });
+      } catch (e) { /* storage blocked: nothing was kept */ }
+      root.removeAttribute("data-theme");
+      drawAll();
+      var status = b.parentNode.querySelector(".forget-status");
+      if (status) status.textContent = b.getAttribute("data-done") || "";
+    });
+  });
+
   // ---------------------------------------------------------------- tab dropdowns
   // Each tab's ▾ opens a list of the sections on that page. The lists live outside the scrolling
   // tab bar, so they are placed under their tab here. Hover opens them where there is a mouse.

@@ -704,3 +704,11 @@ body.search-on { overflow: hidden; }
 .heat-legend { display: flex; flex-wrap: wrap; gap: 4px 12px; margin-top: 10px; font-size: 12px; color: var(--text-2); }
 .heat-key { display: inline-flex; align-items: center; gap: 5px; }
 .heat-swatch { width: 14px; height: 10px; border-radius: 2px; }
+
+/* About, Privacy: the button that clears the choices kept in local storage */
+.forget-choices {
+  padding: 5px 14px; font: 14px var(--sans); color: var(--text);
+  background: var(--surface); border: 1px solid var(--border); border-radius: 6px; cursor: pointer;
+}
+.forget-choices:hover { background: var(--hover); border-color: var(--text-2); }
+.forget-status { margin-left: 10px; font-size: 13px; color: var(--text-2); }

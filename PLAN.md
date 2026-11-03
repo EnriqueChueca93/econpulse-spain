@@ -226,6 +226,13 @@ Each batch is sized for one working session, ends with something you can open or
 ### Batch 12 — Forecasts and surprises ✅ done 1 Nov 2026
 *Result: two new blocks on the Analysis page. "What forecasters expect": GDP growth, inflation, unemployment and the budget balance for 2026 and 2027 from seven forecasters, each with its publication month and a link. The OECD Economic Outlook and the European Commission (AMECO, via DBnomics) are fetched as indicators (`fc_*`, edition read from the data); the Banco de España, AIReF, the FUNCAS Panel, the government and the IMF are in `econpulse/forecasts.yaml`, updated by hand. They average 2.5% for 2026 and 2.0% for 2027; EconPulse's own 2026 figure, INE's first three quarters plus the Q4 nowcast, is 2.6%, and 2.4% is already banked even with a flat Q4. "Data surprises": each figure behind the composites against a one-step AR(1) forecast fitted only on earlier data, in units of the model's typical error, averaged over the past four months (weights 1, ¾, ½, ¼). Activity is +0.3 (in line) and inflation +0.8 (above expectations); both are also on the home page. DBnomics series are now credited to their real publisher. 276 indicators, 144 offline tests.*
 
+### Privacy and cookies ✅ done 3 Nov 2026
+*Asked: "Let's make sure we are compliant with the EU cookie policy."*
+
+- Audit: the site sets no cookies (GitHub Pages sends none either), has no analytics, and loads nothing from other domains (live check: every request is to the site itself). The only storage is local storage for choices the reader makes (theme, comparator countries, sector-table unit and frequency), written only when they make them. Under the AEPD's cookie guide (May 2024, pp. 10 and 12) that is user-chosen interface personalisation, exempt from consent under LSSI art. 22.2, and needn't be session-only; the guide recommends saying so anyway. So: no banner.
+- Added "Privacy and cookies" at the end of the About page, in English and Spanish: what is and isn't stored, why there is no banner, a "Forget my choices" button (clears every `ep-` key), and GitHub Pages' IP logging with a link to GitHub's privacy statement. A footer link on every page points to it.
+- `tests/test_privacy.py` keeps it true: no cookies or other browser storage, every stored key listed in the notice, and nothing loaded from another site.
+
 ### Batch 36 — Recession signals: the Sahm and Michez rules ✅ done 3 Nov 2026
 *Asked: "To the Analysis tab add a Sahm/Michez rule section."*
 
