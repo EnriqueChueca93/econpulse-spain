@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+{# The Tools page in Spanish (Batch 33d): mostly prose, so a template of its own rather than catalogue entries.
+   Keep it in step with templates/tools.html (same ids, data attributes and scripts); static/tools.js writes the
+   results, tables and charts in the page's language. #}
+
+{% block title %}Herramientas · {{ brand }}{% endblock %}
+{% block description %}Herramientas interactivas sobre la economía española: cambie un ajuste y todas las cifras y gráficos se recalculan en su navegador.{% endblock %}
+
+{% macro figure(id, title, subtitle, source) -%}
+  <figure class="card chart-card" id="fig-{{ id }}">
+    <figcaption>
+      <span class="chart-title">{{ title }}</span>
+      <span class="chart-subtitle">{{ subtitle }}</span>
+    </figcaption>
+    <div class="chart" id="chart-{{ id }}" role="img" aria-label="{{ title }}: {{ subtitle }}"></div>
+    <div class="chart-foot"><span class="secondary">Fuente: {{ source }}</span>
+      <span class="chart-actions">
+        <button type="button" class="chart-link chart-csv" data-chart="{{ id }}" hidden aria-label="Descargar los datos del gráfico {{ title }} en un archivo CSV">CSV</button>
+        <button type="button" class="chart-link" data-figure="fig-{{ id }}" aria-label="Copiar un enlace al gráfico {{ title }}">Copiar enlace</button></span></div>
+  </figure>
+{%- endmacro %}
+
+{% block content %}
+  <h1>Herramientas</h1>
+  <p class="lede">Haga sus propias preguntas a los datos: cambie un ajuste y todas las cifras y gráficos se recalculan en su navegador.</p>
+  <div class="tool-list">
+    <a class="card" href="fiscal-explorer.html">Explorador fiscal<span>La deuda y los déficits de España hasta 2070, a partir del
+      escenario base de la Comisión Europea: cambie la economía o el presupuesto, o calcule lo necesario para alcanzar un objetivo.</span></a>
+    <a class="card" href="budget-explorer.html">Explorador presupuestario<span>Lo que gastan e ingresan el Estado, la Seguridad Social y
+      cada comunidad autónoma, por funciones, tipos de gasto e impuestos, cada año desde 1995.</span></a>
+    <a class="card" href="ecb-speak.html">ECB-speak<span>Cuán restrictivo («halcón») o expansivo («paloma») suena el Consejo de Gobierno
+      del BCE, miembro a miembro, en todos los discursos desde 2022 (puntuaciones por listas de palabras).</span></a>
+    <a class="card" href="stance.html">Orientación de los bancos centrales<span>Doce bancos centrales: tipos, decisiones, ciclo,
+      próximas reuniones, previsiones de los analistas y probabilidades del mercado. De Econvitals.</span></a>
+  </div>
+  <nav class="on-page" aria-label="En esta página">
+    <a href="#trend">La economía frente a su tendencia previa a la COVID</a><a href="#taylor">Regla de Taylor</a><a href="#rates">Descomposición de los tipos de interés</a>
+  </nav>
+
+  <section class="block" aria-labelledby="trend">
+    <h2 id="trend">La economía frente a su tendencia previa a la COVID</h2>
+    <p class="block-intro">Dónde están la producción, el empleo y los precios frente a la senda que seguían antes de la pandemia.
+      La tendencia se ajusta a los años que usted elija, hasta el último dato anterior a la COVID, y se prolonga hasta hoy.</p>
+    <div class="tool-controls">
+      <label>Serie <select id="trend-series"></select></label>
+      <label>Tendencia desde
+        <select id="trend-start">
+          <option value="2010">2010</option><option value="2013">2013</option>
+          <option value="2015" selected>2015</option><option value="2017">2017</option>
+        </select>
+        hasta 2019</label>
+    </div>
+    <p class="tool-result" id="trend-result" aria-live="polite"></p>
+    <div class="charts">
+      {{ figure("trend-line", "Datos observados y tendencia previa a la COVID", "Índice, último dato de la tendencia antes de la COVID = 100", "INE, Seguridad Social; cálculo de Macroscope") }}
+      {{ figure("trend-gaps", "Desviación respecto a la tendencia previa a la COVID", "Todas las series, con los mismos años de tendencia; % por encima o por debajo", "INE, Seguridad Social; cálculo de Macroscope") }}
+    </div>
+    <p class="note">La tendencia es una línea recta sobre el logaritmo de cada serie (crecimiento constante), ajustada desde
+      enero del año inicial hasta diciembre de 2019 (el cuarto trimestre en las series trimestrales). La afiliación y los
+      precios de consumo los desestacionaliza Macroscope; las demás series, el INE. La desviación muestra cuán lejos está la
+      economía de donde apuntaba la antigua tendencia, no de donde debería estar: el año inicial importa, y por eso puede
+      cambiarlo.</p>
+  </section>
+
+  <section class="block" aria-labelledby="taylor">
+    <h2 id="taylor">Regla de Taylor</h2>
+    <p class="block-intro">El tipo oficial que sugiere una regla sencilla, dadas la inflación y la holgura de la economía. Cambie
+      los supuestos y compare el resultado con lo que hizo realmente el BCE, para el conjunto de la zona del euro y para España
+      por sí sola.</p>
+    <div class="tool-controls">
+      <label>Economía
+        <select id="taylor-region">
+          <option value="both" selected>Zona del euro y España</option><option value="ea">Zona del euro</option><option value="es">España</option>
+        </select></label>
+      <label>Medida de inflación
+        <select id="taylor-measure"><option value="headline" selected>IAPC general</option><option value="core">IAPC subyacente</option></select></label>
+      <label>Tipo real neutral <input type="range" id="taylor-rstar" min="-1" max="3" step="0.25" value="{{ taylor_defaults.r_star }}">
+        <output id="taylor-rstar-out" for="taylor-rstar"></output></label>
+      <label>Peso de la inflación <input type="range" id="taylor-a" min="0" max="1.5" step="0.1" value="0.5">
+        <output id="taylor-a-out" for="taylor-a"></output></label>
+      <label>Peso del paro <input type="range" id="taylor-b" min="0" max="2" step="0.1" value="1">
+        <output id="taylor-b-out" for="taylor-b"></output></label>
+      <button type="button" class="tool-button" id="taylor-reset">Restablecer</button>
+    </div>
+    <p class="tool-result" id="taylor-result" aria-live="polite"></p>
+    <div class="charts">
+      {{ figure("taylor-tool", "El tipo del BCE y la regla", "%, mensual", "Eurostat, BCE; cálculo de Macroscope") }}
+    </div>
+    <p class="note">Regla: tipo real neutral (el tipo de interés natural) + inflación + (peso de la inflación) × (inflación − 2%)
+      − (peso del paro) × (paro − su tendencia). La regla de Taylor de 1993 da un peso de 0.5 a la inflación y, con una brecha
+      de producción igual al doble de la brecha de paro, de 1.0 al paro. El paro tendencial es una tendencia estadística (filtro
+      de Hodrick–Prescott), menos fiable en los últimos meses. La página de <a href="analysis.html#taylor">Análisis</a> usa los
+      mismos supuestos.</p>
+  </section>
+
+  <section class="block" aria-labelledby="rates">
+    <h2 id="rates">Descomposición de los tipos de interés</h2>
+    <p class="block-intro">Elija dos fechas y vea qué movió la rentabilidad del bono español a 10 años: los tipos de toda la zona
+      del euro o el riesgo propio de España y, dentro de los tipos de la zona del euro, la política monetaria a corto plazo o el
+      largo plazo.</p>
+    <div class="tool-controls">
+      <label>Desde <input type="date" id="rates-start"></label>
+      <label>Hasta <input type="date" id="rates-end"></label>
+      <span class="tool-presets">
+        <button type="button" class="tool-button" data-rates-preset="ytd">En lo que va de año</button>
+        <button type="button" class="tool-button" data-rates-preset="year">Último año</button>
+        <button type="button" class="tool-button" data-rates-preset="2022-07-20">Desde la primera subida del BCE de 2022</button>
+        <button type="button" class="tool-button" data-rates-preset="2019-12-31">Desde finales de 2019</button>
+      </span>
+    </div>
+    <p class="tool-result" id="rates-result" aria-live="polite"></p>
+    <div class="table-scroll tool-table">
+      <table class="data-table stat-table" id="rates-table">
+        <thead><tr><th scope="col">Componente del movimiento</th><th scope="col" class="num">Variación</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <div class="charts">
+      {{ figure("rates-parts", "El movimiento frente a la curva AAA", "Puntos básicos", "Banco de España, BCE; cálculo de Macroscope") }}
+      {{ figure("rates-levels", "Rentabilidades a 10 años en el periodo", "%, diaria", "Banco de España, BCE") }}
+    </div>
+    <p class="note">Pura aritmética, sin modelo: la rentabilidad española es la alemana más la prima de riesgo, y también la
+      rentabilidad AAA a 10 años de la zona del euro más el diferencial de España sobre ella. El tipo AAA a 10 años es una décima
+      parte del tipo a 1 año de hoy más nueve décimas partes del tipo implícito para los años 1 a 10 (el tipo a plazo); el
+      primero se mueve con la política esperada del BCE, el segundo con las perspectivas a largo plazo y la prima por plazo. Las
+      rentabilidades AAA son la estimación de la curva del BCE; las fechas sin datos usan el último día anterior.</p>
+  </section>
+{% endblock %}
+
+{% block scripts %}
+  <script src="{{ root }}assets/plotly-basic.min.js?v={{ build_id }}"></script>
+  <script src="data/tools.js?v={{ build_id }}"></script>
+{% endblock %}
+
+{% block after_scripts %}
+  <script src="{{ root }}assets/tools.js?v={{ build_id }}"></script>
+{% endblock %}

@@ -45,7 +45,7 @@ add({
     "built %(when)s": "generado el %(when)s",
     "About and methods": "Acerca del sitio y métodos",
     "Data and freshness": "Datos y actualidad",
-    "RSS feed": "Canal RSS (en inglés)",
+    "RSS feed": "Canal RSS",
     "Search the site": "Buscar en el sitio",
     "Search series, charts and sections, in English or Spanish": "Busque series, gráficos y secciones, en español o en inglés",
     "Results": "Resultados",
@@ -454,8 +454,13 @@ from catalogue_imf_b import PAIRS as IMF_B             # noqa: E402  Batch 33c-3
 from catalogue_debt import PAIRS as DEBT               # noqa: E402  Batch 34b
 from catalogue_equities import PAIRS as EQUITIES       # noqa: E402  Batch 34c
 from catalogue_gdp import PAIRS as GDP                 # noqa: E402  Batch 34d
+from catalogue_site import PAIRS as SITE               # noqa: E402  Batch 33d
+from catalogue_tools import PAIRS as TOOLS             # noqa: E402  Batch 33d
+from catalogue_speak import PAIRS as SPEAK             # noqa: E402  Batch 33d
+from catalogue_budget import PAIRS as BUDGET           # noqa: E402  Batch 33d
 
-for part in (SECTIONS_1, SECTIONS_2, ANALYSIS, TRADE, HOUSING, PENSIONS, INTERNATIONAL, IMF_A, IMF_B, DEBT, EQUITIES, GDP):
+for part in (SECTIONS_1, SECTIONS_2, ANALYSIS, TRADE, HOUSING, PENSIONS, INTERNATIONAL, IMF_A, IMF_B, DEBT, EQUITIES, GDP,
+             SITE, TOOLS, SPEAK, BUDGET):
     add(part)
 
 

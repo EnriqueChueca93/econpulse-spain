@@ -6,6 +6,9 @@ series); extra holds words that match but are not shown (a series' Spanish name,
 A series links to the section that shows it, or to its row on the Data page.
 """
 
+from . import i18n
+from .i18n import _
+
 PAGE, SECTION, CHART, SERIES = 0, 1, 2, 3
 
 
@@ -22,17 +25,19 @@ def build_index(nav: list[dict], page_charts: list[tuple[str, str, list[dict]]],
             out.append([kind, title, context, href, extra])
 
     for tab in nav:
-        add(PAGE, tab["label"], "Page", tab["href"])
+        add(PAGE, tab["label"], _("Page"), tab["href"])
         for child in tab["children"]:
             if "#" in child["href"]:
                 add(SECTION, child["title"], tab["label"], child["href"])
             else:                                   # a page of its own under this tab (Every industry, Fiscal Explorer)
                 add(PAGE, child["title"], tab["label"], child["href"])
-    add(PAGE, "About and methods", "Page", "about.html", "sources methodology")
+    add(PAGE, _("About and methods"), _("Page"), "about.html", _("sources methodology"))
     for href, title, charts in page_charts:
         for c in charts or []:
             add(CHART, c["title"], title, f"{href}#fig-{c['id']}", c.get("subtitle", ""))
     for i in items:
-        href, where = anchors.get(i["id"], (f"data.html#ind-{i['id']}", "Data"))
-        add(SERIES, i["label"], f"{where} · {i['source']}", href, i.get("label_es", ""))
+        href, where = anchors.get(i["id"], (f"data.html#ind-{i['id']}", _("Data")))
+        # The other language's name matches too: the Spanish name on the English site, the English one on the Spanish.
+        other = i.get("label_en", "") if i18n.lang() == "es" else i.get("label_es", "")
+        add(SERIES, i["label"], f"{where} · {i['source']}", href, other)
     return out

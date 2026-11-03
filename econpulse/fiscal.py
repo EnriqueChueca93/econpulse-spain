@@ -19,7 +19,9 @@ History: Eurostat since 1995 and, for debt, the Commission's series back to 1970
 
 import json
 
+from . import i18n
 from .config import PACKAGE_DIR
+from .i18n import _
 from .tables import Data
 
 BASELINE_FILE = PACKAGE_DIR / "fiscal_baseline.json"   # written by scripts/extract_fiscal_baseline.py
@@ -29,7 +31,8 @@ MATURITY = 8             # years: an eighth of the debt is refinanced each year 
 INFLATION = 2.0          # % a year, the GDP deflator after the Commission's horizon
 AGEING = ("pensions", "health", "ltc", "education")
 
-# History shown under "The Past": id -> (label, group). Revenue and spending in % of GDP.
+# History shown under "The Past": id -> (label, group). Revenue and spending in % of GDP. Labels and groups are
+# written in the page's language (the Spanish in scripts/catalogue_tools.py).
 HISTORY = [
     ("debt_annual", "Gross public debt", "Debt and balances"),
     ("deficit_annual", "Overall balance", "Debt and balances"),
@@ -47,6 +50,19 @@ HISTORY = [
     ("spending_health_annual", "Health", "Spending by function"),
     ("spending_education_annual", "Education", "Spending by function"),
 ]
+# Labels whose plain catalogue entry means something else on other pages ("Health" the industry, "Spending" the
+# demand side of GDP): the Spanish pages look them up under a fuller English key.
+_KEYS = {"Health": "Health (spending by function)", "Spending": "Spending (general government)"}
+
+
+def _label(text: str) -> str:
+    """A label of "The Past" in the language being written."""
+    return _(_KEYS[text]) if text in _KEYS and i18n.lang() != "en" else _(text)
+
+
+def _edition(source: dict) -> dict:
+    """A source's description, with its edition (publisher, paper and date) in the language being written."""
+    return {**source, "edition": _(source["edition"])}
 
 
 def load(path=None) -> dict:
@@ -105,7 +121,7 @@ def history(data: Data, raw: dict) -> dict:
         if ind_id == "debt_annual":   # the Commission's series before Eurostat's starts
             for y, v in _series(raw["dsm"]["history"]).items():
                 values.setdefault(y, round(v, 2))
-        out[ind_id] = {"label": label, "group": group, "years": sorted(values), "values": [values[y] for y in sorted(values)]}
+        out[ind_id] = {"label": _label(label), "group": _label(group), "years": sorted(values), "values": [values[y] for y in sorted(values)]}
     return out
 
 
@@ -118,7 +134,7 @@ def gap(rows: dict, target: float, year: int, start: int = FIRST_LEVER_YEAR) -> 
             d = d * (1 + r["i"] / 100) / (1 + r["g"] / 100) - (r["pb"] + adj) + r["sfa"]
         return d
     lo, hi = -15.0, 25.0
-    for _ in range(60):
+    for _step in range(60):
         mid = (lo + hi) / 2
         lo, hi = (mid, hi) if debt_in(mid) > target else (lo, mid)
     return hi
@@ -128,7 +144,7 @@ def past_groups(history_data: dict) -> list[tuple[str, list[tuple[str, str]]]]:
     groups: dict[str, list] = {}
     for ind_id, label, group in HISTORY:
         if ind_id in history_data:
-            groups.setdefault(group, []).append((ind_id, label))
+            groups.setdefault(_label(group), []).append((ind_id, _label(label)))
     return list(groups.items())
 
 
@@ -148,5 +164,5 @@ def explorer_data(data: Data, path=None) -> dict | None:
         "history": history(data, raw),
         "gaps": raw["dsm"].get("gaps", {}),
         "s1_check": gap(rows, 60.0, 2070),
-        "sources": {"dsm": raw["dsm_source"], "ar": raw["ar_source"], "extracted": raw["extracted"]},
+        "sources": {"dsm": _edition(raw["dsm_source"]), "ar": _edition(raw["ar_source"]), "extracted": raw["extracted"]},
     }

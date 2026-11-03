@@ -286,9 +286,10 @@ def _build_language(indicators: list[Indicator], store: Store, site_root: Path, 
     for i in items:
         counts[i["source"]] = counts.get(i["source"], 0) + 1
     render("about.html", "about.html", total=len(items), source_counts=sorted(counts.items(), key=lambda kv: -kv[1]))
-    if lang == "en":                  # GitHub Pages serves the root's 404 page for any address; the feed is English
+    if lang == "en":                  # GitHub Pages serves the root's 404 page for any address
         render("404.html", "404.html", active="", site_path=urlparse(SITE_URL).path or "/", counterpart="es/index.html")
-        (site_dir / feed.FEED_FILE).write_text(feed.build_feed(store), encoding="utf-8", newline="\n")
+    # The feed in each language (Batch 33d): site/feed.xml and site/es/feed.xml.
+    (site_dir / feed.FEED_FILE).write_text(feed.build_feed(store, registry=registry), encoding="utf-8", newline="\n")
     write_data_js(data_dir / "tools.js", "tools", tools.tools_data(Data(indicators, store)))
     render("tools.html", "tools.html", taylor_defaults={"r_star": analytics.R_STAR})
     fx = fiscal.explorer_data(Data(indicators, store))

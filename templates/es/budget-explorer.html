@@ -1,0 +1,350 @@
+{% extends "base.html" %}
+{# The Budget explorer in Spanish (Batch 33d): mostly prose, so a template of its own; the names of the
+   administrations, functions, taxes and policies come from econpulse/budget.py in Spanish already, and the words the
+   scripts write from static/budget.js and static/pge.js. Keep it in step with templates/budget-explorer.html. #}
+
+{% block title %}{{ _("Budget explorer") }} · {{ brand }}{% endblock %}
+{% block description %}Lo que gastan e ingresan las Administraciones públicas españolas, por temas, desde 1995: funciones, tipos de gasto e impuestos.{% endblock %}
+
+{% macro figure(id, title, subtitle, source) -%}
+  <figure class="card chart-card" id="fig-{{ id }}">
+    <figcaption>
+      <span class="chart-title" id="{{ id }}-title">{{ title }}</span>
+      <span class="chart-subtitle" id="{{ id }}-subtitle">{{ subtitle }}</span>
+    </figcaption>
+    <div class="chart" id="chart-{{ id }}" role="img" aria-label="{{ title }}"></div>
+    <div class="chart-foot"><span class="secondary">Fuente: {{ source }}</span>
+      <span class="chart-actions">
+        <button type="button" class="chart-link chart-csv" data-chart="{{ id }}" hidden aria-label="Descargar los datos del gráfico {{ title }} en un archivo CSV">CSV</button>
+        <button type="button" class="chart-link" data-figure="fig-{{ id }}" aria-label="Copiar un enlace al gráfico {{ title }}">Copiar enlace</button></span></div>
+  </figure>
+{%- endmacro %}
+
+{% block content %}
+  <p class="back-link"><a href="fiscal.html">← {{ _("Fiscal") }}</a> · <a href="tools.html">{{ _("Tools") }}</a></p>
+  <h1>{{ _("Budget explorer") }}</h1>
+  {% if not bx %}
+    <p class="notice">Los datos presupuestarios aún no se han descargado (llegarán con la próxima actualización).</p>
+  {% else %}
+  <p class="lede">Lo que gastan las Administraciones públicas españolas, en qué y de dónde sale el dinero, cada año desde
+    1995: el gasto por funciones (sanidad, educación, pensiones, defensa...), por tipo (salarios, compras, prestaciones,
+    intereses...) y los ingresos impuesto a impuesto, del Estado, la Seguridad Social, las comunidades autónomas en
+    conjunto y cada una de las 17. Elija la administración y la medida, marque las partidas que quiera seguir en el tiempo
+    y compare dos años cualesquiera.</p>
+
+  <div class="tool-controls bx-controls" role="group" aria-label="Qué mostrar">
+    <label>Administración
+      <select id="bx-level">
+        <optgroup label="Administraciones">
+          {% for lv in bx.levels if not lv.community %}<option value="{{ lv.id }}">{{ lv.name }}</option>{% endfor %}
+        </optgroup>
+        <optgroup label="Comunidades autónomas">
+          {% for lv in bx.levels if lv.community %}<option value="{{ lv.id }}">{{ lv.name }}</option>{% endfor %}
+        </optgroup>
+      </select></label>
+    <span class="bx-views" role="group" aria-label="Vista">
+      <button type="button" class="tool-button" data-bx-view="function" aria-pressed="true">Gasto por funciones</button>
+      <button type="button" class="tool-button" data-bx-view="type" aria-pressed="false">Gasto por tipo</button>
+      <button type="button" class="tool-button" data-bx-view="revenue" aria-pressed="false">Ingresos</button>
+    </span>
+  </div>
+  <div class="tool-controls bx-controls" role="group" aria-label="Medida">
+    <label>Medida
+      <select id="bx-measure">
+        <option value="eur">mm €</option>
+        <option value="real">mm € a precios de {{ bx.price_year }}</option>
+        <option value="gdp">% del PIB</option>
+        <option value="person">€ por persona a precios de {{ bx.price_year }}</option>
+        <option value="share">% del total</option>
+      </select></label>
+    <label>Año <select id="bx-year"></select></label>
+    <label>Comparar con <select id="bx-base"></select></label>
+    <label class="bx-exclude"><input type="checkbox" id="bx-exclude"> Excluir los flujos entre administraciones</label>
+  </div>
+  <p class="bx-about" id="bx-about"></p>
+  <div class="facts bx-facts" id="bx-facts" aria-live="polite"></div>
+
+  <nav class="bx-crumbs" id="bx-crumbs" aria-label="Dónde está"></nav>
+  <div class="bx-picker" role="group" aria-labelledby="bx-picks-label">
+    <span class="picker-label" id="bx-picks-label">Dibujar su evolución (hasta seis)</span>
+    <span class="bx-chips" id="bx-picks"></span>
+  </div>
+  <div class="charts">
+    {{ figure("bx-mix", "Gasto por funciones", "", "IGAE, contabilidad nacional de las Administraciones públicas") }}
+    {{ figure("bx-trend", "Evolución", "", "IGAE, contabilidad nacional de las Administraciones públicas") }}
+  </div>
+  <div class="charts charts-single">
+    {{ figure("bx-two", "Dos años comparados", "", "IGAE, contabilidad nacional de las Administraciones públicas; Eurostat (deflactor del PIB)") }}
+  </div>
+
+  <div class="stat">
+    <p class="stat-caption" id="bx-table-caption"></p>
+    <div class="table-scroll">
+      <table class="data-table stat-table bx-table" id="bx-table">
+        <thead><tr><th scope="col" id="bx-col-item">Partida</th><th scope="col" class="num" id="bx-col-year"></th>
+          <th scope="col" class="num">Peso</th><th scope="col" class="num" id="bx-col-base"></th>
+          <th scope="col" class="num" id="bx-col-change">Variación</th>
+          <th scope="col" class="num" id="bx-col-real" hidden>En términos reales</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <p class="note">Pulse una fila, o márquela sobre los gráficos, para dibujar su evolución (hasta seis a la vez); las filas
+      marcadas con ▸ se desglosan en sus partes. En términos reales: la variación a precios constantes (deflactor del PIB).</p>
+  </div>
+
+  <section class="block" id="bx-compare" aria-labelledby="bx-compare-h" hidden>
+    <h2 id="bx-compare-h">Las comunidades, una junto a otra</h2>
+    <p class="block-intro">Una función, un tipo de gasto o una fuente de ingresos en las 17 comunidades, en la medida elegida
+      arriba: por persona o en porcentaje del PIB de cada comunidad es como mejor se comparan. En un año, en dos años uno
+      junto a otro y a lo largo del tiempo para las comunidades que elija (en estos dos, los euros van a precios
+      constantes). Pulse una comunidad en la tabla para abrirla.</p>
+    <div class="tool-controls bx-controls">
+      <label>Comparar <select id="bx-cmp-item"></select></label>
+    </div>
+    <div class="charts">
+      {{ figure("bx-cmp", "Las comunidades", "", "IGAE; Eurostat (población)") }}
+      {{ figure("bx-cmp-two", "Dos años comparados", "", "IGAE; Eurostat (población, deflactor del PIB)") }}
+    </div>
+    <div class="charts charts-single">
+      {{ figure("bx-cmp-trend", "Evolución", "", "IGAE; Eurostat (población, deflactor del PIB)") }}
+    </div>
+    <div class="bx-picker" role="group" aria-labelledby="bx-cmp-picks-label">
+      <span class="picker-label" id="bx-cmp-picks-label">Comunidades que dibujar (hasta seis)</span>
+      <span class="bx-chips" id="bx-cmp-picks"></span>
+    </div>
+    <div class="stat">
+      <p class="stat-caption" id="bx-cmp-caption"></p>
+      <div class="table-scroll">
+        <table class="data-table stat-table bx-table" id="bx-cmp-table">
+          <thead><tr><th scope="col">Comunidad</th><th scope="col" class="num" id="bx-cmp-col-year"></th>
+            <th scope="col" class="num" id="bx-cmp-col-base"></th><th scope="col" class="num">Variación</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  {% if bx.state_budget %}
+  {% set sb = bx.state_budget %}
+  <section class="block" id="bx-pge" aria-labelledby="bx-pge-h">
+    <h2 id="bx-pge-h">El presupuesto del Estado</h2>
+    <p class="block-intro">Lo que prevén los Presupuestos Generales del Estado, por políticas de gasto, para el Estado, sus
+      organismos y la Seguridad Social en conjunto, y cuánto ha gastado el Estado de su propio presupuesto. A diferencia de
+      las cifras anteriores, aquí se trata de los créditos del presupuesto. En los años marcados como «prorrogado» no hubo
+      presupuesto nuevo y siguió en vigor el anterior: {{ sb.rolled_note }}.</p>
+    <div class="tool-controls bx-controls" role="group" aria-label="Lo que prevé el presupuesto">
+      <span role="group" aria-label="Gastos o ingresos">
+        <button type="button" class="tool-button" data-pge-kind="spending" aria-pressed="true">Gasto por políticas</button>
+        <button type="button" class="tool-button" data-pge-kind="revenue" aria-pressed="false">Ingresos por capítulos</button>
+      </span>
+      <label>Medida <select id="pge-measure"><option value="eur">mm €</option><option value="gdp">% del PIB</option></select></label>
+      <label>Año <select id="pge-year"></select></label>
+      <label>Comparar con <select id="pge-base"></select></label>
+    </div>
+    <div class="facts" id="pge-facts" aria-live="polite"></div>
+    <div class="charts">
+      {{ figure("pge-mix", "El presupuesto por políticas", "", "Ministerio de Hacienda (SEPG), estadísticas del presupuesto consolidado") }}
+      {{ figure("pge-trend", "Evolución", "", "Ministerio de Hacienda (SEPG), estadísticas del presupuesto consolidado") }}
+    </div>
+    <div class="stat">
+      <p class="stat-caption" id="pge-table-caption"></p>
+      <div class="table-scroll">
+        <table class="data-table stat-table bx-table" id="pge-table">
+          <thead><tr><th scope="col" id="pge-col-item">Política</th><th scope="col" class="num" id="pge-col-year"></th>
+            <th scope="col" class="num">Peso</th><th scope="col" class="num" id="pge-col-base"></th>
+            <th scope="col" class="num">Variación</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p class="note">Créditos iniciales, capítulos 1 a 8 (sin las amortizaciones de deuda), consolidados: las transferencias
+        entre el Estado, sus organismos y la Seguridad Social se cuentan una sola vez. Pulse una fila para dibujar su
+        evolución.</p>
+    </div>
+
+    {% if sb.execution %}
+    <h3 class="bx-sub" id="bx-pge-spent">Presupuestado y gastado: el Estado</h3>
+    <p class="block-intro">El presupuesto del propio Estado (sin la Seguridad Social ni sus organismos), política a política:
+      con qué empezó el año, qué tenía tras las modificaciones del año (suplementos de crédito, ampliaciones, transferencias
+      entre políticas) y las obligaciones reconocidas hasta ahora, el gasto comprometido y exigible.</p>
+    <div class="tool-controls bx-controls"><label>Año <select id="pge-ex-year"></select></label></div>
+    <div class="facts" id="pge-ex-facts" aria-live="polite"></div>
+    <div class="charts">
+      {{ figure("pge-ex", "Cuánto se ha gastado", "", "IGAE, ejecución del presupuesto del Estado") }}
+    </div>
+    <div class="stat">
+      <p class="stat-caption" id="pge-ex-caption"></p>
+      <div class="table-scroll">
+        <table class="data-table stat-table bx-table" id="pge-ex-table">
+          <thead><tr><th scope="col">Política</th><th scope="col" class="num">Inicial, mm €</th><th scope="col" class="num">Definitivo, mm €</th>
+            <th scope="col" class="num">Variación</th><th scope="col" class="num">Gastado, mm €</th><th scope="col" class="num">% del definitivo</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p class="note">Todos los capítulos, así que la deuda pública incluye la amortización de la deuda que vence. Las
+        transferencias internas van sobre todo a la Seguridad Social y a los organismos del Estado. Gastado: obligaciones
+        reconocidas netas. Pulse una política para ver abajo el ritmo de su gasto.</p>
+    </div>
+
+    <h3 class="bx-sub" id="bx-pge-pace">El ritmo del gasto</h3>
+    <p class="block-intro">A qué ritmo gasta el Estado el presupuesto de una política o de un capítulo en el año elegido
+      arriba: las obligaciones reconocidas hasta la fecha en porcentaje de sus créditos definitivos, mes a mes, frente a un
+      ritmo uniforme (una doceava parte del presupuesto del año cada mes). El gasto no se reparte por igual a lo largo del
+      año, ya que unos pagos se hacen cada mes y otros se concentran hacia diciembre, así que el año anterior, donde se
+      muestra, es mejor referencia.</p>
+    <div class="tool-controls bx-controls" role="group" aria-label="El ritmo del gasto">
+      <label>Política o capítulo <select id="pge-pace-item"></select></label>
+      <span role="group" aria-label="Medida">
+        <button type="button" class="tool-button" data-pace-view="pct" aria-pressed="true">% del presupuesto</button>
+        <button type="button" class="tool-button" data-pace-view="eur" aria-pressed="false">mm €</button>
+      </span>
+    </div>
+    <div class="facts" id="pge-pace-facts" aria-live="polite"></div>
+    <div class="charts charts-single">
+      {{ figure("pge-pace", "El ritmo del gasto", "", "IGAE, ejecución del presupuesto del Estado") }}
+    </div>
+    <p class="note">Las políticas, mes a mes desde enero de 2026: la IGAE solo publica los ficheros mensuales del año en curso,
+      que aquí se guardan a medida que salen; de 2025 está la cifra de cierre del año. Cada fichero da también los
+      capítulos de los mismos meses del año anterior, así que estos muestran los dos años. Los créditos definitivos cambian
+      durante el año (suplementos de crédito, ampliaciones, transferencias entre políticas), así que un salto del
+      presupuesto reduce el porcentaje gastado.</p>
+
+    <h3 class="bx-sub" id="bx-pge-year">En lo que va de año</h3>
+    <p class="block-intro">Los ingresos y el gasto del Estado mes a mes, acumulados desde enero, frente a los mismos meses del
+      año anterior, y su saldo de caja: lo que cobró menos lo que pagó. Solo operaciones no financieras, así que quedan
+      fuera el endeudamiento y las amortizaciones de deuda.</p>
+    <div class="facts" id="pge-path-facts" aria-live="polite"></div>
+    <div class="charts">
+      {{ figure("pge-path", "Ingresos y gasto en lo que va de año", "", "IGAE, ejecución del presupuesto del Estado") }}
+      {{ figure("pge-cash", "Saldo de caja en lo que va de año", "", "IGAE, ejecución del presupuesto del Estado") }}
+    </div>
+
+    <h3 class="bx-sub" id="bx-pge-revenue">Ingresos</h3>
+    <p class="block-intro">Lo que preveía el presupuesto, los derechos reconocidos (los ingresos a los que el Estado tiene
+      derecho) y lo que ha recaudado, por capítulos y principales impuestos, con la variación de la recaudación sobre los
+      mismos meses del año anterior.</p>
+    <div class="stat">
+      <p class="stat-caption" id="pge-rev-caption"></p>
+      <div class="table-scroll">
+        <table class="data-table stat-table bx-table" id="pge-rev-table">
+          <thead><tr><th scope="col">Ingreso</th><th scope="col" class="num">Previsto, mm €</th><th scope="col" class="num">Derechos reconocidos, mm €</th><th scope="col" class="num">Recaudado, mm €</th><th scope="col" class="num">Derechos, % de lo previsto</th><th scope="col" class="num">Recaudado, variación</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p class="note">Los ingresos del Estado, netos de la parte del IRPF, el IVA y los Impuestos Especiales que se cede a las comunidades autónomas y a las entidades locales (véase la tabla siguiente). Un presupuesto prorrogado mantiene las antiguas previsiones de ingresos.</p>
+    </div>
+
+    <h3 class="bx-sub" id="bx-pge-taxes">Los grandes impuestos y quién se los queda</h3>
+    <p class="block-intro">Fuera del País Vasco y Navarra, que recaudan los suyos, la Agencia Tributaria recauda el IRPF, el IVA y los Impuestos Especiales para todos; una parte va a las comunidades
+      autónomas y a las entidades locales según sus sistemas de financiación, y el resto es del Estado.</p>
+    <div class="stat">
+      <p class="stat-caption" id="pge-tax-caption"></p>
+      <div class="table-scroll">
+        <table class="data-table stat-table bx-table" id="pge-tax-table">
+          <thead><tr><th scope="col">Impuesto</th><th scope="col" class="num">Recaudado, mm €</th><th scope="col" class="num">A las comunidades</th><th scope="col" class="num">A las entidades locales</th><th scope="col" class="num">Para el Estado</th><th scope="col" class="num">Recaudado, variación</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p class="note">Recaudación neta hasta la fecha (descontadas las devoluciones). La parte de las comunidades y de las entidades locales se paga en entregas a cuenta mensuales, que se liquidan dos años después.</p>
+    </div>
+
+    <h3 class="bx-sub" id="bx-pge-chapters">Gasto por capítulos</h3>
+    <div class="stat">
+      <p class="stat-caption" id="pge-ch-caption"></p>
+      <div class="table-scroll">
+        <table class="data-table stat-table bx-table" id="pge-ch-table">
+          <thead><tr><th scope="col">Capítulo</th><th scope="col" class="num">Definitivo, mm €</th><th scope="col" class="num">Comprometido, mm €</th><th scope="col" class="num">Gastado, mm €</th><th scope="col" class="num">Gastado, % del definitivo</th><th scope="col" class="num">Gastado, variación</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p class="note">Capítulos de la clasificación económica del presupuesto. Comprometido: gasto autorizado y contratado; gastado: obligaciones reconocidas.</p>
+    </div>
+
+    <h3 class="bx-sub" id="bx-pge-mrr">Fondos europeos de recuperación</h3>
+    <p class="block-intro">El gasto financiado por el Mecanismo de Recuperación y Resiliencia de la UE, por ministerios: lo
+      disponible, lo comprometido y lo gastado.</p>
+    <div class="stat">
+      <p class="stat-caption" id="pge-mrr-caption"></p>
+      <div class="table-scroll">
+        <table class="data-table stat-table bx-table" id="pge-mrr-table">
+          <thead><tr><th scope="col">Ministerio</th><th scope="col" class="num">Disponible, mm €</th><th scope="col" class="num">Comprometido, mm €</th><th scope="col" class="num">Gastado, mm €</th><th scope="col" class="num">Gastado, % de lo disponible</th><th scope="col" class="num">Pagado, mm €</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p class="note">Disponible: créditos tras las modificaciones del año, incluidos los fondos incorporados de años anteriores.</p>
+    </div>
+
+    <h3 class="bx-sub" id="bx-pge-transfers">Transferencias a las comunidades autónomas y las entidades locales</h3>
+    <div class="stat">
+      <p class="stat-caption" id="pge-tr-caption"></p>
+      <div class="table-scroll">
+        <table class="data-table stat-table bx-table" id="pge-tr-table">
+          <thead><tr><th scope="col">Transferencia</th><th scope="col" class="num">Definitivo, mm €</th><th scope="col" class="num">Gastado, mm €</th><th scope="col" class="num">Gastado, % del definitivo</th><th scope="col" class="num">Gastado un año antes</th><th scope="col" class="num">Variación</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p class="note">Transferencias del presupuesto del Estado (artículos 45, 46, 75 y 76): los fondos y liquidaciones de los sistemas de financiación y las subvenciones. La parte de los grandes impuestos que corresponde a las comunidades y a las entidades locales no es gasto presupuestario y figura en la tabla de impuestos de arriba.</p>
+    </div>
+    {% endif %}
+  </section>
+  {% endif %}
+
+  <section class="block" aria-labelledby="bx-method">
+    <h2 id="bx-method">Cómo leerlo</h2>
+    <div class="prose">
+      <p><strong>Contabilidad nacional.</strong> Todas las cifras son la contabilidad nacional de las Administraciones
+        públicas de la IGAE (SEC 2010): lo que se gastó y se ingresó cada año, se pagara o no en efectivo, con el mismo
+        criterio para todas las administraciones y todos los años, de modo que se comparan sin problemas. No son el
+        presupuesto que aprueban las Cortes, que es un plan, con criterio de caja y de compromiso. El último año es
+        provisional{% if bx.provisional_note %} ({{ bx.provisional_note }}){% endif %}.</p>
+      <p><strong>Las funciones</strong> siguen la clasificación de las funciones de las administraciones públicas de las
+        Naciones Unidas (COFOG): 10 divisiones, cada una dividida en grupos. <strong>Los tipos</strong> agrupan las
+        operaciones económicas: salarios, compras, prestaciones sociales, intereses, subvenciones, inversión y
+        transferencias. El gasto por funciones se publica un año después que el gasto por tipo, y los dos por separado, así
+        que sus totales pueden diferir un poco.</p>
+      <p><strong>Flujos entre administraciones.</strong> Gran parte de lo que gasta el Estado lo transfiere: a las
+        comunidades autónomas a través de su sistema de financiación, a las entidades locales y a la Seguridad Social. En la
+        contabilidad nacional estas transferencias cuentan como gasto del Estado y como ingreso de quien las recibe (grupo
+        01.8 de la COFOG, «transferencias de carácter general entre distintos niveles de las administraciones públicas»).
+        La casilla las excluye, para mostrar lo que cada administración gasta por sí misma. Para el conjunto de las
+        Administraciones públicas las cuentas están consolidadas, así que se compensan.</p>
+      <p><strong>Las comunidades autónomas.</strong> Su gasto por funciones se publica comunidad a comunidad desde 2012,
+        solo por divisiones; sus ingresos y su gasto por tipo, desde 2000, y sus impuestos uno a uno, desde 2012 (antes,
+        todo el impuesto sobre la renta cuenta como IRPF). El tramo autonómico del IRPF cuenta como impuesto propio de las
+        comunidades; las partes del IVA y de los Impuestos Especiales que reciben por el sistema de financiación cuentan como
+        transferencias del Estado, igual que los fondos del sistema. Navarra recauda sus propios impuestos. En el País Vasco
+        los recaudan las tres Diputaciones Forales, que las cuentas clasifican como administración local, así que los
+        ingresos del Gobierno Vasco llegan como transferencias de ellas. El % del PIB de una comunidad usa su propio PIB
+        (deducido de las cifras de la IGAE en porcentaje de él); por persona, su población (Eurostat, media del 1 de enero
+        de ese año y del siguiente). Las comunidades en conjunto se comparan con el PIB y la población de España.</p>
+      <p><strong>El presupuesto del Estado.</strong> El plan por políticas procede de las estadísticas presupuestarias del
+        Ministerio de Hacienda (la Secretaría de Estado de Presupuestos y Gastos), que dan los créditos iniciales de cada año
+        consolidados entre el Estado, sus organismos y la Seguridad Social; un presupuesto prorrogado repite los créditos del
+        anterior, así que las pensiones, por ejemplo, aparecen sin cambios aunque se revalorizan cada año. Lo que ha gastado
+        el Estado procede de la ejecución mensual del presupuesto del Estado de la IGAE, que la IGAE publica en Excel desde
+        2025; la serie crece a partir de ahí.</p>
+      <p><strong>Medidas.</strong> Los precios constantes usan el deflactor del PIB ({{ bx.price_year }} = 100), el índice
+        de precios de todo lo que produce la economía; por persona, la población media de Eurostat; el % del PIB, el PIB
+        nominal del año.</p>
+      <p class="note">Fuentes: IGAE, <a href="{{ bx.pages.cofog }}" target="_blank" rel="noopener">clasificación funcional
+        del gasto</a>, <a href="{{ bx.pages.accounts }}" target="_blank" rel="noopener">operaciones no financieras</a> e
+        <a href="{{ bx.pages.taxes }}" target="_blank" rel="noopener">impuestos y cotizaciones sociales</a>, y para las
+        comunidades una a una: <a href="{{ bx.pages.cofog_ccaa }}" target="_blank" rel="noopener">gasto por funciones</a>,
+        <a href="{{ bx.pages.accounts_ccaa }}" target="_blank" rel="noopener">operaciones no financieras</a> e
+        <a href="{{ bx.pages.taxes_ccaa }}" target="_blank" rel="noopener">impuestos</a>; Eurostat (PIB y su deflactor,
+        población){% if bx.state_budget %}; Ministerio de Hacienda, <a href="{{ bx.state_budget.pages.sepg }}" target="_blank"
+        rel="noopener">estadísticas presupuestarias</a>; IGAE, <a href="{{ bx.state_budget.pages.igae }}" target="_blank"
+        rel="noopener">ejecución del presupuesto del Estado</a>{% endif %}. Descarga: {{ bx.fetched_day }}.</p>
+    </div>
+  </section>
+  {% endif %}
+{% endblock %}
+
+{% block scripts %}
+  <script src="{{ root }}assets/plotly-basic.min.js?v={{ build_id }}"></script>
+  <script src="data/budget.js?v={{ build_id }}"></script>
+{% endblock %}
+
+{% block after_scripts %}
+  <script src="{{ root }}assets/budget.js?v={{ build_id }}"></script>
+  <script src="{{ root }}assets/pge.js?v={{ build_id }}"></script>
+{% endblock %}

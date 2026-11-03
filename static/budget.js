@@ -11,15 +11,40 @@
   var render = window.EP && window.EP.render;
   if (!B || !render) return;
 
-  var Y = B.years;
-  var MEASURES = {
-    eur: { label: "€ bn", unit: "", decimals: 1, suffix: " bn", prefix: "€" },
-    real: { label: "€ bn at " + B.price_year + " prices", unit: "", decimals: 1, suffix: " bn", prefix: "€" },
-    gdp: { label: "% of GDP", unit: "%", decimals: 2, suffix: "%", prefix: "" },
-    person: { label: "€ a person at " + B.price_year + " prices", unit: "€", decimals: 0, suffix: "", prefix: "€" },
-    share: { label: "% of the total", unit: "%", decimals: 1, suffix: "%", prefix: "" }
+  // The page's language (Batch 33d: the Spanish site is under es/), and its words for what this script writes. The
+  // names of the administrations and items come in the page's language from data/budget.js.
+  var LANG = document.documentElement.lang === "es" ? "es" : "en";
+  var ES = {
+    "€ bn": "mm €", "% of GDP": "% del PIB", "% of the total": "% del total",
+    "Spending by function": "Gasto por funciones", "Spending by type": "Gasto por tipo", "Revenue": "Ingresos",
+    ", without transfers": ", sin transferencias", " (provisional)": " (provisional)", "Total": "Total",
+    " over time": " a lo largo del tiempo", " after inflation": " en términos reales",
+    "Function": "Función", "Type": "Tipo", "Community": "Comunidad",
+    "All revenue": "Todos los ingresos", "All spending": "Todo el gasto", "All communities": "Todas las comunidades",
+    "Picked communities": "Comunidades elegidas", "Pick communities below the chart": "Elija comunidades bajo el gráfico",
+    "The 17 communities": "Las 17 comunidades", "No figures for both years": "Sin cifras para los dos años",
+    "A person": "Por persona", "From other administrations": "De otras administraciones",
+    "Passed to other administrations": "Transferido a otras administraciones",
+    "← All functions": "← Todas las funciones", "← All revenue": "← Todos los ingresos",
+    "Change": "Variación", "Change, %": "Variación, %", "▸ parts": "▸ partes",
+    ", without flows between administrations": ", sin flujos entre administraciones"
   };
-  var VIEW_NAMES = { "function": "Spending by function", type: "Spending by type", revenue: "Revenue" };
+  function t(s) { return LANG === "es" && ES[s] !== undefined ? ES[s] : s; }
+  // An amount in € bn, the number already written: "€1.2 bn", or "1.2 mm €" in Spanish (the number keeps the English format).
+  function bnText(s) { return LANG === "es" ? s + " mm €" : "€" + s + " bn"; }
+
+  var Y = B.years;
+  var EUR = LANG === "es" ? { suffix: " mm €", prefix: "" } : { suffix: " bn", prefix: "€" };
+  var MEASURES = {
+    eur: { label: t("€ bn"), unit: "", decimals: 1, suffix: EUR.suffix, prefix: EUR.prefix },
+    real: { label: LANG === "es" ? "mm € a precios de " + B.price_year : "€ bn at " + B.price_year + " prices", unit: "", decimals: 1,
+            suffix: EUR.suffix, prefix: EUR.prefix },
+    gdp: { label: t("% of GDP"), unit: "%", decimals: 2, suffix: "%", prefix: "" },
+    person: { label: LANG === "es" ? "€ por persona a precios de " + B.price_year : "€ a person at " + B.price_year + " prices", unit: "€",
+              decimals: 0, suffix: LANG === "es" ? " €" : "", prefix: LANG === "es" ? "" : "€" },
+    share: { label: t("% of the total"), unit: "%", decimals: 1, suffix: "%", prefix: "" }
+  };
+  var VIEW_NAMES = { "function": t("Spending by function"), type: t("Spending by type"), revenue: t("Revenue") };
   var MAX_LINES = 6;
   // selected and regions: null until chosen, for the defaults (the three largest items, communities).
   var state = { level: B.levels[0].id, view: "function", measure: "eur", exclude: false, year: null, base: null,
@@ -64,7 +89,8 @@
     }).join("") + list.map(function (it) {
       var on = picked.indexOf(it.code) >= 0, off = !on && full;
       return '<button type="button" class="chip" data-pick="' + it.code + '" aria-pressed="' + on + '" aria-disabled="' + off + '"' +
-             (off ? ' title="Up to ' + MAX_LINES + ' at a time: untick one first"' : "") + '><span class="chip-swatch" aria-hidden="true" style="' +
+             (off ? ' title="' + (LANG === "es" ? "Hasta " + MAX_LINES + " a la vez: desmarque una primero" : "Up to " + MAX_LINES + " at a time: untick one first") + '"' : "") +
+             '><span class="chip-swatch" aria-hidden="true" style="' +
              (on ? swatch(slots[it.code]) : "") + '"></span>' + short(it.label) + "</button>";
     }).join("");
     if (holder.innerHTML !== html) holder.innerHTML = html;
@@ -110,7 +136,7 @@
       // General public services hold the transfers to other administrations (group 01.8), where it is published.
       if (state.view === "function" && !state.parent && it.code === "01" && !flows && hasData(values[B.transfer_function])) {
         v = minus(v, values[B.transfer_function]);
-        label += ", without transfers";
+        label += t(", without transfers");
       }
       out.push({ code: it.code, label: label, values: v, children: state.parent ? null : childrenOf(it, level) });
     });
@@ -134,8 +160,8 @@
   }
 
   function years() {
-    var t = total();
-    return Y.filter(function (y, k) { return t[k] !== null && t[k] !== undefined; });
+    var tot = total();
+    return Y.filter(function (y, k) { return tot[k] !== null && tot[k] !== undefined; });
   }
 
   function provisional(year) {
@@ -179,10 +205,12 @@
     return (c > 0 ? "+" : c < 0 ? "−" : "") + Math.abs(c).toFixed(1) + "%";
   }
   function short(label) { return label.length > 44 ? label.slice(0, 42) + "…" : label; }
+  // The heading of the items' column: what the view lists.
+  function itemHeading() { return t(state.view === "function" ? "Function" : state.view === "type" ? "Type" : "Revenue"); }
   // Two years compare in the chosen measure, except euros of the day, which become constant prices.
   function twoMeasure() { return state.measure === "eur" ? "real" : state.measure; }
   function given(v) { return v !== null && v !== undefined; }
-  function twoNote(a, b, ms) { return change(b, a, ms) + (ms === "real" || ms === "person" ? " after inflation" : ""); }
+  function twoNote(a, b, ms) { return change(b, a, ms) + (ms === "real" || ms === "person" ? t(" after inflation") : ""); }
 
   // ---------------------------------------------------------------- drawing
   function draw() {
@@ -205,7 +233,7 @@
     }).sort(function (a, b) { return (b.now || 0) - (a.now || 0); });
     var totConv = convert(tot, tot);
     var where = state.parent ? (state.view === "function" ? find(B.functions, state.parent).label : find(B.revenues, state.parent).label) : VIEW_NAMES[state.view];
-    var yearLabel = state.year + (provisional(state.year) ? " (provisional)" : "");
+    var yearLabel = state.year + (provisional(state.year) ? t(" (provisional)") : "");
 
     facts(tot, list);
     crumbs();
@@ -221,7 +249,7 @@
 
     // The picked items over time, with the total.
     slotsFor(state.slots, state.selected);
-    var totalName = state.parent ? where : "Total";
+    var totalName = state.parent ? where : t("Total");
     chips($("bx-picks"), list, state.selected, state.slots,
           state.measure === "share" ? [] : [{ code: "__total", label: totalName, on: state.total }]);
     var series = [];
@@ -232,7 +260,7 @@
       if (r) series.push(line(short(r.it.label), ys, r.conv, state.slots[code]));
     });
     if (!series.length) series.push(totalLine);
-    $("bx-trend-title").textContent = where + " over time";
+    $("bx-trend-title").textContent = where + t(" over time");
     $("bx-trend-subtitle").textContent = lv().short + " · " + m.label;
     render({ id: "bx-trend", kind: "line", unit: m.unit === "%" ? "%" : "", decimals: m.decimals, freq: "A", series: series });
 
@@ -244,11 +272,11 @@
     }).filter(function (r) { return given(r.a) && given(r.b); }).sort(function (x, y) { return y.b - x.b; });
     two.forEach(function (r) { r.note = twoNote(r.a, r.b, ms); });
     var tot2 = convert(tot, tot, null, ms);
-    $("bx-two-title").textContent = where + ", " + state.base + " and " + yearLabel;
+    $("bx-two-title").textContent = where + ", " + state.base + (LANG === "es" ? " y " : " and ") + yearLabel;
     $("bx-two-subtitle").textContent = lv().short + " · " + m2.label +
       (ms !== "share" && given(at(tot2, state.base)) ? " · total " + fmt(at(tot2, state.base), m2) + " → " + fmt(at(tot2, state.year), m2) +
        " (" + change(at(tot2, state.year), at(tot2, state.base), ms) + ")" : "");
-    render({ id: "bx-two", kind: "dumbbell", unit: m2.unit, decimals: m2.decimals, x_title: state.view === "function" ? "Function" : state.view === "type" ? "Type" : "Revenue",
+    render({ id: "bx-two", kind: "dumbbell", unit: m2.unit, decimals: m2.decimals, x_title: itemHeading(),
              a_name: String(state.base), b_name: String(state.year), rows: two });
 
     table(rows, totConv, m, where, yearLabel, convert(tot, tot, null, "real"));
@@ -262,7 +290,7 @@
 
   function compareChoices() {
     var list = state.view === "function" ? B.functions : state.view === "type" ? B.types : B.revenues;
-    return [{ code: "TOTAL", label: state.view === "revenue" ? "All revenue" : "All spending" }].concat(list.filter(function (it) {
+    return [{ code: "TOTAL", label: t(state.view === "revenue" ? "All revenue" : "All spending") }].concat(list.filter(function (it) {
       return COMMUNITIES.some(function (c) {
         var t = state.view === "function" ? c["function"] : state.view === "type" ? c.type : c.revenue;
         return hasData(t[it.code]);
@@ -298,7 +326,7 @@
     // All communities together only as a rate (per person, % of GDP, a share): in euros it would dwarf the rest.
     var allRate = all && ms !== "real";
     chips($("bx-cmp-picks"), COMMUNITIES.map(function (c) { return { code: c.id, label: c.name }; }), state.regions, state.rslots,
-          allRate ? [{ code: "__all", label: "All communities", on: state.all }] : []);
+          allRate ? [{ code: "__all", label: t("All communities"), on: state.all }] : []);
     var lines = [];
     var allValues = allRate ? compareValues(REGIONS.level, state.cmp, ms) : null;
     state.regions.forEach(function (id) {
@@ -310,10 +338,10 @@
       return (allValues && state.all && given(at(allValues, y))) || lines.some(function (l) { return given(at(l.values, y)); });
     });
     var series = [];
-    if (allValues && state.all) series.push({ name: "All communities", x: ys.map(iso), y: ys.map(function (y) { return at(allValues, y); }), color: "ink" });
+    if (allValues && state.all) series.push({ name: t("All communities"), x: ys.map(iso), y: ys.map(function (y) { return at(allValues, y); }), color: "ink" });
     lines.forEach(function (l) { series.push(line(l.name, ys, l.values, l.slot)); });
-    $("bx-cmp-trend-title").textContent = label + " over time";
-    $("bx-cmp-trend-subtitle").textContent = (lines.length ? "Picked communities" : "Pick communities below the chart") + " · " + m2.label;
+    $("bx-cmp-trend-title").textContent = label + t(" over time");
+    $("bx-cmp-trend-subtitle").textContent = t(lines.length ? "Picked communities" : "Pick communities below the chart") + " · " + m2.label;
     if (series.length && ys.length) {
       render({ id: "bx-cmp-trend", kind: "line", unit: m2.unit === "%" ? "%" : "", decimals: m2.decimals, freq: "A", series: series });
     }
@@ -323,9 +351,9 @@
       return { label: c.name, a: v ? at(v, state.base) : null, b: v ? at(v, state.year) : null, highlight: c.id === state.level };
     }).filter(function (r) { return given(r.a) && given(r.b); }).sort(function (x, y) { return y.b - x.b; });
     two.forEach(function (r) { r.note = twoNote(r.a, r.b, ms); });
-    $("bx-cmp-two-title").textContent = label + ", " + state.base + " and " + state.year;
-    $("bx-cmp-two-subtitle").textContent = (two.length ? "The 17 communities" : "No figures for both years") + " · " + m2.label;
-    render({ id: "bx-cmp-two", kind: "dumbbell", unit: m2.unit, decimals: m2.decimals, x_title: "Community",
+    $("bx-cmp-two-title").textContent = label + ", " + state.base + (LANG === "es" ? " y " : " and ") + state.year;
+    $("bx-cmp-two-subtitle").textContent = t(two.length ? "The 17 communities" : "No figures for both years") + " · " + m2.label;
+    render({ id: "bx-cmp-two", kind: "dumbbell", unit: m2.unit, decimals: m2.decimals, x_title: t("Community"),
              a_name: String(state.base), b_name: String(state.year), rows: two });
   }
 
@@ -349,11 +377,11 @@
       .sort(function (a, b) { return b.now - a.now; });
     var all = REGIONS ? compareValues(REGIONS.level, state.cmp) : null;
     $("bx-cmp-title").textContent = label + ", " + yearLabel;
-    $("bx-cmp-subtitle").textContent = "The 17 communities · " + m.label;
+    $("bx-cmp-subtitle").textContent = t("The 17 communities") + " · " + m.label;
     var ref = all && state.measure !== "eur" && state.measure !== "real" ? at(all, state.year) : null;
     render({ id: "bx-cmp", kind: "hbar", unit: m.unit, decimals: m.decimals, x_title: "", freq: "A",
              highlight: lv().community ? lv().name : null,
-             ref_lines: ref !== null && ref !== undefined ? [{ y: +ref.toFixed(4), label: "All communities" }] : [],
+             ref_lines: ref !== null && ref !== undefined ? [{ y: +ref.toFixed(4), label: t("All communities") }] : [],
              series: [{ name: label, x: rows.map(function (r) { return r.level.name; }), y: rows.map(function (r) { return +r.now.toFixed(4); }) }] });
     $("bx-cmp-caption").textContent = label + " · " + m.label;
     $("bx-cmp-col-year").textContent = yearLabel;
@@ -364,7 +392,7 @@
              '</td><td class="num">' + change(r.now, r.then) + "</td></tr>";
     }).join("");
     if (all) {
-      html += '<tr class="bx-total"><th scope="row">All communities</th><td class="num">' + fmt(at(all, state.year), m) +
+      html += '<tr class="bx-total"><th scope="row">' + t("All communities") + '</th><td class="num">' + fmt(at(all, state.year), m) +
               '</td><td class="num">' + fmt(at(all, state.base), m) + '</td><td class="num">' + change(at(all, state.year), at(all, state.base)) + "</td></tr>";
     }
     $("bx-cmp-table").querySelector("tbody").innerHTML = html;
@@ -375,23 +403,35 @@
     var k = Y.indexOf(state.year), level = lv(), out = [];
     var gdp = level.gdp || B.gdp, population = level.population || B.population;
     var raw = at(tot, state.year);
-    var noun = state.view === "revenue" ? "Revenue" : "Spending";
+    var es = LANG === "es";
     if (raw !== null && raw !== undefined) {
-      out.push([noun + " in " + state.year, "€" + (raw / 1000).toLocaleString("en-GB", { maximumFractionDigits: 1, minimumFractionDigits: 1 }) + " bn",
-                gdp[k] ? (raw / gdp[k] * 100).toFixed(1) + "% of " + (level.community ? "its GDP" : "GDP") : ""]);
-      if (population[k]) out.push(["A person", "€" + Math.round(raw * 1e6 / population[k]).toLocaleString("en-GB"), "in " + state.year + ", at that year's prices"]);
+      var ofGdp = gdp[k] ? (raw / gdp[k] * 100).toFixed(1) : null;
+      out.push([es ? (state.view === "revenue" ? "Ingresos en " : "Gasto en ") + state.year
+                   : (state.view === "revenue" ? "Revenue" : "Spending") + " in " + state.year,
+                bnText((raw / 1000).toLocaleString("en-GB", { maximumFractionDigits: 1, minimumFractionDigits: 1 })),
+                ofGdp === null ? "" : es ? ofGdp + (level.community ? "% de su PIB" : "% del PIB")
+                                         : ofGdp + "% of " + (level.community ? "its GDP" : "GDP")]);
+      if (population[k]) {
+        var each = Math.round(raw * 1e6 / population[k]).toLocaleString("en-GB");
+        out.push([t("A person"), es ? each + " €" : "€" + each,
+                  es ? "en " + state.year + ", a precios de ese año" : "in " + state.year + ", at that year's prices"]);
+      }
     }
     if (level.balance && level.balance[k] !== null && level.balance[k] !== undefined) {
       var bal = level.balance[k];
-      out.push(["Balance in " + state.year, (bal >= 0 ? "+€" : "−€") + (Math.abs(bal) / 1000).toFixed(2) + " bn",
-                (bal >= 0 ? "a surplus" : "a deficit") + (gdp[k] ? ", " + (Math.abs(bal) / gdp[k] * 100).toFixed(1) + "% of its GDP" : "")]);
+      var balGdp = gdp[k] ? (Math.abs(bal) / gdp[k] * 100).toFixed(1) : null;
+      out.push([(es ? "Saldo en " : "Balance in ") + state.year, (bal >= 0 ? "+" : "−") + bnText((Math.abs(bal) / 1000).toFixed(2)),
+                es ? (bal >= 0 ? "superávit" : "déficit") + (balGdp === null ? "" : ", " + balGdp + "% de su PIB")
+                   : (bal >= 0 ? "a surplus" : "a deficit") + (balGdp === null ? "" : ", " + balGdp + "% of its GDP")]);
     }
     if (level.transfers && !state.parent) {
       var table = state.view === "function" ? level["function"] : state.view === "type" ? level.type : level.revenue;
       var flows = at(table[flowKey()], state.year), all = at(table.TOTAL, state.year);
       if (flows && all) {
-        out.push([state.view === "revenue" ? "From other administrations" : "Passed to other administrations",
-                  "€" + (flows / 1000).toFixed(1) + " bn", Math.round(flows / all * 100) + "% of the total" + (state.exclude ? ", left out here" : "")]);
+        var flowShare = Math.round(flows / all * 100);
+        out.push([t(state.view === "revenue" ? "From other administrations" : "Passed to other administrations"), bnText((flows / 1000).toFixed(1)),
+                  es ? flowShare + "% del total" + (state.exclude ? ", excluido aquí" : "")
+                     : flowShare + "% of the total" + (state.exclude ? ", left out here" : "")]);
       }
     }
     $("bx-facts").innerHTML = out.map(function (f) {
@@ -405,17 +445,17 @@
     if (!state.parent) { el.innerHTML = ""; el.hidden = true; return; }
     el.hidden = false;
     var parent = state.view === "function" ? find(B.functions, state.parent) : find(B.revenues, state.parent);
-    el.innerHTML = '<button type="button" class="chart-link" id="bx-up">← All ' + (state.view === "function" ? "functions" : "revenue") +
+    el.innerHTML = '<button type="button" class="chart-link" id="bx-up">' + t(state.view === "function" ? "← All functions" : "← All revenue") +
                    "</button> <span>" + (state.view === "function" ? parent.code + " " : "") + parent.label + "</span>";
     $("bx-up").addEventListener("click", function () { state.parent = null; state.selected = null; draw(); });
   }
 
   function table(rows, totConv, m, where, yearLabel, totReal) {
     $("bx-table-caption").textContent = where + " · " + lv().short + " · " + m.label;
-    $("bx-col-item").textContent = state.view === "function" ? "Function" : state.view === "type" ? "Type" : "Revenue";
+    $("bx-col-item").textContent = itemHeading();
     $("bx-col-year").textContent = yearLabel;
     $("bx-col-base").textContent = state.base;
-    $("bx-col-change").textContent = state.measure === "gdp" || state.measure === "share" ? "Change" : "Change, %";
+    $("bx-col-change").textContent = t(state.measure === "gdp" || state.measure === "share" ? "Change" : "Change, %");
     var real = state.measure === "eur";
     $("bx-col-real").hidden = !real;
     var realCell = function (series) {
@@ -424,7 +464,8 @@
     var body = $("bx-table").querySelector("tbody");
     var html = rows.map(function (r) {
       var on = state.selected.indexOf(r.it.code) >= 0;
-      var open = r.it.children ? ' <button type="button" class="chart-link bx-open" data-open="' + r.it.code + '" aria-label="Open ' + r.it.label + ' into its parts">▸ parts</button>' : "";
+      var open = r.it.children ? ' <button type="button" class="chart-link bx-open" data-open="' + r.it.code + '" aria-label="' +
+                 (LANG === "es" ? "Desglosar " + r.it.label + " en sus partes" : "Open " + r.it.label + " into its parts") + '">' + t("▸ parts") + "</button>" : "";
       var code = state.view === "function" ? '<span class="period-note">' + r.it.code + " </span>" : "";
       return '<tr class="bx-row' + (on ? " highlight-row" : "") + '" data-code="' + r.it.code + '" tabindex="0" aria-selected="' + on + '">' +
              '<th scope="row">' + code + r.it.label + open + "</th>" +
@@ -435,7 +476,7 @@
     }).join("");
     var tNow = at(totConv, state.year), tThen = at(totConv, state.base);
     if (state.measure !== "share") {
-      html += '<tr class="bx-total"><th scope="row">' + (state.parent ? "Total" : "Total" + (state.exclude && lv().transfers ? ", without flows between administrations" : "")) + "</th>" +
+      html += '<tr class="bx-total"><th scope="row">' + t("Total") + (!state.parent && state.exclude && lv().transfers ? t(", without flows between administrations") : "") + "</th>" +
               '<td class="num">' + fmt(tNow, m) + '</td><td class="num">100%</td><td class="num">' + fmt(tThen, m) +
               '</td><td class="num">' + change(tNow, tThen) + "</td>" + realCell(totReal) + "</tr>";
     }

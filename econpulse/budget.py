@@ -40,7 +40,8 @@ from datetime import datetime, timezone
 import openpyxl
 import pandas as pd
 
-from . import http
+from . import http, i18n
+from .i18n import _
 from .store import Store
 from .tables import Data
 
@@ -776,6 +777,146 @@ MINISTRIES = [
 ]
 
 
+# ---------------------------------------------------------------- the Spanish site (Batch 33d)
+# The publishers' own Spanish names for the items above, shown on the Spanish site: the IGAE's for the COFOG
+# functions (the appendix of its COFOG workbooks), the ESA operations and the taxes; the budget office's (SEPG) and
+# the IGAE's execution tables for the spending policies, chapters and ministries. Where the English adds a word of
+# explanation ("Old age (pensions)"), so does the Spanish. Kept by code, since one English name can stand for two
+# different Spanish ones ("Health": Salud in COFOG, Sanidad as a spending policy).
+FUNCTIONS_ES = {
+    "01": "Servicios públicos generales",
+    "01.1": "Órganos ejecutivos y legislativos, asuntos financieros y fiscales, asuntos exteriores",
+    "01.2": "Ayuda económica exterior", "01.3": "Servicios generales", "01.4": "Investigación básica",
+    "01.5": "I+D relacionada con los servicios públicos generales", "01.6": "Servicios públicos generales n.c.o.p.",
+    "01.7": "Operaciones de deuda pública (intereses)", "01.8": "Transferencias a otras Administraciones públicas",
+    "02": "Defensa", "02.1": "Defensa militar", "02.2": "Defensa civil", "02.3": "Ayuda militar al exterior",
+    "02.4": "I+D relacionada con la defensa", "02.5": "Defensa n.c.o.p.",
+    "03": "Orden público y seguridad", "03.1": "Servicios de policía", "03.2": "Servicios de protección contra incendios",
+    "03.3": "Tribunales de justicia", "03.4": "Prisiones", "03.5": "I+D relacionada con el orden público y la seguridad",
+    "03.6": "Orden público y seguridad n.c.o.p.",
+    "04": "Asuntos económicos", "04.1": "Asuntos económicos, comerciales y laborales en general",
+    "04.2": "Agricultura, silvicultura, pesca y caza", "04.3": "Combustible y energía",
+    "04.4": "Minería, manufacturas y construcción", "04.5": "Transporte", "04.6": "Comunicaciones",
+    "04.7": "Otras actividades", "04.8": "I+D relacionada con asuntos económicos", "04.9": "Asuntos económicos n.c.o.p.",
+    "05": "Protección del medio ambiente", "05.1": "Gestión de los residuos", "05.2": "Gestión de aguas residuales",
+    "05.3": "Reducción de la contaminación", "05.4": "Protección de la biodiversidad y del paisaje",
+    "05.5": "I+D relacionada con la protección del medio ambiente", "05.6": "Protección del medio ambiente n.c.o.p.",
+    "06": "Vivienda y servicios comunitarios", "06.1": "Urbanismo", "06.2": "Desarrollo comunitario",
+    "06.3": "Abastecimiento de agua", "06.4": "Alumbrado público",
+    "06.5": "I+D relacionada con la vivienda y los servicios comunitarios", "06.6": "Vivienda y servicios comunitarios n.c.o.p.",
+    "07": "Salud", "07.1": "Medicamentos y otros productos farmacéuticos, aparatos y material terapéutico",
+    "07.2": "Servicios ambulatorios", "07.3": "Servicios hospitalarios", "07.4": "Servicios de salud pública",
+    "07.5": "I+D relacionada con la salud", "07.6": "Salud n.c.o.p.",
+    "08": "Ocio, cultura y religión", "08.1": "Servicios recreativos y deportivos", "08.2": "Servicios culturales",
+    "08.3": "Servicios de radio y televisión y servicios editoriales", "08.4": "Servicios religiosos y otros servicios comunitarios",
+    "08.5": "I+D relacionada con el esparcimiento, la cultura y la religión",
+    "08.6": "Actividades recreativas, cultura y religión n.c.o.p.",
+    "09": "Educación", "09.1": "Educación preescolar y primaria", "09.2": "Educación secundaria",
+    "09.3": "Educación postsecundaria no terciaria", "09.4": "Educación terciaria",
+    "09.5": "Educación no atribuible a ningún nivel", "09.6": "Servicios auxiliares de la educación",
+    "09.7": "I+D relacionada con la educación", "09.8": "Educación n.c.o.p.",
+    "10": "Protección social", "10.1": "Enfermedad e incapacidad", "10.2": "Edad avanzada (pensiones)",
+    "10.3": "Supérstites", "10.4": "Familia e hijos", "10.5": "Desempleo", "10.6": "Vivienda",
+    "10.7": "Exclusión social n.c.o.p.", "10.8": "I+D relacionada con la protección social", "10.9": "Protección social n.c.o.p.",
+}
+SPENDING_TYPES_ES = {
+    "pay": "Remuneración de asalariados", "purchases": "Consumos intermedios",
+    "benefits": "Prestaciones sociales (pensiones, desempleo...)", "interest": "Intereses", "subsidies": "Subvenciones",
+    "investment": "Formación bruta de capital", "capital_transfers": "Transferencias de capital y ayudas a la inversión",
+    "eu": "Aportación al presupuesto de la UE", "other_current": "Otras transferencias corrientes", "other": "Otros",
+    "transfers": "Transferencias a otras Administraciones públicas",
+}
+REVENUE_TYPES_ES = {
+    "vat": "IVA (e IGIC en Canarias)", "irpf": "IRPF", "corporate": "Impuesto sobre Sociedades",
+    "income_other": "Otros impuestos sobre la renta y el patrimonio",
+    "products": "Impuestos Especiales y otros impuestos sobre los productos",
+    "production": "Otros impuestos sobre la producción", "capital": "Impuestos sobre el capital (sucesiones y donaciones...)",
+    "contributions": "Cotizaciones sociales", "sales": "Ventas de bienes y servicios",
+    "property": "Rentas de la propiedad (intereses, dividendos)", "other": "Otras transferencias recibidas (fondos de la UE...)",
+    "transfers": "Transferencias de otras Administraciones públicas",
+}
+PRODUCT_TAXES_ES = {
+    "hydrocarbons": "Hidrocarburos", "tobacco": "Labores del tabaco", "alcohol": "Alcohol, cerveza y productos intermedios",
+    "electricity": "Electricidad", "power": "Valor de la producción de energía eléctrica", "insurance": "Primas de seguro",
+    "other": "Otros impuestos sobre los productos",
+}
+REGION_PRODUCT_TAXES_ES = {
+    "property_transfers": "Transmisiones patrimoniales y AJD (ITP-AJD)", "gambling": "Tributos sobre el juego",
+    "tourism": "Estancias turísticas", "hydrocarbons": "Hidrocarburos", "vehicles": "Matriculación de vehículos",
+    "other": "Otros impuestos sobre los productos",
+}
+POLICIES_ES = {
+    "pensions": "Pensiones", "unemployment": "Desempleo", "other_benefits": "Otras prestaciones económicas",
+    "social_services": "Servicios sociales y promoción social", "employment": "Fomento del empleo",
+    "housing": "Acceso a la vivienda y fomento de la edificación",
+    "labour_admin": "Gestión y administración de trabajo y economía social",
+    "inclusion_admin": "Gestión y administración de la inclusión, de la Seguridad Social y de la migración",
+    "health": "Sanidad", "education": "Educación", "culture": "Cultura", "justice": "Justicia", "defence": "Defensa",
+    "security": "Seguridad ciudadana e instituciones penitenciarias",
+    "foreign": "Política exterior y de cooperación para el desarrollo", "agriculture": "Agricultura, pesca y alimentación",
+    "industry": "Industria y energía", "trade": "Comercio, turismo y pymes", "transport_subsidies": "Subvenciones al transporte",
+    "infrastructure": "Infraestructuras y ecosistemas resilientes", "research_civil": "Investigación civil",
+    "research_military": "Investigación militar", "research": "Investigación, desarrollo, innovación y digitalización",
+    "other_economic": "Otras actuaciones de carácter económico", "institutions": "Órganos constitucionales, Gobierno y otros",
+    "general_services": "Servicios de carácter general", "tax_admin": "Administración financiera y tributaria",
+    "transfers": "Transferencias a otras Administraciones públicas", "debt": "Deuda pública",
+    "internal": "Transferencias internas",
+}
+BUDGET_REVENUE_ES = {
+    "direct": "Impuestos directos y cotizaciones sociales", "indirect": "Impuestos indirectos",
+    "fees": "Tasas, precios públicos y otros ingresos", "current_transfers": "Transferencias corrientes",
+    "property": "Ingresos patrimoniales", "asset_sales": "Enajenación de inversiones reales",
+    "capital_transfers": "Transferencias de capital", "financial_assets": "Activos financieros",
+}
+EXEC_CHAPTERS_ES = {
+    "ch1": "Capítulo 1. Gastos de personal", "ch2": "Capítulo 2. Gastos corrientes en bienes y servicios",
+    "ch3": "Capítulo 3. Gastos financieros", "ch4": "Capítulo 4. Transferencias corrientes",
+    "ch5": "Capítulo 5. Fondo de contingencia y otros imprevistos", "ch6": "Capítulo 6. Inversiones reales",
+    "ch7": "Capítulo 7. Transferencias de capital", "nonfinancial": "Total operaciones no financieras",
+    "ch8": "Capítulo 8. Activos financieros", "ch9": "Capítulo 9. Pasivos financieros", "total": "Total",
+}
+EXEC_REVENUE_ES = {
+    "ch1": "Capítulo 1. Impuestos directos y cotizaciones sociales", "irpf": "IRPF", "corporate": "Impuesto sobre Sociedades",
+    "nonresident": "Impuesto sobre la Renta de no Residentes", "ch2": "Capítulo 2. Impuestos indirectos", "vat": "IVA",
+    "excise": "Impuestos Especiales", "ch3": "Capítulo 3. Tasas, precios públicos y otros ingresos",
+    "ch4": "Capítulo 4. Transferencias corrientes", "ch5": "Capítulo 5. Ingresos patrimoniales",
+    "ch6": "Capítulo 6. Enajenación de inversiones reales", "ch7": "Capítulo 7. Transferencias de capital",
+    "nonfinancial": "Total operaciones no financieras", "ch8": "Capítulo 8. Activos financieros",
+    "ch9": "Capítulo 9. Pasivos financieros", "total": "Total",
+}
+EXEC_TAXES_ES = {
+    "irpf": "IRPF", "vat": "IVA", "corporate": "Impuesto sobre Sociedades", "excise": "Impuestos Especiales",
+    "nonresident": "Impuesto sobre la Renta de no Residentes", "nonfinancial": "Total ingresos no financieros",
+}
+EXEC_CASH_ES = {"deficit": "Saldo de caja", "receipts": "Cobros", "payments": "Pagos",
+                "assets": "Variación de activos financieros", "borrowing": "Necesidad de endeudamiento"}
+EXEC_TRANSFERS_ES = {"regions_current": "A las comunidades autónomas, corrientes",
+                     "regions_capital": "A las comunidades autónomas, de capital",
+                     "local_current": "A las entidades locales, corrientes", "local_capital": "A las entidades locales, de capital"}
+# The ministries (secciones) by their English name, as data/budget.json keeps them.
+MINISTRIES_ES = {
+    "Foreign affairs, EU and cooperation": "Asuntos Exteriores, Unión Europea y Cooperación",
+    "Presidency, justice and parliament": "Presidencia, Justicia y Relaciones con las Cortes", "Defence": "Defensa",
+    "Finance": "Hacienda", "Interior": "Interior", "Transport and sustainable mobility": "Transportes y Movilidad Sostenible",
+    "Education, vocational training and sport": "Educación, Formación Profesional y Deportes",
+    "Labour and social economy": "Trabajo y Economía Social", "Industry and tourism": "Industria y Turismo",
+    "Agriculture, fisheries and food": "Agricultura, Pesca y Alimentación",
+    "Territorial policy and democratic memory": "Política Territorial y Memoria Democrática",
+    "Ecological transition": "Transición Ecológica y Reto Demográfico", "Culture": "Cultura",
+    "Housing and urban agenda": "Vivienda y Agenda Urbana", "Health": "Sanidad",
+    "Economy, trade and business": "Economía, Comercio y Empresa",
+    "Science, innovation and universities": "Ciencia, Innovación y Universidades",
+    "Social rights, consumer affairs and Agenda 2030": "Derechos Sociales, Consumo y Agenda 2030", "Equality": "Igualdad",
+    "Youth and children": "Juventud e Infancia", "Inclusion, Social Security and migration": "Inclusión, Seguridad Social y Migraciones",
+    "Digital transformation and civil service": "Transformación Digital y Función Pública",
+}
+
+
+def _named(spanish: dict, code: str, label: str) -> str:
+    """An item's name in the language being written: on the Spanish site, the publisher's own Spanish name."""
+    return i18n.pick(label, spanish.get(code))
+
+
 def _row_key(label, table) -> str | None:
     name = _norm(label)
     return next((key for key, _, prefixes in table if any(name.startswith(p) for p in prefixes)), None)
@@ -942,9 +1083,11 @@ def rolled_note(rolled: list[int], years: list[int]) -> str:
     run = [max(rolled)]
     while run[0] - 1 in rolled:
         run.insert(0, run[0] - 1)
-    listed = ", ".join(str(y) for y in run[:-1]) + (" and " if len(run) > 1 else "") + str(run[-1])
-    tense = "has stayed" if run[-1] == max(years) else "stayed"
-    return f"the {run[0] - 1} budget {tense} in force in {listed}"
+    listed = (_("{names} and {last}").format(names=", ".join(str(y) for y in run[:-1]), last=run[-1]) if len(run) > 1
+              else str(run[-1]))
+    if run[-1] == max(years):
+        return _("the {year} budget has stayed in force in {years}").format(year=run[0] - 1, years=listed)
+    return _("the {year} budget stayed in force in {years}").format(year=run[0] - 1, years=listed)
 
 
 MONTH_KEYS = ("spending", "spending_prev", "revenue", "revenue_prev", "cash", "cash_prev", "borrowing", "borrowing_prev", "mrr")
@@ -958,29 +1101,32 @@ def detail_for_page(detail: dict, year: int) -> dict:
     def cell(part, row, col, y):
         return detail.get(part, {}).get(row, {}).get(y, {}).get(col)
 
-    revenue = [{"code": k, "label": label, "indent": 1 if k in INDENTED else 0,
+    revenue = [{"code": k, "label": _named(EXEC_REVENUE_ES, k, label), "indent": 1 if k in INDENTED else 0,
                 **{c: cell("revenue", k, c, this) for c in ("forecast", "rights", "collected")},
                 "rights_prev": cell("revenue", k, "rights", prev), "collected_prev": cell("revenue", k, "collected", prev)}
-               for k, label, _ in EXEC_REVENUE if k in detail.get("revenue", {})]
+               for k, label, _rest in EXEC_REVENUE if k in detail.get("revenue", {})]
     taxes = []
-    for k, label, _ in EXEC_TAXES:
+    for k, label, _rest in EXEC_TAXES:
         if k not in detail.get("taxes", {}):
             continue
         now, before = detail["taxes"][k].get(this, {}), detail["taxes"][k].get(prev, {})
-        taxes.append({"code": k, "label": label, "collected": round(now.get("applied", 0) + now.get("pending", 0), 1),
+        taxes.append({"code": k, "label": _named(EXEC_TAXES_ES, k, label),
+                      "collected": round(now.get("applied", 0) + now.get("pending", 0), 1),
                       "regions": now.get("regions"), "local": now.get("local"), "state": now.get("state"),
                       "collected_prev": round(before.get("applied", 0) + before.get("pending", 0), 1) if before else None})
-    chapters = [{"code": k, "label": label, **{c: cell("chapters", k, c, this) for c in ("final", "committed", "obligations", "payments")},
+    chapters = [{"code": k, "label": _named(EXEC_CHAPTERS_ES, k, label),
+                 **{c: cell("chapters", k, c, this) for c in ("final", "committed", "obligations", "payments")},
                  "obligations_prev": cell("chapters", k, "obligations", prev)}
-                for k, label, _ in EXEC_CHAPTERS if k in detail.get("chapters", {})]
-    cash = {k: {"label": label, "value": cell("cash", k, "value", this), "prev": cell("cash", k, "value", prev)}
-            for k, label, _ in EXEC_CASH if k in detail.get("cash", {})}
+                for k, label, _rest in EXEC_CHAPTERS if k in detail.get("chapters", {})]
+    cash = {k: {"label": _named(EXEC_CASH_ES, k, label), "value": cell("cash", k, "value", this), "prev": cell("cash", k, "value", prev)}
+            for k, label, _rest in EXEC_CASH if k in detail.get("cash", {})}
     mrr = detail.get("mrr") or {}
-    transfers = [{"code": key, "label": label, **{c: detail["transfers"][key].get(this, {}).get(c) for c in ("final", "obligations")},
+    transfers = [{"code": key, "label": _named(EXEC_TRANSFERS_ES, key, label),
+                  **{c: detail["transfers"][key].get(this, {}).get(c) for c in ("final", "obligations")},
                   "obligations_prev": detail["transfers"][key].get(prev, {}).get("obligations")}
-                 for _, key, label in EXEC_TRANSFERS if key in detail.get("transfers", {})]
+                 for _sheet, key, label in EXEC_TRANSFERS if key in detail.get("transfers", {})]
     return {"revenue": revenue, "taxes": taxes, "chapters": chapters, "cash": cash, "transfers": transfers,
-            "mrr": {"rows": sorted(({"label": n, **v} for n, v in mrr.get("ministries", {}).items()),
+            "mrr": {"rows": sorted(({"label": _named(MINISTRIES_ES, n, n), **v} for n, v in mrr.get("ministries", {}).items()),
                                    key=lambda r: -r.get("credits", 0)), "total": mrr.get("total")} if mrr else None}
 
 
@@ -1015,17 +1161,21 @@ def state_budget_data(saved: dict, gdp: dict[int, float]) -> dict | None:
     if not sb:
         return None
     years = sorted(int(y) for y in sb["spending"])
-    spend_keys = [k for k, _, _ in POLICIES if any(k in sb["spending"][str(y)] for y in years)]
-    rev_keys = [k for k, _, _ in BUDGET_REVENUE if any(k in sb["revenue"].get(str(y), {}) for y in years)]
-    labels = {k: label for k, label, _ in POLICIES + BUDGET_REVENUE}
+    spend_keys = [k for k, _name, _rest in POLICIES if any(k in sb["spending"][str(y)] for y in years)]
+    rev_keys = [k for k, _name, _rest in BUDGET_REVENUE if any(k in sb["revenue"].get(str(y), {}) for y in years)]
+    labels = ({k: _named(POLICIES_ES, k, label) for k, label, _rest in POLICIES}
+              | {k: _named(BUDGET_REVENUE_ES, k, label) for k, label, _rest in BUDGET_REVENUE})
     month_names = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September",
                    "October", "November", "December"]
     execution = []
     for y, ex in sorted(sb.get("execution", {}).items(), reverse=True):
         if "TOTAL" not in ex.get("policies", {}):
             continue
-        rows = [{"code": k, "label": labels[k], **ex["policies"][k]} for k, _, _ in POLICIES if k in ex["policies"]]
-        execution.append({"year": int(y), "month": ex["month"], "through": f"{ex['day']} {month_names[ex['month']]} {y}",
+        rows = [{"code": k, "label": labels[k], **ex["policies"][k]} for k, _name, _rest in POLICIES if k in ex["policies"]]
+        # "31 August 2026" / "31 de agosto de 2026"
+        through = (f"{ex['day']} de {i18n.MONTHS_ES[ex['month'] - 1]} de {y}" if i18n.lang() == "es"
+                   else f"{ex['day']} {month_names[ex['month']]} {y}")
+        execution.append({"year": int(y), "month": ex["month"], "through": through,
                           "full_year": ex["month"] == 12, "rows": rows, "total": ex["policies"]["TOTAL"],
                           "detail": detail_for_page(ex.get("detail") or {}, int(y))})
     return {
@@ -1040,8 +1190,8 @@ def state_budget_data(saved: dict, gdp: dict[int, float]) -> dict | None:
         "months": {y: {k: [m.get(str(n), {}).get(k) for n in range(1, 13)] for k in MONTH_KEYS}
                    for y, m in sb.get("months", {}).items()},
         "pace": pace_for_page(sb.get("months", {})),
-        "pace_items": {"policies": [{"code": k, "label": labels[k]} for k, _, _ in POLICIES],
-                       "chapters": [{"code": k, "label": label} for k, label, _ in EXEC_CHAPTERS]},
+        "pace_items": {"policies": [{"code": k, "label": labels[k]} for k, _name, _rest in POLICIES],
+                       "chapters": [{"code": k, "label": _named(EXEC_CHAPTERS_ES, k, label)} for k, label, _rest in EXEC_CHAPTERS]},
         "pages": {"sepg": SEPG_PAGE, "igae": EXECUTION_PAGE},
     }
 
@@ -1075,26 +1225,28 @@ def explorer_data(store: Store, data: Data) -> dict | None:
         return {k: [s.get(str(y)) for y in years] for k, s in table.items()}
 
     def products(regional: bool) -> list[dict]:
-        return ([{"code": k, "label": label} for k, label, _ in (REGION_PRODUCT_TAXES if regional else PRODUCT_TAXES)]
-                + [{"code": "other", "label": "Other taxes on products"}])
+        spanish = REGION_PRODUCT_TAXES_ES if regional else PRODUCT_TAXES_ES
+        return ([{"code": k, "label": _named(spanish, k, label)} for k, label, _rest in (REGION_PRODUCT_TAXES if regional else PRODUCT_TAXES)]
+                + [{"code": "other", "label": _named(spanish, "other", "Other taxes on products")}])
 
     out_levels = []
     for spec in LEVELS:
         lv = levels.get(spec["id"])
         if not lv:
             continue
-        out_levels.append({**{k: spec[k] for k in ("id", "name", "short", "about", "transfers")},
+        out_levels.append({**{k: _(spec[k]) if k in ("name", "short", "about") else spec[k]
+                              for k in ("id", "name", "short", "about", "transfers")},
                            "function": series(lv["function"]), "type": series(lv["type"]),
                            "revenue": series(lv["revenue"]), "products": series(lv["products"]),
                            "product_items": products(spec.get("regional", False)),
                            "provisional": lv["provisional"], "sources": urls(spec)})
-    for slug, name, _, _ in COMMUNITIES:
+    for slug, name, _nuts, _keys in COMMUNITIES:
         lv = saved.get("communities", {}).get(slug)
         if not lv:
             continue
         out_levels.append({"id": slug, "name": name, "short": name, "community": True, "transfers": True,
-                           "about": f"The regional administration of {name}: spending by function from 2012, revenue and "
-                                    "spending by type from 2000, taxes one by one from 2012.",
+                           "about": _("The regional administration of {name}: spending by function from 2012, revenue and "
+                                      "spending by type from 2000, taxes one by one from 2012.").format(name=name),
                            "function": series(lv["function"]), "type": series(lv["type"]),
                            "revenue": series(lv["revenue"]), "products": series(lv["products"]),
                            "product_items": products(True), "provisional": lv["provisional"],
@@ -1108,11 +1260,12 @@ def explorer_data(store: Store, data: Data) -> dict | None:
         "population": [population.get(y) for y in years],
         "prices": [deflator[y] / deflator[price_year] * 100 if y in deflator and price_year else None for y in years],
         "price_year": price_year,
-        "functions": [{"code": c, "label": label, "children": [{"code": g, "label": gl} for g, gl in groups]}
+        "functions": [{"code": c, "label": _named(FUNCTIONS_ES, c, label),
+                       "children": [{"code": g, "label": _named(FUNCTIONS_ES, g, gl)} for g, gl in groups]}
                       for c, label, groups in FUNCTIONS],
-        "types": [{"code": k, "label": label} for k, label, _ in SPENDING_TYPES],
-        "revenues": [{"code": k, "label": label, "children": [{"code": "products"}] if k == "products" else []}
-                     for k, label, _ in REVENUE_TYPES],
+        "types": [{"code": k, "label": _named(SPENDING_TYPES_ES, k, label)} for k, label, _rest in SPENDING_TYPES],
+        "revenues": [{"code": k, "label": _named(REVENUE_TYPES_ES, k, label), "children": [{"code": "products"}] if k == "products" else []}
+                     for k, label, _rest in REVENUE_TYPES],
         "transfer_function": TRANSFER_FUNCTION,
         "levels": out_levels,
         "state_budget": state_budget_data(saved, gdp),
@@ -1121,11 +1274,10 @@ def explorer_data(store: Store, data: Data) -> dict | None:
 
 
 def fetched_day(bx: dict) -> str:
-    """'2 Nov 2026', when the IGAE workbooks were last downloaded."""
+    """'2 Nov 2026' ('2 nov 2026'), when the IGAE workbooks were last downloaded."""
     if not bx.get("fetched_at"):
-        return "never"
-    d = datetime.fromisoformat(bx["fetched_at"])
-    return f"{d.day} {d:%b %Y}"
+        return _("never")
+    return i18n.day_month_year(datetime.fromisoformat(bx["fetched_at"]))
 
 
 def provisional_note(bx: dict) -> str:
@@ -1135,7 +1287,7 @@ def provisional_note(bx: dict) -> str:
         return ""
     parts = []
     if central["provisional"].get("function"):
-        parts.append(f"{max(central['provisional']['function'])} for spending by function")
+        parts.append(_("{year} for spending by function").format(year=max(central["provisional"]["function"])))
     if central["provisional"].get("accounts"):
-        parts.append(f"{max(central['provisional']['accounts'])} for spending by type and revenue")
-    return " and ".join(parts)
+        parts.append(_("{year} for spending by type and revenue").format(year=max(central["provisional"]["accounts"])))
+    return _("{names} and {last}").format(names=parts[0], last=parts[1]) if len(parts) == 2 else "".join(parts)

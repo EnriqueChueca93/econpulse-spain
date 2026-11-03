@@ -88,7 +88,12 @@ def test_the_site_is_built_in_both_languages(tmp_path):
     assert "<h1>Calendario de publicaciones</h1>" in (site / "es" / "calendar.html").read_text(encoding="utf-8")
     assert "<h1>Acerca de Macroscope España</h1>" in (site / "es" / "about.html").read_text(encoding="utf-8")
     assert "<h1>Datos y fuentes</h1>" in (site / "es" / "data.html").read_text(encoding="utf-8")
-    assert not (site / "es" / "404.html").exists() and not (site / "es" / "feed.xml").exists()
+    assert not (site / "es" / "404.html").exists()
+    # Each language has its feed (Batch 33d), and its pages link to it.
+    es_feed = (site / "es" / "feed.xml").read_text(encoding="utf-8")
+    assert "<language>es</language>" in es_feed and "Macroscope España: qué ha cambiado" in es_feed
+    assert "<language>en</language>" in (site / "feed.xml").read_text(encoding="utf-8")
+    assert 'href="feed.xml"' in es and "macroscope-spain/es/feed.xml" in es_feed
     assert (site / "es" / "data" / "search.js").exists() and (site / "es" / "data" / "snapshot.js").exists()
 
 

@@ -49,8 +49,8 @@ Spanish from `econpulse/locale/es.yaml`, which `scripts/write_catalogue.py` writ
 Spanish templates of their own (`templates/es/`). The section pages' tables and charts are put into the page's
 language where they are written out (`econpulse/tables.py`, `charts.localise`), so a page definition in
 `pages.py` stays in English. The series use their official Spanish names from the registry. Numbers keep the English format in both languages; dates take Spanish month and day names. Text not
-translated yet stays in English, and `python -m econpulse build` says how much is left. The Excel workbook and the
-RSS feed are in English only.
+translated yet stays in English, and `python -m econpulse build` says how much is left (nothing, since Batch 33d).
+Each version has its own RSS feed (`site/feed.xml`, `site/es/feed.xml`); the Excel workbook is in English only.
 
 ## The site
 

@@ -25,7 +25,9 @@ import numpy as np
 import pandas as pd
 import requests
 
-from . import http, policy, speechscore
+from . import http, i18n, policy, speechscore
+from .charts import localise
+from .i18n import _
 from .sources.base import madrid_today
 from .store import Store
 
@@ -66,9 +68,11 @@ NCBS = {
 }
 _NOT_HEAD = r"(?<!Deputy )(?<!Vice )(?<!Vice-)(?<!Sub-)(?<!Alternate )"
 GOVERNOR = {code: re.compile(_NOT_HEAD + r"\b(Governor|President|Chair(?:man|person)? of the Board) of (?:the )?(?:" + names + r")\b")
-            for code, (_, names, _) in NCBS.items()}
+            for code, (_name, names, _since) in NCBS.items()}
 ECB_ROLE = re.compile(_NOT_HEAD + r"\b(President|Vice-President|Member of the Executive Board) of the (?:European Central Bank|ECB)\b")
 SEATS_ECB = {"President": "ECB President", "Vice-President": "ECB Vice-President"}
+# Members whose role is written in the feminine in Spanish ("presidenta", "gobernadora"), by speaker key.
+WOMEN = {"lagarde", "schnabel"}
 
 
 # ---------------------------------------------------------------- recognising members
@@ -140,7 +144,7 @@ def bis_archive_docs(content: bytes) -> list[dict]:
 def archive(year: int, tries: int = 3):
     """A year's BIS archive as bytes; None if the BIS has not published it; False if it failed.
     The BIS server sometimes cuts a download short, so each file is checked and retried."""
-    for _ in range(tries):
+    for _attempt in range(tries):
         try:
             content = http.get(BIS_ARCHIVE.format(year=year)).content
             with zipfile.ZipFile(io.BytesIO(content)) as z:
@@ -288,9 +292,10 @@ def current_members(df: pd.DataFrame, today: pd.Timestamp) -> pd.DataFrame:
 
 
 def _label(row) -> str:
-    inst = "ECB" if row["institution"] == "ECB" else NCBS[row["institution"]][0]
     title = row["title"] if row["institution"] == "ECB" else "Governor"
-    return f"{inst} · {title}"
+    if i18n.lang() == "es" and title != "Executive Board" and row["key"] in WOMEN:
+        title += " (woman)"   # "Presidenta", "Gobernadora"
+    return f"{_short(row['institution'])} · {_(title)}"
 
 
 def analysis(store: Store, today: date | None = None) -> dict | None:
@@ -307,7 +312,7 @@ def analysis(store: Store, today: date | None = None) -> dict | None:
     current = cycle_of(today)
     recent_cycles = [c for c in MEETINGS if c <= current][-4:]
     members, unscored = [], []
-    for _, m in current_members(df, today).iterrows():
+    for _row, m in current_members(df, today).iterrows():
         own = scored[scored["key"] == m["key"]].sort_values("date")
         year = own[own["date"] >= today - pd.Timedelta(days=365)]
         window = own[own["cycle"].isin(recent_cycles)]
@@ -335,7 +340,7 @@ def analysis(store: Store, today: date | None = None) -> dict | None:
     week = df[df["date"] >= today - pd.Timedelta(days=7)].sort_values("date", ascending=False)
     own_avg = {}
     latest = scored.sort_values("date", ascending=False).head(12)
-    for _, d in latest.iterrows():
+    for _row, d in latest.iterrows():
         prior = scored[(scored["key"] == d["key"]) & (scored["date"] < d["date"])].tail(6)
         own_avg[d["id"]] = round(float(d["score"] - prior["score"].mean()), 1) if not prior.empty else None
     return {
@@ -371,7 +376,12 @@ def decision_tones(comm: pd.DataFrame, deposit: pd.Series | None) -> dict:
 # ---------------------------------------------------------------- the page
 
 def _short(institution: str) -> str:
-    return "ECB" if institution == "ECB" else NCBS[institution][0]
+    return _("ECB") if institution == "ECB" else _(NCBS[institution][0])
+
+
+def _localised(spec: dict) -> dict:
+    """The spec's words in Spanish on the Spanish pass (the English spec is left exactly as it was)."""
+    return localise(spec) if i18n.lang() != "en" else spec
 
 
 def _span(values) -> list[float]:
@@ -387,16 +397,16 @@ def charts(a: dict) -> dict:
         members = [m for m in a["members"] if (m["stance"] if kind == "absolute" else m["relative"]) is not None]
         key = "stance" if kind == "absolute" else "relative"
         members = sorted(members, key=lambda m: m[key], reverse=True)
-        return [{"label": f"{m['name']} · {_short(m['institution'])}", "sub": m["label"] + (" · quiet lately" if m["quiet"] else ""),
+        return [{"label": f"{m['name']} · {_short(m['institution'])}", "sub": m["label"] + (" · " + _("quiet lately") if m["quiet"] else ""),
                  "stance": m[key], "recent": m["recent"] if kind == "absolute" else m["relative_recent"],
                  "range": m["range"] if kind == "absolute" else m["relative_range"], "highlight": m["spain"]} for m in members]
     absolute, relative = rows("absolute"), rows("relative")
     base = {"id": "speak-standings", "kind": "dots", "unit": "", "decimals": 0, "left": "dovish", "right": "hawkish",
             "title": "Current standings", "subtitle": "Score, −100 dovish to +100 hawkish",
-            "source": "ECB and BIS speeches; Macroscope word-list scores"}
-    standings = {**base, "rows": absolute, "x_range": [-100, 100]}
-    relative_spec = {**base, "rows": relative,
-                     "x_range": _span([v for r in relative for v in [r["stance"], *(r["range"] or []), *(r["recent"] or [])]])}
+            "source": _("ECB and BIS speeches; Macroscope word-list scores")}
+    standings = _localised({**base, "rows": absolute, "x_range": [-100, 100]})
+    relative_spec = _localised({**base, "rows": relative,
+                                "x_range": _span([v for r in relative for v in [r["stance"], *(r["range"] or []), *(r["recent"] or [])]])})
     comm = a["committee"].dropna(subset=["tone"])
     x = [d.strftime("%Y-%m-%d") for d in comm.index]
     timeline = {"id": "speak-committee", "kind": "line", "unit": "", "decimals": 0, "signed": True, "freq": "M",
@@ -405,24 +415,27 @@ def charts(a: dict) -> dict:
                 "series": [{"name": "Committee", "x": x, "y": comm["tone"].round(1).tolist(), "color": "ink"},
                            {"name": "Most hawkish quarter of members", "x": x, "y": comm["p75"].round(1).tolist(), "dash": "dot"},
                            {"name": "Most dovish quarter", "x": x, "y": comm["p25"].round(1).tolist(), "dash": "dot"}],
-                "source": "ECB and BIS speeches; Macroscope word-list scores"}
-    return {"charts": [standings, timeline], "relative": relative_spec}
+                "source": _("ECB and BIS speeches; Macroscope word-list scores")}
+    return {"charts": [standings, _localised(timeline)], "relative": relative_spec}
 
 
 def _fmt_day(d) -> str:
-    d = pd.Timestamp(d)
-    return f"{d.day} {d:%b %Y}"
+    """"29 Oct 2026" / "29 oct 2026"."""
+    return i18n.day_month_year(pd.Timestamp(d))
 
 
 def decision_sentence(decisions: dict) -> str | None:
     """'The committee's tone averaged +35 in the 9 cycles that ended in a rate rise, ...'."""
-    phrases = {"hike": "ended in a rate rise", "cut": "ended in a cut", "hold": "ended with rates on hold"}
-    parts = [f"{_signed(decisions[k]['tone'])} in the {decisions[k]['n']} cycle{'s' if decisions[k]['n'] != 1 else ''} that {phrases[k]}"
+    phrases = {"hike": ("{tone} in the {n} cycle that ended in a rate rise", "{tone} in the {n} cycles that ended in a rate rise"),
+               "cut": ("{tone} in the {n} cycle that ended in a cut", "{tone} in the {n} cycles that ended in a cut"),
+               "hold": ("{tone} in the {n} cycle that ended with rates on hold",
+                        "{tone} in the {n} cycles that ended with rates on hold")}
+    parts = [i18n.ngettext(*phrases[k], decisions[k]["n"]).format(tone=_signed(decisions[k]["tone"]), n=decisions[k]["n"])
              for k in ("hike", "cut", "hold") if k in decisions]
     if not parts:
         return None
-    listed = parts[0] if len(parts) == 1 else ", ".join(parts[:-1]) + " and " + parts[-1]
-    return f"Does it track what the ECB did? The committee's tone averaged {listed}."
+    listed = parts[0] if len(parts) == 1 else _("{names} and {last}").format(names=", ".join(parts[:-1]), last=parts[-1])
+    return _("Does it track what the ECB did? The committee's tone averaged {listed}.").format(listed=listed)
 
 
 def _signed(v: float) -> str:
@@ -454,7 +467,7 @@ def page(store: Store, today: date | None = None) -> dict | None:
         "week": [row(d) for d in a["week"]], "latest": [row(d) for d in a["latest"]],
         "next_meeting": _fmt_day(nxt) if nxt is not None else None,
         "quiet_from": _fmt_day(nxt - pd.Timedelta(days=7)) if nxt is not None else None,
-        "groups": [{"side": side, "name": g, "note": speechscore.GROUP_NOTES[g], "patterns": pats}
+        "groups": [{"side": side, "name": _(g), "note": _(speechscore.GROUP_NOTES[g]), "patterns": pats}
                    for side, lists in speechscore.word_lists().items() for g, pats in lists.items()],
         "min_matches": speechscore.MIN_MATCHES, "min_members": MIN_MEMBERS,
         "decision_text": decision_sentence(a["decisions"]),

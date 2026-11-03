@@ -23,7 +23,7 @@
   {% block head_extra %}{% endblock %}
   <link rel="icon" href="{{ root }}assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="{{ root }}assets/style.css?v={{ build_id }}">
-  <link rel="alternate" type="application/rss+xml" title="Macroscope Spain: what changed" href="{{ root }}feed.xml">
+  <link rel="alternate" type="application/rss+xml" title="{{ _("Macroscope Spain: what changed") }}" href="feed.xml">
 </head>
 <body>
   <a class="skip-link" href="#content">{{ _("Skip to content") }}</a>
@@ -92,7 +92,7 @@
         <abbr title="{{ _("seasonally adjusted by Macroscope") }}">{{ _("SA") }}</abbr> {{ _("or labelled as a Macroscope calculation.") }}</p>
       <p>{{ brand }} v{{ version }} · {{ _("built %(when)s", when=built) }} · <a href="about.html">{{ _("About and methods") }}</a> ·
         <a href="calendar.html">{{ _("Release calendar") }}</a> · <a href="data.html">{{ _("Data and freshness") }}</a> ·
-        <a href="{{ root }}feed.xml">{{ _("RSS feed") }}</a></p>
+        <a href="feed.xml">{{ _("RSS feed") }}</a></p>
     </div>
   </footer>
 

@@ -1,0 +1,173 @@
+{% extends "base.html" %}
+{% from "macros.html" import chart_card %}
+{# ECB-speak in Spanish (Batch 33d): mostly prose, so a template of its own; the figures, names, tables and charts come
+   from econpulse/ecbspeak.py in Spanish already. Speech titles and the matched phrases stay in English, as spoken.
+   Hawkish/dovish are "restrictivo"/"acomodaticio" throughout. Keep it in step with templates/ecb-speak.html. #}
+
+{% block title %}{{ _("ECB-speak") }} · {{ brand }}{% endblock %}
+{% block description %}Hasta qué punto suena restrictivo o acomodaticio el Consejo de Gobierno del BCE, puntuado discurso a discurso desde septiembre de 2022.{% endblock %}
+
+{% macro signed(v, d=0) -%}{% if v is none %}–{% else %}{{ ("%+." ~ d ~ "f") | format(v) | replace("-", "−") }}{% endif %}{%- endmacro %}
+
+{% block content %}
+  <p class="back-link"><a href="tools.html">← {{ _("Tools") }}</a></p>
+  <h1>ECB-speak</h1>
+  {% if not p %}
+    <p class="notice">Los discursos aún no se han recogido; llegarán con la próxima actualización de datos.</p>
+  {% else %}
+  <p class="lede">Hasta qué punto suena restrictivo o acomodaticio el Consejo de Gobierno del BCE: cada discurso de sus
+    miembros desde septiembre de 2022, puntuado en una escala de −100 (acomodaticio, o «de paloma») a +100 (restrictivo,
+    o «de halcón») contando las expresiones que apuntan a endurecer o a relajar la política monetaria, y promediado en
+    cada ciclo de reuniones.</p>
+  <div class="notice credit-box">
+    <p>Inspirado en el <a href="https://econvitals.org/tools/fedspeak/" target="_blank" rel="noopener" lang="en">Fedspeak Tracker</a>
+      de Econvitals (econvitals.org, de Jason Furman; de dominio público, CC0 1.0), que puntúa las comunicaciones de la
+      Reserva Federal de EE. UU. con un modelo de lenguaje. Esta versión puntúa las del BCE con <strong>listas de
+      palabras</strong>, no con una IA: es transparente y gratuita, pero más tosca, así que conviene leerla como un
+      indicador aproximado. Discursos del BCE y del Banco de Pagos Internacionales (BPI).</p>
+    <p class="secondary">{{ p.documents }} discursos, {{ p.scored }} con una orientación de política monetaria · actualizado: {{ p.updated_at }} UTC</p>
+  </div>
+  {% if p.error %}<p class="notice">La última actualización falló ({{ p.error }}); estos son los discursos recogidos antes.</p>{% endif %}
+
+  <div class="facts">
+    <div class="fact"><span class="fact-label">Tono del Consejo, último ciclo completo</span>
+      <span class="fact-value">{{ signed(p.tone_last) }}</span>
+      <span class="fact-sub">reunión del {{ p.last_full }} · {{ p.docs_last }} discursos puntuados</span></div>
+    <div class="fact"><span class="fact-label">Ciclo actual</span>
+      <span class="fact-value">{{ signed(p.tone_current) if p.tone_current is not none else "n. d." }}</span>
+      <span class="fact-sub">hasta el {{ p.current }} · {% if p.docs_current %}{{ p.docs_current }} discursos puntuados{% else %}aún hay pocos discursos{% endif %}</span></div>
+    <div class="fact"><span class="fact-label">Variación en el año</span>
+      <span class="fact-value">{% if p.tone_last is not none and p.tone_year_ago is not none %}{{ signed(p.tone_last - p.tone_year_ago) }}{% else %}–{% endif %}</span>
+      <span class="fact-sub">frente al ciclo hasta el {{ p.year_ago }} ({{ signed(p.tone_year_ago) }})</span></div>
+    <div class="fact"><span class="fact-label">Dispersión (σ)</span>
+      <span class="fact-value">{{ "%.0f" | format(p.spread_last) if p.spread_last is not none else "–" }}</span>
+      <span class="fact-sub">dispersión del tono entre los miembros, último ciclo completo</span></div>
+  </div>
+
+  <section class="block" aria-labelledby="standings">
+    <h2 id="standings">Dónde se sitúa cada miembro</h2>
+    <p class="block-intro">Cada miembro actual con algún discurso puntuado en el último año, ordenado por su orientación:
+      el punto grueso es su media en los cuatro últimos ciclos de reuniones (o en sus tres últimos discursos, si no ha
+      intervenido recientemente). Los puntos pequeños numerados son sus dos últimos discursos puntuados (1 = el más
+      reciente); la banda es su rango en el último año. La escala relativa compara cada discurso con el resto del Consejo
+      en el mismo ciclo, lo que elimina los vaivenes que comparten todos. El gobernador del Banco de España aparece en
+      naranja cuando figura.</p>
+    <div class="tool-controls" role="group" aria-label="Escala">
+      <span class="secondary">Escala</span>
+      <button type="button" class="tool-button" data-speak-scale="absolute" aria-pressed="true">Absoluta</button>
+      <button type="button" class="tool-button" data-speak-scale="relative" aria-pressed="false">Relativa</button>
+    </div>
+    <div class="charts charts-single">{% for c in charts if c.id == "speak-standings" %}{{ chart_card(c) }}{% endfor %}</div>
+    {% if p.unscored %}
+    <p class="note">Miembros cuyos discursos del último año tenían demasiado poco lenguaje de política monetaria para
+      puntuarlos: {% for u in p.unscored %}{{ u.name }} ({{ u.label }}){{ ", " if not loop.last else "." }}{% endfor %}
+      Muchos gobernadores hablan sobre todo de pagos, de supervisión o de su economía nacional, y los discursos dados solo
+      en su propio idioma (como muchos de los del Banco de España) no están en el archivo en inglés.</p>
+    {% endif %}
+  </section>
+
+  <section class="block" aria-labelledby="committee">
+    <h2 id="committee">El Consejo a lo largo del tiempo</h2>
+    <p class="block-intro">El tono del Consejo en cada ciclo de reuniones (la media de las puntuaciones medias de sus
+      miembros) y la distancia entre su cuarto más restrictivo y su cuarto más acomodaticio. Se omiten los ciclos en los
+      que hablaron de política monetaria menos de {{ p.min_members }} miembros.</p>
+    <div class="charts charts-single">{% for c in charts if c.id == "speak-committee" %}{{ chart_card(c) }}{% endfor %}</div>
+    {% if p.decision_text %}<p class="notice callout">{{ p.decision_text }}</p>{% endif %}
+  </section>
+
+  <section class="block" aria-labelledby="week">
+    <h2 id="week">Esta semana en el BCE</h2>
+    <p class="block-intro">Todos los discursos de los miembros fechados en los últimos siete días, del más reciente al más
+      antiguo, incluidos los que no tienen una orientación de política monetaria que puntuar.</p>
+    {% if p.week %}
+    <div class="table-scroll"><table class="data-table speak-table">
+      <thead><tr><th scope="col">Fecha</th><th scope="col">Miembro</th><th scope="col">Discurso</th><th scope="col" class="num">Puntuación</th><th scope="col" class="num">Relativa</th></tr></thead>
+      <tbody>{% for r in p.week %}<tr{% if r.spain %} class="highlight-row"{% endif %}><td>{{ r.date }}</td><td>{{ r.name }}<span class="secondary"> · {{ r.where }}</span></td>
+        <td><a href="{{ r.url }}" target="_blank" rel="noopener" lang="en">{{ r.title }}</a></td>
+        <td class="num">{{ signed(r.score) if r.score is not none else "sin orientación" }}</td><td class="num">{{ signed(r.relative) }}</td></tr>{% endfor %}</tbody>
+    </table></div>
+    {% else %}<p class="note">Ningún miembro ha dado discursos en los últimos siete días.</p>{% endif %}
+  </section>
+
+  <section class="block" aria-labelledby="latest">
+    <h2 id="latest">Los últimos discursos puntuados</h2>
+    <p class="block-intro">Los últimos discursos con una orientación de política monetaria. «Frente a su media» es la
+      puntuación menos la media de ese miembro en sus seis discursos puntuados anteriores: lo restrictivo o acomodaticio
+      que fue ese discurso para quien lo dio.</p>
+    <div class="table-scroll"><table class="data-table speak-table">
+      <thead><tr><th scope="col">Fecha</th><th scope="col">Miembro</th><th scope="col">Discurso</th><th scope="col" class="num">Puntuación</th>
+        <th scope="col" class="num">Frente a su media</th><th scope="col" class="num">Relativa</th></tr></thead>
+      <tbody>{% for r in p.latest %}<tr{% if r.spain %} class="highlight-row"{% endif %}><td>{{ r.date }}</td><td>{{ r.name }}<span class="secondary"> · {{ r.where }}</span></td>
+        <td><a href="{{ r.url }}" target="_blank" rel="noopener" lang="en">{{ r.title }}</a></td>
+        <td class="num">{{ signed(r.score) }}</td><td class="num">{{ signed(r.own) }}</td><td class="num">{{ signed(r.relative) }}</td></tr>{% endfor %}</tbody>
+    </table></div>
+    {% if p.next_meeting %}<p class="note">Próxima reunión de política monetaria: {{ p.next_meeting }}. Los miembros dejan
+      de hablar de política monetaria en público desde una semana antes, aproximadamente ({{ p.quiet_from }}): es el
+      periodo de silencio del BCE.</p>{% endif %}
+  </section>
+
+  <section class="block" aria-labelledby="speak-method">
+    <h2 id="speak-method">Métodos y datos</h2>
+    <div class="prose">
+      <p><strong>Puntuación.</strong> Cada discurso se divide en frases y en ellas se buscan las expresiones de abajo, en
+        inglés, el idioma de los discursos. La puntuación es 100 × (restrictivas − acomodaticias) ÷ (restrictivas +
+        acomodaticias). Para puntuar un discurso hacen falta al menos {{ p.min_matches }} coincidencias, y que al menos el
+        5% de sus frases mencionen la política monetaria, la inflación o los tipos de interés; si no, queda «sin
+        orientación». Las listas cuentan cambios y riesgos, no niveles (<span lang="en">“higher inflation”</span>, no
+        <span lang="en">“high inflation”</span>), porque los discursos usan los niveles tanto para describir el pasado como
+        las perspectivas. No captan la negación ni el contexto: <span lang="en">“not yet time to cut”</span> («aún no es
+        momento de bajar») cuenta como una bajada. Las medias de los miembros dan a todos el mismo peso; los ciclos de
+        reuniones van del sábado siguiente a una reunión al viernes siguiente a la próxima.</p>
+      <div class="speak-lists">
+        {% for side, heading in [("hawkish", "Expresiones restrictivas"), ("dovish", "Expresiones acomodaticias")] %}
+        <div><h3>{{ heading }}</h3><ul>
+          {% for g in p.groups if g.side == side %}<li><strong>{{ g.name }}</strong>: {{ g.note }}.</li>{% endfor %}
+        </ul></div>
+        {% endfor %}
+      </div>
+      <details><summary>Los patrones exactos (en inglés)</summary>
+        {% for g in p.groups %}<p class="note"><strong>{{ "restrictiva" if g.side == "hawkish" else "acomodaticia" }} · {{ g.name }}</strong><br>{% for pat in g.patterns %}<code>{{ pat }}</code><br>{% endfor %}</p>{% endfor %}
+      </details>
+      <p><strong>Quién cuenta.</strong> Los discursos de los miembros del Consejo de Gobierno, reconocidos por el cargo que
+        figura en cada discurso: la presidencia, la vicepresidencia y los demás miembros del Comité Ejecutivo del BCE, y
+        los gobernadores de los bancos centrales nacionales de la zona del euro (el de Croacia desde 2023, el de Bulgaria
+        desde 2026). Los subgobernadores no son miembros y quedan fuera. Los miembros «actuales» son el último titular de
+        cada puesto y los miembros del Comité Ejecutivo que han hablado en los últimos seis meses.</p>
+      <p><strong>Fuentes.</strong> Los discursos del Comité Ejecutivo proceden del
+        <a href="{{ ecb_page }}" target="_blank" rel="noopener">archivo con el texto completo de los discursos</a> del
+        BCE{% if p.ecb_last %} (hasta el {{ p.ecb_last }}){% endif %}; los de los gobernadores nacionales, del
+        <a href="{{ bis_page }}" target="_blank" rel="noopener">archivo de discursos de banqueros centrales</a> del
+        BPI{% if p.bis_archive_last %}, que ahora llega hasta el {{ p.bis_archive_last }}{% endif %}, y, a partir de ahí,
+        del canal de novedades del BPI a medida que se publican; los discursos intermedios se añaden cuando el BPI
+        actualiza su archivo. El BPI permite su uso no comercial; aquí solo se muestran puntuaciones, títulos y enlaces,
+        con los títulos en el idioma original. No se incluyen entrevistas ni ruedas de prensa.</p>
+    </div>
+  </section>
+  {% endif %}
+{% endblock %}
+
+{% block scripts %}
+  {% if charts_file %}
+  <script src="{{ root }}assets/plotly-basic.min.js?v={{ build_id }}"></script>
+  <script src="{{ charts_file }}?v={{ build_id }}"></script>
+  {% endif %}
+{% endblock %}
+
+{% block after_scripts %}
+  <script>
+    (function () {
+      var alt = window.EP && window.EP.speakRelative, render = window.EP && window.EP.render;
+      if (!alt || !render) return;
+      var absolute = (window.EP.charts || []).filter(function (c) { return c.id === "speak-standings"; })[0];
+      Array.prototype.forEach.call(document.querySelectorAll("[data-speak-scale]"), function (b) {
+        b.addEventListener("click", function () {
+          var rel = b.getAttribute("data-speak-scale") === "relative";
+          render(rel ? alt : absolute);
+          Array.prototype.forEach.call(document.querySelectorAll("[data-speak-scale]"), function (x) {
+            x.setAttribute("aria-pressed", x === b ? "true" : "false");
+          });
+        });
+      });
+    })();
+  </script>
+{% endblock %}

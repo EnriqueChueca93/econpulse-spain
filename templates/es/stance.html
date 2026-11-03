@@ -1,0 +1,171 @@
+{% extends "base.html" %}
+{% from "macros.html" import chart_card %}
+{# The global central bank stance page in Spanish (Batch 33d): a template of its own; bank names, countries, rates,
+   phases, dates and the charts come from econpulse/stance.py in Spanish already. Text Econvitals writes in English
+   (decision titles and summaries, desk notes, its method notes) is shown as published, marked lang="en".
+   Keep it in step with templates/stance.html. #}
+
+{% block title %}{{ _("Central bank stance") }} · {{ brand }}{% endblock %}
+{% block description %}Doce bancos centrales, uno al lado del otro: sus últimas decisiones, qué dijeron, en qué punto del ciclo están y cuándo vuelven a reunirse.{% endblock %}
+
+{% macro phase_badge(r) -%}<span class="badge phase phase-{{ r.phase_class }}">{{ r.phase }}</span>{%- endmacro %}
+{% macro tilt_badge(t) -%}{% if t %}<span class="badge tilt tilt-{{ t | lower }}">{{ {"hawkish": "restrictivo", "dovish": "acomodaticio", "neutral": "neutral"}.get(t | lower, t) | upper }}</span>{% endif %}{%- endmacro %}
+{% macro in_days(n) -%}{% if n == 0 %}hoy{% elif n == 1 %}mañana{% elif n > 1 %}dentro de {{ n }} días{% else %}hace {{ -n }} día{{ "s" if n != -1 }}{% endif %}{%- endmacro %}
+
+{% block content %}
+  <p class="back-link"><a href="tools.html">← {{ _("Tools") }}</a></p>
+  <h1>{{ _("Global central bank stance") }}</h1>
+  <p class="lede">De doce bancos centrales: qué ha hecho cada uno, qué ha dicho, en qué punto de su ciclo está, cuándo
+    vuelve a reunirse, qué esperan los economistas de los bancos y qué descuentan los mercados, y hacia dónde se inclinan
+    los bancos centrales del mundo.</p>
+
+  <div class="notice credit-box">
+    <p><strong>De Econvitals.</strong> Esta página muestra la
+      <a href="{{ econvitals_page }}" target="_blank" rel="noopener" lang="en">Global Central Bank Stance Matrix</a> que
+      elabora Econvitals (econvitals.org, de Jason Furman), que pone sus propios textos, gráficos y estimaciones en el
+      dominio público (<a href="{{ econvitals_terms }}" target="_blank" rel="noopener">CC0 1.0</a>). Macroscope España
+      toma sus datos una vez al día y los presenta aquí, con agradecimiento. Los datos de base siguen siendo de quienes los
+      publican: los tipos oficiales, del BPI y de los bancos centrales; las previsiones de los analistas, de los servicios
+      de estudios de los bancos citados; las probabilidades de mercado, de los mercados que se indican en cada fila. Los
+      títulos y resúmenes de las decisiones y las notas de los analistas se muestran en inglés, tal como los publica
+      Econvitals.</p>
+    {% if s %}<p class="secondary">Datos hasta el {{ s.as_of }} · elaborados por Econvitals el {{ s.built[:10] }} ·
+      descargados por Macroscope el {{ s.fetched_at[:16] | replace("T", " ") }} UTC</p>{% endif %}
+  </div>
+
+  {% if not s %}
+    <p class="notice">Los datos aún no se han descargado; llegarán con la próxima actualización de datos.</p>
+  {% else %}
+  {% if s.error %}<p class="notice">La última actualización falló ({{ s.error }}); esta es la copia de la actualización anterior.</p>{% endif %}
+
+  <div class="facts stance-counts">
+    <div class="fact"><span class="fact-label">Bajando tipos</span><span class="fact-value">{{ s.counts.cutting }}</span></div>
+    <div class="fact"><span class="fact-label">Sin cambios</span><span class="fact-value">{{ s.counts.hold }}</span></div>
+    <div class="fact"><span class="fact-label">Subiendo tipos</span><span class="fact-value">{{ s.counts.hiking }}</span></div>
+    {% if s.upcoming %}
+    <div class="fact"><span class="fact-label">Próximas decisiones</span>
+      <span class="fact-sub stance-upcoming">{% for r in s.upcoming %}{{ r.flag }} {{ r.name }} · {{ r.meeting }} · {{ in_days(r.days) }}{% if not loop.last %}<br>{% endif %}{% endfor %}</span>
+    </div>
+    {% endif %}
+  </div>
+  <p class="block-intro">De los {{ s.counts.total }} principales bancos centrales, {{ s.counts.hiking }} están subiendo
+    tipos, {{ s.counts.cutting }} siguen bajándolos y {{ s.counts.hold }} los mantienen sin cambios ({{ s.counts.paused }}
+    en pausa prolongada).</p>
+
+  <section class="block" aria-labelledby="matrix">
+    <h2 id="matrix">La matriz</h2>
+    <div class="tool-controls stance-sort" role="group" aria-label="Ordenar la matriz">
+      <span class="secondary">Ordenar por</span>
+      <button type="button" class="tool-button" data-sort="order" aria-pressed="true">Por defecto</button>
+      <button type="button" class="tool-button" data-sort="days" aria-pressed="false">Próxima reunión</button>
+      <button type="button" class="tool-button" data-sort="rate" aria-pressed="false">Tipo</button>
+      <button type="button" class="tool-button" data-sort="country" aria-pressed="false">País</button>
+    </div>
+    <div class="table-scroll">
+      <table class="data-table stance-table" id="stance-table">
+        <thead><tr>
+          <th scope="col">Banco</th><th scope="col">Tipo</th><th scope="col">Última decisión</th><th scope="col">Fase del ciclo</th>
+          <th scope="col">Próxima reunión</th><th scope="col">Qué esperan los analistas</th><th scope="col">Qué descuentan los mercados</th>
+        </tr></thead>
+        <tbody>
+        {% for r in s.rows %}
+          <tr id="bank-{{ r.code | lower }}"{% if r.spain %} class="highlight-row"{% endif %} data-order="{{ r.order }}"
+              data-days="{{ r.days if r.days is not none else 9999 }}" data-rate="{{ r.rate if r.rate is not none else -99 }}"
+              data-country="{{ r.country }}">
+            <th scope="row"><span class="stance-bank">{{ r.flag }} {{ r.name }}</span>
+              <span class="secondary">{{ r.country }} · {{ r.instrument }}</span></th>
+            <td><span class="stance-rate">{{ r.rate_display }}</span><span class="secondary">a {{ r.through }}</span>
+              <span class="secondary">en el año: {{ r.ytd }}</span></td>
+            <td class="stance-decision"><span class="secondary">{{ r.last_move }}</span>
+              {% if r.decision.summary %}<p><span lang="en">{{ r.decision.summary }}</span> {{ tilt_badge(r.decision.tilt) }}</p>
+              {% if r.decision.vote %}<p class="secondary">Votación: {{ r.decision.vote }}</p>{% endif %}{% endif %}
+              {% if r.decision.title %}<p class="secondary">{% if r.decision.url %}<a href="{{ r.decision.url }}" target="_blank" rel="noopener" lang="en">{{ r.decision.title }}</a>{% else %}<span lang="en">{{ r.decision.title }}</span>{% endif %} · {{ r.decision.date }}
+                {% if not r.decision.summary %}<br>resumen pendiente{% endif %}</p>{% endif %}</td>
+            <td>{{ phase_badge(r) }}<span class="secondary">{{ r.next_move }} <span class="badge badge-info">{{ "ANALISTAS" if r.next_kind == "desk" else "AUTO" }}</span></span></td>
+            <td>{% if r.meeting %}{% if r.meeting_url %}<a href="{{ r.meeting_url }}" target="_blank" rel="noopener">{{ r.meeting }}</a>{% else %}{{ r.meeting }}{% endif %}
+              <span class="secondary">{{ in_days(r.days) }}{% if r.meeting_rule %} · REGLA{% endif %}</span>{% endif %}</td>
+            <td class="stance-desk">{% if r.desk.tally %}<strong>{{ r.desk.consensus }}</strong>
+              <span class="secondary">{{ r.desk.tally }}</span>
+              <details><summary>{{ "las previsiones" if r.desk.calls | length != 1 else "la previsión" }}</summary>
+                <ul>{% for c in r.desk.calls %}<li><strong>{{ c.house }}</strong>{% if c.person %} ({{ c.person }}){% endif %}: {{ c.call }}{% if c.size %} {{ c.size }} pb{% endif %}{% if c.text %}; <span lang="en">{{ c.text }}</span>{% endif %} <span class="secondary">({{ c.as_of }})</span></li>{% endfor %}
+                {% for q in r.desk.quotes %}<li><strong>{{ q.house }}</strong>: «<span lang="en">{{ q.text }}</span>» <span class="secondary">({{ q.as_of }})</span></li>{% endfor %}</ul>
+              </details>{% else %}<span class="secondary">Sin previsiones de analistas en el periodo</span>{% endif %}</td>
+            <td class="stance-market">{% if r.market and r.market.lead %}<strong>{{ r.market.lead.p }} {{ r.market.lead.move_label }}</strong>
+              <span class="secondary">{{ r.market.lead.detail }}</span>
+              <span class="secondary">{% if r.market.lead.for %}para el {{ r.market.lead.for }} · {% endif %}{% if r.market.lead.url %}<a href="{{ r.market.lead.url }}" target="_blank" rel="noopener">{{ r.market.lead.source }}</a>{% else %}{{ r.market.lead.source }}{% endif %}{% if r.market.lead.thin %} <span class="badge badge-warn">POCA LIQUIDEZ</span>{% endif %}</span>
+              {% for a in r.market.agree %}<span class="secondary">{{ a.source }} {{ "coincide" if a.agrees else "discrepa" }}: {{ a.text }}{% if a.thin %} (poca liquidez){% endif %}</span>{% endfor %}{% endif %}
+              {% if r.market %}{% for p in r.market.paths %}<span class="secondary">{{ p.source }}, senda: {{ p.text }}</span>{% endfor %}{% endif %}
+              {% if not r.market %}<span class="secondary">Sin lectura de mercado gratuita</span>{% endif %}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <p class="note">La fila de la zona del euro (el BCE, que fija los tipos de España) aparece destacada. Probabilidades de
+      mercado: probabilidad de cada resultado en la próxima reunión; manda el mercado con más profundidad y los demás
+      indican si coinciden, como en Econvitals. Poca liquidez: un mercado con poco volumen, cuyas probabilidades son menos
+      fiables.</p>
+  </section>
+
+  <section class="block" aria-labelledby="diffusion">
+    <h2 id="diffusion">Hacia dónde se inclinan los bancos centrales del mundo</h2>
+    <p class="block-intro">{{ s.diffusion.n }} bancos en {{ s.diffusion.month_label }}: {{ s.diffusion.hiking | length }}
+      subiendo tipos, {{ s.diffusion.cutting | length }} bajándolos y {{ s.diffusion.hold }} sin cambios. Índice:
+      {{ "%+.1f" | format(s.diffusion.index) }}{% if s.diffusion.previous is not none %}, {{ "por encima" if s.diffusion.index > s.diffusion.previous else "por debajo" }}
+      del {{ "%+.1f" | format(s.diffusion.previous) }} del mes anterior{% endif %}.</p>
+    <div class="charts">{% for c in charts if c.id == "diffusion" %}{{ chart_card(c) }}{% endfor %}</div>
+    <div class="stance-lists">
+      <p><strong>Suben tipos este mes ({{ s.diffusion.hiking | length }})</strong><br>{{ s.diffusion.hiking | join(", ") or "Ninguno" }}</p>
+      <p><strong>Bajan tipos este mes ({{ s.diffusion.cutting | length }})</strong><br>{{ s.diffusion.cutting | join(", ") or "Ninguno" }}</p>
+    </div>
+    {% if s.diffusion.note %}<p class="note">Cómo se calcula, según Econvitals: «<span lang="en">{{ s.diffusion.note }}</span>»</p>{% endif %}
+  </section>
+
+  <section class="block" aria-labelledby="diary">
+    <h2 id="diary">Diario de decisiones</h2>
+    <p class="block-intro">La última nota de decisión que publica cada banco en su propio canal, de la más reciente a la
+      más antigua.</p>
+    <ul class="news-list stance-diary">
+      {% for r in s.diary %}<li><span class="news-day">{{ r.decision.date }}</span> {{ r.flag }} {{ r.name }}:
+        {% if r.decision.url %}<a href="{{ r.decision.url }}" target="_blank" rel="noopener" lang="en">{{ r.decision.title }}</a>{% else %}<span lang="en">{{ r.decision.title }}</span>{% endif %}
+        {{ tilt_badge(r.decision.tilt) }}</li>{% endfor %}
+    </ul>
+  </section>
+
+  <section class="block" aria-labelledby="ranked">
+    <h2 id="ranked">Los tipos oficiales, de mayor a menor</h2>
+    <p class="block-intro">El tipo oficial de cada banco, de mayor a menor: nominal y real, tras descontar la inflación
+      subyacente del país en los últimos 12 meses, (1 + tipo) ÷ (1 + inflación) − 1.</p>
+    <div class="charts">{% for c in charts if c.id.startswith("ranked") %}{{ chart_card(c) }}{% endfor %}</div>
+    <p class="note">La barra de la Reserva Federal es el punto medio de su horquilla objetivo; la de la zona del euro, el
+      tipo de la facilidad de depósito; la de China, el tipo preferencial de los préstamos a un año (Loan Prime Rate).
+      {% if s.core_note %}Econvitals: «<span lang="en">{{ s.core_note }}</span>»{% endif %}</p>
+  </section>
+
+  <section class="block" aria-labelledby="method">
+    <h2 id="method">Método y fuentes</h2>
+    <div class="prose">
+      <p>Todo lo que hay en esta página es trabajo de Econvitals, mostrado tal como se publica; Macroscope España solo lo
+        ordena. La descripción de su método que hace la propia Econvitals (de dominio público, en inglés):</p>
+      <blockquote class="note" lang="en">{{ s.method }}</blockquote>
+      <p class="note">Previsiones de los analistas: <span lang="en">{{ s.desk_source }}</span>. Probabilidades de mercado:
+        {{ s.market_sources | join(", ") }}. Tipos oficiales: <span lang="en">{{ s.source }}</span>{% if s.fast_sources %},
+        completados con <span lang="en">{{ s.fast_sources | join("; ") }}</span>{% endif %}.</p>
+      <p class="note">El método completo: <a href="https://econvitals.org/methods/" target="_blank" rel="noopener">página de
+        métodos de Econvitals</a>. Para la zona del euro con más detalle, véase la <a href="ecb.html">página del BCE</a> de
+        este sitio.</p>
+    </div>
+  </section>
+  {% endif %}
+{% endblock %}
+
+{% block scripts %}
+  {% if charts_file %}
+  <script src="{{ root }}assets/plotly-basic.min.js?v={{ build_id }}"></script>
+  <script src="{{ charts_file }}?v={{ build_id }}"></script>
+  {% endif %}
+{% endblock %}
+
+{% block after_scripts %}
+  <script src="{{ root }}assets/stance.js?v={{ build_id }}"></script>
+{% endblock %}

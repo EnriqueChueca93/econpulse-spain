@@ -9,6 +9,51 @@
   var render = window.EP && window.EP.render;
   if (!S || !render || !document.getElementById("bx-pge")) return;
 
+  // The page's language (Batch 33d: the Spanish site is under es/), and its words for what this script writes. The
+  // names of policies, chapters, taxes and ministries come in the page's language from data/budget.js.
+  var LANG = document.documentElement.lang === "es" ? "es" : "en";
+  var ES = {
+    " (rolled over)": " (prorrogado)", "% of GDP": "% del PIB", "€ bn": "mm €", " · € bn": " · mm €",
+    "Spending by policy": "Gasto por políticas", "Revenue by chapter": "Ingresos por capítulos",
+    "Budgeted spending, ": "Gasto presupuestado, ", "Budgeted revenue, ": "Ingresos presupuestados, ",
+    "GDP not yet published": "PIB aún no publicado", "; a rolled-over budget": "; presupuesto prorrogado",
+    "The largest policy": "La política con más gasto", "% of the total": "% del total",
+    "Consolidated budget, initial appropriations · ": "Presupuesto consolidado, créditos iniciales · ",
+    "Total": "Total", " over time": " a lo largo del tiempo", " · rolled over in ": " · prorrogado en ",
+    " · consolidated budget · ": " · presupuesto consolidado · ", "Policy": "Política", "Chapter": "Capítulo",
+    ", full year": ", año completo", ", to ": ", hasta el ", "to ": "hasta el ",
+    "Initial budget, ": "Presupuesto inicial, ", "the State's own budget, all chapters": "el presupuesto del propio Estado, todos los capítulos",
+    "After the year's changes": "Tras las modificaciones del año", "% on the initial budget": "% sobre el presupuesto inicial",
+    "Spent": "Gastado", "% of the final budget, ": "% del presupuesto definitivo, ",
+    "How much has been spent, ": "Cuánto se ha gastado, ",
+    "Obligations recognised, % of each policy's final appropriations": "Obligaciones reconocidas, % de los créditos definitivos de cada política",
+    "; dashed, an even pace (a twelfth of the year a month)": "; en discontinua, un ritmo uniforme (una doceava parte del año cada mes)",
+    "All policies": "Todas las políticas", "Even pace": "Ritmo uniforme", "The State's budget, ": "El presupuesto del Estado, ",
+    "The State's whole budget": "Todo el presupuesto del Estado", "Spending policies": "Políticas de gasto", "Chapters": "Capítulos",
+    "Ahead of an even pace": "Por encima de un ritmo uniforme", "Behind an even pace": "Por debajo de un ritmo uniforme",
+    "obligations against a twelfth of the budget a month": "obligaciones frente a una doceava parte del presupuesto al mes",
+    "A year earlier": "Un año antes", "Budget, ": "Presupuesto, ", "Spent, ": "Gastado, ",
+    ": the pace of spending, ": ": el ritmo del gasto, ",
+    "Obligations recognised to date, % of the final appropriations at each month's end; dotted, an even pace":
+      "Obligaciones reconocidas hasta la fecha, % de los créditos definitivos al final de cada mes; en punteado, un ritmo uniforme",
+    " and ": " y ",
+    "€ bn: the final appropriations, the obligations recognised to date and an even pace":
+      "mm €: los créditos definitivos, las obligaciones reconocidas hasta la fecha y un ritmo uniforme",
+    "Revenue ": "Ingresos ", "Spending ": "Gasto ", "Revenue and spending so far, ": "Ingresos y gasto en lo que va de año, ",
+    "€ bn, added up from January; dotted, ": "mm €, acumulados desde enero; en punteado, ",
+    "Cash balance so far, ": "Saldo de caja en lo que va de año, ",
+    "€ bn, collected less paid since January (negative: a deficit)": "mm €, cobros menos pagos desde enero (negativo: déficit)",
+    "Cash balance, ": "Saldo de caja, ", "a year earlier ": "un año antes ", "Net borrowing need": "Necesidad de endeudamiento",
+    "Revenue due": "Derechos reconocidos", " on a year earlier": " interanual", "Spending": "Gasto",
+    "The State's revenue, ": "Los ingresos del Estado, ", "Net collection, ": "Recaudación neta, ",
+    "The State's spending by chapter, ": "El gasto del Estado por capítulos, ",
+    "Recovery and Resilience Facility, ": "Mecanismo de Recuperación y Resiliencia, ",
+    "Transfers in the State's budget, ": "Transferencias en el presupuesto del Estado, "
+  };
+  function t(s) { return LANG === "es" && ES[s] !== undefined ? ES[s] : s; }
+  // An amount in € bn, the number already written: "€1.2 bn", or "1.2 mm €" in Spanish (the number keeps the English format).
+  function money(s) { return LANG === "es" ? s + " mm €" : "€" + s + " bn"; }
+
   var Y = S.years;
   var state = { kind: "spending", measure: "eur", year: Y[Y.length - 1], base: Y[0], selected: [],
                 exYear: S.execution.length ? S.execution[0].year : null };
@@ -16,12 +61,12 @@
   function $(id) { return document.getElementById(id); }
   function iso(y) { return y + "-01-01"; }
   function rolled(y) { return S.rolled_over.indexOf(y) >= 0; }
-  function yearLabel(y) { return y + (rolled(y) ? " (rolled over)" : ""); }
+  function yearLabel(y) { return y + (rolled(y) ? t(" (rolled over)") : ""); }
   function find(list, code) { for (var i = 0; i < list.length; i++) { if (list[i].code === code) return list[i]; } return null; }
   function at(series, y) { var k = Y.indexOf(y); return k < 0 || !series ? null : series[k]; }
   function measure() {
-    return state.measure === "gdp" ? { label: "% of GDP", unit: "%", decimals: 2, suffix: "%", prefix: "" }
-                                   : { label: "€ bn", unit: "", decimals: 1, suffix: " bn", prefix: "€" };
+    return state.measure === "gdp" ? { label: t("% of GDP"), unit: "%", decimals: 2, suffix: "%", prefix: "" }
+                                   : { label: t("€ bn"), unit: "", decimals: 1, suffix: LANG === "es" ? " mm €" : " bn", prefix: LANG === "es" ? "" : "€" };
   }
   function convert(series) {
     return series.map(function (v, k) {
@@ -61,39 +106,39 @@
       .sort(function (a, b) { return b.now - a.now; });
     state.selected = state.selected.filter(function (c) { return find(list, c); });
     if (!state.selected.length) state.selected = rows.slice(0, 3).map(function (r) { return r.it.code; });
-    var noun = state.kind === "spending" ? "Spending by policy" : "Revenue by chapter";
+    var noun = t(state.kind === "spending" ? "Spending by policy" : "Revenue by chapter");
     var tot = convert(table.TOTAL);
 
     var raw = at(table.TOTAL, state.year), k = Y.indexOf(state.year);
-    var facts = [[(state.kind === "spending" ? "Budgeted spending, " : "Budgeted revenue, ") + state.year,
-                  "€" + (raw / 1000).toLocaleString("en-GB", { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + " bn",
-                  (S.gdp[k] ? (raw / S.gdp[k] * 100).toFixed(1) + "% of GDP" : "GDP not yet published") + (rolled(state.year) ? "; a rolled-over budget" : "")]];
+    var facts = [[t(state.kind === "spending" ? "Budgeted spending, " : "Budgeted revenue, ") + state.year,
+                  money((raw / 1000).toLocaleString("en-GB", { minimumFractionDigits: 1, maximumFractionDigits: 1 })),
+                  (S.gdp[k] ? (raw / S.gdp[k] * 100).toFixed(1) + t("% of GDP") : t("GDP not yet published")) + (rolled(state.year) ? t("; a rolled-over budget") : "")]];
     if (state.kind === "spending" && rows.length) {
-      facts.push(["The largest policy", short(rows[0].it.label), rows[0].share.toFixed(1) + "% of the total"]);
+      facts.push([t("The largest policy"), short(rows[0].it.label), rows[0].share.toFixed(1) + t("% of the total")]);
     }
     $("pge-facts").innerHTML = facts.map(function (f) {
       return '<div class="fact"><span class="fact-label">' + f[0] + '</span><span class="fact-value">' + f[1] + '</span><span class="fact-sub">' + f[2] + "</span></div>";
     }).join("");
 
     $("pge-mix-title").textContent = noun + ", " + yearLabel(state.year);
-    $("pge-mix-subtitle").textContent = "Consolidated budget, initial appropriations · " + m.label;
+    $("pge-mix-subtitle").textContent = t("Consolidated budget, initial appropriations · ") + m.label;
     var first = find(list, state.selected[0]);
     render({ id: "pge-mix", kind: "hbar", unit: m.unit, decimals: m.decimals, x_title: "", freq: "A",
              highlight: first ? short(first.label) : null,
              series: [{ name: noun, x: rows.map(function (r) { return short(r.it.label); }), y: rows.map(function (r) { return +r.now.toFixed(4); }) }] });
 
-    var series = [{ name: "Total", x: ys.map(iso), y: ys.map(function (y) { return at(tot, y); }), color: "ink" }];
+    var series = [{ name: t("Total"), x: ys.map(iso), y: ys.map(function (y) { return at(tot, y); }), color: "ink" }];
     state.selected.forEach(function (code, i) {
       var r = rows.filter(function (x) { return x.it.code === code; })[0];
       if (r) series.push({ name: short(r.it.label), x: ys.map(iso), y: ys.map(function (y) { return at(r.conv, y); }), slot: i + 1 });
     });
     var rolledShown = S.rolled_over.filter(function (y) { return ys.indexOf(y) >= 0; });
-    $("pge-trend-title").textContent = noun + " over time";
-    $("pge-trend-subtitle").textContent = m.label + (rolledShown.length ? " · rolled over in " + rolledShown.join(", ") : "");
+    $("pge-trend-title").textContent = noun + t(" over time");
+    $("pge-trend-subtitle").textContent = m.label + (rolledShown.length ? t(" · rolled over in ") + rolledShown.join(", ") : "");
     render({ id: "pge-trend", kind: "line", unit: m.unit === "%" ? "%" : "", decimals: m.decimals, freq: "A", series: series });
 
-    $("pge-table-caption").textContent = noun + " · consolidated budget · " + m.label;
-    $("pge-col-item").textContent = state.kind === "spending" ? "Policy" : "Chapter";
+    $("pge-table-caption").textContent = noun + t(" · consolidated budget · ") + m.label;
+    $("pge-col-item").textContent = t(state.kind === "spending" ? "Policy" : "Chapter");
     $("pge-col-year").textContent = yearLabel(state.year);
     $("pge-col-base").textContent = yearLabel(state.base);
     var html = rows.map(function (r) {
@@ -103,7 +148,7 @@
              (isNaN(r.share) ? "–" : r.share.toFixed(1) + "%") + '</td><td class="num">' + fmt(r.then, m) + '</td><td class="num">' +
              change(r.now, r.then) + "</td></tr>";
     }).join("");
-    html += '<tr class="bx-total"><th scope="row">Total</th><td class="num">' + fmt(at(tot, state.year), m) + '</td><td class="num">100%</td><td class="num">' +
+    html += '<tr class="bx-total"><th scope="row">' + t("Total") + '</th><td class="num">' + fmt(at(tot, state.year), m) + '</td><td class="num">100%</td><td class="num">' +
             fmt(at(tot, state.base), m) + '</td><td class="num">' + change(at(tot, state.year), at(tot, state.base)) + "</td></tr>";
     $("pge-table").querySelector("tbody").innerHTML = html;
     drawExecution();
@@ -123,16 +168,16 @@
     if (!S.execution.length || !$("pge-ex-year")) return;
     var sel = $("pge-ex-year");
     var want = S.execution.map(function (e) {
-      return '<option value="' + e.year + '"' + (e.year === state.exYear ? " selected" : "") + ">" + (e.full_year ? e.year + ", full year" : e.year + ", to " + e.through) + "</option>";
+      return '<option value="' + e.year + '"' + (e.year === state.exYear ? " selected" : "") + ">" + (e.full_year ? e.year + t(", full year") : e.year + t(", to ") + e.through) + "</option>";
     }).join("");
     if (sel.innerHTML !== want) sel.innerHTML = want;
     var ex = S.execution.filter(function (e) { return e.year === state.exYear; })[0] || S.execution[0];
-    var t = ex.total;
-    var when = ex.full_year ? ex.year + ", full year" : "to " + ex.through;
+    var tot = ex.total;
+    var when = ex.full_year ? ex.year + t(", full year") : t("to ") + ex.through;
     $("pge-ex-facts").innerHTML = [
-      ["Initial budget, " + ex.year, "€" + bn(t.initial) + " bn", "the State's own budget, all chapters"],
-      ["After the year's changes", "€" + bn(t.final) + " bn", (t.final >= t.initial ? "+" : "−") + Math.abs((t.final / t.initial - 1) * 100).toFixed(1) + "% on the initial budget"],
-      ["Spent", "€" + bn(t.obligations) + " bn", Math.round(t.obligations / t.final * 100) + "% of the final budget, " + when]
+      [t("Initial budget, ") + ex.year, money(bn(tot.initial)), t("the State's own budget, all chapters")],
+      [t("After the year's changes"), money(bn(tot.final)), (tot.final >= tot.initial ? "+" : "−") + Math.abs((tot.final / tot.initial - 1) * 100).toFixed(1) + t("% on the initial budget")],
+      [t("Spent"), money(bn(tot.obligations)), Math.round(tot.obligations / tot.final * 100) + t("% of the final budget, ") + when]
     ].map(function (f) {
       return '<div class="fact"><span class="fact-label">' + f[0] + '</span><span class="fact-value">' + f[1] + '</span><span class="fact-sub">' + f[2] + "</span></div>";
     }).join("");
@@ -140,24 +185,24 @@
       return { r: r, pct: r.obligations / r.final * 100 };
     }).sort(function (a, b) { return b.r.final - a.r.final; });
     var byPct = rows.slice().sort(function (a, b) { return b.pct - a.pct; });
-    $("pge-ex-title").textContent = "How much has been spent, " + when;
-    $("pge-ex-subtitle").textContent = "Obligations recognised, % of each policy's final appropriations" +
-      (ex.full_year ? "" : "; dashed, an even pace (a twelfth of the year a month)");
+    $("pge-ex-title").textContent = t("How much has been spent, ") + when;
+    $("pge-ex-subtitle").textContent = t("Obligations recognised, % of each policy's final appropriations") +
+      (ex.full_year ? "" : t("; dashed, an even pace (a twelfth of the year a month)"));
     render({ id: "pge-ex", kind: "hbar", unit: "%", decimals: 0, x_title: "", freq: "A",
-             ref_lines: [{ y: +(t.obligations / t.final * 100).toFixed(2), label: "All policies" }].concat(
-               ex.full_year ? [] : [{ y: +(ex.month / 12 * 100).toFixed(2), label: "Even pace", dash: "dash" }]),
-             series: [{ name: "Spent", x: byPct.map(function (x) { return short(x.r.label); }), y: byPct.map(function (x) { return +x.pct.toFixed(2); }) }] });
-    $("pge-ex-caption").textContent = "The State's budget, " + when + " · € bn";
+             ref_lines: [{ y: +(tot.obligations / tot.final * 100).toFixed(2), label: t("All policies") }].concat(
+               ex.full_year ? [] : [{ y: +(ex.month / 12 * 100).toFixed(2), label: t("Even pace"), dash: "dash" }]),
+             series: [{ name: t("Spent"), x: byPct.map(function (x) { return short(x.r.label); }), y: byPct.map(function (x) { return +x.pct.toFixed(2); }) }] });
+    $("pge-ex-caption").textContent = t("The State's budget, ") + when + t(" · € bn");
     var html = rows.map(function (x) {
       var r = x.r, ch = r.initial ? (r.final / r.initial - 1) * 100 : null;
       return '<tr class="bx-row" data-pace="p:' + r.code + '" tabindex="0"><th scope="row">' + r.label + '</th><td class="num">' + bn(r.initial) + '</td><td class="num">' + bn(r.final) + '</td><td class="num">' +
              (ch === null ? "–" : (ch > 0 ? "+" : ch < 0 ? "−" : "") + Math.abs(ch).toFixed(1) + "%") + '</td><td class="num">' + bn(r.obligations) +
              '</td><td class="num">' + x.pct.toFixed(1) + "%</td></tr>";
     }).join("");
-    var chT = (t.final / t.initial - 1) * 100;
-    html += '<tr class="bx-total"><th scope="row">Total</th><td class="num">' + bn(t.initial) + '</td><td class="num">' + bn(t.final) + '</td><td class="num">' +
-            (chT > 0 ? "+" : "−") + Math.abs(chT).toFixed(1) + '%</td><td class="num">' + bn(t.obligations) + '</td><td class="num">' +
-            (t.obligations / t.final * 100).toFixed(1) + "%</td></tr>";
+    var chT = (tot.final / tot.initial - 1) * 100;
+    html += '<tr class="bx-total"><th scope="row">' + t("Total") + '</th><td class="num">' + bn(tot.initial) + '</td><td class="num">' + bn(tot.final) + '</td><td class="num">' +
+            (chT > 0 ? "+" : "−") + Math.abs(chT).toFixed(1) + '%</td><td class="num">' + bn(tot.obligations) + '</td><td class="num">' +
+            (tot.obligations / tot.final * 100).toFixed(1) + "%</td></tr>";
     $("pge-ex-table").querySelector("tbody").innerHTML = html;
     drawPace(ex);
     drawDetail(ex, when);
@@ -166,8 +211,9 @@
   // ---------------------------------------------------------------- the pace of spending
   // A policy's or chapter's obligations to date against its final appropriations, month by month, beside an
   // even pace and the year before (chapters have it month by month; policies only from the kept workbooks).
-  var MONTH_NAMES = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October",
-                     "November", "December"];
+  var MONTH_NAMES = LANG === "es"
+    ? ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"]
+    : ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   var pace = { item: "p:TOTAL", view: "pct" };
   function given(v) { return v !== null && v !== undefined; }
   function paceOf(year, key) {
@@ -188,8 +234,8 @@
         .map(function (it) { return opt(prefix + it.code, it.label); }).join("");
       return html ? '<optgroup label="' + title + '">' + html + "</optgroup>" : "";
     };
-    return (any("p:TOTAL") ? opt("p:TOTAL", "The State's whole budget") : "") + group("Spending policies", S.pace_items.policies, "p:") +
-           group("Chapters", S.pace_items.chapters, "c:");
+    return (any("p:TOTAL") ? opt("p:TOTAL", t("The State's whole budget")) : "") + group(t("Spending policies"), S.pace_items.policies, "p:") +
+           group(t("Chapters"), S.pace_items.chapters, "c:");
   }
 
   function drawPace(ex) {
@@ -207,16 +253,20 @@
     var label = sel.options[sel.selectedIndex].text;
     var n = lastMonth(now.obligations), spent = now.obligations[n - 1], budget = now.final[n - 1];
     var share = spent / budget * 100, even = n / 12 * 100, gap = spent - budget * n / 12;
-    var facts = [fact("Spent to the end of " + MONTH_NAMES[n - 1] + " " + y, share.toFixed(1) + "% of the budget",
-                      "an even pace is " + even.toFixed(1) + "%; €" + bn(spent) + " bn of €" + bn(budget) + " bn"),
-                 fact(gap >= 0 ? "Ahead of an even pace" : "Behind an even pace", "€" + Math.abs(gap / 1000).toFixed(1) + " bn",
-                      "obligations against a twelfth of the budget a month")];
+    var es = LANG === "es";
+    var facts = [es ? fact("Gastado hasta el final de " + MONTH_NAMES[n - 1] + " de " + y, share.toFixed(1) + "% del presupuesto",
+                           "a un ritmo uniforme sería el " + even.toFixed(1) + "%; " + money(bn(spent)) + " de " + money(bn(budget)))
+                    : fact("Spent to the end of " + MONTH_NAMES[n - 1] + " " + y, share.toFixed(1) + "% of the budget",
+                           "an even pace is " + even.toFixed(1) + "%; " + money(bn(spent)) + " of " + money(bn(budget))),
+                 fact(t(gap >= 0 ? "Ahead of an even pace" : "Behind an even pace"), money(Math.abs(gap / 1000).toFixed(1)),
+                      t("obligations against a twelfth of the budget a month"))];
     if (before && given(before.obligations[n - 1]) && before.final[n - 1]) {
-      facts.push(fact("A year earlier", (before.obligations[n - 1] / before.final[n - 1] * 100).toFixed(1) + "%",
-                      "spent by the end of " + MONTH_NAMES[n - 1] + " " + (y - 1)));
+      facts.push(fact(t("A year earlier"), (before.obligations[n - 1] / before.final[n - 1] * 100).toFixed(1) + "%",
+                      es ? "gastado hasta el final de " + MONTH_NAMES[n - 1] + " de " + (y - 1)
+                         : "spent by the end of " + MONTH_NAMES[n - 1] + " " + (y - 1)));
     } else if (before && given(before.obligations[11]) && before.final[11]) {
-      facts.push(fact((y - 1) + " in full", (before.obligations[11] / before.final[11] * 100).toFixed(1) + "%",
-                      "of its final budget spent by December"));
+      facts.push(fact((y - 1) + (es ? " completo" : " in full"), (before.obligations[11] / before.final[11] * 100).toFixed(1) + "%",
+                      es ? "de su presupuesto definitivo, gastado hasta diciembre" : "of its final budget spent by December"));
     }
     $("pge-pace-facts").innerHTML = facts.join("");
 
@@ -231,32 +281,33 @@
     };
     var inBn = function (values) { return values.map(function (v) { return given(v) ? +(v / 1000).toFixed(2) : null; }); };
     if (pace.view === "pct") {
-      add("Even pace", MONTHS.map(function (_, i) { return +((i + 1) / 12 * 100).toFixed(2); }), { color: "muted", dash: "dot" });
+      add(t("Even pace"), MONTHS.map(function (_, i) { return +((i + 1) / 12 * 100).toFixed(2); }), { color: "muted", dash: "dot" });
       add(String(y), ratio(now), { slot: 1 });
       if (before) add(String(y - 1), ratio(before), { slot: 1, dash: "dot" });
     } else {
-      add("Budget, " + y, inBn(now.final), { color: "ink" });
-      add("Even pace", now.final.map(function (v, i) { return given(v) ? +(v * (i + 1) / 12 / 1000).toFixed(2) : null; }), { color: "muted", dash: "dot" });
-      add("Spent, " + y, inBn(now.obligations), { slot: 1 });
-      if (before) add("Spent, " + (y - 1), inBn(before.obligations), { slot: 1, dash: "dot" });
+      add(t("Budget, ") + y, inBn(now.final), { color: "ink" });
+      add(t("Even pace"), now.final.map(function (v, i) { return given(v) ? +(v * (i + 1) / 12 / 1000).toFixed(2) : null; }), { color: "muted", dash: "dot" });
+      add(t("Spent, ") + y, inBn(now.obligations), { slot: 1 });
+      if (before) add(t("Spent, ") + (y - 1), inBn(before.obligations), { slot: 1, dash: "dot" });
     }
-    $("pge-pace-title").textContent = label + ": the pace of spending, " + y;
+    $("pge-pace-title").textContent = label + t(": the pace of spending, ") + y;
     $("pge-pace-subtitle").textContent = pace.view === "pct"
-      ? "Obligations recognised to date, % of the final appropriations at each month's end; dotted, an even pace" + (before ? " and " + (y - 1) : "")
-      : "€ bn: the final appropriations, the obligations recognised to date and an even pace";
+      ? t("Obligations recognised to date, % of the final appropriations at each month's end; dotted, an even pace") + (before ? t(" and ") + (y - 1) : "")
+      : t("€ bn: the final appropriations, the obligations recognised to date and an even pace");
     render({ id: "pge-pace", kind: "line", x_kind: "category", unit: pace.view === "pct" ? "%" : "", decimals: 1,
              freq: "A", series: series });
   }
 
   // ---------------------------------------------------------------- the rest of the execution report
-  var MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  var MONTHS = LANG === "es" ? ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"]
+                             : ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   function pct(a, b) { return a === null || a === undefined || !b ? "–" : (a / b * 100).toFixed(1) + "%"; }
   function growth(a, b) {
     if (a === null || a === undefined || !b) return "–";
     var c = (a / b - 1) * 100;
     return (c > 0 ? "+" : c < 0 ? "−" : "") + Math.abs(c).toFixed(1) + "%";
   }
-  function signedBn(v) { return v === null || v === undefined ? "–" : (v < 0 ? "−€" : "+€") + Math.abs(v / 1000).toFixed(1) + " bn"; }
+  function signedBn(v) { return v === null || v === undefined ? "–" : (v < 0 ? "−" : "+") + money(Math.abs(v / 1000).toFixed(1)); }
   function fill(id, html) { var el = $(id); if (el) el.querySelector("tbody").innerHTML = html; }
   function fact(label, value, sub) {
     return '<div class="fact"><span class="fact-label">' + label + '</span><span class="fact-value">' + value +
@@ -305,44 +356,44 @@
       var names = MONTHS.slice(0, last);
       var cut = function (a) { return a.slice(0, last).map(function (v) { return v === null ? null : +(v / 1000).toFixed(2); }); };
       render({ id: "pge-path", kind: "line", x_kind: "category", unit: "", decimals: 1, freq: "A",
-               series: [{ name: "Revenue " + y, x: names, y: cut(path(y, "revenue")), slot: 1 },
-                        { name: "Revenue " + (y - 1), x: names, y: cut(path(y - 1, "revenue")), slot: 1, dash: "dot" },
-                        { name: "Spending " + y, x: names, y: cut(path(y, "spending")), slot: 2 },
-                        { name: "Spending " + (y - 1), x: names, y: cut(path(y - 1, "spending")), slot: 2, dash: "dot" }] });
-      $("pge-path-title").textContent = "Revenue and spending so far, " + y;
-      $("pge-path-subtitle").textContent = "€ bn, added up from January; dotted, " + (y - 1);
+               series: [{ name: t("Revenue ") + y, x: names, y: cut(path(y, "revenue")), slot: 1 },
+                        { name: t("Revenue ") + (y - 1), x: names, y: cut(path(y - 1, "revenue")), slot: 1, dash: "dot" },
+                        { name: t("Spending ") + y, x: names, y: cut(path(y, "spending")), slot: 2 },
+                        { name: t("Spending ") + (y - 1), x: names, y: cut(path(y - 1, "spending")), slot: 2, dash: "dot" }] });
+      $("pge-path-title").textContent = t("Revenue and spending so far, ") + y;
+      $("pge-path-subtitle").textContent = t("€ bn, added up from January; dotted, ") + (y - 1);
       render({ id: "pge-cash", kind: "line", x_kind: "category", unit: "", decimals: 1, freq: "A", ref_lines: [{ y: 0, label: "" }],
                series: [{ name: String(y), x: names, y: cut(path(y, "cash")), color: "ink" },
                         { name: String(y - 1), x: names, y: cut(path(y - 1, "cash")), color: "muted", dash: "dot" }] });
-      $("pge-cash-title").textContent = "Cash balance so far, " + y;
-      $("pge-cash-subtitle").textContent = "€ bn, collected less paid since January (negative: a deficit)";
+      $("pge-cash-title").textContent = t("Cash balance so far, ") + y;
+      $("pge-cash-subtitle").textContent = t("€ bn, collected less paid since January (negative: a deficit)");
       var c = d.cash || {}, facts = [];
-      if (c.deficit) facts.push(fact("Cash balance, " + when, signedBn(c.deficit.value), "a year earlier " + signedBn(c.deficit.prev)));
+      if (c.deficit) facts.push(fact(t("Cash balance, ") + when, signedBn(c.deficit.value), t("a year earlier ") + signedBn(c.deficit.prev)));
       if (c.borrowing) {
-        facts.push(fact("Net borrowing need", "€" + Math.abs(c.borrowing.value / 1000).toFixed(1) + " bn",
-                        "a year earlier €" + Math.abs(c.borrowing.prev / 1000).toFixed(1) + " bn"));
+        facts.push(fact(t("Net borrowing need"), money(Math.abs(c.borrowing.value / 1000).toFixed(1)),
+                        t("a year earlier ") + money(Math.abs(c.borrowing.prev / 1000).toFixed(1))));
       }
       var nfR = (d.revenue || []).filter(function (r) { return r.code === "nonfinancial"; })[0];
       var nfS = (d.chapters || []).filter(function (r) { return r.code === "nonfinancial"; })[0];
-      if (nfR) facts.push(fact("Revenue due", "€" + bn(nfR.rights) + " bn", growth(nfR.rights, nfR.rights_prev) + " on a year earlier"));
-      if (nfS) facts.push(fact("Spending", "€" + bn(nfS.obligations) + " bn", growth(nfS.obligations, nfS.obligations_prev) + " on a year earlier"));
+      if (nfR) facts.push(fact(t("Revenue due"), money(bn(nfR.rights)), growth(nfR.rights, nfR.rights_prev) + t(" on a year earlier")));
+      if (nfS) facts.push(fact(t("Spending"), money(bn(nfS.obligations)), growth(nfS.obligations, nfS.obligations_prev) + t(" on a year earlier")));
       $("pge-path-facts").innerHTML = facts.join("");
     }
 
-    $("pge-rev-caption").textContent = "The State's revenue, " + when + " · € bn";
+    $("pge-rev-caption").textContent = t("The State's revenue, ") + when + t(" · € bn");
     fill("pge-rev-table", (d.revenue || []).map(function (r) {
       var total = r.code === "nonfinancial" || r.code === "total";
       return row([r.label, bn(r.forecast), bn(r.rights), bn(r.collected), pct(r.rights, r.forecast), growth(r.collected, r.collected_prev)],
                  total ? "bx-total" : "", r.indent);
     }).join(""));
 
-    $("pge-tax-caption").textContent = "Net collection, " + when + " · € bn";
+    $("pge-tax-caption").textContent = t("Net collection, ") + when + t(" · € bn");
     fill("pge-tax-table", (d.taxes || []).map(function (r) {
       return row([r.label, bn(r.collected), bn(r.regions), bn(r.local), bn(r.state), growth(r.collected, r.collected_prev)],
                  r.code === "nonfinancial" ? "bx-total" : "");
     }).join(""));
 
-    $("pge-ch-caption").textContent = "The State's spending by chapter, " + when + " · € bn";
+    $("pge-ch-caption").textContent = t("The State's spending by chapter, ") + when + t(" · € bn");
     fill("pge-ch-table", (d.chapters || []).map(function (r) {
       var total = r.code === "nonfinancial" || r.code === "total";
       return row([r.label, bn(r.final), bn(r.committed), bn(r.obligations), pct(r.obligations, r.final), growth(r.obligations, r.obligations_prev)],
@@ -350,24 +401,24 @@
     }).join(""));
 
     var mrr = d.mrr;
-    $("pge-mrr-caption").textContent = "Recovery and Resilience Facility, " + when + " · € bn";
+    $("pge-mrr-caption").textContent = t("Recovery and Resilience Facility, ") + when + t(" · € bn");
     var mrrRows = mrr ? mrr.rows.filter(function (r) { return r.credits > 0 || r.obligations > 0; }).map(function (r) {
       return row([r.label, bn(r.credits), bn(r.committed), bn(r.obligations), pct(r.obligations, r.credits), bn(r.payments)]);
     }) : [];
     if (mrr && mrr.total) {
-      var t = mrr.total;
-      mrrRows.push(row(["Total", bn(t.credits), bn(t.committed), bn(t.obligations), pct(t.obligations, t.credits), bn(t.payments)], "bx-total"));
+      var mt = mrr.total;
+      mrrRows.push(row([t("Total"), bn(mt.credits), bn(mt.committed), bn(mt.obligations), pct(mt.obligations, mt.credits), bn(mt.payments)], "bx-total"));
     }
     fill("pge-mrr-table", mrrRows.join(""));
 
-    $("pge-tr-caption").textContent = "Transfers in the State's budget, " + when + " · € bn";
+    $("pge-tr-caption").textContent = t("Transfers in the State's budget, ") + when + t(" · € bn");
     var tr = d.transfers || [];
     var sum = function (k) { return tr.reduce(function (s, r) { return s + (r[k] || 0); }, 0); };
     var trRows = tr.map(function (r) {
       return row([r.label, bn(r.final), bn(r.obligations), pct(r.obligations, r.final), bn(r.obligations_prev), growth(r.obligations, r.obligations_prev)]);
     });
     if (tr.length) {
-      trRows.push(row(["Total", bn(sum("final")), bn(sum("obligations")), pct(sum("obligations"), sum("final")), bn(sum("obligations_prev")),
+      trRows.push(row([t("Total"), bn(sum("final")), bn(sum("obligations")), pct(sum("obligations"), sum("final")), bn(sum("obligations_prev")),
                        growth(sum("obligations"), sum("obligations_prev"))], "bx-total"));
     }
     fill("pge-tr-table", trRows.join(""));

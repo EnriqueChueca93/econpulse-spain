@@ -1,0 +1,175 @@
+{% extends "base.html" %}
+{# The Fiscal Explorer in Spanish (Batch 33d): mostly prose, so a template of its own rather than catalogue entries.
+   Keep it in step with templates/fiscal-explorer.html (same ids, data attributes and scripts); static/fiscal.js
+   writes the results, the readout and the charts in the page's language, and econpulse/fiscal.py the names of the
+   past series and of the sources. #}
+
+{% block title %}Explorador fiscal · {{ brand }}{% endblock %}
+{% block description %}La deuda y los déficits públicos de España, pasados y proyectados, con palancas para probar otras sendas.{% endblock %}
+
+{% macro figure(id, title, subtitle, source, dynamic=false) -%}
+  <figure class="card chart-card" id="fig-{{ id }}">
+    <figcaption>
+      <span class="chart-title"{% if dynamic %} id="{{ id }}-title"{% endif %}>{{ title }}</span>
+      <span class="chart-subtitle"{% if dynamic %} id="{{ id }}-subtitle"{% endif %}>{{ subtitle }}</span>
+    </figcaption>
+    <div class="chart" id="chart-{{ id }}" role="img" aria-label="{{ title }}"></div>
+    <div class="chart-foot"><span class="secondary">Fuente: {{ source }}</span>
+      <span class="chart-actions">
+        <button type="button" class="chart-link chart-csv" data-chart="{{ id }}" hidden aria-label="Descargar los datos del gráfico {{ title }} en un archivo CSV">CSV</button>
+        <button type="button" class="chart-link" data-figure="fig-{{ id }}" aria-label="Copiar un enlace al gráfico {{ title }}">Copiar enlace</button></span></div>
+  </figure>
+{%- endmacro %}
+
+{% block content %}
+  <p class="back-link"><a href="tools.html">← Herramientas</a></p>
+  <h1>Explorador fiscal</h1>
+  {% if not fx %}
+    <p class="notice">Falta el archivo del escenario base fiscal (ejecute scripts/extract_fiscal_baseline.py).</p>
+  {% else %}
+  <p class="lede">La deuda y los déficits públicos de España, pasados y futuros. El futuro parte de la propia proyección de la
+    Comisión Europea: cambie la economía o el presupuesto y vea hacia dónde va la deuda, o pregunte qué haría falta para
+    alcanzar un objetivo.</p>
+  <p class="fx-badges">
+    <span class="badge badge-info">Comisión Europea, Debt Sustainability Monitor 2025</span>
+    <span class="badge badge-ok">✓ Reproduce el escenario base de la Comisión hasta {{ fx.last_commission_year }} · <a href="#fx-method">cómo funciona</a></span>
+  </p>
+  <div class="notice credit-box">
+    <p>Inspirado en el <a href="https://econvitals.org/tools/fiscal-explorer/" target="_blank" rel="noopener">Fiscal Explorer de Econvitals</a>
+      (econvitals.org, de Jason Furman; dominio público, CC0 1.0), que hace lo mismo para Estados Unidos con el escenario base
+      de la Oficina de Presupuesto del Congreso (CBO). Esta versión española es de Macroscope y se basa en la proyección de la
+      Comisión.</p>
+  </div>
+
+  <div class="tool-controls" role="group" aria-label="Vista">
+    <button type="button" class="tool-button" data-fx-view="past" aria-pressed="false">El pasado</button>
+    <button type="button" class="tool-button" data-fx-view="future" aria-pressed="true">El futuro</button>
+    <button type="button" class="tool-button" id="fx-share">Compartir este escenario</button>
+  </div>
+
+  <div id="fx-future">
+    <section class="block" aria-labelledby="fx-levers-h">
+      <h2 id="fx-levers-h">Sus supuestos</h2>
+      <p class="block-intro">Todas las palancas actúan desde {{ fx.first_lever_year }} y se mantienen. A cero, verá las cifras
+        de la Comisión hasta {{ fx.last_commission_year }} y, después, su prolongación por Macroscope.</p>
+      <div class="tool-controls fx-levers">
+        <label>Presupuesto: saldo primario <input type="range" id="fx-adj" min="-4" max="8" step="0.1" value="0">
+          <output id="fx-adj-out" for="fx-adj"></output></label>
+        <label>Coste del envejecimiento: parte del aumento previsto <input type="range" id="fx-ageing" min="0" max="150" step="5" value="100">
+          <output id="fx-ageing-out" for="fx-ageing"></output></label>
+        <label>Crecimiento real <input type="range" id="fx-growth" min="-1" max="1" step="0.1" value="0">
+          <output id="fx-growth-out" for="fx-growth"></output></label>
+        <label>Inflación <input type="range" id="fx-inflation" min="-1" max="2" step="0.1" value="0">
+          <output id="fx-inflation-out" for="fx-inflation"></output></label>
+        <label>Tipos de interés de la nueva deuda <input type="range" id="fx-rate" min="-1" max="3" step="0.1" value="0">
+          <output id="fx-rate-out" for="fx-rate"></output></label>
+        <button type="button" class="tool-button" id="fx-reset">Restablecer</button>
+      </div>
+      <div class="tool-controls">
+        <span class="secondary">Calcular el presupuesto necesario para</span>
+        <button type="button" class="tool-button" data-fx-goal="hold">mantener la deuda en su nivel de 2025</button>
+        <button type="button" class="tool-button" data-fx-goal="sixty">llevar la deuda al 60%</button>
+        <button type="button" class="tool-button" data-fx-goal="deficit3">mantener el déficit ≤ 3%</button>
+        <span class="secondary">con horizonte en</span>
+        <button type="button" class="tool-button" data-fx-horizon="2056" aria-pressed="true">2056</button>
+        <button type="button" class="tool-button" data-fx-horizon="2070" aria-pressed="false">2070</button>
+      </div>
+      <p class="tool-result" id="fx-result" aria-live="polite"></p>
+    </section>
+
+    <div class="charts">
+      {{ figure("fx-debt", "Deuda pública bruta", "% del PIB: datos observados, escenario base y su escenario",
+                "Eurostat; Comisión Europea (DSM 2025, Ageing Report 2024); prolongación y escenario de Macroscope") }}
+      <div>
+        <div class="tool-controls fx-series-pick">
+          <label>Segundo gráfico <select id="fx-series">
+            <option value="balance">Saldo presupuestario</option><option value="pb">Saldo primario</option>
+            <option value="interest">Intereses</option><option value="rg">Tipo de interés y crecimiento</option>
+            <option value="ageing">Coste del envejecimiento</option>
+          </select></label>
+          <label><input type="checkbox" id="fx-compare"> Mostrar el escenario de r − g adverso de la Comisión</label>
+        </div>
+        {{ figure("fx-second", "Saldo presupuestario", "% del PIB",
+                  "Eurostat; Comisión Europea (DSM 2025, Ageing Report 2024); Macroscope", dynamic=true) }}
+      </div>
+    </div>
+
+    <section class="block" aria-labelledby="fx-readout-h">
+      <h2 id="fx-readout-h">Resultados</h2>
+      <div class="table-scroll tool-table fx-readout-wrap">
+        <table class="data-table stat-table" id="fx-readout">
+          <thead><tr><th scope="col">Medida</th><th scope="col" class="num">Escenario base</th><th scope="col" class="num">Su escenario</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p class="note">Los ajustes son cambios permanentes del saldo primario (ingresos menos gastos distintos de los intereses)
+        desde {{ fx.first_lever_year }}, en % del PIB. Como referencia, los indicadores de sostenibilidad de la propia Comisión
+        para España: S1, el ajuste desde 2027 que lleva la deuda al 60% del PIB en 2070, es del {{ "%.2f" | format(fx.gaps.S1) }}%
+        del PIB (el modelo de esta página, aplicado del mismo modo, da {{ "%.2f" | format(s1_check) }}%); S2, el ajuste que
+        estabiliza la deuda en un horizonte infinito, es del {{ "%.2f" | format(fx.gaps.S2) }}%.
+        {% if fx.percentiles.p10 %}Las proyecciones estocásticas de la Comisión sitúan la deuda de 2030 entre el
+        {{ "%.0f" | format(fx.percentiles.p10[2030]) }}% y el {{ "%.0f" | format(fx.percentiles.p90[2030]) }}% del PIB en el
+        80% de 10,000 resultados simulados.{% endif %} Sus otros escenarios para 2036: {% for name, path in fx.scenarios.items() %}{{ _(name) | lower }}
+        {{ "%.1f" | format(path[2036]) }}%{{ "; " if not loop.last else "." }}{% endfor %}</p>
+    </section>
+  </div>
+
+  <div id="fx-past-panel" hidden>
+    <section class="block" aria-labelledby="fx-past-h">
+      <h2 id="fx-past-h">El pasado</h2>
+      <p class="block-intro">Ingresos, gastos, déficits y deuda desde 1995 (la deuda, desde 1970), en % del PIB. Elija hasta tres.</p>
+      <div class="tool-controls fx-past-picks">
+        {% for group, items in past_groups %}
+        <fieldset><legend>{{ group }}</legend>
+          {% for id, label in items %}<label><input type="checkbox" data-fx-past value="{{ id }}"> {{ label }}</label>{% endfor %}
+        </fieldset>
+        {% endfor %}
+      </div>
+      <div class="charts">
+        {{ figure("fx-past", "Las finanzas públicas de España", "% del PIB", "Eurostat; Comisión Europea (deuda antes de 1995)") }}
+      </div>
+    </section>
+  </div>
+
+  <section class="block" aria-labelledby="fx-method">
+    <h2 id="fx-method">Cómo funciona</h2>
+    <div class="prose">
+      <p><strong>El escenario base es el de la Comisión.</strong> Hasta {{ fx.last_commission_year }} la página muestra la
+        proyección base de la deuda de España que hace la Comisión Europea en su <a href="{{ fx.sources.dsm.page }}" target="_blank" rel="noopener">Debt
+        Sustainability Monitor 2025</a> (febrero de 2026), con su saldo primario, su gasto en intereses y los efectos del
+        crecimiento, la inflación y el ajuste entre flujos y fondos que explican la variación de la deuda de cada año. No se
+        modeliza nada: pasados por la ecuación de la deuda, estos datos reproducen la senda de deuda de la Comisión con dos
+        decimales en todos los años. Como el de la Comisión, es un escenario base sin cambios de política: desde 2026 el saldo
+        primario estructural se mantiene, salvo que el creciente coste del envejecimiento se paga con cargo a él.</p>
+      <p><strong>Después de {{ fx.last_commission_year }}, Macroscope lo prolonga</strong> con los supuestos a largo plazo de la
+        propia Comisión, los del <a href="{{ fx.sources.ar.page }}" target="_blank" rel="noopener">Ageing Report 2024</a>: el
+        saldo primario baja en lo que siga subiendo el gasto en pensiones, sanidad, cuidados de larga duración y educación; el
+        crecimiento real es el crecimiento potencial del informe, más una inflación del 2%; y el tipo de interés de la deuda
+        recorre cada año un octavo de la distancia que lo separa del tipo de mercado a largo plazo del informe (en torno al 4%),
+        a medida que se refinancia la deuda que vence. Como comprobación, el ajuste que necesita este modelo para llevar la deuda
+        al 60% del PIB en 2070 es del {{ "%.2f" | format(s1_check) }}% del PIB, frente al {{ "%.2f" | format(fx.gaps.S1) }}% de
+        la Comisión (su indicador S1).</p>
+      <p><strong>Palancas.</strong> La palanca del presupuesto cambia el saldo primario de forma permanente. La del
+        envejecimiento escala el aumento previsto del coste del envejecimiento después de 2026 (100% es el de la Comisión; 0% lo
+        congela en su peso en el PIB de 2026). El crecimiento y la inflación cambian el PIB nominal; la inflación y la palanca de
+        los tipos de interés solo llegan al gasto en intereses a medida que se refinancia la deuda, un octavo al año. Por lo
+        demás, se supone que los ingresos y los gastos evolucionan con el PIB. En este modelo, una deuda más alta no eleva por sí
+        sola los tipos de interés, y la economía no responde al presupuesto: ambas cosas harían que los ajustes grandes
+        parecieran algo más fáciles o más difíciles de lo que son.</p>
+      <p class="note">Fuentes: {{ fx.sources.dsm.edition }}; {{ fx.sources.ar.edition }}; estadísticas de finanzas públicas de
+        Eurostat. Las cifras de la Comisión se tomaron el {{ fx.sources.extracted }} de sus libros de Excel publicados
+        (scripts/extract_fiscal_baseline.py) y se actualizan cuando aparecen nuevas ediciones. No es un producto oficial de la
+        Comisión.</p>
+    </div>
+  </section>
+  {% endif %}
+{% endblock %}
+
+{% block scripts %}
+  <script src="{{ root }}assets/plotly-basic.min.js?v={{ build_id }}"></script>
+  <script src="data/fiscal.js?v={{ build_id }}"></script>
+{% endblock %}
+
+{% block after_scripts %}
+  <script src="{{ root }}assets/fiscal.js?v={{ build_id }}"></script>
+{% endblock %}

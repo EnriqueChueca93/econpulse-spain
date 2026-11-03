@@ -11,6 +11,24 @@
   var render = window.EP && window.EP.render;
   if (!F || !render) return;
 
+  // The page's language (the Spanish site is under es/) and its words for what this script writes. Sentences with
+  // figures are written per language below; the past series' names come from data/fiscal.js in the page's language.
+  var LANG = document.documentElement.lang === "es" ? "es" : "en";
+  var ES = {
+    "Gross public debt": "Deuda pública bruta", "Overall balance": "Saldo presupuestario", "Primary balance": "Saldo primario",
+    "Interest": "Intereses", "Interest rate and growth": "Tipo de interés y crecimiento", "Ageing costs": "Coste del envejecimiento",
+    "Actual": "Datos observados", "Baseline": "Escenario base", "Your scenario": "Su escenario",
+    "Commission: adverse r − g": "Comisión: r − g adverso", "60% (EU reference)": "60% (referencia de la UE)",
+    "−3% (EU limit)": "−3% (límite de la UE)", "Interest rate on the debt": "Tipo de interés de la deuda",
+    "Nominal GDP growth": "Crecimiento del PIB nominal", "Pensions": "Pensiones", "Health care": "Sanidad",
+    "Long-term care": "Cuidados de larga duración", "Total, with education": "Total, con educación",
+    "%, a year": "%, anual", "% of GDP": "% del PIB",
+    "% of GDP, the Commission's 2024 Ageing Report (pensions, health care, long-term care, education)":
+      "% del PIB, Ageing Report 2024 de la Comisión (pensiones, sanidad, cuidados de larga duración, educación)",
+    "Link copied": "Enlace copiado", "Copy this link:": "Copie este enlace:"
+  };
+  function t(s) { return LANG === "es" && ES[s] !== undefined ? ES[s] : s; }
+
   var B = F.baseline, Y = F.years;
   var DEFAULTS = { view: "future", series: "balance", horizon: 2056, adj: 0, ageing: 100, growth: 0, inflation: 0,
                    rate: 0, compare: false, past: ["debt_annual", "revenue_annual", "spending_annual"] };
@@ -62,11 +80,14 @@
   function levers(p) { return { adj: p.adj, ageing: p.ageing, growth: p.growth, inflation: p.inflation, rate: p.rate }; }
   function baselineLevers() { return { adj: 0, ageing: 100, growth: 0, inflation: 0, rate: 0 }; }
 
-  // Goals: the permanent change in the primary balance from 2027 that meets each, found by bisection.
+  // Goals: the permanent change in the primary balance from 2027 that meets each, found by bisection. `es` is the
+  // readout's row in Spanish ({end}: the horizon year).
   var GOALS = {
-    hold: { label: "Hold debt at its 2025 level", test: function (r, end) { return r.debt[idx(end)] <= B.debt[idx(2025)]; } },
-    sixty: { label: "Bring debt down to 60% of GDP", test: function (r, end) { return r.debt[idx(end)] <= 60; } },
-    deficit3: { label: "Keep the deficit at or below 3% every year", test: function (r, end) {
+    hold: { label: "Hold debt at its 2025 level", es: "Ajuste para mantener la deuda en su nivel de 2025 en {end}", test: function (r, end) { return r.debt[idx(end)] <= B.debt[idx(2025)]; } },
+    sixty: { label: "Bring debt down to 60% of GDP", es: "Ajuste para bajar la deuda al 60% del PIB en {end}",
+             test: function (r, end) { return r.debt[idx(end)] <= 60; } },
+    deficit3: { label: "Keep the deficit at or below 3% every year",
+                es: "Ajuste para mantener el déficit en el 3% o menos todos los años hasta {end}", test: function (r, end) {
       for (var y = F.first_lever_year; y <= end; y++) { if (r.balance[idx(y)] < -3 - 1e-9) return false; }
       return true;
     } }
@@ -102,41 +123,41 @@
   function drawFuture(run, base, end) {
     var changed = JSON.stringify(levers(state)) !== JSON.stringify(baselineLevers());
     var debtHist = historyFor("debt_annual");
-    var series = [{ name: "Actual", x: debtHist.x.filter(function (d) { return d >= "2000"; }),
+    var series = [{ name: t("Actual"), x: debtHist.x.filter(function (d) { return d >= "2000"; }),
                     y: debtHist.y.slice(debtHist.x.findIndex(function (d) { return d >= "2000"; })), color: "ink" },
-                  Object.assign(futureSeries("debt", base, end, "Baseline"), { dash: "dash" })];
-    if (changed) series.push(futureSeries("debt", run, end, "Your scenario"));
+                  Object.assign(futureSeries("debt", base, end, t("Baseline")), { dash: "dash" })];
+    if (changed) series.push(futureSeries("debt", run, end, t("Your scenario")));
     if (state.compare) {
       var worst = F.scenarios["Adverse interest-growth differential"];
-      if (worst) series.push({ name: "Commission: adverse r − g", x: Object.keys(worst).filter(function (y) { return +y >= 2025; }).map(iso),
+      if (worst) series.push({ name: t("Commission: adverse r − g"), x: Object.keys(worst).filter(function (y) { return +y >= 2025; }).map(iso),
                                y: Object.keys(worst).filter(function (y) { return +y >= 2025; }).map(function (y) { return worst[y]; }), dash: "dot" });
     }
     render({ id: "fx-debt", kind: "line", unit: "%", decimals: 1, freq: "A", series: series,
-             ref_lines: [{ y: 60, label: "60% (EU reference)" }] });
+             ref_lines: [{ y: 60, label: t("60% (EU reference)") }] });
 
     var key = state.series, meta = SERIES[key], second = [];
     var histIds = { balance: "deficit_annual", pb: "primary_balance", interest: "interest_annual" };
     if (key === "rg") {
-      second = [futureSeries("i", run, end, "Interest rate on the debt"), futureSeries("g", run, end, "Nominal GDP growth")];
+      second = [futureSeries("i", run, end, t("Interest rate on the debt")), futureSeries("g", run, end, t("Nominal GDP growth"))];
     } else if (key === "ageing") {
       second = ["pensions", "health", "ltc", "education"].slice(0, 3).map(function (k) {
         var x = [], y = [];
         for (var j = 0; j < Y.length && Y[j] <= end; j++) { if (B[k][j] !== null) { x.push(iso(Y[j])); y.push(+B[k][j].toFixed(2)); } }
-        return { name: { pensions: "Pensions", health: "Health care", ltc: "Long-term care" }[k], x: x, y: y };
+        return { name: t({ pensions: "Pensions", health: "Health care", ltc: "Long-term care" }[k]), x: x, y: y };
       });
-      second.push(Object.assign(futureSeries("ageing", run, end, "Total, with education"), { color: "ink" }));
+      second.push(Object.assign(futureSeries("ageing", run, end, t("Total, with education")), { color: "ink" }));
     } else {
       var h = historyFor(histIds[key]);
-      if (h) second.push({ name: "Actual", x: h.x.filter(function (d) { return d >= "2000"; }),
+      if (h) second.push({ name: t("Actual"), x: h.x.filter(function (d) { return d >= "2000"; }),
                            y: h.y.slice(h.x.findIndex(function (d) { return d >= "2000"; })), color: "ink" });
-      second.push(Object.assign(futureSeries(key, base, end, "Baseline"), { dash: "dash" }));
-      if (changed) second.push(futureSeries(key, run, end, "Your scenario"));
+      second.push(Object.assign(futureSeries(key, base, end, t("Baseline")), { dash: "dash" }));
+      if (changed) second.push(futureSeries(key, run, end, t("Your scenario")));
     }
-    $("fx-second-title").textContent = meta.label;
-    $("fx-second-subtitle").textContent = key === "rg" ? "%, a year" : key === "ageing"
-      ? "% of GDP, the Commission's 2024 Ageing Report (pensions, health care, long-term care, education)" : "% of GDP";
+    $("fx-second-title").textContent = t(meta.label);
+    $("fx-second-subtitle").textContent = t(key === "rg" ? "%, a year" : key === "ageing"
+      ? "% of GDP, the Commission's 2024 Ageing Report (pensions, health care, long-term care, education)" : "% of GDP");
     render({ id: "fx-second", kind: "line", unit: "%", decimals: 1, freq: "A", series: second,
-             ref_lines: key === "balance" ? [{ y: -3, label: "−3% (EU limit)" }] : [] });
+             ref_lines: key === "balance" ? [{ y: -3, label: t("−3% (EU limit)") }] : [] });
   }
 
   function drawPast() {
@@ -147,15 +168,16 @@
 
   // ---------------------------------------------------------------- readout
   function readout(run, base, end) {
-    var p = levers(state), b = baselineLevers();
+    var p = levers(state), b = baselineLevers(), es = LANG === "es";
     var rows = [
-      ["Debt in 2036", fmt(base.debt[idx(2036)]) + "%", fmt(run.debt[idx(2036)]) + "%"],
-      ["Debt in " + end, fmt(base.debt[idx(end)]) + "%", fmt(run.debt[idx(end)]) + "%"],
-      ["Overall balance in " + end, fmt(base.balance[idx(end)]) + "%", fmt(run.balance[idx(end)]) + "%"],
-      ["Interest in " + end, fmt(base.interest[idx(end)]) + "%", fmt(run.interest[idx(end)]) + "%"]
+      [(es ? "Deuda en " : "Debt in ") + 2036, fmt(base.debt[idx(2036)]) + "%", fmt(run.debt[idx(2036)]) + "%"],
+      [(es ? "Deuda en " : "Debt in ") + end, fmt(base.debt[idx(end)]) + "%", fmt(run.debt[idx(end)]) + "%"],
+      [(es ? "Saldo presupuestario en " : "Overall balance in ") + end, fmt(base.balance[idx(end)]) + "%", fmt(run.balance[idx(end)]) + "%"],
+      [(es ? "Intereses en " : "Interest in ") + end, fmt(base.interest[idx(end)]) + "%", fmt(run.interest[idx(end)]) + "%"]
     ];
     Object.keys(GOALS).forEach(function (g) {
-      rows.push(["Adjustment to " + GOALS[g].label.charAt(0).toLowerCase() + GOALS[g].label.slice(1) + " by " + end,
+      rows.push([es ? GOALS[g].es.replace("{end}", end)
+                    : "Adjustment to " + GOALS[g].label.charAt(0).toLowerCase() + GOALS[g].label.slice(1) + " by " + end,
                  signed(solve(g, b, end), 2) + " pp", signed(solve(g, p, end), 2) + " pp"]);
     });
     var body = $("fx-readout").querySelector("tbody");
@@ -166,11 +188,16 @@
       [r[1], r[2]].forEach(function (v) { var td = tr.insertCell(); td.className = "num"; td.textContent = v; });
     });
     var gap = solve("hold", p, end), onBaseline = JSON.stringify(p) === JSON.stringify(b);
-    var hold = "holding it at its 2025 level (" + fmt(B.debt[idx(2025)]) + "%) would take a primary balance " + fmt(gap, 2) +
-      "% of GDP above the baseline every year from " + F.first_lever_year;
-    $("fx-result").textContent = (onBaseline ? "On the baseline" : "In your scenario") + ", debt reaches " +
-      fmt(run.debt[idx(end)]) + "% of GDP in " + end + "; " + hold +
-      (onBaseline || Math.abs(gap - p.adj) < 0.005 ? "." : " (your budget lever is at " + signed(p.adj, 2) + ").");
+    var atLever = onBaseline || Math.abs(gap - p.adj) < 0.005;
+    $("fx-result").textContent = es
+      ? (onBaseline ? "En el escenario base" : "En su escenario") + ", la deuda llega al " + fmt(run.debt[idx(end)]) +
+        "% del PIB en " + end + "; mantenerla en su nivel de 2025 (" + fmt(B.debt[idx(2025)]) + "%) exigiría un saldo primario " +
+        fmt(gap, 2) + "% del PIB por encima del escenario base todos los años desde " + F.first_lever_year +
+        (atLever ? "." : " (su palanca del presupuesto está en " + signed(p.adj, 2) + ").")
+      : (onBaseline ? "On the baseline" : "In your scenario") + ", debt reaches " + fmt(run.debt[idx(end)]) + "% of GDP in " + end +
+        "; holding it at its 2025 level (" + fmt(B.debt[idx(2025)]) + "%) would take a primary balance " + fmt(gap, 2) +
+        "% of GDP above the baseline every year from " + F.first_lever_year +
+        (atLever ? "." : " (your budget lever is at " + signed(p.adj, 2) + ").");
   }
 
   // ---------------------------------------------------------------- controls and state
@@ -252,9 +279,9 @@
     });
     $("fx-share").addEventListener("click", function () {
       var url = shareLink(), btn = this, label = btn.textContent;
-      var done = function () { btn.textContent = "Link copied"; setTimeout(function () { btn.textContent = label; }, 2000); };
-      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(url).then(done, function () { window.prompt("Copy this link:", url); });
-      else window.prompt("Copy this link:", url);
+      var done = function () { btn.textContent = t("Link copied"); setTimeout(function () { btn.textContent = label; }, 2000); };
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(url).then(done, function () { window.prompt(t("Copy this link:"), url); });
+      else window.prompt(t("Copy this link:"), url);
     });
     update();
   }

@@ -9,12 +9,14 @@
 import pandas as pd
 
 from . import analytics, transforms
+from .i18n import _
 from .tables import Data
 
 TREND_START = pd.Timestamp("2005-01-01")
 RATES_START = pd.Timestamp("2010-01-01")
 
-# (indicator, transform, label): levels, seasonally adjusted where the source does not.
+# (indicator, transform, label): levels, seasonally adjusted where the source does not. The labels are written in
+# the page's language (the Spanish in scripts/catalogue_tools.py).
 TREND_SERIES = [
     ("gdp", "level", "Real GDP"),
     ("consumption_households", "level", "Household consumption"),
@@ -47,7 +49,7 @@ def trend_data(data: Data) -> list[dict]:
         s = s[s.index >= TREND_START]
         if len(s) < 24:
             continue
-        out.append({"id": ind_id, "label": label, "freq": freq, "x": _iso(s.index), "y": s.round(4).tolist()})
+        out.append({"id": ind_id, "label": _(label), "freq": freq, "x": _iso(s.index), "y": s.round(4).tolist()})
     return out
 
 
