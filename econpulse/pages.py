@@ -9,7 +9,7 @@ lists the indicators those functions read. Sections without blocks yet show thei
 """
 
 from . import (analytics, demography, equities, forecasts, fuel, gdpdetail, housing, monetary, peers, pensions,
-               policy, sectortables, statedebt, surprises, underlying, workstats)
+               policy, recession, sectortables, statedebt, surprises, underlying, workstats)
 from .charts import build_chart, build_curve, build_ranking, build_xy, localise
 from .i18n import _
 from .registry import Indicator
@@ -2225,6 +2225,21 @@ PAGES: dict[str, list[dict]] = {
             "tables": [lambda data: analytics.composite_table(data, "activity"),
                        lambda data: analytics.composite_table(data, "inflation")],
             "charts": [analytics.composite_chart],
+        },
+        {
+            "id": "recession-rules",
+            "title": "Recession signals: the Sahm and Michez rules",
+            "intro": ("Two simple rules that say when a recession has probably started, from the job market alone. The "
+                      "Sahm rule watches unemployment rise above its recent low; the Michez rule, by Pascal Michaillat "
+                      "and Emmanuel Saez, also needs vacancies to fall from their recent high, which makes it less "
+                      "prone to false alarms. Both were built on US data: here they run on Spain's, checked against the "
+                      "recessions dated by the Spanish Economic Association's committee. Spain publishes vacancies "
+                      "quarterly, so the Michez rule runs on quarters, with thresholds set for Spain the way its "
+                      "authors set theirs. Macroscope calculation."),
+            "facts": recession.facts,
+            "uses": recession.USES,
+            "tables": [recession.track_table],
+            "charts": [recession.sahm_chart, recession.michez_chart, recession.vacancy_chart],
         },
         {
             "id": "surprises",

@@ -582,6 +582,11 @@
       });
       return { type: "line", xref: "paper", x0: 0, x1: 1, y0: r.y, y1: r.y, line: { color: axis, width: 1 } };
     });
+    // Shaded periods (recessions), behind the data, in a light wash of the muted ink so they read in both themes.
+    (spec.bands || []).forEach(function (b) {
+      shapes.push({ type: "rect", xref: "x", yref: "paper", x0: b.x0, x1: b.x1, y0: 0, y1: 1, layer: "below",
+        fillcolor: muted, opacity: 0.14, line: { width: 0 } });
+    });
     // Shapes don't count towards the axis range: an invisible point keeps each reference line in view.
     (spec.ref_lines || []).forEach(function (r) {
       traces.push({ type: "scatter", mode: "markers", x: [spec.series[0].x[0]], y: [r.y], marker: { opacity: 0 },

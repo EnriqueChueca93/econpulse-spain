@@ -745,6 +745,19 @@ indicators:
     transforms: [level, yoy]
     notes: Posts firms are trying to fill, from INE's labour cost survey; not seasonally adjusted.
 
+  - id: vacancies_eurostat
+    label: Job vacancies (Eurostat, from 2001)
+    label_es: Puestos de trabajo vacantes (Eurostat, desde 2001)
+    section: labour
+    source: eurostat
+    key: jvs_q_nace2
+    params: {geo: ES, indic_em: JOBVAC, s_adj: NSA, nace_r2: B-S, sizeclas: TOTAL}
+    freq: Q
+    unit: thousands
+    scale: 0.001
+    max_age_days: 400
+    notes: INE's survey figures as Eurostat publishes them, back to 2001 (INE's own series here starts in 2013); for the Michez rule's vacancy rate.
+
   # ---------------------------------------------------------------- Wages
   - id: wage_cost
     label: Wage cost per worker
