@@ -233,6 +233,15 @@ Each batch is sized for one working session, ends with something you can open or
 - Added "Privacy and cookies" at the end of the About page, in English and Spanish: what is and isn't stored, why there is no banner, a "Forget my choices" button (clears every `ep-` key), and GitHub Pages' IP logging with a link to GitHub's privacy statement. A footer link on every page points to it.
 - `tests/test_privacy.py` keeps it true: no cookies or other browser storage, every stored key listed in the notice, and nothing loaded from another site.
 
+### Google Analytics with a consent banner (built 3 Nov 2026; switched on once the ID is set)
+*Asked: "Could we add some analytics to the site?" Chosen: Google Analytics (over cookieless GoatCounter or Plausible), with feature use as well as pages.*
+
+- Off until `config.py` has `GA_MEASUREMENT_ID`, `SITE_OWNER` and `SITE_CONTACT` (the notice must say who is responsible and how to reach them, GDPR art. 13); until then the site is unchanged.
+- The banner (first layer, AEPD guide 3.1.2.2): what the cookies are for, that they are third-party, "Reject" and "Accept" styled identically, a "Cookie policy" link; it stays until answered. Nothing reaches Google before a "yes" (basic consent mode: gtag.js isn't even loaded). The answer is kept a year (AEPD: at most 24 months); "Cookie settings" in every page's footer reopens it; "Reject" stops Google Analytics on the page and deletes `_ga` and `_ga_…`. Cookies scoped to `/macroscope-spain/`, a year long; Google signals, ad personalisation and every ad consent off.
+- Feature events (what was used, never what was typed): `search_used` (result kind), `search_no_results`, `countries_compared`, `chart_csv_download`, `excel_download`, `language_switch`.
+- The About page's cookie policy (second layer) gains, while analytics is on: who runs the site and a contact, a table of everything kept and for how long, what Google Analytics collects, Google as processor, the US transfer under the Data Privacy Framework, consent as legal basis, how to accept, reject and withdraw, rights and the AEPD.
+- In Google Analytics' admin (the owner's job): accept the data processing terms, keep data retention at 2 months, leave Google signals off and turn off data sharing with Google.
+
 ### Batch 36 — Recession signals: the Sahm and Michez rules ✅ done 3 Nov 2026
 *Asked: "To the Analysis tab add a Sahm/Michez rule section."*
 

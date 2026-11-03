@@ -322,6 +322,7 @@ About and methods: Acerca del sitio y métodos
 About the data: Sobre los datos
 Above 2%: Por encima del 2%
 Above 5%: Por encima del 5%
+Accept: Aceptar
 Accommodation: Servicios de alojamiento
 Accommodation and food services: Hostelería
 Activity: Actividad
@@ -706,6 +707,10 @@ Contributions to broad money growth on a year earlier, percentage points: Aporta
 'Contributions to quarterly growth: demand': 'Aportaciones al crecimiento trimestral: demanda'
 Contributors per 100 pensioners: Cotizantes por cada 100 pensionistas
 Contributory pensions: Pensiones contributivas
+Cookie policy: Política de cookies
+Cookie settings: Configuración de cookies
+Cookies: Cookies
+Cookies.: Cookies.
 Copper (monthly): Cobre (mensual)
 Copy a link to the chart %(title)s: Copiar un enlace al gráfico %(title)s
 Copy link: Copiar enlace
@@ -1537,6 +1542,8 @@ MEI: MEI
 MEI from 2029 to 2050: MEI de 2029 a 2050
 Machinery: Maquinaria
 Machinery and equipment: Maquinaria y bienes de equipo
+? Macroscope Spain would like to use Google Analytics cookies, which are third-party cookies, to count visits and see which pages and tools are used. They are not used for advertising. Do you accept them?
+: Macroscope España quiere usar cookies de Google Analytics, que son cookies de terceros, para contar las visitas y ver qué páginas y herramientas se usan. No se usan para publicidad. ¿Las acepta?
 'Macroscope Spain: what changed': 'Macroscope España: qué ha cambiado'
 Macroscope calculation: cálculo de Macroscope
 Macroscope calculation from Eurostat and the ECB: cálculo de Macroscope con datos de Eurostat y el BCE
@@ -2108,6 +2115,7 @@ Regular pay only (no bonuses): Solo salario ordinario (sin pagas extraordinarias
 Regulatory Tier 1 capital to risk-weighted assets: Capital regulador de nivel 1 / activos ponderados por riesgo
 Regulatory capital: Capital regulador
 Regulatory capital to risk-weighted assets: Capital regulador / activos ponderados por riesgo
+Reject: Rechazar
 Release: Publicación
 Release calendar: Calendario de publicaciones
 Release map: Mapa de publicaciones
@@ -2751,6 +2759,8 @@ Yield by maturity, %: Rentabilidad por plazo, %
 Yield of the revenue measures: Recaudación de las medidas de ingresos
 Yield of the revenue measures adopted since 2020: Recaudación de las medidas de ingresos adoptadas desde 2020
 Yield, %; changes and the spread over AAA euro-area bonds in basis points: Rentabilidad, %; variaciones y diferencial sobre la deuda AAA de la zona del euro en puntos básicos
+You accepted these cookies.: Ha aceptado estas cookies.
+You rejected these cookies.: Ha rechazado estas cookies.
 Youth unemployment: Paro juvenil
 a month: al mes
 a month, granted in {month}: al mes, reconocida en {month}

@@ -27,6 +27,22 @@
 </head>
 <body>
   <a class="skip-link" href="#content">{{ _("Skip to content") }}</a>
+  {% if ga %}
+  {# The first layer of the cookie notice (AEPD guide, 3.1.2.2): shown until the visitor answers; static/consent.js. #}
+  <section class="consent" id="consent" aria-label="{{ _("Cookies") }}" hidden data-ga="{{ ga.id }}" data-path="{{ ga.path }}"
+    data-accepted="{{ _("You accepted these cookies.") }}" data-rejected="{{ _("You rejected these cookies.") }}">
+    <div class="wrap consent-inner">
+      <p class="consent-text"><strong>{{ _("Cookies.") }}</strong>
+        {{ _("Macroscope Spain would like to use Google Analytics cookies, which are third-party cookies, to count visits and see which pages and tools are used. They are not used for advertising. Do you accept them?") }}
+        <a href="about.html#privacy">{{ _("Cookie policy") }}</a></p>
+      <p class="consent-status" hidden></p>
+      <div class="consent-actions">
+        <button type="button" class="consent-btn" data-consent="no">{{ _("Reject") }}</button>
+        <button type="button" class="consent-btn" data-consent="yes">{{ _("Accept") }}</button>
+      </div>
+    </div>
+  </section>
+  {% endif %}
   <header class="site-header">
     <div class="wrap header-top">
       <a class="brand" href="index.html">Macroscope <span>{{ _("Spain") }}</span></a>
@@ -92,7 +108,8 @@
         <abbr title="{{ _("seasonally adjusted by Macroscope") }}">{{ _("SA") }}</abbr> {{ _("or labelled as a Macroscope calculation.") }}</p>
       <p>{{ brand }} v{{ version }} · {{ _("built %(when)s", when=built) }} · <a href="about.html">{{ _("About and methods") }}</a> ·
         <a href="calendar.html">{{ _("Release calendar") }}</a> · <a href="data.html">{{ _("Data and freshness") }}</a> ·
-        <a href="feed.xml">{{ _("RSS feed") }}</a> · <a href="about.html#privacy">{{ _("Privacy and cookies") }}</a></p>
+        <a href="feed.xml">{{ _("RSS feed") }}</a> · <a href="about.html#privacy">{{ _("Privacy and cookies") }}</a>
+        {%- if ga %} · <button type="button" class="link-button" data-cookie-settings>{{ _("Cookie settings") }}</button>{% endif %}</p>
     </div>
   </footer>
 
@@ -107,6 +124,7 @@
   </div>
 
   {% block scripts %}{% endblock %}
+  {% if ga %}<script src="{{ root }}assets/consent.js?v={{ build_id }}"></script>{% endif %}
   <script src="{{ root }}assets/app.js?v={{ build_id }}"></script>
   {% block after_scripts %}{% endblock %}
 </body>

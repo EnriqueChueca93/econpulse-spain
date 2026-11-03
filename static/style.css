@@ -712,3 +712,24 @@ body.search-on { overflow: hidden; }
 }
 .forget-choices:hover { background: var(--hover); border-color: var(--text-2); }
 .forget-status { margin-left: 10px; font-size: 13px; color: var(--text-2); }
+
+/* The cookie banner (static/consent.js): fixed at the foot of the window until the visitor answers. "Reject" and
+   "Accept" look exactly alike, as the AEPD's guide requires: neither is pushed. Above the sticky bars and the "Top"
+   button, under the search panel. */
+.consent {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; background: var(--surface);
+  border-top: 1px solid var(--border); box-shadow: 0 -6px 18px rgba(0, 0, 0, 0.10);
+}
+.consent[hidden] { display: none; }
+.consent-inner { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 24px; padding-top: 14px; padding-bottom: 14px; }
+.consent-text { flex: 1 1 420px; margin: 0; font-size: 14px; line-height: 1.5; color: var(--text); }
+.consent-status { flex: 1 1 100%; order: 3; margin: 0; font-size: 13px; color: var(--text-2); }
+.consent-actions { display: flex; gap: 10px; flex: none; }
+.consent-btn {
+  min-width: 112px; padding: 8px 18px; font: 600 14px var(--sans); color: var(--text);
+  background: var(--surface); border: 1.5px solid var(--text); border-radius: 6px; cursor: pointer;
+}
+.consent-btn:hover { background: var(--hover); }
+@media (max-width: 520px) { .consent-actions { flex: 1 1 100%; } .consent-btn { flex: 1; } }
+/* A button that reads as a footer link ("Cookie settings") */
+.link-button { padding: 0; font: inherit; color: inherit; background: none; border: 0; text-decoration: underline; cursor: pointer; }

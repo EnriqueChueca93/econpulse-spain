@@ -156,6 +156,75 @@
   <section aria-labelledby="privacy">
     <h2 id="privacy">Privacidad y cookies</h2>
     <div class="prose">
+      {% if ga %}
+      <p>Macroscope España es un proyecto personal y sin fines comerciales de {{ ga.owner }}, responsable del uso de
+        datos que se describe en este aviso. Contacto: <a href="{{ ga.contact }}">{{ ga.contact_label }}</a>.</p>
+      <h3>Qué guarda el sitio en su navegador</h3>
+      <p>Las cookies, y el almacenamiento local del navegador, son pequeños datos que un sitio web guarda en su
+        navegador y lee en visitas posteriores. Este sitio guarda estos:</p>
+    </div>
+    <div class="table-scroll">
+      <table class="data-table">
+        <thead><tr><th scope="col">Nombre</th><th scope="col">Lo guarda</th><th scope="col">Para qué</th><th scope="col">Durante cuánto tiempo</th></tr></thead>
+        <tbody>
+          <tr><td><code>ep-consent</code> (almacenamiento local)</td><td>Macroscope</td>
+            <td>Su respuesta a la pregunta sobre cookies, y su fecha, para no preguntarle en cada página</td><td>Un año</td></tr>
+          <tr><td><code>ep-theme</code>, <code>ep-peers</code>, <code>ep-sector-unit</code>, <code>ep-sector-freq-</code>… (almacenamiento local)</td>
+            <td>Macroscope</td><td>Elecciones que usted hace: el tema claro u oscuro, los países con los que compara
+              España, la unidad y la frecuencia de las tablas sectoriales. No se guarda nada hasta que elige.</td><td>Hasta que las borre</td></tr>
+          <tr><td><code>_ga</code> (cookie)</td><td>Google Analytics</td>
+            <td>Un número aleatorio que distingue las visitas de un navegador de las de otro</td><td>Un año</td></tr>
+          <tr><td><code>_ga_</code>… (cookie)</td><td>Google Analytics</td>
+            <td>Lleva la cuenta de la visita en curso</td><td>Un año</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="prose">
+      <p>Los dos primeros recuerdan una elección que usted ha pedido al sitio que recuerde, así que, según las normas
+        europeas de privacidad electrónica (en España, el artículo 22.2 de la LSSI), no necesitan consentimiento; se
+        quedan en su dispositivo y nunca se envían a ninguna parte. Las cookies de Google Analytics solo se instalan si
+        usted las acepta.</p>
+      <h3>Google Analytics, solo si lo acepta</h3>
+      <p>Si acepta, el sitio carga Google Analytics, un servicio de Google Ireland Limited, que cuenta para el sitio:
+        las páginas que lee y el sitio del que llega; su país y su ciudad, que Google deduce de su dirección IP y no
+        conserva; su navegador, dispositivo, tamaño de pantalla e idioma; y qué funciones usa: búsquedas (el tipo de
+        resultado que elige, nunca lo que escribe), los países con los que compara España, las descargas de gráficos y
+        de Excel, y los cambios entre inglés y español. El sitio solo ve totales; no puede saber quién es usted.</p>
+      <p>El sitio desactiva las funciones publicitarias de Google (Google signals y la personalización de anuncios) y
+        rechaza todo uso publicitario de los datos. Google Analytics conserva los datos de cada visita dos meses, su
+        plazo más corto. Google trata los datos por cuenta del sitio según sus condiciones de tratamiento de datos, y
+        puede hacerlo en Estados Unidos: Google LLC está certificada en el Marco de Privacidad de Datos UE-EE. UU., que
+        la Comisión Europea consideró adecuado el 10 de julio de 2023. Consulte
+        <a href="https://policies.google.com/technologies/partner-sites?hl=es" target="_blank" rel="noopener">cómo usa
+        Google la información de los sitios que usan sus servicios</a> y la
+        <a href="https://policies.google.com/privacy?hl=es" target="_blank" rel="noopener">política de privacidad de
+        Google</a>.</p>
+      <p>La base jurídica es su consentimiento (artículo 6.1.a del RGPD). Nada llega a Google antes de que usted acepte:
+        ni un script, ni una petición, ni una cookie.</p>
+      <h3>Aceptar, rechazar y cambiar de opinión</h3>
+      <p>Acepte o rechace en el aviso al pie de la página; rechazar es tan fácil como aceptar, y el sitio funciona igual
+        en ambos casos. Puede cambiar su respuesta en cualquier momento con <strong>Configuración de cookies</strong>, al
+        pie de cada página; rechazar detiene Google Analytics y borra sus cookies de este sitio. El sitio vuelve a
+        preguntar al cabo de un año. También puede borrar las cookies y los datos del sitio en su navegador, o instalar
+        el <a href="https://tools.google.com/dlpage/gaoptout?hl=es" target="_blank" rel="noopener">complemento de
+        inhabilitación de Google</a>. Este botón borra todas las elecciones que guarda el sitio, incluida su respuesta
+        sobre cookies, y elimina las cookies de Google Analytics:</p>
+      <p><button type="button" class="forget-choices" data-forget-choices
+          data-done="Hecho: sus elecciones se han olvidado en este navegador.">Olvidar mis elecciones</button>
+        <span class="forget-status" role="status"></span></p>
+      <h3>Sus derechos</h3>
+      <p>Puede pedir el acceso a sus datos, su rectificación, supresión o limitación, oponerse a su uso, pedir una
+        copia y retirar su consentimiento en cualquier momento, escribiendo al contacto indicado arriba. Como el sitio no
+        puede identificarle a partir de sus estadísticas, puede necesitar que usted le indique cómo encontrar sus datos
+        (artículo 11 del RGPD). También puede reclamar ante la Agencia Española de Protección de Datos, la
+        <a href="https://www.aepd.es/" target="_blank" rel="noopener">AEPD</a>.</p>
+      <h3>Alojamiento</h3>
+      <p>El sitio está alojado en GitHub Pages. GitHub registra las direcciones IP de los visitantes por seguridad, como
+        en cualquier sitio de GitHub Pages; consulte la
+        <a href="https://docs.github.com/es/site-policy/privacy-policies/github-general-privacy-statement"
+        target="_blank" rel="noopener">declaración de privacidad de GitHub</a>. Macroscope no recibe esa
+        información. Los enlaces a las fuentes y a otros sitios llevan a sitios con sus propias políticas.</p>
+      {% else %}
       <p>Macroscope España no instala cookies ni usa herramientas de analítica, publicidad o seguimiento. Todo lo que
         cargan las páginas, de los gráficos a los datos, procede de este sitio, así que ninguna otra empresa ve su
         visita a través de él.</p>
@@ -178,6 +247,7 @@
         <a href="https://docs.github.com/es/site-policy/privacy-policies/github-general-privacy-statement"
         target="_blank" rel="noopener">declaración de privacidad de GitHub</a>. Macroscope no recibe esa
         información. Los enlaces a las fuentes y a otros sitios llevan a sitios con sus propias políticas.</p>
+      {% endif %}
     </div>
   </section>
 {% endblock %}

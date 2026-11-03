@@ -47,6 +47,18 @@ add({
     "Data and freshness": "Datos y actualidad",
     "RSS feed": "Canal RSS",
     "Privacy and cookies": "Privacidad y cookies",
+    # the cookie banner and its footer button (templates/base.html, static/consent.js), shown when analytics is on
+    "Cookies": "Cookies",
+    "Cookies.": "Cookies.",
+    "Macroscope Spain would like to use Google Analytics cookies, which are third-party cookies, to count visits and see which pages and tools are used. They are not used for advertising. Do you accept them?":
+        "Macroscope España quiere usar cookies de Google Analytics, que son cookies de terceros, para contar las visitas "
+        "y ver qué páginas y herramientas se usan. No se usan para publicidad. ¿Las acepta?",
+    "Cookie policy": "Política de cookies",
+    "Reject": "Rechazar",
+    "Accept": "Aceptar",
+    "You accepted these cookies.": "Ha aceptado estas cookies.",
+    "You rejected these cookies.": "Ha rechazado estas cookies.",
+    "Cookie settings": "Configuración de cookies",
     "Search the site": "Buscar en el sitio",
     "Search series, charts and sections, in English or Spanish": "Busque series, gráficos y secciones, en español o en inglés",
     "Results": "Resultados",

@@ -7,6 +7,7 @@ A .json copy of the snapshot is written alongside for anything that wants plain 
 """
 
 import json
+import re
 import shutil
 from datetime import datetime
 from urllib.parse import urlparse
@@ -18,7 +19,7 @@ from jinja2 import ChoiceLoader, Environment, FileSystemLoader, select_autoescap
 from . import __version__, analytics, budget, changes, ecbspeak, feed, fiscal, i18n, industries, peers, schedule, search, sectortables, stance, surprises, tools, trade
 from .i18n import _
 from .charts import build_home_charts
-from .config import SITE_DIR, SITE_URL, STATIC_DIR, TEMPLATES_DIR
+from .config import GA_MEASUREMENT_ID, SITE_CONTACT, SITE_DIR, SITE_OWNER, SITE_URL, STATIC_DIR, TEMPLATES_DIR
 from .pages import PAGES, block_indicator_ids, build_page, indicator_anchors
 from .questions import four_questions
 from .registry import Indicator
@@ -114,6 +115,20 @@ def _source_summary(items: list[dict]) -> list[dict]:
     return sorted(rows.values(), key=lambda r: -r["total"])
 
 
+def web_analytics(ga_id: str | None = GA_MEASUREMENT_ID, owner: str | None = SITE_OWNER,
+                  contact: str | None = SITE_CONTACT) -> dict | None:
+    """Google Analytics for the templates: the banner, static/consent.js and the privacy notice. None, so no banner and
+    no analytics, until the measurement ID, the site's owner and a contact are all set in config.py."""
+    if not (ga_id and owner and contact):
+        return None
+    if not re.fullmatch(r"G-[A-Z0-9]{4,16}", ga_id):
+        raise ValueError(f"GA_MEASUREMENT_ID should look like G-XXXXXXXXXX, not {ga_id!r}")
+    if not contact.startswith(("https://", "mailto:")):
+        raise ValueError("SITE_CONTACT should be a link: https://... or mailto:...")
+    label = contact.removeprefix("mailto:") if contact.startswith("mailto:") else contact.removeprefix("https://").rstrip("/")
+    return {"id": ga_id, "path": urlparse(SITE_URL).path or "/", "owner": owner, "contact": contact, "contact_label": label}
+
+
 def _copy_assets(site_dir: Path) -> None:
     # static/ holds Plotly's basic bundle (line, bar and pie charts, all the site draws), so the site works
     # offline with no CDN; it replaced the full bundle in Batch U4. Remove a full one left by older builds.
@@ -204,6 +219,7 @@ def _build_language(indicators: list[Indicator], store: Store, site_root: Path, 
         "site_url": SITE_URL,
         "nav": nav_items(section_pages, updated),
         "coming_up": coming,
+        "ga": web_analytics(),
     }
 
     def render(template: str, filename: str, **context) -> Path:

@@ -22,10 +22,15 @@
   };
   function t(s) { return LANG === "es" && ES[s] !== undefined ? ES[s] : s; }
 
+  // A feature event for Google Analytics (static/consent.js): what was used, never what was typed. It does nothing
+  // unless analytics is switched on and the visitor accepted its cookies.
+  function track(name, params) { if (window.EPconsent) window.EPconsent.track(name, params); }
+
   // Switching language keeps the place on the page (a chart's anchor, an explorer's settings).
   Array.prototype.forEach.call(document.querySelectorAll(".lang-switch a"), function (a) {
     a.addEventListener("click", function () {
       if (location.hash && !a.hasAttribute("aria-current")) a.href = a.getAttribute("href").split("#")[0] + location.hash;
+      if (!a.hasAttribute("aria-current")) track("language_switch", { to: a.getAttribute("hreflang") });
     });
   });
 
@@ -52,6 +57,7 @@
         Object.keys(localStorage).forEach(function (k) { if (k.indexOf("ep-") === 0) localStorage.removeItem(k); });
       } catch (e) { /* storage blocked: nothing was kept */ }
       root.removeAttribute("data-theme");
+      if (window.EPconsent) window.EPconsent.reset();   // the cookie answer went too: delete the cookies, ask again
       drawAll();
       var status = b.parentNode.querySelector(".forget-status");
       if (status) status.textContent = b.getAttribute("data-done") || "";
@@ -152,6 +158,7 @@
 
   function savePicks() {
     try { localStorage.setItem("ep-peers", JSON.stringify(picked)); } catch (e) { /* storage blocked: lasts this visit */ }
+    track("countries_compared", { countries: picked.slice().sort().join(","), count: picked.length });
   }
 
   function togglePick(code) {
@@ -1039,10 +1046,12 @@
     });
   }
   document.addEventListener("click", function (event) {
+    var xlsx = event.target.closest && event.target.closest('a[href$=".xlsx"]');
+    if (xlsx) track("excel_download", { file_name: xlsx.getAttribute("href").split("/").pop() });
     var csv = event.target.closest && event.target.closest(".chart-csv");
     if (csv) {
       var spec = byId(csv.getAttribute("data-chart"));
-      if (spec) downloadCsv(spec);
+      if (spec) { downloadCsv(spec); track("chart_csv_download", { chart: spec.id }); }
       return;
     }
     var button = event.target.closest && event.target.closest(".chart-link[data-figure]");
@@ -1216,6 +1225,12 @@
       }
     }
 
+    // Which kind of result people pick (page, section, chart or series), never what they typed.
+    function chosen(a) {
+      var i = Array.prototype.indexOf.call(list.children, a && a.parentNode);
+      if (i >= 0 && results[i]) track("search_used", { result_kind: ["page", "section", "chart", "series"][results[i].kind] });
+    }
+
     function show() {
       if (!panel.hidden) return input.focus();
       panel.hidden = false;
@@ -1226,6 +1241,7 @@
     }
 
     function hide(refocus) {
+      if (!panel.hidden && input.value.trim() && !results.length) track("search_no_results", {});   // never the words
       panel.hidden = true;
       document.body.classList.remove("search-on");
       if (refocus) opener.focus();
@@ -1234,7 +1250,7 @@
     opener.addEventListener("click", show);
     panel.addEventListener("click", function (e) {
       if (e.target === panel) hide(true);
-      else if (e.target.closest("a")) hide(false);   // a result on this page only moves the page
+      else if (e.target.closest("a")) { chosen(e.target.closest("a")); hide(false); }   // a result on this page only moves the page
     });
     input.addEventListener("input", function () { if (index) search(); });
     input.addEventListener("keydown", function (e) {
@@ -1243,7 +1259,7 @@
         if (results.length) setActive((active + (e.key === "ArrowDown" ? 1 : -1) + results.length) % results.length);
       } else if (e.key === "Enter") {
         e.preventDefault();
-        if (active >= 0) { hide(false); location.href = results[active].href; }
+        if (active >= 0) { chosen(list.children[active].querySelector("a")); hide(false); location.href = results[active].href; }
       } else if (e.key === "Escape") {
         e.preventDefault();
         hide(true);

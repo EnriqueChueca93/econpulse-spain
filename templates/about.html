@@ -141,6 +141,71 @@
   <section aria-labelledby="privacy">
     <h2 id="privacy">Privacy and cookies</h2>
     <div class="prose">
+      {% if ga %}
+      <p>Macroscope Spain is a personal, non-commercial project run by {{ ga.owner }}, who is responsible for the use
+        of data this notice describes. Contact: <a href="{{ ga.contact }}">{{ ga.contact_label }}</a>.</p>
+      <h3>What the site keeps in your browser</h3>
+      <p>Cookies, and the browser's local storage, are small pieces of information a website keeps in your browser
+        and reads on later visits. This site keeps these:</p>
+    </div>
+    <div class="table-scroll">
+      <table class="data-table">
+        <thead><tr><th scope="col">Name</th><th scope="col">Kept by</th><th scope="col">What for</th><th scope="col">For how long</th></tr></thead>
+        <tbody>
+          <tr><td><code>ep-consent</code> (local storage)</td><td>Macroscope</td>
+            <td>Your answer to the cookie question, and its date, so you aren't asked on every page</td><td>A year</td></tr>
+          <tr><td><code>ep-theme</code>, <code>ep-peers</code>, <code>ep-sector-unit</code>, <code>ep-sector-freq-</code>… (local storage)</td>
+            <td>Macroscope</td><td>Choices you make: light or dark theme, the countries you compare Spain with, the
+              unit and frequency of the sector tables. Nothing is kept until you choose.</td><td>Until you clear them</td></tr>
+          <tr><td><code>_ga</code> (cookie)</td><td>Google Analytics</td>
+            <td>A random number that tells one browser's visits from another's</td><td>A year</td></tr>
+          <tr><td><code>_ga_</code>… (cookie)</td><td>Google Analytics</td>
+            <td>Keeps count of the current visit</td><td>A year</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="prose">
+      <p>The first two remember a choice you asked the site to remember, so under the EU's ePrivacy rules (in Spain,
+        article 22.2 of the LSSI) they need no consent; they stay on your device and are never sent anywhere. The
+        Google Analytics cookies are set only if you accept them.</p>
+      <h3>Google Analytics, only if you accept</h3>
+      <p>If you accept, the site loads Google Analytics, a service of Google Ireland Limited, which counts for the site:
+        the pages you read and the site you came from; your country and city, which Google works out from your IP
+        address and doesn't keep; your browser, device, screen size and language; and which features you use: searches
+        (the kind of result you pick, never what you type), the countries you compare Spain with, chart and Excel
+        downloads, and switches between English and Spanish. The site only sees totals; it can't tell who you are.</p>
+      <p>The site switches off Google's advertising features (Google signals and ad personalisation) and refuses every
+        advertising use of the data. Google Analytics keeps visit-level data for two months, its shortest setting.
+        Google processes the data for the site under its data processing terms, and may do so in the United States:
+        Google LLC is certified under the EU-US Data Privacy Framework, which the European Commission found to give
+        adequate protection on 10 July 2023. See <a href="https://policies.google.com/technologies/partner-sites"
+        target="_blank" rel="noopener">how Google uses information from sites that use its services</a> and
+        <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's privacy policy</a>.</p>
+      <p>The legal basis is your consent (GDPR article 6.1.a). Nothing reaches Google before you accept: no script, no
+        request and no cookie.</p>
+      <h3>Accepting, rejecting and changing your mind</h3>
+      <p>Accept or reject in the notice at the foot of the page; rejecting is as easy as accepting, and the site works
+        the same either way. You can change your answer at any time with <strong>Cookie settings</strong>, at the foot
+        of every page; rejecting stops Google Analytics and deletes its cookies from this site. The site asks again
+        after a year. You can also clear cookies and site data in your browser, or install
+        <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Google's opt-out
+        add-on</a>. This button clears every choice the site keeps, your cookie answer included, and deletes the
+        Google Analytics cookies:</p>
+      <p><button type="button" class="forget-choices" data-forget-choices
+          data-done="Done: your choices are forgotten on this browser.">Forget my choices</button>
+        <span class="forget-status" role="status"></span></p>
+      <h3>Your rights</h3>
+      <p>You can ask for access to your data, and for it to be corrected, deleted or restricted, object to its use,
+        ask for a copy, and withdraw your consent at any time, by writing to the contact above. As the site can't
+        identify you from its analytics, it may need you to tell it how to find your data (GDPR article 11). You can
+        also complain to the Spanish data protection authority, the <a href="https://www.aepd.es/" target="_blank"
+        rel="noopener">AEPD</a>.</p>
+      <h3>Hosting</h3>
+      <p>The site is hosted on GitHub Pages. GitHub logs visitors' IP addresses for security, as it does for every
+        GitHub Pages site; see the <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement"
+        target="_blank" rel="noopener">GitHub privacy statement</a>. Macroscope gets none of that information.
+        Links to the sources and other sites take you to sites with their own policies.</p>
+      {% else %}
       <p>Macroscope Spain sets no cookies and runs no analytics, advertising or tracking. Everything the pages load,
         from the charts to the data, comes from this site, so no other company sees your visit through it.</p>
       <p>A few choices you make are remembered in your browser's local storage, so you don't have to make them again.
@@ -161,6 +226,7 @@
         GitHub Pages site; see the <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement"
         target="_blank" rel="noopener">GitHub privacy statement</a>. Macroscope gets none of that information.
         Links to the sources and other sites take you to sites with their own policies.</p>
+      {% endif %}
     </div>
   </section>
 {% endblock %}
