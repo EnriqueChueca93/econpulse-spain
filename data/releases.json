@@ -421,10 +421,10 @@
    "flash": false
   },
   "electricity_price": {
-   "date": "2026-11-01",
-   "raw": 163.1852083,
-   "display": "163 €/MWh",
-   "period": "1 Nov 2026",
+   "date": "2026-11-03",
+   "raw": 186.4866667,
+   "display": "186 €/MWh",
+   "period": "3 Nov 2026",
    "flash": false
   },
   "industrial_production": {
@@ -652,73 +652,73 @@
    "flash": false
   },
   "ecb_deposit_rate": {
-   "date": "2026-10-31",
+   "date": "2026-11-02",
    "raw": 2.5,
    "display": "2.50%",
-   "period": "31 Oct 2026",
+   "period": "2 Nov 2026",
    "flash": false
   },
   "ecb_mro_rate": {
-   "date": "2026-10-31",
+   "date": "2026-11-02",
    "raw": 2.65,
    "display": "2.65%",
-   "period": "31 Oct 2026",
+   "period": "2 Nov 2026",
    "flash": false
   },
   "ecb_mlf_rate": {
-   "date": "2026-10-31",
+   "date": "2026-11-02",
    "raw": 2.9,
    "display": "2.90%",
-   "period": "31 Oct 2026",
+   "period": "2 Nov 2026",
    "flash": false
   },
   "estr": {
-   "date": "2026-10-29",
-   "raw": 2.439,
-   "display": "2.439%",
-   "period": "29 Oct 2026",
+   "date": "2026-10-30",
+   "raw": 2.44,
+   "display": "2.440%",
+   "period": "30 Oct 2026",
    "flash": false
   },
   "aaa_fwd_3m": {
-   "date": "2026-10-29",
-   "raw": 2.734807789,
+   "date": "2026-10-30",
+   "raw": 2.725832012,
    "display": "2.73%",
-   "period": "29 Oct 2026",
+   "period": "30 Oct 2026",
    "flash": false
   },
   "aaa_fwd_6m": {
-   "date": "2026-10-29",
-   "raw": 2.944363676,
+   "date": "2026-10-30",
+   "raw": 2.944787616,
    "display": "2.94%",
-   "period": "29 Oct 2026",
+   "period": "30 Oct 2026",
    "flash": false
   },
   "aaa_fwd_9m": {
-   "date": "2026-10-29",
-   "raw": 3.060661046,
+   "date": "2026-10-30",
+   "raw": 3.064261122,
    "display": "3.06%",
-   "period": "29 Oct 2026",
+   "period": "30 Oct 2026",
    "flash": false
   },
   "aaa_fwd_1y": {
-   "date": "2026-10-29",
-   "raw": 3.117809489,
+   "date": "2026-10-30",
+   "raw": 3.121047777,
    "display": "3.12%",
-   "period": "29 Oct 2026",
+   "period": "30 Oct 2026",
    "flash": false
   },
   "aaa_fwd_2y": {
-   "date": "2026-10-29",
-   "raw": 3.124731779,
+   "date": "2026-10-30",
+   "raw": 3.117062291,
    "display": "3.12%",
-   "period": "29 Oct 2026",
+   "period": "30 Oct 2026",
    "flash": false
   },
   "aaa_fwd_3y": {
-   "date": "2026-10-29",
-   "raw": 3.12331461,
-   "display": "3.12%",
-   "period": "29 Oct 2026",
+   "date": "2026-10-30",
+   "raw": 3.109012361,
+   "display": "3.11%",
+   "period": "30 Oct 2026",
    "flash": false
   },
   "euribor_3m": {
@@ -778,52 +778,52 @@
    "flash": false
   },
   "de_10y": {
-   "date": "2026-10-30",
-   "raw": 3.4,
-   "display": "3.40%",
-   "period": "30 Oct 2026",
+   "date": "2026-11-02",
+   "raw": 3.37,
+   "display": "3.37%",
+   "period": "2 Nov 2026",
    "flash": false
   },
   "aaa_1y": {
-   "date": "2026-10-29",
-   "raw": 2.881057384,
+   "date": "2026-10-30",
+   "raw": 2.877223217,
    "display": "2.88%",
-   "period": "29 Oct 2026",
+   "period": "30 Oct 2026",
    "flash": false
   },
   "aaa_3y": {
-   "date": "2026-10-29",
-   "raw": 3.044433345,
+   "date": "2026-10-30",
+   "raw": 3.038636677,
    "display": "3.04%",
-   "period": "29 Oct 2026",
+   "period": "30 Oct 2026",
    "flash": false
   },
   "aaa_5y": {
-   "date": "2026-10-29",
-   "raw": 3.11075734,
-   "display": "3.11%",
-   "period": "29 Oct 2026",
+   "date": "2026-10-30",
+   "raw": 3.10142496,
+   "display": "3.10%",
+   "period": "30 Oct 2026",
    "flash": false
   },
   "aaa_10y": {
-   "date": "2026-10-29",
-   "raw": 3.373314554,
+   "date": "2026-10-30",
+   "raw": 3.365046937,
    "display": "3.37%",
-   "period": "29 Oct 2026",
+   "period": "30 Oct 2026",
    "flash": false
   },
   "aaa_15y": {
-   "date": "2026-10-29",
-   "raw": 3.565596957,
-   "display": "3.57%",
-   "period": "29 Oct 2026",
+   "date": "2026-10-30",
+   "raw": 3.560964176,
+   "display": "3.56%",
+   "period": "30 Oct 2026",
    "flash": false
   },
   "aaa_30y": {
-   "date": "2026-10-29",
-   "raw": 3.611025505,
+   "date": "2026-10-30",
+   "raw": 3.614933452,
    "display": "3.61%",
-   "period": "29 Oct 2026",
+   "period": "30 Oct 2026",
    "flash": false
   },
   "risk_premium": {
@@ -841,31 +841,31 @@
    "flash": false
   },
   "eurusd": {
-   "date": "2026-10-30",
-   "raw": 1.1172,
-   "display": "1.1172",
-   "period": "30 Oct 2026",
+   "date": "2026-11-02",
+   "raw": 1.1216,
+   "display": "1.1216",
+   "period": "2 Nov 2026",
    "flash": false
   },
   "eurgbp": {
-   "date": "2026-10-30",
-   "raw": 0.8338,
-   "display": "0.8338",
-   "period": "30 Oct 2026",
+   "date": "2026-11-02",
+   "raw": 0.8358,
+   "display": "0.8358",
+   "period": "2 Nov 2026",
    "flash": false
   },
   "eurchf": {
-   "date": "2026-10-30",
-   "raw": 0.9194,
-   "display": "0.9194",
-   "period": "30 Oct 2026",
+   "date": "2026-11-02",
+   "raw": 0.9193,
+   "display": "0.9193",
+   "period": "2 Nov 2026",
    "flash": false
   },
   "eurjpy": {
-   "date": "2026-10-30",
-   "raw": 175.68,
-   "display": "175.68",
-   "period": "30 Oct 2026",
+   "date": "2026-11-02",
+   "raw": 177.1,
+   "display": "177.10",
+   "period": "2 Nov 2026",
    "flash": false
   },
   "brent_usd": {
@@ -890,17 +890,17 @@
    "flash": false
   },
   "mortgage_rate": {
-   "date": "2026-08-01",
-   "raw": 3.04,
-   "display": "3.04%",
-   "period": "Aug 2026",
+   "date": "2026-09-01",
+   "raw": 2.99,
+   "display": "2.99%",
+   "period": "Sep 2026",
    "flash": false
   },
   "new_mortgage_lending": {
-   "date": "2026-08-01",
-   "raw": 4431.0,
-   "display": "1.0% y/y",
-   "period": "Aug 2026",
+   "date": "2026-09-01",
+   "raw": 6392.0,
+   "display": "−0.7% y/y",
+   "period": "Sep 2026",
    "flash": false
   },
   "housing_loans_growth": {
@@ -1681,24 +1681,24 @@
    "flash": false
   },
   "euro_stoxx50": {
-   "date": "2026-09-01",
-   "raw": 6316.389,
-   "display": "6,316",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 6170.733182,
+   "display": "6,171",
+   "period": "Oct 2026",
    "flash": false
   },
   "ciss_es": {
-   "date": "2026-10-29",
-   "raw": 0.002452103673,
+   "date": "2026-10-30",
+   "raw": 0.002492741976,
    "display": "0.002",
-   "period": "29 Oct 2026",
+   "period": "30 Oct 2026",
    "flash": false
   },
   "ciss_ea": {
-   "date": "2026-10-29",
-   "raw": 0.01276523037,
-   "display": "0.013",
-   "period": "29 Oct 2026",
+   "date": "2026-10-30",
+   "raw": 0.01143968712,
+   "display": "0.011",
+   "period": "30 Oct 2026",
    "flash": false
   },
   "npl_ratio": {
@@ -3137,10 +3137,10 @@
    "flash": false
   },
   "target_balance": {
-   "date": "2026-08-01",
-   "raw": -442554.69,
-   "display": "−€442,555 mn",
-   "period": "Aug 2026",
+   "date": "2026-09-01",
+   "raw": -453797.72,
+   "display": "−€453,798 mn",
+   "period": "Sep 2026",
    "flash": false
   },
   "loans_households_growth": {
@@ -3158,17 +3158,17 @@
    "flash": false
   },
   "nfc_loan_rate": {
-   "date": "2026-08-01",
-   "raw": 3.57,
-   "display": "3.6%",
-   "period": "Aug 2026",
+   "date": "2026-09-01",
+   "raw": 3.7,
+   "display": "3.7%",
+   "period": "Sep 2026",
    "flash": false
   },
   "deposit_rate_households": {
-   "date": "2026-08-01",
-   "raw": 2.01,
-   "display": "2.0%",
-   "period": "Aug 2026",
+   "date": "2026-09-01",
+   "raw": 2.29,
+   "display": "2.3%",
+   "period": "Sep 2026",
    "flash": false
   },
   "household_liabilities_gdp": {
@@ -9115,8 +9115,57 @@
    "page": "housing.html",
    "text": "House price to rent ratio, Japan for Q4 2025 revised to 109.4, from 139.7.",
    "at": "2026-11-02T00:14:15+00:00"
+  },
+  {
+   "kind": "market",
+   "id": "electricity_price",
+   "page": "inflation.html",
+   "text": "Electricity price (day-ahead): +14.3% since the last update, to 186 €/MWh.",
+   "at": "2026-11-03T00:06:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "euro_stoxx50",
+   "page": "financial.html",
+   "text": "Euro Stoxx 50: 6,171 in Oct 2026, after 6,316 in Sep 2026.",
+   "at": "2026-11-03T00:06:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "mortgage_rate",
+   "page": "housing.html",
+   "text": "New mortgage rate: 2.99% in Sep 2026, after 3.04% in Aug 2026.",
+   "at": "2026-11-03T00:06:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "new_mortgage_lending",
+   "page": "housing.html",
+   "text": "New mortgage lending (banks): −0.7% y/y in Sep 2026, after 1.0% y/y in Aug 2026.",
+   "at": "2026-11-03T00:06:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "target_balance",
+   "page": "ecb.html",
+   "text": "TARGET balance, Banco de España: −€453,798 mn in Sep 2026, after −€442,555 mn in Aug 2026.",
+   "at": "2026-11-03T00:06:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "nfc_loan_rate",
+   "page": "ecb.html",
+   "text": "New loans to non-financial corporations, interest rate: 3.7% in Sep 2026, after 3.6% in Aug 2026.",
+   "at": "2026-11-03T00:06:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "deposit_rate_households",
+   "page": "ecb.html",
+   "text": "New household time deposits, interest rate: 2.3% in Sep 2026, after 2.0% in Aug 2026.",
+   "at": "2026-11-03T00:06:42+00:00"
   }
  ],
- "updated_at": "2026-11-02T16:52:48+00:00",
+ "updated_at": "2026-11-03T00:06:42+00:00",
  "started_at": "2026-10-31T23:31:49+00:00"
 }
