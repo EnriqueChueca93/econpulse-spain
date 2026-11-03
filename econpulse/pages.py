@@ -8,8 +8,8 @@ lists the indicators those functions read. Sections without blocks yet show thei
 (see build.SECTION_PAGES for the batch that fills them).
 """
 
-from . import (analytics, demography, forecasts, fuel, housing, peers, pensions, policy, sectortables, statedebt,
-               surprises, underlying, workstats)
+from . import (analytics, demography, equities, forecasts, fuel, housing, peers, pensions, policy, sectortables,
+               statedebt, surprises, underlying, workstats)
 from .charts import build_chart, build_curve, build_ranking, build_xy, localise
 from .i18n import _
 from .registry import Indicator
@@ -977,6 +977,33 @@ PAGES: dict[str, list[dict]] = {
             ],
         },
         state_debt_block("state-debt"),
+        {
+            "id": "equities",
+            "title": "Equities: the IBEX 35 and the Madrid sectors",
+            "intro": ("Spain's main share index and the Madrid exchange's six sector indices, as the Banco de España "
+                      "publishes them: daily closes, one or two trading days later. Not a live feed: the page is rebuilt "
+                      "once a day. Prices for individual companies are not shown, as no free source allows them to be "
+                      "republished."),
+            "facts": equities.facts,
+            "uses": equities.USES,
+            "tables": [Table(
+                title="Index",
+                caption="Close; changes in %",
+                columns=MOVES,
+                rows=[Row("ibex35", "IBEX 35"), Row("madrid_general", "Madrid general index"), Heading("Sectors")]
+                     + [Row(i, label, indent=1) for i, label in equities.SECTORS],
+            )],
+            "charts": [
+                equities.heatmap,
+                {"id": "ibex-history", "title": "The IBEX 35 since 2007", "subtitle": "Index, daily close",
+                 "kind": "line", "unit": "", "decimals": 0, "start": "2007-01-01",
+                 "series": [("ibex35", "level", "IBEX 35")]},
+                {"id": "sectors-since-2019", "title": "The sectors since the end of 2019",
+                 "subtitle": "Madrid exchange sector indices, last close of 2019 = 100",
+                 "kind": "line", "unit": "", "decimals": 0, "start": "2019-12-31", "ref_lines": [{"y": 100, "label": "End of 2019"}],
+                 "series": [(i, "level", label, {"rebase": "2019-12-31"}) for i, label in equities.SECTORS]},
+            ],
+        },
         {
             "id": "stress",
             "title": "Financial stress and banks",

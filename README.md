@@ -83,6 +83,8 @@ RSS feed are in English only.
   ECB meeting and a market-implied rate path. With the Fiscal page, the State's debt security by security from
   the Tesoro's list (principal and coupons falling due each future year, and a bubble chart of every bond by
   maturity and coupon), shown "awaiting AI check" until each edition is checked (`confirm statedebt`).
+  Equities: the IBEX 35 and the Madrid exchange's six sector indices (daily closes from the Banco de España, one or
+  two trading days late), a heat map of the sectors' moves, the IBEX since 2007 and the sectors since 2019.
 - **Fiscal, Economic activity and external accounts, Housing, International, Regions**: the public finances, activity and tourism, the housing
   market (prices, affordability in years of income and mortgage effort, prices per m², rents and renting, and
   house prices against the comparators' on the OECD's ratios; homes started since 1980 against new households,
@@ -208,6 +210,7 @@ econpulse/            Python package
   feed.py             the RSS feed of those notes (site/feed.xml; absolute links use config.SITE_URL)
   stance.py           the central bank stance page, from Econvitals' public data (saved to data/stance.json)
   fiscal.py           the Fiscal Explorer's baseline and data (the levers run in static/fiscal.js)
+  equities.py         the IBEX 35's facts and the Madrid sectors' heat map (Financial page)
   statedebt.py        the State's debt, security by security: repayments by year and the bonds by coupon,
                       from the Tesoro's list (sources/tesoro.py), and its AI check (data/statedebt_checks.json)
   budget.py           the Budget explorer's data: the IGAE workbooks read into data/budget.json at fetch time,

@@ -452,8 +452,9 @@ from catalogue_international import PAIRS as INTERNATIONAL   # noqa: E402  Batch
 from catalogue_imf_a import PAIRS as IMF_A             # noqa: E402  Batch 33c-3
 from catalogue_imf_b import PAIRS as IMF_B             # noqa: E402  Batch 33c-3
 from catalogue_debt import PAIRS as DEBT               # noqa: E402  Batch 34b
+from catalogue_equities import PAIRS as EQUITIES       # noqa: E402  Batch 34c
 
-for part in (SECTIONS_1, SECTIONS_2, ANALYSIS, TRADE, HOUSING, PENSIONS, INTERNATIONAL, IMF_A, IMF_B, DEBT):
+for part in (SECTIONS_1, SECTIONS_2, ANALYSIS, TRADE, HOUSING, PENSIONS, INTERNATIONAL, IMF_A, IMF_B, DEBT, EQUITIES):
     add(part)
 
 

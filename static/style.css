@@ -660,3 +660,45 @@ body.search-on { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; scroll-behavior: auto !important; }
 }
+
+/* The heat map of tiles (Batch 34c): a diverging scale, blue for rises and red for falls around a grey middle
+   (the palette's diverging pair), three equal steps each way mixed from the series colours. */
+:root {
+  --div-mid: #f0efec;
+  --div-pos-1: color-mix(in oklab, #2a78d6 30%, #f0efec); --div-pos-2: color-mix(in oklab, #2a78d6 58%, #f0efec);
+  --div-pos-3: color-mix(in oklab, #2a78d6 86%, #f0efec);
+  --div-neg-1: color-mix(in oklab, #e34948 30%, #f0efec); --div-neg-2: color-mix(in oklab, #e34948 58%, #f0efec);
+  --div-neg-3: color-mix(in oklab, #e34948 86%, #f0efec);
+}
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) {
+    --div-mid: #383835;
+    --div-pos-1: color-mix(in oklab, #3987e5 30%, #383835); --div-pos-2: color-mix(in oklab, #3987e5 55%, #383835);
+    --div-pos-3: color-mix(in oklab, #3987e5 80%, #383835);
+    --div-neg-1: color-mix(in oklab, #e66767 30%, #383835); --div-neg-2: color-mix(in oklab, #e66767 55%, #383835);
+    --div-neg-3: color-mix(in oklab, #e66767 80%, #383835);
+  }
+}
+:root[data-theme="dark"] {
+  --div-mid: #383835;
+  --div-pos-1: color-mix(in oklab, #3987e5 30%, #383835); --div-pos-2: color-mix(in oklab, #3987e5 55%, #383835);
+  --div-pos-3: color-mix(in oklab, #3987e5 80%, #383835);
+  --div-neg-1: color-mix(in oklab, #e66767 30%, #383835); --div-neg-2: color-mix(in oklab, #e66767 55%, #383835);
+  --div-neg-3: color-mix(in oklab, #e66767 80%, #383835);
+}
+.tile-periods { margin: 2px 0 12px; }
+.heat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 6px; }
+.heat-tile {
+  display: flex; flex-direction: column; justify-content: space-between; gap: 6px; min-height: 78px; padding: 10px 12px;
+  border-radius: 6px; color: var(--text); background: var(--div-mid);
+}
+.heat-index { box-shadow: inset 0 0 0 2px var(--text); }      /* the two whole-market indices, ahead of the sectors */
+.heat-name { font-size: 13px; line-height: 1.3; }
+.heat-value { font-size: 20px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.heat-mid, .heat-swatch.heat-mid { background: var(--div-mid); }
+.heat-none { background: var(--surface); border: 1px dashed var(--border); }
+.heat-pos1 { background: var(--div-pos-1); } .heat-pos2 { background: var(--div-pos-2); } .heat-pos3 { background: var(--div-pos-3); }
+.heat-neg1 { background: var(--div-neg-1); } .heat-neg2 { background: var(--div-neg-2); } .heat-neg3 { background: var(--div-neg-3); }
+.heat-legend { display: flex; flex-wrap: wrap; gap: 4px 12px; margin-top: 10px; font-size: 12px; color: var(--text-2); }
+.heat-key { display: inline-flex; align-items: center; gap: 5px; }
+.heat-swatch { width: 14px; height: 10px; border-radius: 2px; }

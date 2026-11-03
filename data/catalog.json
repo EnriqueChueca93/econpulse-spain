@@ -6492,6 +6492,69 @@
   "source_name": "Long-term unemployment by sex - quarterly data",
   "source_updated": "2026-10-26T23:00:00+0100"
  },
+ "madrid_consumer_goods": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T00:47:12+00:00",
+  "first_date": "2005-01-03",
+  "last_date": "2026-10-29",
+  "n_obs": 5576,
+  "signature": "[\"bde\", \"DBLEESI500300000IBDI_2004.B\", {\"start\": 2005}, 1.0]",
+  "source_name": "Cotización y contratación. Acciones. Sociedad de Bolsas y Sociedad Rectora de la Bolsa de Madrid. Índice cotización. Sector bienes de consumo"
+ },
+ "madrid_consumer_services": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T00:47:13+00:00",
+  "first_date": "2005-01-03",
+  "last_date": "2026-10-29",
+  "n_obs": 5576,
+  "signature": "[\"bde\", \"DBLEESI500400000IBDI_2004.B\", {\"start\": 2005}, 1.0]",
+  "source_name": "Cotización y contratación. Acciones. Sociedad de Bolsas y Sociedad Rectora de la Bolsa de Madrid. Índice cotización. Sector servicios de consumo"
+ },
+ "madrid_energy": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T00:47:12+00:00",
+  "first_date": "2005-01-03",
+  "last_date": "2026-10-29",
+  "n_obs": 5576,
+  "signature": "[\"bde\", \"DBLEESI500100000IBDI_2004.B\", {\"start\": 2005}, 1.0]",
+  "source_name": "Cotización y contratación. Acciones. Sociedad de Bolsas y Sociedad Rectora de la Bolsa de Madrid. Índice cotización. Sector petróleo y energía"
+ },
+ "madrid_financials": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T00:47:12+00:00",
+  "first_date": "2005-01-03",
+  "last_date": "2026-10-29",
+  "n_obs": 5576,
+  "signature": "[\"bde\", \"DBLEESI500500000IBDI_2004.B\", {\"start\": 2005}, 1.0]",
+  "source_name": "Cotización y contratación. Acciones. Sociedad de Bolsas y Sociedad Rectora de la Bolsa de Madrid. Índice cotización. Sector servicios financieros e inmobiliarios"
+ },
+ "madrid_general": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T00:45:45+00:00",
+  "first_date": "2000-01-03",
+  "last_date": "2026-10-29",
+  "n_obs": 6827,
+  "signature": "[\"bde\", \"DBLEESI500000000IBDI.B\", {}, 1.0]",
+  "source_name": "Índice de la Bolsa de Madrid"
+ },
+ "madrid_industry": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T00:47:12+00:00",
+  "first_date": "2005-01-03",
+  "last_date": "2026-10-29",
+  "n_obs": 5576,
+  "signature": "[\"bde\", \"DBLEESI500200000IBDI_2004.B\", {\"start\": 2005}, 1.0]",
+  "source_name": "Cotización y contratación. Acciones. Sociedad de Bolsas y Sociedad Rectora de la Bolsa de Madrid. Índice cotización. Sector materiales básicos, industria y construcción"
+ },
+ "madrid_tech": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T00:47:13+00:00",
+  "first_date": "2005-01-03",
+  "last_date": "2026-10-29",
+  "n_obs": 5576,
+  "signature": "[\"bde\", \"DBLEESI500600000IBDI_2004.B\", {\"start\": 2005}, 1.0]",
+  "source_name": "Cotización y contratación. Acciones. Sociedad de Bolsas y Sociedad Rectora de la Bolsa de Madrid. Índice cotización. Sector tecnología y telecomunicaciones"
+ },
  "mortgage_effort": {
   "status": "ok",
   "fetched_at": "2026-11-03T00:05:32+00:00",

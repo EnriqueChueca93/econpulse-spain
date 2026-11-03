@@ -18,7 +18,7 @@
     "Loading the index…": "Cargando el índice…", "The search index could not be loaded.": "No se pudo cargar el índice de búsqueda.",
     "On this page": "En esta página", "Sections of this page": "Secciones de esta página", "Top": "Arriba",
     "Back to the top of the page": "Volver al principio de la página", "Reading": "Lectura", " to ": " a ",
-    "Copy a link to the section": "Copiar un enlace a la sección", "Countries": "Países", "Security": "Valor", "Group": "Grupo"
+    "Copy a link to the section": "Copiar un enlace a la sección", "Countries": "Países", "Security": "Valor", "Group": "Grupo", "Index": "Índice"
   };
   function t(s) { return LANG === "es" && ES[s] !== undefined ? ES[s] : s; }
 
@@ -351,6 +351,69 @@
     window.Plotly.react(el, traces, layout, config);
   }
 
+  // A heat map of tiles (Batch 34c, the Madrid exchange by sector): one tile per index, coloured on a diverging
+  // scale by its move over the chosen period (rises blue, falls red, small moves grey; spec.bounds sets the steps),
+  // with the period buttons above and a key below. Plain HTML, so the names and figures are text.
+  function heatStep(v, bounds) {
+    if (v === null || v === undefined) return "none";
+    var n = bounds.filter(function (b) { return Math.abs(v) >= b; }).length;
+    return n === 0 ? "mid" : (v > 0 ? "pos" : "neg") + n;
+  }
+
+  function drawTiles(el, spec) {
+    var key = el.getAttribute("data-period") || spec.periods[0].key, bounds = spec.bounds[key];
+    var make = function (tag, cls, text) {
+      var n = document.createElement(tag);
+      if (cls) n.className = cls;
+      if (text !== undefined) n.textContent = text;
+      return n;
+    };
+    el.style.height = "auto";
+    el.textContent = "";
+    el.removeAttribute("role");      // the card marks charts as images; these tiles are text and buttons
+    el.removeAttribute("aria-label");
+    var periods = make("div", "tile-periods tool-controls");
+    periods.setAttribute("role", "group");
+    periods.setAttribute("aria-label", t("Period"));
+    spec.periods.forEach(function (p) {
+      var b = make("button", "tool-button", p.label);
+      b.type = "button";
+      b.setAttribute("data-tile-period", p.key);
+      b.setAttribute("data-chart", spec.id);
+      b.setAttribute("aria-pressed", String(p.key === key));
+      periods.appendChild(b);
+    });
+    el.appendChild(periods);
+    var grid = make("div", "heat-grid");
+    spec.rows.forEach(function (r) {
+      var v = r.values[key];
+      var tile = make("div", "heat-tile heat-" + heatStep(v, bounds) + (r.index ? " heat-index" : ""));
+      tile.appendChild(make("span", "heat-name", r.label));
+      tile.appendChild(make("span", "heat-value", v === null || v === undefined ? "–" : fmt(v, spec, true)));
+      grid.appendChild(tile);
+    });
+    el.appendChild(grid);
+    var key_ = make("div", "heat-legend");
+    var b = bounds, f = function (x) { return fmt(x, { decimals: x < 1 ? 2 : 0, unit: "" }); };
+    [["neg3", "≤ −" + f(b[2]) + "%"], ["neg2", "−" + f(b[1]) + "%"], ["neg1", "−" + f(b[0]) + "%"], ["mid", "±" + f(b[0]) + "%"],
+     ["pos1", "+" + f(b[0]) + "%"], ["pos2", "+" + f(b[1]) + "%"], ["pos3", "≥ +" + f(b[2]) + "%"]].forEach(function (s) {
+      var item = make("span", "heat-key");
+      item.appendChild(make("span", "heat-swatch heat-" + s[0]));
+      item.appendChild(document.createTextNode(s[1]));
+      key_.appendChild(item);
+    });
+    el.appendChild(key_);
+  }
+
+  document.addEventListener("click", function (event) {
+    var b = event.target.closest && event.target.closest("[data-tile-period]");
+    if (!b) return;
+    var el = document.getElementById("chart-" + b.getAttribute("data-chart")), spec = byId(b.getAttribute("data-chart"));
+    if (!el || !spec) return;
+    el.setAttribute("data-period", b.getAttribute("data-tile-period"));
+    drawTiles(el, spec);
+  });
+
   // The rows of a bubble chart, every security: name, group, date, value, amount (for its table and CSV).
   function bubbleRows(spec) {
     var rows = [];
@@ -456,6 +519,7 @@
     if (spec.kind === "dots") return drawDots(el, spec);
     if (spec.kind === "xy") return drawXY(el, spec);
     if (spec.kind === "bubble") return drawBubble(el, spec);
+    if (spec.kind === "tiles") return drawTiles(el, spec);
     if (spec.pick) spec = pickView(spec);
     // Fixed slot order, never cycled: a spec has at most six palette series (slots 4 to 6 come dashed, as some
     // of their colours sit close to the first three's). Slot 7 (violet) serves only a picked country's line.
@@ -587,7 +651,7 @@
   // The windows worth offering: a window must be clearly shorter than the data. Annual charts are short,
   // and often end in projections, so they keep their whole span.
   function rangeOptions(spec) {
-    if (spec.x_kind === "category" || ["hbar", "xy", "dots", "dumbbell", "bubble"].indexOf(spec.kind) >= 0 || spec.freq === "A" ||
+    if (spec.x_kind === "category" || ["hbar", "xy", "dots", "dumbbell", "bubble", "tiles"].indexOf(spec.kind) >= 0 || spec.freq === "A" ||
         !spec.series || !spec.series.length) return [];
     var span = dateSpan(spec);
     if (!span) return [];
@@ -706,6 +770,22 @@
     var category = spec.x_kind === "category";
     var head = table.createTHead().insertRow();
     if (spec.kind === "xy") return fillXYTable(spec, holder, table, head);
+    if (spec.kind === "tiles") {
+      [t("Index")].concat(spec.periods.map(function (p) { return p.label; })).forEach(function (h) {
+        var th = document.createElement("th"); th.scope = "col"; th.textContent = h; head.appendChild(th);
+      });
+      var tt = table.createTBody();
+      spec.rows.forEach(function (r) {
+        var tr = tt.insertRow();
+        tr.insertCell().textContent = r.label;
+        spec.periods.forEach(function (p) {
+          var v = r.values[p.key];
+          tr.insertCell().textContent = v === null || v === undefined ? "–" : fmt(v, spec, true);
+        });
+      });
+      holder.appendChild(table);
+      return;
+    }
     if (spec.kind === "bubble") {
       [t("Security"), t("Group"), spec.x_title, spec.y_label, spec.size_label].forEach(function (h) {
         var th = document.createElement("th"); th.scope = "col"; th.textContent = h; head.appendChild(th);
@@ -889,6 +969,11 @@
       var path = spec.series[0];
       return [[spec.x_title || t("Period"), spec.x_label, spec.y_label]].concat(
         path.x.map(function (x, i) { return [path.text[i], x, path.y[i]]; }));
+    }
+    if (spec.kind === "tiles") {
+      return [[t("Index")].concat(spec.periods.map(function (p) { return p.label + unit; }))].concat(spec.rows.map(function (r) {
+        return [r.label].concat(spec.periods.map(function (p) { return r.values[p.key] === null ? "" : r.values[p.key]; }));
+      }));
     }
     if (spec.kind === "bubble") {
       return [[t("Security"), t("Group"), spec.x_title, spec.y_label + unit,

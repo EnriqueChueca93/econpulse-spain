@@ -2018,6 +2018,91 @@ indicators:
     change_unit: "%"
 
     tile: 13
+  # The Madrid exchange's general index and its six sector indices (Batch 34c), daily from the Banco de España's
+  # table ti_1_6 (Bolsa de Madrid and CNMV); the sectors start in 2005 (base 31 Dec 2004 = 1000).
+  - id: madrid_general
+    label: "Madrid Stock Exchange general index"
+    label_es: "Índice General de la Bolsa de Madrid"
+    section: financial
+    source: bde
+    key: DBLEESI500000000IBDI.B
+    freq: D
+    unit: index
+    decimals: 2
+    change_unit: "%"
+
+  - id: madrid_financials
+    label: "Madrid exchange: financial services and real estate"
+    label_es: "Bolsa de Madrid: servicios financieros e inmobiliarios"
+    section: financial
+    source: bde
+    key: DBLEESI500500000IBDI_2004.B
+    params: {start: 2005}
+    freq: D
+    unit: index
+    decimals: 1
+    change_unit: "%"
+
+  - id: madrid_energy
+    label: "Madrid exchange: oil and energy"
+    label_es: "Bolsa de Madrid: petróleo y energía"
+    section: financial
+    source: bde
+    key: DBLEESI500100000IBDI_2004.B
+    params: {start: 2005}
+    freq: D
+    unit: index
+    decimals: 1
+    change_unit: "%"
+
+  - id: madrid_consumer_goods
+    label: "Madrid exchange: consumer goods"
+    label_es: "Bolsa de Madrid: bienes de consumo"
+    section: financial
+    source: bde
+    key: DBLEESI500300000IBDI_2004.B
+    params: {start: 2005}
+    freq: D
+    unit: index
+    decimals: 1
+    change_unit: "%"
+
+  - id: madrid_industry
+    label: "Madrid exchange: basic materials, industry and construction"
+    label_es: "Bolsa de Madrid: materiales básicos, industria y construcción"
+    section: financial
+    source: bde
+    key: DBLEESI500200000IBDI_2004.B
+    params: {start: 2005}
+    freq: D
+    unit: index
+    decimals: 1
+    change_unit: "%"
+
+  - id: madrid_consumer_services
+    label: "Madrid exchange: consumer services"
+    label_es: "Bolsa de Madrid: servicios de consumo"
+    section: financial
+    source: bde
+    key: DBLEESI500400000IBDI_2004.B
+    params: {start: 2005}
+    freq: D
+    unit: index
+    decimals: 1
+    change_unit: "%"
+
+  - id: madrid_tech
+    label: "Madrid exchange: technology and telecommunications"
+    label_es: "Bolsa de Madrid: tecnología y telecomunicaciones"
+    section: financial
+    source: bde
+    key: DBLEESI500600000IBDI_2004.B
+    params: {start: 2005}
+    freq: D
+    unit: index
+    decimals: 1
+    change_unit: "%"
+
   - id: eurusd
     label: EUR/USD
     label_es: Tipo de cambio dólar/euro

@@ -18,6 +18,7 @@ $/t: $/t
 '% change on the previous quarter (bars) and on a year earlier (line)': Variación intertrimestral (barras) e interanual (línea), %
 '% change on the previous quarter; the last point is the nowcast for {q}': Variación intertrimestral, %; el último punto es la estimación adelantada de {q}
 '% change on the year before; actual to {year}, then the IMF''s projection': Variación interanual, %; datos observados hasta {year} y, después, proyección del FMI
+'% change to the close of {day}: rises in blue, falls in red': 'Variación hasta el cierre del {day}, %: subidas en azul, caídas en rojo'
 '% change · European Commission (AMECO), {year}': Variación, % · Comisión Europea (AMECO), {year}
 '% change; contributions in percentage points': Variación, %; aportaciones en puntos porcentuales
 '% of GDP': '% del PIB'
@@ -459,6 +460,7 @@ Banks' loans for commercial property: Crédito bancario a inmuebles comerciales
 Baseline: Escenario base
 Baseline (billions of euros): Escenario base (miles de millones de euros)
 Baseline (no policy change): Escenario base (sin cambios de política)
+Basic materials, industry and construction: Materiales básicos, industria y construcción
 Basis points, to {day}, the latest day with both yields: Puntos básicos, hasta el {day}, último día con ambas rentabilidades
 Basket rising faster than 2%: Cesta que sube más del 2%
 Basket rising faster than 5%: Cesta que sube más del 5%
@@ -474,6 +476,7 @@ Billions of euros: Miles de millones de euros
 Billions of euros and percent of GDP: Miles de millones de euros y porcentaje del PIB
 Billions of euros unless otherwise indicated: Miles de millones de euros, salvo indicación en contrario
 Billions of euros, unless otherwise indicated: Miles de millones de euros, salvo indicación en contrario
+Bolsa de Madrid and CNMV, via the Banco de España: Bolsa de Madrid y CNMV, a través del Banco de España
 Bond yields and the prima de riesgo: Rentabilidad de los bonos y prima de riesgo
 Bonds and rates: Bonos y tipos
 Bonos and Obligaciones, weighted by amount: Bonos y Obligaciones, ponderado por importe
@@ -564,6 +567,7 @@ China: China
 Chocolate, cocoa and cocoa-based food products: Chocolate, cacao y productos a base de cacao
 Class: Clase
 Clear all: Quitar todos
+Close; changes in %: Cierre; variaciones en %
 Coal mining: Minería del Carbón
 Coffee and coffee substitutes: Café y sucedáneos
 Collective dismissals: Despidos colectivos
@@ -594,6 +598,7 @@ Consumer prices: Precios de consumo
 Consumer prices (IPC): Precios de consumo (IPC)
 ? Consumer prices on Spain's own index (IPC) and the harmonised index the ECB targets (IPCA), underlying inflation across the basket, and energy prices.
 : Los precios de consumo en el índice propio de España (IPC) y en el armonizado que sigue el objetivo del BCE (IPCA), la inflación subyacente en toda la cesta y los precios de la energía.
+Consumer services: Servicios de consumo
 Consumers: Consumidores
 Consumers' price expectations: Expectativas de precios de los consumidores
 Consumers' price expectations (balance): Expectativas de precios de los consumidores (saldo)
@@ -773,6 +778,7 @@ Employment rate, ages 15 and over, %, average of the past four quarters: Tasa de
 Employment rate, ages 25–54, %, average of the past four quarters: Tasa de empleo, 25–54 años, %, media de los últimos cuatro trimestres
 Employment, 1-yr change: Empleo, variación en 1 año
 Employment, thousands: Ocupados, miles
+End of 2019: Final de 2019
 End of period, unless otherwise indicated: Fin de periodo, salvo indicación en contrario
 End of quarter; billions of euros: Fin de trimestre; miles de millones de euros
 End of quarter; percent of GDP over the past four quarters: Fin de trimestre; porcentaje del PIB de los últimos cuatro trimestres
@@ -793,6 +799,7 @@ Energy and metals: Energía y metales
 Energy, water and waste: Energía, agua y residuos
 Equipment: Bienes de equipo
 Equipment for the reception, recording and reproduction of sound and vision: Equipos de recepción, grabación y reproducción de imagen y sonido
+'Equities: the IBEX 35 and the Madrid sectors': 'Renta variable: el IBEX 35 y los sectores de la Bolsa de Madrid'
 Error: Error
 Errors and omissions: Errores y omisiones
 Euribor and mortgage rates: Euríbor y tipos hipotecarios
@@ -898,6 +905,7 @@ Financial: Financiero
 Financial account 1/: Cuenta financiera 1/
 Financial derivatives: Derivados financieros
 Financial services: Servicios financieros
+Financial services and real estate: Servicios financieros e inmobiliarios
 Financial soundness: Solidez financiera
 Financial stress: Tensión financiera
 Financial stress and banks: Tensión financiera y bancos
@@ -1275,6 +1283,7 @@ Largest market: Principal mercado
 Largest supplier: Principal proveedor
 Last change: Último cambio
 Last fetched: Última descarga
+Last trading day: Última sesión
 Latest: Último
 Latest and a year earlier: Último dato y un año antes
 Latest close; rates move in basis points (bp), prices in %: Último cierre; los tipos se mueven en puntos básicos (pb), los precios en %
@@ -1331,6 +1340,8 @@ Macroscope seasonal adjustment: desestacionalización de Macroscope
 Macroscope, {year} GDP: Macroscope, PIB de {year}
 'Macroscope: INE''s quarters + nowcast': 'Macroscope: trimestres del INE + estimación adelantada'
 Madrid: Madrid
+Madrid exchange sector indices, last close of 2019 = 100: Índices sectoriales de la Bolsa de Madrid, último cierre de 2019 = 100
+Madrid general index: Índice General de Madrid
 Madrid time: hora de Madrid
 Main Economic Indicators: Principales indicadores económicos
 Main refinancing: Operaciones principales de financiación
@@ -1488,12 +1499,14 @@ Of which to builders and developers: Del cual, a constructoras y promotoras
 Offices: Oficinas
 Official: Oficial
 Official (INE): Oficial (INE)
+Oil and energy: Petróleo y energía
 Old-age and survivors' pensions, % of GDP: Pensiones de jubilación y supervivencia, % del PIB
 Old-age and survivors' pensions, % of GDP (OECD): Pensiones de jubilación y supervivencia, % del PIB (OCDE)
 Old-age and survivors' pensions, % of GDP, latest year ({first}-{last}): Pensiones de jubilación y supervivencia, % del PIB, último año disponible ({first}-{last})
 Old-age dependency in 2050: Tasa de dependencia en 2050
 Old-age dependency ratio: Tasa de dependencia de las personas mayores
 Olive oil and fats: Aceite de oliva y grasas
+On the day: En el día
 On this page: En esta página
 Ordinary: Ordinarios
 Orphans: Orfandad
@@ -1526,6 +1539,8 @@ Outside the EU: Fuera de la UE
 Over 50% above: Más de un 50% por encima
 Over AAA: Sobre AAA
 Over Germany: Sobre Alemania
+Over a week: En una semana
+Over a year: En un año
 Over deposit rate: Sobre el tipo de depósito
 Over the past decade: En la última década
 Overnight visitors only (FRONTUR "turistas"); same-day visitors are left out.: Solo visitantes que pernoctan (los «turistas» de FRONTUR); se excluyen los excursionistas.
@@ -1554,6 +1569,7 @@ Past 12 months, thousands of cars: Últimos 12 meses, miles de turismos
 Past 12 months, € billion: Últimos 12 meses, miles de millones de €
 Past four quarters against 2019, deflated by the CPI, % change: Últimos cuatro trimestres frente a 2019, deflactados por el IPC, variación, %
 Past four quarters against {year}, deflated by the CPI, % change: Últimos cuatro trimestres frente a {year}, deflactados por el IPC, variación, %
+Past week: Última semana
 Pay: Remuneración
 'Pay and labour costs, how they compare with inflation, and pay by activity: a month, per hour, bonuses and growth.': 'Salarios y costes laborales, cómo se comparan con la inflación, y los salarios por actividad: al mes, por hora, pagas extraordinarias y crecimiento.'
 Pay and productivity: Salarios y productividad
@@ -1849,6 +1865,7 @@ Secondary-market yield, all trades in non-stripped bonds with about 10 years to 
 Sections: Secciones
 Sections of %(page)s: Secciones de %(page)s
 Sector tables: Tablas sectoriales
+Sectors: Sectores
 Securities held for monetary policy purposes: Valores mantenidos con fines de política monetaria
 See the ECB calendar: Ver el calendario del BCE
 Seguridad Social: Seguridad Social
@@ -1936,6 +1953,8 @@ Spain's 10-year yield, in two parts: La rentabilidad a 10 años de España, en d
 Spain's gross public pension spending, 2022: Gasto público bruto en pensiones de España, 2022
 ? 'Spain''s house prices next to its comparators'', from the OECD: real prices, and prices against incomes and against rents, each next to its own long-run average. The chips choose which countries the chart draws beside Spain.'
 : 'Los precios de la vivienda en España junto a los de sus comparables, según la OCDE: precios reales y precios frente a la renta y frente a los alquileres, cada uno junto a su propia media de largo plazo. Los botones eligen qué países se dibujan en el gráfico junto a España.'
+? 'Spain''s main share index and the Madrid exchange''s six sector indices, as the Banco de España publishes them: daily closes, one or two trading days later. Not a live feed: the page is rebuilt once a day. Prices for individual companies are not shown, as no free source allows them to be republished.'
+: 'El principal índice bursátil de España y los seis índices sectoriales de la Bolsa de Madrid, tal como los publica el Banco de España: cierres diarios, con uno o dos días hábiles de retraso. No es un servicio en tiempo real: la página se actualiza una vez al día. No se muestran las cotizaciones de cada empresa, porque ninguna fuente gratuita permite volver a publicarlas.'
 ? Spain's own consumer price index. Core inflation leaves out energy and unprocessed food, the most volatile prices; INE splits the rest into services, goods and processed food.
 : El índice de precios de consumo de España. La inflación subyacente deja fuera la energía y los alimentos no elaborados, los precios más volátiles; el INE divide el resto en servicios, bienes y alimentos elaborados.
 Spain's transactions with the rest of the world, and the investment position they build up.: Las transacciones de España con el resto del mundo y la posición de inversión que van acumulando.
@@ -2001,6 +2020,7 @@ Taylor rule, Spain: Regla de Taylor, España
 Taylor rule, euro area: Regla de Taylor, zona del euro
 'Taylor rules: the euro area and Spain': 'Reglas de Taylor: la zona del euro y España'
 Technical and trade-related: Servicios técnicos y relacionados con el comercio
+Technology and telecommunications: Tecnología y telecomunicaciones
 Telecoms and IT: Telecomunicaciones e informática
 Temporary: Temporales
 Temporary contracts: Contratos temporales
@@ -2038,11 +2058,13 @@ The EU's share of Spain's goods trade: El peso de la UE en el comercio de bienes
 ? The European Commission's Ageing Report projects pension spending for every EU country; AIReF, Spain's fiscal watchdog, checks the spending rule; the Banco de España weighs in its annual report. Their figures are entered by hand from each document, linked, and marked until an AI has checked them against the publisher's own text.
 : El Ageing Report de la Comisión Europea proyecta el gasto en pensiones de cada país de la UE; la AIReF, la autoridad fiscal independiente de España, evalúa la regla de gasto; el Banco de España opina en su informe anual. Sus cifras se introducen a mano a partir de cada documento, que se enlaza, y quedan marcadas hasta que una IA las ha cotejado con el texto de la propia institución.
 The FUNCAS Panel is the average of about 19 forecasters (banks, research institutes, consultancies).: El Panel de FUNCAS es la media de unas 19 instituciones (bancos, institutos de análisis y consultoras).
+The IBEX 35 since 2007: El IBEX 35 desde 2007
 ? 'The IMF''s main table for Spain: demand, saving and investment, prices, the labour market, and a summary of the external and public accounts.'
 : 'El cuadro principal del FMI para España: demanda, ahorro e inversión, precios, mercado laboral y un resumen de las cuentas externas y públicas.'
 The IMF's outlook: Las perspectivas del FMI
 ? 'The IMF''s projections: real GDP growth and average consumer price inflation over the year, and the unemployment rate on each country''s own definition (so the levels compare less well than the changes). The IMF updates them in April and October. The forecasters followed for Spain alone are on the Analysis page.'
 : 'Proyecciones del FMI: crecimiento del PIB real e inflación media de los precios de consumo en el año, y tasa de paro según la definición de cada país (por eso los niveles se comparan peor que las variaciones). El FMI las actualiza en abril y octubre. Las previsiones de otras instituciones, que se siguen solo para España, están en la página de Análisis.'
+The Madrid exchange by sector: La Bolsa de Madrid por sectores
 ? 'The Social Security''s contributory pensions: how many and how much, by class, scheme and region, what they cost, new and ended pensions, and the maximum and minimum amounts; Spain against its comparators, the ageing population, the 2023 reform and what the official assessments say.'
 : 'Las pensiones contributivas de la Seguridad Social: cuántas son y de qué cuantía, por clase, régimen y comunidad, lo que cuestan, las altas y las bajas, y las cuantías máximas y mínimas; España frente a sus comparables, el envejecimiento de la población, la reforma de 2023 y lo que dicen las evaluaciones oficiales.'
 ? 'The Social Security''s contributory pensions: paid for by contributions and earned by working, for retirement, widowhood, permanent disability, orphans and family members. Non-contributory pensions, for people who paid in too little, and civil servants'' pensions (Clases Pasivas) are not included.'
@@ -2095,6 +2117,7 @@ The reference rate for most Spanish variable-rate mortgages.: El índice de refe
 ? The registers record a sale when its deed is registered, usually a month or two after it is signed, and the two sources count a home as new differently, so their split differs. Before 2007 the registered sales came quarterly from the registrars.
 : Los registros anotan una compraventa cuando se inscribe su escritura, normalmente uno o dos meses después de firmarla, y las dos fuentes definen la vivienda nueva de forma distinta, así que su desglose difiere. Antes de 2007 las compraventas inscritas procedían de los registradores, con periodicidad trimestral.
 'The sectors add up to slightly less than the total: a few registrations have no activity recorded.': 'Los sectores suman algo menos que el total: unos pocos afiliados no tienen actividad registrada.'
+The sectors since the end of 2019: Los sectores desde finales de 2019
 The solidarity contribution: La cotización de solidaridad
 The stock of debt by interest rate: El saldo de deuda por tipo de interés
 'The tables of the IMF''s 2026 Article IV report for Spain, rebuilt from public data, with history from 2015:': 'Las tablas del informe del Artículo IV del FMI sobre España de 2026, reconstruidas con datos públicos, con historia desde 2015:'
@@ -2345,6 +2368,7 @@ bp: pb
 built %(when)s: generado el %(when)s
 calendar: calendario
 checked by AI: verificado por IA
+close of {day}: cierre del {day}
 close to normal: cerca de lo normal
 cooler than normal: más baja de lo normal
 core CPI: IPC subyacente
