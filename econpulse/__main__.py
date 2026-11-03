@@ -11,7 +11,8 @@
     confirm <id> [<id> ...] [--against TEXT] [--note TEXT] [--by NAME]
             record that an AI checked those forecasters' current figures, or a pension
             document's, against the publisher's own document (see econpulse/forecasts.py
-            and econpulse/pensions.py)
+            and econpulse/pensions.py); "statedebt" records a check of the Tesoro's list of
+            the State's debt (econpulse/statedebt.py)
     serve [--update] [--no-build] [--port N] [--no-browser]
             build the site from the saved data (or fetch fresh data first with --update),
             serve it on this computer and open it in the browser; EconPulse.exe runs this
@@ -21,7 +22,7 @@ import argparse
 import sys
 import time
 
-from . import budget, changes, ecbspeak, forecasts, i18n, pensions, schedule, serve, stance
+from . import budget, changes, ecbspeak, forecasts, i18n, pensions, schedule, serve, stance, statedebt
 from .build import build_site
 from .fetch import fetch_all
 from .registry import load_registry
@@ -189,6 +190,8 @@ def main(argv: list[str] | None = None) -> int:
         waiting = [f.id for f in forecasts.pending(Data(indicators, store))]
         if waiting:
             print(f"\nForecasts awaiting an AI check: {', '.join(waiting)} (python -m econpulse forecasts)")
+        if statedebt.check(Data(indicators, store))[0] == statedebt.PENDING:
+            print("The Tesoro's list of the State's debt awaits an AI check (python -m econpulse confirm statedebt)")
 
     if args.command == "forecasts":
         print_forecasts(Data(indicators, store))
@@ -201,6 +204,13 @@ def main(argv: list[str] | None = None) -> int:
             parser.error("confirm needs one or more forecaster ids (see python -m econpulse forecasts)")
         data = Data(indicators, store)
         for forecaster_id in args.ids:
+            if forecaster_id == "statedebt":
+                try:
+                    record = statedebt.confirm(store, args.by, args.note, args.against)
+                except ValueError as e:
+                    parser.error(str(e))
+                print(f"Confirmed the Tesoro's list of {record['as_of']['bonds']}: fingerprint {record['fingerprint']}")
+                continue
             if forecaster_id in pensions.document_ids():
                 record = pensions.confirm(store, forecaster_id, args.by, args.note, args.against)
                 print(f"Confirmed {forecaster_id}: fingerprint {record['fingerprint']}")

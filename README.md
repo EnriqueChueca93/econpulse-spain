@@ -80,7 +80,9 @@ RSS feed are in English only.
   (the European Commission's Weekly Oil Bulletin).
 - **Financial, ECB**: a markets table (1-day, 1-week, YTD, 1-year moves), the Spanish yield curve against the
   AAA euro-area curve, the prima de riesgo, Euribor with a mortgage check, ECB rates and decisions, the next
-  ECB meeting and a market-implied rate path.
+  ECB meeting and a market-implied rate path. With the Fiscal page, the State's debt security by security from
+  the Tesoro's list (principal and coupons falling due each future year, and a bubble chart of every bond by
+  maturity and coupon), shown "awaiting AI check" until each edition is checked (`confirm statedebt`).
 - **Fiscal, Economic activity and external accounts, Housing, International, Regions**: the public finances, activity and tourism, the housing
   market (prices, affordability in years of income and mortgage effort, prices per m², rents and renting, and
   house prices against the comparators' on the OECD's ratios; homes started since 1980 against new households,
@@ -206,6 +208,8 @@ econpulse/            Python package
   feed.py             the RSS feed of those notes (site/feed.xml; absolute links use config.SITE_URL)
   stance.py           the central bank stance page, from Econvitals' public data (saved to data/stance.json)
   fiscal.py           the Fiscal Explorer's baseline and data (the levers run in static/fiscal.js)
+  statedebt.py        the State's debt, security by security: repayments by year and the bonds by coupon,
+                      from the Tesoro's list (sources/tesoro.py), and its AI check (data/statedebt_checks.json)
   budget.py           the Budget explorer's data: the IGAE workbooks read into data/budget.json at fetch time,
                       the per-community ones cached in data/budget_regional.json, and the State's budget
                       (Ministry of Finance statistics, IGAE execution); the explorer runs in static/budget.js

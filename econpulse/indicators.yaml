@@ -1120,6 +1120,47 @@ indicators:
 
   # Pump prices: each Monday's average in Spain and the euro area, with and before duties and taxes (Batch 32b).
 
+  # ---------------------------------------------------------------- the State's debt, security by security (Batch 34b)
+  # A summary of the Tesoro's list of Letras, Bonos and Obligaciones in circulation, one point per fetch (the page
+  # has no history); the list itself is kept in the catalog for the repayment and coupon charts (statedebt.py).
+  - id: state_debt_outstanding
+    label: "State debt securities outstanding"
+    label_es: "Saldo vivo de Letras, Bonos y Obligaciones del Estado"
+    section: fiscal
+    source: tesoro
+    key: outstanding
+    freq: D
+    unit: "€ bn"
+    decimals: 1
+    change_unit: "%"
+    max_age_days: 21
+    notes: "Letras, Bonos and Obligaciones del Estado in circulation, as the Tesoro lists them; inflation-linked bonds at their indexed amount."
+
+  - id: state_debt_avg_coupon
+    label: "Average coupon on State bonds"
+    label_es: "Cupón medio de los Bonos y Obligaciones del Estado"
+    section: fiscal
+    source: tesoro
+    key: coupon
+    freq: D
+    unit: "%"
+    decimals: 2
+    change_unit: "bp"
+    max_age_days: 21
+    notes: "Bonos and Obligaciones del Estado in circulation, weighted by the amount outstanding (Letras pay no coupon)."
+
+  - id: state_debt_avg_life
+    label: "Average life of State debt securities"
+    label_es: "Vida media de la deuda del Estado en valores"
+    section: fiscal
+    source: tesoro
+    key: life
+    freq: D
+    unit: "years"
+    decimals: 2
+    max_age_days: 21
+    notes: "Average years to maturity of the Letras, Bonos and Obligaciones in circulation, weighted by the amount outstanding."
+
   - id: petrol_price
     label: "Petrol (Euro-super 95)"
     label_es: "Precio de la gasolina 95"

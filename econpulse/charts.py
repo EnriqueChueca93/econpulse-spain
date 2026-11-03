@@ -89,7 +89,7 @@ def _sources(inds: list[Indicator], by_id: dict[str, Indicator]) -> str:
     return "; ".join(i18n._(n) for n in [n for n in dict.fromkeys(names) if n != calc] + ([calc] if calc in names else []))
 
 
-_TEXT_KEYS = ("title", "subtitle", "x_title", "x_label", "y_label", "a_name", "b_name", "left", "right")
+_TEXT_KEYS = ("title", "subtitle", "x_title", "x_label", "y_label", "a_name", "b_name", "left", "right", "size_label")
 
 
 def localise(spec: dict) -> dict:
@@ -106,6 +106,8 @@ def localise(spec: dict) -> dict:
             spec[key] = i18n._(spec[key])
     if spec.get("unit"):                          # bp → pb, % of GDP → % del PIB, € bn → mm €; symbols stay
         spec["unit"] = i18n.maybe(spec["unit"])
+    if spec.get("size_unit"):
+        spec["size_unit"] = i18n.maybe(spec["size_unit"])
     if spec.get("highlight"):                     # a ranking's highlighted bar, named like its category labels
         spec["highlight"] = i18n.maybe(spec["highlight"])
     for s in spec.get("series", []):

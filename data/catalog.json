@@ -9604,6 +9604,703 @@
   "source_name": "Government revenue, expenditure and main aggregates",
   "source_updated": "2026-10-21T11:00:00+0200"
  },
+ "state_debt_avg_coupon": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T00:14:57+00:00",
+  "first_date": "2026-11-03",
+  "last_date": "2026-11-03",
+  "n_obs": 1,
+  "signature": "[\"tesoro\", \"coupon\", {}, 1.0]"
+ },
+ "state_debt_avg_life": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T00:14:57+00:00",
+  "first_date": "2026-11-03",
+  "last_date": "2026-11-03",
+  "n_obs": 1,
+  "signature": "[\"tesoro\", \"life\", {}, 1.0]"
+ },
+ "state_debt_outstanding": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T00:14:57+00:00",
+  "first_date": "2026-11-03",
+  "last_date": "2026-11-03",
+  "n_obs": 1,
+  "signature": "[\"tesoro\", \"outstanding\", {}, 1.0]",
+  "securities": {
+   "letras": [
+    {
+     "isin": "ES0L02611066",
+     "maturity": "2026-11-06",
+     "amount": 8989.2
+    },
+    {
+     "isin": "ES0L02612049",
+     "maturity": "2026-12-04",
+     "amount": 9099.7
+    },
+    {
+     "isin": "ES0L02701156",
+     "maturity": "2027-01-15",
+     "amount": 8780.5
+    },
+    {
+     "isin": "ES0L02702055",
+     "maturity": "2027-02-05",
+     "amount": 8597.1
+    },
+    {
+     "isin": "ES0L02703053",
+     "maturity": "2027-03-05",
+     "amount": 8623.1
+    },
+    {
+     "isin": "ES0L02704093",
+     "maturity": "2027-04-09",
+     "amount": 9010.2
+    },
+    {
+     "isin": "ES0L02705074",
+     "maturity": "2027-05-07",
+     "amount": 6586.9
+    },
+    {
+     "isin": "ES0L02706049",
+     "maturity": "2027-06-04",
+     "amount": 5975.9
+    },
+    {
+     "isin": "ES0L02707096",
+     "maturity": "2027-07-09",
+     "amount": 5505.5
+    },
+    {
+     "isin": "ES0L02708060",
+     "maturity": "2027-08-06",
+     "amount": 5157.3
+    },
+    {
+     "isin": "ES0L02709100",
+     "maturity": "2027-09-10",
+     "amount": 4402.4
+    },
+    {
+     "isin": "ES0L02710082",
+     "maturity": "2027-10-08",
+     "amount": 4173.5
+    }
+   ],
+   "bonds": [
+    {
+     "isin": "ES00000128H5",
+     "type": "O",
+     "coupon": 1.3,
+     "maturity": "2026-10-31",
+     "amount": 28677.5,
+     "linked": false,
+     "green": false
+    },
+    {
+     "isin": "ES0000012J15",
+     "type": "B",
+     "coupon": 0.0,
+     "maturity": "2027-01-31",
+     "amount": 22790.2,
+     "linked": false,
+     "green": false
+    },
+    {
+     "isin": "ES00000128P8",
+     "type": "O",
+     "coupon": 1.5,
+     "maturity": "2027-04-30",
+     "amount": 25929.4,
+     "linked": false,
+     "green": false
+    },
+    {
+     "isin": "ES0000012M77",
+     "type": "B",
+     "coupon": 2.5,
+     "maturity": "2027-05-31",
+     "amount": 23815.5,
+     "linked": false,
+     "green": false
+    },
+    {
+     "isin": "ES0000012G26",
+     "type": "O",
+     "coupon": 0.8,
+     "maturity": "2027-07-30",
+     "amount": 23143.6,
+     "linked": false,
+     "green": false
+    },
+    {
+     "isin": "ES0000012A89",
+     "type": "O",
+     "coupon": 1.45,
+     "maturity": "2027-10-31",
+     "amount": 25155.8,
+     "linked": false,
+     "green": false
+    },
+    {
+     "isin": "ES00000128S2",
+     "type": "O",
+     "coupon": 0.65,
+     "maturity": "2027-11-30",
+     "amount": 22998.0,
+     "linked": true,
+     "green": false
+    },
+    {
+     "isin": "ES0000012I08",
+     "type": "O",
+     "coupon": 0.0,
+     "maturity": "2028-01-31",
+     "amount": 28408.1,
+     "linked": false,
+     "green": false
+    },
+    {
+     "isin": "ES0000012B39",
+     "type": "O",
+     "coupon": 1.4,
+     "maturity": "2028-04-30",
+     "amount": 27973.8,
+     "linked": false,
+     "green": false
+    },
+    {
+     "isin": "ES0000012O59",
+     "type": "B",
+     "coupon": 2.4,
+     "maturity": "2028-05-31",
+     "amount": 22340.3,
+     "linked": false,
+     "green": false
+    },
+    {
+     "isin": "ES0000012B88",
+     "type": "O",
+     "coupon": 1.4,
+     "maturity": "2028-07-30",
+     "amount": 26730.2,
+     "linked": false,
+     "green": false
+    },
+    {
+     "isin": "ES00000124C5",
+     "type": "O",
+     "coupon": 5.15,
+     "maturity": "2028-10-31",
+     "amount": 24293.8,
+     "linked": false,
+     "green": false
+    },
+    {
+     "isin": "ES0000011868",
+     "type": "O",
+     "coupon": 6.0,
+     "maturity": "2029-01-31",
+     "amount": 26658.8,
+     "linked": false,
+     "green": false
+    },
+    {
+     "isin": "ES0000012P90",
+     "type": "B",
+     "coupon": 2.35,
+     "maturity": "2029-03-31",
+     "amount": 20894.2,
+     "linked": false,
+     "green": false
+    },
+    {
+     "isin": "ES0000012E51",
+     "type": "O",
+     "coupon": 1.45,
+     "maturity": "2029-04-30",
+     "amount": 26422.1,
+     "linked": false,
+     "green": false
+    },
+    {
+     "isin": "ES0000012M51",
+     "type": "B",
+     "coupon": 3.5,
+     "maturity": "2029-05-31",
+     "amount": 28936.0,
+     "linked": false,
+     "green": false
+    },
+    {
+     "isin": "ES0000012K53",
+     "type": "O",
+     "coupon": 0.8,
+     "maturity": "2029-07-30",
+     "amount": 27424.4,
+     "linked": false,
+     "green": false
+    },
+    {
+     "isin": "ES0000012F43",
+     "type": "O",
+     "coupon": 0.6,
+     "maturity": "2029-10-31",
+     "amount": 25484.3,
+     "linked": false,
+     "green": false
+    },
+    {
+     "isin": "ES0000012O00",
+     "type": "B",
+     "coupon": 2.7,
+     "maturity": "2030-01-31",
+     "amount": 22684.4,
+     "linked": false,
+     "green": false
+    },
+    {
+     "isin": "ES0000012F76",
+     "type": "O",
+     "coupon": 0.5,
+     "maturity": "2030-04-30",
+     "amount": 27585.4,
+     "linked": false,
+     "green": false
+    },
+    {
+     "isin": "ES00000127A2",
+     "type": "O",
+     "coupon": 1.95,
+     "maturity": "2030-07-30",
+     "amount": 27638.8,
+     "linked": false,
+     "green": false
+    },
+    {
+     "isin": "ES0000012G34",
+     "type": "O",
+     "coupon": 1.25,
+     "maturity": "2030-10-31",
+     "amount": 30246.2,
+     "linked": false,
+     "green": false
+    },
+    {
+     "isin": "ES00000127C8",
+     "type": "O",
+     "coupon": 1.0,
+     "maturity": "2030-11-30",
+     "amount": 26801.7,
+     "linked": true,
+     "green": false
+    },
+    {
+     "isin": "ES0000012H41",
+     "type": "O",
+     "coupon": 0.1,
+     "maturity": "2031-04-30",
+     "amount": 28223.3,
+     "linked": false,
+     "green": false
+    },
+    {
+     "isin": "ES0000012Q16",
+     "type": "B",
+     "coupon": 2.6,
+     "maturity": "2031-05-31",
+     "amount": 18737.6,
+     "linked": false,
+     "green": false
+    },
+    {
+     "isin": "ES0000012N43",
+     "type": "O",
+     "coupon": 3.1,
+     "maturity": "2031-07-30",
+     "amount": 28635.9,
+     "linked": false,
+     "green": false
+    },
+    {
+     "isin": "ES0000012I32",
+     "type": "O",
+     "coupon": 0.5,
+     "maturity": "2031-10-31",
+     "amount": 25958.1,
+     "linked": false,
+     "green": false
+    },
+    {
+     "isin": "ES0000012K20",
+     "type": "O",
+     "coupon": 0.7,
+     "maturity": "2032-04-30",
+     "amount": 30753.5,
+     "linked": false,
+     "green": false
+    },
+    {
+     "isin": "ES0000012411",
+     "type": "O",
+     "coupon": 5.75,
+     "maturity": "2032-07-30",
+     "amount": 26118.1,
+     "linked": false,
+     "green": false
+    },
+    {
+     "isin": "ES0000012K61",
+     "type": "O",
+     "coupon": 2.55,
+     "maturity": "2032-10-31",
+     "amount": 27361.2,
+     "linked": false,
+     "green": false
+    },
+    {
+     "isin": "ES0000012P74",
+     "type": "O",
+     "coupon": 3.0,
+     "maturity": "2033-01-31",
+     "amount": 22920.5,
+     "linked": false,
+     "green": false
+    },
+    {
+     "isin": "ES0000012L52",
+     "type": "O",
+     "coupon": 3.15,
+     "maturity": "2033-04-30",
+     "amount": 25679.6,
+     "linked": false,
+     "green": false
+    },
+    {
+     "isin": "ES00000128Q6",
+     "type": "O",
+     "coupon": 2.35,
+     "maturity": "2033-07-30",
+     "amount": 22621.5,
+     "linked": false,
+     "green": false
+    },
+    {
+     "isin": "ES0000012L78",
+     "type": "O",
+     "coupon": 3.55,
+     "maturity": "2033-10-31",
+     "amount": 29914.6,
+     "linked": false,
+     "green": false
+    },
+    {
+     "isin": "ES0000012C12",
+     "type": "O",
+     "coupon": 0.7,
+     "maturity": "2033-11-30",
+     "amount": 28460.4,
+     "linked": true,
+     "green": false
+    },
+    {
+     "isin": "ES0000012M85",
+     "type": "O",
+     "coupon": 3.25,
+     "maturity": "2034-04-30",
+     "amount": 26273.7,
+     "linked": false,
+     "green": false
+    },
+    {
+     "isin": "ES0000012N35",
+     "type": "O",
+     "coupon": 3.45,
+     "maturity": "2034-10-31",
+     "amount": 28022.7,
+     "linked": false,
+     "green": false
+    },
+    {
+     "isin": "ES0000012O67",
+     "type": "O",
+     "coupon": 3.15,
+     "maturity": "2035-04-30",
+     "amount": 26234.5,
+     "linked": false,
+     "green": false
+    },
+    {
+     "isin": "ES0000012E69",
+     "type": "O",
+     "coupon": 1.85,
+     "maturity": "2035-07-30",
+     "amount": 25146.2,
+     "linked": false,
+     "green": false
+    },
+    {
+     "isin": "ES0000012P33",
+     "type": "O",
+     "coupon": 3.2,
+     "maturity": "2035-10-31",
+     "amount": 28446.0,
+     "linked": false,
+     "green": false
+    },
+    {
+     "isin": "ES0000012Q08",
+     "type": "O",
+     "coupon": 3.3,
+     "maturity": "2036-04-30",
+     "amount": 25396.2,
+     "linked": false,
+     "green": false
+    },
+    {
+     "isin": "ES0000012S22",
+     "type": "O",
+     "coupon": 3.4,
+     "maturity": "2036-10-31",
+     "amount": 25552.3,
+     "linked": false,
+     "green": false
+    },
+    {
+     "isin": "ES0000012O18",
+     "type": "O",
+     "coupon": 1.15,
+     "maturity": "2036-11-30",
+     "amount": 11318.9,
+     "linked": true,
+     "green": false
+    },
+    {
+     "isin": "ES0000012932",
+     "type": "O",
+     "coupon": 4.2,
+     "maturity": "2037-01-31",
+     "amount": 25439.7,
+     "linked": false,
+     "green": false
+    },
+    {
+     "isin": "ES0000012I24",
+     "type": "O",
+     "coupon": 0.85,
+     "maturity": "2037-07-30",
+     "amount": 20424.3,
+     "linked": false,
+     "green": false
+    },
+    {
+     "isin": "ES0000012L60",
+     "type": "O",
+     "coupon": 3.9,
+     "maturity": "2039-07-30",
+     "amount": 18678.4,
+     "linked": false,
+     "green": false
+    },
+    {
+     "isin": "ES0000012M69",
+     "type": "O",
+     "coupon": 2.05,
+     "maturity": "2039-11-30",
+     "amount": 11118.1,
+     "linked": true,
+     "green": false
+    },
+    {
+     "isin": "ES00000120N0",
+     "type": "O",
+     "coupon": 4.9,
+     "maturity": "2040-07-30",
+     "amount": 21996.4,
+     "linked": false,
+     "green": false
+    },
+    {
+     "isin": "ES0000012G42",
+     "type": "O",
+     "coupon": 1.2,
+     "maturity": "2040-10-31",
+     "amount": 19796.3,
+     "linked": false,
+     "green": false
+    },
+    {
+     "isin": "ES0000012O75",
+     "type": "O",
+     "coupon": 3.5,
+     "maturity": "2041-01-31",
+     "amount": 16541.4,
+     "linked": false,
+     "green": false
+    },
+    {
+     "isin": "ES00000121S7",
+     "type": "O",
+     "coupon": 4.7,
+     "maturity": "2041-07-30",
+     "amount": 22665.5,
+     "linked": false,
+     "green": false
+    },
+    {
+     "isin": "ES0000012J07",
+     "type": "O",
+     "coupon": 1.0,
+     "maturity": "2042-07-30",
+     "amount": 18385.0,
+     "linked": false,
+     "green": true
+    },
+    {
+     "isin": "ES0000012K95",
+     "type": "O",
+     "coupon": 3.45,
+     "maturity": "2043-07-30",
+     "amount": 20498.6,
+     "linked": false,
+     "green": false
+    },
+    {
+     "isin": "ES00000124H4",
+     "type": "O",
+     "coupon": 5.15,
+     "maturity": "2044-10-31",
+     "amount": 18688.7,
+     "linked": false,
+     "green": false
+    },
+    {
+     "isin": "ES00000128C6",
+     "type": "O",
+     "coupon": 2.9,
+     "maturity": "2046-10-31",
+     "amount": 22620.8,
+     "linked": false,
+     "green": false
+    },
+    {
+     "isin": "ES0000012S30",
+     "type": "O",
+     "coupon": 4.25,
+     "maturity": "2047-07-30",
+     "amount": 4000.0,
+     "linked": false,
+     "green": true
+    },
+    {
+     "isin": "ES0000012B47",
+     "type": "O",
+     "coupon": 2.7,
+     "maturity": "2048-10-31",
+     "amount": 22127.8,
+     "linked": false,
+     "green": false
+    },
+    {
+     "isin": "ES0000012F19",
+     "type": "O",
+     "coupon": 1.0,
+     "maturity": "2048-11-30",
+     "amount": 435.9,
+     "linked": true,
+     "green": false
+    },
+    {
+     "isin": "ES0000012F27",
+     "type": "O",
+     "coupon": 1.05,
+     "maturity": "2049-11-30",
+     "amount": 435.9,
+     "linked": true,
+     "green": false
+    },
+    {
+     "isin": "ES0000012G00",
+     "type": "O",
+     "coupon": 1.0,
+     "maturity": "2050-10-31",
+     "amount": 25786.5,
+     "linked": false,
+     "green": false
+    },
+    {
+     "isin": "ES0000012F35",
+     "type": "O",
+     "coupon": 1.1,
+     "maturity": "2050-11-30",
+     "amount": 435.9,
+     "linked": true,
+     "green": false
+    },
+    {
+     "isin": "ES0000012K46",
+     "type": "O",
+     "coupon": 1.9,
+     "maturity": "2052-10-31",
+     "amount": 19990.4,
+     "linked": false,
+     "green": false
+    },
+    {
+     "isin": "ES0000012M93",
+     "type": "O",
+     "coupon": 4.0,
+     "maturity": "2054-10-31",
+     "amount": 16339.0,
+     "linked": false,
+     "green": false
+    },
+    {
+     "isin": "ES0000012R56",
+     "type": "O",
+     "coupon": 3.95,
+     "maturity": "2056-10-31",
+     "amount": 8914.4,
+     "linked": false,
+     "green": false
+    },
+    {
+     "isin": "ES00000126D8",
+     "type": "O",
+     "coupon": 4.0,
+     "maturity": "2064-10-31",
+     "amount": 1000.0,
+     "linked": false,
+     "green": false
+    },
+    {
+     "isin": "ES00000128E2",
+     "type": "O",
+     "coupon": 3.45,
+     "maturity": "2066-07-30",
+     "amount": 15926.6,
+     "linked": false,
+     "green": false
+    },
+    {
+     "isin": "ES0000012H58",
+     "type": "O",
+     "coupon": 1.45,
+     "maturity": "2071-10-31",
+     "amount": 9161.2,
+     "linked": false,
+     "green": false
+    }
+   ],
+   "as_of": {
+    "letras": "2026-10-16",
+    "bonds": "2026-10-20"
+   }
+  }
+ },
  "svc_exp_business": {
   "status": "ok",
   "fetched_at": "2026-11-03T00:06:11+00:00",

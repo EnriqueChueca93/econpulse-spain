@@ -8,8 +8,8 @@ lists the indicators those functions read. Sections without blocks yet show thei
 (see build.SECTION_PAGES for the batch that fills them).
 """
 
-from . import (analytics, demography, forecasts, fuel, housing, peers, pensions, policy, sectortables, surprises,
-               underlying, workstats)
+from . import (analytics, demography, forecasts, fuel, housing, peers, pensions, policy, sectortables, statedebt,
+               surprises, underlying, workstats)
 from .charts import build_chart, build_curve, build_ranking, build_xy, localise
 from .i18n import _
 from .registry import Indicator
@@ -39,6 +39,22 @@ REGIONS = [
     ("extremadura", "Extremadura"), ("galicia", "Galicia"), ("madrid", "Madrid"), ("murcia", "Murcia"),
     ("navarra", "Navarra"), ("pais_vasco", "País Vasco"), ("rioja", "La Rioja"),
 ]
+
+
+def state_debt_block(block_id: str) -> dict:
+    """The State's debt, security by security (Batch 34b): on the Fiscal page and on the Financial page."""
+    return {
+        "id": block_id,
+        "title": "The State's debt, security by security",
+        "intro": ("What the State owes in Letras, Bonos and Obligaciones, as the Tesoro lists them: how much falls due "
+                  "each year, in principal and in coupons, and the interest rate each bond pays. A run-off view of "
+                  "today's debt: the State refinances most of what falls due with new issues, which are not in the "
+                  "bars. Inflation-linked bonds are at today's indexed amount."),
+        "facts": statedebt.facts,
+        "uses": statedebt.USES,
+        "tables": [],
+        "charts": [statedebt.repayments_chart, statedebt.bonds_chart],
+    }
 
 
 PAGES: dict[str, list[dict]] = {
@@ -960,6 +976,7 @@ PAGES: dict[str, list[dict]] = {
                  "series": [("es_10y", "level", "Spain"), ("de_10y", "level", "Germany")]},
             ],
         },
+        state_debt_block("state-debt"),
         {
             "id": "stress",
             "title": "Financial stress and banks",
@@ -1800,6 +1817,7 @@ PAGES: dict[str, list[dict]] = {
             "tables": [sectortables.table_function("dsa-baseline"), sectortables.table_function("dsa-stress")],
             "charts": [sectortables.dsa_fan_chart, sectortables.dsa_stress_chart],
         },
+        state_debt_block("state-debt"),
     ],
     # ------------------------------------------------------------------ International
     "international": [

@@ -18,7 +18,7 @@
     "Loading the index…": "Cargando el índice…", "The search index could not be loaded.": "No se pudo cargar el índice de búsqueda.",
     "On this page": "En esta página", "Sections of this page": "Secciones de esta página", "Top": "Arriba",
     "Back to the top of the page": "Volver al principio de la página", "Reading": "Lectura", " to ": " a ",
-    "Copy a link to the section": "Copiar un enlace a la sección", "Countries": "Países"
+    "Copy a link to the section": "Copiar un enlace a la sección", "Countries": "Países", "Security": "Valor", "Group": "Grupo"
   };
   function t(s) { return LANG === "es" && ES[s] !== undefined ? ES[s] : s; }
 
@@ -316,6 +316,50 @@
     window.Plotly.react(el, traces, layout, config);
   }
 
+  // A bubble scatter (Batch 34b, the State's bonds): one bubble per security, a date across, a value up and an
+  // amount as the bubble's area; one colour per group, from the palette's first three slots (they stay apart
+  // for every reader), with a surface ring so overlapping bubbles stay readable.
+  function drawBubble(el, spec) {
+    var surface = token("--surface"), ink = token("--text"), ink2 = token("--text-2");
+    var muted = token("--muted"), grid = token("--grid"), axis = token("--axis");
+    var biggest = Math.max.apply(null, spec.series.map(function (s) { return Math.max.apply(null, s.size); }));
+    var widest = Math.max(16, Math.min(34, el.clientWidth / 18));   // the largest bubble: 34 px, less on a phone
+    var sizeref = 2 * biggest / (widest * widest);
+    var traces = spec.series.map(function (s, i) {
+      var color = token("--series-" + (i + 1));
+      return {
+        type: "scatter", mode: "markers", name: s.name, x: s.x, y: s.y, text: s.text,
+        customdata: s.size.map(function (v) { return [v]; }),
+        marker: { size: s.size, sizemode: "area", sizeref: sizeref, sizemin: 3, color: color, opacity: 0.8,
+                  line: { width: 1.5, color: surface } },
+        hovertemplate: "<b>%{y:." + spec.decimals + "f}" + suffix(spec) + "</b>  %{text}<br>" + spec.x_title + " %{x|%d %b %Y} · " +
+          spec.size_label + " %{customdata[0]:,.1f} " + (spec.size_unit || "") + "<extra>" + s.name + "</extra>"
+      };
+    });
+    var layout = {
+      paper_bgcolor: surface, plot_bgcolor: surface,
+      font: { family: token("--sans") || "system-ui, sans-serif", size: 12, color: ink2 },
+      margin: { l: 44, r: 18, t: 30, b: 30 }, hovermode: "closest", showlegend: true,
+      legend: { orientation: "h", x: 0, xanchor: "left", y: 1.02, yanchor: "bottom", font: { size: 12, color: ink2 } },
+      hoverlabel: { bgcolor: surface, bordercolor: grid, font: { color: ink, size: 12 } },
+      xaxis: { type: "date", showgrid: false, showline: true, linecolor: axis, ticks: "", fixedrange: true,
+        tickfont: { color: muted } },
+      yaxis: { gridcolor: grid, zeroline: true, zerolinecolor: axis, fixedrange: true, tickfont: { color: muted },
+        ticksuffix: suffix(spec), automargin: true, rangemode: "tozero" }
+    };
+    var config = Object.assign({ toImageButtonOptions: { filename: "macroscope-" + spec.id, scale: 2 } }, CONFIG_BASE);
+    window.Plotly.react(el, traces, layout, config);
+  }
+
+  // The rows of a bubble chart, every security: name, group, date, value, amount (for its table and CSV).
+  function bubbleRows(spec) {
+    var rows = [];
+    spec.series.forEach(function (s) {
+      s.x.forEach(function (x, i) { rows.push([s.text[i], s.name, x, s.y[i], s.size[i]]); });
+    });
+    return rows.sort(function (a, b) { return a[2] < b[2] ? -1 : a[2] > b[2] ? 1 : 0; });
+  }
+
   // A dot plot, one row per person (the ECB-speak standings): a heavy dot for the current
   // stance, small numbered dots for the latest readings (1 = most recent) and a band for the range.
   function drawDots(el, spec) {
@@ -411,6 +455,7 @@
     if (spec.kind === "dumbbell") return drawDumbbell(el, spec);
     if (spec.kind === "dots") return drawDots(el, spec);
     if (spec.kind === "xy") return drawXY(el, spec);
+    if (spec.kind === "bubble") return drawBubble(el, spec);
     if (spec.pick) spec = pickView(spec);
     // Fixed slot order, never cycled: a spec has at most six palette series (slots 4 to 6 come dashed, as some
     // of their colours sit close to the first three's). Slot 7 (violet) serves only a picked country's line.
@@ -542,7 +587,7 @@
   // The windows worth offering: a window must be clearly shorter than the data. Annual charts are short,
   // and often end in projections, so they keep their whole span.
   function rangeOptions(spec) {
-    if (spec.x_kind === "category" || ["hbar", "xy", "dots", "dumbbell"].indexOf(spec.kind) >= 0 || spec.freq === "A" ||
+    if (spec.x_kind === "category" || ["hbar", "xy", "dots", "dumbbell", "bubble"].indexOf(spec.kind) >= 0 || spec.freq === "A" ||
         !spec.series || !spec.series.length) return [];
     var span = dateSpan(spec);
     if (!span) return [];
@@ -661,6 +706,23 @@
     var category = spec.x_kind === "category";
     var head = table.createTHead().insertRow();
     if (spec.kind === "xy") return fillXYTable(spec, holder, table, head);
+    if (spec.kind === "bubble") {
+      [t("Security"), t("Group"), spec.x_title, spec.y_label, spec.size_label].forEach(function (h) {
+        var th = document.createElement("th"); th.scope = "col"; th.textContent = h; head.appendChild(th);
+      });
+      var bb = table.createTBody();
+      bubbleRows(spec).forEach(function (r) {
+        var tr = bb.insertRow();
+        tr.insertCell().textContent = r[0];
+        tr.insertCell().textContent = r[1];
+        tr.insertCell().textContent = dateLabel(r[2], "D");
+        tr.insertCell().textContent = fmt(r[3], spec);
+        tr.insertCell().textContent = r[4].toLocaleString("en-GB", { minimumFractionDigits: 1, maximumFractionDigits: 1 }) +
+          (spec.size_unit ? " " + spec.size_unit : "");
+      });
+      holder.appendChild(table);
+      return;
+    }
     if (spec.kind === "dumbbell") {
       [spec.x_title || t("Item"), spec.a_name, spec.b_name, t("Change")].forEach(function (h) {
         var th = document.createElement("th"); th.scope = "col"; th.textContent = h; head.appendChild(th);
@@ -827,6 +889,10 @@
       var path = spec.series[0];
       return [[spec.x_title || t("Period"), spec.x_label, spec.y_label]].concat(
         path.x.map(function (x, i) { return [path.text[i], x, path.y[i]]; }));
+    }
+    if (spec.kind === "bubble") {
+      return [[t("Security"), t("Group"), spec.x_title, spec.y_label + unit,
+               spec.size_label + (spec.size_unit ? " (" + spec.size_unit + ")" : "")]].concat(bubbleRows(spec));
     }
     if (spec.kind === "dumbbell") {
       return [[spec.x_title || t("Item"), spec.a_name + unit, spec.b_name + unit]].concat(spec.rows.map(function (r) { return [r.label, r.a, r.b]; }));

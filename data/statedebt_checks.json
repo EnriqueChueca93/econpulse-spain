@@ -1,0 +1,26 @@
+{
+ "latest": {
+  "fingerprint": "f4d8ca60dfac",
+  "as_of": {
+   "letras": "2026-10-16",
+   "bonds": "2026-10-20"
+  },
+  "checked_by": "AI check (Claude)",
+  "checked_at": "2026-11-02",
+  "checked_against": "the Tesoro's page",
+  "note": "All 79 securities re-read independently from the page (maturity, amount, coupon); totals and the inflation-linked and green flags agree."
+ },
+ "history": [
+  {
+   "fingerprint": "f4d8ca60dfac",
+   "as_of": {
+    "letras": "2026-10-16",
+    "bonds": "2026-10-20"
+   },
+   "checked_by": "AI check (Claude)",
+   "checked_at": "2026-11-02",
+   "checked_against": "the Tesoro's page",
+   "note": "All 79 securities re-read independently from the page (maturity, amount, coupon); totals and the inflation-linked and green flags agree."
+  }
+ ]
+}
