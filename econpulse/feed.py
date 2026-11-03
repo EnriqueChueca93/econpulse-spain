@@ -9,7 +9,7 @@ import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
 from email.utils import format_datetime
 
-from . import i18n
+from . import disclaimer, i18n
 from .changes import note_text, shown_notes
 from .config import SITE_URL
 from .i18n import _
@@ -38,8 +38,9 @@ def build_feed(store: Store, site_url: str = SITE_URL, registry: dict | None = N
     ET.SubElement(channel, "link").text = base
     ET.SubElement(channel, "description").text = _(
         "New releases, revisions and big market moves in Spain's economic data, one item per change, "
-        "as found by each Macroscope Spain update.")
+        "as found by each Macroscope Spain update.") + " " + _(disclaimer.SHORT)
     ET.SubElement(channel, "language").text = "es" if es else "en"
+    ET.SubElement(channel, "copyright").text = _("Macroscope Spain; text and charts under CC BY-NC 4.0; data under their sources' terms.")
     ET.SubElement(channel, "{http://www.w3.org/2005/Atom}link",
                   {"href": base + FEED_FILE, "rel": "self", "type": "application/rss+xml"})
     updated = saved.get("updated_at") or (notes[0]["at"] if notes else None)

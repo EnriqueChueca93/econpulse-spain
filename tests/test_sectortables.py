@@ -117,8 +117,8 @@ def test_the_workbook_and_the_gdp_page(store, tmp_path):
     site = tmp_path / "site"
     build_site(load_registry(), store, site_dir=site)
     wb = load_workbook(site / "data" / st.WORKBOOK)
-    # Table 5 has no data in this store, so its sheet is left out.
-    assert wb.sheetnames == ["Contents", "T1 Real sector", "T2a Fiscal EUR bn", "T2b Fiscal % GDP", "DSA1 Baseline",
+    # Table 5 has no data in this store, so its sheet is left out. The disclaimer's "Read me" comes first.
+    assert wb.sheetnames == ["Read me", "Contents", "T1 Real sector", "T2a Fiscal EUR bn", "T2b Fiscal % GDP", "DSA1 Baseline",
                              "DSA2 EC stress tests", "T4 Balance of payments"]
     ws = wb["T1 Real sector"]
     assert ws["A1"].value == "Table 1. Spain: Main Economic Indicators" and ws.freeze_panes == "B5"

@@ -138,6 +138,55 @@
     </div>
   </section>
 
+  <section aria-labelledby="disclaimer">
+    <h2 id="disclaimer">Disclaimer and terms of use</h2>
+    <div class="prose">
+      <p>Macroscope Spain is a personal, non-commercial project{% if disclaimer.owner %} run by {{ disclaimer.owner }}{% endif %}
+        {%- if disclaimer.contact %} (contact: <a href="{{ disclaimer.contact }}">{{ disclaimer.contact_label }}</a>){% endif %}.
+        Using the site means accepting these terms.</p>
+      <h3>Information, not advice</h3>
+      <p>Everything on the site is general information about the Spanish economy. None of it is investment, financial,
+        tax, legal or other professional advice, or a recommendation to buy, sell or hold anything, and none of it takes
+        anyone's circumstances into account. Take professional advice before making decisions.</p>
+      <h3>Accuracy</h3>
+      <p>Figures are downloaded automatically from their sources and shown as published, with the date of each
+        source's latest figure on the <a href="data.html">Data and freshness</a> page. Sources revise their figures,
+        downloads can fail and processing can go wrong, so a figure here can be late, revised since or wrong. The site
+        is provided as it is, with no warranty that it is accurate, complete or available, and it can change or stop
+        at any time. The source's own release is always the reference.</p>
+      <h3>Macroscope's own calculations</h3>
+      <p>Some figures are Macroscope's, not the sources': seasonal adjustments marked
+        <abbr title="seasonally adjusted by Macroscope">SA</abbr>, growth rates and ratios, the GDP nowcast, the
+        composites, data surprises, Taylor rules, the Sahm and Michez rules, debt sustainability, the rebuilt tables (the
+        sector tables, the monetary survey, external debt), the word-list scores of ECB speeches, and figures read from
+        forecasters' web pages. Each is labelled as a Macroscope calculation where it appears, and the methods are
+        described <a href="#methods">above</a>. They are estimates, not official statistics, and they are not the
+        views of any source.</p>
+      <h3>Sources and independence</h3>
+      <p>Every chart and table names its source, and the full list is <a href="#sources">above</a>. Macroscope Spain is
+        independent: it is not affiliated with, sponsored or endorsed by INE, the Banco de España, the ECB, Eurostat,
+        the IMF, the OECD or any other source, and their names appear only to credit their data. In the words some of
+        them ask for: INE's figures are taken from INE's website, <a href="https://www.ine.es/" target="_blank"
+        rel="noopener">www.ine.es</a>, and those Macroscope transforms are its own elaboration with data extracted from
+        INE's website; wherever data from the ECB, Eurostat, the IMF, the OECD or another source have been transformed,
+        the label says so; and what is adapted from the OECD's data is an adaptation of an original work by the OECD,
+        whose views are Macroscope's alone and not those of the OECD or its member countries.</p>
+      <p>The data remain their sources' and follow their terms: to reuse them, take them from the source and follow its
+        conditions. Some limit commercial use; the IMF, for one, asks for permission first.</p>
+      <h3>Using Macroscope's text and charts</h3>
+      <p>Macroscope's own text and charts are licensed under
+        <a href="https://creativecommons.org/licenses/by-nc/4.0/" rel="license noopener" target="_blank">Creative
+        Commons Attribution-NonCommercial 4.0</a> (CC BY-NC 4.0): you may copy, share and adapt them for non-commercial
+        purposes, crediting Macroscope Spain with a link to the site and saying if you changed them. The data in them
+        stay under their sources' terms.</p>
+      <h3>Liability</h3>
+      <p>As far as the law allows, the site's author accepts no liability for any loss or damage from using the site
+        or relying on what it shows. Links to other sites are for convenience; their content is their owners'
+        responsibility.</p>
+      <p class="note">These terms were last changed on 3 November 2026.</p>
+    </div>
+  </section>
+
   <section aria-labelledby="privacy">
     <h2 id="privacy">Privacy and cookies</h2>
     <div class="prose">

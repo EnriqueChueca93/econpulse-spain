@@ -16,7 +16,7 @@ from pathlib import Path
 import pandas as pd
 from jinja2 import ChoiceLoader, Environment, FileSystemLoader, select_autoescape
 
-from . import __version__, analytics, budget, changes, ecbspeak, feed, fiscal, i18n, industries, peers, schedule, search, sectortables, stance, surprises, tools, trade
+from . import __version__, analytics, budget, changes, disclaimer, ecbspeak, feed, fiscal, i18n, industries, peers, schedule, search, sectortables, stance, surprises, tools, trade
 from .i18n import _
 from .charts import build_home_charts
 from .config import GA_MEASUREMENT_ID, SITE_CONTACT, SITE_DIR, SITE_OWNER, SITE_URL, STATIC_DIR, TEMPLATES_DIR
@@ -220,6 +220,7 @@ def _build_language(indicators: list[Indicator], store: Store, site_root: Path, 
         "nav": nav_items(section_pages, updated),
         "coming_up": coming,
         "ga": web_analytics(),
+        "disclaimer": disclaimer.context(SITE_OWNER, SITE_CONTACT),
     }
 
     def render(template: str, filename: str, **context) -> Path:
@@ -255,7 +256,8 @@ def _build_language(indicators: list[Indicator], store: Store, site_root: Path, 
             write_data_js(site_dir / charts_file, "charts", page["charts"])
         render("section.html", f"{section}.html", page={"title": title, "intro": intro, "batch": batch},
                blocks=page["blocks"], charts_file=charts_file, picker=peers.picker() if section in ("international", "housing", "pensions") else None,
-               items=[i for i in items if i["section"] == section], subpages=NAV_SUBPAGES.get(f"{section}.html", []))
+               items=[i for i in items if i["section"] == section], subpages=NAV_SUBPAGES.get(f"{section}.html", []),
+               note=disclaimer.page_note(section))
     groups = [{"id": s, "title": _(t), "items": [i for i in items if i["section"] == s]} for s, (t, *_rest) in SECTION_PAGES.items()]
     attention = [i for i in items if i["status"] != "ok" or i["out_of_date"]]
     # The Excel workbook is in English only: the Spanish pages link to the English one.
@@ -307,7 +309,7 @@ def _build_language(indicators: list[Indicator], store: Store, site_root: Path, 
     # The feed in each language (Batch 33d): site/feed.xml and site/es/feed.xml.
     (site_dir / feed.FEED_FILE).write_text(feed.build_feed(store, registry=registry), encoding="utf-8", newline="\n")
     write_data_js(data_dir / "tools.js", "tools", tools.tools_data(Data(indicators, store)))
-    render("tools.html", "tools.html", taylor_defaults={"r_star": analytics.R_STAR})
+    render("tools.html", "tools.html", taylor_defaults={"r_star": analytics.R_STAR}, note=disclaimer.page_note("tools"))
     fx = fiscal.explorer_data(Data(indicators, store))
     if fx:
         write_data_js(data_dir / "fiscal.js", "fiscal", fx)

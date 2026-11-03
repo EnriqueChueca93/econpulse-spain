@@ -8,6 +8,7 @@ from pathlib import Path
 import pytest
 from jinja2 import Environment, FileSystemLoader
 
+from econpulse import disclaimer
 from econpulse.build import web_analytics
 from econpulse.config import TEMPLATES_DIR
 
@@ -90,7 +91,8 @@ def test_analytics_stays_off_until_every_setting_is_there():
 def _base(ga) -> str:
     env = Environment(loader=FileSystemLoader(TEMPLATES_DIR), extensions=["jinja2.ext.i18n"])
     env.install_gettext_callables(gettext=lambda s: s, ngettext=lambda s, p, n: s if n == 1 else p, newstyle=True)
-    return env.get_template("base.html").render(lang="en", root="", page_file="index.html", ga=ga, sources=[])
+    return env.get_template("base.html").render(lang="en", root="", page_file="index.html", ga=ga, sources=[],
+                                                disclaimer=disclaimer.context("A. Person", None))
 
 
 def test_the_banner_offers_reject_exactly_as_it_offers_accept():

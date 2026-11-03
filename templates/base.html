@@ -106,6 +106,9 @@
       <p>{{ _("Data from %(sources)s.", sources=sources | join(", ")) }}
         {{ _("Figures are as published by each source unless marked") }}
         <abbr title="{{ _("seasonally adjusted by Macroscope") }}">{{ _("SA") }}</abbr> {{ _("or labelled as a Macroscope calculation.") }}</p>
+      <p class="footer-disclaimer">{{ disclaimer.short }} <a href="about.html#disclaimer">{{ _("Disclaimer and terms of use") }}</a>.
+        {{ _("Macroscope's text and charts:") }} <a href="{{ disclaimer.licence_url }}" rel="license noopener" target="_blank">{{ disclaimer.licence }}</a>
+        {%- if disclaimer.owner %}, {{ disclaimer.owner }}{% endif %}.</p>
       <p>{{ brand }} v{{ version }} · {{ _("built %(when)s", when=built) }} · <a href="about.html">{{ _("About and methods") }}</a> ·
         <a href="calendar.html">{{ _("Release calendar") }}</a> · <a href="data.html">{{ _("Data and freshness") }}</a> ·
         <a href="feed.xml">{{ _("RSS feed") }}</a> · <a href="about.html#privacy">{{ _("Privacy and cookies") }}</a>

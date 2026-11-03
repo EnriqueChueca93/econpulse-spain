@@ -836,6 +836,7 @@ Direct investment: Inversión directa
 Direct investment debt liabilities: Pasivos de deuda por inversión directa
 Direct taxes: Impuestos directos
 Disability: Incapacidad permanente
+Disclaimer and terms of use: Aviso legal y condiciones de uso
 Dismissals: Despidos
 Do the links hold? Correlations over eight-year windows: ¿Se mantienen las relaciones? Correlaciones en ventanas de ocho años
 Does it track what the ECB did? The committee's tone averaged {listed}.: ¿Sigue lo que hizo el BCE? El tono medio del Consejo fue de {listed}.
@@ -1077,6 +1078,8 @@ Fixed investment: Inversión en capital fijo
 'Follow every change in a feed reader:': 'Siga cada cambio en un lector de noticias:'
 Food and drink: Alimentos y bebidas
 Food, beverages and tobacco: Alimentación, bebidas y tabaco
+? 'For information only: not investment, financial or tax advice. Figures come from their sources and can be revised or contain errors, so check the source before relying on them. Macroscope Spain is independent and is not affiliated with or endorsed by any of them.'
+: 'Solo a título informativo: no es asesoramiento de inversión, financiero ni fiscal. Las cifras proceden de sus fuentes y pueden revisarse o contener errores, así que compruebe la fuente antes de basarse en ellas. Macroscope España es independiente y no está vinculado a ninguna de ellas ni cuenta con su respaldo.'
 Forecast: Previsión
 ? 'Forecast: what an AR(1) model fitted on the earlier figures expected. Surprise: the gap in units of the model''s typical error since 2013 (Covid years left out); positive means a stronger economy (for unemployment, a smaller rise than expected).'
 : 'Previsión: lo que esperaba un modelo AR(1) estimado con los datos anteriores. Sorpresa: la diferencia en unidades del error típico del modelo desde 2013 (sin los años de la COVID); un valor positivo indica una economía más fuerte (en el paro, una subida menor de lo esperado).'
@@ -1545,6 +1548,7 @@ Machinery and equipment: Maquinaria y bienes de equipo
 ? Macroscope Spain would like to use Google Analytics cookies, which are third-party cookies, to count visits and see which pages and tools are used. They are not used for advertising. Do you accept them?
 : Macroscope España quiere usar cookies de Google Analytics, que son cookies de terceros, para contar las visitas y ver qué páginas y herramientas se usan. No se usan para publicidad. ¿Las acepta?
 'Macroscope Spain: what changed': 'Macroscope España: qué ha cambiado'
+Macroscope Spain; text and charts under CC BY-NC 4.0; data under their sources' terms.: Macroscope España; textos y gráficos bajo CC BY-NC 4.0; datos según las condiciones de sus fuentes.
 Macroscope calculation: cálculo de Macroscope
 Macroscope calculation from Eurostat and the ECB: cálculo de Macroscope con datos de Eurostat y el BCE
 ? 'Macroscope calculation from Eurostat''s labour force survey: the rates of men and women in 13 age groups (15–19 to 70–74, and 75 and over), weighted by each group''s share of the population, actual or as in 2008. People in private households only.'
@@ -1553,8 +1557,11 @@ Macroscope calculation from INE and Seguridad Social: cálculo de Macroscope con
 Macroscope calculation from INE, Eurostat, Seguridad Social, Red Eléctrica: cálculo de Macroscope con datos del INE, Eurostat, la Seguridad Social y Red Eléctrica
 Macroscope readings: Lecturas de Macroscope
 Macroscope seasonal adjustment: desestacionalización de Macroscope
+? 'Macroscope''s own readings and estimates: calculations from public data with simple, documented methods, not official statistics, forecasts of record or investment advice. Forecasters'' figures are theirs, as they published them.'
+: 'Lecturas y estimaciones propias de Macroscope: cálculos con datos públicos y métodos sencillos y documentados, no estadísticas oficiales, previsiones de referencia ni asesoramiento de inversión. Las cifras de los organismos de previsión son suyas, tal como las publicaron.'
 ? 'Macroscope''s own readings: the economy against its history, data surprises, a GDP nowcast, what forecasters expect, the 10-year yield split in two, and Taylor rules.'
 : 'Las lecturas propias de Macroscope: la economía frente a su historia, las sorpresas en los datos, una estimación en tiempo real del PIB, lo que esperan los analistas, la rentabilidad a 10 años dividida en dos y las reglas de Taylor.'
+'Macroscope''s text and charts:': 'Textos y gráficos de Macroscope:'
 Macroscope, {year} GDP: Macroscope, PIB de {year}
 'Macroscope: INE''s quarters + nowcast': 'Macroscope: trimestres del INE + estimación adelantada'
 Madrid: Madrid
@@ -1569,6 +1576,8 @@ Manufacturing: Industria manufacturera
 Marginal lending facility: Facilidad marginal de crédito
 Market: Mercado
 Market move: Movimiento de mercado
+? 'Market prices, yields and rates as of the site''s latest update, not live: for information only, not investment advice or a recommendation to buy or sell anything.'
+: 'Precios de mercado, rentabilidades y tipos a la fecha de la última actualización del sitio, no en tiempo real: solo a título informativo, no son asesoramiento de inversión ni una recomendación de comprar o vender nada.'
 Market-implied path: La senda que descuenta el mercado
 Markets: Mercados
 Maturity: Plazo
@@ -2507,6 +2516,8 @@ The solidarity contribution: La cotización de solidaridad
 The stock of debt by interest rate: El saldo de deuda por tipo de interés
 The strongest correlation at 0 to 8 quarters ahead, since 2000, leaving out 2020 and 2021: La correlación más fuerte a entre 0 y 8 trimestres vista, desde 2000, sin 2020 ni 2021
 'The tables of the IMF''s 2026 Article IV report for Spain, rebuilt from public data, with history from 2015:': 'Las tablas del informe del Artículo IV del FMI sobre España de 2026, reconstruidas con datos públicos, con historia desde 2015:'
+? 'The tools run simple models on public data: their results show what the assumptions imply, and are not forecasts or advice.'
+: 'Las herramientas aplican modelos sencillos a datos públicos: sus resultados muestran lo que implican los supuestos, y no son previsiones ni asesoramiento.'
 The trade balance and energy: El saldo comercial y la energía
 The unemployed: Los parados
 The velocity of money: La velocidad del dinero

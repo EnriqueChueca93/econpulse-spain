@@ -153,6 +153,60 @@
     </div>
   </section>
 
+  <section aria-labelledby="disclaimer">
+    <h2 id="disclaimer">Aviso legal y condiciones de uso</h2>
+    <div class="prose">
+      <p>Macroscope España es un proyecto personal y sin fines comerciales{% if disclaimer.owner %} de {{ disclaimer.owner }}{% endif %}
+        {%- if disclaimer.contact %} (contacto: <a href="{{ disclaimer.contact }}">{{ disclaimer.contact_label }}</a>){% endif %}.
+        Usar el sitio supone aceptar estas condiciones.</p>
+      <h3>Información, no asesoramiento</h3>
+      <p>Todo lo que hay en el sitio es información general sobre la economía española. Nada de ello es asesoramiento de
+        inversión, financiero, fiscal, jurídico ni profesional de ningún otro tipo, ni una recomendación de comprar,
+        vender o mantener nada, y nada de ello tiene en cuenta las circunstancias de nadie. Pida asesoramiento
+        profesional antes de tomar decisiones.</p>
+      <h3>Exactitud</h3>
+      <p>Las cifras se descargan automáticamente de sus fuentes y se muestran tal como se publican, con la fecha del dato
+        más reciente de cada fuente en la página <a href="data.html">Datos y actualidad</a>. Las fuentes revisan sus
+        cifras, las descargas pueden fallar y el tratamiento puede tener errores, así que una cifra de este sitio puede
+        llegar tarde, haber sido revisada después o ser errónea. El sitio se ofrece tal cual, sin garantía de que sea
+        exacto, completo o esté disponible, y puede cambiar o dejar de funcionar en cualquier momento. La publicación
+        de la propia fuente es siempre la referencia.</p>
+      <h3>Cálculos propios de Macroscope</h3>
+      <p>Algunas cifras son de Macroscope, no de las fuentes: las desestacionalizaciones marcadas como
+        <abbr title="desestacionalizado por Macroscope">desest.</abbr>, las tasas de variación y los cocientes, la
+        estimación adelantada del PIB, los indicadores compuestos, las sorpresas en los datos, las reglas de Taylor, las
+        reglas de Sahm y de Michez, la sostenibilidad de la deuda, las tablas reconstruidas (las tablas sectoriales, el
+        balance monetario, la deuda externa), las puntuaciones por listas de palabras de los discursos del BCE y las
+        cifras leídas de las páginas web de los organismos de previsión. Cada una se señala como cálculo de Macroscope
+        donde aparece, y los métodos se describen <a href="#methods">más arriba</a>. Son estimaciones, no estadísticas
+        oficiales, y no son la opinión de ninguna fuente.</p>
+      <h3>Fuentes e independencia</h3>
+      <p>Cada gráfico y cada tabla citan su fuente, y la lista completa está <a href="#sources">más arriba</a>. Macroscope
+        España es independiente: no está vinculado al INE, al Banco de España, al BCE, a Eurostat, al FMI, a la OCDE ni
+        a ninguna otra fuente, ni cuenta con su patrocinio o respaldo, y sus nombres solo aparecen para citar sus datos.
+        En los términos que piden algunas de ellas: las cifras del INE proceden del sitio web del INE,
+        <a href="https://www.ine.es/" target="_blank" rel="noopener">www.ine.es</a>, y las que Macroscope transforma son
+        elaboración propia con datos extraídos del sitio web del INE; siempre que se han transformado datos del BCE, de
+        Eurostat, del FMI, de la OCDE o de otra fuente, la etiqueta lo indica; y lo adaptado a partir de datos de la
+        OCDE es una adaptación de una obra original de la OCDE, cuyas opiniones son solo de Macroscope y no de la OCDE
+        ni de sus países miembros.</p>
+      <p>Los datos siguen siendo de sus fuentes y se rigen por sus condiciones: para reutilizarlos, tómelos de la fuente
+        y siga sus condiciones. Algunas limitan el uso comercial; el FMI, por ejemplo, pide que se solicite permiso
+        antes.</p>
+      <h3>Uso de los textos y gráficos de Macroscope</h3>
+      <p>Los textos y gráficos propios de Macroscope se publican bajo la licencia
+        <a href="https://creativecommons.org/licenses/by-nc/4.0/deed.es" rel="license noopener" target="_blank">Creative
+        Commons Reconocimiento-NoComercial 4.0</a> (CC BY-NC 4.0): puede copiarlos, compartirlos y adaptarlos con fines
+        no comerciales, citando a Macroscope España con un enlace al sitio e indicando si los ha modificado. Los datos
+        que contienen siguen sujetos a las condiciones de sus fuentes.</p>
+      <h3>Responsabilidad</h3>
+      <p>En la medida en que lo permita la ley, el autor del sitio no se hace responsable de ninguna pérdida o daño
+        derivado del uso del sitio o de basarse en lo que muestra. Los enlaces a otros sitios se ofrecen por
+        comodidad; su contenido es responsabilidad de sus titulares.</p>
+      <p class="note">Estas condiciones se modificaron por última vez el 3 de noviembre de 2026.</p>
+    </div>
+  </section>
+
   <section aria-labelledby="privacy">
     <h2 id="privacy">Privacidad y cookies</h2>
     <div class="prose">

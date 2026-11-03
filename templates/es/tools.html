@@ -23,6 +23,7 @@
 {% block content %}
   <h1>Herramientas</h1>
   <p class="lede">Haga sus propias preguntas a los datos: cambie un ajuste y todas las cifras y gráficos se recalculan en su navegador.</p>
+  {% if note %}<p class="notice page-note">{{ note }}</p>{% endif %}
   <div class="tool-list">
     <a class="card" href="fiscal-explorer.html">Explorador fiscal<span>La deuda y los déficits de España hasta 2070, a partir del
       escenario base de la Comisión Europea: cambie la economía o el presupuesto, o calcule lo necesario para alcanzar un objetivo.</span></a>

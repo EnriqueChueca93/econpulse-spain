@@ -23,7 +23,7 @@ from typing import Callable
 
 import pandas as pd
 
-from . import fiscal, i18n
+from . import disclaimer, fiscal, i18n
 from .charts import localise
 from .config import SITE_URL
 from .i18n import _
@@ -1434,8 +1434,14 @@ def write_workbook(data: Data, path: Path, built: str = "") -> bool:
     rule = Border(bottom=Side(style="thin", color="7F7F7F"))
 
     wb = Workbook()
-    contents = wb.active
-    contents.title = "Contents"
+    readme = wb.active
+    readme.title = "Read me"
+    for r, line in enumerate(disclaimer.readme_lines(built), start=1):
+        readme.cell(r, 1, line).alignment = Alignment(wrap_text=True, vertical="top")
+    readme["A1"].font = title_font
+    readme["A2"].font = muted
+    readme.column_dimensions["A"].width = 120
+    contents = wb.create_sheet("Contents")
     contents["A1"] = "Macroscope Spain: IMF-style sector tables"
     contents["A1"].font = title_font
     contents["A2"] = f"Built {built}" if built else ""

@@ -733,3 +733,7 @@ body.search-on { overflow: hidden; }
 @media (max-width: 520px) { .consent-actions { flex: 1 1 100%; } .consent-btn { flex: 1; } }
 /* A button that reads as a footer link ("Cookie settings") */
 .link-button { padding: 0; font: inherit; color: inherit; background: none; border: 0; text-decoration: underline; cursor: pointer; }
+
+/* The disclaimer: a line in every footer, and a note under the intro of Analysis, Financial and Tools */
+.footer-disclaimer { margin-top: 8px !important; }
+.page-note { margin: -4px 0 18px; font-size: 13px; }

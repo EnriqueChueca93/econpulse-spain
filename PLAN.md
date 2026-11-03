@@ -226,6 +226,13 @@ Each batch is sized for one working session, ends with something you can open or
 ### Batch 12 — Forecasts and surprises ✅ done 1 Nov 2026
 *Result: two new blocks on the Analysis page. "What forecasters expect": GDP growth, inflation, unemployment and the budget balance for 2026 and 2027 from seven forecasters, each with its publication month and a link. The OECD Economic Outlook and the European Commission (AMECO, via DBnomics) are fetched as indicators (`fc_*`, edition read from the data); the Banco de España, AIReF, the FUNCAS Panel, the government and the IMF are in `econpulse/forecasts.yaml`, updated by hand. They average 2.5% for 2026 and 2.0% for 2027; EconPulse's own 2026 figure, INE's first three quarters plus the Q4 nowcast, is 2.6%, and 2.4% is already banked even with a flat Q4. "Data surprises": each figure behind the composites against a one-step AR(1) forecast fitted only on earlier data, in units of the model's typical error, averaged over the past four months (weights 1, ¾, ½, ¼). Activity is +0.3 (in line) and inflation +0.8 (above expectations); both are also on the home page. DBnomics series are now credited to their real publisher. 276 indicators, 144 offline tests.*
 
+### Disclaimer and terms of use ✅ done 4 Nov 2026
+*Asked: "Let's add disclaimers at the bottom and the like for the data presented, to be safe." Chosen: CC BY-NC 4.0 for Macroscope's own text and charts; notes on Analysis, Financial and Tools, in the workbook and in the feed.*
+
+- What the sources ask of reusers: credit (all); say plainly when figures are transformed (ECB, Eurostat, IMF, OECD; INE's wording, "elaboración propia con datos extraídos del sitio web del INE"); don't imply endorsement (INE, IMF, OECD); the IMF wants permission for commercial reuse, hence the non-commercial licence.
+- One module, `econpulse/disclaimer.py`, holds the wording: a line in every page's footer (information only, not advice; sources revise and errors happen; independent, not endorsed) with links to the full terms and the licence; one-line notes under the intro of Analysis, Financial and Tools; the RSS feed's description and a `<copyright>`; a "Read me" sheet first in the sector-tables workbook.
+- The About page's "Disclaimer and terms of use" (#disclaimer, before Privacy), in English and Spanish: who runs the site; information, not advice; accuracy and no warranty; Macroscope's own calculations listed; sources and independence, in INE's and the OECD's own terms; the data stay under their sources' terms; the CC BY-NC 4.0 licence; liability as far as the law allows. `tests/test_disclaimer.py` keeps it all in place.
+
 ### Privacy and cookies ✅ done 3 Nov 2026
 *Asked: "Let's make sure we are compliant with the EU cookie policy."*
 
