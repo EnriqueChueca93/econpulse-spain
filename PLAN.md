@@ -233,7 +233,7 @@ Each batch is sized for one working session, ends with something you can open or
 - Added "Privacy and cookies" at the end of the About page, in English and Spanish: what is and isn't stored, why there is no banner, a "Forget my choices" button (clears every `ep-` key), and GitHub Pages' IP logging with a link to GitHub's privacy statement. A footer link on every page points to it.
 - `tests/test_privacy.py` keeps it true: no cookies or other browser storage, every stored key listed in the notice, and nothing loaded from another site.
 
-### Google Analytics with a consent banner (built 3 Nov 2026; switched on once the ID is set)
+### Google Analytics with a consent banner ✅ live 3 Nov 2026 (G-601MZ5F5LM)
 *Asked: "Could we add some analytics to the site?" Chosen: Google Analytics (over cookieless GoatCounter or Plausible), with feature use as well as pages.*
 
 - Off until `config.py` has `GA_MEASUREMENT_ID`, `SITE_OWNER` and `SITE_CONTACT` (the notice must say who is responsible and how to reach them, GDPR art. 13); until then the site is unchanged.
