@@ -459,9 +459,10 @@ from catalogue_tools import PAIRS as TOOLS             # noqa: E402  Batch 33d
 from catalogue_speak import PAIRS as SPEAK             # noqa: E402  Batch 33d
 from catalogue_budget import PAIRS as BUDGET           # noqa: E402  Batch 33d
 from catalogue_money import PAIRS as MONEY             # noqa: E402  Batch 35
+from catalogue_money_links import PAIRS as MONEY_LINKS # noqa: E402  Batch 35b
 
 for part in (SECTIONS_1, SECTIONS_2, ANALYSIS, TRADE, HOUSING, PENSIONS, INTERNATIONAL, IMF_A, IMF_B, DEBT, EQUITIES, GDP,
-             SITE, TOOLS, SPEAK, BUDGET, MONEY):
+             SITE, TOOLS, SPEAK, BUDGET, MONEY, MONEY_LINKS):
     add(part)
 
 

@@ -109,6 +109,9 @@
       <span class="chart-subtitle">{{ c.subtitle }}</span>
     </figcaption>
     <div class="chart" id="chart-{{ c.id }}" role="img" aria-label="{{ c.title }}: {{ c.subtitle }}"></div>
+    {%- if c.reading %}
+    <p class="chart-reading">{{ c.reading }}</p>
+    {%- endif %}
     <div class="chart-foot">
       <span class="secondary">{{ _("Source: %(source)s", source=c.source) }}</span>
       <span class="chart-actions">

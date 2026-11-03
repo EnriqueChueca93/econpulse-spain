@@ -315,6 +315,30 @@
   "signature": "[\"bde\", \"D_1JA0QA00\", {}, 1.0]",
   "source_name": "Beneficiarios prestación de desempleo"
  },
+ "bis_credit_gap": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T05:59:33+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2026-01-01",
+  "n_obs": 145,
+  "signature": "[\"bis\", \"WS_CREDIT_GAP/Q.ES.P.A.C\", {}, 1.0]"
+ },
+ "bis_credit_gdp": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T05:59:33+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2026-01-01",
+  "n_obs": 145,
+  "signature": "[\"bis\", \"WS_CREDIT_GAP/Q.ES.P.A.A\", {}, 1.0]"
+ },
+ "bis_credit_trend": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T05:59:33+00:00",
+  "first_date": "1990-01-01",
+  "last_date": "2026-01-01",
+  "n_obs": 145,
+  "signature": "[\"bis\", \"WS_CREDIT_GAP/Q.ES.P.A.B\", {}, 1.0]"
+ },
  "bond10_ca": {
   "status": "ok",
   "fetched_at": "2026-11-03T00:05:23+00:00",
@@ -1728,6 +1752,22 @@
   "signature": "[\"bde\", \"DHIPCA2014PICUOL.T\", {}, 1.0]",
   "source_name": "Índice de precios de inmuebles comerciales. Año base 2014. Locales comerciales"
  },
+ "credit_flow_households": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T05:59:33+00:00",
+  "first_date": "2003-02-01",
+  "last_date": "2026-09-01",
+  "n_obs": 284,
+  "signature": "[\"ecb\", \"BSI/M.ES.N.A.A20.A.4.U2.2250.Z01.E\", {}, 1.0]"
+ },
+ "credit_flow_nfc": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T05:59:33+00:00",
+  "first_date": "2003-02-01",
+  "last_date": "2026-09-01",
+  "n_obs": 284,
+  "signature": "[\"ecb\", \"BSI/M.ES.N.A.A20.A.4.U2.2240.Z01.E\", {}, 1.0]"
+ },
  "current_account": {
   "status": "ok",
   "fetched_at": "2026-11-03T00:05:08+00:00",
@@ -1848,6 +1888,14 @@
   "last_date": "2026-09-01",
   "n_obs": 321,
   "signature": "[\"ecb\", \"MIR/M.ES.B.L22.F.R.A.2250.EUR.N\", {}, 1.0]"
+ },
+ "deposit_rate_overnight": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T05:59:33+00:00",
+  "first_date": "2000-01-01",
+  "last_date": "2026-09-01",
+  "n_obs": 321,
+  "signature": "[\"ecb\", \"MIR/M.ES.B.L21.A.R.A.2250.EUR.N\", {}, 1.0]"
  },
  "developer_credit_gdp": {
   "status": "ok",
@@ -7086,6 +7134,14 @@
   "last_date": "2026-09-01",
   "n_obs": 196,
   "signature": "[\"monsurvey\", \"broad_money\", {}, 1.0]"
+ },
+ "ms_broad_money_long": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T05:59:33+00:00",
+  "first_date": "1997-09-01",
+  "last_date": "2026-09-01",
+  "n_obs": 349,
+  "signature": "[\"monsurvey\", \"broad_money_m3\", {}, 1.0]"
  },
  "ms_claims_gg": {
   "status": "ok",

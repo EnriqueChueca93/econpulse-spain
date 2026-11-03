@@ -2304,6 +2304,88 @@ indicators:
     decimals: 1
     change_unit: "%"
 
+  # How money, credit and the economy move together (Batch 35b): the inputs the survey lines lack.
+  - id: ms_broad_money_long
+    label: "Broad money, Spain's contribution to euro-area M3"
+    label_es: "Dinero en sentido amplio, contribución de España a M3 de la zona del euro"
+    section: financial
+    source: monsurvey
+    key: broad_money_m3
+    freq: M
+    unit: "€ bn"
+    decimals: 1
+    change_unit: "%"
+    notes: The Banco de España's series for Spain's part of euro-area M3, plus currency in circulation; it matches the survey's broad money within 0.02% on average (0.5% at most) and starts in 1997, thirteen years before it.
+
+  - id: credit_flow_nfc
+    label: New net lending to non-financial corporations
+    label_es: Flujo neto de préstamos a sociedades no financieras
+    section: financial
+    source: ecb
+    key: BSI/M.ES.N.A.A20.A.4.U2.2240.Z01.E
+    freq: M
+    unit: "€ mn"
+    decimals: 0
+    notes: Banks' net new loans in the month (transactions), so sales, write-offs and reclassifications don't count as lending.
+
+  - id: credit_flow_households
+    label: New net lending to households
+    label_es: Flujo neto de préstamos a hogares
+    section: financial
+    source: ecb
+    key: BSI/M.ES.N.A.A20.A.4.U2.2250.Z01.E
+    freq: M
+    unit: "€ mn"
+    decimals: 0
+    notes: Banks' net new loans in the month (transactions), so sales, write-offs and reclassifications don't count as lending.
+
+  - id: deposit_rate_overnight
+    label: Household overnight deposits, interest rate
+    label_es: Tipo de interés de los depósitos a la vista de hogares
+    section: financial
+    source: ecb
+    key: MIR/M.ES.B.L21.A.R.A.2250.EUR.N
+    freq: M
+    unit: "%"
+    decimals: 2
+    change_unit: pp
+
+  - id: bis_credit_gdp
+    label: Credit to the private non-financial sector, % of GDP (BIS)
+    label_es: Crédito al sector privado no financiero (% PIB, BPI)
+    section: financial
+    source: bis
+    key: WS_CREDIT_GAP/Q.ES.P.A.A
+    freq: Q
+    unit: "% of GDP"
+    change_unit: pp
+    max_age_days: 400
+    notes: Credit from all lenders to firms and households, % of GDP over the past four quarters (BIS); published about six months after the quarter.
+
+  - id: bis_credit_trend
+    label: Credit to GDP, long-run trend (BIS)
+    label_es: Crédito sobre PIB, tendencia a largo plazo (BPI)
+    section: financial
+    source: bis
+    key: WS_CREDIT_GAP/Q.ES.P.A.B
+    freq: Q
+    unit: "% of GDP"
+    change_unit: pp
+    max_age_days: 400
+    notes: A one-sided Hodrick-Prescott trend with a smoothing parameter of 400,000, as the Basel Committee prescribes.
+
+  - id: bis_credit_gap
+    label: Credit-to-GDP gap (BIS)
+    label_es: Brecha de crédito sobre PIB (BPI)
+    section: financial
+    source: bis
+    key: WS_CREDIT_GAP/Q.ES.P.A.C
+    freq: Q
+    unit: pp
+    change_unit: pp
+    max_age_days: 400
+    notes: Credit to GDP less its long-run trend, percentage points; the Basel Committee's guide for the countercyclical capital buffer.
+
   - id: eurusd
     label: EUR/USD
     label_es: Tipo de cambio dólar/euro

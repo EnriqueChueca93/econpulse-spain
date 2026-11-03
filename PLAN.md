@@ -237,7 +237,8 @@ Found: the IMF publishes Spain's monetary survey (its Depository Corporations Su
 - Source (a choice for you): rebuilt from the ECB's and the Banco de España's monthly data, current to the latest month and checked against the IMF's own figures for the months they share; or the IMF's own table as published (to February 2025); or both, side by side
 - The survey's identity as a chart: what drives broad money growth, in contributions from credit to the private sector, credit to the government, net foreign assets and other items
 
-#### Batch 35b — How the variables move together
+#### Batch 35b — How the variables move together ✅ done 3 Nov 2026
+*Built: three sections on the Financial page after the monetary survey, in both languages, each chart with a reading under it (a new `reading` field the chart card shows). Inputs added: broad money from 1997 (the Banco de España's contribution to euro-area M3 plus currency, within 0.02% of the survey's broad money on average), banks' net new lending to firms and households (ECB transactions, for the credit impulse), households' overnight deposit rate, and the BIS credit-to-GDP ratio, trend and gap. Correlations are quarterly from 2000, leaving out pairs that touch 2020–21; at the build, the credit impulse moved most closely with GDP growth (0.73, two quarters ahead) and the risk premium most against it (−0.62); credit growth with inflation five quarters on (0.56). Of the ECB's 4.5-point rise (June 2022 to October 2023), 83% reached new loans to firms and 3% overnight deposits.*
 - Charts that show the known relationships and how they have changed over time, each with a short reading under it:
   - Money and prices: broad money growth against inflation a year or two later; the velocity of money (nominal GDP over broad money)
   - Credit and growth: private credit growth against nominal GDP growth; the credit-to-GDP ratio and its gap from trend (the Basel/BIS early-warning measure)

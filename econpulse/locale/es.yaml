@@ -9,13 +9,16 @@ $/MMBtu: $/MMBtu
 $/oz: $/oz
 $/t: $/t
 '%': '%'
+'% a year, monthly averages; banks'' rates on new loans and on new deposits of households': '% anual, medias mensuales; tipos de los bancos en préstamos nuevos y en depósitos nuevos de hogares'
 '% change': Variación, %
 '% change in average registrations, as published': Variación de la afiliación media, tal como se publica, %
 '% change in registered unemployment, as published': Variación del paro registrado, tal como se publica, %
 '% change on a year earlier': Variación interanual, %
 '% change on a year earlier (HICP in the EU, CPI elsewhere)': Variación interanual, % (IPCA en la UE, IPC en el resto)
 '% change on a year earlier, end-of-month stocks': Variación interanual, %, saldos de fin de mes
+'% change on a year earlier: bank loans to the private sector (adjusted for sales and write-offs) and nominal GDP': 'Variación interanual, %: préstamos bancarios al sector privado (corregidos de ventas y saneamientos) y PIB nominal'
 '% change on a year earlier: wage cost per worker (quarterly) and CPI (monthly)': 'Variación interanual, %: coste salarial por trabajador (trimestral) e IPC (mensual)'
+'% change on a year earlier; broad money growth is drawn two years after the month it was measured': Variación interanual, %; el crecimiento del dinero en sentido amplio se dibuja dos años después del mes en que se midió
 '% change on the previous quarter (bars) and on a year earlier (line)': Variación intertrimestral (barras) e interanual (línea), %
 '% change on the previous quarter; the last point is the nowcast for {q}': Variación intertrimestral, %; el último punto es la estimación adelantada de {q}
 '% change on the year before; actual to {year}, then the IMF''s projection': Variación interanual, %; datos observados hasta {year} y, después, proyección del FMI
@@ -403,6 +406,7 @@ Aragón: Aragón
 Arts and other services: Actividades artísticas y otros servicios
 Arts and recreation: Actividades artísticas y recreativas
 Arts, entertainment and recreation: Actividades artísticas, recreativas y de entretenimiento
+As a member of the euro area, Spain's prices follow the euro area's money and energy costs as much as its own money.: Como miembro de la zona del euro, los precios de España siguen tanto al dinero de toda la zona y al coste de la energía como a su propio dinero.
 As paid: Nominal
 ? As the baby-boom generations reach retirement, a growing share of adults are past working age, which pulls down the participation and employment rates of everyone aged 15 and over even when each age group works as much as before. Macroscope holds the population's mix by sex and five-year age group at its 2008 shares, letting each group's own rate move, to show how much of the change comes from ageing.
 : A medida que las generaciones del baby boom llegan a la jubilación, una parte creciente de los adultos ha pasado la edad de trabajar, lo que rebaja las tasas de actividad y de empleo del conjunto de mayores de 15 años aunque cada grupo de edad trabaje tanto como antes. Macroscope mantiene la composición de la población por sexo y grupos de cinco años de edad en sus pesos de 2008, dejando que se mueva la tasa de cada grupo, para mostrar cuánto del cambio se debe al envejecimiento.
@@ -448,6 +452,7 @@ Average term of new mortgages: Plazo medio de las hipotecas nuevas
 Average {value}: Media {value}
 Average, € a month: Media, € al mes
 BIS: BPI
+BIS; above 2 points calls for a capital buffer · {q}: BPI; por encima de 2 puntos pide un colchón de capital · {q}
 Bad loans: Morosidad
 Bad-loan ratio: Tasa de morosidad
 Bad-loan ratio, %: Tasa de morosidad, %
@@ -466,6 +471,7 @@ Banco de España: Banco de España
 Banco de España (billions of euros): Banco de España (miles de millones de euros)
 Banco de España (percent of GDP): Banco de España (porcentaje del PIB)
 Banco de España's 10-year spread over the German Bund.: Diferencial a 10 años frente al Bund alemán, del Banco de España.
+Banco de España; Eurostat; Macroscope calculation: Banco de España; Eurostat; cálculo de Macroscope
 Banco de España; IMF Financial Soundness Indicators database: Banco de España; base de datos de indicadores de solidez financiera del FMI
 Banco de Portugal: Banco de Portugal
 Bangko Sentral ng Pilipinas: Bangko Sentral ng Pilipinas
@@ -474,6 +480,7 @@ Bank Negara Malaysia: Bank Negara Malaysia
 Bank Rate: Tipo oficial (Bank Rate)
 Bank capital: Capital bancario
 Bank capital, asset quality and profitability, banks' exposures at home, and the debt of firms and households.: El capital, la calidad de los activos y la rentabilidad de los bancos, sus exposiciones en España y la deuda de empresas y hogares.
+Bank credit: Crédito bancario
 Bank lending: Crédito bancario
 Bank of Canada: Banco de Canadá
 Bank of England: Banco de Inglaterra
@@ -529,6 +536,11 @@ Brent crude, euros: Petróleo Brent, euros
 British pounds: Libras esterlinas
 Broad money: Dinero en sentido amplio
 Broad money and lending: Dinero en sentido amplio y crédito
+Broad money growth: Crecimiento del dinero en sentido amplio
+Broad money growth and inflation two years later: Crecimiento del dinero en sentido amplio e inflación dos años después
+Broad money growth with inflation two years later: El crecimiento del dinero en sentido amplio con la inflación dos años después
+? 'Broad money growth: on a year earlier, end of quarter. Credit growth: bank loans to the private sector on a year earlier, adjusted for sales and write-offs. Credit impulse: the change in a year''s net new lending to firms and households, % of GDP (from 2005). ECB rate change: the deposit rate on a year earlier. Loan spread: the rate on new loans to firms less the ECB deposit rate. Risk premium: Spain''s 10-year yield less Germany''s. Growth and inflation are on a year earlier, quarterly. Overlapping yearly changes make neighbouring quarters alike, so small correlations are not reliable.'
+: 'Crecimiento del dinero en sentido amplio: interanual, a final de trimestre. Crecimiento del crédito: préstamos bancarios al sector privado, interanual, corregido de ventas y saneamientos. Impulso crediticio: la variación del crédito nuevo neto de un año a empresas y hogares, % del PIB (desde 2005). Variación del tipo del BCE: el tipo de depósito frente a un año antes. Diferencial de los préstamos: el tipo de los préstamos nuevos a empresas menos el tipo de depósito del BCE. Prima de riesgo: el rendimiento a 10 años de España menos el de Alemania. El crecimiento y la inflación son interanuales, trimestrales. Las variaciones anuales se solapan y hacen parecidos los trimestres vecinos, así que las correlaciones pequeñas no son fiables.'
 Broad money liabilities: Pasivos incluidos en el dinero en sentido amplio
 Budget balance: Saldo presupuestario
 Budget balance {year}: Saldo presupuestario {year}
@@ -537,6 +549,8 @@ Budget balance, past four quarters: Saldo presupuestario, últimos cuatro trimes
 : Los saldos presupuestarios, los intereses que pagan las Administraciones públicas y su deuda, todo en porcentaje del PIB, según las Perspectivas de la economía mundial del FMI, con el nivel de deuda que prevé al final de sus proyecciones.
 Budget explorer: Explorador presupuestario
 'Budget explorer: the autonomous communities': 'Explorador presupuestario: las comunidades autónomas'
+Buffer at its maximum: Colchón al máximo
+Buffer starts: Empieza el colchón
 Builders and developers: Constructoras y promotoras
 Building: Construcción
 Building and households: Construcción y hogares
@@ -602,9 +616,12 @@ Central government net lending: Préstamo neto del gobierno central
 'Central, regional and local government and the Social Security together, consolidated: flows between them cancel out.': 'Las Administraciones central, autonómica y local y la Seguridad Social en conjunto, consolidadas: los flujos entre ellas se compensan.'
 Ceuta y Melilla: Ceuta y Melilla
 Change: Variación
+Change from the month before the ECB's first rise to the month its deposit rate peaked, percentage points: Variación entre el mes anterior a la primera subida del BCE y el mes en que su tipo de depósito tocó máximo, puntos porcentuales
 Change in debt: Variación de la deuda
 Change in public debt: Variación de la deuda pública
 Change in reserve assets: Variación de los activos de reserva
+? Change in the past year's net new lending to firms and households, % of GDP (bars); real domestic demand, % change on a year earlier (line)
+: Variación del crédito nuevo neto a empresas y hogares del último año, % del PIB (barras); demanda nacional real, variación interanual, % (línea)
 Change on a year: Variación en un año
 'Change on the month before, thousands, seasonally adjusted; line: 3-month average': 'Variación sobre el mes anterior, miles, desestacionalizada; línea: media de 3 meses'
 Change, %: Variación, %
@@ -706,15 +723,32 @@ Core inflation (end of period) 1/: Inflación subyacente (fin de periodo) 1/
 Core inflation (end of period) 2/: Inflación subyacente (fin de periodo) 2/
 'Core inflation: Spain and the euro area': 'Inflación subyacente: España y la zona del euro'
 Corporate sector: Sector empresarial
+? 'Correlation over the previous 32 quarters, leaving out 2020 and 2021: broad money growth with inflation two years later, the credit impulse with real GDP growth a quarter later, credit growth and the risk premium with growth in the same quarter'
+: 'Correlación en los 32 trimestres anteriores, sin 2020 ni 2021: el crecimiento del dinero en sentido amplio con la inflación dos años después, el impulso crediticio con el crecimiento del PIB real un trimestre después, y el crecimiento del crédito y la prima de riesgo con el crecimiento del mismo trimestre'
+Correlation with inflation 0 to 8 quarters later, since 2000, leaving out 2020 and 2021: Correlación con la inflación entre 0 y 8 trimestres después, desde 2000, sin 2020 ni 2021
+Correlation with real GDP growth 0 to 8 quarters later, since 2000, leaving out 2020 and 2021: Correlación con el crecimiento del PIB real entre 0 y 8 trimestres después, desde 2000, sin 2020 ni 2021
+'Correlations, not causes: a variable can lead because it moves first or because it reacts to the same news faster.': 'Correlaciones, no causas: una variable puede adelantarse porque se mueve antes o porque reacciona más deprisa a las mismas noticias.'
 Countries drawn beside Spain on the charts: Países que se dibujan junto a España en los gráficos
 Countries outside the EU: Países de fuera de la UE
 Country: País
 Coupon: Cupón
 Credit and deposits (annual percent change, December): Crédito y depósitos (variación porcentual anual, diciembre)
 Credit and deposits (percent change on a year earlier): Crédito y depósitos (variación porcentual interanual)
+Credit and nominal growth: Crédito y crecimiento nominal
+? Credit from all lenders to firms and households rose to {peak} of GDP in {peak_q}, the debt left by the housing boom, and was {last} in {last_q}. The long-run trend follows slowly, so after a bust it stays above the ratio for years.
+: El crédito de todos los prestamistas a empresas y hogares subió hasta el {peak} del PIB en el {peak_q}, la deuda que dejó el auge inmobiliario, y era del {last} en el {last_q}. La tendencia a largo plazo lo sigue despacio, así que tras una crisis se queda por encima de la ratio durante años.
+Credit growth: Crecimiento del crédito
+Credit growth with growth in the same quarter: El crecimiento del crédito con el crecimiento del mismo trimestre
+Credit impulse: Impulso crediticio
 Credit institutions' reserves and deposits: Reservas y depósitos de las entidades de crédito
+Credit to GDP: Crédito sobre PIB
+Credit to GDP and its long-run trend: Crédito sobre PIB y su tendencia a largo plazo
+Credit to GDP less its long-run trend, percentage points: Crédito sobre PIB menos su tendencia a largo plazo, puntos porcentuales
+Credit to the private non-financial sector, % of GDP, and the Basel Committee's trend: Crédito al sector privado no financiero, % del PIB, y la tendencia del Comité de Basilea
 Credit to the private sector 2/: Crédito al sector privado 2/
 Credit to the private sector 6/: Crédito al sector privado 6/
+Credit, growth: Crédito, crecimiento
+Credit-to-GDP gap: Brecha de crédito sobre PIB
 Croatian National Bank: Banco Nacional de Croacia
 Currency in circulation: Efectivo en circulación
 Current account: Cuenta corriente
@@ -794,6 +828,7 @@ Direct investment debt liabilities: Pasivos de deuda por inversión directa
 Direct taxes: Impuestos directos
 Disability: Incapacidad permanente
 Dismissals: Despidos
+Do the links hold? Correlations over eight-year windows: ¿Se mantienen las relaciones? Correlaciones en ventanas de ocho años
 Does it track what the ECB did? The committee's tone averaged {listed}.: ¿Sigue lo que hizo el BCE? El tono medio del Consejo fue de {listed}.
 Dollars: Dólares
 Domestic business: Negocio en España
@@ -816,11 +851,14 @@ ECB deposit facility rate: Tipo de la facilidad de depósito del BCE
 ECB deposit facility rate (end of year): Tipo de la facilidad de depósito del BCE (fin de año)
 ECB deposit rate: Tipo de depósito del BCE
 ECB monetary policy decision: Decisión de política monetaria del BCE
+ECB rate change: Variación del tipo del BCE
 ECB rate vs Taylor rule: Tipo del BCE frente a la regla de Taylor
 ECB rates since 2019: Tipos del BCE desde 2019
 ECB-speak: ECB-speak
 ECB; Banco de España: BCE; Banco de España
+ECB; Banco de España; INE; Eurostat; Macroscope calculation: BCE; Banco de España; INE; Eurostat; cálculo de Macroscope
 ECB; Banco de España; Macroscope calculation: BCE; Banco de España; cálculo de Macroscope
+ECB; INE; Macroscope calculation: BCE; INE; cálculo de Macroscope
 EPA: EPA
 EU: UE
 EU = 100, purchasing power standards: UE = 100, estándares de poder de compra
@@ -835,6 +873,8 @@ Each meeting cycle, −100 dovish to +100 hawkish: Cada ciclo de reuniones, de �
 ? Each month new pensions are granted and others end, mostly on the pensioner's death. New retirement pensions, earned on higher pay, are larger than those that end, so the average pension rises faster than pensions are revalued.
 : Cada mes se reconocen pensiones nuevas y otras causan baja, sobre todo por fallecimiento del pensionista. Las nuevas pensiones de jubilación, generadas con salarios más altos, son mayores que las que causan baja, por lo que la pensión media sube más deprisa que la revalorización de las pensiones.
 'Each point is a quarter: unemployment against vacancies (four-quarter average)': 'Cada punto es un trimestre: paro frente a vacantes (media de cuatro trimestres)'
+? 'Each point is the correlation over the 32 quarters (8 years) up to it, skipping 2020 and 2021. The links are far from fixed. {name}: from {lo} to {hi}, and {last} in the latest window.'
+: 'Cada punto es la correlación en los 32 trimestres (8 años) hasta él, sin contar 2020 ni 2021. Las relaciones distan de ser fijas. {name}: de {lo} a {hi}, y {last} en la última ventana.'
 ? Each row is the latest close its source has published; a date next to a row means it differs from the rest. Monthly rows are monthly averages. For the euro, a rise means a stronger euro.
 : Cada fila es el último cierre que ha publicado su fuente; una fecha junto a una fila indica que difiere del resto. Las filas mensuales son medias mensuales. Para el euro, una subida significa un euro más fuerte.
 Each tile links to its source. Hover for the official Spanish name.: Cada recuadro enlaza con su fuente. Pase el cursor por encima para ver el nombre en inglés.
@@ -992,6 +1032,8 @@ FRED: FRED
 FUNCAS: FUNCAS
 FUNCAS Panel: Panel de FUNCAS
 FUNCAS Panel (consensus): Panel de FUNCAS (consenso)
+? Faster money growth is meant to show up in prices a year or two later. Here broad money is drawn two years after it was measured, so the lines would move together if it did.
+: Se supone que un crecimiento más rápido del dinero acaba en los precios uno o dos años después. Aquí el dinero en sentido amplio se dibuja dos años después de medirse, así que, si fuera así, las líneas irían juntas.
 Fastest rise: Mayor subida
 Federal Funds Rate (target range): Tipo de los fondos federales (horquilla objetivo)
 Federal Reserve: Reserva Federal
@@ -1038,7 +1080,9 @@ Fourth quarter of 2019 = 100: Cuarto trimestre de 2019 = 100
 Fr: Vi
 France: Francia
 Free-market: Libres
+From 2005 to 2007 bank credit grew {c} a year on average, {times} times as fast as nominal GDP ({g}).: De 2005 a 2007 el crédito bancario creció un {c} al año de media, {times} veces más deprisa que el PIB nominal ({g}).
 From one quarter to the next: De un trimestre al siguiente
+From the ECB's rate to banks' rates: Del tipo del BCE a los tipos de los bancos
 Fruit and vegetables: Frutas y hortalizas
 Fruit-bearing vegetables, fresh or chilled: Hortalizas de fruto, frescas o refrigeradas
 Full time: Jornada completa
@@ -1245,11 +1289,19 @@ Housing wealth, € bn: Riqueza inmobiliaria, mm €
 : 'Cuántas viviendas cambian de manos, nuevas y de segunda mano, contadas de dos formas: las compraventas inscritas en los registros de la propiedad (INE) y las escrituras firmadas ante notario (Ministerio de Vivienda).'
 ? How many households rent, what renting a home out pays against its price, and how fast rents are rising against prices in general.
 : Cuántos hogares viven de alquiler, qué rentabilidad da alquilar una vivienda frente a su precio y a qué ritmo suben los alquileres frente a los precios en general.
+? 'How many times a year each euro of broad money pays for the economy''s output: nominal GDP over the money stock. It was {first} in {first_q}, peaked at {peak} in {peak_q} and is {last} in {last_q}.'
+: 'Cuántas veces al año paga cada euro de dinero en sentido amplio la producción de la economía: el PIB nominal sobre el saldo de dinero. Era de {first} en el {first_q}, alcanzó su máximo, {peak}, en el {peak_q} y es de {last} en el {last_q}.'
+? How money and credit have moved with prices, spending and growth in Spain, and how those links have changed. Each chart says what it measures and over which years; the readings under them describe correlations, which show what moves together, not what causes what.
+: Cómo se han movido el dinero y el crédito con los precios, el gasto y el crecimiento en España, y cómo han cambiado esas relaciones. Cada gráfico dice qué mide y en qué años; las lecturas que lo acompañan describen correlaciones, que muestran qué se mueve a la vez, no qué causa qué.
+How money, credit and the economy move together: Cómo se mueven juntos el dinero, el crédito y la economía
 ? How much is produced per hour worked and per job, whether growth comes from working more hours or from producing more in each, which branches have become more productive since 2019, and how Spain compares with the euro area. Output per hour by branch is gross value added in volume over hours worked, from INE's accounts; the comparisons are Eurostat's.
 : Cuánto se produce por hora trabajada y por puesto de trabajo, si el crecimiento viene de trabajar más horas o de producir más en cada una, qué ramas son más productivas que en 2019 y cómo se compara España con la zona del euro. La producción por hora de cada rama es su valor añadido bruto en volumen entre las horas trabajadas, de las cuentas del INE; las comparaciones son de Eurostat.
 How much new mortgages lend: Cuánto financian las hipotecas nuevas
 How much of pay is bonuses and extras: Cuánto del salario son pagas extraordinarias
+How much of the 2022–23 rises reached each rate: Cuánto de las subidas de 2022–23 llegó a cada tipo
 How price rises are spread across the basket: Cómo se reparten las subidas de precios en la cesta
+? How the ECB's interest rate reaches what Spanish banks charge borrowers and pay savers. The banks' rates are on new business, so they show where pricing is now, not what existing loans and deposits pay.
+: Cómo llega el tipo de interés del BCE a lo que los bancos españoles cobran a quienes piden prestado y pagan a quienes ahorran. Los tipos de los bancos son de nuevas operaciones, así que muestran los precios de ahora, no lo que pagan los préstamos y depósitos ya existentes.
 How they are made: Cómo se hacen
 How widespread: Cuán extendidas
 How widespread are price rises?: ¿Cuán extendidas están las subidas de precios?
@@ -1282,6 +1334,7 @@ INE's own calendar: calendario del propio INE
 : La encuesta trimestral a hogares del INE, la medida oficial del paro. No está desestacionalizada, así que la comparación con un año antes es la más limpia.
 INE, Eurostat, OECD, US BEA: INE, Eurostat, OCDE, BEA de EE. UU.
 INE, Eurostat, the ECB: INE, Eurostat, BCE
+INE; Banco de España; Macroscope calculation: INE; Banco de España; cálculo de Macroscope
 INE; Macroscope calculation: INE; cálculo de Macroscope
 Idealista: Idealista
 Illes Balears: Illes Balears
@@ -1291,6 +1344,7 @@ Imports: Importaciones
 Imports of goods: Importaciones de bienes
 Imports of goods and services: Importaciones de bienes y servicios
 Imports of services: Importaciones de servicios
+Impulse, growth: Impulso, crecimiento
 In 2050, projected: En 2050, proyección
 In Spain: En España
 In a cutting cycle (rule): En un ciclo de bajadas (regla)
@@ -1377,6 +1431,9 @@ Investment in housing, real, % on a year: Inversión en vivienda, en volumen, % 
 Is growth holding up?: ¿Aguanta el crecimiento?
 Is inflation coming back to 2%?: ¿Vuelve la inflación al 2%?
 Is the labour market cooling?: ¿Se enfría el mercado laboral?
+It then shrank in {n} of the {total} quarters from {first} to {last}, as households and firms paid down debt.: Después se contrajo en {n} de los {total} trimestres entre el {first} y el {last}, mientras hogares y empresas reducían su deuda.
+? It was last above 2 in {q}. A negative gap after a long deleveraging partly reflects the boom still held in the trend, so it overstates how tight credit is.
+: Estuvo por encima de 2 por última vez en el {q}. Una brecha negativa tras un largo desapalancamiento refleja en parte el auge que aún arrastra la tendencia, así que exagera lo restringido que está el crédito.
 Italy: Italia
 Item: Concepto
 Its conclusion: Su conclusión
@@ -1427,6 +1484,7 @@ Latest quarters: Últimos trimestres
 Latest reading and earlier values: Último dato y valores anteriores
 Latest readings and their z-scores · composite for {month}: Últimos datos y sus puntuaciones z · indicador compuesto de {month}
 Latvijas Banka: Latvijas Banka
+Leader: Variable
 Leather, wood and paper: Cuero, madera y papel
 Leave the labour force: Salen de la población activa
 Leisure and other services: Ocio y otros servicios
@@ -1440,15 +1498,18 @@ Liquid fuels: Combustibles líquidos
 Living alone: Sin cónyuge (unidad económica unipersonal)
 Living standards: Nivel de vida
 Loan growth: Crecimiento del crédito
+Loan spread: Diferencial de los préstamos
 Loan to value: Préstamo/valor
 ? Loan-to-value and terms of new mortgages on homes from the property registrars; non-performing loans and credit from the Banco de España.
 : La relación préstamo-valor y los plazos de las hipotecas nuevas sobre viviendas, de los registradores de la propiedad; la morosidad y el crédito, del Banco de España.
 Loans to deposits 5/: Préstamos / depósitos 5/
+Loans to firms: Préstamos a empresas
 Loans to households: Préstamos a hogares
 Loans to non-financial corporations: Préstamos a sociedades no financieras
 Loans, trade credits and other liabilities: Préstamos, créditos comerciales y otros pasivos
 Long pause (rule): Pausa prolongada (regla)
 Long-run average: Media de largo plazo
+Long-run trend: Tendencia a largo plazo
 Long-term unemployment rate: Tasa de paro de larga duración
 Longer-term liabilities and other items: Pasivos a más largo plazo y otras partidas
 Lose their job: Pierden el empleo
@@ -1517,7 +1578,12 @@ Model: Modelo
 Monetary and Credit Indicators: Indicadores monetarios y crediticios
 Monetary and credit: Indicadores monetarios y crediticios
 Monetary survey: Panorama monetario
+'Monetary transmission: from the ECB to bank rates': 'Transmisión monetaria: del BCE a los tipos bancarios'
 'Money and credit: the monetary survey': 'Dinero y crédito: el panorama monetario'
+Money growth peaked at {peak} in {month}; two years later inflation was {later}.: El crecimiento del dinero alcanzó su máximo, un {peak}, en {month}; dos años después la inflación era del {later}.
+? 'Money has grown faster than nominal GDP since then: households and firms hold more money for each euro of output, so money growth alone is a poor guide to spending.'
+: 'Desde entonces el dinero ha crecido más que el PIB nominal: hogares y empresas mantienen más dinero por cada euro de producción, así que el crecimiento del dinero, por sí solo, orienta mal sobre el gasto.'
+Money, inflation: Dinero, inflación
 Monthly: Mensual
 Monthly (SA): Mensual (desest.)
 Monthly average, total system. The monthly change is seasonally adjusted by Macroscope; the y/y change is as published.: Media mensual, total del sistema. La variación mensual la desestacionaliza Macroscope; la interanual es la publicada.
@@ -1546,6 +1612,13 @@ Most hawkish quarter of members: Cuarto más restrictivo de los miembros
 ? Most of the swing is in bonuses and other extra payments, which came at a different time of the year; the chart below shows them quarter by quarter.
 : La mayor parte de la oscilación está en las pagas extraordinarias y otros pagos, que llegaron en otro momento del año; el gráfico de abajo los muestra trimestre a trimestre.
 Motor vehicles and other transport equipment: Vehículos de motor y otro material de transporte
+Moves most against growth: La que más va contra el crecimiento
+Moves most against inflation: La que más va contra la inflación
+Moves most with growth: La que más va con el crecimiento
+Moves most with inflation: La que más va con la inflación
+'Moving most closely against it: {name} ({r}, {ahead}).': 'La que más va en contra: {name} ({r}, {ahead}).'
+'Moving most closely with growth: {name} ({r}, {ahead}).': 'La que más va con el crecimiento: {name} ({r}, {ahead}).'
+'Moving most closely with inflation: {name} ({r}, {ahead}).': 'La que más va con la inflación: {name} ({r}, {ahead}).'
 Murcia: Murcia
 National Bank of Belgium: Banco Nacional de Bélgica
 National Bank of Poland: Banco Nacional de Polonia
@@ -1590,6 +1663,7 @@ New household time deposits (December): Nuevos depósitos a plazo de los hogares
 New household time deposits 4/: Nuevos depósitos a plazo de los hogares 4/
 New households: Hogares nuevos
 New households, over a year: Hogares nuevos, en un año
+New loans to firms: Préstamos nuevos a empresas
 New loans to households for house purchase (December): Nuevos préstamos a hogares para adquisición de vivienda (diciembre)
 New loans to households for house purchase 4/: Nuevos préstamos a hogares para adquisición de vivienda 4/
 New loans to non-financial corporations (December): Nuevos préstamos a sociedades no financieras (diciembre)
@@ -1617,6 +1691,7 @@ Nominal GDP: PIB nominal
 Nominal GDP (billions of euros): PIB nominal (miles de millones de euros)
 Nominal GDP (billions of euros, the quarter): PIB nominal (miles de millones de euros, del trimestre)
 Nominal GDP growth (percent): Crecimiento del PIB nominal (porcentaje)
+Nominal GDP over the past four quarters divided by broad money at the end of the quarter: PIB nominal de los cuatro últimos trimestres dividido por el dinero en sentido amplio al final del trimestre
 Nominal unit labour cost per hour worked, fourth quarter of 2019 = 100: Coste laboral unitario nominal por hora trabajada, cuarto trimestre de 2019 = 100
 Non-EU: De fuera de la UE
 Non-energy industrial goods: Bienes industriales sin energía
@@ -1716,6 +1791,7 @@ Over the past decade: En la última década
 Overall balance: Saldo presupuestario
 Overnight Call Rate: Tipo de interés a un día (call rate)
 Overnight Rate: Tipo a un día (overnight rate)
+Overnight deposits: Depósitos a la vista
 Overnight visitors only (FRONTUR "turistas"); same-day visitors are left out.: Solo visitantes que pernoctan (los «turistas» de FRONTUR); se excluyen los excursionistas.
 Overtime: Horas extraordinarias
 Own: En propiedad
@@ -1733,6 +1809,8 @@ Participation rate: Tasa de actividad
 Participation rate, ages 15 and over, %, average of the past four quarters: Tasa de actividad, 15 años y más, %, media de los últimos cuatro trimestres
 Participation, 15 and over: Actividad, 15 años y más
 Partner: Socio
+Passed on to loans to firms: Trasladado a los préstamos a empresas
+Passed on to overnight deposits: Trasladado a los depósitos a la vista
 Passenger transport by air, international: Transporte aéreo internacional de pasajeros
 Passenger transport by train: Transporte de pasajeros por ferrocarril
 Past 12 months: Últimos 12 meses
@@ -1830,6 +1908,7 @@ Portfolio investment: Inversión de cartera
 Portugal: Portugal
 Potential output (percent change) 1/: Producto potencial (variación porcentual) 1/
 Potential output 1/: Producto potencial 1/
+Premium, growth: Prima, crecimiento
 President: Presidente
 President (woman): Presidenta
 Previous: Anterior
@@ -1922,14 +2001,18 @@ Q1 2007: T1 2007
 Q4 2019: T4 2019
 Q4 {growth}: T4 {growth}
 Quarter: Trimestre
+'Quarter by quarter since 2000, leaving out 2020 and 2021, the correlation two years on is {r}: {link}.': 'Trimestre a trimestre desde 2000, sin 2020 ni 2021, la correlación a dos años vista es de {r}: {link}.'
 Quarterly: Trimestral
+Quarters ahead: Trimestres después
 RSS feed: Canal RSS
 Range of the panel: Horquilla del panel
 Rankings by product: Clasificaciones por producto
 Rate: Tipo
+Rate rises go with strong growth at first, as the ECB raises rates in good times; the link fades within two years.: Las subidas de tipos van al principio con un crecimiento fuerte, porque el BCE sube los tipos en los buenos tiempos; la relación se desvanece en dos años.
 Rate the rule suggests: Tipo que sugiere la regla
 Rates and inflation: Tipos e inflación
 Rates down or less restrictive: Tipos a la baja o menos restrictivos
+Rates on new business less the ECB deposit rate, percentage points: Tipos de nuevas operaciones menos el tipo de depósito del BCE, puntos porcentuales
 Rates up or staying restrictive: Tipos al alza o todavía restrictivos
 Real Decreto-ley 2/2023, entered by hand: Real Decreto-ley 2/2023, datos introducidos a mano
 Real GDP: PIB real
@@ -2038,6 +2121,7 @@ Rises agreed in collective agreements: Subidas pactadas en los convenios colecti
 Rising fastest: Las que más suben
 Rising fastest and slowest · {month}: Las que más y menos suben · {month}
 Rising slowest or falling: Las que menos suben o bajan
+Risk premium: Prima de riesgo
 Rows marked “awaiting AI check” are newly read and not yet checked.: Las filas marcadas como «pendiente de verificación por IA» se han leído hace poco y aún no se han verificado.
 Rubber, plastics and other mineral products: Caucho, plásticos y otros minerales no metálicos
 Rule, Spain: Regla, España
@@ -2112,6 +2196,7 @@ Sick leave: Incapacidad temporal
 Sick leave took {now} a month per employee in the four quarters to {quarter}, against {then} in 2019 ({change}): La incapacidad temporal supuso {now} al mes por asalariado en los cuatro trimestres hasta {quarter}, frente a {then} en 2019 ({change})
 Signed before notaries (Ministry of Housing): Firmadas ante notario (Ministerio de Vivienda)
 Signed before notaries, past 12 months, thousands: Firmadas ante notario, últimos 12 meses, miles
+'Since 2000 the two have a correlation of {r}: {link}.': 'Desde 2000 los dos tienen una correlación de {r}: {link}.'
 ? Since 2023 the model's typical (root mean square) error is {rmse} pp, against {naive} pp for repeating the previous quarter and {mean} pp for the post-2013 average. The inputs were chosen with this same test, and it uses complete quarters of data, so real-time errors, with months still missing, will be larger.
 : Desde 2023, el error típico del modelo (la raíz del error cuadrático medio) es de {rmse} pp, frente a {naive} pp si se repite el trimestre anterior y {mean} pp con la media desde 2013. Las variables se eligieron con esta misma prueba, que usa trimestres de datos completos, así que los errores en tiempo real, con meses aún por publicar, serán mayores.
 Since the last update: Desde la última actualización
@@ -2192,6 +2277,8 @@ Specific provisions to nonperforming loans 3/: Provisiones específicas / prést
 Spending: Demanda
 Spending (general government): Gasto
 Spending by function: Gasto por funciones
+? 'Spending depends on the flow of new credit rather than its stock, so it is the change in that flow, the credit impulse, that moves with demand. Since {start}, leaving out 2020 and 2021, the correlation is {r}: {link}. In 2020 the state-guaranteed ICO loans pushed the impulse up while demand collapsed.'
+: 'El gasto depende del flujo de crédito nuevo más que de su saldo, así que es la variación de ese flujo, el impulso crediticio, la que se mueve con la demanda. Desde {start}, sin 2020 ni 2021, la correlación es de {r}: {link}. En 2020 los préstamos avalados por el ICO elevaron el impulso mientras la demanda se hundía.'
 Spending net of the revenue measures, against the limit: Gasto neto de las medidas de ingresos, frente al límite
 Spending rule, checked by AIReF every three years from March 2025: Regla de gasto, evaluada por la AIReF cada tres años desde marzo de 2025
 Split: Opiniones divididas
@@ -2275,7 +2362,13 @@ The Banco de España's annual report: El informe anual del Banco de España
 ? The Banco de España's balance sheet in the Eurosystem, bank lending and deposits, and interest rates, at the end of each year. The Article IV report for Spain has no monetary table, since the ECB sets policy for the euro area; this one follows the IMF's layout for other countries.
 : El balance del Banco de España en el Eurosistema, el crédito y los depósitos bancarios y los tipos de interés, a final de cada año. El informe del Artículo IV sobre España no tiene cuadro monetario, porque el BCE fija la política de la zona del euro; este sigue el formato del FMI para otros países.
 The Banco de España's balance sheet in the Eurosystem, bank lending and deposits, and interest rates.: El balance del Banco de España en el Eurosistema, el crédito y los depósitos bancarios y los tipos de interés.
+? 'The Basel Committee''s early-warning gauge: when the gap passes 2 points, banks may be asked to build a countercyclical capital buffer, which reaches its maximum at 10. Spain''s peaked at {peak} points in {peak_q}, before the banking crisis, and is {last} in {last_q}.'
+: 'El indicador de alerta temprana del Comité de Basilea: cuando la brecha supera los 2 puntos, se puede pedir a los bancos que acumulen un colchón de capital anticíclico, que llega a su máximo en 10. La de España alcanzó su máximo, {peak} puntos, en el {peak_q}, antes de la crisis bancaria, y es de {last} en el {last_q}.'
+? The ECB raised its deposit rate by {dfr} points between {start} and {peak}. Over the same months the rate on new loans to firms rose {nfc} points ({nfc_share} of the rise), new mortgages {mort} ({mort_share}), new time deposits {td} ({td_share}) and overnight deposits {on} ({on_share}).
+: El BCE subió su tipo de depósito {dfr} puntos entre {start} y {peak}. En esos mismos meses el tipo de los préstamos nuevos a empresas subió {nfc} puntos (el {nfc_share} de la subida), el de las hipotecas nuevas {mort} ({mort_share}), el de los depósitos a plazo nuevos {td} ({td_share}) y el de los depósitos a la vista {on} ({on_share}).
 The ECB rate and what a Taylor rule suggests: El tipo del BCE y lo que sugiere una regla de Taylor
+? The ECB sets the deposit rate; 12-month Euribor, what banks charge each other, moves ahead of it on expected decisions, and Spain's variable-rate mortgages are mostly priced off it. Banks' rates on new loans follow within months; what they pay on deposits moves less, and on overnight deposits barely at all.
+: El BCE fija el tipo de la facilidad de depósito; el Euríbor a 12 meses, lo que se cobran los bancos entre sí, se adelanta a él con las decisiones esperadas, y la mayoría de las hipotecas a tipo variable de España se fijan sobre él. Los tipos de los préstamos nuevos lo siguen en pocos meses; lo que pagan por los depósitos se mueve menos, y en los depósitos a la vista apenas nada.
 ? 'The ECB sets three rates. The one that steers the economy is the deposit facility rate, what banks earn on money left at the central bank: it puts a floor under market rates, and €STR, the overnight rate banks charge each other, trades just below it.'
 : 'El BCE fija tres tipos. El que orienta la economía es el de la facilidad de depósito, lo que ganan los bancos por el dinero que dejan en el banco central: pone un suelo a los tipos de mercado, y el €STR, el tipo a un día que se cobran los bancos entre sí, cotiza justo por debajo.'
 ? The ECB targets 2% inflation on the harmonised index (HICP) for the euro area as a whole. Core inflation leaves out energy and unprocessed food to show the underlying trend; the 3-month pace shows where it is heading.
@@ -2314,6 +2407,9 @@ The average pension and prices: La pensión media y los precios
 ? 'The baseline assumes no change in policy after the Commission''s forecast years: the structural primary balance then moves only with the cost of ageing. The stress tests are the Commission''s: a lower structural primary balance, a higher interest-growth differential, a temporary rise in market interest rates (financial stress) and a return of the structural primary balance to its historical average.'
 : 'El escenario base supone que no hay cambios de política después de los años de previsión de la Comisión: a partir de entonces, el saldo primario estructural solo varía con el coste del envejecimiento. Las pruebas de tensión son las de la Comisión: un menor saldo primario estructural, un diferencial tipo de interés-crecimiento más elevado, una subida temporal de los tipos de interés de mercado (tensión financiera) y la vuelta del saldo primario estructural a su media histórica.'
 The chapter prints no date; 2024 comes from the PDF's creation date (30 April 2024) and its latest references.: El capítulo no lleva fecha; 2024 sale de la fecha de creación del PDF (30 de abril de 2024) y de sus referencias más recientes.
+The credit impulse and domestic demand: El impulso crediticio y la demanda nacional
+The credit impulse with growth a quarter later: El impulso crediticio con el crecimiento un trimestre después
+The credit-to-GDP gap: La brecha de crédito sobre PIB
 The current account: La balanza por cuenta corriente
 The current account and its parts: La cuenta corriente y sus componentes
 The deposit rate since 1999: El tipo de depósito desde 1999
@@ -2354,13 +2450,16 @@ The reference rate for most Spanish variable-rate mortgages.: El índice de refe
 : 'La administración autonómica de {name}: gasto por funciones desde 2012, ingresos y gasto por tipo desde 2000 e impuestos uno a uno desde 2012.'
 ? The registers record a sale when its deed is registered, usually a month or two after it is signed, and the two sources count a home as new differently, so their split differs. Before 2007 the registered sales came quarterly from the registrars.
 : Los registros anotan una compraventa cuando se inscribe su escritura, normalmente uno o dos meses después de firmarla, y las dos fuentes definen la vivienda nueva de forma distinta, así que su desglose difiere. Antes de 2007 las compraventas inscritas procedían de los registradores, con periodicidad trimestral.
+The risk premium with growth in the same quarter: La prima de riesgo con el crecimiento del mismo trimestre
 'The sectors add up to slightly less than the total: a few registrations have no activity recorded.': 'Los sectores suman algo menos que el total: unos pocos afiliados no tienen actividad registrada.'
 The sectors since the end of 2019: Los sectores desde finales de 2019
 The solidarity contribution: La cotización de solidaridad
 The stock of debt by interest rate: El saldo de deuda por tipo de interés
+The strongest correlation at 0 to 8 quarters ahead, since 2000, leaving out 2020 and 2021: La correlación más fuerte a entre 0 y 8 trimestres vista, desde 2000, sin 2020 ni 2021
 'The tables of the IMF''s 2026 Article IV report for Spain, rebuilt from public data, with history from 2015:': 'Las tablas del informe del Artículo IV del FMI sobre España de 2026, reconstruidas con datos públicos, con historia desde 2015:'
 The trade balance and energy: El saldo comercial y la energía
 The unemployed: Los parados
+The velocity of money: La velocidad del dinero
 Their spending: Su gasto
 ? 'There is no free feed of the swap rates traders use to price ECB decisions. As a rough stand-in, these are forward rates on AAA euro-area government bonds: the short-term rate the bond market implies for each future date. They include a term premium, so they tend to overstate the expected path, more so further out.'
 : 'No hay una fuente gratuita de los tipos swap que usan los operadores para anticipar las decisiones del BCE. Como aproximación, estos son los tipos a plazo de la deuda pública AAA de la zona del euro: el tipo a corto plazo que el mercado de bonos descuenta para cada fecha futura. Incluyen una prima por plazo, así que tienden a exagerar la senda esperada, más cuanto más lejos.'
@@ -2379,6 +2478,7 @@ Thousands; average change per month, seasonally adjusted by Macroscope for 1 and
 Tier 1 capital: Capital de nivel 1
 Tier 1 capital to total assets 1/: Capital de nivel 1 / activos totales 1/
 Time: Hora
+Time deposits: Depósitos a plazo
 Today: Hoy
 Tools: Herramientas
 Total assets: Activo total
@@ -2486,6 +2586,8 @@ Vacancies by activity: Vacantes por actividad
 Vacancies in the largest private activities: Vacantes en las mayores actividades privadas
 Valuation changes 2/: Variaciones de valoración 2/
 Vehicles and parts: Vehículos y componentes
+Velocity: Velocidad
+Velocity of money: Velocidad del dinero
 Vice-President: Vicepresidente
 Vice-President (woman): Vicepresidenta
 Wage cost per hour: Coste salarial por hora
@@ -2519,6 +2621,9 @@ What Spanish residents owe to non-residents, by sector and instrument.: Lo que l
 What a new mortgage takes: Esfuerzo de acceso con una hipoteca nueva
 ? What an average home costs against what households earn, and what a new mortgage takes from their income, from the Banco de España's housing indicators, with prices per square metre from mortgage appraisals and asking prices on the two largest property portals.
 : Lo que cuesta una vivienda media frente a lo que ganan los hogares y la parte de su renta que se lleva una hipoteca nueva (el esfuerzo de acceso), según los indicadores del mercado de la vivienda del Banco de España, con los precios por metro cuadrado de las tasaciones hipotecarias y los precios de oferta de los dos mayores portales inmobiliarios.
+What banks charge and pay over the ECB's rate: Lo que cobran y pagan los bancos sobre el tipo del BCE
+? What banks charge on new loans above the ECB's rate, and what they pay on deposits below it. The spread on new loans to firms was {nfc} points in {month}, against {avg} on average since 2003. Overnight deposits paid {low} points less than the ECB's rate at the widest, in {low_month}.
+: Lo que cobran los bancos por los préstamos nuevos por encima del tipo del BCE, y lo que pagan por los depósitos por debajo de él. El diferencial de los préstamos nuevos a empresas era de {nfc} puntos en {month}, frente a {avg} de media desde 2003. Los depósitos a la vista llegaron a pagar {low} puntos menos que el tipo del BCE, en {low_month}.
 What changes the debt ratio: Qué mueve la ratio de deuda
 ? What changes the debt, in the IMF's layout, and how it fares under the European Commission's stress tests. In percent of GDP, DSA 1 splits the change in the debt ratio, growth and inflation included; in euros, the change in the amount owed, which only the deficit, interest and other flows move.
 : Qué hace variar la deuda, con el formato del FMI, y cómo se comporta en las pruebas de tensión de la Comisión Europea. En porcentaje del PIB, el DSA 1 desglosa la variación de la ratio de deuda, incluidos el crecimiento y la inflación; en euros, la variación del importe adeudado, que solo mueven el déficit, los intereses y otros flujos.
@@ -2532,7 +2637,10 @@ What drives growth: Qué impulsa el crecimiento
 ? What employers pay per worker and per hour (INE's quarterly labour cost survey, ETCL), pay in the national accounts, and rises agreed in collective agreements.
 : Lo que pagan las empresas por trabajador y por hora (la Encuesta Trimestral de Coste Laboral del INE, ETCL), la remuneración en la contabilidad nacional y las subidas pactadas en los convenios colectivos.
 What forecasters expect: Qué esperan los analistas
+What has moved with growth: Qué se ha movido con el crecimiento
+What has moved with inflation: Qué se ha movido con la inflación
 What markets expect: Qué esperan los mercados
+'What matters most: what has led growth and inflation': 'Qué importa más: qué se ha adelantado al crecimiento y a la inflación'
 What moves the 10-year yield: Qué mueve el bono a 10 años
 ? What the IMF expects for growth, inflation and unemployment this year and next, from its latest World Economic Outlook. Its forecasts for Spain sit next to the other forecasters' on the Analysis page.
 : Lo que espera el FMI para el crecimiento, la inflación y el paro este año y el próximo, según sus últimas Perspectivas de la economía mundial. Sus previsiones para España figuran junto a las de las demás instituciones en la página de Análisis.
@@ -2554,6 +2662,8 @@ Where broad money growth comes from: De dónde viene el crecimiento del dinero e
 : 'Según dónde vive el pensionista. Las pensiones medias siguen a los salarios del pasado: son más altas en el País Vasco, Asturias y Madrid y más bajas en Extremadura y Galicia (cuadros PEN-19, PEN-20 y PEN-24).'
 Where the unemployed go: Adónde van los parados
 Where the vacancies are: Dónde están las vacantes
+? Which of money, credit, interest rates and spreads has moved most closely with GDP growth and inflation in the quarters that followed, from 2000 on. The pandemic years 2020 and 2021 are left out, as the lockdowns and the rebound swamped every relationship. A correlation measures how closely two series move together, from −1 to 1; it doesn't show that one causes the other.
+: Cuál de estas variables (el dinero, el crédito, los tipos de interés y los diferenciales) se ha movido más a la par del crecimiento del PIB y de la inflación en los trimestres siguientes, desde 2000. Se dejan fuera los años de la pandemia, 2020 y 2021, porque los confinamientos y el rebote anularon cualquier relación. Una correlación mide hasta qué punto dos series se mueven juntas, de −1 a 1; no demuestra que una cause la otra.
 Who earns the income: Quién recibe la renta
 'Who earns the income: labour and capital': 'Quién recibe la renta: trabajo y capital'
 'Who works: age, sex, citizenship and education': 'Quién trabaja: edad, sexo, nacionalidad y estudios'
@@ -2564,6 +2674,8 @@ Widowhood: Viudedad
 ? 'Widowhood pensions go mostly to women; family-support pensions, under 50,000, are counted in the total but not shown. Source: Ministry of Labour, Boletín de Estadísticas Laborales (table PEN-1), from Social Security records.'
 : 'Las pensiones de viudedad las cobran sobre todo mujeres; las pensiones en favor de familiares, menos de 50,000, se cuentan en el total pero no se muestran. Fuente: Ministerio de Trabajo, Boletín de Estadísticas Laborales (cuadro PEN-1), a partir de los registros de la Seguridad Social.'
 With a spouse who is not dependent: Con cónyuge no a cargo
+With inflation: Con la inflación
+With real GDP growth: Con el crecimiento del PIB real
 ? 'With three quarters published, {year} is largely decided: even with no growth at all in the fourth quarter, GDP would grow {flat} on {previous}. The forecasts differ mainly in what they expect for {following}.'
 : 'Con tres trimestres publicados, {year} está en gran parte decidido: aunque el PIB no creciera nada en el cuarto trimestre, aumentaría un {flat} respecto a {previous}. Las previsiones difieren sobre todo en lo que esperan para {following}.'
 Women: Mujeres
@@ -2621,6 +2733,7 @@ bn: mm
 bp: pb
 built %(when)s: generado el %(when)s
 calendar: calendario
+change in a year's net new lending · {q}: variación del crédito nuevo neto de un año · {q}
 checked by AI: verificado por IA
 claims on the rest of the world less liabilities to it · {month}: activos frente al resto del mundo menos pasivos frente a él · {month}
 close of {day}: cierre del {day}
@@ -2665,11 +2778,14 @@ m/m: m/m
 met formally, but no guarantee of sustainability; AIReF proposes redesigning it: se cumple formalmente, pero no garantiza la sostenibilidad; la AIReF propone rediseñarla
 mn: mill.
 mn hours: mill. de horas
+moderate and negative: moderada y negativa
+moderate and positive: moderada y positiva
 monthly readings; the rest is projected: datos mensuales; el resto se proyecta
 mortgages: hipotecas
 motor vehicle repair, from trade to other services: reparación de vehículos de motor, del comercio a otros servicios
 never: nunca
 no data: sin datos
+nominal GDP per euro of broad money · {q}: PIB nominal por cada euro de dinero en sentido amplio · {q}
 non-performing · {period}; {peak}: créditos dudosos · {period}; {peak}
 not updating: sin actualizar
 o.w. Banco de España: 'de la cual: Banco de España'
@@ -2692,6 +2808,7 @@ of new mortgages on homes · {period}: de las hipotecas nuevas sobre viviendas �
 of people 15 and over, from {then} in {year}: de las personas de 15 años y más, desde el {then} de {year}
 of petrol's: del de la gasolina
 of principal, and {coupons} of coupons: de principal, y {coupons} de cupones
+of the ECB's 2022–23 rises, by {month}: de las subidas del BCE de 2022–23, hasta {month}
 of the home's price on average · {period}: del precio de la vivienda, de media · {period}
 of the home's price on average · {period}; {over} of mortgages lend more than 80%: del precio de la vivienda, de media · {period}; el {over} de las hipotecas financia más del 80%
 of their loans · {period}: del crédito total · {period}
@@ -2740,13 +2857,17 @@ rises each year by inflation plus 1.2 points: sube cada año con la inflación m
 rises each year by the pensions' revaluation plus 0.115 points: sube cada año con la revalorización de las pensiones más 0.115 puntos
 ? rising, higher, elevated, persistent, sticky, accelerating or upward near inflation, prices, wages, inflation expectations or second-round effects; and inflation “remaining high”, “picking up” or “above target”
 : al alza, más alta, elevada, persistente, rígida, acelerándose o ascendente junto a inflación, precios, salarios, expectativas de inflación o efectos de segunda ronda; e inflación que «sigue alta», «repunta» o «está por encima del objetivo»
+same quarter: mismo trimestre
 seasonally adjusted by Macroscope: desestacionalizado por Macroscope
 section 9.2: apartado 9.2
 section on the pension spending projections: apartado sobre las proyecciones del gasto en pensiones
 section on the sustainability of public finances: apartado sobre la sostenibilidad de las finanzas públicas
 share of spending, by weight: parte del gasto, por ponderación
+since {day}: desde el {day}
 sources methodology: fuentes metodología
 'stale: last update failed': 'desfasada: falló la última actualización'
+strong and negative: fuerte y negativa
+strong and positive: fuerte y positiva
 ? strong, robust, resilient or solid growth, demand or labour market; tight labour markets; low unemployment; labour shortages
 : crecimiento, demanda o mercado laboral fuerte, robusto, resiliente o sólido; mercados laborales tensionados; paro bajo; escasez de mano de obra
 stronger than normal: más fuerte de lo normal
@@ -2788,6 +2909,8 @@ up 1.1 points of GDP, with over a million more pensions: 1.1 puntos de PIB más,
 vehicles: vehículos
 via {source}: vía {source}
 vs {value} a year ago: frente al {value} hace un año
+weak and negative: débil y negativa
+weak and positive: débil y positiva
 ? weak, sluggish, subdued or fragile growth or demand; recession; contraction; downturn; downside risks to growth; rising unemployment
 : crecimiento o demanda débil, lento, contenido o frágil; recesión; contracción; desaceleración; riesgos a la baja para el crecimiento; paro en aumento
 weaker than normal: más débil de lo normal
@@ -2835,6 +2958,8 @@ z-score: Puntuación z
 '{n} houses': '{n} casas de análisis'
 '{n} million': '{n} millones'
 '{n} of {total}': '{n} de {total}'
+'{n} quarter ahead': '{n} trimestre después'
+'{n} quarters ahead': '{n} trimestres después'
 '{quarter}; {then} on average in 2019': '{quarter}; {then} de media en 2019'
 '{rank} fastest of {n} · {when}': el {rank}.º más rápido de los {n} · {when}
 '{rank} highest of {n} · {when}': la {rank}.ª cifra más alta de los {n} · {when}
@@ -2845,6 +2970,7 @@ z-score: Puntuación z
 '{source}, Eurostat; Macroscope calculation': '{source}, Eurostat; cálculo de Macroscope'
 '{source}, INE; Macroscope calculation': '{source}, INE; cálculo de Macroscope'
 '{source}; Macroscope calculation': '{source}; cálculo de Macroscope'
+'{spread} points over the ECB''s rate · {month}': '{spread} puntos sobre el tipo del BCE · {month}'
 '{tone} in the {n} cycle that ended in a cut': '{tone} en {n} ciclo que terminó con una bajada de tipos'
 '{tone} in the {n} cycle that ended in a rate rise': '{tone} en {n} ciclo que terminó con una subida de tipos'
 '{tone} in the {n} cycle that ended with rates on hold': '{tone} en {n} ciclo que terminó con los tipos sin cambios'

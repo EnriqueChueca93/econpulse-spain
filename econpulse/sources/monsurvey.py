@@ -37,11 +37,15 @@ EQUITY = "A.L60.X.1.Z5.0000 + N.L60.X.1.Z5.0000"
 DERIVATIVES = "bde:D_BEPD2000/1000"
 LOANS_NFC = "A.A20.A.1.U2.2240"
 LOANS_HOUSEHOLDS = "A.A20.A.1.U2.2250"
+# Broad money from 1997 (Batch 35b): Spain's contribution to euro-area M3 excluding currency, plus currency. The survey's
+# own broad money starts in 2010 (its deposit split does); this matches it within 0.02% on average (0.5% at most).
+BROAD_MONEY_M3 = "bde:D_MESM3EELIPBIF + bde:D_MESEFECTBIF"
 
 BASE = {"nfa": FOREIGN, "claims_gg": CLAIMS_GG, "gov_deposits": GOV_DEPOSITS, "claims_private": CLAIMS_PRIVATE,
         "currency": CURRENCY, "transferable": TRANSFERABLE, "other_deposits": OTHER_DEPOSITS,
         "securities_bm": SECURITIES_BM, "deposits_xbm": DEPOSITS_XBM, "securities_xbm": SECURITIES_XBM,
-        "equity": EQUITY, "derivatives": DERIVATIVES, "loans_nfc": LOANS_NFC, "loans_households": LOANS_HOUSEHOLDS}
+        "equity": EQUITY, "derivatives": DERIVATIVES, "loans_nfc": LOANS_NFC, "loans_households": LOANS_HOUSEHOLDS,
+        "broad_money_m3": BROAD_MONEY_M3}
 LINES = list(BASE) + ["net_claims_gg", "domestic_claims", "broad_money", "oin"]
 
 _lock = threading.Lock()

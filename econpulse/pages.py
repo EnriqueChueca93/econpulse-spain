@@ -1121,6 +1121,42 @@ PAGES: dict[str, list[dict]] = {
             ],
         },
         {
+            "id": "money-links",
+            "title": "How money, credit and the economy move together",
+            "intro": ("How money and credit have moved with prices, spending and growth in Spain, and how those links "
+                      "have changed. Each chart says what it measures and over which years; the readings under them "
+                      "describe correlations, which show what moves together, not what causes what."),
+            "facts": monetary.links_facts,
+            "uses": monetary.LINKS_USES,
+            "tables": [],
+            "charts": [monetary.money_inflation_chart, monetary.velocity_chart, monetary.credit_growth_chart,
+                       monetary.credit_gdp_chart, monetary.credit_gap_chart, monetary.impulse_chart],
+        },
+        {
+            "id": "money-transmission",
+            "title": "Monetary transmission: from the ECB to bank rates",
+            "intro": ("How the ECB's interest rate reaches what Spanish banks charge borrowers and pay savers. The banks' "
+                      "rates are on new business, so they show where pricing is now, not what existing loans and "
+                      "deposits pay."),
+            "facts": monetary.rates_facts,
+            "uses": monetary.RATES_USES,
+            "tables": [],
+            "charts": [monetary.rates_chart, monetary.spreads_chart, monetary.passthrough_chart],
+        },
+        {
+            "id": "money-leads",
+            "title": "What matters most: what has led growth and inflation",
+            "intro": ("Which of money, credit, interest rates and spreads has moved most closely with GDP growth and "
+                      "inflation in the quarters that followed, from 2000 on. The pandemic years 2020 and 2021 are left "
+                      "out, as the lockdowns and the rebound swamped every relationship. A correlation measures how "
+                      "closely two series move together, from −1 to 1; it doesn't show that one causes the other."),
+            "facts": monetary.leads_facts,
+            "uses": monetary.LEADS_USES,
+            "tables": [monetary.leads_table],
+            "charts": [lambda data: monetary.leads_chart(data, "gdp"), lambda data: monetary.leads_chart(data, "inflation"),
+                       monetary.rolling_chart],
+        },
+        {
             "id": "stress",
             "title": "Financial stress and banks",
             "intro": ("The ECB's composite indicator of systemic stress (CISS) combines tension in money, bond, share "
