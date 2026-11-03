@@ -8,8 +8,8 @@ lists the indicators those functions read. Sections without blocks yet show thei
 (see build.SECTION_PAGES for the batch that fills them).
 """
 
-from . import (analytics, demography, equities, forecasts, fuel, housing, peers, pensions, policy, sectortables,
-               statedebt, surprises, underlying, workstats)
+from . import (analytics, demography, equities, forecasts, fuel, gdpdetail, housing, peers, pensions, policy,
+               sectortables, statedebt, surprises, underlying, workstats)
 from .charts import build_chart, build_curve, build_ranking, build_xy, localise
 from .i18n import _
 from .registry import Indicator
@@ -148,6 +148,68 @@ PAGES: dict[str, list[dict]] = {
                  "series": [("productivity_hour", "level", "Productivity"),
                             ("compensation_per_employee", "level", "Pay"),
                             ("unit_labour_cost", "level", "Unit labour cost")]},
+            ],
+        },
+        {
+            "id": "contributions",
+            "title": "What drives growth",
+            "intro": ("GDP growth split into what each part of spending and each branch of activity adds, in percentage "
+                      "points. INE publishes only the domestic and external totals; the parts are a Macroscope calculation "
+                      "from its accounts, each part's volume growth weighted by its share of nominal GDP."),
+            "uses": gdpdetail.USES,
+            "tables": [gdpdetail.contributions_table],
+            "charts": [gdpdetail.demand_chart_y, gdpdetail.demand_chart_q, gdpdetail.supply_chart_y],
+        },
+        {
+            "id": "income",
+            "title": "Who earns the income",
+            "intro": ("GDP measured by the incomes it pays: compensation of employees, the gross operating surplus and mixed "
+                      "income of firms and the self-employed, and taxes on production. The labour share is employees' "
+                      "compensation as a share of GDP at factor cost, that is, before those taxes."),
+            "facts": gdpdetail.income_facts,
+            "uses": ["compensation_employees", "operating_surplus", "net_taxes_production", "gdp_nominal"],
+            "tables": [],
+            "charts": [gdpdetail.labour_share_chart],
+        },
+        {
+            "id": "productivity-detail",
+            "title": "Productivity in detail",
+            "intro": ("How much is produced per hour worked and per job, whether growth comes from working more hours or from "
+                      "producing more in each, which branches have become more productive since 2019, and how Spain compares "
+                      "with the euro area. Output per hour by branch is gross value added in volume over hours worked, from "
+                      "INE's accounts; the comparisons are Eurostat's."),
+            "facts": gdpdetail.productivity_facts,
+            "uses": ["gdp", "hours_cn", "jobs_fte"] + [f"{m}_{s}" for m in ("lp_hour", "ulc_hour") for s in ("es", "ea", "de", "fr", "it", "pt")],
+            "tables": [],
+            "charts": [
+                gdpdetail.productivity_levels_chart, gdpdetail.growth_split_chart, gdpdetail.branch_productivity_chart,
+                {"id": "productivity-peers", "title": "Output per hour: Spain and its neighbours",
+                 "subtitle": "Real labour productivity per hour worked, fourth quarter of 2019 = 100",
+                 "kind": "line", "unit": "", "decimals": 1, "start": "2015-01-01", "ref_lines": [{"y": 100, "label": "Q4 2019"}],
+                 "series": [("lp_hour_es", "level", "Spain", {"rebase": "2019-10-01", "color": "ink"}), ("lp_hour_ea", "level", "Euro area", {"rebase": "2019-10-01"}), ("lp_hour_de", "level", "Germany", {"rebase": "2019-10-01"}), ("lp_hour_fr", "level", "France", {"rebase": "2019-10-01"}), ("lp_hour_it", "level", "Italy", {"rebase": "2019-10-01"}), ("lp_hour_pt", "level", "Portugal", {"rebase": "2019-10-01"})]},
+                {"id": "ulc-peers", "title": "Unit labour costs: Spain and its neighbours",
+                 "subtitle": "Nominal unit labour cost per hour worked, fourth quarter of 2019 = 100",
+                 "kind": "line", "unit": "", "decimals": 1, "start": "2015-01-01", "ref_lines": [{"y": 100, "label": "Q4 2019"}],
+                 "series": [("ulc_hour_es", "level", "Spain", {"rebase": "2019-10-01", "color": "ink"}), ("ulc_hour_ea", "level", "Euro area", {"rebase": "2019-10-01"}), ("ulc_hour_de", "level", "Germany", {"rebase": "2019-10-01"}), ("ulc_hour_fr", "level", "France", {"rebase": "2019-10-01"}), ("ulc_hour_it", "level", "Italy", {"rebase": "2019-10-01"}), ("ulc_hour_pt", "level", "Portugal", {"rebase": "2019-10-01"})]},
+            ],
+        },
+        {
+            "id": "living-standards",
+            "title": "Living standards",
+            "intro": ("GDP per head in purchasing power, which corrects for price levels across countries, against the euro "
+                      "area; and the real disposable income of households per head, what families have to spend after taxes "
+                      "and benefits and after inflation, against the EU (Eurostat publishes no euro-area figure)."),
+            "uses": ["gdppc_pps_es", "gdppc_pps_ea", "gdhi_real_pc_es", "gdhi_real_pc_eu"],
+            "tables": [],
+            "charts": [
+                {"id": "gdppc-pps", "title": "GDP per head in purchasing power",
+                 "subtitle": "EU = 100, purchasing power standards", "kind": "line", "unit": "", "decimals": 0,
+                 "start": "1995-01-01", "ref_lines": [{"y": 100, "label": "EU"}],
+                 "series": [("gdppc_pps_es", "level", "Spain", {"color": "ink"}), ("gdppc_pps_ea", "level", "Euro area")]},
+                {"id": "household-income", "title": "Household income per head, after inflation",
+                 "subtitle": "Real gross disposable income of households per head, 2008 = 100", "kind": "line", "unit": "",
+                 "decimals": 1, "start": "2005-01-01", "ref_lines": [{"y": 100, "label": "2008"}],
+                 "series": [("gdhi_real_pc_es", "level", "Spain", {"color": "ink"}), ("gdhi_real_pc_eu", "level", "EU")]},
             ],
         },
         {

@@ -211,6 +211,7 @@ econpulse/            Python package
   stance.py           the central bank stance page, from Econvitals' public data (saved to data/stance.json)
   fiscal.py           the Fiscal Explorer's baseline and data (the levers run in static/fiscal.js)
   equities.py         the IBEX 35's facts and the Madrid sectors' heat map (Financial page)
+  gdpdetail.py        the GDP page's contributions to growth, labour share and productivity splits
   statedebt.py        the State's debt, security by security: repayments by year and the bonds by coupon,
                       from the Tesoro's list (sources/tesoro.py), and its AI check (data/statedebt_checks.json)
   budget.py           the Budget explorer's data: the IGAE workbooks read into data/budget.json at fetch time,

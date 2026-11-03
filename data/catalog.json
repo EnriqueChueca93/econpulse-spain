@@ -970,6 +970,16 @@
   "n_obs": 9132,
   "signature": "[\"ecb\", \"CISS/D.ES.Z0Z.4F.EC.SS_CIN.IDX\", {}, 1.0]"
  },
+ "compensation_employees": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T01:14:57+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"ine\", \"CNTR7362\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. Remuneración de los asalariados. Dato base. Precios corrientes."
+ },
  "compensation_per_employee": {
   "status": "ok",
   "fetched_at": "2026-11-03T00:04:58+00:00",
@@ -979,6 +989,16 @@
   "signature": "[\"ine\", \"CNTR8243\", {}, 1.0]",
   "flash": false,
   "source_name": "Remuneración por puesto de trabajo equivalente asalariado. Datos ajustados de estacionalidad y calendario. Variación anual. Total Nacional."
+ },
+ "cons_hh_npish": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T01:14:56+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"ine\", \"CNTR7156\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. Gasto en consumo final de los hogares y las ISFLSH. Dato base. Índices de volumen encadenados."
  },
  "construction_confidence": {
   "status": "ok",
@@ -1228,6 +1248,166 @@
   "last_date": "2026-09-01",
   "n_obs": 441,
   "signature": "[\"oecd\", \"OECD.SDD.TPS,DSD_PRICES@DF_PRICES_ALL,1.0/GBR.M.N.CPI.PA._TXCP01_NRG.N.GY\", {}, 1.0]"
+ },
+ "cp_cons_government": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T01:14:56+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"ine\", \"CNTR6860\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. Gasto en consumo final de las AAPP. Dato base. Precios corrientes."
+ },
+ "cp_cons_hh_npish": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T01:14:56+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"ine\", \"CNTR6842\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. Gasto en consumo final de los hogares y las ISFLSH. Dato base. Precios corrientes."
+ },
+ "cp_exports": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T01:14:56+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"ine\", \"CNTR6909\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. Exportaciones de bienes y servicios. Dato base. Precios corrientes."
+ },
+ "cp_gfcf": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T01:14:56+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"ine\", \"CNTR6875\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. Formación bruta de capital fijo (FBCF). Dato base. Precios corrientes."
+ },
+ "cp_gva_agriculture": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T01:14:56+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"ine\", \"CNTR6600\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. VABpb Agricultura, ganadería, silvicultura y pesca (A, CNAE 2009). Dato base. Precios corrientes."
+ },
+ "cp_gva_arts": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T01:14:57+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"ine\", \"CNTR6633\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. VABpb Servicios. Actividades artísticas, recreativas y otros servicios (R-T, CNAE 2009). Dato base. Precios corrientes."
+ },
+ "cp_gva_construction": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T01:14:56+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"ine\", \"CNTR6609\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. VABpb Construcción (F, CNAE 2009). Dato base. Precios corrientes."
+ },
+ "cp_gva_finance": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T01:14:57+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"ine\", \"CNTR6621\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. VABpb Servicios. Actividades financieras y de seguros (K, CNAE 2009). Dato base. Precios corrientes."
+ },
+ "cp_gva_industry": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T01:14:56+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"ine\", \"CNTR6603\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. VABpb Industria (B-E, CNAE 2009). Dato base. Precios corrientes."
+ },
+ "cp_gva_information": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T01:14:57+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"ine\", \"CNTR6618\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. VABpb Servicios. Información y comunicaciones (J, CNAE 2009). Dato base. Precios corrientes."
+ },
+ "cp_gva_professional": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T01:14:57+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"ine\", \"CNTR6627\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. VABpb Servicios. Actividades profesionales, científicas y técnicas y otras (M-N, CNAE 2009). Dato base. Precios corrientes."
+ },
+ "cp_gva_public": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T01:14:57+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"ine\", \"CNTR6630\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. VABpb Servicios. Administración pública, educación y sanidad (O-Q, CNAE 2009). Dato base. Precios corrientes."
+ },
+ "cp_gva_real_estate": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T01:14:57+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"ine\", \"CNTR6624\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. VABpb Servicios. Actividades inmobiliarias (L, CNAE 2009). Dato base. Precios corrientes."
+ },
+ "cp_gva_trade": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T01:14:56+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"ine\", \"CNTR6615\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. VABpb Servicios. Comercio, transporte y hostelería (G-I, CNAE 2009). Dato base. Precios corrientes."
+ },
+ "cp_imports": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T01:14:56+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"ine\", \"CNTR6921\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. Importaciones de bienes y servicios. Dato base. Precios corrientes."
+ },
+ "cp_net_taxes_products": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T01:14:57+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"ine\", \"CNTR6636\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. Impuestos menos subvenciones sobre los productos. Dato base. Precios corrientes."
  },
  "cpi": {
   "status": "ok",
@@ -3310,6 +3490,26 @@
   "n_obs": 801,
   "signature": "[\"worldbank\", \"Natural gas, Europe\", {}, 1.0]"
  },
+ "gdhi_real_pc_es": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T01:15:00+00:00",
+  "first_date": "2005-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 21,
+  "signature": "[\"eurostat\", \"tepsr_wc310\", {\"geo\": \"ES\"}, 1.0]",
+  "source_name": "The real gross disposable income of households per capita (index = 2008)",
+  "source_updated": "2026-10-29T23:00:00+0100"
+ },
+ "gdhi_real_pc_eu": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T01:15:00+00:00",
+  "first_date": "2005-01-01",
+  "last_date": "2025-01-01",
+  "n_obs": 21,
+  "signature": "[\"eurostat\", \"tepsr_wc310\", {\"geo\": \"EU27_2020\"}, 1.0]",
+  "source_name": "The real gross disposable income of households per capita (index = 2008)",
+  "source_updated": "2026-10-29T23:00:00+0100"
+ },
  "gdp": {
   "status": "ok",
   "fetched_at": "2026-11-03T00:04:55+00:00",
@@ -3863,6 +4063,26 @@
   "source_name": "Gross domestic product (GDP) and main components (output, expenditure and income) - annual data",
   "source_updated": "2026-10-22T23:00:00+0200"
  },
+ "gdppc_pps_ea": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T01:15:00+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2024-01-01",
+  "n_obs": 30,
+  "signature": "[\"eurostat\", \"prc_ppp_ind\", {\"geo\": \"EA20\", \"na_item\": \"VI_PPS_EU27_2020_HAB\", \"ppp_cat\": \"GDP\"}, 1.0]",
+  "source_name": "Purchasing power parities, price level indices, nominal and real expenditures by analytical categories - based on COICOP 1999",
+  "source_updated": "2025-07-10T11:00:00+0200"
+ },
+ "gdppc_pps_es": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T01:15:00+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2024-01-01",
+  "n_obs": 30,
+  "signature": "[\"eurostat\", \"prc_ppp_ind\", {\"geo\": \"ES\", \"na_item\": \"VI_PPS_EU27_2020_HAB\", \"ppp_cat\": \"GDP\"}, 1.0]",
+  "source_name": "Purchasing power parities, price level indices, nominal and real expenditures by analytical categories - based on COICOP 1999",
+  "source_updated": "2025-07-10T11:00:00+0200"
+ },
  "gg_balance_eur": {
   "status": "ok",
   "fetched_at": "2026-11-03T00:05:47+00:00",
@@ -4291,6 +4511,16 @@
   "flash": false,
   "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. VABpb Agricultura, ganadería, silvicultura y pesca (A, CNAE 2009). Dato base. Índices de volumen encadenados."
  },
+ "gva_arts": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T01:14:56+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"ine\", \"CNTR6712\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. VABpb Servicios. Actividades artísticas, recreativas y otros servicios (R-T, CNAE 2009). Dato base. Índices de volumen encadenados."
+ },
  "gva_construction": {
   "status": "ok",
   "fetched_at": "2026-11-03T00:04:56+00:00",
@@ -4300,6 +4530,16 @@
   "signature": "[\"ine\", \"CNTR6672\", {}, 1.0]",
   "flash": false,
   "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. VABpb Construcción (F, CNAE 2009). Dato base. Índices de volumen encadenados."
+ },
+ "gva_finance": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T01:14:56+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"ine\", \"CNTR6692\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. VABpb Servicios. Actividades financieras y de seguros (K, CNAE 2009). Dato base. Índices de volumen encadenados."
  },
  "gva_industry": {
   "status": "ok",
@@ -4311,6 +4551,46 @@
   "flash": false,
   "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. VABpb Industria (B-E, CNAE 2009). Dato base. Índices de volumen encadenados."
  },
+ "gva_information": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T01:14:56+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"ine\", \"CNTR6687\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. VABpb Servicios. Información y comunicaciones (J, CNAE 2009). Dato base. Índices de volumen encadenados."
+ },
+ "gva_professional": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T01:14:56+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"ine\", \"CNTR6702\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. VABpb Servicios. Actividades profesionales, científicas y técnicas y otras (M-N, CNAE 2009). Dato base. Índices de volumen encadenados."
+ },
+ "gva_public": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T01:14:56+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"ine\", \"CNTR6707\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. VABpb Servicios. Administración pública, educación y sanidad (O-Q, CNAE 2009). Dato base. Índices de volumen encadenados."
+ },
+ "gva_real_estate": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T01:14:56+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"ine\", \"CNTR6697\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. VABpb Servicios. Actividades inmobiliarias (L, CNAE 2009). Dato base. Índices de volumen encadenados."
+ },
  "gva_services": {
   "status": "ok",
   "fetched_at": "2026-11-03T00:04:56+00:00",
@@ -4320,6 +4600,16 @@
   "signature": "[\"ine\", \"CNTR6677\", {}, 1.0]",
   "flash": false,
   "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. VABpb Servicios (G-T, CNAE 2009). Dato base. Índices de volumen encadenados."
+ },
+ "gva_trade": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T01:14:56+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"ine\", \"CNTR6682\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. VABpb Servicios. Comercio, transporte y hostelería (G-I, CNAE 2009). Dato base. Índices de volumen encadenados."
  },
  "hicp": {
   "status": "ok",
@@ -4884,6 +5174,116 @@
   "signature": "[\"ine\", \"ETCL2421\", {}, 1.0]",
   "flash": false,
   "source_name": "Actividades artísticas, recreativas y de entretenimiento. Horas efectivas. Total Nacional. Tiempo de trabajo. Ambas jornadas. Número de Horas."
+ },
+ "hours_cn": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T01:14:57+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"ine\", \"CNTR7896\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Ocupado/a. Total Nacional. Horas trabajadas. Datos ajustados de estacionalidad y calendario. Total CNAE. Dato base."
+ },
+ "hours_cn_agriculture": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T01:14:57+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"ine\", \"CNTR7899\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Ocupado/a. Total Nacional. Horas trabajadas. Datos ajustados de estacionalidad y calendario. Agricultura, ganadería, silvicultura y pesca. Dato base."
+ },
+ "hours_cn_arts": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T01:14:57+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"ine\", \"CNTR7932\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Ocupado/a. Total Nacional. Horas trabajadas. Datos ajustados de estacionalidad y calendario. Actividades artísticas, recreativas y otros servicios. Dato base."
+ },
+ "hours_cn_construction": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T01:14:57+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"ine\", \"CNTR7908\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Ocupado/a. Total Nacional. Horas trabajadas. Datos ajustados de estacionalidad y calendario. Construcción. Dato base."
+ },
+ "hours_cn_finance": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T01:14:57+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"ine\", \"CNTR7920\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Ocupado/a. Total Nacional. Horas trabajadas. Datos ajustados de estacionalidad y calendario. Actividades financieras y de seguros. Dato base."
+ },
+ "hours_cn_industry": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T01:14:57+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"ine\", \"CNTR7902\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Ocupado/a. Total Nacional. Horas trabajadas. Datos ajustados de estacionalidad y calendario. Industria. Dato base."
+ },
+ "hours_cn_information": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T01:14:57+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"ine\", \"CNTR7917\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Ocupado/a. Total Nacional. Horas trabajadas. Datos ajustados de estacionalidad y calendario. Información y comunicaciones. Dato base."
+ },
+ "hours_cn_professional": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T01:14:57+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"ine\", \"CNTR7926\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Ocupado/a. Total Nacional. Horas trabajadas. Datos ajustados de estacionalidad y calendario. Actividades profesionales, científicas y técnicas, administrativas y servicios. Dato base."
+ },
+ "hours_cn_public": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T01:14:57+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"ine\", \"CNTR7929\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Ocupado/a. Total Nacional. Horas trabajadas. Datos ajustados de estacionalidad y calendario. Administración pública, sanidad y educación. Dato base."
+ },
+ "hours_cn_real_estate": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T01:14:57+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"ine\", \"CNTR7923\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Ocupado/a. Total Nacional. Horas trabajadas. Datos ajustados de estacionalidad y calendario. Actividades inmobiliarias. Dato base."
+ },
+ "hours_cn_trade": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T01:14:57+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"ine\", \"CNTR7914\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Ocupado/a. Total Nacional. Horas trabajadas. Datos ajustados de estacionalidad y calendario. Comercio, transporte y hostelería. Dato base."
  },
  "hours_construction": {
   "status": "ok",
@@ -6492,6 +6892,66 @@
   "source_name": "Long-term unemployment by sex - quarterly data",
   "source_updated": "2026-10-26T23:00:00+0100"
  },
+ "lp_hour_de": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T01:15:00+00:00",
+  "first_date": "1991-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 142,
+  "signature": "[\"eurostat\", \"namq_10_lp_ulc\", {\"geo\": \"DE\", \"na_item\": \"RLPR_HW\", \"s_adj\": \"SCA\", \"unit\": \"I20\"}, 1.0]",
+  "source_name": "Labour productivity and unit labour costs - quarterly data",
+  "source_updated": "2026-10-30T23:00:00+0100"
+ },
+ "lp_hour_ea": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T01:15:00+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 126,
+  "signature": "[\"eurostat\", \"namq_10_lp_ulc\", {\"geo\": \"EA20\", \"na_item\": \"RLPR_HW\", \"s_adj\": \"SCA\", \"unit\": \"I20\"}, 1.0]",
+  "source_name": "Labour productivity and unit labour costs - quarterly data",
+  "source_updated": "2026-10-30T23:00:00+0100"
+ },
+ "lp_hour_es": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T01:14:58+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"eurostat\", \"namq_10_lp_ulc\", {\"geo\": \"ES\", \"na_item\": \"RLPR_HW\", \"s_adj\": \"SCA\", \"unit\": \"I20\"}, 1.0]",
+  "source_name": "Labour productivity and unit labour costs - quarterly data",
+  "source_updated": "2026-10-30T23:00:00+0100"
+ },
+ "lp_hour_fr": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T01:15:00+00:00",
+  "first_date": "1980-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 186,
+  "signature": "[\"eurostat\", \"namq_10_lp_ulc\", {\"geo\": \"FR\", \"na_item\": \"RLPR_HW\", \"s_adj\": \"SCA\", \"unit\": \"I20\"}, 1.0]",
+  "source_name": "Labour productivity and unit labour costs - quarterly data",
+  "source_updated": "2026-10-30T23:00:00+0100"
+ },
+ "lp_hour_it": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T01:15:00+00:00",
+  "first_date": "1996-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 122,
+  "signature": "[\"eurostat\", \"namq_10_lp_ulc\", {\"geo\": \"IT\", \"na_item\": \"RLPR_HW\", \"s_adj\": \"SCA\", \"unit\": \"I20\"}, 1.0]",
+  "source_name": "Labour productivity and unit labour costs - quarterly data",
+  "source_updated": "2026-10-30T23:00:00+0100"
+ },
+ "lp_hour_pt": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T01:15:00+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 126,
+  "signature": "[\"eurostat\", \"namq_10_lp_ulc\", {\"geo\": \"PT\", \"na_item\": \"RLPR_HW\", \"s_adj\": \"SCA\", \"unit\": \"I20\"}, 1.0]",
+  "source_name": "Labour productivity and unit labour costs - quarterly data",
+  "source_updated": "2026-10-30T23:00:00+0100"
+ },
  "madrid_consumer_goods": {
   "status": "ok",
   "fetched_at": "2026-11-03T00:47:12+00:00",
@@ -6648,6 +7108,26 @@
   "signature": "[\"eurostat\", \"tipsii30\", {\"geo\": \"ES\", \"partner\": \"WRL_REST\"}, 1.0]",
   "source_name": "Net external debt - quarterly data, % of GDP",
   "source_updated": "2026-10-28T23:00:00+0100"
+ },
+ "net_taxes_production": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T01:14:57+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"ine\", \"CNTR7482\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. Impuestos menos subvenciones sobre la producción y las importaciones. Dato base. Precios corrientes."
+ },
+ "net_taxes_products": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T01:14:56+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"ine\", \"CNTR6717\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. Impuestos menos subvenciones sobre los productos. Dato base. Índices de volumen encadenados."
  },
  "new_mortgage_lending": {
   "status": "ok",
@@ -6962,6 +7442,16 @@
   "signature": "[\"eurostat\", \"demo_pjanind\", {\"geo\": \"PT\", \"indic_de\": \"OLDDEP1\"}, 1.0]",
   "source_name": "Population structure indicators at national level",
   "source_updated": "2026-09-25T23:00:00+0200"
+ },
+ "operating_surplus": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T01:14:57+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"ine\", \"CNTR7479\", {}, 1.0]",
+  "flash": false,
+  "source_name": "Total Nacional. Datos ajustados de estacionalidad y calendario. Excedente de explotación bruto y Renta mixta bruta. Dato base. Precios corrientes."
  },
  "paro_agriculture": {
   "status": "ok",
@@ -11339,6 +11829,66 @@
   "last_date": "2026-08-01",
   "n_obs": 296,
   "signature": "[\"comext\", \"41-49\", {\"flow\": \"imports\", \"partner\": \"WORLD\"}, 1e-06]"
+ },
+ "ulc_hour_de": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T01:15:00+00:00",
+  "first_date": "1991-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 142,
+  "signature": "[\"eurostat\", \"namq_10_lp_ulc\", {\"geo\": \"DE\", \"na_item\": \"NULC_HW\", \"s_adj\": \"SCA\", \"unit\": \"I20\"}, 1.0]",
+  "source_name": "Labour productivity and unit labour costs - quarterly data",
+  "source_updated": "2026-10-30T23:00:00+0100"
+ },
+ "ulc_hour_ea": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T01:15:00+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 126,
+  "signature": "[\"eurostat\", \"namq_10_lp_ulc\", {\"geo\": \"EA20\", \"na_item\": \"NULC_HW\", \"s_adj\": \"SCA\", \"unit\": \"I20\"}, 1.0]",
+  "source_name": "Labour productivity and unit labour costs - quarterly data",
+  "source_updated": "2026-10-30T23:00:00+0100"
+ },
+ "ulc_hour_es": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T01:14:58+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-07-01",
+  "n_obs": 127,
+  "signature": "[\"eurostat\", \"namq_10_lp_ulc\", {\"geo\": \"ES\", \"na_item\": \"NULC_HW\", \"s_adj\": \"SCA\", \"unit\": \"I20\"}, 1.0]",
+  "source_name": "Labour productivity and unit labour costs - quarterly data",
+  "source_updated": "2026-10-30T23:00:00+0100"
+ },
+ "ulc_hour_fr": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T01:15:00+00:00",
+  "first_date": "1980-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 186,
+  "signature": "[\"eurostat\", \"namq_10_lp_ulc\", {\"geo\": \"FR\", \"na_item\": \"NULC_HW\", \"s_adj\": \"SCA\", \"unit\": \"I20\"}, 1.0]",
+  "source_name": "Labour productivity and unit labour costs - quarterly data",
+  "source_updated": "2026-10-30T23:00:00+0100"
+ },
+ "ulc_hour_it": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T01:15:00+00:00",
+  "first_date": "1996-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 122,
+  "signature": "[\"eurostat\", \"namq_10_lp_ulc\", {\"geo\": \"IT\", \"na_item\": \"NULC_HW\", \"s_adj\": \"SCA\", \"unit\": \"I20\"}, 1.0]",
+  "source_name": "Labour productivity and unit labour costs - quarterly data",
+  "source_updated": "2026-10-30T23:00:00+0100"
+ },
+ "ulc_hour_pt": {
+  "status": "ok",
+  "fetched_at": "2026-11-03T01:15:00+00:00",
+  "first_date": "1995-01-01",
+  "last_date": "2026-04-01",
+  "n_obs": 126,
+  "signature": "[\"eurostat\", \"namq_10_lp_ulc\", {\"geo\": \"PT\", \"na_item\": \"NULC_HW\", \"s_adj\": \"SCA\", \"unit\": \"I20\"}, 1.0]",
+  "source_name": "Labour productivity and unit labour costs - quarterly data",
+  "source_updated": "2026-10-30T23:00:00+0100"
  },
  "unemployment_andalucia": {
   "status": "ok",

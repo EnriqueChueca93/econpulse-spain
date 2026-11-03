@@ -22,6 +22,7 @@ $/t: $/t
 '% change · European Commission (AMECO), {year}': Variación, % · Comisión Europea (AMECO), {year}
 '% change; contributions in percentage points': Variación, %; aportaciones en puntos porcentuales
 '% of GDP': '% del PIB'
+'% of GDP at factor cost (GDP less taxes net of subsidies on production and imports)': '% del PIB al coste de los factores (el PIB menos los impuestos netos de subvenciones sobre la producción y las importaciones)'
 '% of GDP or € million': '% del PIB o millones de €'
 '% of GDP · IMF, {edition}': '% del PIB · FMI, {edition}'
 '% of GDP, an estimate: pensions × the average pension × {payments} payments': '% del PIB, estimación: número de pensiones × pensión media × {payments} pagas'
@@ -183,8 +184,11 @@ $/t: $/t
 2/ The primary balance excludes interest earnings, as in the World Economic Outlook, so they count as another flow.: 2/ El saldo primario excluye los ingresos por intereses, como en el World Economic Outlook, por lo que estos se cuentan como otro flujo.
 ? '2/ The range of debt paths the Commission simulates from past shocks to growth, interest rates and the primary balance: four in five paths lie between the 10th and 90th percentiles.'
 : '2/ Abanico de trayectorias de la deuda que la Comisión simula a partir de perturbaciones pasadas del crecimiento, los tipos de interés y el saldo primario: cuatro de cada cinco trayectorias se sitúan entre los percentiles 10 y 90.'
+'2008': '2008'
 '2014': '2014'
 '2015': '2015'
+'2019': '2019'
+2019 = 100 · {quarter}: 2019 = 100 · {quarter}
 20th percentile: Percentil 20
 23.9% of GDP in 2022, 29.0% in 2070: 23.9% del PIB en 2022, 29.0% en 2070
 237 in 2022, 146 in 2050, 137 in 2070: 237 en 2022, 146 en 2050, 137 en 2070
@@ -272,6 +276,8 @@ $/t: $/t
 ; {ratio} in {year}: ; {ratio} en {year}
 ; {share}% of diesel's: ; {share}% del del gasóleo
 ; {value} three months earlier: ; {value} tres meses antes
+? 'A Macroscope calculation from INE''s accounts: each part''s volume growth times its share of nominal GDP at the start of the period. INE publishes only the domestic and external totals; inventories are what is left of INE''s domestic-demand contribution after consumption and investment. Since 2015 the parts add up to GDP growth within 0.03 points on average (a quarter of a point at most).'
+: 'Cálculo de Macroscope a partir de las cuentas del INE: el crecimiento en volumen de cada componente por su peso en el PIB nominal al inicio del periodo. El INE solo publica los totales de la demanda nacional y la externa; las existencias son lo que queda de la aportación de la demanda nacional del INE tras el consumo y la inversión. Desde 2015 los componentes suman el crecimiento del PIB con una diferencia media de 0.03 puntos (un cuarto de punto como máximo).'
 ? A Taylor rule turns inflation and slack into a suggested policy rate. Run on euro-area data it is a yardstick for the ECB; run on Spanish data it shows the rate Spain would get if it set its own, the cost of one rate for all.
 : 'Una regla de Taylor convierte la inflación y la holgura de la economía en un tipo oficial sugerido. Aplicada a los datos de la zona del euro, es una vara de medir para el BCE; aplicada a los datos españoles, muestra el tipo que tendría España si fijara el suyo propio: el coste de un tipo único para todos.'
 A budget balance below zero is a deficit.: Un saldo presupuestario negativo es un déficit.
@@ -286,6 +292,7 @@ A new retirement pension: Una pensión de jubilación nueva
 A retirement pension that ends: Una pensión de jubilación que causa baja
 A running read on the health of the Spanish economy.: Una lectura continua del estado de la economía española.
 A year earlier: Un año antes
+A year, since 2000: Al año, desde 2000
 ? A z-score of +1 means one typical deviation above the 2013–present norm (Covid years left out). Weights fall by a quarter for each month a reading is older than the newest data.
 : Una puntuación z de +1 significa una desviación típica por encima de la norma de 2013 hasta hoy (sin los años de la COVID). Los pesos bajan una cuarta parte por cada mes que un dato es más antiguo que el más reciente.
 ? AAA yields are the ECB's estimate of the curve for AAA-rated euro-area governments, the closest thing to a risk-free euro rate. Banco de España's prima de riesgo uses benchmark bonds, so it differs a little from Spain's 10-year yield minus Germany's.
@@ -385,6 +392,7 @@ Annual rate: Tasa anual
 Appraisals: Tasaciones
 Appraisals (Ministry of Housing): Tasaciones (Ministerio de Vivienda)
 Aragón: Aragón
+Arts and other services: Actividades artísticas y otros servicios
 Arts and recreation: Actividades artísticas y recreativas
 Arts, entertainment and recreation: Actividades artísticas, recreativas y de entretenimiento
 As paid: Nominal
@@ -483,6 +491,8 @@ Bonos and Obligaciones, weighted by amount: Bonos y Obligaciones, ponderado por 
 Bonuses and extras %: Pagas extra %
 Bonuses, extra months' pay and arrears, % of pay over the past four quarters: Pagas extraordinarias, pagos de vencimiento superior al mes y atrasos, % del salario en los últimos cuatro trimestres
 Borrowing costs over Germany: Coste de financiación frente a Alemania
+Branch: Rama
+Branches of activity: Ramas de actividad
 Brazil: Brasil
 Brent crude: Petróleo Brent
 Brent crude in euros: Petróleo Brent en euros
@@ -532,6 +542,7 @@ Cantabria: Cantabria
 Capital 2/: Gasto de capital 2/
 Capital 3/: Gasto de capital 3/
 Capital account: Cuenta de capital
+Capital and the self-employed (operating surplus and mixed income): Capital y autónomos (excedente de explotación y renta mixta)
 Capital goods: Bienes de equipo
 Capital tax: Impuestos sobre el capital
 Car sales: Matriculaciones de turismos
@@ -609,11 +620,15 @@ Contracts and the labour reform: Contratos y reforma laboral
 Contracts by type: Contratos por tipo
 Contrib. q/q: Aport. t/t
 Contrib. y/y: Aport. a/a
+Contribution: Aportación
 Contribution of identified flows 1/: Contribución de los flujos generadores de deuda identificados 1/
 Contribution of residual 3/: Contribución del residuo 3/
 ? 'Contributions are percentage points of GDP growth, as published by INE: domestic and external demand add up to GDP growth, give or take rounding.'
 : 'Las aportaciones son puntos porcentuales del crecimiento del PIB, tal como las publica el INE: la demanda nacional y la externa suman el crecimiento del PIB, salvo redondeo.'
 Contributions to GDP growth on a year earlier, percentage points: Aportaciones al crecimiento interanual del PIB, puntos porcentuales
+'Contributions to growth: branches': 'Aportaciones al crecimiento: ramas de actividad'
+'Contributions to growth: demand': 'Aportaciones al crecimiento: demanda'
+'Contributions to quarterly growth: demand': 'Aportaciones al crecimiento trimestral: demanda'
 Contributors per 100 pensioners: Cotizantes por cada 100 pensionistas
 Contributory pensions: Pensiones contributivas
 Copper (monthly): Cobre (mensual)
@@ -733,6 +748,7 @@ ECB rates since 2019: Tipos del BCE desde 2019
 ECB-speak: ECB-speak
 EPA: EPA
 EU: UE
+EU = 100, purchasing power standards: UE = 100, estándares de poder de compra
 EU limit: Límite de la UE
 EU reference: Referencia de la UE
 EUR/USD: EUR/USD
@@ -954,14 +970,22 @@ GDP growth: Crecimiento del PIB
 GDP growth forecast, {year}: Previsión de crecimiento del PIB, {year}
 GDP growth forecasts: Previsiones de crecimiento del PIB
 GDP growth in {year}: Crecimiento del PIB en {year}
+? GDP growth split into what each part of spending and each branch of activity adds, in percentage points. INE publishes only the domestic and external totals; the parts are a Macroscope calculation from its accounts, each part's volume growth weighted by its share of nominal GDP.
+: El crecimiento del PIB dividido en lo que aporta cada componente del gasto y cada rama de actividad, en puntos porcentuales. El INE solo publica los totales de la demanda nacional y la externa; los componentes son un cálculo de Macroscope a partir de sus cuentas, el crecimiento en volumen de cada componente ponderado por su peso en el PIB nominal.
 GDP growth {year}: Crecimiento del PIB {year}
+GDP growth, %: Crecimiento del PIB, %
 GDP growth, y/y: Crecimiento del PIB, a/a
 GDP growth, y/y %: Crecimiento del PIB, a/a %
 'GDP growth: model and official figures': 'Crecimiento del PIB: modelo y datos oficiales'
+? 'GDP measured by the incomes it pays: compensation of employees, the gross operating surplus and mixed income of firms and the self-employed, and taxes on production. The labour share is employees'' compensation as a share of GDP at factor cost, that is, before those taxes.'
+: 'El PIB medido por las rentas que genera: la remuneración de los asalariados, el excedente bruto de explotación y la renta mixta de empresas y autónomos, y los impuestos sobre la producción. La participación del trabajo es la remuneración de los asalariados en porcentaje del PIB al coste de los factores, es decir, antes de esos impuestos.'
 GDP nowcast (placeholder): Estimación adelantada del PIB (provisional)
 GDP nowcast (placeholder), {q}: Estimación adelantada del PIB (provisional), {q}
 GDP per head at purchasing power: PIB per cápita en paridad de poder adquisitivo
 GDP per head by region: PIB per cápita por comunidades
+GDP per head in purchasing power: PIB per cápita en paridad de poder de compra
+? GDP per head in purchasing power, which corrects for price levels across countries, against the euro area; and the real disposable income of households per head, what families have to spend after taxes and benefits and after inflation, against the EU (Eurostat publishes no euro-area figure).
+: El PIB per cápita en paridad de poder de compra, que corrige las diferencias de precios entre países, frente a la zona del euro; y la renta disponible real de los hogares per cápita, lo que las familias tienen para gastar después de impuestos y prestaciones y descontada la inflación, frente a la UE (Eurostat no publica la cifra de la zona del euro).
 GDP per head, PPP $ ({year}): PIB per cápita, $ PPA ({year})
 GDP per head, Spain = 100: PIB per cápita, España = 100
 GDP since the end of 2019: El PIB desde finales de 2019
@@ -1021,6 +1045,7 @@ Gross rental yield: Rentabilidad bruta del alquiler
 Gross rental yield on housing and Spain's 10-year government yield, %: Rentabilidad bruta del alquiler de vivienda y rentabilidad de la deuda pública española a 10 años, %
 Group: Grupo
 Growth: Crecimiento
+Growth from more hours or from more output per hour: Crecimiento por más horas o por más producción por hora
 Growth in {year}: Crecimiento en {year}
 Growth rates compare each quarter with the same quarter a year earlier.: Las tasas de crecimiento comparan cada trimestre con el mismo trimestre del año anterior.
 HICP: IPCA
@@ -1097,6 +1122,7 @@ Household debt: Deuda de los hogares
 Household debt, % of GDP: Deuda de los hogares, % del PIB
 Household debt, % of disposable income: Deuda de los hogares, % de la renta disponible
 Household finances and wealth: Finanzas y riqueza de los hogares
+Household income per head, after inflation: Renta de los hogares per cápita, descontada la inflación
 Household saving rate: Tasa de ahorro de los hogares
 Household saving rate (percent of gross disposable income): Tasa de ahorro de los hogares (porcentaje del ingreso disponible bruto)
 Household sector: Sector de los hogares
@@ -1128,6 +1154,8 @@ Housing wealth, € bn: Riqueza inmobiliaria, mm €
 : 'Cuántas viviendas cambian de manos, nuevas y de segunda mano, contadas de dos formas: las compraventas inscritas en los registros de la propiedad (INE) y las escrituras firmadas ante notario (Ministerio de Vivienda).'
 ? How many households rent, what renting a home out pays against its price, and how fast rents are rising against prices in general.
 : Cuántos hogares viven de alquiler, qué rentabilidad da alquilar una vivienda frente a su precio y a qué ritmo suben los alquileres frente a los precios en general.
+? How much is produced per hour worked and per job, whether growth comes from working more hours or from producing more in each, which branches have become more productive since 2019, and how Spain compares with the euro area. Output per hour by branch is gross value added in volume over hours worked, from INE's accounts; the comparisons are Eurostat's.
+: Cuánto se produce por hora trabajada y por puesto de trabajo, si el crecimiento viene de trabajar más horas o de producir más en cada una, qué ramas son más productivas que en 2019 y cómo se compara España con la zona del euro. La producción por hora de cada rama es su valor añadido bruto en volumen entre las horas trabajadas, de las cuentas del INE; las comparaciones son de Eurostat.
 How much new mortgages lend: Cuánto financian las hipotecas nuevas
 How much of pay is bonuses and extras: Cuánto del salario son pagas extraordinarias
 How price rises are spread across the basket: Cómo se reparten las subidas de precios en la cesta
@@ -1162,6 +1190,7 @@ INE's own calendar: calendario del propio INE
 : La encuesta trimestral a hogares del INE, la medida oficial del paro. No está desestacionalizada, así que la comparación con un año antes es la más limpia.
 INE, Eurostat, OECD, US BEA: INE, Eurostat, OCDE, BEA de EE. UU.
 INE, Eurostat, the ECB: INE, Eurostat, BCE
+INE; Macroscope calculation: INE; cálculo de Macroscope
 Idealista: Idealista
 Illes Balears: Illes Balears
 Import prices: Precios de importación
@@ -1245,6 +1274,7 @@ Intermediate goods: Bienes intermedios
 International: Internacional
 International organisations: Organismos internacionales
 International tourists: Turistas internacionales
+Inventories: Existencias
 Investment: Inversión
 Investment in housing, real, % on a year: Inversión en vivienda, en volumen, % interanual
 Is growth holding up?: ¿Aguanta el crecimiento?
@@ -1271,12 +1301,14 @@ Labor costs 4/: Costes laborales 4/
 Labor force: Población activa
 Labor productivity 2/: Productividad laboral 2/
 Labor productivity 3/: Productividad laboral 3/
+Labour (compensation of employees): Trabajo (remuneración de los asalariados)
 Labour cost index, wages (Eurostat): Índice de costes laborales, salarios (Eurostat)
 Labour costs (ETCL): Costes laborales (ETCL)
 Labour force survey (EPA): Encuesta de Población Activa (EPA)
 Labour force survey, not seasonally adjusted. The official measure.: Encuesta de Población Activa, sin desestacionalizar. La medida oficial.
 Labour market: Mercado laboral
 Labour market slack, % of the extended labour force: Holgura del mercado laboral, % de la población activa ampliada
+Labour share of income: Participación del trabajo en la renta
 Language: Idioma
 Largest deficit: Mayor déficit
 Largest market: Principal mercado
@@ -1307,6 +1339,7 @@ Level: Nivel
 Lines published only once a year are left out; {na} not yet published.: Se omiten las líneas que solo se publican una vez al año; {na} aún no publicado.
 Liquid fuels: Combustibles líquidos
 Living alone: Sin cónyuge (unidad económica unipersonal)
+Living standards: Nivel de vida
 Loan growth: Crecimiento del crédito
 Loan to value: Préstamo/valor
 ? Loan-to-value and terms of new mortgages on homes from the property registrars; non-performing loans and credit from the Banco de España.
@@ -1467,6 +1500,7 @@ Nominal GDP: PIB nominal
 Nominal GDP (billions of euros): PIB nominal (miles de millones de euros)
 Nominal GDP (billions of euros, the quarter): PIB nominal (miles de millones de euros, del trimestre)
 Nominal GDP growth (percent): Crecimiento del PIB nominal (porcentaje)
+Nominal unit labour cost per hour worked, fourth quarter of 2019 = 100: Coste laboral unitario nominal por hora trabajada, cuarto trimestre de 2019 = 100
 Non-EU: De fuera de la UE
 Non-energy industrial goods: Bienes industriales sin energía
 Non-performing: Dudosos
@@ -1506,6 +1540,7 @@ Old-age and survivors' pensions, % of GDP, latest year ({first}-{last}): Pension
 Old-age dependency in 2050: Tasa de dependencia en 2050
 Old-age dependency ratio: Tasa de dependencia de las personas mayores
 Olive oil and fats: Aceite de oliva y grasas
+On a year earlier: Interanual
 On the day: En el día
 On this page: En esta página
 Ordinary: Ordinarios
@@ -1513,6 +1548,7 @@ Orphans: Orfandad
 Other: Otros
 Other EU: Otros de la UE
 Other EU countries: Otros países de la UE
+Other branches and net taxes: Otras ramas e impuestos netos
 Other business services: Otros servicios empresariales
 Other expense: Otros gastos
 Other flows (stock-flow adjustment) 2/: Otros flujos (ajuste stock-flujo) 2/
@@ -1533,6 +1569,12 @@ Output by sector: Producción por sectores
 Output by sector (gross value added): Producción por sectores (valor añadido bruto)
 Output gap (percent of potential output) 1/: Brecha del producto (porcentaje del producto potencial) 1/
 Output gap 5/: Brecha del producto 5/
+Output per full-time equivalent job: Producción por puesto equivalente a tiempo completo
+Output per hour: Producción por hora
+Output per hour and per job: Producción por hora y por puesto de trabajo
+Output per hour by branch since 2019: Producción por hora por rama desde 2019
+Output per hour worked: Producción por hora trabajada
+'Output per hour: Spain and its neighbours': 'Producción por hora: España y sus vecinos'
 ? Output per job and per hour worked, and the labour cost of each unit of output. INE publishes these as changes on a year earlier.
 : La producción por puesto de trabajo y por hora trabajada, y el coste laboral de cada unidad producida. El INE los publica como variaciones interanuales.
 Outside the EU: Fuera de la UE
@@ -1621,6 +1663,10 @@ Percent of the quarter's GDP: Porcentaje del PIB del trimestre
 Percent of the quarter's GDP, unless otherwise indicated: Porcentaje del PIB del trimestre, salvo indicación en contrario
 Percent, unless otherwise indicated; end of quarter: Porcentaje, salvo indicación en contrario; fin de trimestre
 Percent, unless otherwise indicated; end of year: Porcentaje, salvo indicación en contrario; fin de año
+Percentage points of GDP growth on a year earlier, by branch of activity: Puntos porcentuales del crecimiento interanual del PIB, por rama de actividad
+Percentage points of GDP growth on a year earlier; imports subtract: Puntos porcentuales del crecimiento interanual del PIB; las importaciones restan
+Percentage points of GDP growth on the previous quarter; imports subtract: Puntos porcentuales del crecimiento intertrimestral del PIB; las importaciones restan
+Percentage points of GDP growth · {quarter}: Puntos porcentuales del crecimiento del PIB · {quarter}
 'Percentage points of GDP: the parts of DSA 1, actual years then the IMF''s projections': 'Puntos porcentuales del PIB: los componentes del DSA 1, años observados y después proyecciones del FMI'
 Period: Periodo
 Permanent: Indefinidos
@@ -1694,11 +1740,13 @@ Productivity: Productividad
 Productivity and costs: Productividad y costes
 Productivity and labour costs: Productividad y costes laborales
 Productivity and unit labour costs: Productividad y costes laborales unitarios
+Productivity in detail: La productividad en detalle
 Productivity per full-time equivalent job: Productividad por puesto equivalente a tiempo completo
 Productivity per hour worked: Productividad por hora trabajada
 Productivity per hour, pay per employee and unit labour cost, % change on a year earlier: Productividad por hora, remuneración por asalariado y coste laboral unitario, variación interanual, %
 Productivity since 2019: Productividad desde 2019
 Productivity, {year}: Productividad, {year}
+Professional and administrative services: Actividades profesionales y administrativas
 Professional services: Actividades profesionales
 Professional, scientific and technical: Actividades profesionales, científicas y técnicas
 Projected pension spending: Proyección del gasto en pensiones
@@ -1713,6 +1761,7 @@ Public: Sector público
 'Public Debt: European Commission Baseline and Stress Tests': 'Deuda pública: escenario base y pruebas de tensión de la Comisión Europea'
 Public administration: Administración pública
 Public administration and defence: Administración pública y defensa
+Public administration, education and health: Administración pública, educación y sanidad
 Public consumption: Consumo público
 Public debt: Deuda pública
 Public debt in 2050 with policies unchanged: Deuda pública en 2050 con las políticas actuales
@@ -1741,7 +1790,9 @@ Real GDP (billions of 2020 euros): PIB real (miles de millones de euros de 2020)
 Real GDP and GDP per head · {period}: PIB real y PIB per cápita · {period}
 Real GDP growth: Crecimiento del PIB real
 Real GDP growth (percent): Crecimiento del PIB real (porcentaje)
+Real GDP growth on a year earlier, split in two (log points): Crecimiento interanual del PIB real, dividido en dos (puntos logarítmicos)
 Real GDP per capita: PIB real per cápita
+Real GDP per hour worked and per full-time equivalent job, and hours worked; 2019 = 100: PIB real por hora trabajada y por puesto de trabajo equivalente a tiempo completo, y horas trabajadas; 2019 = 100
 Real GDP per person employed, % change on 2019: PIB real por ocupado, variación sobre 2019, %
 Real GDP since 2019: PIB real desde 2019
 Real GDP, % change on a year earlier: PIB real, variación interanual, %
@@ -1753,6 +1804,8 @@ Real estate: Actividades inmobiliarias
 Real estate market: Mercado inmobiliario
 Real exports, % change on a year earlier; services include tourism: Exportaciones reales, variación interanual, %; los servicios incluyen el turismo
 Real fixed investment, % change on a year earlier: Inversión real en capital fijo, variación interanual, %
+Real gross disposable income of households per head, 2008 = 100: Renta disponible bruta real de los hogares per cápita, 2008 = 100
+Real gross value added per hour worked, past four quarters against 2019, % change: Valor añadido bruto real por hora trabajada, últimos cuatro trimestres frente a 2019, variación, %
 Real gross value added, % change on a year earlier: Valor añadido bruto real, variación interanual, %
 Real growth: Crecimiento real
 Real growth rate: Tasa de crecimiento real
@@ -1760,6 +1813,7 @@ Real growth, seasonally and calendar adjusted by INE. Following Spanish practice
 Real house prices: Precios reales de la vivienda
 Real house prices since the boom: Precios reales de la vivienda desde el boom
 Real interest rate: Tipo de interés real
+Real labour productivity per hour worked, fourth quarter of 2019 = 100: Productividad real del trabajo por hora trabajada, cuarto trimestre de 2019 = 100
 ? 'Real pay is compensation per employee (wages and employers'' social contributions) deflated by consumer prices; productivity is real GDP per person employed. Annual figures from the European Commission''s AMECO database: {year} is partly the Commission''s estimate. Not available for Canada, whose AMECO figures stop in 2024.'
 : 'Los salarios reales son la remuneración por asalariado (sueldos y cotizaciones sociales a cargo de los empleadores) deflactada por los precios de consumo; la productividad es el PIB real por ocupado. Cifras anuales de la base de datos AMECO de la Comisión Europea: {year} es en parte una estimación de la Comisión. No disponible para Canadá, cuyas cifras en AMECO terminan en 2024.'
 Real pay since 2019: Salarios reales desde 2019
@@ -2015,6 +2069,7 @@ Table {n}: Cuadro {n}
 : 'Los cuadros 4 y 5 del informe del Artículo IV de 2026 del FMI sobre España: la balanza de pagos, en euros y en % del PIB, y la deuda externa por sector e instrumento, de Eurostat. El World Economic Outlook solo proyecta la cuenta corriente, así que las demás líneas muestran … en los años de proyección.'
 Taxes: Impuestos
 Taxes in the pump price: Impuestos en el precio del surtidor
+Taxes less subsidies on products: Impuestos netos sobre los productos
 Taylor rule: Regla de Taylor
 Taylor rule, Spain: Regla de Taylor, España
 Taylor rule, euro area: Regla de Taylor, zona del euro
@@ -2226,6 +2281,7 @@ Unemployment, 1-yr change: Paro, variación en 1 año
 ? Unemployment, for everyone and for people under 25, and the share of people aged 15 to 64 in work. Spain's unemployment and youth unemployment are the highest of the group.
 : El paro, total y de los menores de 25 años, y el porcentaje de personas de 15 a 64 años con empleo. El paro y el paro juvenil de España son los más altos del grupo.
 Unit labour cost: Coste laboral unitario
+'Unit labour costs: Spain and its neighbours': 'Costes laborales unitarios: España y sus vecinos'
 United Kingdom: Reino Unido
 United States: Estados Unidos
 Unprocessed food: Alimentos no elaborados
@@ -2275,6 +2331,7 @@ What changes the debt ratio: Qué mueve la ratio de deuda
 : Qué hace variar la deuda, con el formato del FMI, y cómo se comporta en las pruebas de tensión de la Comisión Europea. En porcentaje del PIB, el DSA 1 desglosa la variación de la ratio de deuda, incluidos el crecimiento y la inflación; en euros, la variación del importe adeudado, que solo mueven el déficit, los intereses y otros flujos.
 What contributory pensions cost: Lo que cuestan las pensiones contributivas
 What drives annual growth: Qué impulsa el crecimiento anual
+What drives growth: Qué impulsa el crecimiento
 ? 'What drives the debt ratio, in the IMF''s layout (DSA 1: Eurostat for past years, the World Economic Outlook for projections), and how it fares under stress, from the European Commission''s Debt Sustainability Monitor (DSA 2), since the IMF does not publish its own stress tests as data. The Fiscal Explorer runs the Commission''s baseline to 2070.'
 : 'Qué mueve la ratio de deuda, con el formato del FMI (DSA 1: Eurostat para los años pasados, el World Economic Outlook para las proyecciones), y cómo se comporta en escenarios de tensión, del Debt Sustainability Monitor de la Comisión Europea (DSA 2), ya que el FMI no publica sus propias pruebas de tensión como datos. El Explorador fiscal proyecta el escenario base de la Comisión hasta 2070.'
 ? 'What each economy earns from the rest of the world, less what it pays: trade in goods and services, income and transfers. Spain has run a surplus every year since 2012, after a deficit of 9.4% of GDP in 2007, before the financial crisis.'
@@ -2303,6 +2360,8 @@ When the figures on this site are published. Times are Madrid time.: Cuándo se 
 : 'Según dónde vive el pensionista. Las pensiones medias siguen a los salarios del pasado: son más altas en el País Vasco, Asturias y Madrid y más bajas en Extremadura y Galicia (cuadros PEN-19, PEN-20 y PEN-24).'
 Where the unemployed go: Adónde van los parados
 Where the vacancies are: Dónde están las vacantes
+Who earns the income: Quién recibe la renta
+'Who earns the income: labour and capital': 'Quién recibe la renta: trabajo y capital'
 'Who works: age, sex, citizenship and education': 'Quién trabaja: edad, sexo, nacionalidad y estudios'
 Wholesale: Mayoristas
 Wholesale and retail trade: Comercio al por mayor y al por menor
@@ -2358,6 +2417,7 @@ all pensions, {year}; EU {eu} (Eurostat): todas las pensiones, {year}; UE {eu} (
 annual avg., %: media anual, %
 ? average gross pension spending in 2022-2050 (Ageing Report) at most 15% of GDP, adjusted by the gap between the revenue measures' yield and 1.7% of GDP
 : gasto bruto medio en pensiones en 2022-2050 (Ageing Report) de como máximo el 15% del PIB, ajustado por la diferencia entre lo que recauden las medidas de ingresos y el 1.7% del PIB
+average growth of output per hour: crecimiento medio de la producción por hora
 average of the four quarters to {quarter}: media de los cuatro trimestres hasta {quarter}
 average of {n}; range {low} to {high}: media de {n}; entre {low} y {high}
 average without the 15% extremes at each end: media sin el 15% de los extremos de cada lado
@@ -2439,6 +2499,7 @@ on the 1st of {month}: a 1 de {month}
 on the participation rate: sobre la tasa de actividad
 on {day}, against {what}: el {day}, frente a {what}
 or labelled as a Macroscope calculation.: o las señaladas como cálculo de Macroscope.
+output per hour worked: producción por hora trabajada
 outstanding; the Tesoro's list of {day}: en circulación; relación del Tesoro a {day}
 over a year · {period}; {total} million in all: en un año · {period}; {total} millones en total
 owed by households · {period}; {peak}: de los hogares · {period}; {peak}
@@ -2448,6 +2509,7 @@ past 12 months · {period}, {change} on a year: últimos 12 meses · {period}, {
 past 12 months · {period}; {peak} at the {year} peak: últimos 12 meses · {period}; {peak} en el máximo de {year}
 past 12 months · {period}; {share} protected; {peak} at the {year} peak: últimos 12 meses · {period}; {share} protegidas; {peak} en el máximo de {year}
 past 12 months, to {month}: últimos 12 meses, hasta {month}
+past four quarters, {change} on a year earlier: últimos cuatro trimestres, {change} interanual
 pay per worker against the CPI, all activities: salario por trabajador frente al IPC, todas las actividades
 pension spending from 12.7% of GDP in 2022 to 16.1% in 2050: gasto en pensiones del 12.7% del PIB en 2022 al 16.1% en 2050
 pension spending from 13% of GDP in 2025 to 16.4% in 2050: gasto en pensiones del 13% del PIB en 2025 al 16.4% en 2050
@@ -2494,6 +2556,7 @@ the same as: lo mismo que
 the second highest of the {n} countries: la segunda más alta de los {n} países
 the third highest of the {n} countries: la tercera más alta de los {n} países
 the {rank}th highest of the {n} countries: la {rank}.ª más alta de los {n} países
+thousand hours: miles de horas
 to maturity, weighted by amount: hasta el vencimiento, ponderada por importe
 to {date}: hasta el {date}
 to {year}: hasta {year}
@@ -2545,6 +2608,7 @@ z-score: Puntuación z
 : '{na} no disponible: la base de datos del FMI no publica la línea. Con el formato del {report}; los años anteriores difieren cuando los datos se han revisado desde entonces.'
 '{n} million': '{n} millones'
 '{n} of {total}': '{n} de {total}'
+'{quarter}; {then} on average in 2019': '{quarter}; {then} de media en 2019'
 '{rank} fastest of {n} · {when}': el {rank}.º más rápido de los {n} · {when}
 '{rank} highest of {n} · {when}': la {rank}.ª cifra más alta de los {n} · {when}
 '{rank} largest rise of {n} · {when}': la {rank}.ª mayor subida de los {n} · {when}

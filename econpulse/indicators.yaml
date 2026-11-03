@@ -3555,6 +3555,631 @@ indicators:
   # ---------------------------------------------------------------- Annual series for the IMF-style sector tables
   # (econpulse/sectortables.py): national accounts, saving, the external accounts and credit, by year.
 
+  # ---------------------------------------------------------------- a deeper GDP page (Batch 34d)
+  # INE's quarterly national accounts, seasonally and calendar adjusted: demand in current prices (for the
+  # components' contributions), gross value added in INE's ten branches (volumes and current prices), the income
+  # side, and hours worked by branch; Eurostat for productivity, unit labour costs and living standards.
+  - id: cons_hh_npish
+    label: "Household and non-profit consumption"
+    label_es: "Gasto en consumo final de los hogares y las ISFLSH (volumen)"
+    section: gdp
+    source: ine
+    key: CNTR7156
+    freq: Q
+    unit: "index"
+    decimals: 1
+    change_unit: "%"
+
+  - id: cp_cons_hh_npish
+    label: "Household and non-profit consumption, current prices"
+    label_es: "Gasto en consumo final de los hogares y las ISFLSH (precios corrientes)"
+    section: gdp
+    source: ine
+    key: CNTR6842
+    freq: Q
+    unit: "€ mn"
+    decimals: 0
+    change_unit: "%"
+
+  - id: cp_cons_government
+    label: "Government consumption, current prices"
+    label_es: "Gasto en consumo final de las AAPP (precios corrientes)"
+    section: gdp
+    source: ine
+    key: CNTR6860
+    freq: Q
+    unit: "€ mn"
+    decimals: 0
+    change_unit: "%"
+
+  - id: cp_gfcf
+    label: "Fixed investment, current prices"
+    label_es: "Formación bruta de capital fijo (precios corrientes)"
+    section: gdp
+    source: ine
+    key: CNTR6875
+    freq: Q
+    unit: "€ mn"
+    decimals: 0
+    change_unit: "%"
+
+  - id: cp_exports
+    label: "Exports, current prices"
+    label_es: "Exportaciones de bienes y servicios (precios corrientes)"
+    section: gdp
+    source: ine
+    key: CNTR6909
+    freq: Q
+    unit: "€ mn"
+    decimals: 0
+    change_unit: "%"
+
+  - id: cp_imports
+    label: "Imports, current prices"
+    label_es: "Importaciones de bienes y servicios (precios corrientes)"
+    section: gdp
+    source: ine
+    key: CNTR6921
+    freq: Q
+    unit: "€ mn"
+    decimals: 0
+    change_unit: "%"
+
+  - id: gva_trade
+    label: "Gross value added, trade, transport and hospitality"
+    label_es: "VAB comercio, transporte y hostelería (volumen)"
+    section: gdp
+    source: ine
+    key: CNTR6682
+    freq: Q
+    unit: "index"
+    decimals: 1
+    change_unit: "%"
+
+  - id: gva_information
+    label: "Gross value added, information and communication"
+    label_es: "VAB información y comunicaciones (volumen)"
+    section: gdp
+    source: ine
+    key: CNTR6687
+    freq: Q
+    unit: "index"
+    decimals: 1
+    change_unit: "%"
+
+  - id: gva_finance
+    label: "Gross value added, finance and insurance"
+    label_es: "VAB actividades financieras y de seguros (volumen)"
+    section: gdp
+    source: ine
+    key: CNTR6692
+    freq: Q
+    unit: "index"
+    decimals: 1
+    change_unit: "%"
+
+  - id: gva_real_estate
+    label: "Gross value added, real estate"
+    label_es: "VAB actividades inmobiliarias (volumen)"
+    section: gdp
+    source: ine
+    key: CNTR6697
+    freq: Q
+    unit: "index"
+    decimals: 1
+    change_unit: "%"
+
+  - id: gva_professional
+    label: "Gross value added, professional and administrative services"
+    label_es: "VAB actividades profesionales, científicas y técnicas y otras (volumen)"
+    section: gdp
+    source: ine
+    key: CNTR6702
+    freq: Q
+    unit: "index"
+    decimals: 1
+    change_unit: "%"
+
+  - id: gva_public
+    label: "Gross value added, public administration, education and health"
+    label_es: "VAB administración pública, educación y sanidad (volumen)"
+    section: gdp
+    source: ine
+    key: CNTR6707
+    freq: Q
+    unit: "index"
+    decimals: 1
+    change_unit: "%"
+
+  - id: gva_arts
+    label: "Gross value added, arts and other services"
+    label_es: "VAB actividades artísticas, recreativas y otros servicios (volumen)"
+    section: gdp
+    source: ine
+    key: CNTR6712
+    freq: Q
+    unit: "index"
+    decimals: 1
+    change_unit: "%"
+
+  - id: net_taxes_products
+    label: "Taxes less subsidies on products"
+    label_es: "Impuestos menos subvenciones sobre los productos (volumen)"
+    section: gdp
+    source: ine
+    key: CNTR6717
+    freq: Q
+    unit: "index"
+    decimals: 1
+    change_unit: "%"
+
+  - id: cp_gva_agriculture
+    label: "Gross value added, agriculture, current prices"
+    label_es: "VAB agricultura, ganadería, silvicultura y pesca (precios corrientes)"
+    section: gdp
+    source: ine
+    key: CNTR6600
+    freq: Q
+    unit: "€ mn"
+    decimals: 0
+    change_unit: "%"
+
+  - id: cp_gva_industry
+    label: "Gross value added, industry, current prices"
+    label_es: "VAB industria (precios corrientes)"
+    section: gdp
+    source: ine
+    key: CNTR6603
+    freq: Q
+    unit: "€ mn"
+    decimals: 0
+    change_unit: "%"
+
+  - id: cp_gva_construction
+    label: "Gross value added, construction, current prices"
+    label_es: "VAB construcción (precios corrientes)"
+    section: gdp
+    source: ine
+    key: CNTR6609
+    freq: Q
+    unit: "€ mn"
+    decimals: 0
+    change_unit: "%"
+
+  - id: cp_gva_trade
+    label: "Gross value added, trade, transport and hospitality, current prices"
+    label_es: "VAB comercio, transporte y hostelería (precios corrientes)"
+    section: gdp
+    source: ine
+    key: CNTR6615
+    freq: Q
+    unit: "€ mn"
+    decimals: 0
+    change_unit: "%"
+
+  - id: cp_gva_information
+    label: "Gross value added, information and communication, current prices"
+    label_es: "VAB información y comunicaciones (precios corrientes)"
+    section: gdp
+    source: ine
+    key: CNTR6618
+    freq: Q
+    unit: "€ mn"
+    decimals: 0
+    change_unit: "%"
+
+  - id: cp_gva_finance
+    label: "Gross value added, finance and insurance, current prices"
+    label_es: "VAB actividades financieras y de seguros (precios corrientes)"
+    section: gdp
+    source: ine
+    key: CNTR6621
+    freq: Q
+    unit: "€ mn"
+    decimals: 0
+    change_unit: "%"
+
+  - id: cp_gva_real_estate
+    label: "Gross value added, real estate, current prices"
+    label_es: "VAB actividades inmobiliarias (precios corrientes)"
+    section: gdp
+    source: ine
+    key: CNTR6624
+    freq: Q
+    unit: "€ mn"
+    decimals: 0
+    change_unit: "%"
+
+  - id: cp_gva_professional
+    label: "Gross value added, professional and administrative services, current prices"
+    label_es: "VAB actividades profesionales, científicas y técnicas y otras (precios corrientes)"
+    section: gdp
+    source: ine
+    key: CNTR6627
+    freq: Q
+    unit: "€ mn"
+    decimals: 0
+    change_unit: "%"
+
+  - id: cp_gva_public
+    label: "Gross value added, public administration, education and health, current prices"
+    label_es: "VAB administración pública, educación y sanidad (precios corrientes)"
+    section: gdp
+    source: ine
+    key: CNTR6630
+    freq: Q
+    unit: "€ mn"
+    decimals: 0
+    change_unit: "%"
+
+  - id: cp_gva_arts
+    label: "Gross value added, arts and other services, current prices"
+    label_es: "VAB actividades artísticas, recreativas y otros servicios (precios corrientes)"
+    section: gdp
+    source: ine
+    key: CNTR6633
+    freq: Q
+    unit: "€ mn"
+    decimals: 0
+    change_unit: "%"
+
+  - id: cp_net_taxes_products
+    label: "Taxes less subsidies on products, current prices"
+    label_es: "Impuestos menos subvenciones sobre los productos (precios corrientes)"
+    section: gdp
+    source: ine
+    key: CNTR6636
+    freq: Q
+    unit: "€ mn"
+    decimals: 0
+    change_unit: "%"
+
+  - id: compensation_employees
+    label: "Compensation of employees"
+    label_es: "Remuneración de los asalariados (precios corrientes)"
+    section: gdp
+    source: ine
+    key: CNTR7362
+    freq: Q
+    unit: "€ mn"
+    decimals: 0
+    change_unit: "%"
+
+  - id: operating_surplus
+    label: "Gross operating surplus and mixed income"
+    label_es: "Excedente de explotación bruto y renta mixta bruta (precios corrientes)"
+    section: gdp
+    source: ine
+    key: CNTR7479
+    freq: Q
+    unit: "€ mn"
+    decimals: 0
+    change_unit: "%"
+
+  - id: net_taxes_production
+    label: "Taxes less subsidies on production and imports"
+    label_es: "Impuestos menos subvenciones sobre la producción y las importaciones (precios corrientes)"
+    section: gdp
+    source: ine
+    key: CNTR7482
+    freq: Q
+    unit: "€ mn"
+    decimals: 0
+    change_unit: "%"
+
+  - id: hours_cn
+    label: "Hours worked (national accounts)"
+    label_es: "Horas trabajadas, ocupados (contabilidad nacional)"
+    section: gdp
+    source: ine
+    key: CNTR7896
+    freq: Q
+    unit: "thousand hours"
+    decimals: 0
+    change_unit: "%"
+
+  - id: hours_cn_agriculture
+    label: "Hours worked, agriculture"
+    label_es: "Horas trabajadas, agricultura, ganadería, silvicultura y pesca"
+    section: gdp
+    source: ine
+    key: CNTR7899
+    freq: Q
+    unit: "thousand hours"
+    decimals: 0
+    change_unit: "%"
+
+  - id: hours_cn_industry
+    label: "Hours worked, industry"
+    label_es: "Horas trabajadas, industria"
+    section: gdp
+    source: ine
+    key: CNTR7902
+    freq: Q
+    unit: "thousand hours"
+    decimals: 0
+    change_unit: "%"
+
+  - id: hours_cn_construction
+    label: "Hours worked, construction"
+    label_es: "Horas trabajadas, construcción"
+    section: gdp
+    source: ine
+    key: CNTR7908
+    freq: Q
+    unit: "thousand hours"
+    decimals: 0
+    change_unit: "%"
+
+  - id: hours_cn_trade
+    label: "Hours worked, trade, transport and hospitality"
+    label_es: "Horas trabajadas, comercio, transporte y hostelería"
+    section: gdp
+    source: ine
+    key: CNTR7914
+    freq: Q
+    unit: "thousand hours"
+    decimals: 0
+    change_unit: "%"
+
+  - id: hours_cn_information
+    label: "Hours worked, information and communication"
+    label_es: "Horas trabajadas, información y comunicaciones"
+    section: gdp
+    source: ine
+    key: CNTR7917
+    freq: Q
+    unit: "thousand hours"
+    decimals: 0
+    change_unit: "%"
+
+  - id: hours_cn_finance
+    label: "Hours worked, finance and insurance"
+    label_es: "Horas trabajadas, actividades financieras y de seguros"
+    section: gdp
+    source: ine
+    key: CNTR7920
+    freq: Q
+    unit: "thousand hours"
+    decimals: 0
+    change_unit: "%"
+
+  - id: hours_cn_real_estate
+    label: "Hours worked, real estate"
+    label_es: "Horas trabajadas, actividades inmobiliarias"
+    section: gdp
+    source: ine
+    key: CNTR7923
+    freq: Q
+    unit: "thousand hours"
+    decimals: 0
+    change_unit: "%"
+
+  - id: hours_cn_professional
+    label: "Hours worked, professional and administrative services"
+    label_es: "Horas trabajadas, actividades profesionales, científicas y técnicas, administrativas y servicios"
+    section: gdp
+    source: ine
+    key: CNTR7926
+    freq: Q
+    unit: "thousand hours"
+    decimals: 0
+    change_unit: "%"
+
+  - id: hours_cn_public
+    label: "Hours worked, public administration, education and health"
+    label_es: "Horas trabajadas, administración pública, sanidad y educación"
+    section: gdp
+    source: ine
+    key: CNTR7929
+    freq: Q
+    unit: "thousand hours"
+    decimals: 0
+    change_unit: "%"
+
+  - id: hours_cn_arts
+    label: "Hours worked, arts and other services"
+    label_es: "Horas trabajadas, actividades artísticas, recreativas y otros servicios"
+    section: gdp
+    source: ine
+    key: CNTR7932
+    freq: Q
+    unit: "thousand hours"
+    decimals: 0
+    change_unit: "%"
+
+  - id: lp_hour_es
+    label: "Real labour productivity per hour worked, Spain"
+    label_es: "Productividad real del trabajo por hora trabajada, España"
+    section: gdp
+    source: eurostat
+    key: namq_10_lp_ulc
+    params: {geo: ES, unit: I20, s_adj: SCA, na_item: RLPR_HW}
+    freq: Q
+    unit: index
+    decimals: 1
+    change_unit: "%"
+
+  - id: ulc_hour_es
+    label: "Nominal unit labour cost (hours), Spain"
+    label_es: "Coste laboral unitario nominal (horas), España"
+    section: gdp
+    source: eurostat
+    key: namq_10_lp_ulc
+    params: {geo: ES, unit: I20, s_adj: SCA, na_item: NULC_HW}
+    freq: Q
+    unit: index
+    decimals: 1
+    change_unit: "%"
+
+  - id: lp_hour_ea
+    label: "Real labour productivity per hour worked, euro area"
+    label_es: "Productividad real del trabajo por hora trabajada, zona del euro"
+    section: gdp
+    source: eurostat
+    key: namq_10_lp_ulc
+    params: {geo: EA20, unit: I20, s_adj: SCA, na_item: RLPR_HW}
+    freq: Q
+    unit: index
+    decimals: 1
+    change_unit: "%"
+
+  - id: ulc_hour_ea
+    label: "Nominal unit labour cost (hours), euro area"
+    label_es: "Coste laboral unitario nominal (horas), zona del euro"
+    section: gdp
+    source: eurostat
+    key: namq_10_lp_ulc
+    params: {geo: EA20, unit: I20, s_adj: SCA, na_item: NULC_HW}
+    freq: Q
+    unit: index
+    decimals: 1
+    change_unit: "%"
+
+  - id: lp_hour_de
+    label: "Real labour productivity per hour worked, Germany"
+    label_es: "Productividad real del trabajo por hora trabajada, Alemania"
+    section: gdp
+    source: eurostat
+    key: namq_10_lp_ulc
+    params: {geo: DE, unit: I20, s_adj: SCA, na_item: RLPR_HW}
+    freq: Q
+    unit: index
+    decimals: 1
+    change_unit: "%"
+
+  - id: ulc_hour_de
+    label: "Nominal unit labour cost (hours), Germany"
+    label_es: "Coste laboral unitario nominal (horas), Alemania"
+    section: gdp
+    source: eurostat
+    key: namq_10_lp_ulc
+    params: {geo: DE, unit: I20, s_adj: SCA, na_item: NULC_HW}
+    freq: Q
+    unit: index
+    decimals: 1
+    change_unit: "%"
+
+  - id: lp_hour_fr
+    label: "Real labour productivity per hour worked, France"
+    label_es: "Productividad real del trabajo por hora trabajada, Francia"
+    section: gdp
+    source: eurostat
+    key: namq_10_lp_ulc
+    params: {geo: FR, unit: I20, s_adj: SCA, na_item: RLPR_HW}
+    freq: Q
+    unit: index
+    decimals: 1
+    change_unit: "%"
+
+  - id: ulc_hour_fr
+    label: "Nominal unit labour cost (hours), France"
+    label_es: "Coste laboral unitario nominal (horas), Francia"
+    section: gdp
+    source: eurostat
+    key: namq_10_lp_ulc
+    params: {geo: FR, unit: I20, s_adj: SCA, na_item: NULC_HW}
+    freq: Q
+    unit: index
+    decimals: 1
+    change_unit: "%"
+
+  - id: lp_hour_it
+    label: "Real labour productivity per hour worked, Italy"
+    label_es: "Productividad real del trabajo por hora trabajada, Italia"
+    section: gdp
+    source: eurostat
+    key: namq_10_lp_ulc
+    params: {geo: IT, unit: I20, s_adj: SCA, na_item: RLPR_HW}
+    freq: Q
+    unit: index
+    decimals: 1
+    change_unit: "%"
+
+  - id: ulc_hour_it
+    label: "Nominal unit labour cost (hours), Italy"
+    label_es: "Coste laboral unitario nominal (horas), Italia"
+    section: gdp
+    source: eurostat
+    key: namq_10_lp_ulc
+    params: {geo: IT, unit: I20, s_adj: SCA, na_item: NULC_HW}
+    freq: Q
+    unit: index
+    decimals: 1
+    change_unit: "%"
+
+  - id: lp_hour_pt
+    label: "Real labour productivity per hour worked, Portugal"
+    label_es: "Productividad real del trabajo por hora trabajada, Portugal"
+    section: gdp
+    source: eurostat
+    key: namq_10_lp_ulc
+    params: {geo: PT, unit: I20, s_adj: SCA, na_item: RLPR_HW}
+    freq: Q
+    unit: index
+    decimals: 1
+    change_unit: "%"
+
+  - id: ulc_hour_pt
+    label: "Nominal unit labour cost (hours), Portugal"
+    label_es: "Coste laboral unitario nominal (horas), Portugal"
+    section: gdp
+    source: eurostat
+    key: namq_10_lp_ulc
+    params: {geo: PT, unit: I20, s_adj: SCA, na_item: NULC_HW}
+    freq: Q
+    unit: index
+    decimals: 1
+    change_unit: "%"
+
+  - id: gdppc_pps_es
+    label: "GDP per head in purchasing power, Spain (EU = 100)"
+    label_es: "PIB per cápita en paridad de poder de compra, España (UE = 100)"
+    section: gdp
+    source: eurostat
+    key: prc_ppp_ind
+    params: {geo: ES, na_item: VI_PPS_EU27_2020_HAB, ppp_cat: GDP}
+    freq: A
+    unit: index
+    decimals: 0
+    change_unit: pp
+
+  - id: gdppc_pps_ea
+    label: "GDP per head in purchasing power, euro area (EU = 100)"
+    label_es: "PIB per cápita en paridad de poder de compra, zona del euro (UE = 100)"
+    section: gdp
+    source: eurostat
+    key: prc_ppp_ind
+    params: {geo: EA20, na_item: VI_PPS_EU27_2020_HAB, ppp_cat: GDP}
+    freq: A
+    unit: index
+    decimals: 0
+    change_unit: pp
+
+  - id: gdhi_real_pc_es
+    label: "Real household disposable income per head, Spain (2008 = 100)"
+    label_es: "Renta disponible bruta real de los hogares per cápita, España (2008 = 100)"
+    section: gdp
+    source: eurostat
+    key: tepsr_wc310
+    params: {geo: ES}
+    freq: A
+    unit: index
+    decimals: 1
+    change_unit: "%"
+
+  - id: gdhi_real_pc_eu
+    label: "Real household disposable income per head, EU (2008 = 100)"
+    label_es: "Renta disponible bruta real de los hogares per cápita, UE (2008 = 100)"
+    section: gdp
+    source: eurostat
+    key: tepsr_wc310
+    params: {geo: EU27_2020}
+    freq: A
+    unit: index
+    decimals: 1
+    change_unit: "%"
+
   - id: gdp_growth_annual
     label: Real GDP growth, annual
     label_es: PIB, volumen, tasa anual
