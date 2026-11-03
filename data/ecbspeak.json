@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-11-03T00:06:18+00:00",
+ "updated_at": "2026-11-03T22:32:23+00:00",
  "rebuilt_at": "2026-11-01T06:28:54+00:00",
  "ecb_modified": "Sun, 01 Nov 2026 05:21:10 GMT",
  "ecb_last": "2026-10-30",
@@ -17379,6 +17379,57 @@
    "dovish": 0,
    "score": null,
    "policy_share": 0.2
+  },
+  {
+   "id": "https://www.bis.org/speeches/20261103-economic-transitions-technology",
+   "date": "2026-11-03",
+   "speaker": "Gabriel Makhlouf",
+   "key": "makhlouf",
+   "institution": "IE",
+   "seat": "IE",
+   "title": "Governor",
+   "speech_title": "Economic transitions - technology",
+   "url": "https://www.bis.org/speeches/20261103-economic-transitions-technology",
+   "source": "BIS",
+   "words": 2703,
+   "hawkish": 1,
+   "dovish": 0,
+   "score": null,
+   "policy_share": 0.0
+  },
+  {
+   "id": "https://www.bis.org/speeches/20261103-marking-our-tenth-anniversary-one-conviction-two-principles-and-three-challenges",
+   "date": "2026-11-03",
+   "speaker": "Emmanuel Moulin",
+   "key": "moulin",
+   "institution": "FR",
+   "seat": "FR",
+   "title": "Governor",
+   "speech_title": "Marking our tenth anniversary - one conviction, two principles and three challenges",
+   "url": "https://www.bis.org/speeches/20261103-marking-our-tenth-anniversary-one-conviction-two-principles-and-three-challenges",
+   "source": "BIS",
+   "words": 235,
+   "hawkish": 0,
+   "dovish": 0,
+   "score": null,
+   "policy_share": 0.0
+  },
+  {
+   "id": "https://www.bis.org/speeches/20261103-stable-banks-strong-capital-markets-europes-financial-system-future",
+   "date": "2026-11-03",
+   "speaker": "Joachim Nagel",
+   "key": "nagel",
+   "institution": "DE",
+   "seat": "DE",
+   "title": "Governor",
+   "speech_title": "Stable banks, strong capital markets - Europe’s financial system for the future",
+   "url": "https://www.bis.org/speeches/20261103-stable-banks-strong-capital-markets-europes-financial-system-future",
+   "source": "BIS",
+   "words": 2259,
+   "hawkish": 0,
+   "dovish": 1,
+   "score": null,
+   "policy_share": 0.0
   }
  ]
 }

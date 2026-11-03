@@ -442,24 +442,24 @@
    "flash": false
   },
   "car_sales": {
-   "date": "2026-09-01",
-   "raw": 93858.0,
-   "display": "10.2% y/y",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 98487.0,
+   "display": "1.8% y/y",
+   "period": "Oct 2026",
    "flash": false
   },
   "electricity_demand": {
-   "date": "2026-10-30",
-   "raw": 685.37337,
-   "display": "685.4 GWh",
-   "period": "30 Oct 2026",
+   "date": "2026-11-02",
+   "raw": 608.57891,
+   "display": "608.6 GWh",
+   "period": "2 Nov 2026",
    "flash": false
   },
   "electricity_demand_monthly": {
-   "date": "2026-09-01",
-   "raw": 736.650124,
-   "display": "6.1% y/y",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 661.837421,
+   "display": "0.2% y/y",
+   "period": "Oct 2026",
    "flash": false
   },
   "economic_sentiment": {
@@ -652,87 +652,87 @@
    "flash": false
   },
   "ecb_deposit_rate": {
-   "date": "2026-11-02",
+   "date": "2026-11-03",
    "raw": 2.5,
    "display": "2.50%",
-   "period": "2 Nov 2026",
+   "period": "3 Nov 2026",
    "flash": false
   },
   "ecb_mro_rate": {
-   "date": "2026-11-02",
+   "date": "2026-11-03",
    "raw": 2.65,
    "display": "2.65%",
-   "period": "2 Nov 2026",
+   "period": "3 Nov 2026",
    "flash": false
   },
   "ecb_mlf_rate": {
-   "date": "2026-11-02",
+   "date": "2026-11-03",
    "raw": 2.9,
    "display": "2.90%",
-   "period": "2 Nov 2026",
+   "period": "3 Nov 2026",
    "flash": false
   },
   "estr": {
-   "date": "2026-10-30",
-   "raw": 2.44,
-   "display": "2.440%",
-   "period": "30 Oct 2026",
+   "date": "2026-11-02",
+   "raw": 2.441,
+   "display": "2.441%",
+   "period": "2 Nov 2026",
    "flash": false
   },
   "aaa_fwd_3m": {
-   "date": "2026-10-30",
-   "raw": 2.725832012,
-   "display": "2.73%",
-   "period": "30 Oct 2026",
+   "date": "2026-11-02",
+   "raw": 2.7428114,
+   "display": "2.74%",
+   "period": "2 Nov 2026",
    "flash": false
   },
   "aaa_fwd_6m": {
-   "date": "2026-10-30",
-   "raw": 2.944787616,
-   "display": "2.94%",
-   "period": "30 Oct 2026",
+   "date": "2026-11-02",
+   "raw": 2.954809674,
+   "display": "2.95%",
+   "period": "2 Nov 2026",
    "flash": false
   },
   "aaa_fwd_9m": {
-   "date": "2026-10-30",
-   "raw": 3.064261122,
+   "date": "2026-11-02",
+   "raw": 3.063554945,
    "display": "3.06%",
-   "period": "30 Oct 2026",
+   "period": "2 Nov 2026",
    "flash": false
   },
   "aaa_fwd_1y": {
-   "date": "2026-10-30",
-   "raw": 3.121047777,
-   "display": "3.12%",
-   "period": "30 Oct 2026",
+   "date": "2026-11-02",
+   "raw": 3.10886303,
+   "display": "3.11%",
+   "period": "2 Nov 2026",
    "flash": false
   },
   "aaa_fwd_2y": {
-   "date": "2026-10-30",
-   "raw": 3.117062291,
-   "display": "3.12%",
-   "period": "30 Oct 2026",
+   "date": "2026-11-02",
+   "raw": 3.072886874,
+   "display": "3.07%",
+   "period": "2 Nov 2026",
    "flash": false
   },
   "aaa_fwd_3y": {
-   "date": "2026-10-30",
-   "raw": 3.109012361,
-   "display": "3.11%",
-   "period": "30 Oct 2026",
+   "date": "2026-11-02",
+   "raw": 3.056931674,
+   "display": "3.06%",
+   "period": "2 Nov 2026",
    "flash": false
   },
   "euribor_3m": {
-   "date": "2026-10-29",
-   "raw": 2.643,
-   "display": "2.643%",
-   "period": "29 Oct 2026",
+   "date": "2026-11-02",
+   "raw": 2.714,
+   "display": "2.714%",
+   "period": "2 Nov 2026",
    "flash": false
   },
   "euribor_12m": {
-   "date": "2026-10-29",
-   "raw": 3.308,
-   "display": "3.308%",
-   "period": "29 Oct 2026",
+   "date": "2026-11-02",
+   "raw": 3.304,
+   "display": "3.304%",
+   "period": "2 Nov 2026",
    "flash": false
   },
   "es_12m_bill": {
@@ -743,129 +743,129 @@
    "flash": false
   },
   "es_3y": {
-   "date": "2026-10-28",
-   "raw": 3.372,
-   "display": "3.37%",
-   "period": "28 Oct 2026",
+   "date": "2026-10-30",
+   "raw": 3.357,
+   "display": "3.36%",
+   "period": "30 Oct 2026",
    "flash": false
   },
   "es_5y": {
-   "date": "2026-10-28",
-   "raw": 3.533,
-   "display": "3.53%",
-   "period": "28 Oct 2026",
+   "date": "2026-10-30",
+   "raw": 3.49,
+   "display": "3.49%",
+   "period": "30 Oct 2026",
    "flash": false
   },
   "es_10y": {
-   "date": "2026-10-28",
-   "raw": 4.028,
-   "display": "4.03%",
-   "period": "28 Oct 2026",
+   "date": "2026-10-30",
+   "raw": 4.053,
+   "display": "4.05%",
+   "period": "30 Oct 2026",
    "flash": false
   },
   "es_15y": {
-   "date": "2026-10-28",
-   "raw": 4.311,
-   "display": "4.31%",
-   "period": "28 Oct 2026",
+   "date": "2026-10-30",
+   "raw": 4.234,
+   "display": "4.23%",
+   "period": "30 Oct 2026",
    "flash": false
   },
   "es_30y": {
-   "date": "2026-10-28",
-   "raw": 4.473,
-   "display": "4.47%",
-   "period": "28 Oct 2026",
+   "date": "2026-10-30",
+   "raw": 4.425,
+   "display": "4.42%",
+   "period": "30 Oct 2026",
    "flash": false
   },
   "de_10y": {
-   "date": "2026-11-02",
-   "raw": 3.37,
-   "display": "3.37%",
-   "period": "2 Nov 2026",
+   "date": "2026-11-03",
+   "raw": 3.38,
+   "display": "3.38%",
+   "period": "3 Nov 2026",
    "flash": false
   },
   "aaa_1y": {
-   "date": "2026-10-30",
-   "raw": 2.877223217,
+   "date": "2026-11-02",
+   "raw": 2.884562586,
    "display": "2.88%",
-   "period": "30 Oct 2026",
+   "period": "2 Nov 2026",
    "flash": false
   },
   "aaa_3y": {
-   "date": "2026-10-30",
-   "raw": 3.038636677,
-   "display": "3.04%",
-   "period": "30 Oct 2026",
+   "date": "2026-11-02",
+   "raw": 3.014387377,
+   "display": "3.01%",
+   "period": "2 Nov 2026",
    "flash": false
   },
   "aaa_5y": {
-   "date": "2026-10-30",
-   "raw": 3.10142496,
-   "display": "3.10%",
-   "period": "30 Oct 2026",
+   "date": "2026-11-02",
+   "raw": 3.066956049,
+   "display": "3.07%",
+   "period": "2 Nov 2026",
    "flash": false
   },
   "aaa_10y": {
-   "date": "2026-10-30",
-   "raw": 3.365046937,
-   "display": "3.37%",
-   "period": "30 Oct 2026",
+   "date": "2026-11-02",
+   "raw": 3.326519124,
+   "display": "3.33%",
+   "period": "2 Nov 2026",
    "flash": false
   },
   "aaa_15y": {
-   "date": "2026-10-30",
-   "raw": 3.560964176,
-   "display": "3.56%",
-   "period": "30 Oct 2026",
+   "date": "2026-11-02",
+   "raw": 3.523212946,
+   "display": "3.52%",
+   "period": "2 Nov 2026",
    "flash": false
   },
   "aaa_30y": {
-   "date": "2026-10-30",
-   "raw": 3.614933452,
-   "display": "3.61%",
-   "period": "30 Oct 2026",
+   "date": "2026-11-02",
+   "raw": 3.588686857,
+   "display": "3.59%",
+   "period": "2 Nov 2026",
    "flash": false
   },
   "risk_premium": {
-   "date": "2026-10-29",
-   "raw": 64.7,
-   "display": "65 bp",
-   "period": "29 Oct 2026",
+   "date": "2026-11-02",
+   "raw": 61.5,
+   "display": "62 bp",
+   "period": "2 Nov 2026",
    "flash": false
   },
   "ibex35": {
-   "date": "2026-10-29",
-   "raw": 18858.0,
-   "display": "18,858",
-   "period": "29 Oct 2026",
+   "date": "2026-11-02",
+   "raw": 18958.0,
+   "display": "18,958",
+   "period": "2 Nov 2026",
    "flash": false
   },
   "eurusd": {
-   "date": "2026-11-02",
-   "raw": 1.1216,
-   "display": "1.1216",
-   "period": "2 Nov 2026",
+   "date": "2026-11-03",
+   "raw": 1.1179,
+   "display": "1.1179",
+   "period": "3 Nov 2026",
    "flash": false
   },
   "eurgbp": {
-   "date": "2026-11-02",
-   "raw": 0.8358,
-   "display": "0.8358",
-   "period": "2 Nov 2026",
+   "date": "2026-11-03",
+   "raw": 0.83358,
+   "display": "0.8336",
+   "period": "3 Nov 2026",
    "flash": false
   },
   "eurchf": {
-   "date": "2026-11-02",
-   "raw": 0.9193,
-   "display": "0.9193",
-   "period": "2 Nov 2026",
+   "date": "2026-11-03",
+   "raw": 0.9166,
+   "display": "0.9166",
+   "period": "3 Nov 2026",
    "flash": false
   },
   "eurjpy": {
-   "date": "2026-11-02",
-   "raw": 177.1,
-   "display": "177.10",
-   "period": "2 Nov 2026",
+   "date": "2026-11-03",
+   "raw": 176.95,
+   "display": "176.95",
+   "period": "3 Nov 2026",
    "flash": false
   },
   "brent_usd": {
@@ -883,10 +883,10 @@
    "flash": false
   },
   "gas_eu": {
-   "date": "2026-09-01",
-   "raw": 25.42,
-   "display": "25.4 $/MMBtu",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 28.5,
+   "display": "28.5 $/MMBtu",
+   "period": "Oct 2026",
    "flash": false
   },
   "mortgage_rate": {
@@ -1667,17 +1667,17 @@
    "flash": false
   },
   "gold": {
-   "date": "2026-09-01",
-   "raw": 4319.0,
-   "display": "4,319 $/oz",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 4105.0,
+   "display": "4,105 $/oz",
+   "period": "Oct 2026",
    "flash": false
   },
   "copper": {
-   "date": "2026-09-01",
-   "raw": 14474.0,
-   "display": "14,474 $/t",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 14508.0,
+   "display": "14,508 $/t",
+   "period": "Oct 2026",
    "flash": false
   },
   "euro_stoxx50": {
@@ -1688,17 +1688,17 @@
    "flash": false
   },
   "ciss_es": {
-   "date": "2026-10-30",
-   "raw": 0.002492741976,
-   "display": "0.002",
-   "period": "30 Oct 2026",
+   "date": "2026-11-02",
+   "raw": 0.004020774653,
+   "display": "0.004",
+   "period": "2 Nov 2026",
    "flash": false
   },
   "ciss_ea": {
-   "date": "2026-10-30",
-   "raw": 0.01143968712,
-   "display": "0.011",
-   "period": "30 Oct 2026",
+   "date": "2026-11-02",
+   "raw": 0.009884770797,
+   "display": "0.010",
+   "period": "2 Nov 2026",
    "flash": false
   },
   "npl_ratio": {
@@ -3102,38 +3102,38 @@
    "flash": false
   },
   "bde_total_assets": {
-   "date": "2026-08-01",
-   "raw": 826220.8989,
-   "display": "€826,221 mn",
-   "period": "Aug 2026",
+   "date": "2026-09-01",
+   "raw": 828530.2072,
+   "display": "€828,530 mn",
+   "period": "Sep 2026",
    "flash": false
   },
   "bde_mp_securities": {
-   "date": "2026-08-01",
-   "raw": 454184.9534,
-   "display": "€454,185 mn",
-   "period": "Aug 2026",
+   "date": "2026-09-01",
+   "raw": 452453.5194,
+   "display": "€452,454 mn",
+   "period": "Sep 2026",
    "flash": false
   },
   "bde_mp_lending": {
-   "date": "2026-08-01",
-   "raw": 103.0,
-   "display": "€103 mn",
-   "period": "Aug 2026",
+   "date": "2026-09-01",
+   "raw": 100.0,
+   "display": "€100 mn",
+   "period": "Sep 2026",
    "flash": false
   },
   "bde_mp_liabilities": {
-   "date": "2026-08-01",
-   "raw": 117480.4757,
-   "display": "€117,480 mn",
-   "period": "Aug 2026",
+   "date": "2026-09-01",
+   "raw": 101389.7918,
+   "display": "€101,390 mn",
+   "period": "Sep 2026",
    "flash": false
   },
   "bde_banknotes": {
-   "date": "2026-08-01",
-   "raw": 175520.3423,
-   "display": "€175,520 mn",
-   "period": "Aug 2026",
+   "date": "2026-09-01",
+   "raw": 175425.4668,
+   "display": "€175,425 mn",
+   "period": "Sep 2026",
    "flash": false
   },
   "target_balance": {
@@ -7457,8 +7457,8 @@
   },
   "price_income_fr": {
    "date": "2026-04-01",
-   "raw": 105.0486405,
-   "display": "105.0",
+   "raw": 104.9325961,
+   "display": "104.9",
    "period": "Q2 2026",
    "flash": false
   },
@@ -7471,7 +7471,7 @@
   },
   "price_income_it": {
    "date": "2026-04-01",
-   "raw": 88.97986277,
+   "raw": 88.97986391,
    "display": "89.0",
    "period": "Q2 2026",
    "flash": false
@@ -8959,6 +8959,643 @@
    "display": "2.201 €/l",
    "period": "26 Oct 2026",
    "flash": false
+  },
+  "vacancies_eurostat": {
+   "date": "2025-10-01",
+   "raw": 154.247,
+   "display": "154.2k",
+   "period": "Q4 2025",
+   "flash": false
+  },
+  "state_debt_outstanding": {
+   "date": "2026-11-03",
+   "raw": 1522.8672,
+   "display": "€1,522.9 bn",
+   "period": "3 Nov 2026",
+   "flash": false
+  },
+  "state_debt_avg_coupon": {
+   "date": "2026-11-03",
+   "raw": 2.36070911,
+   "display": "2.36%",
+   "period": "3 Nov 2026",
+   "flash": false
+  },
+  "state_debt_avg_life": {
+   "date": "2026-11-03",
+   "raw": 7.740254701,
+   "display": "7.74 years",
+   "period": "3 Nov 2026",
+   "flash": false
+  },
+  "madrid_general": {
+   "date": "2026-11-02",
+   "raw": 1873.0,
+   "display": "1,873.00",
+   "period": "2 Nov 2026",
+   "flash": false
+  },
+  "madrid_financials": {
+   "date": "2026-11-02",
+   "raw": 1494.7,
+   "display": "1,494.7",
+   "period": "2 Nov 2026",
+   "flash": false
+  },
+  "madrid_energy": {
+   "date": "2026-11-02",
+   "raw": 3213.4,
+   "display": "3,213.4",
+   "period": "2 Nov 2026",
+   "flash": false
+  },
+  "madrid_consumer_goods": {
+   "date": "2026-11-02",
+   "raw": 7332.5,
+   "display": "7,332.5",
+   "period": "2 Nov 2026",
+   "flash": false
+  },
+  "madrid_industry": {
+   "date": "2026-11-02",
+   "raw": 2617.9,
+   "display": "2,617.9",
+   "period": "2 Nov 2026",
+   "flash": false
+  },
+  "madrid_consumer_services": {
+   "date": "2026-11-02",
+   "raw": 1886.3,
+   "display": "1,886.3",
+   "period": "2 Nov 2026",
+   "flash": false
+  },
+  "madrid_tech": {
+   "date": "2026-11-02",
+   "raw": 693.0,
+   "display": "693.0",
+   "period": "2 Nov 2026",
+   "flash": false
+  },
+  "ms_nfa": {
+   "date": "2026-09-01",
+   "raw": 499.315,
+   "display": "€499.3 bn",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "ms_domestic_claims": {
+   "date": "2026-08-01",
+   "raw": 2388.861499,
+   "display": "€2,388.9 bn",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "ms_net_claims_gg": {
+   "date": "2026-09-01",
+   "raw": 763.084,
+   "display": "€763.1 bn",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "ms_claims_gg": {
+   "date": "2026-09-01",
+   "raw": 857.636,
+   "display": "€857.6 bn",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "ms_gov_deposits": {
+   "date": "2026-09-01",
+   "raw": 94.552,
+   "display": "€94.6 bn",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "ms_claims_private": {
+   "date": "2026-08-01",
+   "raw": 1636.639499,
+   "display": "€1,636.6 bn",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "ms_loans_nfc": {
+   "date": "2026-09-01",
+   "raw": 507.151,
+   "display": "€507.2 bn",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "ms_loans_households": {
+   "date": "2026-09-01",
+   "raw": 717.115,
+   "display": "€717.1 bn",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "ms_broad_money": {
+   "date": "2026-09-01",
+   "raw": 1964.716,
+   "display": "€1,964.7 bn",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "ms_currency": {
+   "date": "2026-09-01",
+   "raw": 173.79,
+   "display": "€173.8 bn",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "ms_transferable": {
+   "date": "2026-09-01",
+   "raw": 1416.247,
+   "display": "€1,416.2 bn",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "ms_other_deposits": {
+   "date": "2026-09-01",
+   "raw": 327.692,
+   "display": "€327.7 bn",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "ms_securities_bm": {
+   "date": "2026-09-01",
+   "raw": 46.987,
+   "display": "€47.0 bn",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "ms_deposits_xbm": {
+   "date": "2026-09-01",
+   "raw": 167.986,
+   "display": "€168.0 bn",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "ms_securities_xbm": {
+   "date": "2026-09-01",
+   "raw": 227.496,
+   "display": "€227.5 bn",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "ms_equity": {
+   "date": "2026-09-01",
+   "raw": 347.486,
+   "display": "€347.5 bn",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "ms_derivatives": {
+   "date": "2026-08-01",
+   "raw": 112.971151,
+   "display": "€113.0 bn",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "ms_oin": {
+   "date": "2026-08-01",
+   "raw": 74.170348,
+   "display": "€74.2 bn",
+   "period": "Aug 2026",
+   "flash": false
+  },
+  "ms_broad_money_long": {
+   "date": "2026-09-01",
+   "raw": 1964.705,
+   "display": "€1,964.7 bn",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "credit_flow_nfc": {
+   "date": "2026-09-01",
+   "raw": 5674.396835,
+   "display": "€5,674 mn",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "credit_flow_households": {
+   "date": "2026-09-01",
+   "raw": 2560.505476,
+   "display": "€2,561 mn",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "deposit_rate_overnight": {
+   "date": "2026-09-01",
+   "raw": 0.16,
+   "display": "0.16%",
+   "period": "Sep 2026",
+   "flash": false
+  },
+  "bis_credit_gdp": {
+   "date": "2026-01-01",
+   "raw": 119.4101529,
+   "display": "119.4% of GDP",
+   "period": "Q1 2026",
+   "flash": false
+  },
+  "bis_credit_trend": {
+   "date": "2026-01-01",
+   "raw": 143.6978,
+   "display": "143.7% of GDP",
+   "period": "Q1 2026",
+   "flash": false
+  },
+  "bis_credit_gap": {
+   "date": "2026-01-01",
+   "raw": -24.2876,
+   "display": "−24.3 pp",
+   "period": "Q1 2026",
+   "flash": false
+  },
+  "cons_hh_npish": {
+   "date": "2026-07-01",
+   "raw": 125.9585,
+   "display": "126.0",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "cp_cons_hh_npish": {
+   "date": "2026-07-01",
+   "raw": 250954.0,
+   "display": "€250,954 mn",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "cp_cons_government": {
+   "date": "2026-07-01",
+   "raw": 85646.0,
+   "display": "€85,646 mn",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "cp_gfcf": {
+   "date": "2026-07-01",
+   "raw": 95583.0,
+   "display": "€95,583 mn",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "cp_exports": {
+   "date": "2026-07-01",
+   "raw": 165842.0,
+   "display": "€165,842 mn",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "cp_imports": {
+   "date": "2026-07-01",
+   "raw": 152184.0,
+   "display": "€152,184 mn",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "gva_trade": {
+   "date": "2026-07-01",
+   "raw": 148.4669,
+   "display": "148.5",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "gva_information": {
+   "date": "2026-07-01",
+   "raw": 156.9913,
+   "display": "157.0",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "gva_finance": {
+   "date": "2026-07-01",
+   "raw": 109.6666,
+   "display": "109.7",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "gva_real_estate": {
+   "date": "2026-07-01",
+   "raw": 113.5423,
+   "display": "113.5",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "gva_professional": {
+   "date": "2026-07-01",
+   "raw": 161.1743,
+   "display": "161.2",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "gva_public": {
+   "date": "2026-07-01",
+   "raw": 114.0319,
+   "display": "114.0",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "gva_arts": {
+   "date": "2026-07-01",
+   "raw": 122.6563,
+   "display": "122.7",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "net_taxes_products": {
+   "date": "2026-07-01",
+   "raw": 120.5159,
+   "display": "120.5",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "cp_gva_agriculture": {
+   "date": "2026-07-01",
+   "raw": 12498.0,
+   "display": "€12,498 mn",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "cp_gva_industry": {
+   "date": "2026-07-01",
+   "raw": 63634.0,
+   "display": "€63,634 mn",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "cp_gva_construction": {
+   "date": "2026-07-01",
+   "raw": 24090.0,
+   "display": "€24,090 mn",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "cp_gva_trade": {
+   "date": "2026-07-01",
+   "raw": 100012.0,
+   "display": "€100,012 mn",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "cp_gva_information": {
+   "date": "2026-07-01",
+   "raw": 17636.0,
+   "display": "€17,636 mn",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "cp_gva_finance": {
+   "date": "2026-07-01",
+   "raw": 19071.0,
+   "display": "€19,071 mn",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "cp_gva_real_estate": {
+   "date": "2026-07-01",
+   "raw": 44443.0,
+   "display": "€44,443 mn",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "cp_gva_professional": {
+   "date": "2026-07-01",
+   "raw": 41047.0,
+   "display": "€41,047 mn",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "cp_gva_public": {
+   "date": "2026-07-01",
+   "raw": 68765.0,
+   "display": "€68,765 mn",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "cp_gva_arts": {
+   "date": "2026-07-01",
+   "raw": 15130.0,
+   "display": "€15,130 mn",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "cp_net_taxes_products": {
+   "date": "2026-07-01",
+   "raw": 42116.0,
+   "display": "€42,116 mn",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "compensation_employees": {
+   "date": "2026-07-01",
+   "raw": 218704.0,
+   "display": "€218,704 mn",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "operating_surplus": {
+   "date": "2026-07-01",
+   "raw": 185105.0,
+   "display": "€185,105 mn",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "net_taxes_production": {
+   "date": "2026-07-01",
+   "raw": 44633.0,
+   "display": "€44,633 mn",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "hours_cn": {
+   "date": "2026-07-01",
+   "raw": 9509930.6,
+   "display": "9,509,931 thousand hours",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "hours_cn_agriculture": {
+   "date": "2026-07-01",
+   "raw": 350419.9,
+   "display": "350,420 thousand hours",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "hours_cn_industry": {
+   "date": "2026-07-01",
+   "raw": 1067775.3,
+   "display": "1,067,775 thousand hours",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "hours_cn_construction": {
+   "date": "2026-07-01",
+   "raw": 720978.4,
+   "display": "720,978 thousand hours",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "hours_cn_trade": {
+   "date": "2026-07-01",
+   "raw": 2904677.0,
+   "display": "2,904,677 thousand hours",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "hours_cn_information": {
+   "date": "2026-07-01",
+   "raw": 309144.0,
+   "display": "309,144 thousand hours",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "hours_cn_finance": {
+   "date": "2026-07-01",
+   "raw": 163673.5,
+   "display": "163,674 thousand hours",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "hours_cn_real_estate": {
+   "date": "2026-07-01",
+   "raw": 123862.6,
+   "display": "123,863 thousand hours",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "hours_cn_professional": {
+   "date": "2026-07-01",
+   "raw": 1267944.4,
+   "display": "1,267,944 thousand hours",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "hours_cn_public": {
+   "date": "2026-07-01",
+   "raw": 1912065.7,
+   "display": "1,912,066 thousand hours",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "hours_cn_arts": {
+   "date": "2026-07-01",
+   "raw": 689389.8,
+   "display": "689,390 thousand hours",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "lp_hour_es": {
+   "date": "2026-07-01",
+   "raw": 101.92,
+   "display": "101.9",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "ulc_hour_es": {
+   "date": "2026-07-01",
+   "raw": 121.434,
+   "display": "121.4",
+   "period": "Q3 2026",
+   "flash": false
+  },
+  "lp_hour_ea": {
+   "date": "2026-04-01",
+   "raw": 100.114,
+   "display": "100.1",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "ulc_hour_ea": {
+   "date": "2026-04-01",
+   "raw": 120.175,
+   "display": "120.2",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "lp_hour_de": {
+   "date": "2026-04-01",
+   "raw": 102.63,
+   "display": "102.6",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "ulc_hour_de": {
+   "date": "2026-04-01",
+   "raw": 123.741,
+   "display": "123.7",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "lp_hour_fr": {
+   "date": "2026-04-01",
+   "raw": 98.813,
+   "display": "98.8",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "ulc_hour_fr": {
+   "date": "2026-04-01",
+   "raw": 114.487,
+   "display": "114.5",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "lp_hour_it": {
+   "date": "2026-04-01",
+   "raw": 95.44,
+   "display": "95.4",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "ulc_hour_it": {
+   "date": "2026-04-01",
+   "raw": 113.416,
+   "display": "113.4",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "lp_hour_pt": {
+   "date": "2026-04-01",
+   "raw": 100.825,
+   "display": "100.8",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "ulc_hour_pt": {
+   "date": "2026-04-01",
+   "raw": 129.968,
+   "display": "130.0",
+   "period": "Q2 2026",
+   "flash": false
+  },
+  "gdppc_pps_es": {
+   "date": "2024-01-01",
+   "raw": 92.0,
+   "display": "92",
+   "period": "2024",
+   "flash": false
+  },
+  "gdppc_pps_ea": {
+   "date": "2024-01-01",
+   "raw": 104.0,
+   "display": "104",
+   "period": "2024",
+   "flash": false
+  },
+  "gdhi_real_pc_es": {
+   "date": "2025-01-01",
+   "raw": 105.2,
+   "display": "105.2",
+   "period": "2025",
+   "flash": false
+  },
+  "gdhi_real_pc_eu": {
+   "date": "2025-01-01",
+   "raw": 116.52,
+   "display": "116.5",
+   "period": "2025",
+   "flash": false
   }
  },
  "notes": [
@@ -9164,8 +9801,92 @@
    "page": "ecb.html",
    "text": "New household time deposits, interest rate: 2.3% in Sep 2026, after 2.0% in Aug 2026.",
    "at": "2026-11-03T00:06:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "car_sales",
+   "page": "activity.html",
+   "text": "Car sales: 1.8% y/y in Oct 2026, after 10.2% y/y in Sep 2026.",
+   "at": "2026-11-03T22:32:50+00:00"
+  },
+  {
+   "kind": "market",
+   "id": "electricity_demand",
+   "page": "activity.html",
+   "text": "Electricity demand: −11.2% since the last update, to 608.6 GWh.",
+   "at": "2026-11-03T22:32:50+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "electricity_demand_monthly",
+   "page": "activity.html",
+   "text": "Electricity demand, monthly average: 0.2% y/y in Oct 2026, after 6.1% y/y in Sep 2026.",
+   "at": "2026-11-03T22:32:50+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "gas_eu",
+   "page": "financial.html",
+   "text": "European natural gas: 28.5 $/MMBtu in Oct 2026, after 25.4 $/MMBtu in Sep 2026.",
+   "at": "2026-11-03T22:32:50+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "gold",
+   "page": "financial.html",
+   "text": "Gold: 4,105 $/oz in Oct 2026, after 4,319 $/oz in Sep 2026.",
+   "at": "2026-11-03T22:32:50+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "copper",
+   "page": "financial.html",
+   "text": "Copper: 14,508 $/t in Oct 2026, after 14,474 $/t in Sep 2026.",
+   "at": "2026-11-03T22:32:50+00:00"
+  },
+  {
+   "kind": "revision",
+   "id": "price_income_fr",
+   "page": "housing.html",
+   "text": "House price to income ratio, France for Q2 2026 revised to 104.9, from 105.0.",
+   "at": "2026-11-03T22:32:50+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "bde_total_assets",
+   "page": "ecb.html",
+   "text": "Banco de España, total assets: €828,530 mn in Sep 2026, after €826,221 mn in Aug 2026.",
+   "at": "2026-11-03T22:32:50+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "bde_mp_securities",
+   "page": "ecb.html",
+   "text": "Banco de España, securities held for monetary policy: €452,454 mn in Sep 2026, after €454,185 mn in Aug 2026.",
+   "at": "2026-11-03T22:32:50+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "bde_mp_lending",
+   "page": "ecb.html",
+   "text": "Banco de España, lending to banks (monetary policy): €100 mn in Sep 2026, after €103 mn in Aug 2026.",
+   "at": "2026-11-03T22:32:50+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "bde_mp_liabilities",
+   "page": "ecb.html",
+   "text": "Banco de España, banks' reserves and deposits: €101,390 mn in Sep 2026, after €117,480 mn in Aug 2026.",
+   "at": "2026-11-03T22:32:50+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "bde_banknotes",
+   "page": "ecb.html",
+   "text": "Banco de España, banknotes in circulation: €175,425 mn in Sep 2026, after €175,520 mn in Aug 2026.",
+   "at": "2026-11-03T22:32:50+00:00"
   }
  ],
- "updated_at": "2026-11-03T00:06:42+00:00",
+ "updated_at": "2026-11-03T22:32:50+00:00",
  "started_at": "2026-10-31T23:31:49+00:00"
 }
