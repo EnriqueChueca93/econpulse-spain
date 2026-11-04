@@ -1,14 +1,14 @@
 {
  "latest": {
-  "fingerprint": "f4d8ca60dfac",
+  "fingerprint": "243f05fd0b23",
   "as_of": {
    "letras": "2026-10-16",
-   "bonds": "2026-10-20"
+   "bonds": "2026-10-31"
   },
   "checked_by": "AI check (Claude)",
-  "checked_at": "2026-11-02",
+  "checked_at": "2026-11-04",
   "checked_against": "the Tesoro's page",
-  "note": "All 79 securities re-read independently from the page (maturity, amount, coupon); totals and the inflation-linked and green flags agree."
+  "note": "All 78 securities re-read independently from the page (maturity, amount, coupon); totals, the inflation-linked and green flags, and each indexed amount (face value times coefficient) agree. Since the 20 Oct edition the bond due 31 Oct 2026 has matured and the 8 inflation-linked bonds were revalued at month end."
  },
  "history": [
   {
@@ -21,6 +21,17 @@
    "checked_at": "2026-11-02",
    "checked_against": "the Tesoro's page",
    "note": "All 79 securities re-read independently from the page (maturity, amount, coupon); totals and the inflation-linked and green flags agree."
+  },
+  {
+   "fingerprint": "243f05fd0b23",
+   "as_of": {
+    "letras": "2026-10-16",
+    "bonds": "2026-10-31"
+   },
+   "checked_by": "AI check (Claude)",
+   "checked_at": "2026-11-04",
+   "checked_against": "the Tesoro's page",
+   "note": "All 78 securities re-read independently from the page (maturity, amount, coupon); totals, the inflation-linked and green flags, and each indexed amount (face value times coefficient) agree. Since the 20 Oct edition the bond due 31 Oct 2026 has matured and the 8 inflation-linked bonds were revalued at month end."
   }
  ]
 }
