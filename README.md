@@ -30,8 +30,10 @@ python -m venv .venv
 **https://enriquechueca93.github.io/macroscope-spain/** (repository:
 [EnriqueChueca93/macroscope-spain](https://github.com/EnriqueChueca93/macroscope-spain)).
 
-A GitHub Actions workflow ([.github/workflows/update.yml](.github/workflows/update.yml)) runs once a day at
-17:30 UTC (18:30 Madrid in winter, 19:30 in summer): it runs the offline tests, fetches the data, rebuilds the
+A GitHub Actions workflow ([.github/workflows/update.yml](.github/workflows/update.yml)) runs twice a day, at
+09:17 UTC, after INE's 09:00 releases, and 17:47 UTC, after the day's markets (10:17 and 18:47 Madrid in winter,
+an hour later in summer; GitHub can start scheduled runs hours late when it is busy): it runs the offline
+tests, fetches the data, rebuilds the
 site, commits the updated `data/` back to the repository as "Data update …" and publishes `site/` to GitHub
 Pages. Pushing code changes rebuilds and republishes from the saved data, and so does pushing a recorded AI check
 (`data/*_checks.json`, below). To update by hand, open the repository's **Actions** tab, pick "Update and deploy"

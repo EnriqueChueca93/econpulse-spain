@@ -7,10 +7,10 @@ PAIRS: dict[str, str] = {}
 
 PAIRS.update({
     "Equities: the IBEX 35 and the Madrid sectors": "Renta variable: el IBEX 35 y los sectores de la Bolsa de Madrid",
-    "Spain's main share index and the Madrid exchange's six sector indices, as the Banco de España publishes them: daily closes, one or two trading days later. Not a live feed: the page is rebuilt once a day. Prices for individual companies are not shown, as no free source allows them to be republished.":
+    "Spain's main share index and the Madrid exchange's six sector indices, as the Banco de España publishes them: daily closes, one or two trading days later. Not a live feed: the page is rebuilt twice a day. Prices for individual companies are not shown, as no free source allows them to be republished.":
         "El principal índice bursátil de España y los seis índices sectoriales de la Bolsa de Madrid, tal como los "
         "publica el Banco de España: cierres diarios, con uno o dos días hábiles de retraso. No es un servicio en tiempo "
-        "real: la página se actualiza una vez al día. No se muestran las cotizaciones de cada empresa, porque ninguna "
+        "real: la página se actualiza dos veces al día. No se muestran las cotizaciones de cada empresa, porque ninguna "
         "fuente gratuita permite volver a publicarlas.",
     # facts
     "close of {day}": "cierre del {day}",

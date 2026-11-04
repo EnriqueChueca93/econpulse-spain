@@ -1044,7 +1044,7 @@ PAGES: dict[str, list[dict]] = {
             "title": "Equities: the IBEX 35 and the Madrid sectors",
             "intro": ("Spain's main share index and the Madrid exchange's six sector indices, as the Banco de España "
                       "publishes them: daily closes, one or two trading days later. Not a live feed: the page is rebuilt "
-                      "once a day. Prices for individual companies are not shown, as no free source allows them to be "
+                      "twice a day. Prices for individual companies are not shown, as no free source allows them to be "
                       "republished."),
             "facts": equities.facts,
             "uses": equities.USES,

@@ -549,7 +549,7 @@ Next, agreed on 1 Nov 2026: **Batch 16 — Fiscal explorer for Spain** (IMF proj
 1. ~~**Language**~~ **Decided 30 Oct 2026:** English UI, with Spanish official names alongside (e.g. "Social Security registrations · *Afiliados medios*").
 2. ~~**Name and domain**~~ **Decided 1 Nov 2026:** "EconPulse Spain" on GitHub Pages' own address; no custom domain for now.
 3. ~~**Hosting account**~~ **Decided 1 Nov 2026:** GitHub account EnriqueChueca93, public repository `econpulse-spain`.
-4. ~~**Update frequency once online**~~ **Decided 1 Nov 2026:** once a day, 17:30 UTC.
+4. ~~**Update frequency once online**~~ **Decided 1 Nov 2026:** once a day, 17:30 UTC. **Changed 4 Nov 2026:** twice a day, 09:17 and 17:47 UTC (after INE's 09:00 releases, and on odd minutes because GitHub was starting the 17:30 run five to six hours late).
 5. **History window for z-scores:** econvitals uses 2013 onwards; the same works for Spain and avoids the 2008–12 crisis dominating the scale.
 
 ---

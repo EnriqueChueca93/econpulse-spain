@@ -1,7 +1,7 @@
 """Equities on the Financial page (Batch 34c): the IBEX 35 and the Madrid exchange's six sector indices.
 
 Daily closes from the Banco de España (table ti_1_6: Bolsa de Madrid and the CNMV), which publishes them one or
-two trading days later; the site fetches once a day, so these are the latest published closes, not live prices.
+two trading days later; the site fetches twice a day, so these are the latest published closes, not live prices.
 The heat map shows each sector's move over the last trading day, the past week and the year so far, as tiles
 coloured on a diverging scale (rises blue, falls red, small moves grey). Company-level prices are not shown: no
 free source allows them to be republished (see PLAN.md, Batch 34c).

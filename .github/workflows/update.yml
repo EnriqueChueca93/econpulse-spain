@@ -1,6 +1,6 @@
 name: Update and deploy
 
-# Once a day: fetch the latest data, rebuild the site, save the data back to the
+# Twice a day: fetch the latest data, rebuild the site, save the data back to the
 # repository (so the next run only downloads what is new, and "what changed" keeps
 # its baseline) and publish site/ to GitHub Pages.
 # A push of code changes rebuilds and republishes from the data already saved, and so does a push of an AI
@@ -10,7 +10,10 @@ name: Update and deploy
 
 on:
   schedule:
-    - cron: "30 17 * * *"   # 17:30 UTC: 18:30 Madrid in winter, 19:30 in summer (GitHub may start it a little late)
+    # GitHub starts scheduled runs late when it is busy, most of all on the hour and half hour (on 3 and 4
+    # Nov 2026, five to six hours late), so the minutes are odd ones. Times are UTC: Madrid is +1 in winter, +2 in summer.
+    - cron: "17 9 * * *"    # 09:17 UTC, 10:17 Madrid in winter: after INE's 09:00 releases
+    - cron: "47 17 * * *"   # 17:47 UTC, 18:47 Madrid in winter: after the day's markets and the ECB's rates
   workflow_dispatch:         # "Run workflow" button in the Actions tab
   push:
     branches: [main]
