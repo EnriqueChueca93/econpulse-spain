@@ -183,10 +183,10 @@
    "flash": false
   },
   "afiliados": {
-   "date": "2026-09-01",
-   "raw": 22437.55309,
-   "display": "+123.5k m/m SA",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 22624.16476,
+   "display": "+101.4k m/m SA",
+   "period": "Oct 2026",
    "flash": false
   },
   "unemployment_epa": {
@@ -386,31 +386,31 @@
    "flash": false
   },
   "hicp": {
-   "date": "2026-09-01",
-   "raw": 5.0,
-   "display": "5.0%",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 4.9,
+   "display": "4.9%",
+   "period": "Oct 2026",
    "flash": false
   },
   "hicp_core": {
-   "date": "2026-09-01",
+   "date": "2026-10-01",
    "raw": 3.5,
    "display": "3.5%",
-   "period": "Sep 2026",
+   "period": "Oct 2026",
    "flash": false
   },
   "hicp_index": {
-   "date": "2026-09-01",
-   "raw": 105.4,
-   "display": "5.0% y/y",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 105.88,
+   "display": "4.9% y/y",
+   "period": "Oct 2026",
    "flash": false
   },
   "hicp_core_index": {
-   "date": "2026-09-01",
-   "raw": 104.34,
+   "date": "2026-10-01",
+   "raw": 104.73,
    "display": "3.5% y/y",
-   "period": "Sep 2026",
+   "period": "Oct 2026",
    "flash": false
   },
   "price_expectations": {
@@ -421,10 +421,10 @@
    "flash": false
   },
   "electricity_price": {
-   "date": "2026-11-03",
-   "raw": 186.4866667,
-   "display": "186 €/MWh",
-   "period": "3 Nov 2026",
+   "date": "2026-11-04",
+   "raw": 246.005625,
+   "display": "246 €/MWh",
+   "period": "4 Nov 2026",
    "flash": false
   },
   "industrial_production": {
@@ -449,10 +449,10 @@
    "flash": false
   },
   "electricity_demand": {
-   "date": "2026-11-02",
-   "raw": 608.57891,
-   "display": "608.6 GWh",
-   "period": "2 Nov 2026",
+   "date": "2026-11-03",
+   "raw": 677.11857,
+   "display": "677.1 GWh",
+   "period": "3 Nov 2026",
    "flash": false
   },
   "electricity_demand_monthly": {
@@ -491,17 +491,17 @@
    "flash": false
   },
   "tourist_arrivals": {
-   "date": "2026-08-01",
-   "raw": 12.256087,
-   "display": "9.2% y/y",
-   "period": "Aug 2026",
+   "date": "2026-09-01",
+   "raw": 10.13965,
+   "display": "4.3% y/y",
+   "period": "Sep 2026",
    "flash": false
   },
   "tourist_spending": {
-   "date": "2026-08-01",
-   "raw": 17838.23,
-   "display": "9.2% y/y",
-   "period": "Aug 2026",
+   "date": "2026-09-01",
+   "raw": 14488.06,
+   "display": "8.1% y/y",
+   "period": "Sep 2026",
    "flash": false
   },
   "hotel_nights_foreign": {
@@ -652,87 +652,87 @@
    "flash": false
   },
   "ecb_deposit_rate": {
-   "date": "2026-11-03",
+   "date": "2026-11-04",
    "raw": 2.5,
    "display": "2.50%",
-   "period": "3 Nov 2026",
+   "period": "4 Nov 2026",
    "flash": false
   },
   "ecb_mro_rate": {
-   "date": "2026-11-03",
+   "date": "2026-11-04",
    "raw": 2.65,
    "display": "2.65%",
-   "period": "3 Nov 2026",
+   "period": "4 Nov 2026",
    "flash": false
   },
   "ecb_mlf_rate": {
-   "date": "2026-11-03",
+   "date": "2026-11-04",
    "raw": 2.9,
    "display": "2.90%",
-   "period": "3 Nov 2026",
+   "period": "4 Nov 2026",
    "flash": false
   },
   "estr": {
-   "date": "2026-11-02",
-   "raw": 2.441,
-   "display": "2.441%",
-   "period": "2 Nov 2026",
+   "date": "2026-11-03",
+   "raw": 2.445,
+   "display": "2.445%",
+   "period": "3 Nov 2026",
    "flash": false
   },
   "aaa_fwd_3m": {
-   "date": "2026-11-02",
-   "raw": 2.7428114,
-   "display": "2.74%",
-   "period": "2 Nov 2026",
+   "date": "2026-11-03",
+   "raw": 2.748471743,
+   "display": "2.75%",
+   "period": "3 Nov 2026",
    "flash": false
   },
   "aaa_fwd_6m": {
-   "date": "2026-11-02",
-   "raw": 2.954809674,
+   "date": "2026-11-03",
+   "raw": 2.945661831,
    "display": "2.95%",
-   "period": "2 Nov 2026",
+   "period": "3 Nov 2026",
    "flash": false
   },
   "aaa_fwd_9m": {
-   "date": "2026-11-02",
-   "raw": 3.063554945,
-   "display": "3.06%",
-   "period": "2 Nov 2026",
+   "date": "2026-11-03",
+   "raw": 3.048240141,
+   "display": "3.05%",
+   "period": "3 Nov 2026",
    "flash": false
   },
   "aaa_fwd_1y": {
-   "date": "2026-11-02",
-   "raw": 3.10886303,
-   "display": "3.11%",
-   "period": "2 Nov 2026",
+   "date": "2026-11-03",
+   "raw": 3.092609948,
+   "display": "3.09%",
+   "period": "3 Nov 2026",
    "flash": false
   },
   "aaa_fwd_2y": {
-   "date": "2026-11-02",
-   "raw": 3.072886874,
+   "date": "2026-11-03",
+   "raw": 3.070925164,
    "display": "3.07%",
-   "period": "2 Nov 2026",
+   "period": "3 Nov 2026",
    "flash": false
   },
   "aaa_fwd_3y": {
-   "date": "2026-11-02",
-   "raw": 3.056931674,
-   "display": "3.06%",
-   "period": "2 Nov 2026",
+   "date": "2026-11-03",
+   "raw": 3.069475759,
+   "display": "3.07%",
+   "period": "3 Nov 2026",
    "flash": false
   },
   "euribor_3m": {
-   "date": "2026-11-02",
-   "raw": 2.714,
-   "display": "2.714%",
-   "period": "2 Nov 2026",
+   "date": "2026-11-03",
+   "raw": 2.765,
+   "display": "2.765%",
+   "period": "3 Nov 2026",
    "flash": false
   },
   "euribor_12m": {
-   "date": "2026-11-02",
-   "raw": 3.304,
-   "display": "3.304%",
-   "period": "2 Nov 2026",
+   "date": "2026-11-03",
+   "raw": 3.317,
+   "display": "3.317%",
+   "period": "3 Nov 2026",
    "flash": false
   },
   "es_12m_bill": {
@@ -743,143 +743,143 @@
    "flash": false
   },
   "es_3y": {
-   "date": "2026-10-30",
-   "raw": 3.357,
-   "display": "3.36%",
-   "period": "30 Oct 2026",
+   "date": "2026-11-02",
+   "raw": 3.348,
+   "display": "3.35%",
+   "period": "2 Nov 2026",
    "flash": false
   },
   "es_5y": {
-   "date": "2026-10-30",
-   "raw": 3.49,
+   "date": "2026-11-02",
+   "raw": 3.489,
    "display": "3.49%",
-   "period": "30 Oct 2026",
+   "period": "2 Nov 2026",
    "flash": false
   },
   "es_10y": {
-   "date": "2026-10-30",
-   "raw": 4.053,
-   "display": "4.05%",
-   "period": "30 Oct 2026",
+   "date": "2026-11-02",
+   "raw": 3.927,
+   "display": "3.93%",
+   "period": "2 Nov 2026",
    "flash": false
   },
   "es_15y": {
-   "date": "2026-10-30",
-   "raw": 4.234,
-   "display": "4.23%",
-   "period": "30 Oct 2026",
+   "date": "2026-11-02",
+   "raw": 4.217,
+   "display": "4.22%",
+   "period": "2 Nov 2026",
    "flash": false
   },
   "es_30y": {
-   "date": "2026-10-30",
-   "raw": 4.425,
-   "display": "4.42%",
-   "period": "30 Oct 2026",
+   "date": "2026-11-02",
+   "raw": 4.451,
+   "display": "4.45%",
+   "period": "2 Nov 2026",
    "flash": false
   },
   "de_10y": {
-   "date": "2026-11-03",
+   "date": "2026-11-04",
    "raw": 3.38,
    "display": "3.38%",
-   "period": "3 Nov 2026",
+   "period": "4 Nov 2026",
    "flash": false
   },
   "aaa_1y": {
-   "date": "2026-11-02",
-   "raw": 2.884562586,
+   "date": "2026-11-03",
+   "raw": 2.881307795,
    "display": "2.88%",
-   "period": "2 Nov 2026",
+   "period": "3 Nov 2026",
    "flash": false
   },
   "aaa_3y": {
-   "date": "2026-11-02",
-   "raw": 3.014387377,
+   "date": "2026-11-03",
+   "raw": 3.011860242,
    "display": "3.01%",
-   "period": "2 Nov 2026",
+   "period": "3 Nov 2026",
    "flash": false
   },
   "aaa_5y": {
-   "date": "2026-11-02",
-   "raw": 3.066956049,
+   "date": "2026-11-03",
+   "raw": 3.073711501,
    "display": "3.07%",
-   "period": "2 Nov 2026",
+   "period": "3 Nov 2026",
    "flash": false
   },
   "aaa_10y": {
-   "date": "2026-11-02",
-   "raw": 3.326519124,
-   "display": "3.33%",
-   "period": "2 Nov 2026",
+   "date": "2026-11-03",
+   "raw": 3.346605206,
+   "display": "3.35%",
+   "period": "3 Nov 2026",
    "flash": false
   },
   "aaa_15y": {
-   "date": "2026-11-02",
-   "raw": 3.523212946,
-   "display": "3.52%",
-   "period": "2 Nov 2026",
+   "date": "2026-11-03",
+   "raw": 3.549911961,
+   "display": "3.55%",
+   "period": "3 Nov 2026",
    "flash": false
   },
   "aaa_30y": {
-   "date": "2026-11-02",
-   "raw": 3.588686857,
-   "display": "3.59%",
-   "period": "2 Nov 2026",
+   "date": "2026-11-03",
+   "raw": 3.619711154,
+   "display": "3.62%",
+   "period": "3 Nov 2026",
    "flash": false
   },
   "risk_premium": {
-   "date": "2026-11-02",
-   "raw": 61.5,
-   "display": "62 bp",
-   "period": "2 Nov 2026",
+   "date": "2026-11-03",
+   "raw": 60.8,
+   "display": "61 bp",
+   "period": "3 Nov 2026",
    "flash": false
   },
   "ibex35": {
-   "date": "2026-11-02",
-   "raw": 18958.0,
-   "display": "18,958",
-   "period": "2 Nov 2026",
+   "date": "2026-11-03",
+   "raw": 18807.0,
+   "display": "18,807",
+   "period": "3 Nov 2026",
    "flash": false
   },
   "eurusd": {
-   "date": "2026-11-03",
-   "raw": 1.1179,
-   "display": "1.1179",
-   "period": "3 Nov 2026",
+   "date": "2026-11-04",
+   "raw": 1.1267,
+   "display": "1.1267",
+   "period": "4 Nov 2026",
    "flash": false
   },
   "eurgbp": {
-   "date": "2026-11-03",
-   "raw": 0.83358,
-   "display": "0.8336",
-   "period": "3 Nov 2026",
+   "date": "2026-11-04",
+   "raw": 0.8346,
+   "display": "0.8346",
+   "period": "4 Nov 2026",
    "flash": false
   },
   "eurchf": {
-   "date": "2026-11-03",
-   "raw": 0.9166,
-   "display": "0.9166",
-   "period": "3 Nov 2026",
+   "date": "2026-11-04",
+   "raw": 0.9188,
+   "display": "0.9188",
+   "period": "4 Nov 2026",
    "flash": false
   },
   "eurjpy": {
-   "date": "2026-11-03",
-   "raw": 176.95,
-   "display": "176.95",
-   "period": "3 Nov 2026",
+   "date": "2026-11-04",
+   "raw": 178.3,
+   "display": "178.30",
+   "period": "4 Nov 2026",
    "flash": false
   },
   "brent_usd": {
-   "date": "2026-10-27",
-   "raw": 123.1,
-   "display": "$123.1",
-   "period": "27 Oct 2026",
+   "date": "2026-11-03",
+   "raw": 107.03,
+   "display": "$107.0",
+   "period": "3 Nov 2026",
    "flash": false
   },
   "brent_eur": {
-   "date": "2026-10-27",
-   "raw": 110.403587,
-   "display": "110.4 €/bbl",
-   "period": "27 Oct 2026",
+   "date": "2026-11-03",
+   "raw": 95.742016,
+   "display": "95.7 €/bbl",
+   "period": "3 Nov 2026",
    "flash": false
   },
   "gas_eu": {
@@ -925,17 +925,17 @@
    "flash": false
   },
   "hicp_euro_area": {
-   "date": "2026-09-01",
-   "raw": 3.8,
-   "display": "3.8%",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 4.0,
+   "display": "4.0%",
+   "period": "Oct 2026",
    "flash": false
   },
   "hicp_core_euro_area": {
-   "date": "2026-09-01",
+   "date": "2026-10-01",
    "raw": 2.5,
    "display": "2.5%",
-   "period": "Sep 2026",
+   "period": "Oct 2026",
    "flash": false
   },
   "es_10y_monthly": {
@@ -988,59 +988,59 @@
    "flash": false
   },
   "hicp_de": {
-   "date": "2026-09-01",
-   "raw": 3.3,
-   "display": "3.3%",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 2.8,
+   "display": "2.8%",
+   "period": "Oct 2026",
    "flash": false
   },
   "hicp_fr": {
-   "date": "2026-09-01",
-   "raw": 3.4,
-   "display": "3.4%",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 3.8,
+   "display": "3.8%",
+   "period": "Oct 2026",
    "flash": false
   },
   "hicp_it": {
-   "date": "2026-09-01",
-   "raw": 4.2,
-   "display": "4.2%",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 5.6,
+   "display": "5.6%",
+   "period": "Oct 2026",
    "flash": false
   },
   "hicp_pt": {
-   "date": "2026-09-01",
-   "raw": 3.6,
-   "display": "3.6%",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 3.9,
+   "display": "3.9%",
+   "period": "Oct 2026",
    "flash": false
   },
   "hicp_core_de": {
-   "date": "2026-09-01",
-   "raw": 2.5,
-   "display": "2.5%",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 2.3,
+   "display": "2.3%",
+   "period": "Oct 2026",
    "flash": false
   },
   "hicp_core_fr": {
-   "date": "2026-09-01",
-   "raw": 1.8,
-   "display": "1.8%",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 2.0,
+   "display": "2.0%",
+   "period": "Oct 2026",
    "flash": false
   },
   "hicp_core_it": {
-   "date": "2026-09-01",
-   "raw": 1.9,
-   "display": "1.9%",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 2.3,
+   "display": "2.3%",
+   "period": "Oct 2026",
    "flash": false
   },
   "hicp_core_pt": {
-   "date": "2026-09-01",
-   "raw": 2.9,
-   "display": "2.9%",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 3.1,
+   "display": "3.1%",
+   "period": "Oct 2026",
    "flash": false
   },
   "unemployment_de": {
@@ -1688,17 +1688,17 @@
    "flash": false
   },
   "ciss_es": {
-   "date": "2026-11-02",
-   "raw": 0.004020774653,
-   "display": "0.004",
-   "period": "2 Nov 2026",
+   "date": "2026-11-03",
+   "raw": 0.005761804629,
+   "display": "0.006",
+   "period": "3 Nov 2026",
    "flash": false
   },
   "ciss_ea": {
-   "date": "2026-11-02",
-   "raw": 0.009884770797,
-   "display": "0.010",
-   "period": "2 Nov 2026",
+   "date": "2026-11-03",
+   "raw": 0.007824543524,
+   "display": "0.008",
+   "period": "3 Nov 2026",
    "flash": false
   },
   "npl_ratio": {
@@ -2416,10 +2416,10 @@
    "flash": false
   },
   "hicp_core_np_index": {
-   "date": "2026-09-01",
-   "raw": 103.85,
+   "date": "2026-10-01",
+   "raw": 104.2,
    "display": "3.1% y/y",
-   "period": "Sep 2026",
+   "period": "Oct 2026",
    "flash": false
   },
   "gg_revenue_eur": {
@@ -3697,101 +3697,101 @@
    "flash": false
   },
   "reg_sector_total": {
-   "date": "2026-09-01",
-   "raw": 22437.55309,
-   "display": "+739.9k y/y",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 22624.16476,
+   "display": "+784.6k y/y",
+   "period": "Oct 2026",
    "flash": false
   },
   "reg_sector_total_sa": {
-   "date": "2026-09-01",
-   "raw": 22480.79612,
-   "display": "+108.8k m/m",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 22571.10511,
+   "display": "+90.3k m/m",
+   "period": "Oct 2026",
    "flash": false
   },
   "reg_agriculture": {
-   "date": "2026-09-01",
-   "raw": 1021.653136,
-   "display": "+23.8k y/y",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1034.456048,
+   "display": "+28.5k y/y",
+   "period": "Oct 2026",
    "flash": false
   },
   "reg_agriculture_sa": {
-   "date": "2026-09-01",
-   "raw": 1045.085925,
-   "display": "+3.0k m/m",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1051.289248,
+   "display": "+6.2k m/m",
+   "period": "Oct 2026",
    "flash": false
   },
   "reg_industry": {
-   "date": "2026-09-01",
-   "raw": 2515.189636,
-   "display": "+57.8k y/y",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 2516.686571,
+   "display": "+60.0k y/y",
+   "period": "Oct 2026",
    "flash": false
   },
   "reg_industry_sa": {
-   "date": "2026-09-01",
-   "raw": 2509.636772,
-   "display": "+2.8k m/m",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 2515.211039,
+   "display": "+5.6k m/m",
+   "period": "Oct 2026",
    "flash": false
   },
   "reg_construction": {
-   "date": "2026-09-01",
-   "raw": 1496.607682,
-   "display": "+100.2k y/y",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1519.188333,
+   "display": "+105.7k y/y",
+   "period": "Oct 2026",
    "flash": false
   },
   "reg_construction_sa": {
-   "date": "2026-09-01",
-   "raw": 1505.508093,
+   "date": "2026-10-01",
+   "raw": 1517.663026,
    "display": "+12.2k m/m",
-   "period": "Sep 2026",
+   "period": "Oct 2026",
    "flash": false
   },
   "reg_services": {
-   "date": "2026-09-01",
-   "raw": 17404.10264,
-   "display": "+558.0k y/y",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 17553.83381,
+   "display": "+590.5k y/y",
+   "period": "Oct 2026",
    "flash": false
   },
   "reg_services_sa": {
-   "date": "2026-09-01",
-   "raw": 17413.25316,
-   "display": "+93.1k m/m",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 17483.97274,
+   "display": "+70.7k m/m",
+   "period": "Oct 2026",
    "flash": false
   },
   "reg_employees": {
-   "date": "2026-09-01",
-   "raw": 18942.349,
-   "display": "+669.9k y/y",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 19110.99729,
+   "display": "+705.8k y/y",
+   "period": "Oct 2026",
    "flash": false
   },
   "reg_employees_sa": {
-   "date": "2026-09-01",
-   "raw": 18977.77154,
-   "display": "+99.6k m/m",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 19059.72837,
+   "display": "+82.0k m/m",
+   "period": "Oct 2026",
    "flash": false
   },
   "reg_self_employed": {
-   "date": "2026-09-01",
-   "raw": 3495.204091,
-   "display": "+70.0k y/y",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 3513.167476,
+   "display": "+78.7k y/y",
+   "period": "Oct 2026",
    "flash": false
   },
   "reg_self_employed_sa": {
-   "date": "2026-09-01",
-   "raw": 3495.893312,
-   "display": "+10.8k m/m",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 3509.037316,
+   "display": "+13.1k m/m",
+   "period": "Oct 2026",
    "flash": false
   },
   "paro_no_previous_job": {
@@ -3921,269 +3921,269 @@
    "flash": false
   },
   "ind_total": {
-   "date": "2026-09-01",
-   "raw": 21352.43595,
-   "display": "+683.0k y/y",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 21511.79881,
+   "display": "+710.3k y/y",
+   "period": "Oct 2026",
    "flash": false
   },
   "ind_goods": {
-   "date": "2026-09-01",
-   "raw": 4364.163227,
-   "display": "+166.3k y/y",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 4384.314238,
+   "display": "+172.2k y/y",
+   "period": "Oct 2026",
    "flash": false
   },
   "ind_services": {
-   "date": "2026-09-01",
-   "raw": 16988.27273,
-   "display": "+516.7k y/y",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 17127.48457,
+   "display": "+538.1k y/y",
+   "period": "Oct 2026",
    "flash": false
   },
   "ind_agriculture": {
-   "date": "2026-09-01",
-   "raw": 354.0255455,
-   "display": "+8.1k y/y",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 350.1177143,
+   "display": "+6.5k y/y",
+   "period": "Oct 2026",
    "flash": false
   },
   "ind_mining": {
-   "date": "2026-09-01",
-   "raw": 21.69672727,
+   "date": "2026-10-01",
+   "raw": 21.72085714,
    "display": "+0.5k y/y",
-   "period": "Sep 2026",
+   "period": "Oct 2026",
    "flash": false
   },
   "ind_manufacturing": {
-   "date": "2026-09-01",
-   "raw": 2260.8315,
-   "display": "+46.6k y/y",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 2266.945619,
+   "display": "+48.8k y/y",
+   "period": "Oct 2026",
    "flash": false
   },
   "ind_food": {
-   "date": "2026-09-01",
-   "raw": 512.5701818,
-   "display": "+13.6k y/y",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 510.5447143,
+   "display": "+13.9k y/y",
+   "period": "Oct 2026",
    "flash": false
   },
   "ind_textiles": {
-   "date": "2026-09-01",
-   "raw": 122.2796364,
+   "date": "2026-10-01",
+   "raw": 123.7077143,
    "display": "+0.3k y/y",
-   "period": "Sep 2026",
+   "period": "Oct 2026",
    "flash": false
   },
   "ind_wood_paper": {
-   "date": "2026-09-01",
-   "raw": 182.6950455,
-   "display": "+2.5k y/y",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 183.2435714,
+   "display": "+2.4k y/y",
+   "period": "Oct 2026",
    "flash": false
   },
   "ind_chemicals": {
-   "date": "2026-09-01",
-   "raw": 193.9486818,
-   "display": "+5.0k y/y",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 194.4296667,
+   "display": "+5.3k y/y",
+   "period": "Oct 2026",
    "flash": false
   },
   "ind_plastics": {
-   "date": "2026-09-01",
-   "raw": 204.3071364,
-   "display": "+2.4k y/y",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 204.7549048,
+   "display": "+2.3k y/y",
+   "period": "Oct 2026",
    "flash": false
   },
   "ind_metals": {
-   "date": "2026-09-01",
-   "raw": 361.0667273,
-   "display": "+2.8k y/y",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 362.2427619,
+   "display": "+3.2k y/y",
+   "period": "Oct 2026",
    "flash": false
   },
   "ind_machinery": {
-   "date": "2026-09-01",
-   "raw": 231.5466364,
-   "display": "+7.5k y/y",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 233.0551905,
+   "display": "+8.1k y/y",
+   "period": "Oct 2026",
    "flash": false
   },
   "ind_vehicles": {
-   "date": "2026-09-01",
-   "raw": 216.2610455,
-   "display": "+6.4k y/y",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 217.2991429,
+   "display": "+6.8k y/y",
+   "period": "Oct 2026",
    "flash": false
   },
   "ind_other_manufacturing": {
-   "date": "2026-09-01",
-   "raw": 236.1564091,
-   "display": "+6.1k y/y",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 237.6679524,
+   "display": "+6.4k y/y",
+   "period": "Oct 2026",
    "flash": false
   },
   "ind_utilities": {
-   "date": "2026-09-01",
-   "raw": 231.6215,
+   "date": "2026-10-01",
+   "raw": 226.9742381,
    "display": "+10.9k y/y",
-   "period": "Sep 2026",
+   "period": "Oct 2026",
    "flash": false
   },
   "ind_construction": {
-   "date": "2026-09-01",
-   "raw": 1495.987955,
-   "display": "+100.2k y/y",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1518.55581,
+   "display": "+105.6k y/y",
+   "period": "Oct 2026",
    "flash": false
   },
   "ind_trade": {
-   "date": "2026-09-01",
-   "raw": 3222.208682,
-   "display": "+69.8k y/y",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 3218.70881,
+   "display": "+70.0k y/y",
+   "period": "Oct 2026",
    "flash": false
   },
   "ind_transport": {
-   "date": "2026-09-01",
-   "raw": 1195.028273,
-   "display": "+42.9k y/y",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1202.112714,
+   "display": "+41.6k y/y",
+   "period": "Oct 2026",
    "flash": false
   },
   "ind_hospitality": {
-   "date": "2026-09-01",
-   "raw": 2053.728682,
-   "display": "+86.8k y/y",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 2005.928238,
+   "display": "+92.7k y/y",
+   "period": "Oct 2026",
    "flash": false
   },
   "ind_accommodation": {
-   "date": "2026-09-01",
-   "raw": 500.5715455,
-   "display": "+24.2k y/y",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 462.0025238,
+   "display": "+25.6k y/y",
+   "period": "Oct 2026",
    "flash": false
   },
   "ind_food_services": {
-   "date": "2026-09-01",
-   "raw": 1553.157136,
-   "display": "+62.5k y/y",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1543.925714,
+   "display": "+67.1k y/y",
+   "period": "Oct 2026",
    "flash": false
   },
   "ind_information": {
-   "date": "2026-09-01",
-   "raw": 791.7765455,
-   "display": "+25.7k y/y",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 799.3009524,
+   "display": "+25.4k y/y",
+   "period": "Oct 2026",
    "flash": false
   },
   "ind_computing": {
-   "date": "2026-09-01",
-   "raw": 578.4693182,
-   "display": "+23.0k y/y",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 583.6761905,
+   "display": "+22.3k y/y",
+   "period": "Oct 2026",
    "flash": false
   },
   "ind_finance": {
-   "date": "2026-09-01",
-   "raw": 404.0363182,
-   "display": "+10.0k y/y",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 405.8607619,
+   "display": "+10.7k y/y",
+   "period": "Oct 2026",
    "flash": false
   },
   "ind_real_estate": {
-   "date": "2026-09-01",
-   "raw": 252.3505909,
-   "display": "+14.2k y/y",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 253.4513333,
+   "display": "+14.7k y/y",
+   "period": "Oct 2026",
    "flash": false
   },
   "ind_professional": {
-   "date": "2026-09-01",
-   "raw": 1337.396636,
-   "display": "+25.2k y/y",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1350.169857,
+   "display": "+26.9k y/y",
+   "period": "Oct 2026",
    "flash": false
   },
   "ind_administrative": {
-   "date": "2026-09-01",
-   "raw": 1696.672227,
-   "display": "+31.0k y/y",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1685.663048,
+   "display": "+36.7k y/y",
+   "period": "Oct 2026",
    "flash": false
   },
   "ind_public_admin": {
-   "date": "2026-09-01",
-   "raw": 1230.470364,
-   "display": "+32.7k y/y",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1231.974143,
+   "display": "+32.1k y/y",
+   "period": "Oct 2026",
    "flash": false
   },
   "ind_education": {
-   "date": "2026-09-01",
-   "raw": 1285.570273,
-   "display": "+49.2k y/y",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1456.577286,
+   "display": "+48.0k y/y",
+   "period": "Oct 2026",
    "flash": false
   },
   "ind_health_social": {
-   "date": "2026-09-01",
-   "raw": 2244.951955,
-   "display": "+87.1k y/y",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 2218.198905,
+   "display": "+92.9k y/y",
+   "period": "Oct 2026",
    "flash": false
   },
   "ind_health": {
-   "date": "2026-09-01",
-   "raw": 1414.060864,
-   "display": "+42.9k y/y",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1384.488524,
+   "display": "+47.0k y/y",
+   "period": "Oct 2026",
    "flash": false
   },
   "ind_social": {
-   "date": "2026-09-01",
-   "raw": 830.8910909,
-   "display": "+44.2k y/y",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 833.710381,
+   "display": "+45.9k y/y",
+   "period": "Oct 2026",
    "flash": false
   },
   "ind_arts": {
-   "date": "2026-09-01",
-   "raw": 426.7885,
-   "display": "+23.8k y/y",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 445.098619,
+   "display": "+25.2k y/y",
+   "period": "Oct 2026",
    "flash": false
   },
   "ind_other_services": {
-   "date": "2026-09-01",
-   "raw": 807.2905455,
-   "display": "+19.4k y/y",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 815.4399524,
+   "display": "+22.2k y/y",
+   "period": "Oct 2026",
    "flash": false
   },
   "ind_households": {
-   "date": "2026-09-01",
-   "raw": 36.62031818,
-   "display": "−1.2k y/y",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 35.55195238,
+   "display": "−1.1k y/y",
+   "period": "Oct 2026",
    "flash": false
   },
   "ind_div95": {
-   "date": "2026-09-01",
-   "raw": 279.0141364,
-   "display": "279.0k",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 280.1391905,
+   "display": "280.1k",
+   "period": "Oct 2026",
    "flash": false
   },
   "ind_div68": {
-   "date": "2026-09-01",
-   "raw": 252.3505909,
-   "display": "252.4k",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 253.4513333,
+   "display": "253.5k",
+   "period": "Oct 2026",
    "flash": false
   },
   "lfs_act_all": {
@@ -6203,45 +6203,45 @@
    "flash": false
   },
   "youth_unemp_es": {
-   "date": "2026-08-01",
-   "raw": 22.7,
-   "display": "22.7%",
-   "period": "Aug 2026",
+   "date": "2026-09-01",
+   "raw": 22.8,
+   "display": "22.8%",
+   "period": "Sep 2026",
    "flash": false
   },
   "youth_unemp_fr": {
-   "date": "2026-08-01",
-   "raw": 20.6,
-   "display": "20.6%",
-   "period": "Aug 2026",
+   "date": "2026-09-01",
+   "raw": 21.9,
+   "display": "21.9%",
+   "period": "Sep 2026",
    "flash": false
   },
   "youth_unemp_de": {
-   "date": "2026-08-01",
-   "raw": 7.4,
-   "display": "7.4%",
-   "period": "Aug 2026",
+   "date": "2026-09-01",
+   "raw": 7.5,
+   "display": "7.5%",
+   "period": "Sep 2026",
    "flash": false
   },
   "youth_unemp_it": {
-   "date": "2026-08-01",
-   "raw": 20.3,
-   "display": "20.3%",
-   "period": "Aug 2026",
+   "date": "2026-09-01",
+   "raw": 19.9,
+   "display": "19.9%",
+   "period": "Sep 2026",
    "flash": false
   },
   "youth_unemp_pt": {
-   "date": "2026-08-01",
-   "raw": 19.8,
-   "display": "19.8%",
-   "period": "Aug 2026",
+   "date": "2026-09-01",
+   "raw": 19.1,
+   "display": "19.1%",
+   "period": "Sep 2026",
    "flash": false
   },
   "youth_unemp_pl": {
-   "date": "2026-08-01",
+   "date": "2026-09-01",
    "raw": 11.3,
    "display": "11.3%",
-   "period": "Aug 2026",
+   "period": "Sep 2026",
    "flash": false
   },
   "youth_unemp_uk": {
@@ -6413,17 +6413,17 @@
    "flash": false
   },
   "hicp_nl": {
-   "date": "2026-09-01",
-   "raw": 3.0,
-   "display": "3.0%",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 3.3,
+   "display": "3.3%",
+   "period": "Oct 2026",
    "flash": false
   },
   "hicp_core_nl": {
-   "date": "2026-09-01",
-   "raw": 2.9,
-   "display": "2.9%",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 3.0,
+   "display": "3.0%",
+   "period": "Oct 2026",
    "flash": false
   },
   "unemployment_nl": {
@@ -7246,24 +7246,24 @@
    "flash": false
   },
   "unemployment_jp": {
-   "date": "2026-08-01",
-   "raw": 2.5,
-   "display": "2.5%",
-   "period": "Aug 2026",
+   "date": "2026-09-01",
+   "raw": 2.4,
+   "display": "2.4%",
+   "period": "Sep 2026",
    "flash": false
   },
   "youth_unemp_nl": {
-   "date": "2026-08-01",
+   "date": "2026-09-01",
    "raw": 8.8,
    "display": "8.8%",
-   "period": "Aug 2026",
+   "period": "Sep 2026",
    "flash": false
   },
   "youth_unemp_jp": {
-   "date": "2026-08-01",
+   "date": "2026-09-01",
    "raw": 3.5,
    "display": "3.5%",
-   "period": "Aug 2026",
+   "period": "Sep 2026",
    "flash": false
   },
   "emp_rate_nl": {
@@ -7274,10 +7274,10 @@
    "flash": false
   },
   "emp_rate_jp": {
-   "date": "2026-04-01",
-   "raw": 80.49023,
+   "date": "2026-07-01",
+   "raw": 80.50503,
    "display": "80.5%",
-   "period": "Q2 2026",
+   "period": "Q3 2026",
    "flash": false
   },
   "gdp_growth_jp": {
@@ -7380,7 +7380,7 @@
   },
   "real_hpi_fr": {
    "date": "2026-04-01",
-   "raw": 100.4975182,
+   "raw": 100.4871867,
    "display": "−3.0% y/y",
    "period": "Q2 2026",
    "flash": false
@@ -7401,7 +7401,7 @@
   },
   "real_hpi_nl": {
    "date": "2025-10-01",
-   "raw": 156.60322,
+   "raw": 156.6042854,
    "display": "2.9% y/y",
    "period": "Q4 2025",
    "flash": false
@@ -8919,122 +8919,122 @@
    "flash": false
   },
   "petrol_price": {
-   "date": "2026-10-26",
-   "raw": 1.751107673,
-   "display": "1.751 €/l",
-   "period": "26 Oct 2026",
+   "date": "2026-11-02",
+   "raw": 1.729889783,
+   "display": "1.730 €/l",
+   "period": "2 Nov 2026",
    "flash": false
   },
   "diesel_price": {
-   "date": "2026-10-26",
-   "raw": 1.887798911,
-   "display": "1.888 €/l",
-   "period": "26 Oct 2026",
+   "date": "2026-11-02",
+   "raw": 1.898318015,
+   "display": "1.898 €/l",
+   "period": "2 Nov 2026",
    "flash": false
   },
   "petrol_price_pretax": {
-   "date": "2026-10-26",
-   "raw": 1.174506423,
-   "display": "1.175 €/l",
-   "period": "26 Oct 2026",
+   "date": "2026-11-02",
+   "raw": 1.156970977,
+   "display": "1.157 €/l",
+   "period": "2 Nov 2026",
    "flash": false
   },
   "diesel_price_pretax": {
-   "date": "2026-10-26",
-   "raw": 1.381164389,
-   "display": "1.381 €/l",
-   "period": "26 Oct 2026",
+   "date": "2026-11-02",
+   "raw": 1.389857863,
+   "display": "1.390 €/l",
+   "period": "2 Nov 2026",
    "flash": false
   },
   "petrol_price_ea": {
-   "date": "2026-10-26",
-   "raw": 2.03202432,
-   "display": "2.032 €/l",
-   "period": "26 Oct 2026",
+   "date": "2026-11-02",
+   "raw": 2.003881543,
+   "display": "2.004 €/l",
+   "period": "2 Nov 2026",
    "flash": false
   },
   "diesel_price_ea": {
-   "date": "2026-10-26",
-   "raw": 2.201234453,
-   "display": "2.201 €/l",
-   "period": "26 Oct 2026",
+   "date": "2026-11-02",
+   "raw": 2.203130996,
+   "display": "2.203 €/l",
+   "period": "2 Nov 2026",
    "flash": false
   },
   "vacancies_eurostat": {
-   "date": "2025-10-01",
-   "raw": 154.247,
-   "display": "154.2k",
-   "period": "Q4 2025",
+   "date": "2026-04-01",
+   "raw": 150.765,
+   "display": "150.8k",
+   "period": "Q2 2026",
    "flash": false
   },
   "state_debt_outstanding": {
-   "date": "2026-11-03",
+   "date": "2026-11-04",
    "raw": 1522.8672,
    "display": "€1,522.9 bn",
-   "period": "3 Nov 2026",
+   "period": "4 Nov 2026",
    "flash": false
   },
   "state_debt_avg_coupon": {
-   "date": "2026-11-03",
+   "date": "2026-11-04",
    "raw": 2.36070911,
    "display": "2.36%",
-   "period": "3 Nov 2026",
+   "period": "4 Nov 2026",
    "flash": false
   },
   "state_debt_avg_life": {
-   "date": "2026-11-03",
-   "raw": 7.740254701,
+   "date": "2026-11-04",
+   "raw": 7.73751685,
    "display": "7.74 years",
-   "period": "3 Nov 2026",
+   "period": "4 Nov 2026",
    "flash": false
   },
   "madrid_general": {
-   "date": "2026-11-02",
-   "raw": 1873.0,
-   "display": "1,873.00",
-   "period": "2 Nov 2026",
+   "date": "2026-11-03",
+   "raw": 1859.0,
+   "display": "1,859.00",
+   "period": "3 Nov 2026",
    "flash": false
   },
   "madrid_financials": {
-   "date": "2026-11-02",
-   "raw": 1494.7,
-   "display": "1,494.7",
-   "period": "2 Nov 2026",
+   "date": "2026-11-03",
+   "raw": 1480.6,
+   "display": "1,480.6",
+   "period": "3 Nov 2026",
    "flash": false
   },
   "madrid_energy": {
-   "date": "2026-11-02",
-   "raw": 3213.4,
-   "display": "3,213.4",
-   "period": "2 Nov 2026",
+   "date": "2026-11-03",
+   "raw": 3203.1,
+   "display": "3,203.1",
+   "period": "3 Nov 2026",
    "flash": false
   },
   "madrid_consumer_goods": {
-   "date": "2026-11-02",
-   "raw": 7332.5,
-   "display": "7,332.5",
-   "period": "2 Nov 2026",
+   "date": "2026-11-03",
+   "raw": 7203.0,
+   "display": "7,203.0",
+   "period": "3 Nov 2026",
    "flash": false
   },
   "madrid_industry": {
-   "date": "2026-11-02",
-   "raw": 2617.9,
-   "display": "2,617.9",
-   "period": "2 Nov 2026",
+   "date": "2026-11-03",
+   "raw": 2626.3,
+   "display": "2,626.3",
+   "period": "3 Nov 2026",
    "flash": false
   },
   "madrid_consumer_services": {
-   "date": "2026-11-02",
-   "raw": 1886.3,
-   "display": "1,886.3",
-   "period": "2 Nov 2026",
+   "date": "2026-11-03",
+   "raw": 1884.0,
+   "display": "1,884.0",
+   "period": "3 Nov 2026",
    "flash": false
   },
   "madrid_tech": {
-   "date": "2026-11-02",
-   "raw": 693.0,
-   "display": "693.0",
-   "period": "2 Nov 2026",
+   "date": "2026-11-03",
+   "raw": 684.8,
+   "display": "684.8",
+   "period": "3 Nov 2026",
    "flash": false
   },
   "ms_nfa": {
@@ -9570,17 +9570,17 @@
    "flash": false
   },
   "gdppc_pps_es": {
-   "date": "2024-01-01",
+   "date": "2025-01-01",
    "raw": 92.0,
    "display": "92",
-   "period": "2024",
+   "period": "2025",
    "flash": false
   },
   "gdppc_pps_ea": {
-   "date": "2024-01-01",
+   "date": "2025-01-01",
    "raw": 104.0,
    "display": "104",
-   "period": "2024",
+   "period": "2025",
    "flash": false
   },
   "gdhi_real_pc_es": {
@@ -9885,8 +9885,638 @@
    "page": "ecb.html",
    "text": "Banco de España, banknotes in circulation: €175,425 mn in Sep 2026, after €175,520 mn in Aug 2026.",
    "at": "2026-11-03T22:32:50+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "afiliados",
+   "page": "labour.html",
+   "text": "Social Security registrations: +101.4k m/m SA in Oct 2026, after +123.5k m/m SA in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "vacancies_eurostat",
+   "page": "labour.html",
+   "text": "Job vacancies (Eurostat, from 2001): 150.8k in Q2 2026, after 154.2k in Q4 2025.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "hicp",
+   "page": "inflation.html",
+   "text": "HICP inflation: 4.9% in Oct 2026, after 5.0% in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "hicp_core",
+   "page": "inflation.html",
+   "text": "Core HICP inflation: 3.5% in Oct 2026, after 3.5% in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "hicp_index",
+   "page": "inflation.html",
+   "text": "HICP index: 4.9% y/y in Oct 2026, after 5.0% y/y in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "hicp_core_index",
+   "page": "inflation.html",
+   "text": "Core HICP index: 3.5% y/y in Oct 2026, after 3.5% y/y in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "hicp_core_np_index",
+   "page": "inflation.html",
+   "text": "HICP excluding energy and unprocessed food, index: 3.1% y/y in Oct 2026, after 3.1% y/y in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "market",
+   "id": "electricity_price",
+   "page": "inflation.html",
+   "text": "Electricity price (day-ahead): +31.9% since the last update, to 246 €/MWh.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "market",
+   "id": "electricity_demand",
+   "page": "activity.html",
+   "text": "Electricity demand: +11.3% since the last update, to 677.1 GWh.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "tourist_arrivals",
+   "page": "activity.html",
+   "text": "International tourist arrivals: 4.3% y/y in Sep 2026, after 9.2% y/y in Aug 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "tourist_spending",
+   "page": "activity.html",
+   "text": "International tourist spending: 8.1% y/y in Sep 2026, after 9.2% y/y in Aug 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "market",
+   "id": "es_10y",
+   "page": "financial.html",
+   "text": "Spain 10-year yield: −13 bp since the last update, to 3.93%.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "market",
+   "id": "brent_usd",
+   "page": "financial.html",
+   "text": "Brent crude: −13.1% since the last update, to $107.0.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "market",
+   "id": "brent_eur",
+   "page": "financial.html",
+   "text": "Brent crude in euros: −13.3% since the last update, to 95.7 €/bbl.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "hicp_euro_area",
+   "page": "international.html",
+   "text": "Euro area HICP inflation: 4.0% in Oct 2026, after 3.8% in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "hicp_core_euro_area",
+   "page": "international.html",
+   "text": "Euro area core HICP inflation: 2.5% in Oct 2026, after 2.5% in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "hicp_de",
+   "page": "international.html",
+   "text": "HICP inflation, Germany: 2.8% in Oct 2026, after 3.3% in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "hicp_fr",
+   "page": "international.html",
+   "text": "HICP inflation, France: 3.8% in Oct 2026, after 3.4% in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "hicp_it",
+   "page": "international.html",
+   "text": "HICP inflation, Italy: 5.6% in Oct 2026, after 4.2% in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "hicp_pt",
+   "page": "international.html",
+   "text": "HICP inflation, Portugal: 3.9% in Oct 2026, after 3.6% in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "hicp_nl",
+   "page": "international.html",
+   "text": "HICP inflation, Netherlands: 3.3% in Oct 2026, after 3.0% in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "hicp_core_de",
+   "page": "international.html",
+   "text": "Core HICP inflation, Germany: 2.3% in Oct 2026, after 2.5% in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "hicp_core_fr",
+   "page": "international.html",
+   "text": "Core HICP inflation, France: 2.0% in Oct 2026, after 1.8% in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "hicp_core_it",
+   "page": "international.html",
+   "text": "Core HICP inflation, Italy: 2.3% in Oct 2026, after 1.9% in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "hicp_core_pt",
+   "page": "international.html",
+   "text": "Core HICP inflation, Portugal: 3.1% in Oct 2026, after 2.9% in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "hicp_core_nl",
+   "page": "international.html",
+   "text": "Core HICP inflation, Netherlands: 3.0% in Oct 2026, after 2.9% in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "unemployment_jp",
+   "page": "international.html",
+   "text": "Unemployment rate, Japan: 2.4% in Sep 2026, after 2.5% in Aug 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "youth_unemp_es",
+   "page": "international.html",
+   "text": "Youth unemployment rate (15-24), Spain: 22.8% in Sep 2026, after 22.7% in Aug 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "youth_unemp_fr",
+   "page": "international.html",
+   "text": "Youth unemployment rate (15-24), France: 21.9% in Sep 2026, after 20.6% in Aug 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "youth_unemp_de",
+   "page": "international.html",
+   "text": "Youth unemployment rate (15-24), Germany: 7.5% in Sep 2026, after 7.4% in Aug 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "youth_unemp_it",
+   "page": "international.html",
+   "text": "Youth unemployment rate (15-24), Italy: 19.9% in Sep 2026, after 20.3% in Aug 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "youth_unemp_nl",
+   "page": "international.html",
+   "text": "Youth unemployment rate (15-24), Netherlands: 8.8% in Sep 2026, after 8.8% in Aug 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "youth_unemp_pt",
+   "page": "international.html",
+   "text": "Youth unemployment rate (15-24), Portugal: 19.1% in Sep 2026, after 19.8% in Aug 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "youth_unemp_pl",
+   "page": "international.html",
+   "text": "Youth unemployment rate (15-24), Poland: 11.3% in Sep 2026, after 11.3% in Aug 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "youth_unemp_jp",
+   "page": "international.html",
+   "text": "Youth unemployment rate (15-24), Japan: 3.5% in Sep 2026, after 3.5% in Aug 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "emp_rate_jp",
+   "page": "international.html",
+   "text": "Employment rate (15-64), Japan: 80.5% in Q3 2026, after 80.5% in Q2 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "gdppc_pps_es",
+   "page": "gdp.html",
+   "text": "GDP per head in purchasing power, Spain (EU = 100): 92 in 2025, after 92 in 2024.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "gdppc_pps_ea",
+   "page": "gdp.html",
+   "text": "GDP per head in purchasing power, euro area (EU = 100): 104 in 2025, after 104 in 2024.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "reg_sector_total",
+   "page": "labour.html",
+   "text": "Registrations, total: +784.6k y/y in Oct 2026, after +739.9k y/y in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "reg_sector_total_sa",
+   "page": "labour.html",
+   "text": "Registrations, total (SA): +90.3k m/m in Oct 2026, after +108.8k m/m in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "reg_agriculture",
+   "page": "labour.html",
+   "text": "Registrations, agriculture: +28.5k y/y in Oct 2026, after +23.8k y/y in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "reg_agriculture_sa",
+   "page": "labour.html",
+   "text": "Registrations, agriculture (SA): +6.2k m/m in Oct 2026, after +3.0k m/m in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "reg_industry",
+   "page": "labour.html",
+   "text": "Registrations, industry: +60.0k y/y in Oct 2026, after +57.8k y/y in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "reg_industry_sa",
+   "page": "labour.html",
+   "text": "Registrations, industry (SA): +5.6k m/m in Oct 2026, after +2.8k m/m in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "reg_construction",
+   "page": "labour.html",
+   "text": "Registrations, construction: +105.7k y/y in Oct 2026, after +100.2k y/y in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "reg_construction_sa",
+   "page": "labour.html",
+   "text": "Registrations, construction (SA): +12.2k m/m in Oct 2026, after +12.2k m/m in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "reg_services",
+   "page": "labour.html",
+   "text": "Registrations, services: +590.5k y/y in Oct 2026, after +558.0k y/y in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "reg_services_sa",
+   "page": "labour.html",
+   "text": "Registrations, services (SA): +70.7k m/m in Oct 2026, after +93.1k m/m in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "reg_employees",
+   "page": "labour.html",
+   "text": "Registrations, employees: +705.8k y/y in Oct 2026, after +669.9k y/y in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "reg_employees_sa",
+   "page": "labour.html",
+   "text": "Registrations, employees (SA): +82.0k m/m in Oct 2026, after +99.6k m/m in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "reg_self_employed",
+   "page": "labour.html",
+   "text": "Registrations, self-employed: +78.7k y/y in Oct 2026, after +70.0k y/y in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "reg_self_employed_sa",
+   "page": "labour.html",
+   "text": "Registrations, self-employed (SA): +13.1k m/m in Oct 2026, after +10.8k m/m in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "ind_total",
+   "page": "labour.html",
+   "text": "Registrations, all industries: +710.3k y/y in Oct 2026, after +683.0k y/y in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "ind_goods",
+   "page": "labour.html",
+   "text": "Registrations, goods-producing: +172.2k y/y in Oct 2026, after +166.3k y/y in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "ind_services",
+   "page": "labour.html",
+   "text": "Registrations, service-providing: +538.1k y/y in Oct 2026, after +516.7k y/y in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "ind_agriculture",
+   "page": "labour.html",
+   "text": "Registrations, agriculture, forestry and fishing: +6.5k y/y in Oct 2026, after +8.1k y/y in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "ind_mining",
+   "page": "labour.html",
+   "text": "Registrations, mining and quarrying: +0.5k y/y in Oct 2026, after +0.5k y/y in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "ind_manufacturing",
+   "page": "labour.html",
+   "text": "Registrations, manufacturing: +48.8k y/y in Oct 2026, after +46.6k y/y in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "ind_food",
+   "page": "labour.html",
+   "text": "Registrations, food, beverages and tobacco: +13.9k y/y in Oct 2026, after +13.6k y/y in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "ind_textiles",
+   "page": "labour.html",
+   "text": "Registrations, textiles, clothing and leather: +0.3k y/y in Oct 2026, after +0.3k y/y in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "ind_wood_paper",
+   "page": "labour.html",
+   "text": "Registrations, wood, paper and printing: +2.4k y/y in Oct 2026, after +2.5k y/y in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "ind_chemicals",
+   "page": "labour.html",
+   "text": "Registrations, petroleum, chemicals and pharmaceuticals: +5.3k y/y in Oct 2026, after +5.0k y/y in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "ind_plastics",
+   "page": "labour.html",
+   "text": "Registrations, rubber, plastics and other mineral products: +2.3k y/y in Oct 2026, after +2.4k y/y in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "ind_metals",
+   "page": "labour.html",
+   "text": "Registrations, metals and metal products: +3.2k y/y in Oct 2026, after +2.8k y/y in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "ind_machinery",
+   "page": "labour.html",
+   "text": "Registrations, electronics, electrical equipment and machinery: +8.1k y/y in Oct 2026, after +7.5k y/y in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "ind_vehicles",
+   "page": "labour.html",
+   "text": "Registrations, motor vehicles and other transport equipment: +6.8k y/y in Oct 2026, after +6.4k y/y in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "ind_other_manufacturing",
+   "page": "labour.html",
+   "text": "Registrations, furniture, other manufacturing and repair: +6.4k y/y in Oct 2026, after +6.1k y/y in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "ind_utilities",
+   "page": "labour.html",
+   "text": "Registrations, energy, water and waste: +10.9k y/y in Oct 2026, after +10.9k y/y in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "ind_construction",
+   "page": "labour.html",
+   "text": "Registrations, construction: +105.6k y/y in Oct 2026, after +100.2k y/y in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "ind_trade",
+   "page": "labour.html",
+   "text": "Registrations, wholesale and retail trade: +70.0k y/y in Oct 2026, after +69.8k y/y in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "ind_transport",
+   "page": "labour.html",
+   "text": "Registrations, transport and storage: +41.6k y/y in Oct 2026, after +42.9k y/y in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "ind_hospitality",
+   "page": "labour.html",
+   "text": "Registrations, accommodation and food services: +92.7k y/y in Oct 2026, after +86.8k y/y in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "ind_accommodation",
+   "page": "labour.html",
+   "text": "Registrations, accommodation: +25.6k y/y in Oct 2026, after +24.2k y/y in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "ind_food_services",
+   "page": "labour.html",
+   "text": "Registrations, restaurants and bars: +67.1k y/y in Oct 2026, after +62.5k y/y in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "ind_information",
+   "page": "labour.html",
+   "text": "Registrations, information and communication: +25.4k y/y in Oct 2026, after +25.7k y/y in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "ind_computing",
+   "page": "labour.html",
+   "text": "Registrations, computer programming and information services: +22.3k y/y in Oct 2026, after +23.0k y/y in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "ind_finance",
+   "page": "labour.html",
+   "text": "Registrations, finance and insurance: +10.7k y/y in Oct 2026, after +10.0k y/y in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "ind_real_estate",
+   "page": "labour.html",
+   "text": "Registrations, real estate: +14.7k y/y in Oct 2026, after +14.2k y/y in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "ind_professional",
+   "page": "labour.html",
+   "text": "Registrations, professional, scientific and technical: +26.9k y/y in Oct 2026, after +25.2k y/y in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "ind_administrative",
+   "page": "labour.html",
+   "text": "Registrations, administrative and support services: +36.7k y/y in Oct 2026, after +31.0k y/y in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "ind_public_admin",
+   "page": "labour.html",
+   "text": "Registrations, public administration and defence: +32.1k y/y in Oct 2026, after +32.7k y/y in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "ind_education",
+   "page": "labour.html",
+   "text": "Registrations, education: +48.0k y/y in Oct 2026, after +49.2k y/y in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "ind_health_social",
+   "page": "labour.html",
+   "text": "Registrations, health and social work: +92.9k y/y in Oct 2026, after +87.1k y/y in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "ind_health",
+   "page": "labour.html",
+   "text": "Registrations, health: +47.0k y/y in Oct 2026, after +42.9k y/y in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "ind_social",
+   "page": "labour.html",
+   "text": "Registrations, residential care and social work: +45.9k y/y in Oct 2026, after +44.2k y/y in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "ind_arts",
+   "page": "labour.html",
+   "text": "Registrations, arts, entertainment and recreation: +25.2k y/y in Oct 2026, after +23.8k y/y in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "ind_other_services",
+   "page": "labour.html",
+   "text": "Registrations, other services, incl. repairs: +22.2k y/y in Oct 2026, after +19.4k y/y in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "ind_households",
+   "page": "labour.html",
+   "text": "Registrations, households as employers: −1.1k y/y in Oct 2026, after −1.2k y/y in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "ind_div95",
+   "page": "labour.html",
+   "text": "Registrations, division 95 as published (repairs): 280.1k in Oct 2026, after 279.0k in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "ind_div68",
+   "page": "labour.html",
+   "text": "Registrations, division 68 as published (real estate): 253.5k in Oct 2026, after 252.4k in Sep 2026.",
+   "at": "2026-11-04T19:08:42+00:00"
   }
  ],
- "updated_at": "2026-11-03T22:32:50+00:00",
+ "updated_at": "2026-11-04T19:08:42+00:00",
  "started_at": "2026-10-31T23:31:49+00:00"
 }

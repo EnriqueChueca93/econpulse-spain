@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-11-03T22:32:26+00:00",
+ "fetched_at": "2026-11-04T19:08:24+00:00",
  "levels": {
   "central": {
    "function": {
@@ -33278,169 +33278,169 @@
   "edition": "2025-P",
   "execution": {
    "2026": {
-    "month": 8,
-    "day": 31,
+    "month": 9,
+    "day": 30,
     "policies": {
      "internal": {
-      "final": 77996.3,
-      "obligations": 53179.2,
-      "payments": 48462.4,
+      "final": 78070.5,
+      "obligations": 55706.2,
+      "payments": 52660.5,
       "initial": 60621.3
      },
      "justice": {
-      "final": 2577.6,
-      "obligations": 1563.1,
-      "payments": 1559.4,
+      "final": 2582.6,
+      "obligations": 1738.3,
+      "payments": 1733.7,
       "initial": 2206.8
      },
      "defence": {
-      "final": 21669.3,
-      "obligations": 7884.0,
-      "payments": 7806.6,
+      "final": 21771.1,
+      "obligations": 9198.8,
+      "payments": 8880.8,
       "initial": 12062.2
      },
      "security": {
-      "final": 10534.9,
-      "obligations": 6734.8,
-      "payments": 6712.7,
+      "final": 10644.3,
+      "obligations": 7571.2,
+      "payments": 7524.2,
       "initial": 9791.5
      },
      "foreign": {
-      "final": 1333.4,
-      "obligations": 687.8,
-      "payments": 680.0,
+      "final": 1333.8,
+      "obligations": 743.3,
+      "payments": 728.7,
       "initial": 1293.5
      },
      "pensions": {
-      "final": 20508.7,
-      "obligations": 15911.2,
-      "payments": 15911.0,
+      "final": 20506.6,
+      "obligations": 17716.4,
+      "payments": 17715.9,
       "initial": 20508.6
      },
      "social_services": {
-      "final": 2881.4,
-      "obligations": 993.4,
-      "payments": 849.2,
+      "final": 3008.3,
+      "obligations": 1193.2,
+      "payments": 1099.4,
       "initial": 1852.6
      },
      "employment": {
       "final": 1262.7,
-      "obligations": 544.0,
-      "payments": 542.9,
+      "obligations": 548.7,
+      "payments": 548.2,
       "initial": 1268.5
      },
      "housing": {
       "final": 3594.1,
-      "obligations": 1160.5,
-      "payments": 1159.3,
+      "obligations": 1169.5,
+      "payments": 1168.8,
       "initial": 3483.6
      },
      "labour_admin": {
-      "final": 168.6,
-      "obligations": 71.9,
-      "payments": 71.3,
+      "final": 169.8,
+      "obligations": 78.8,
+      "payments": 77.8,
       "initial": 118.9
      },
      "inclusion_admin": {
-      "final": 71.8,
-      "obligations": 34.4,
-      "payments": 34.9,
+      "final": 71.9,
+      "obligations": 38.6,
+      "payments": 38.3,
       "initial": 67.1
      },
      "health": {
       "final": 1178.8,
-      "obligations": 307.3,
-      "payments": 302.6,
+      "obligations": 559.8,
+      "payments": 556.1,
       "initial": 1119.7
      },
      "education": {
-      "final": 5243.9,
-      "obligations": 1747.3,
-      "payments": 1706.0,
+      "final": 5246.9,
+      "obligations": 1812.1,
+      "payments": 1810.3,
       "initial": 5227.7
      },
      "culture": {
-      "final": 586.9,
-      "obligations": 169.4,
-      "payments": 169.2,
+      "final": 587.7,
+      "obligations": 201.6,
+      "payments": 196.8,
       "initial": 608.2
      },
      "agriculture": {
-      "final": 1931.4,
-      "obligations": 830.5,
-      "payments": 823.1,
+      "final": 1932.0,
+      "obligations": 884.2,
+      "payments": 881.6,
       "initial": 738.8
      },
      "industry": {
-      "final": 17529.1,
-      "obligations": 14218.4,
-      "payments": 14199.1,
+      "final": 17519.0,
+      "obligations": 15277.5,
+      "payments": 14739.2,
       "initial": 5986.2
      },
      "trade": {
-      "final": 1549.0,
-      "obligations": 1080.5,
-      "payments": 386.8,
+      "final": 1561.4,
+      "obligations": 1136.2,
+      "payments": 480.6,
       "initial": 2980.8
      },
      "transport_subsidies": {
       "final": 4474.7,
-      "obligations": 1822.1,
-      "payments": 1740.9,
+      "obligations": 2104.1,
+      "payments": 2054.6,
       "initial": 3446.3
      },
      "infrastructure": {
-      "final": 10370.3,
-      "obligations": 3640.8,
-      "payments": 3559.6,
+      "final": 10363.8,
+      "obligations": 4835.7,
+      "payments": 4642.4,
       "initial": 10906.1
      },
      "research": {
-      "final": 10671.6,
-      "obligations": 1794.9,
-      "payments": 1785.0,
+      "final": 12157.1,
+      "obligations": 2175.7,
+      "payments": 2170.3,
       "initial": 14084.2
      },
      "other_economic": {
-      "final": 414.3,
-      "obligations": 234.0,
-      "payments": 233.8,
+      "final": 414.5,
+      "obligations": 266.6,
+      "payments": 265.3,
       "initial": 1009.7
      },
      "institutions": {
-      "final": 530.1,
-      "obligations": 353.4,
-      "payments": 353.4,
+      "final": 530.2,
+      "obligations": 438.7,
+      "payments": 438.4,
       "initial": 511.7
      },
      "general_services": {
-      "final": 24398.3,
-      "obligations": 4177.4,
-      "payments": 4020.4,
+      "final": 22886.9,
+      "obligations": 4973.0,
+      "payments": 4393.2,
       "initial": 25514.5
      },
      "tax_admin": {
-      "final": 1957.0,
-      "obligations": 1779.1,
-      "payments": 1778.8,
+      "final": 1959.0,
+      "obligations": 1804.9,
+      "payments": 1804.4,
       "initial": 343.4
      },
      "transfers": {
-      "final": 79705.9,
-      "obligations": 41283.9,
-      "payments": 41281.4,
+      "final": 79732.4,
+      "obligations": 45541.2,
+      "payments": 45535.6,
       "initial": 66273.6
      },
      "debt": {
       "final": 159022.5,
-      "obligations": 118133.9,
-      "payments": 118131.4,
+      "obligations": 118813.0,
+      "payments": 118791.2,
       "initial": 128796.8
      },
      "TOTAL": {
-      "final": 462162.5,
-      "obligations": 280337.1,
-      "payments": 274260.9,
+      "final": 462582.4,
+      "obligations": 296527.3,
+      "payments": 290936.3,
       "initial": 380822.5
      }
     },
@@ -33448,69 +33448,69 @@
      "chapters": {
       "ch1": {
        "2026": {
-        "final": 22605.6,
-        "committed": 21643.1,
-        "obligations": 15175.7,
-        "payments": 15034.4
+        "final": 22720.4,
+        "committed": 21872.1,
+        "obligations": 16966.7,
+        "payments": 16865.1
        },
        "2025": {
-        "final": 21733.2,
-        "committed": 20790.2,
-        "obligations": 14313.1,
-        "payments": 14040.2
+        "final": 21740.4,
+        "committed": 20914.3,
+        "obligations": 15984.7,
+        "payments": 15711.0
        }
       },
       "ch2": {
        "2026": {
-        "final": 7357.5,
-        "committed": 5493.1,
-        "obligations": 3238.5,
-        "payments": 3136.6
+        "final": 7487.2,
+        "committed": 5929.6,
+        "obligations": 3741.1,
+        "payments": 3613.1
        },
        "2025": {
-        "final": 7054.3,
-        "committed": 5209.9,
-        "obligations": 2990.6,
-        "payments": 2930.8
+        "final": 7287.2,
+        "committed": 5443.9,
+        "obligations": 3475.6,
+        "payments": 3378.9
        }
       },
       "ch3": {
        "2026": {
         "final": 32658.8,
-        "committed": 25351.9,
-        "obligations": 24169.8,
-        "payments": 24167.2
+        "committed": 25916.0,
+        "obligations": 24836.8,
+        "payments": 24827.4
        },
        "2025": {
         "final": 35865.5,
-        "committed": 24654.5,
-        "obligations": 23272.5,
-        "payments": 23270.0
+        "committed": 24667.4,
+        "obligations": 23477.7,
+        "payments": 23468.6
        }
       },
       "ch4": {
        "2026": {
-        "final": 174244.4,
-        "committed": 141488.3,
-        "obligations": 109258.7,
-        "payments": 105212.2
+        "final": 174403.2,
+        "committed": 142542.7,
+        "obligations": 117594.6,
+        "payments": 115239.9
        },
        "2025": {
-        "final": 159425.1,
-        "committed": 125199.7,
-        "obligations": 97318.9,
-        "payments": 95531.7
+        "final": 159714.1,
+        "committed": 130657.3,
+        "obligations": 107761.0,
+        "payments": 105391.0
        }
       },
       "ch5": {
        "2026": {
-        "final": 512.0,
+        "final": 431.9,
         "committed": 0.0,
         "obligations": 0.0,
         "payments": 0.0
        },
        "2025": {
-        "final": 901.2,
+        "final": 897.2,
         "committed": 0.0,
         "obligations": 0.0,
         "payments": 0.0
@@ -33518,86 +33518,86 @@
       },
       "ch6": {
        "2026": {
-        "final": 19810.9,
-        "committed": 14060.0,
-        "obligations": 5365.4,
-        "payments": 5203.4
+        "final": 19859.5,
+        "committed": 14649.5,
+        "obligations": 6370.7,
+        "payments": 6033.1
        },
        "2025": {
-        "final": 17069.6,
-        "committed": 11597.1,
-        "obligations": 4927.0,
-        "payments": 4823.7
+        "final": 16988.8,
+        "committed": 12200.7,
+        "obligations": 5620.1,
+        "payments": 5419.2
        }
       },
       "ch7": {
        "2026": {
-        "final": 24215.6,
-        "committed": 17549.2,
-        "obligations": 13557.5,
-        "payments": 12571.2
+        "final": 24261.3,
+        "committed": 18078.2,
+        "obligations": 15260.7,
+        "payments": 14163.5
        },
        "2025": {
-        "final": 27460.1,
-        "committed": 13200.4,
-        "obligations": 10501.6,
-        "payments": 8896.9
+        "final": 27125.7,
+        "committed": 13845.9,
+        "obligations": 10965.4,
+        "payments": 9314.1
        }
       },
       "nonfinancial": {
        "2026": {
-        "final": 281404.8,
-        "committed": 225585.6,
-        "obligations": 170765.6,
-        "payments": 165325.0
+        "final": 281822.3,
+        "committed": 228988.1,
+        "obligations": 184770.6,
+        "payments": 180742.1
        },
        "2025": {
-        "final": 269509.0,
-        "committed": 200651.8,
-        "obligations": 153323.8,
-        "payments": 149493.3
+        "final": 269619.0,
+        "committed": 207729.5,
+        "obligations": 167284.6,
+        "payments": 162682.8
        }
       },
       "ch8": {
        "2026": {
-        "final": 53549.1,
-        "committed": 18178.0,
-        "obligations": 14794.8,
-        "payments": 14159.1
+        "final": 53551.5,
+        "committed": 19747.6,
+        "obligations": 16967.5,
+        "payments": 15417.4
        },
        "2025": {
-        "final": 47083.7,
-        "committed": 10994.0,
-        "obligations": 8279.8,
-        "payments": 4179.8
+        "final": 58568.6,
+        "committed": 11072.4,
+        "obligations": 8579.2,
+        "payments": 4402.3
        }
       },
       "ch9": {
        "2026": {
         "final": 127208.6,
         "committed": 124783.0,
-        "obligations": 94776.7,
-        "payments": 94776.7
+        "obligations": 94789.3,
+        "payments": 94776.8
        },
        "2025": {
         "final": 97521.9,
         "committed": 95096.4,
-        "obligations": 87073.4,
+        "obligations": 89935.9,
         "payments": 87073.4
        }
       },
       "total": {
        "2026": {
-        "final": 462162.5,
-        "committed": 368546.7,
-        "obligations": 280337.1,
-        "payments": 274260.9
+        "final": 462582.4,
+        "committed": 373518.8,
+        "obligations": 296527.3,
+        "payments": 290936.3
        },
        "2025": {
-        "final": 414114.6,
-        "committed": 306742.1,
-        "obligations": 248677.0,
-        "payments": 240746.5
+        "final": 425709.5,
+        "committed": 313898.2,
+        "obligations": 265799.8,
+        "payments": 254158.6
        }
       }
      },
@@ -33605,333 +33605,333 @@
       "ch1": {
        "2026": {
         "forecast": 86428.5,
-        "rights": 86742.5,
-        "collected": 81608.2
+        "rights": 85707.1,
+        "collected": 80866.2
        },
        "2025": {
         "forecast": 86428.5,
-        "rights": 72945.9,
-        "collected": 69062.3
+        "rights": 72083.0,
+        "collected": 68470.2
        }
       },
       "irpf": {
        "2026": {
         "forecast": 51629.2,
-        "rights": 60197.7,
-        "collected": 57002.1
+        "rights": 58374.7,
+        "collected": 55431.3
        },
        "2025": {
         "forecast": 51629.2,
-        "rights": 49974.2,
-        "collected": 47613.1
+        "rights": 48085.9,
+        "collected": 45933.9
        }
       },
       "corporate": {
        "2026": {
         "forecast": 28518.6,
-        "rights": 20384.5,
-        "collected": 18506.8
+        "rights": 19983.7,
+        "collected": 18150.5
        },
        "2025": {
         "forecast": 28518.6,
-        "rights": 15989.6,
-        "collected": 14538.4
+        "rights": 15427.9,
+        "collected": 14048.2
        }
       },
       "nonresident": {
        "2026": {
         "forecast": 2681.4,
-        "rights": 4307.1,
-        "collected": 4262.2
+        "rights": 4475.9,
+        "collected": 4428.9
        },
        "2025": {
         "forecast": 2681.4,
-        "rights": 3608.5,
-        "collected": 3559.1
+        "rights": 3817.8,
+        "collected": 3758.3
        }
       },
       "ch2": {
        "2026": {
         "forecast": 57809.2,
-        "rights": 50520.5,
-        "collected": 46960.5
+        "rights": 51233.8,
+        "collected": 48039.4
        },
        "2025": {
         "forecast": 57809.2,
-        "rights": 50391.4,
-        "collected": 46897.7
+        "rights": 52086.3,
+        "collected": 48957.4
        }
       },
       "vat": {
        "2026": {
         "forecast": 42491.5,
-        "rights": 42771.3,
-        "collected": 39258.4
+        "rights": 42693.2,
+        "collected": 39560.2
        },
        "2025": {
         "forecast": 42491.5,
-        "rights": 40076.3,
-        "collected": 36623.7
+        "rights": 40320.9,
+        "collected": 37240.9
        }
       },
       "excise": {
        "2026": {
         "forecast": 9398.7,
-        "rights": 2985.0,
-        "collected": 2969.3
+        "rights": 3153.7,
+        "collected": 3129.1
        },
        "2025": {
         "forecast": 9398.7,
-        "rights": 6013.2,
-        "collected": 5993.5
+        "rights": 6943.1,
+        "collected": 6913.2
        }
       },
       "ch3": {
        "2026": {
         "forecast": 10778.9,
-        "rights": 8214.4,
-        "collected": 5349.4
+        "rights": 8802.4,
+        "collected": 5609.8
        },
        "2025": {
         "forecast": 10778.9,
-        "rights": 8014.8,
-        "collected": 5918.6
+        "rights": 8921.4,
+        "collected": 6607.9
        }
       },
       "ch4": {
        "2026": {
         "forecast": 13556.0,
-        "rights": 5435.2,
-        "collected": 5432.9
+        "rights": 6724.4,
+        "collected": 6723.5
        },
        "2025": {
         "forecast": 13556.0,
-        "rights": 5104.7,
-        "collected": 5104.5
+        "rights": 5860.6,
+        "collected": 5860.6
        }
       },
       "ch5": {
        "2026": {
         "forecast": 6170.9,
-        "rights": 5989.1,
-        "collected": 5985.1
+        "rights": 6404.1,
+        "collected": 6403.4
        },
        "2025": {
         "forecast": 6170.9,
-        "rights": 5418.9,
-        "collected": 5414.7
+        "rights": 5898.8,
+        "collected": 5896.7
        }
       },
       "ch6": {
        "2026": {
         "forecast": 106.2,
-        "rights": 7765.9,
-        "collected": 7754.6
+        "rights": 7365.0,
+        "collected": 7354.5
        },
        "2025": {
         "forecast": 106.2,
-        "rights": 2451.9,
-        "collected": 2442.9
+        "rights": 2461.8,
+        "collected": 2452.3
        }
       },
       "ch7": {
        "2026": {
         "forecast": 14155.1,
-        "rights": 408.4,
-        "collected": 408.4
+        "rights": 412.6,
+        "collected": 412.6
        },
        "2025": {
         "forecast": 14155.1,
-        "rights": 180.0,
-        "collected": 180.0
+        "rights": 180.5,
+        "collected": 180.5
        }
       },
       "nonfinancial": {
        "2026": {
         "forecast": 189005.0,
-        "rights": 165075.8,
-        "collected": 153499.1
+        "rights": 166649.5,
+        "collected": 155409.4
        },
        "2025": {
         "forecast": 189005.0,
-        "rights": 144507.6,
-        "collected": 135020.8
+        "rights": 147492.4,
+        "collected": 138425.6
        }
       },
       "ch8": {
        "2026": {
         "forecast": 3539.2,
-        "rights": 6582.7,
-        "collected": 6522.9
+        "rights": 6686.0,
+        "collected": 6558.8
        },
        "2025": {
         "forecast": 3539.2,
-        "rights": 9937.3,
-        "collected": 9826.8
+        "rights": 10369.0,
+        "collected": 10262.0
        }
       },
       "ch9": {
        "2026": {
         "forecast": 0.0,
-        "rights": 132752.7,
-        "collected": 132752.7
+        "rights": 150864.1,
+        "collected": 150864.1
        },
        "2025": {
         "forecast": 0.0,
-        "rights": 151588.0,
-        "collected": 151588.0
+        "rights": 163654.4,
+        "collected": 163654.4
        }
       },
       "total": {
        "2026": {
         "forecast": 192544.2,
-        "rights": 304411.2,
-        "collected": 292774.6
+        "rights": 324199.6,
+        "collected": 312832.3
        },
        "2025": {
         "forecast": 192544.2,
-        "rights": 306032.9,
-        "collected": 296435.6
+        "rights": 321515.7,
+        "collected": 312342.0
        }
       }
      },
      "taxes": {
       "irpf": {
        "2026": {
-        "applied": 109985.9,
-        "pending": -0.9,
-        "regions": 51096.7,
-        "local": 990.7,
-        "state": 57897.6
+        "applied": 117924.5,
+        "pending": 132.4,
+        "regions": 60351.1,
+        "local": 1188.8,
+        "state": 56517.0
        },
        "2025": {
-        "applied": 98512.8,
-        "pending": 3.9,
-        "regions": 49151.5,
-        "local": 964.1,
-        "state": 48401.0
+        "applied": 104915.5,
+        "pending": 28.5,
+        "regions": 56989.0,
+        "local": 1150.1,
+        "state": 46804.9
        }
       },
       "corporate": {
        "2026": {
-        "applied": 19102.3,
-        "pending": -0.0,
+        "applied": 18794.0,
+        "pending": 42.4,
         "regions": 0.0,
         "local": 0.0,
-        "state": 19102.2
+        "state": 18836.4
        },
        "2025": {
-        "applied": 15336.0,
-        "pending": 4.3,
+        "applied": 14878.3,
+        "pending": 71.1,
         "regions": 0.0,
         "local": 0.0,
-        "state": 15340.3
+        "state": 14949.5
        }
       },
       "nonresident": {
        "2026": {
-        "applied": 4288.2,
-        "pending": 0.0,
+        "applied": 4456.1,
+        "pending": 0.5,
         "regions": 0.0,
         "local": 0.0,
-        "state": 4288.2
+        "state": 4456.6
        },
        "2025": {
-        "applied": 3591.0,
-        "pending": 0.1,
+        "applied": 3792.8,
+        "pending": 1.2,
         "regions": 0.0,
         "local": 0.0,
-        "state": 3591.2
+        "state": 3794.0
        }
       },
       "vat": {
        "2026": {
-        "applied": 74531.4,
-        "pending": -16.3,
-        "regions": 33746.7,
-        "local": 674.6,
-        "state": 40093.7
+        "applied": 80934.9,
+        "pending": 201.4,
+        "regions": 39696.5,
+        "local": 796.1,
+        "state": 40643.8
        },
        "2025": {
-        "applied": 69342.1,
-        "pending": -9.5,
-        "regions": 31317.1,
-        "local": 605.1,
-        "state": 37410.4
+        "applied": 75340.7,
+        "pending": -300.2,
+        "regions": 36544.7,
+        "local": 722.3,
+        "state": 37773.6
        }
       },
       "excise": {
        "2026": {
-        "applied": 13287.3,
-        "pending": 738.0,
-        "regions": 10138.5,
-        "local": 160.5,
-        "state": 3726.3
+        "applied": 14932.7,
+        "pending": 790.8,
+        "regions": 11603.0,
+        "local": 180.8,
+        "state": 3939.6
        },
        "2025": {
-        "applied": 14052.1,
-        "pending": 1163.0,
-        "regions": 7903.5,
-        "local": 141.6,
-        "state": 7170.0
+        "applied": 16123.2,
+        "pending": 1038.9,
+        "regions": 9037.9,
+        "local": 158.5,
+        "state": 7965.7
        }
       },
       "nonfinancial": {
        "2026": {
-        "applied": 253297.6,
-        "pending": 1023.8,
-        "regions": 94981.9,
-        "local": 1825.8,
-        "state": 157513.6
+        "applied": 272397.9,
+        "pending": 1792.5,
+        "regions": 111650.7,
+        "local": 2165.7,
+        "state": 160374.1
        },
        "2025": {
-        "applied": 228125.3,
-        "pending": 1440.6,
-        "regions": 88372.1,
-        "local": 1710.8,
-        "state": 139483.0
+        "applied": 246214.3,
+        "pending": 1386.3,
+        "regions": 102571.6,
+        "local": 2030.9,
+        "state": 142998.1
        }
       }
      },
      "cash": {
       "deficit": {
        "2026": {
-        "value": -34578.5
+        "value": -51092.9
        },
        "2025": {
-        "value": -30216.1
+        "value": -41419.3
        }
       },
       "receipts": {
        "2026": {
-        "value": 157513.6
+        "value": 160374.1
        },
        "2025": {
-        "value": 139483.0
+        "value": 142998.1
        }
       },
       "payments": {
        "2026": {
-        "value": -192092.1
+        "value": -211467.0
        },
        "2025": {
-        "value": -169699.1
+        "value": -184417.4
        }
       },
       "assets": {
        "2026": {
-        "value": -17347.7
+        "value": -20410.1
        },
        "2025": {
-        "value": -44099.2
+        "value": -45150.9
        }
       },
       "borrowing": {
        "2026": {
-        "value": -51926.2
+        "value": -71503.0
        },
        "2025": {
-        "value": -74315.3
+        "value": -86570.2
        }
       }
      },
@@ -33945,15 +33945,15 @@
        },
        "Presidency, justice and parliament": {
         "credits": 5.1,
-        "committed": 4.1,
-        "obligations": 3.9,
-        "payments": 3.9
+        "committed": 4.7,
+        "obligations": 4.5,
+        "payments": 4.5
        },
        "Defence": {
         "credits": 84.8,
-        "committed": 73.2,
-        "obligations": 49.9,
-        "payments": 49.9
+        "committed": 59.1,
+        "obligations": 50.8,
+        "payments": 50.2
        },
        "Finance": {
         "credits": 3.2,
@@ -33963,21 +33963,21 @@
        },
        "Interior": {
         "credits": 114.7,
-        "committed": 108.9,
-        "obligations": 34.0,
-        "payments": 27.4
+        "committed": 109.8,
+        "obligations": 46.1,
+        "payments": 45.9
        },
        "Transport and sustainable mobility": {
         "credits": 2426.2,
-        "committed": 2288.4,
-        "obligations": 1304.7,
-        "payments": 1268.1
+        "committed": 2287.6,
+        "obligations": 1575.2,
+        "payments": 1440.1
        },
        "Education, vocational training and sport": {
         "credits": 39.6,
         "committed": 38.4,
-        "obligations": 38.3,
-        "payments": 20.5
+        "obligations": 38.4,
+        "payments": 38.4
        },
        "Labour and social economy": {
         "credits": 149.4,
@@ -33987,63 +33987,63 @@
        },
        "Industry and tourism": {
         "credits": 982.3,
-        "committed": 864.8,
-        "obligations": 841.4,
-        "payments": 211.4
+        "committed": 864.6,
+        "obligations": 853.9,
+        "payments": 223.9
        },
        "Agriculture, fisheries and food": {
         "credits": 86.5,
         "committed": 83.3,
         "obligations": 81.6,
-        "payments": 78.1
+        "payments": 81.6
        },
        "Territorial policy and democratic memory": {
         "credits": 124.4,
-        "committed": 118.6,
-        "obligations": 20.4,
-        "payments": 20.4
+        "committed": 118.7,
+        "obligations": 22.7,
+        "payments": 22.7
        },
        "Ecological transition": {
         "credits": 726.1,
-        "committed": 707.5,
-        "obligations": 195.7,
-        "payments": 186.0
+        "committed": 707.1,
+        "obligations": 200.9,
+        "payments": 192.0
        },
        "Culture": {
         "credits": 8.6,
         "committed": 3.8,
-        "obligations": 2.8,
-        "payments": 2.8
+        "obligations": 3.0,
+        "payments": 3.0
        },
        "Housing and urban agenda": {
         "credits": 98.8,
         "committed": 54.4,
-        "obligations": 29.2,
-        "payments": 28.9
+        "obligations": 29.4,
+        "payments": 29.4
        },
        "Health": {
         "credits": 14.9,
         "committed": 13.7,
-        "obligations": 11.3,
-        "payments": 11.1
+        "obligations": 11.5,
+        "payments": 11.5
        },
        "Economy, trade and business": {
         "credits": 15435.2,
-        "committed": 15434.5,
-        "obligations": 15433.6,
-        "payments": 15433.6
+        "committed": 15434.3,
+        "obligations": 15434.3,
+        "payments": 15434.3
        },
        "Science, innovation and universities": {
         "credits": 327.9,
         "committed": 327.7,
-        "obligations": 318.7,
+        "obligations": 319.7,
         "payments": 300.0
        },
        "Social rights, consumer affairs and Agenda 2030": {
         "credits": 3.5,
         "committed": 3.5,
-        "obligations": 0.9,
-        "payments": 0.9
+        "obligations": 1.0,
+        "payments": 1.0
        },
        "Youth and children": {
         "credits": 1.1,
@@ -34054,70 +34054,70 @@
        "Inclusion, Social Security and migration": {
         "credits": 137.7,
         "committed": 126.4,
-        "obligations": 52.2,
-        "payments": 50.8
+        "obligations": 58.0,
+        "payments": 57.8
        },
        "Digital transformation and civil service": {
         "credits": 604.4,
-        "committed": 525.9,
-        "obligations": 519.5,
-        "payments": 456.4
+        "committed": 523.5,
+        "obligations": 520.5,
+        "payments": 498.6
        }
       },
       "total": {
        "credits": 21380.8,
-       "committed": 20858.3,
-       "obligations": 18998.4,
-       "payments": 18198.6
+       "committed": 20841.7,
+       "obligations": 19311.6,
+       "payments": 18483.2
       }
      },
      "transfers": {
       "regions_current": {
        "2026": {
-        "final": 35647.9,
-        "obligations": 13385.4,
-        "payments": 13304.7
+        "final": 35879.1,
+        "obligations": 14426.7,
+        "payments": 14423.9
        },
        "2025": {
-        "final": 33438.2,
-        "obligations": 13104.1,
-        "payments": 13077.4
+        "final": 33632.9,
+        "obligations": 14288.3,
+        "payments": 14226.5
        }
       },
       "regions_capital": {
        "2026": {
-        "final": 4024.6,
-        "obligations": 1418.9,
-        "payments": 1418.8
+        "final": 4018.0,
+        "obligations": 1526.6,
+        "payments": 1525.8
        },
        "2025": {
-        "final": 5742.6,
-        "obligations": 1029.3,
-        "payments": 1021.6
+        "final": 5620.9,
+        "obligations": 1067.9,
+        "payments": 1061.7
        }
       },
       "local_current": {
        "2026": {
-        "final": 28324.4,
-        "obligations": 15256.0,
-        "payments": 15256.0
+        "final": 28320.1,
+        "obligations": 18330.7,
+        "payments": 18285.9
        },
        "2025": {
-        "final": 26868.7,
-        "obligations": 15888.7,
-        "payments": 15888.7
+        "final": 26868.6,
+        "obligations": 18533.5,
+        "payments": 18532.6
        }
       },
       "local_capital": {
        "2026": {
-        "final": 3389.0,
-        "obligations": 1535.8,
-        "payments": 1533.3
+        "final": 3415.3,
+        "obligations": 1957.8,
+        "payments": 1957.8
        },
        "2025": {
-        "final": 3381.8,
-        "obligations": 2143.7,
-        "payments": 2140.3
+        "final": 3378.5,
+        "obligations": 2147.9,
+        "payments": 2147.8
        }
       }
      }
@@ -36489,6 +36489,195 @@
      "borrowing": -38757.2,
      "borrowing_prev": -47440.6,
      "mrr": 7216.6
+    },
+    "9": {
+     "chapters": {
+      "ch1": [
+       22720.4,
+       16966.7,
+       21740.4,
+       15984.7
+      ],
+      "ch2": [
+       7487.2,
+       3741.1,
+       7287.2,
+       3475.6
+      ],
+      "ch3": [
+       32658.8,
+       24836.8,
+       35865.5,
+       23477.7
+      ],
+      "ch4": [
+       174403.2,
+       117594.6,
+       159714.1,
+       107761.0
+      ],
+      "ch5": [
+       431.9,
+       0.0,
+       897.2,
+       0.0
+      ],
+      "ch6": [
+       19859.5,
+       6370.7,
+       16988.8,
+       5620.1
+      ],
+      "ch7": [
+       24261.3,
+       15260.7,
+       27125.7,
+       10965.4
+      ],
+      "nonfinancial": [
+       281822.3,
+       184770.6,
+       269619.0,
+       167284.6
+      ],
+      "ch8": [
+       53551.5,
+       16967.5,
+       58568.6,
+       8579.2
+      ],
+      "ch9": [
+       127208.6,
+       94789.3,
+       97521.9,
+       89935.9
+      ],
+      "total": [
+       462582.4,
+       296527.3,
+       425709.5,
+       265799.8
+      ]
+     },
+     "policies": {
+      "internal": [
+       78070.5,
+       55706.2
+      ],
+      "justice": [
+       2582.6,
+       1738.3
+      ],
+      "defence": [
+       21771.1,
+       9198.8
+      ],
+      "security": [
+       10644.3,
+       7571.2
+      ],
+      "foreign": [
+       1333.8,
+       743.3
+      ],
+      "pensions": [
+       20506.6,
+       17716.4
+      ],
+      "social_services": [
+       3008.3,
+       1193.2
+      ],
+      "employment": [
+       1262.7,
+       548.7
+      ],
+      "housing": [
+       3594.1,
+       1169.5
+      ],
+      "labour_admin": [
+       169.8,
+       78.8
+      ],
+      "inclusion_admin": [
+       71.9,
+       38.6
+      ],
+      "health": [
+       1178.8,
+       559.8
+      ],
+      "education": [
+       5246.9,
+       1812.1
+      ],
+      "culture": [
+       587.7,
+       201.6
+      ],
+      "agriculture": [
+       1932.0,
+       884.2
+      ],
+      "industry": [
+       17519.0,
+       15277.5
+      ],
+      "trade": [
+       1561.4,
+       1136.2
+      ],
+      "transport_subsidies": [
+       4474.7,
+       2104.1
+      ],
+      "infrastructure": [
+       10363.8,
+       4835.7
+      ],
+      "research": [
+       12157.1,
+       2175.7
+      ],
+      "other_economic": [
+       414.5,
+       266.6
+      ],
+      "institutions": [
+       530.2,
+       438.7
+      ],
+      "general_services": [
+       22886.9,
+       4973.0
+      ],
+      "tax_admin": [
+       1959.0,
+       1804.9
+      ],
+      "transfers": [
+       79732.4,
+       45541.2
+      ],
+      "debt": [
+       159022.5,
+       118813.0
+      ],
+      "TOTAL": [
+       462582.4,
+       296527.3
+      ]
+     },
+     "spending": 184770.6,
+     "spending_prev": 167284.6,
+     "revenue": 166649.5,
+     "revenue_prev": 147492.4,
+     "cash": -51092.9,
+     "cash_prev": -41419.3,
+     "borrowing": -71503.0,
+     "borrowing_prev": -86570.2,
+     "mrr": 19311.6
     }
    },
    "2025": {
