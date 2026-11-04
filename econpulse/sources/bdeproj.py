@@ -1,7 +1,9 @@
 """Banco de España macroeconomic projections for Spain, read from its quarterly report pages.
 
 The bank publishes no data feed for its projections, but each report's web page carries
-them in a table, and the list of reports shows the newest first. Key is a row label of
+them in a table. The list of reports is asked for newest first (?sort=DESC: since November 2026
+its default order is oldest first), and the report taken is the one with the latest date listed,
+which must be recent, so a change of order can't silently bring back an old report. Key is a row label of
 the English table up to its first bracket: "GDP", "HICP", "Unemployment rate",
 "General government net lending". Figures read this way are shown on the site as
 awaiting an AI check until confirmed (see econpulse/forecasts.py).
@@ -12,13 +14,18 @@ import threading
 from datetime import date
 
 from .. import http
-from .base import FetchResult, make_series
+from .base import FetchResult, madrid_today, make_series
 from .webtables import number, read_tables, year
 
 SITE = "https://www.bde.es"
 INDEX = f"{SITE}/wbe/en/publicaciones/analisis-economico-investigacion/proyecciones-macro-informe-trimestral/"
 _REPORT = re.compile(r'href="(/wbe/en/publicaciones/analisis-economico-investigacion/proyecciones-macro-informe-trimestral/'
                      r'proyecciones-e-informe-trimestral[^"]*\.html)"')
+_ENTRY = re.compile(r'block-search-result__date">\s*(\d{2})/(\d{2})/(\d{4})\s*</p>.*?href="'
+                    r'(/wbe/en/publicaciones/analisis-economico-investigacion/proyecciones-macro-informe-trimestral/[^"]+\.html)"',
+                    re.S)
+LISTING = INDEX + "?sort=DESC"
+MAX_AGE_DAYS = 240                  # a report every quarter: anything older means the listing was misread
 _DATE = re.compile(r'block-entry-content__info">\s*<p>\s*(\d{2})/(\d{2})/(\d{4})\s*</p>')
 
 _lock = threading.Lock()
@@ -29,11 +36,19 @@ def source_url(key: str, params: dict | None = None) -> str:
     return INDEX
 
 
-def newest_report(index_html: str) -> str:
-    m = _REPORT.search(index_html)
-    if not m:
-        raise ValueError("no report link on the Banco de España projections page")
-    return SITE + m.group(1)
+def newest_report(index_html: str, today: date | None = None) -> str:
+    """The report with the latest date in the listing (or, with no dates, the first report link)."""
+    entries = [(date(int(y), int(m), int(d)), href) for d, m, y, href in _ENTRY.findall(index_html)]
+    if not entries:
+        m = _REPORT.search(index_html)
+        if not m:
+            raise ValueError("no report link on the Banco de España projections page")
+        return SITE + m.group(1)
+    newest, href = max(entries)
+    if ((today or madrid_today()) - newest).days > MAX_AGE_DAYS:
+        raise ValueError(f"the newest report on the Banco de España projections page is from {newest}: "
+                         "has the listing's order or layout changed?")
+    return SITE + href
 
 
 def _label(text: str) -> str:
@@ -70,7 +85,7 @@ def _report() -> dict:
             raise _cache["error"]
         if "rows" not in _cache:
             try:
-                url = newest_report(http.get(INDEX).text)
+                url = newest_report(http.get(LISTING).text)
                 rows, published = parse_report(http.get(url).text)
                 _cache.update(rows=rows, published=published, url=url)
             except Exception as e:

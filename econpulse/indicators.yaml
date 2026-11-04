@@ -750,13 +750,13 @@ indicators:
     label_es: Puestos de trabajo vacantes (Eurostat, desde 2001)
     section: labour
     source: eurostat
-    key: jvs_q_nace2
-    params: {geo: ES, indic_em: JOBVAC, s_adj: NSA, nace_r2: B-S, sizeclas: TOTAL}
+    key: jvs_q_r21               # NACE Rev. 2.1; jvs_q_nace2 (NACE Rev. 2) stopped at 2025-Q4
+    params: {geo: ES, indic_em: JOBVAC, s_adj: NSA, nace_r2_1: B-T, sizeclas: TOTAL}
     freq: Q
     unit: thousands
     scale: 0.001
-    max_age_days: 400
-    notes: INE's survey figures as Eurostat publishes them, back to 2001 (INE's own series here starts in 2013); for the Michez rule's vacancy rate.
+    max_age_days: 300
+    notes: INE's survey figures as Eurostat publishes them, back to 2001 (INE's own series here starts in 2013), now by the NACE Rev. 2.1 classification of activities; for the Michez rule's vacancy rate.
 
   # ---------------------------------------------------------------- Wages
   - id: wage_cost
@@ -4433,8 +4433,8 @@ indicators:
     label_es: "PIB per cápita en paridad de poder de compra, España (UE = 100)"
     section: gdp
     source: eurostat
-    key: prc_ppp_ind
-    params: {geo: ES, na_item: VI_PPS_EU27_2020_HAB, ppp_cat: GDP}
+    key: prc_ppp_ind_1           # COICOP 2018; prc_ppp_ind (COICOP 1999) stopped at 2024
+    params: {geo: ES, indic_ppp: VI_PPS_EU27_2020_HAB, ppp_cat18: GDP}
     freq: A
     unit: index
     decimals: 0
@@ -4445,8 +4445,8 @@ indicators:
     label_es: "PIB per cápita en paridad de poder de compra, zona del euro (UE = 100)"
     section: gdp
     source: eurostat
-    key: prc_ppp_ind
-    params: {geo: EA20, na_item: VI_PPS_EU27_2020_HAB, ppp_cat: GDP}
+    key: prc_ppp_ind_1           # COICOP 2018; prc_ppp_ind (COICOP 1999) stopped at 2024
+    params: {geo: EA20, indic_ppp: VI_PPS_EU27_2020_HAB, ppp_cat18: GDP}
     freq: A
     unit: index
     decimals: 0

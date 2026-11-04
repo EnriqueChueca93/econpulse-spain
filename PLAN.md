@@ -226,6 +226,14 @@ Each batch is sized for one working session, ends with something you can open or
 ### Batch 12 — Forecasts and surprises ✅ done 1 Nov 2026
 *Result: two new blocks on the Analysis page. "What forecasters expect": GDP growth, inflation, unemployment and the budget balance for 2026 and 2027 from seven forecasters, each with its publication month and a link. The OECD Economic Outlook and the European Commission (AMECO, via DBnomics) are fetched as indicators (`fc_*`, edition read from the data); the Banco de España, AIReF, the FUNCAS Panel, the government and the IMF are in `econpulse/forecasts.yaml`, updated by hand. They average 2.5% for 2026 and 2.0% for 2027; EconPulse's own 2026 figure, INE's first three quarters plus the Q4 nowcast, is 2.6%, and 2.4% is already banked even with a flat Q4. "Data surprises": each figure behind the composites against a one-step AR(1) forecast fitted only on earlier data, in units of the model's typical error, averaged over the past four months (weights 1, ¾, ½, ¼). Activity is +0.3 (in line) and inflation +0.8 (above expectations); both are also on the home page. DBnomics series are now credited to their real publisher. 276 indicators, 144 offline tests.*
 
+### Freshness check of every series ✅ done 4 Nov 2026
+*Asked: "Have all the latest data been implemented? Tourism has come out but we are still in August."*
+
+- Everything was downloaded again into a scratch copy and compared with the site: 122 series had newer figures, all from releases after the previous night's run (tourism for September, out at 09:00 on 4 Nov; October's Social Security registrations and HICP flash; the oil bulletin; markets), which the evening run brings in. INE's calendar agrees: every INE series holds its latest release's period.
+- Three series had silently stopped because Eurostat closed their datasets in its 2026 move to NACE Rev. 2.1 and COICOP 2018: job vacancies (`jvs_q_nace2`, ended 2025-Q4) now read `jvs_q_r21` (activity B-T), to 2026-Q2; GDP per head in PPS (`prc_ppp_ind`, ended 2024) now reads `prc_ppp_ind_1`, to 2025. The vacancies' 400-day "not updating" allowance, which hid it, is down to 300.
+- The Banco de España's projections reader failed: its list of reports now defaults to oldest first. It asks for `?sort=DESC` and takes the report with the latest date, refusing one older than 240 days.
+- Every other Eurostat dataset used is current (checked against Eurostat's catalogue); the older series left (OECD pension spending to 2021, BdE credit by sector to June, home permits to May) are as recent as their sources.
+
 ### An alert when figures await an AI check ✅ done 4 Nov 2026
 *Asked: how to do the updates that need Claude's attention; then yes to a GitHub issue as the alert.*
 

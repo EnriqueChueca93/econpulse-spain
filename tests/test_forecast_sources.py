@@ -80,6 +80,21 @@ def test_imf_series_and_publication_date():
     assert imf.source_url("IMF.RES,WEO/ESP.NGDP_RPCH.A") == "https://data.imf.org/en/datasets/IMF.RES:WEO"
 
 
+def _bde_entry(day: str, page: str) -> str:
+    return (f'<div class="block-search-result"><p class="block-search-result__date">\n {day}\n </p>'
+            f'<p class="block-search-result__title"><a href="/wbe/en/publicaciones/analisis-economico-investigacion/'
+            f'proyecciones-macro-informe-trimestral/{page}.html" title="x">x</a></p></div>')
+
+
+def test_bde_newest_report_whatever_the_listing_order():
+    today = date(2026, 11, 4)
+    old_first = _bde_entry("28/01/1999", "enero-1999") + _bde_entry("09/10/2026", "proyecciones-tercer-trimestre-2026")         + _bde_entry("17/06/2026", "proyecciones-junio-2026")
+    assert bdeproj.newest_report(old_first, today).endswith("tercer-trimestre-2026.html")
+    with pytest.raises(ValueError, match="1999"):        # only old reports listed: refuse, don't show them
+        bdeproj.newest_report(_bde_entry("28/01/1999", "enero-1999"), today)
+    assert bdeproj.LISTING.endswith("?sort=DESC")
+
+
 def test_bde_newest_report_and_projections_table():
     assert bdeproj.newest_report(BDE_INDEX).endswith("tercer-trimestre-2026.html")
     rows, published = bdeproj.parse_report(BDE_REPORT)
