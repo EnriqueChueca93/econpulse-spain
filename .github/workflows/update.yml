@@ -3,7 +3,10 @@ name: Update and deploy
 # Once a day: fetch the latest data, rebuild the site, save the data back to the
 # repository (so the next run only downloads what is new, and "what changed" keeps
 # its baseline) and publish site/ to GitHub Pages.
-# A push of code changes rebuilds and republishes from the data already saved.
+# A push of code changes rebuilds and republishes from the data already saved, and so does a push of an AI
+# check (data/*_checks.json, from `python -m econpulse confirm`), so a checked figure shows as checked at once.
+# After each build, an issue labelled "ai-check" stays open while any figure awaits an AI check
+# (scripts/ai_check_issue.sh), so GitHub tells the repository's owner.
 
 on:
   schedule:
@@ -11,10 +14,14 @@ on:
   workflow_dispatch:         # "Run workflow" button in the Actions tab
   push:
     branches: [main]
-    paths-ignore: ["data/**"]
+    paths:                   # everything but the data, except the AI checks
+      - "**"
+      - "!data/**"
+      - "data/*_checks.json"
 
 permissions:
   contents: write            # to save the updated data
+  issues: write              # to open and close the "ai-check" issue
   pages: write
   id-token: write
 
@@ -74,3 +81,10 @@ jobs:
 
       - id: deploy
         uses: actions/deploy-pages@v5
+
+      - name: Flag figures awaiting an AI check
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          MENTION: ${{ github.repository_owner }}
+        run: bash scripts/ai_check_issue.sh

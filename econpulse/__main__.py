@@ -13,6 +13,9 @@
             document's, against the publisher's own document (see econpulse/forecasts.py
             and econpulse/pensions.py); "statedebt" records a check of the Tesoro's list of
             the State's debt (econpulse/statedebt.py)
+    pending [--mention LOGIN]
+            the text of the GitHub issue the daily update keeps open while anything awaits an AI
+            check (nothing when nothing does; econpulse/attention.py, scripts/ai_check_issue.sh)
     serve [--update] [--no-build] [--port N] [--no-browser]
             build the site from the saved data (or fetch fresh data first with --update),
             serve it on this computer and open it in the browser; EconPulse.exe runs this
@@ -22,7 +25,7 @@ import argparse
 import sys
 import time
 
-from . import budget, changes, ecbspeak, forecasts, i18n, pensions, schedule, serve, stance, statedebt
+from . import attention, budget, changes, ecbspeak, forecasts, i18n, pensions, schedule, serve, stance, statedebt
 from .build import build_site
 from .fetch import fetch_all
 from .registry import load_registry
@@ -146,12 +149,13 @@ def main(argv: list[str] | None = None) -> int:
 
     parser = argparse.ArgumentParser(prog="econpulse", description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("command", choices=["fetch", "build", "update", "list", "status", "forecasts", "assessments",
-                                            "confirm", "serve"])
+                                            "confirm", "pending", "serve"])
     parser.add_argument("ids", nargs="*", help="forecaster ids, for confirm")
     parser.add_argument("--only", help="comma-separated indicator ids to fetch (default: all)")
     parser.add_argument("--against", default="", help="confirm: what the figures were compared with")
     parser.add_argument("--note", default="", help="confirm: a note shown under the forecasts table")
     parser.add_argument("--by", default="AI check (Claude)", help="confirm: who checked the figures")
+    parser.add_argument("--mention", default="", help="pending: a GitHub login to mention in the issue")
     parser.add_argument("--update", action="store_true", help="serve: fetch fresh data before building")
     parser.add_argument("--no-build", action="store_true", help="serve: serve site/ as it is, without building")
     parser.add_argument("--port", type=int, help="serve: the port (default: the first free one from 8765)")
@@ -198,6 +202,9 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.command == "assessments":
         print_assessments(store)
+
+    if args.command == "pending":
+        sys.stdout.write(attention.issue_body(attention.waiting(Data(indicators, store)), args.mention or None))
 
     if args.command == "confirm":
         if not args.ids:

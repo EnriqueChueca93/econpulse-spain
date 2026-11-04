@@ -33,8 +33,10 @@ python -m venv .venv
 A GitHub Actions workflow ([.github/workflows/update.yml](.github/workflows/update.yml)) runs once a day at
 17:30 UTC (18:30 Madrid in winter, 19:30 in summer): it runs the offline tests, fetches the data, rebuilds the
 site, commits the updated `data/` back to the repository as "Data update …" and publishes `site/` to GitHub
-Pages. Pushing code changes rebuilds and republishes from the saved data. To update by hand, open the
-repository's **Actions** tab, pick "Update and deploy" and click **Run workflow**.
+Pages. Pushing code changes rebuilds and republishes from the saved data, and so does pushing a recorded AI check
+(`data/*_checks.json`, below). To update by hand, open the repository's **Actions** tab, pick "Update and deploy"
+and click **Run workflow**. After each build, an issue labelled **ai-check** stays open while any figure awaits
+an AI check, so GitHub tells the repository's owner, and closes itself once nothing does.
 
 Because the workflow commits data every day, run `git pull` before working locally. If a local update changed
 `data/` and you only want the code, `git checkout -- data` discards the local data before pulling.
@@ -215,6 +217,7 @@ econpulse/            Python package
   monetary.py         the monetary survey's facts and the sources of broad money growth (rebuilt in sources/monsurvey.py)
   statedebt.py        the State's debt, security by security: repayments by year and the bonds by coupon,
                       from the Tesoro's list (sources/tesoro.py), and its AI check (data/statedebt_checks.json)
+  attention.py        what awaits an AI check, for the "ai-check" issue (scripts/ai_check_issue.sh)
   budget.py           the Budget explorer's data: the IGAE workbooks read into data/budget.json at fetch time,
                       the per-community ones cached in data/budget_regional.json, and the State's budget
                       (Ministry of Finance statistics, IGAE execution); the explorer runs in static/budget.js
@@ -284,8 +287,11 @@ average, the facts and the chart. A new edition, or any change to the figures, n
 
 The check means an AI (for example Claude, in a session on this repository) opens each source, compares the
 figures with the publisher's own document, and only then runs `confirm`, which records the edition's
-fingerprint in `data/forecast_checks.json`; `--note` adds a caveat under the table. Commit that file. The
-daily run's `status` step lists forecasts awaiting a check. To show an edition the automatic sources have
+fingerprint in `data/forecast_checks.json`; `--note` adds a caveat under the table. Commit and push that file:
+the push rebuilds the site. The daily run's `status` step lists forecasts awaiting a check, and its last step
+(`scripts/ai_check_issue.sh`) keeps the **ai-check** issue open while anything awaits one (forecasts, the pension
+documents below, the Tesoro's list of the State's debt), with each item's source and the `confirm` command to run;
+`python -m econpulse pending` prints that text (`econpulse/attention.py`). To show an edition the automatic sources have
 not picked up yet, enter it by hand in `econpulse/forecasts.yaml` (the comment at its top explains how).
 
 The Pensions page's reform and official assessments work the same way, with figures entered by hand in

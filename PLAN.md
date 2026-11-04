@@ -226,6 +226,13 @@ Each batch is sized for one working session, ends with something you can open or
 ### Batch 12 — Forecasts and surprises ✅ done 1 Nov 2026
 *Result: two new blocks on the Analysis page. "What forecasters expect": GDP growth, inflation, unemployment and the budget balance for 2026 and 2027 from seven forecasters, each with its publication month and a link. The OECD Economic Outlook and the European Commission (AMECO, via DBnomics) are fetched as indicators (`fc_*`, edition read from the data); the Banco de España, AIReF, the FUNCAS Panel, the government and the IMF are in `econpulse/forecasts.yaml`, updated by hand. They average 2.5% for 2026 and 2.0% for 2027; EconPulse's own 2026 figure, INE's first three quarters plus the Q4 nowcast, is 2.6%, and 2.4% is already banked even with a flat Q4. "Data surprises": each figure behind the composites against a one-step AR(1) forecast fitted only on earlier data, in units of the model's typical error, averaged over the past four months (weights 1, ¾, ½, ¼). Activity is +0.3 (in line) and inflation +0.8 (above expectations); both are also on the home page. DBnomics series are now credited to their real publisher. 276 indicators, 144 offline tests.*
 
+### An alert when figures await an AI check ✅ done 4 Nov 2026
+*Asked: how to do the updates that need Claude's attention; then yes to a GitHub issue as the alert.*
+
+- The routine: open a Claude session in the project folder and say "check the updates". Claude runs `status`, re-reads each item awaiting a check from the publisher's own page or PDF, compares it with what was saved, records it with `confirm` and pushes. First done for the Tesoro's list of 31 Oct 2026 (78 securities, all agreeing).
+- `econpulse/attention.py` lists what awaits a check (forecasts, pension documents, the Tesoro's list) and writes an issue's text; `python -m econpulse pending` prints it. The daily workflow's last step, `scripts/ai_check_issue.sh`, keeps one issue labelled `ai-check` open while anything waits (rewritten, with a comment, when the list changes; it mentions the owner) and closes it when nothing does.
+- A push of `data/*_checks.json` now rebuilds and republishes, so a recorded check shows on the site at once and the issue closes. `tests/test_attention.py`.
+
 ### Disclaimer and terms of use ✅ done 4 Nov 2026
 *Asked: "Let's add disclaimers at the bottom and the like for the data presented, to be safe." Chosen: CC BY-NC 4.0 for Macroscope's own text and charts; notes on Analysis, Financial and Tools, in the workbook and in the feed.*
 
