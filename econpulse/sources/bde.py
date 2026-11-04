@@ -13,7 +13,7 @@ from datetime import date
 
 import pandas as pd
 
-from .. import http
+from .. import http, i18n
 from .base import FetchResult, madrid_today, make_series
 
 BASE = "https://app.bde.es/bierest/resources/srdatosapp"
@@ -21,8 +21,12 @@ DEFAULT_DAILY_START = 2000
 INCREMENTAL = True
 
 
+VIEWER = "https://app.bde.es/bie_www/bie_wwwias/xml/Arranque.html"
+
+
 def source_url(key: str, params: dict | None = None) -> str:
-    return f"{BASE}/listaSeries?idioma=es&series={key}&rango=MAX"
+    """The series in the Bank's HERMES viewer (its help: "?SERIE=<code>" opens a series directly)."""
+    return f"{VIEWER}?SERIE={key}&IDIOMA={'ES' if i18n.lang() == 'es' else 'EN'}"
 
 
 def _request(key: str, rango: str) -> dict:

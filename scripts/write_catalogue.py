@@ -233,6 +233,8 @@ add({
     "Copy link": "Copiar enlace",
     "More": "Más",
     "Show data": "Ver los datos",
+    "Source:": "Fuente:",
+    "and %(n)s more, under Show data": "y %(n)s más, en «Ver los datos»",
     "On this page": "En esta página",
 })
 

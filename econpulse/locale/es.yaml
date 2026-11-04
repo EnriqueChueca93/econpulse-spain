@@ -2268,6 +2268,7 @@ Social security funds' balance: Saldo de las Administraciones de Seguridad Socia
 Solidarity contribution on pay above the maximum base, 2025: Cotización de solidaridad sobre el salario que supera la base máxima, 2025
 Solidarity contribution, 2045: Cotización de solidaridad, 2045
 Source: Fuente
+'Source:': 'Fuente:'
 'Source: %(source)s': 'Fuente: %(source)s'
 'Source: {edition}, Spain''s country fiche.': 'Fuente: {edition}, ficha de España.'
 South African Reserve Bank: Banco de la Reserva de Sudáfrica
@@ -2789,6 +2790,7 @@ additional provision 2 of the decree: disposición adicional 2.ª del decreto
 additional provision 53: disposición adicional 53.ª
 all pensions, {year} (Eurostat): todas las pensiones, {year} (Eurostat)
 all pensions, {year}; EU {eu} (Eurostat): todas las pensiones, {year}; UE {eu} (Eurostat)
+and %(n)s more, under Show data: y %(n)s más, en «Ver los datos»
 annual avg., %: media anual, %
 ? average gross pension spending in 2022-2050 (Ageing Report) at most 15% of GDP, adjusted by the gap between the revenue measures' yield and 1.7% of GDP
 : gasto bruto medio en pensiones en 2022-2050 (Ageing Report) de como máximo el 15% del PIB, ajustado por la diferencia entre lo que recauden las medidas de ingresos y el 1.7% del PIB

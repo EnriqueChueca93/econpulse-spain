@@ -226,6 +226,13 @@ Each batch is sized for one working session, ends with something you can open or
 ### Batch 12 — Forecasts and surprises ✅ done 1 Nov 2026
 *Result: two new blocks on the Analysis page. "What forecasters expect": GDP growth, inflation, unemployment and the budget balance for 2026 and 2027 from seven forecasters, each with its publication month and a link. The OECD Economic Outlook and the European Commission (AMECO, via DBnomics) are fetched as indicators (`fc_*`, edition read from the data); the Banco de España, AIReF, the FUNCAS Panel, the government and the IMF are in `econpulse/forecasts.yaml`, updated by hand. They average 2.5% for 2026 and 2.0% for 2027; EconPulse's own 2026 figure, INE's first three quarters plus the Q4 nowcast, is 2.6%, and 2.4% is already banked even with a flat Q4. "Data surprises": each figure behind the composites against a one-step AR(1) forecast fitted only on earlier data, in units of the model's typical error, averaged over the past four months (weights 1, ¾, ½, ¼). Activity is +0.3 (in line) and inflation +0.8 (above expectations); both are also on the home page. DBnomics series are now credited to their real publisher. 276 indicators, 144 offline tests.*
 
+### Source links under each chart (batch 1 of 2 ✅ 4 Nov 2026)
+*Asked: "In each chart, if there is a direct source, can we click below and go straight to it?" Chosen: one link per page.*
+
+- `charts.source_links` turns the "Source:" line into links to the page with the chart's own data, from each indicator's `source_url()`: the source's name when all its series in the chart share a page; the series' names when they don't (up to four, then "and n more, under Show data", where every page is listed); a calculation links its inputs and keeps the "Macroscope calculation" credit. Links open in a new tab.
+- Banco de España links now open the series in its HERMES viewer (`Arranque.html?SERIE=<code>`, in the reader's language) instead of the API's JSON; the tiles and Data page use the same link.
+- Batch 1 covers the charts built by `econpulse/charts.py` (143 of 297). Batch 2: the charts built in the page modules (industries, trade, sector tables, financial, analysis, pensions, fiscal, international, housing, stance, ECB-speak).
+
 ### Freshness check of every series ✅ done 4 Nov 2026
 *Asked: "Have all the latest data been implemented? Tourism has come out but we are still in August."*
 

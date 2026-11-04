@@ -101,6 +101,29 @@
   {%- if u %} <span class="badge badge-ok badge-updated" title="{{ _("New figures: %(what)s", what=u.what) }}">{{ _("Updated %(day)s", day=u.day) }}</span>{% endif -%}
 {%- endmacro %}
 
+{# One source's link, or its pages' links named by series (charts.source_links). #}
+{% macro source_link(url, text) -%}
+  <a href="{{ url }}" target="_blank" rel="noopener">{{ text }}<span class="ext" aria-hidden="true">&nbsp;&#8599;</span></a>
+{%- endmacro %}
+
+{% macro source_pages(s, links) -%}
+  {{ s.name }} &mdash; {% for l in links %}{% if not loop.first %}, {% endif %}{{ source_link(l.url, l.label) }}{% endfor %}
+{%- endmacro %}
+
+{# "Source: INE ↗; Eurostat ↗" under a chart, each going straight to the page with its data. #}
+{% macro source_line(c) -%}
+  {%- if c.sources -%}
+    {{ _("Source:") }} {% for s in c.sources %}{% if not loop.first %}; {% endif %}
+      {%- if s.url %}{{ source_link(s.url, s.name) }}
+      {%- elif s.links %}{{ source_pages(s, s.links) }}
+        {%- if s.more %} {{ _("and %(n)s more, under Show data", n=s.more|length) }}{% endif %}
+      {%- else %}{{ s.name }}{% endif %}
+    {%- endfor %}
+  {%- else -%}
+    {{ _("Source: %(source)s", source=c.source) }}
+  {%- endif -%}
+{%- endmacro %}
+
 {# A chart: the plot is drawn by assets/app.js from the page's data/charts*.js. #}
 {% macro chart_card(c) -%}
   <figure class="card chart-card" id="fig-{{ c.id }}">
@@ -113,13 +136,17 @@
     <p class="chart-reading">{{ c.reading }}</p>
     {%- endif %}
     <div class="chart-foot">
-      <span class="secondary">{{ _("Source: %(source)s", source=c.source) }}</span>
+      <span class="secondary chart-source">{{ source_line(c) }}</span>
       <span class="chart-actions">
         <button type="button" class="chart-link chart-csv" data-chart="{{ c.id }}" aria-label="{{ _("Download the data of the chart %(title)s as a CSV file", title=c.title) }}">CSV</button>
         <button type="button" class="chart-link" data-figure="fig-{{ c.id }}" aria-label="{{ _("Copy a link to the chart %(title)s", title=c.title) }}">{{ _("Copy link") }}</button>
         {%- if c.link %} <a class="more" href="{{ c.link }}">{{ _("More") }} <span aria-hidden="true">&rarr;</span></a>{% endif %}
       </span>
     </div>
-    <details class="chart-data" data-chart="{{ c.id }}"><summary>{{ _("Show data") }}</summary></details>
+    <details class="chart-data" data-chart="{{ c.id }}"><summary>{{ _("Show data") }}</summary>
+      {%- for s in c.sources or [] if s.more %}
+      <p class="chart-sources">{{ source_pages(s, s.links + s.more) }}</p>
+      {%- endfor %}
+    </details>
   </figure>
 {%- endmacro %}

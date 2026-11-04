@@ -7,7 +7,11 @@ Spec fields: id, title, subtitle, kind ("line" | "bar"), unit, decimals,
 date_format (d3 format for the hover date), series [{name, x, y, kind?, color?, shape?}],
 ref_lines [{y, label}], stack (stacked bars), signed (show + on rises), freq
 (the finest frequency among the series), x_kind ("category" for curves), x_title,
-source, link.
+source, sources, link.
+
+`source` names the publishers ("INE; Eurostat"); `sources` (source_links) links each to the page with the
+chart's data: [{name, url}] when the source has one page in the chart, [{name, links: [{label, url}], more}]
+when it has several (labelled by series; `more` past MAX_LINKS), or [{name}] with none (a calculation).
 
 In a definition each series is (indicator id, transform, name) with an optional
 fourth item of options: {"kind": "line"} to draw one series differently from the
@@ -82,6 +86,43 @@ def source_names(ind: Indicator, by_id: dict[str, Indicator]) -> list[str]:
     return list(dict.fromkeys(names + [ind.source_name]))
 
 
+MAX_LINKS = 4      # a source's pages named under a chart; the rest are listed under "Show data"
+
+
+def _pages(label: str, label_es: str | None, ind: Indicator, by_id: dict[str, Indicator]) -> list[tuple]:
+    """(source name, label, Spanish label, url) for each publisher's page behind one indicator; a calculation
+    points to its inputs' pages, labelled with their names."""
+    if ind.source in CALCULATED_FROM or not ind.is_derived:
+        return [(CALCULATED_FROM.get(ind.source) or ind.source_name, label, label_es, ind.source_url())]
+    return [page for dep in derived.inputs_of(ind.params) if dep in by_id
+            for page in _pages(by_id[dep].label, by_id[dep].label_es, by_id[dep], by_id)]
+
+
+def source_links(items: list[tuple[str, Indicator]], by_id: dict[str, Indicator]) -> list[dict]:
+    """A chart's sources, each linked to its own page (see the module's docstring). `items` are
+    (the series' name in the chart, its indicator). In the order of _sources, the calculation credit last."""
+    calc = SOURCE_NAMES.get("derived", "derived")
+    groups: dict[str, dict[str, tuple]] = {}
+    for label, ind in items:
+        for name in source_names(ind, by_id):
+            groups.setdefault(name, {})
+        for name, page_label, label_es, url in _pages(label, None, ind, by_id):
+            if url:
+                groups.setdefault(name, {}).setdefault(url, (page_label, label_es))
+    out = []
+    for name, pages in groups.items():
+        if name == calc:
+            continue
+        if len(pages) == 1:
+            out.append({"name": name, "url": next(iter(pages))})
+        elif pages:
+            links = [{"label": lab, "label_es": es, "url": url} for url, (lab, es) in pages.items()]
+            out.append({"name": name, "links": links[:MAX_LINKS], "more": links[MAX_LINKS:]})
+        else:
+            out.append({"name": name})
+    return out + ([{"name": calc}] if calc in groups else [])
+
+
 def _sources(inds: list[Indicator], by_id: dict[str, Indicator]) -> str:
     names = [n for ind in inds for n in source_names(ind, by_id)]
     calc = SOURCE_NAMES.get("derived", "derived")
@@ -115,6 +156,10 @@ def localise(spec: dict) -> dict:
             s["name"] = i18n.maybe(s["name"]) if s.get("country") else i18n._(s["name"])
         if spec.get("x_kind") == "category":
             s["x"] = [i18n.maybe(x) for x in s["x"]]
+    for s in spec.get("sources", []):
+        s["name"] = i18n._(s["name"])
+        for link in s.get("links", []) + s.get("more", []):
+            link["label"] = link.pop("label_es", None) or i18n.maybe(link["label"])
     for key in ("ref_lines", "rows"):
         if spec.get(key):
             spec[key] = [{**r, "label": i18n.maybe(r["label"]) if key == "rows" else i18n._(r["label"])}
@@ -125,7 +170,7 @@ def localise(spec: dict) -> dict:
 def build_chart(definition: dict, by_id: dict[str, Indicator], store: Store) -> dict | None:
     """One chart spec, or None if none of its series has data."""
     start = pd.Timestamp(definition["start"])
-    series, sources, freqs = [], [], []
+    series, sources, freqs, named = [], [], [], []
     for ind_id, transform, name, *options in definition["series"]:
         raw = store.load_series(ind_id)
         if raw is None:
@@ -150,6 +195,7 @@ def build_chart(definition: dict, by_id: dict[str, Indicator], store: Store) -> 
             continue
         series.append({"name": name, "x": [d.strftime("%Y-%m-%d") for d in s.index], "y": s.tolist(), **opts})
         sources.append(ind)
+        named.append((name, ind))
         freqs.append(freq)
     if not series:
         return None
@@ -157,6 +203,7 @@ def build_chart(definition: dict, by_id: dict[str, Indicator], store: Store) -> 
     spec["series"] = series
     spec["freq"] = min(freqs, key=FREQ_ORDER.index)
     spec["source"] = _sources(sources, by_id)
+    spec["sources"] = source_links(named, by_id)
     return localise(spec)
 
 
@@ -213,7 +260,9 @@ def build_curve(definition: dict, by_id: dict[str, Indicator], store: Store) -> 
     ids = {i for line in definition["lines"] for i, _ in line["points"] if i in loaded}
     spec = {k: v for k, v in definition.items() if k not in ("lines", "curve", "ref_from", "ref_lines")}
     spec.update(kind="line", x_kind="category", x_title=definition.get("x_title", "Maturity"), freq=None,
-                ref_lines=list(definition.get("ref_lines", [])), source=_sources([by_id[i] for i in sorted(ids)], by_id))
+                ref_lines=list(definition.get("ref_lines", [])), source=_sources([by_id[i] for i in sorted(ids)], by_id),
+                sources=source_links([(label, by_id[i]) for line in definition["lines"]
+                                      for i, label in line["points"] if i in loaded], by_id))
     localise(spec)                  # before the series and reference lines, whose names carry dates and figures
     spec.update(series=series, ref_lines=spec["ref_lines"] + ref_lines[len(definition.get("ref_lines", [])):])
     return spec
@@ -249,7 +298,7 @@ def build_ranking(definition: dict, by_id: dict[str, Indicator], store: Store) -
     spec.update(kind="hbar", x_kind="category", x_title=definition.get("x_title", "Region"),
                 series=[{"name": definition.get("name", definition["title"]),
                          "x": [r[0] for r in rows], "y": [r[1] for r in rows]}],
-                ref_lines=ref_lines, freq=None, source=sources)
+                ref_lines=ref_lines, freq=None, source=sources, sources=source_links([(r[0], r[3]) for r in rows], by_id))
     localise(spec)
     spec["subtitle"] = f"{spec['subtitle']} · {period_label(date, freq)}"
     return spec
@@ -278,5 +327,6 @@ def build_xy(definition: dict, by_id: dict[str, Indicator], store: Store) -> dic
                 y_unit=definition["y"][3], freq=freq, x_kind="xy", x_title="Period",
                 series=[{"name": definition["title"], "x": both["x"].tolist(), "y": both["y"].tolist(),
                          "text": [period_label(d, freq) for d in both.index]}],
-                ref_lines=[], source=_sources(inds, by_id))
+                ref_lines=[], source=_sources(inds, by_id),
+                sources=source_links([(definition["x"][2], inds[0]), (definition["y"][2], inds[1])], by_id))
     return localise(spec)
