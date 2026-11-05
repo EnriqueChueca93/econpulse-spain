@@ -1,13 +1,15 @@
 """Batches 30a-31c: the Budget explorer, from the IGAE's and the budget office's workbooks (no network)."""
 
 import io
+import re
+from pathlib import Path
 
 import openpyxl
 import pandas as pd
 import pytest
 
 from econpulse import budget
-from econpulse.build import COMMUNITIES_EXPLORER, NAV_EXTRA, NAV_SUBPAGES
+from econpulse.build import COMMUNITIES_EXPLORER, NAV_EXTRA, NAV_SUBPAGES, build_site
 from econpulse.registry import load_registry
 from econpulse.store import Store
 from econpulse.tables import Data
@@ -99,6 +101,25 @@ def test_explorer_data(tmp_path):
     assert budget.provisional_note(bx) == "2024 for spending by function and 2025 for spending by type and revenue"
     assert [f["code"] for f in bx["functions"]] == [f"{n:02d}" for n in range(1, 11)]
     assert central["product_items"][0]["code"] == "hydrocarbons" and central["product_items"][-1]["code"] == "other"
+
+
+def test_over_time_can_be_lines_or_stacked(tmp_path):
+    """Batch B1: a switch in the caption of the charts over time (static/budget.js and static/pge.js draw them)."""
+    store = Store(tmp_path / "data")
+    store.save_json(budget.STORE, {"fetched_at": "2026-11-02T03:00:00+00:00",
+                                   "levels": {"central": budget.build_level(budget.LEVELS[0], COFOG, ACCOUNTS, TAXES)}})
+    build_site(load_registry(), store, site_dir=tmp_path / "site")
+    for page, words in (("budget-explorer.html", ("Draw as", "Lines", "Stacked")),
+                        ("es/budget-explorer.html", ("Dibujar como", "Líneas", "Apilado"))):
+        html = (tmp_path / "site" / page).read_text(encoding="utf-8")
+        caption = re.search(r'id="fig-bx-trend">\s*<figcaption class="has-range">(.*?)</figcaption>', html, re.S).group(1)
+        assert f'aria-label="{words[0]}"' in caption and f'data-form="lines" aria-pressed="true">{words[1]}<' in caption
+        assert f'data-form="stack" aria-pressed="false">{words[2]}<' in caption
+        assert 'data-form="stack"' not in re.search(r'id="fig-bx-mix">(.*?)</figure>', html, re.S).group(1)
+    # The State's budget section needs the budget office's workbooks; its chart over time asks for the same switch.
+    for template in ("templates/budget-explorer.html", "templates/es/budget-explorer.html"):
+        source = (Path(__file__).parent.parent / template).read_text(encoding="utf-8")
+        assert re.search(r'figure\("pge-trend", [^\n]*forms=true\)', source) and re.search(r'figure\("bx-trend", [^\n]*forms=true\)', source)
 
 
 def test_linked_from_fiscal_and_tools():

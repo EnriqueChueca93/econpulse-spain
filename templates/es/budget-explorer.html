@@ -6,11 +6,15 @@
 {% block title %}{{ _("Budget explorer") }} · {{ brand }}{% endblock %}
 {% block description %}Lo que gastan e ingresan las Administraciones públicas españolas, por temas, desde 1995: funciones, tipos de gasto e impuestos.{% endblock %}
 
-{% macro figure(id, title, subtitle, source) -%}
+{# `forms`: a switch between lines and stacked bars in the caption (static/budget.js, static/pge.js). #}
+{% macro figure(id, title, subtitle, source, forms=false) -%}
   <figure class="card chart-card" id="fig-{{ id }}">
-    <figcaption>
+    <figcaption{% if forms %} class="has-range"{% endif %}>
       <span class="chart-title" id="{{ id }}-title">{{ title }}</span>
       <span class="chart-subtitle" id="{{ id }}-subtitle">{{ subtitle }}</span>
+      {%- if forms %}
+      <span class="form-buttons" role="group" aria-label="Dibujar como"><button type="button" data-form="lines" aria-pressed="true">Líneas</button><button type="button" data-form="stack" aria-pressed="false">Apilado</button></span>
+      {%- endif %}
     </figcaption>
     <div class="chart" id="chart-{{ id }}" role="img" aria-label="{{ title }}"></div>
     <div class="chart-foot"><span class="secondary">Fuente: {{ source }}</span>
@@ -71,7 +75,7 @@
   </div>
   <div class="charts">
     {{ figure("bx-mix", "Gasto por funciones", "", "IGAE, contabilidad nacional de las Administraciones públicas") }}
-    {{ figure("bx-trend", "Evolución", "", "IGAE, contabilidad nacional de las Administraciones públicas") }}
+    {{ figure("bx-trend", "Evolución", "", "IGAE, contabilidad nacional de las Administraciones públicas", forms=true) }}
   </div>
   <div class="charts charts-single">
     {{ figure("bx-two", "Dos años comparados", "", "IGAE, contabilidad nacional de las Administraciones públicas; Eurostat (deflactor del PIB)") }}
@@ -144,7 +148,7 @@
     <div class="facts" id="pge-facts" aria-live="polite"></div>
     <div class="charts">
       {{ figure("pge-mix", "El presupuesto por políticas", "", "Ministerio de Hacienda (SEPG), estadísticas del presupuesto consolidado") }}
-      {{ figure("pge-trend", "Evolución", "", "Ministerio de Hacienda (SEPG), estadísticas del presupuesto consolidado") }}
+      {{ figure("pge-trend", "Evolución", "", "Ministerio de Hacienda (SEPG), estadísticas del presupuesto consolidado", forms=true) }}
     </div>
     <div class="stat">
       <p class="stat-caption" id="pge-table-caption"></p>

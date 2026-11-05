@@ -2,8 +2,9 @@
 // revenue by type, for each administration since 1995, from data/budget.js (econpulse/budget.py: the IGAE's
 // national accounts). Values arrive in € mn by year; the measures (constant prices, % of GDP, per person,
 // share of the total) are worked out here. Charts are drawn by the site's own renderer (EP.render). The reader
-// picks up to six lines over time (items, or communities), each keeping its colour while it stays picked, and
-// compares two years, adjusted for inflation when the measure is in euros.
+// picks up to six lines over time (items, or communities), each keeping its colour while it stays picked, or
+// stacks the items as bars with everything else, adding up to the total; and compares two years, adjusted for
+// inflation when the measure is in euros.
 (function () {
   "use strict";
 
@@ -27,7 +28,9 @@
     "Passed to other administrations": "Transferido a otras administraciones",
     "← All functions": "← Todas las funciones", "← All revenue": "← Todos los ingresos",
     "Change": "Variación", "Change, %": "Variación, %", "▸ parts": "▸ partes",
-    ", without flows between administrations": ", sin flujos entre administraciones"
+    ", without flows between administrations": ", sin flujos entre administraciones",
+    "Everything else": "Todo lo demás",
+    " · picked items stacked, with everything else": " · partidas elegidas apiladas, con todo lo demás"
   };
   function t(s) { return LANG === "es" && ES[s] !== undefined ? ES[s] : s; }
   // An amount in € bn, the number already written: "€1.2 bn", or "1.2 mm €" in Spanish (the number keeps the English format).
@@ -46,9 +49,11 @@
   };
   var VIEW_NAMES = { "function": t("Spending by function"), type: t("Spending by type"), revenue: t("Revenue") };
   var MAX_LINES = 6;
-  // selected and regions: null until chosen, for the defaults (the three largest items, communities).
+  // selected and regions: null until chosen, for the defaults (the three largest items, communities; the six
+  // largest items when stacked). form: the chart over time as lines or as stacked bars ("stack").
   var state = { level: B.levels[0].id, view: "function", measure: "eur", exclude: false, year: null, base: null,
-                parent: null, selected: null, slots: {}, total: true, cmp: null, regions: null, rslots: {}, all: true };
+                parent: null, selected: null, slots: {}, total: true, cmp: null, regions: null, rslots: {}, all: true,
+                form: "lines" };
 
   function $(id) { return document.getElementById(id); }
   function iso(year) { return year + "-01-01"; }
@@ -94,6 +99,18 @@
              (on ? swatch(slots[it.code]) : "") + '"></span>' + short(it.label) + "</button>";
     }).join("");
     if (holder.innerHTML !== html) holder.innerHTML = html;
+  }
+  // Stacking starts from the six largest items in the chosen year: the picks are topped up to six.
+  function fillPicks() {
+    if (!state.selected) return;
+    items().sort(function (a, b) { return (at(b.values, state.year) || 0) - (at(a.values, state.year) || 0); })
+      .forEach(function (it) { if (state.selected.length < MAX_LINES && state.selected.indexOf(it.code) < 0) state.selected.push(it.code); });
+  }
+  // A drawn chart keeps its size when its box changes: a new height starts it afresh.
+  function resize(el, height) {
+    if (el.style.height === height) return;
+    el.style.height = height;
+    if (window.Plotly && el.data) window.Plotly.purge(el);
   }
   function togglePicked(list, code) {
     var i = list.indexOf(code);
@@ -224,7 +241,7 @@
     state.selected = (before || []).filter(function (c) { return find(list, c); });
     if (before === null || (before.length && !state.selected.length)) {
       state.selected = list.slice().sort(function (a, b) { return (at(b.values, state.year) || 0) - (at(a.values, state.year) || 0); })
-        .slice(0, 3).map(function (it) { return it.code; });
+        .slice(0, state.form === "stack" ? MAX_LINES : 3).map(function (it) { return it.code; });
     }
     var rows = list.map(function (it) {
       var conv = convert(it.values, tot);
@@ -253,16 +270,36 @@
     chips($("bx-picks"), list, state.selected, state.slots,
           state.measure === "share" ? [] : [{ code: "__total", label: totalName, on: state.total }]);
     var series = [];
-    var totalLine = { name: totalName, x: ys.map(iso), y: ys.map(function (y) { return at(totConv, y); }), color: "ink" };
-    if (state.total && state.measure !== "share") series.push(totalLine);
-    state.selected.forEach(function (code) {
-      var r = rows.filter(function (x) { return x.it.code === code; })[0];
-      if (r) series.push(line(short(r.it.label), ys, r.conv, state.slots[code]));
-    });
-    if (!series.length) series.push(totalLine);
+    var totalLine = { name: totalName, kind: "line", x: ys.map(iso), y: ys.map(function (y) { return at(totConv, y); }), color: "ink" };
+    var pickedRows = state.selected.map(function (code) { return rows.filter(function (x) { return x.it.code === code; })[0]; })
+      .filter(function (r) { return r; });
+    var stacked = state.form === "stack";
+    if (stacked) {
+      // The picked items as stacked bars, the largest in the chosen year at the bottom, each in its picked colour;
+      // everything else on top, so the bars add up to the total (100 in "% of the total"); the total as a line.
+      pickedRows.slice().sort(function (a, b) { return (b.now || 0) - (a.now || 0); }).forEach(function (r) {
+        series.push({ name: short(r.it.label), kind: "bar", x: ys.map(iso), y: ys.map(function (y) { return at(r.conv, y); }),
+                      slot: state.slots[r.it.code] });
+      });
+      var rest = ys.map(function (y) {
+        var v = at(totConv, y);
+        if (!given(v)) return null;
+        pickedRows.forEach(function (r) { v -= at(r.conv, y) || 0; });
+        return Math.abs(v) < 0.0005 ? 0 : v;
+      });
+      if (rest.some(function (v) { return v; })) series.push({ name: t("Everything else"), kind: "bar", x: ys.map(iso), y: rest, color: "muted" });
+      if (state.total && state.measure !== "share") series.push(totalLine);
+    } else {
+      if (state.total && state.measure !== "share") series.push(totalLine);
+      pickedRows.forEach(function (r) { series.push(line(short(r.it.label), ys, r.conv, state.slots[r.it.code])); });
+      if (!series.length) series.push(totalLine);
+    }
     $("bx-trend-title").textContent = where + t(" over time");
-    $("bx-trend-subtitle").textContent = lv().short + " · " + m.label;
-    render({ id: "bx-trend", kind: "line", unit: m.unit === "%" ? "%" : "", decimals: m.decimals, freq: "A", series: series });
+    $("bx-trend-subtitle").textContent = lv().short + " · " + m.label + (stacked ? t(" · picked items stacked, with everything else") : "");
+    // Stacked, the legend names up to eight parts: the chart gets taller to keep room for the bars.
+    resize($("chart-bx-trend"), stacked ? "380px" : "");
+    render({ id: "bx-trend", kind: stacked ? "bar" : "line", stack: stacked, unit: m.unit === "%" ? "%" : "", decimals: m.decimals,
+             freq: "A", series: series });
 
     // The two years compared, item by item.
     var ms = twoMeasure(), m2 = MEASURES[ms];
@@ -499,7 +536,8 @@
     var h = "level=" + state.level + "&view=" + state.view + "&measure=" + state.measure + "&year=" + state.year +
             "&base=" + state.base + (state.exclude ? "&exclude=1" : "") + (state.parent ? "&parent=" + state.parent : "") +
             "&sel=" + state.selected.join(",") + (state.total ? "" : "&total=0") + (state.cmp ? "&cmp=" + state.cmp : "") +
-            (state.regions ? "&regs=" + state.regions.join(",") : "") + (state.all ? "" : "&all=0");
+            (state.regions ? "&regs=" + state.regions.join(",") : "") + (state.all ? "" : "&all=0") +
+            (state.form === "stack" ? "&form=stack" : "");
     history.replaceState(null, "", "#" + h);
   }
   function readHash() {
@@ -517,6 +555,7 @@
       if (k === "cmp") state.cmp = v || null;
       if (k === "total") state.total = v !== "0";
       if (k === "all") state.all = v !== "0";
+      if (k === "form") state.form = v === "stack" ? "stack" : "lines";
       if (k === "regs") {
         state.regions = (v ? v.split(",") : []).filter(function (id) { return COMMUNITIES.some(function (c) { return c.id === id; }); }).slice(0, MAX_LINES);
       }
@@ -530,6 +569,9 @@
     $("bx-exclude").disabled = !lv().transfers;
     Array.prototype.forEach.call(document.querySelectorAll("[data-bx-view]"), function (b) {
       b.setAttribute("aria-pressed", String(b.getAttribute("data-bx-view") === state.view));
+    });
+    Array.prototype.forEach.call(document.querySelectorAll("#fig-bx-trend [data-form]"), function (b) {
+      b.setAttribute("aria-pressed", String(b.getAttribute("data-form") === state.form));
     });
   }
 
@@ -550,6 +592,15 @@
   Array.prototype.forEach.call(document.querySelectorAll("[data-bx-view]"), function (b) {
     b.addEventListener("click", function () {
       state.view = b.getAttribute("data-bx-view"); state.parent = null; state.selected = null;
+      syncControls(); draw();
+    });
+  });
+  // Lines or stacked bars over time.
+  Array.prototype.forEach.call(document.querySelectorAll("#fig-bx-trend [data-form]"), function (b) {
+    b.addEventListener("click", function () {
+      if (state.form === b.getAttribute("data-form")) return;
+      state.form = b.getAttribute("data-form");
+      if (state.form === "stack") fillPicks();
       syncControls(); draw();
     });
   });
@@ -604,6 +655,7 @@
   window.addEventListener("hashchange", function () {
     if (location.hash.indexOf("level=") < 0) return;
     state.parent = null; state.selected = null; state.cmp = null; state.regions = null; state.total = true; state.all = true;
+    state.form = "lines";
     readHash();
     syncControls();
     draw();

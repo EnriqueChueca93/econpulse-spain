@@ -1,7 +1,8 @@
 // Macroscope Spain: the Budget explorer's section on the State's budget (Batch 30c). What the Presupuestos
 // Generales del Estado plan by spending policy and revenue chapter (the consolidated budget, by year in force),
 // and how much of its own budget the State has spent, and how fast, from data/budget.js (econpulse/budget.py).
-// Charts are drawn by the site's own renderer (EP.render).
+// Charts are drawn by the site's own renderer (EP.render). Over time, the policies or chapters picked in the table
+// are drawn as lines (up to three) or stacked as bars with everything else (up to six), adding up to the total.
 (function () {
   "use strict";
 
@@ -48,15 +49,19 @@
     "The State's revenue, ": "Los ingresos del Estado, ", "Net collection, ": "Recaudación neta, ",
     "The State's spending by chapter, ": "El gasto del Estado por capítulos, ",
     "Recovery and Resilience Facility, ": "Mecanismo de Recuperación y Resiliencia, ",
-    "Transfers in the State's budget, ": "Transferencias en el presupuesto del Estado, "
+    "Transfers in the State's budget, ": "Transferencias en el presupuesto del Estado, ",
+    "Everything else": "Todo lo demás",
+    " · picked items stacked, with everything else": " · partidas elegidas apiladas, con todo lo demás"
   };
   function t(s) { return LANG === "es" && ES[s] !== undefined ? ES[s] : s; }
   // An amount in € bn, the number already written: "€1.2 bn", or "1.2 mm €" in Spanish (the number keeps the English format).
   function money(s) { return LANG === "es" ? s + " mm €" : "€" + s + " bn"; }
 
   var Y = S.years;
+  // form: the chart over time as lines (up to three picked) or stacked bars ("stack", up to six).
   var state = { kind: "spending", measure: "eur", year: Y[Y.length - 1], base: Y[0], selected: [],
-                exYear: S.execution.length ? S.execution[0].year : null };
+                exYear: S.execution.length ? S.execution[0].year : null, form: "lines" };
+  function most() { return state.form === "stack" ? 6 : 3; }
 
   function $(id) { return document.getElementById(id); }
   function iso(y) { return y + "-01-01"; }
@@ -105,7 +110,11 @@
     }).filter(function (r) { return r.now !== null && r.now !== undefined; })
       .sort(function (a, b) { return b.now - a.now; });
     state.selected = state.selected.filter(function (c) { return find(list, c); });
-    if (!state.selected.length) state.selected = rows.slice(0, 3).map(function (r) { return r.it.code; });
+    if (!state.selected.length) state.selected = rows.slice(0, most()).map(function (r) { return r.it.code; });
+    if (state.fill) {      // just switched to stacked: top the picks up with the largest items in the chosen year
+      rows.forEach(function (r) { if (state.selected.length < most() && state.selected.indexOf(r.it.code) < 0) state.selected.push(r.it.code); });
+      state.fill = false;
+    }
     var noun = t(state.kind === "spending" ? "Spending by policy" : "Revenue by chapter");
     var tot = convert(table.TOTAL);
 
@@ -127,15 +136,46 @@
              highlight: first ? short(first.label) : null,
              series: [{ name: noun, x: rows.map(function (r) { return short(r.it.label); }), y: rows.map(function (r) { return +r.now.toFixed(4); }) }] });
 
-    var series = [{ name: t("Total"), x: ys.map(iso), y: ys.map(function (y) { return at(tot, y); }), color: "ink" }];
-    state.selected.forEach(function (code, i) {
+    var totalLine = { name: t("Total"), kind: "line", x: ys.map(iso), y: ys.map(function (y) { return at(tot, y); }), color: "ink" };
+    var picked = [];
+    state.selected.forEach(function (code, i) {      // each keeps the colour of its place among the picks
       var r = rows.filter(function (x) { return x.it.code === code; })[0];
-      if (r) series.push({ name: short(r.it.label), x: ys.map(iso), y: ys.map(function (y) { return at(r.conv, y); }), slot: i + 1 });
+      if (r) picked.push({ r: r, slot: i + 1 });
     });
+    var stacked = state.form === "stack", series = [];
+    if (stacked) {
+      // The picked items as stacked bars, the largest in the chosen year at the bottom; everything else on top, so
+      // the bars add up to the total, drawn as a line.
+      picked.slice().sort(function (a, b) { return b.r.now - a.r.now; }).forEach(function (p) {
+        series.push({ name: short(p.r.it.label), kind: "bar", x: ys.map(iso), y: ys.map(function (y) { return at(p.r.conv, y); }), slot: p.slot });
+      });
+      var rest = ys.map(function (y) {
+        var v = at(tot, y);
+        if (v === null || v === undefined) return null;
+        picked.forEach(function (p) { v -= at(p.r.conv, y) || 0; });
+        return Math.abs(v) < 0.0005 ? 0 : v;
+      });
+      if (rest.some(function (v) { return v; })) series.push({ name: t("Everything else"), kind: "bar", x: ys.map(iso), y: rest, color: "muted" });
+      series.push(totalLine);
+    } else {
+      series.push(totalLine);
+      picked.forEach(function (p) {
+        series.push({ name: short(p.r.it.label), x: ys.map(iso), y: ys.map(function (y) { return at(p.r.conv, y); }), slot: p.slot });
+      });
+    }
     var rolledShown = S.rolled_over.filter(function (y) { return ys.indexOf(y) >= 0; });
     $("pge-trend-title").textContent = noun + t(" over time");
-    $("pge-trend-subtitle").textContent = m.label + (rolledShown.length ? t(" · rolled over in ") + rolledShown.join(", ") : "");
-    render({ id: "pge-trend", kind: "line", unit: m.unit === "%" ? "%" : "", decimals: m.decimals, freq: "A", series: series });
+    $("pge-trend-subtitle").textContent = m.label + (rolledShown.length ? t(" · rolled over in ") + rolledShown.join(", ") : "") +
+      (stacked ? t(" · picked items stacked, with everything else") : "");
+    // Stacked, the legend names up to eight parts: the chart gets taller to keep room for the bars. A drawn chart
+    // keeps its size when its box changes, so a new height starts it afresh.
+    var box = $("chart-pge-trend"), height = stacked ? "380px" : "";
+    if (box.style.height !== height) {
+      box.style.height = height;
+      if (window.Plotly && box.data) window.Plotly.purge(box);
+    }
+    render({ id: "pge-trend", kind: stacked ? "bar" : "line", stack: stacked, unit: m.unit === "%" ? "%" : "", decimals: m.decimals,
+             freq: "A", series: series });
 
     $("pge-table-caption").textContent = noun + t(" · consolidated budget · ") + m.label;
     $("pge-col-item").textContent = t(state.kind === "spending" ? "Policy" : "Chapter");
@@ -441,9 +481,22 @@
   function toggle(code) {
     var i = state.selected.indexOf(code);
     if (i >= 0) state.selected.splice(i, 1);
-    else { state.selected.push(code); if (state.selected.length > 3) state.selected.shift(); }
+    else { state.selected.push(code); if (state.selected.length > most()) state.selected.shift(); }
     draw();
   }
+  // Lines or stacked bars over time: stacking tops the picks up to six, lines keep the first three.
+  Array.prototype.forEach.call(document.querySelectorAll("#fig-pge-trend [data-form]"), function (b) {
+    b.addEventListener("click", function () {
+      if (state.form === b.getAttribute("data-form")) return;
+      state.form = b.getAttribute("data-form");
+      if (state.form === "stack") state.fill = true;
+      else state.selected = state.selected.slice(0, most());
+      Array.prototype.forEach.call(document.querySelectorAll("#fig-pge-trend [data-form]"), function (x) {
+        x.setAttribute("aria-pressed", String(x === b));
+      });
+      draw();
+    });
+  });
   $("pge-table").addEventListener("click", function (e) { var row = e.target.closest("tr.bx-row"); if (row) toggle(row.getAttribute("data-code")); });
   $("pge-table").addEventListener("keydown", function (e) {
     var row = e.target.closest("tr.bx-row");

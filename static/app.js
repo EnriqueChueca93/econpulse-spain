@@ -300,6 +300,7 @@
       bargap: 0.3, barcornerradius: 3, shapes: shapes, annotations: annotations
     };
     var config = Object.assign({ toImageButtonOptions: { filename: "macroscope-" + spec.id, scale: 2 } }, CONFIG_BASE);
+    layout.height = parseInt(el.style.height, 10);   // the box's height: a chart drawn before keeps its old size otherwise
     window.Plotly.react(el, traces, layout, config);
   }
 
@@ -927,6 +928,7 @@
       ]
     };
     var config = Object.assign({ toImageButtonOptions: { filename: "macroscope-" + spec.id, scale: 2 } }, CONFIG_BASE);
+    layout.height = parseInt(el.style.height, 10);   // the box's height: a chart drawn before keeps its old size otherwise
     window.Plotly.react(el, traces, layout, config);
   }
 
@@ -968,6 +970,7 @@
         ticksuffix: suffix(spec), automargin: true }
     };
     var config = Object.assign({ toImageButtonOptions: { filename: "macroscope-" + spec.id, scale: 2 } }, CONFIG_BASE);
+    layout.height = parseInt(el.style.height, 10);   // the box's height: a chart drawn before keeps its old size otherwise
     window.Plotly.react(el, traces, layout, config);
   }
 

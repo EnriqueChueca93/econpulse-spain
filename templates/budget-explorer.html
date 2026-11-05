@@ -3,11 +3,15 @@
 {% block title %}{{ _("Budget explorer") }} · {{ brand }}{% endblock %}
 {% block description %}{{ _("What Spain's public administrations spend and raise, by theme, since 1995: functions, types of spending and taxes.") }}{% endblock %}
 
-{% macro figure(id, title, subtitle, source) -%}
+{# `forms`: a switch between lines and stacked bars in the caption (static/budget.js, static/pge.js). #}
+{% macro figure(id, title, subtitle, source, forms=false) -%}
   <figure class="card chart-card" id="fig-{{ id }}">
-    <figcaption>
+    <figcaption{% if forms %} class="has-range"{% endif %}>
       <span class="chart-title" id="{{ id }}-title">{{ title }}</span>
       <span class="chart-subtitle" id="{{ id }}-subtitle">{{ subtitle }}</span>
+      {%- if forms %}
+      <span class="form-buttons" role="group" aria-label="Draw as"><button type="button" data-form="lines" aria-pressed="true">Lines</button><button type="button" data-form="stack" aria-pressed="false">Stacked</button></span>
+      {%- endif %}
     </figcaption>
     <div class="chart" id="chart-{{ id }}" role="img" aria-label="{{ title }}"></div>
     <div class="chart-foot"><span class="secondary">Source: {{ source }}</span>
@@ -67,7 +71,7 @@
   </div>
   <div class="charts">
     {{ figure("bx-mix", "Spending by function", "", "IGAE, national accounts of the public administrations") }}
-    {{ figure("bx-trend", "Over time", "", "IGAE, national accounts of the public administrations") }}
+    {{ figure("bx-trend", "Over time", "", "IGAE, national accounts of the public administrations", forms=true) }}
   </div>
   <div class="charts charts-single">
     {{ figure("bx-two", "Two years compared", "", "IGAE, national accounts of the public administrations; Eurostat (GDP deflator)") }}
@@ -140,7 +144,7 @@
     <div class="facts" id="pge-facts" aria-live="polite"></div>
     <div class="charts">
       {{ figure("pge-mix", "The budget by policy", "", "Ministry of Finance (SEPG), consolidated budget statistics") }}
-      {{ figure("pge-trend", "Over time", "", "Ministry of Finance (SEPG), consolidated budget statistics") }}
+      {{ figure("pge-trend", "Over time", "", "Ministry of Finance (SEPG), consolidated budget statistics", forms=true) }}
     </div>
     <div class="stat">
       <p class="stat-caption" id="pge-table-caption"></p>
