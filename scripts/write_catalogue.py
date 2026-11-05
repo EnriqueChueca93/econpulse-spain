@@ -260,6 +260,34 @@ add({
     "{span}: low {low} ({low_when}), high {high} ({high_when})":
         "{span}: mínimo {low} ({low_when}), máximo {high} ({high_when})",
     "New · {day}": "Nuevo · {day}",
+    # The economy at a glance (econpulse/glance.py)
+    "The economy at a glance": "La economía de un vistazo",
+    "The past twelve months against normal": "Los últimos doce meses frente a lo normal",
+    "Activity and inflation readings by month, to %(month)s, shaded by how far each is from its normal since 2013":
+        "Datos de actividad e inflación por meses, hasta %(month)s, sombreados según lo lejos que está cada uno de lo "
+        "normal desde 2013",
+    "Reading": "Dato",
+    "Activity, overall score": "Actividad, puntuación global",
+    "Inflation, overall score": "Inflación, puntuación global",
+    "{label}, {period}: not out yet": "{label}, {period}: aún no publicado",
+    "{label}, {period}: {value}; score {score}, {describe}": "{label}, {period}: {value}; puntuación {score}, {describe}",
+    "{label}, {period}: {score}, {describe}": "{label}, {period}: {score}, {describe}",
+    "Score against normal:": "Puntuación frente a lo normal:",
+    "or less": "o menos",
+    "to": "a",
+    "or more": "o más",
+    "within ±0.5": "entre −0.5 y +0.5",
+    "not out yet": "aún no publicado",
+    "Each month's reading is shaded by how far it is from its own normal since 2013, Covid years left out: warm colours above normal, cool colours below. For activity, above normal means stronger, and a fall in unemployment counts as stronger; for inflation, it means hotter. Quarterly figures span their quarter. Hover over a cell for the reading and its score.":
+        "Cada dato mensual está sombreado según lo lejos que está de lo normal para él desde 2013, sin los años de la "
+        "covid: colores cálidos por encima de lo normal y fríos por debajo. En la actividad, por encima de lo normal "
+        "significa más fuerte, y una bajada del paro cuenta como más fuerte; en la inflación, significa más alta. Los "
+        "datos trimestrales ocupan su trimestre. Pase el cursor por una celda para ver el dato y su puntuación.",
+    "How the scores are made": "Cómo se calculan las puntuaciones",
+    "At their highest or lowest in years": "En máximos o mínimos de años",
+    "Key figures whose latest reading, as shown, is the highest or lowest in at least two years.":
+        "Cifras clave cuyo último dato, tal como se muestra, es el más alto o el más bajo en al menos dos años.",
+    "{n} million": "{n} millones",
     "Our own calculations from the official data.": "Cálculos propios a partir de los datos oficiales.",
     "How they are made": "Cómo se hacen",
     "Since the last update": "Desde la última actualización",

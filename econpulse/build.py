@@ -16,7 +16,7 @@ from pathlib import Path
 import pandas as pd
 from jinja2 import ChoiceLoader, Environment, FileSystemLoader, select_autoescape
 
-from . import __version__, analytics, budget, changes, disclaimer, ecbspeak, feed, fiscal, homepage, i18n, industries, peers, schedule, search, sectortables, stance, surprises, tools, trade
+from . import __version__, analytics, budget, changes, disclaimer, ecbspeak, feed, fiscal, glance, homepage, i18n, industries, peers, schedule, search, sectortables, stance, surprises, tools, trade
 from .i18n import _
 from .charts import build_home_charts
 from .config import GA_MEASUREMENT_ID, SITE_CONTACT, SITE_DIR, SITE_OWNER, SITE_URL, STATIC_DIR, TEMPLATES_DIR
@@ -53,7 +53,7 @@ COMMUNITIES_EXPLORER = ("budget-explorer.html#level=regions", "Budget explorer: 
 # What each tab's dropdown lists besides the sections of a section page (anchors or other pages).
 NAV_EXTRA = {
     "index.html": [("#latest", "Latest releases"), ("#key-indicators", "Key indicators"), ("#readings", "Macroscope readings"),
-                   ("#whats-new", "What's new"),
+                   ("#glance", "The economy at a glance"), ("#whats-new", "What's new"),
                    ("#four-questions", "The economy in four questions"), ("#charts", "Charts")],
     "tools.html": [("#trend", "Economy vs pre-COVID trend"), ("#taylor", "Taylor rule"), ("#rates", "Interest rate decomposer"),
                    ("fiscal-explorer.html", "Fiscal Explorer"), ("budget-explorer.html", "Budget explorer"),
@@ -242,13 +242,16 @@ def _build_language(indicators: list[Indicator], store: Store, site_root: Path, 
     for card in latest:
         card["page"] = section_link(card["ids"], card["page"])
     tiles = [homepage.tile_extras(store, by_id[t], registry[t], fresh) for t in snapshot["tiles"]]
+    at_a_glance = {"heatmap": glance.heatmap(readings_data), "records": glance.records(readings_data, tiles)}
+    for record in at_a_glance["records"]:
+        record["page"] = section_link([record["id"]], record["page"])
     whats_new = changes.latest_notes(store)
     for note in whats_new["notes"]:
         note["page"] = section_link([note["id"]], note["page"])
         note["text"] = changes.note_text(note, registry.get(note["id"]))
     for key in ("at", "updated_at", "started_at"):
         whats_new[key] = _madrid_time(whats_new[key], zone=False) if whats_new[key] else None
-    index = render("index.html", "index.html", tiles=tiles, latest=latest,
+    index = render("index.html", "index.html", tiles=tiles, latest=latest, glance=at_a_glance,
                    questions=snapshot["questions"], charts=charts, readings=snapshot["readings"],
                    whats_new=whats_new)
     page_charts = [("index.html", _("Home"), charts)]      # (page, title, charts), for the site search

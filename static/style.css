@@ -737,6 +737,43 @@ body.search-on { overflow: hidden; }
 .heat-key { display: inline-flex; align-items: center; gap: 5px; }
 .heat-swatch { width: 14px; height: 10px; border-radius: 2px; }
 
+/* The economy at a glance (home page, econpulse/glance.py): readings by month, shaded against their normal.
+   Warm (the palette's red pole) above normal, cool (its blue pole) below, around the grey middle. */
+.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.glance-scroll { padding: 8px 10px 10px 0; }
+.glance-map { width: 100%; border-collapse: separate; border-spacing: 2px; font-size: 12px; font-variant-numeric: tabular-nums; }
+.glance-map thead th { padding: 0 0 4px; font-weight: 400; color: var(--text-2); text-align: center; vertical-align: bottom; }
+.gl-year { display: block; font-size: 11px; color: var(--text-2); }
+.glance-map tbody th { padding: 0 14px 0 10px; font-weight: 400; text-align: left; white-space: nowrap; }
+.glance-map tbody th a { color: var(--text); text-decoration: none; }
+.glance-map tbody th a:hover { text-decoration: underline; }
+.gl { min-width: 46px; height: 26px; padding: 0 4px; border-radius: 3px; text-align: center; color: var(--text); }
+.gl-overall th, .gl-overall .gl { font-weight: 600; }
+.gl-gap td { height: 10px; padding: 0; }
+.gl-mid { background: var(--div-mid); }
+.gl-hot1 { background: var(--div-neg-1); } .gl-hot2 { background: var(--div-neg-2); } .gl-hot3 { background: var(--div-neg-3); }
+.gl-cool1 { background: var(--div-pos-1); } .gl-cool2 { background: var(--div-pos-2); } .gl-cool3 { background: var(--div-pos-3); }
+.gl-none { background: transparent; outline: 1px dashed var(--muted); outline-offset: -1px; }
+/* The labels stay in view when the map scrolls sideways (phones), and wrap there; the shadow, in the surface
+   colour, covers the gaps between cells so nothing shows round the labels as the months slide under them. */
+.glance-map tbody th, .glance-map thead th:first-child {
+  position: sticky; left: 0; z-index: 1; background: var(--surface); box-shadow: 0 0 0 2px var(--surface);
+}
+@media (max-width: 640px) {
+  .glance-map tbody th { min-width: 9.5em; max-width: 9.5em; white-space: normal; line-height: 1.25; padding: 3px 8px 3px 10px; }
+}
+/* The key figures at their highest or lowest in years */
+.records-title { margin-top: 26px; }
+.records { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); gap: 10px; margin: 0; padding: 0; list-style: none; }
+.record { display: flex; gap: 10px; padding: 12px 14px; }
+.record-arrow { flex: none; font-size: 13px; line-height: 20px; color: var(--text-2); }
+.record-body { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.record-label { font-size: 14px; font-weight: 600; color: var(--text); text-decoration: none; }
+.record-label:hover { text-decoration: underline; }
+.record-value { font: 600 19px/1.25 var(--sans); }
+.record-value .secondary { font-size: 12px; font-weight: 400; }
+.record-text { font-size: 13px; }
+
 /* About, Privacy: the button that clears the choices kept in local storage */
 .forget-choices {
   padding: 5px 14px; font: 14px var(--sans); color: var(--text);

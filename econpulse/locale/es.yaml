@@ -327,9 +327,11 @@ Accommodation: Servicios de alojamiento
 Accommodation and food services: Hostelería
 Activity: Actividad
 Activity and inflation against their history: Actividad e inflación frente a su historia
+Activity and inflation readings by month, to %(month)s, shaded by how far each is from its normal since 2013: Datos de actividad e inflación por meses, hasta %(month)s, sombreados según lo lejos que está cada uno de lo normal desde 2013
 Activity data vs forecasts: Datos de actividad frente a previsiones
 Activity rate: Tasa de actividad
 Activity vs history: Actividad frente a su historia
+Activity, overall score: Actividad, puntuación global
 Actual: Observada
 Actual data: Datos observados
 Adjustment from 2027 that brings debt to 60% of GDP by 2070: Ajuste desde 2027 que lleva la deuda al 60% del PIB en 2070
@@ -420,6 +422,7 @@ Asturias: Asturias
 At the 2008 age mix: Con la estructura de edades de 2008
 At the pump, € a litre: En surtidor, € por litro
 At the {year} age mix: Con la estructura de edades de {year}
+At their highest or lowest in years: En máximos o mínimos de años
 At {x}, below the lower threshold, it signals no recession.: Con {x}, por debajo del umbral inferior, no señala ninguna recesión.
 ? At {x}, the rule says a recession may have started, with a probability of {p}. Both moves are small, a few hundredths of a point.
 : Con {x}, la regla dice que puede haber empezado una recesión, con una probabilidad del {p}. Los dos movimientos son pequeños, de unas centésimas de punto.
@@ -883,6 +886,8 @@ EUR/USD: EUR/USD
 Each meeting cycle, −100 dovish to +100 hawkish: Cada ciclo de reuniones, de −100 (acomodaticio) a +100 (restrictivo)
 ? Each month new pensions are granted and others end, mostly on the pensioner's death. New retirement pensions, earned on higher pay, are larger than those that end, so the average pension rises faster than pensions are revalued.
 : Cada mes se reconocen pensiones nuevas y otras causan baja, sobre todo por fallecimiento del pensionista. Las nuevas pensiones de jubilación, generadas con salarios más altos, son mayores que las que causan baja, por lo que la pensión media sube más deprisa que la revalorización de las pensiones.
+? 'Each month''s reading is shaded by how far it is from its own normal since 2013, Covid years left out: warm colours above normal, cool colours below. For activity, above normal means stronger, and a fall in unemployment counts as stronger; for inflation, it means hotter. Quarterly figures span their quarter. Hover over a cell for the reading and its score.'
+: 'Cada dato mensual está sombreado según lo lejos que está de lo normal para él desde 2013, sin los años de la covid: colores cálidos por encima de lo normal y fríos por debajo. En la actividad, por encima de lo normal significa más fuerte, y una bajada del paro cuenta como más fuerte; en la inflación, significa más alta. Los datos trimestrales ocupan su trimestre. Pase el cursor por una celda para ver el dato y su puntuación.'
 'Each point is a quarter: unemployment against vacancies (four-quarter average)': 'Cada punto es un trimestre: paro frente a vacantes (media de cuatro trimestres)'
 ? 'Each point is the correlation over the 32 quarters (8 years) up to it, skipping 2020 and 2021. The links are far from fixed. {name}: from {lo} to {hi}, and {last} in the latest window.'
 : 'Cada punto es la correlación en los 32 trimestres (8 años) hasta él, sin contar 2020 ni 2021. Las relaciones distan de ser fijas. {name}: de {lo} a {hi}, y {last} en la última ventana.'
@@ -1320,6 +1325,7 @@ How much of the 2022–23 rises reached each rate: Cuánto de las subidas de 202
 How price rises are spread across the basket: Cómo se reparten las subidas de precios en la cesta
 ? How the ECB's interest rate reaches what Spanish banks charge borrowers and pay savers. The banks' rates are on new business, so they show where pricing is now, not what existing loans and deposits pay.
 : Cómo llega el tipo de interés del BCE a lo que los bancos españoles cobran a quienes piden prestado y pagan a quienes ahorran. Los tipos de los bancos son de nuevas operaciones, así que muestran los precios de ahora, no lo que pagan los préstamos y depósitos ya existentes.
+How the scores are made: Cómo se calculan las puntuaciones
 How they are made: Cómo se hacen
 How widespread: Cuán extendidas
 How widespread are price rises?: ¿Cuán extendidas están las subidas de precios?
@@ -1419,6 +1425,7 @@ Inflation is the HICP for {names}.: La inflación es la del IPCA para {names}.
 : 'Inflación interanual (IPCA en la UE, IPC en el resto). Las rentabilidades a 10 años y los diferenciales con Alemania son medias mensuales; los diferenciales se muestran para los países de la zona del euro. Fuentes: INE, Eurostat, BCE, OCDE, BPI, BLS de EE. UU.'
 Inflation vs history: Inflación frente a su historia
 Inflation {year}: Inflación {year}
+Inflation, overall score: Inflación, puntuación global
 ? Inflation, policy rates and what governments pay to borrow for ten years. Spain, France, Germany, Italy, the Netherlands and Portugal share the ECB's rates; Poland, the UK, the US, Canada and Japan set their own.
 : La inflación, los tipos oficiales y lo que pagan los Estados por endeudarse a diez años. España, Francia, Alemania, Italia, los Países Bajos y Portugal comparten los tipos del BCE; Polonia, el Reino Unido, EE. UU., Canadá y Japón fijan los suyos.
 Inflation-linked: Indexados a la inflación
@@ -1473,6 +1480,7 @@ Jobs by sector: Empleo por sectores
 'Jobs by sector: monthly change': 'Empleo por sectores: variación mensual'
 ? Jobs, unemployment and contracts by sector, from the Social Security register and the public employment service, INE's labour force survey (EPA), who works by age, sex, citizenship and education, the effect of an ageing population, worker flows, hours, vacancies and layoffs.
 : Empleo, paro y contratos por sectores, de la afiliación a la Seguridad Social y del servicio público de empleo; la encuesta de población activa del INE (EPA); quién trabaja por edad, sexo, nacionalidad y nivel educativo; el efecto del envejecimiento; los flujos de trabajadores, las horas, las vacantes y los despidos.
+Key figures whose latest reading, as shown, is the highest or lowest in at least two years.: Cifras clave cuyo último dato, tal como se muestra, es el más alto o el más bajo en al menos dos años.
 Key indicators: Indicadores clave
 La Rioja: La Rioja
 Labor costs 3/: Costes laborales 3/
@@ -2056,6 +2064,7 @@ Rates and inflation: Tipos e inflación
 Rates down or less restrictive: Tipos a la baja o menos restrictivos
 Rates on new business less the ECB deposit rate, percentage points: Tipos de nuevas operaciones menos el tipo de depósito del BCE, puntos porcentuales
 Rates up or staying restrictive: Tipos al alza o todavía restrictivos
+Reading: Dato
 Real Decreto-ley 2/2023, entered by hand: Real Decreto-ley 2/2023, datos introducidos a mano
 Real GDP: PIB real
 Real GDP (billions of 2020 euros): PIB real (miles de millones de euros de 2020)
@@ -2200,6 +2209,7 @@ Savings-investment balance (percent of GDP): Saldo ahorro-inversión (porcentaje
 Scheme: Régimen
 ? Schemes (regímenes) group workers by how they paid in. Farm workers and domestic employees joined the General scheme in 2012. Pensions for work accidents and occupational diseases are counted apart from the scheme the worker belonged to. SOVI pays the old-age insurance in force before 1967 (table PEN-2).
 : Los regímenes agrupan a los trabajadores según cómo cotizaron. Los trabajadores agrarios y los empleados de hogar se integraron en el Régimen General en 2012. Las pensiones por accidentes de trabajo y enfermedades profesionales se cuentan aparte del régimen al que pertenecía el trabajador. El SOVI (Seguro Obligatorio de Vejez e Invalidez) paga el seguro de vejez vigente antes de 1967 (cuadro PEN-2).
+'Score against normal:': 'Puntuación frente a lo normal:'
 Score, −100 dovish to +100 hawkish: Puntuación, de −100 (acomodaticio) a +100 (restrictivo)
 Sea workers: Trabajadores del Mar
 Search: Buscar
@@ -2478,6 +2488,7 @@ The current account: La balanza por cuenta corriente
 The current account and its parts: La cuenta corriente y sus componentes
 The deposit rate since 1999: El tipo de depósito desde 1999
 The economy against its history: La economía frente a su historia
+The economy at a glance: La economía de un vistazo
 The economy in four questions: La economía en cuatro preguntas
 The employed: Los ocupados
 The euro against the dollar: El euro frente al dólar
@@ -2507,6 +2518,7 @@ The mortgage rate is the ECB's average for new house-purchase loans to Spanish h
 : 'Los próximos tres meses, día a día: cuanto más oscuro el día, más publicaciones tiene, y el número de su esquina dice cuántas. Pulse en un día para verlas.'
 The next two months: Los próximos dos meses
 The page you asked for is not on Macroscope Spain.: La página que busca no está en Macroscope España.
+The past twelve months against normal: Los últimos doce meses frente a lo normal
 ? The posts firms and public bodies are trying to fill, from INE's labour cost survey. Vacancies are few in Spain by European standards, and a large share of them are in public administration.
 : Los puestos que las empresas y los organismos públicos intentan cubrir, de la encuesta de coste laboral del INE. En España hay pocas vacantes para lo habitual en Europa, y una gran parte está en la Administración pública.
 The quarterly balance is not seasonally adjusted, so it is averaged over four quarters.: El saldo trimestral no está desestacionalizado, así que se promedia en cuatro trimestres.
@@ -2872,6 +2884,7 @@ no data: sin datos
 nominal GDP per euro of broad money · {q}: PIB nominal por cada euro de dinero en sentido amplio · {q}
 non-performing · {period}; {peak}: créditos dudosos · {period}; {peak}
 none: ninguna
+not out yet: aún no publicado
 not updating: sin actualizar
 o.w. Banco de España: 'de la cual: Banco de España'
 o.w. Capital transfers and investment aid: 'del cual: transferencias de capital y ayudas a la inversión'
@@ -2908,6 +2921,8 @@ on the 1st of {month}: a 1 de {month}
 on the participation rate: sobre la tasa de actividad
 on {day}, against {what}: el {day}, frente a {what}
 or labelled as a Macroscope calculation.: o las señaladas como cálculo de Macroscope.
+or less: o menos
+or more: o más
 output per hour worked: producción por hora trabajada
 outstanding; the Tesoro's list of {day}: en circulación; relación del Tesoro a {day}
 over a year · {period}; {total} million in all: en un año · {period}; {total} millones en total
@@ -2985,6 +3000,7 @@ the {rank}th highest of the {n} countries: la {rank}.ª más alta de los {n} pa�
 the {year} budget has stayed in force in {years}: el presupuesto de {year} se ha mantenido en vigor en {years}
 the {year} budget stayed in force in {years}: el presupuesto de {year} se mantuvo en vigor en {years}
 thousand hours: miles de horas
+to: a
 to maturity, weighted by amount: hasta el vencimiento, ponderada por importe
 to {date}: hasta el {date}
 to {year}: hasta {year}
@@ -3007,6 +3023,7 @@ weaker than normal: más débil de lo normal
 what households' homes are worth · {period}: lo que valen las viviendas de los hogares · {period}
 what households' homes are worth · {period}; {times} times their disposable income ({peak} at the {year} peak): lo que valen las viviendas de los hogares · {period}; {times} veces su renta disponible ({peak} en el máximo de {year})
 with Spain's thresholds · {q}: con los umbrales de España · {q}
+within ±0.5: entre −0.5 y +0.5
 y/y: a/a
 y/y %: a/a %
 y/y, {period}: a/a, {period}
@@ -3033,6 +3050,9 @@ z-score: Puntuación z
 '{first} than a year earlier in {prev} and {second} in {quarter}': '{first} que un año antes en {prev} y {second} en {quarter}'
 '{first} than a year earlier in {quarter}': '{first} que un año antes en {quarter}'
 '{label} for {period} revised to {now}, from {before}.': '{label}, {period}: revisado a {now}, desde {before}.'
+'{label}, {period}: not out yet': '{label}, {period}: aún no publicado'
+'{label}, {period}: {score}, {describe}': '{label}, {period}: {score}, {describe}'
+'{label}, {period}: {value}; score {score}, {describe}': '{label}, {period}: {value}; puntuación {score}, {describe}'
 '{label}: {move} since the last update, to {now}.': '{label}: {move} desde la última actualización, hasta {now}.'
 '{label}: {now} in {period}{flash}, after {before} in {bperiod}.': '{label}: {now} en {period}{flash}, tras {before} en {bperiod}.'
 '{low} to {high}': '{low} a {high}'

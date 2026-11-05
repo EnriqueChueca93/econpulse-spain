@@ -1389,6 +1389,15 @@
     check();
   })();
 
+  // The home page's heat map opens on its newest months when it is too wide for the screen (phones).
+  function newestMonths() {
+    Array.prototype.forEach.call(document.querySelectorAll(".glance-scroll"), function (box) {
+      box.scrollLeft = box.scrollWidth;
+    });
+  }
+  newestMonths();
+  window.addEventListener("load", newestMonths);      // again once fonts and styles have settled the widths
+
   // Redraw after a resize settles: whether end labels fit depends on the chart's width.
   var resizeTimer;
   window.addEventListener("resize", function () {

@@ -81,25 +81,40 @@ def sparkline(ind: Indicator, ts: pd.Series, transform: str) -> dict | None:
             "zero": None if zero is None else round(zero, 1), "title": title}
 
 
+def extreme(ts: pd.Series, decimals: int) -> tuple[bool, pd.Timestamp | None, int] | None:
+    """Whether the latest reading, as shown (rounded), is above or below the one before, and how far back that
+    reaches: (rising, the last earlier date at least as high (or low), or None if there is none, the number of
+    readings after that date). None when the two latest readings show the same."""
+    shown = ts.round(decimals)
+    last, before = shown.iloc[-1], shown.iloc[:-1]
+    if before.empty or last == before.iloc[-1]:
+        return None
+    rising = bool(last > before.iloc[-1])
+    reach = before[before >= last] if rising else before[before <= last]
+    if reach.empty:
+        return rising, None, len(before)
+    return rising, reach.index[-1], int((ts.index > reach.index[-1]).sum())
+
+
+def since_text(rising: bool, since: pd.Timestamp | None, ts: pd.Series, freq: str) -> str:
+    """"The highest since Feb 2023", or "The lowest in the series, which starts in 1999"."""
+    if since is None:
+        text = (_("The highest in the series, which starts in {year}") if rising
+                else _("The lowest in the series, which starts in {year}"))
+        return text.format(year=ts.index[0].year)
+    text = _("The highest since {period}") if rising else _("The lowest since {period}")
+    return text.format(period=period_label(since, freq if freq in ("M", "Q", "A") else "M"))
+
+
 def context(ind: Indicator, ts: pd.Series, transform: str) -> str | None:
     """"The highest since Feb 2023" when the latest reading is the highest (or lowest) in more than a year,
     as shown (rounded), else "After 9.2% y/y in Aug 2026"."""
     if len(ts) < 2 or ind.freq not in NOTABLE:
         return None
     fmt, decimals = _format(ind, transform)
-    shown = ts.round(decimals)
-    last, before = shown.iloc[-1], shown.iloc[:-1]
-    if last != before.iloc[-1]:
-        rising = last > before.iloc[-1]
-        reach = before[before >= last] if rising else before[before <= last]
-        if reach.empty:
-            if len(before) > NOTABLE[ind.freq]:
-                text = (_("The highest in the series, which starts in {year}") if rising
-                        else _("The lowest in the series, which starts in {year}"))
-                return text.format(year=ts.index[0].year)
-        elif (ts.index > reach.index[-1]).sum() > NOTABLE[ind.freq]:
-            text = _("The highest since {period}") if rising else _("The lowest since {period}")
-            return text.format(period=period_label(reach.index[-1], ind.freq))
+    found = extreme(ts, decimals)
+    if found and found[2] > NOTABLE[ind.freq]:
+        return since_text(found[0], found[1], ts, ind.freq)
     return _("After {value} in {period}").format(value=fmt(float(ts.iloc[-2])), period=period_label(ts.index[-2], ind.freq))
 
 

@@ -49,6 +49,65 @@
   </section>
   {% endif %}
 
+  {% if glance.heatmap or glance.records %}
+  <section aria-labelledby="glance">
+    <h2 id="glance">{{ _("The economy at a glance") }}</h2>
+    {% if glance.heatmap %}
+    {% set hm = glance.heatmap %}
+    <h3>{{ _("The past twelve months against normal") }}</h3>
+    <div class="table-scroll glance-scroll">
+      <table class="glance-map">
+        <caption class="visually-hidden">{{ _("Activity and inflation readings by month, to %(month)s, shaded by how far each is from its normal since 2013", month=hm.through) }}</caption>
+        <thead>
+          <tr><th scope="col"><span class="visually-hidden">{{ _("Reading") }}</span></th>
+            {% for m in hm.months %}<th scope="col">{% if m.year %}<span class="gl-year">{{ m.year }}</span>{% endif %}{{ m.mon }}</th>{% endfor %}</tr>
+        </thead>
+        {% for b in hm.blocks %}
+        <tbody>
+          {% if not loop.first %}<tr class="gl-gap" aria-hidden="true"><td colspan="{{ hm.months | length + 1 }}"></td></tr>{% endif %}
+          <tr class="gl-overall"><th scope="row">{{ b.overall.label }}</th>
+            {% for c in b.overall.cells %}<td class="gl gl-{{ c.shade }}"{% if c.title %} title="{{ c.title }}"{% endif %}>{{ c.text }}</td>{% endfor %}</tr>
+          {% for r in b.rows %}
+          <tr><th scope="row"><a href="{{ r.url }}" target="_blank" rel="noopener" title="{{ r.label_es }}">{{ r.label }}</a></th>
+            {% for c in r.cells %}<td class="gl gl-{{ c.shade }}"{% if c.span > 1 %} colspan="{{ c.span }}"{% endif %} title="{{ c.title }}">{{ c.text }}</td>{% endfor %}</tr>
+          {% endfor %}
+        </tbody>
+        {% endfor %}
+      </table>
+    </div>
+    <div class="heat-legend">
+      <span>{{ _("Score against normal:") }}</span>
+      <span class="heat-key"><span class="heat-swatch gl-cool3"></span>&minus;2 {{ _("or less") }}</span>
+      <span class="heat-key"><span class="heat-swatch gl-cool2"></span>&minus;1 {{ _("to") }} &minus;2</span>
+      <span class="heat-key"><span class="heat-swatch gl-cool1"></span>&minus;0.5 {{ _("to") }} &minus;1</span>
+      <span class="heat-key"><span class="heat-swatch gl-mid"></span>{{ _("within ±0.5") }}</span>
+      <span class="heat-key"><span class="heat-swatch gl-hot1"></span>+0.5 {{ _("to") }} +1</span>
+      <span class="heat-key"><span class="heat-swatch gl-hot2"></span>+1 {{ _("to") }} +2</span>
+      <span class="heat-key"><span class="heat-swatch gl-hot3"></span>+2 {{ _("or more") }}</span>
+      <span class="heat-key"><span class="heat-swatch gl-none"></span>{{ _("not out yet") }}</span>
+    </div>
+    <p class="note">{{ _("Each month's reading is shaded by how far it is from its own normal since 2013, Covid years left out: warm colours above normal, cool colours below. For activity, above normal means stronger, and a fall in unemployment counts as stronger; for inflation, it means hotter. Quarterly figures span their quarter. Hover over a cell for the reading and its score.") }}
+      <a class="more" href="analysis.html#composites">{{ _("How the scores are made") }} <span aria-hidden="true">&rarr;</span></a></p>
+    {% endif %}
+    {% if glance.records %}
+    <h3 class="records-title">{{ _("At their highest or lowest in years") }}</h3>
+    <ul class="records">
+      {% for r in glance.records %}
+      <li class="card record">
+        <span class="record-arrow" aria-hidden="true">{{ "▲" if r.up else "▼" }}</span>
+        <span class="record-body">
+          <a class="record-label" href="{{ r.page }}">{{ r.label }}</a>
+          <span class="record-value">{{ r.value }} <span class="secondary">&middot; {{ r.when }}</span></span>
+          <span class="record-text">{{ r.text }}</span>
+        </span>
+      </li>
+      {% endfor %}
+    </ul>
+    <p class="note">{{ _("Key figures whose latest reading, as shown, is the highest or lowest in at least two years.") }}</p>
+    {% endif %}
+  </section>
+  {% endif %}
+
   {% if whats_new and whats_new.notes %}
   <section aria-labelledby="whats-new">
     <h2 id="whats-new">{{ _("What's new") }}</h2>
