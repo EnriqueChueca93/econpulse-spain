@@ -218,10 +218,10 @@
    "flash": false
   },
   "paro_registrado": {
-   "date": "2026-09-01",
-   "raw": 2379.505,
-   "display": "−42.2k y/y",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 2422.633,
+   "display": "−21.1k y/y",
+   "period": "Oct 2026",
    "flash": false
   },
   "activity_rate": {
@@ -421,10 +421,10 @@
    "flash": false
   },
   "electricity_price": {
-   "date": "2026-11-04",
-   "raw": 246.005625,
-   "display": "246 €/MWh",
-   "period": "4 Nov 2026",
+   "date": "2026-11-05",
+   "raw": 238.68625,
+   "display": "239 €/MWh",
+   "period": "5 Nov 2026",
    "flash": false
   },
   "industrial_production": {
@@ -449,10 +449,10 @@
    "flash": false
   },
   "electricity_demand": {
-   "date": "2026-11-03",
-   "raw": 677.11857,
-   "display": "677.1 GWh",
-   "period": "3 Nov 2026",
+   "date": "2026-11-04",
+   "raw": 716.89718,
+   "display": "716.9 GWh",
+   "period": "4 Nov 2026",
    "flash": false
   },
   "electricity_demand_monthly": {
@@ -722,66 +722,66 @@
    "flash": false
   },
   "euribor_3m": {
-   "date": "2026-11-03",
-   "raw": 2.765,
-   "display": "2.765%",
-   "period": "3 Nov 2026",
+   "date": "2026-11-04",
+   "raw": 2.759,
+   "display": "2.759%",
+   "period": "4 Nov 2026",
    "flash": false
   },
   "euribor_12m": {
-   "date": "2026-11-03",
-   "raw": 3.317,
-   "display": "3.317%",
-   "period": "3 Nov 2026",
+   "date": "2026-11-04",
+   "raw": 3.302,
+   "display": "3.302%",
+   "period": "4 Nov 2026",
    "flash": false
   },
   "es_12m_bill": {
-   "date": "2026-10-28",
-   "raw": 3.052,
-   "display": "3.05%",
-   "period": "28 Oct 2026",
+   "date": "2026-11-03",
+   "raw": 3.078,
+   "display": "3.08%",
+   "period": "3 Nov 2026",
    "flash": false
   },
   "es_3y": {
-   "date": "2026-11-02",
-   "raw": 3.348,
-   "display": "3.35%",
-   "period": "2 Nov 2026",
+   "date": "2026-11-03",
+   "raw": 3.329,
+   "display": "3.33%",
+   "period": "3 Nov 2026",
    "flash": false
   },
   "es_5y": {
-   "date": "2026-11-02",
-   "raw": 3.489,
-   "display": "3.49%",
-   "period": "2 Nov 2026",
+   "date": "2026-11-03",
+   "raw": 3.505,
+   "display": "3.50%",
+   "period": "3 Nov 2026",
    "flash": false
   },
   "es_10y": {
-   "date": "2026-11-02",
-   "raw": 3.927,
-   "display": "3.93%",
-   "period": "2 Nov 2026",
+   "date": "2026-11-03",
+   "raw": 3.917,
+   "display": "3.92%",
+   "period": "3 Nov 2026",
    "flash": false
   },
   "es_15y": {
-   "date": "2026-11-02",
-   "raw": 4.217,
-   "display": "4.22%",
-   "period": "2 Nov 2026",
+   "date": "2026-11-03",
+   "raw": 4.206,
+   "display": "4.21%",
+   "period": "3 Nov 2026",
    "flash": false
   },
   "es_30y": {
-   "date": "2026-11-02",
-   "raw": 4.451,
-   "display": "4.45%",
-   "period": "2 Nov 2026",
+   "date": "2026-11-03",
+   "raw": 4.426,
+   "display": "4.43%",
+   "period": "3 Nov 2026",
    "flash": false
   },
   "de_10y": {
-   "date": "2026-11-04",
-   "raw": 3.38,
-   "display": "3.38%",
-   "period": "4 Nov 2026",
+   "date": "2026-11-05",
+   "raw": 3.33,
+   "display": "3.33%",
+   "period": "5 Nov 2026",
    "flash": false
   },
   "aaa_1y": {
@@ -827,17 +827,17 @@
    "flash": false
   },
   "risk_premium": {
-   "date": "2026-11-03",
-   "raw": 60.8,
-   "display": "61 bp",
-   "period": "3 Nov 2026",
+   "date": "2026-11-04",
+   "raw": 57.2,
+   "display": "57 bp",
+   "period": "4 Nov 2026",
    "flash": false
   },
   "ibex35": {
-   "date": "2026-11-03",
-   "raw": 18807.0,
-   "display": "18,807",
-   "period": "3 Nov 2026",
+   "date": "2026-11-04",
+   "raw": 19371.0,
+   "display": "19,371",
+   "period": "4 Nov 2026",
    "flash": false
   },
   "eurusd": {
@@ -1163,10 +1163,10 @@
    "flash": false
   },
   "us_fed_funds": {
-   "date": "2026-10-27",
+   "date": "2026-11-03",
    "raw": 3.875,
    "display": "3.875%",
-   "period": "27 Oct 2026",
+   "period": "3 Nov 2026",
    "flash": false
   },
   "unemployment_andalucia": {
@@ -1786,17 +1786,17 @@
    "flash": false
   },
   "policy_rate_uk": {
-   "date": "2026-10-26",
+   "date": "2026-11-02",
    "raw": 3.75,
    "display": "3.75%",
-   "period": "26 Oct 2026",
+   "period": "2 Nov 2026",
    "flash": false
   },
   "policy_rate_ca": {
-   "date": "2026-10-26",
-   "raw": 2.25,
-   "display": "2.25%",
-   "period": "26 Oct 2026",
+   "date": "2026-11-02",
+   "raw": 2.5,
+   "display": "2.50%",
+   "period": "2 Nov 2026",
    "flash": false
   },
   "fc_oecd_gdp": {
@@ -3795,129 +3795,129 @@
    "flash": false
   },
   "paro_no_previous_job": {
-   "date": "2026-09-01",
-   "raw": 261.091,
-   "display": "+33.0k y/y",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 273.806,
+   "display": "+42.4k y/y",
+   "period": "Oct 2026",
    "flash": false
   },
   "paro_agriculture": {
-   "date": "2026-09-01",
-   "raw": 69.985,
-   "display": "−5.4k y/y",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 71.532,
+   "display": "−5.1k y/y",
+   "period": "Oct 2026",
    "flash": false
   },
   "paro_industry": {
-   "date": "2026-09-01",
-   "raw": 181.055,
-   "display": "−6.3k y/y",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 182.966,
+   "display": "−5.5k y/y",
+   "period": "Oct 2026",
    "flash": false
   },
   "paro_construction": {
-   "date": "2026-09-01",
-   "raw": 164.38,
-   "display": "−11.1k y/y",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 164.482,
+   "display": "−8.8k y/y",
+   "period": "Oct 2026",
    "flash": false
   },
   "paro_services": {
-   "date": "2026-09-01",
-   "raw": 1702.994,
-   "display": "−52.4k y/y",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1729.847,
+   "display": "−44.1k y/y",
+   "period": "Oct 2026",
    "flash": false
   },
   "benefit_recipients": {
-   "date": "2026-08-01",
-   "raw": 1836.0,
-   "display": "−40.0k y/y",
-   "period": "Aug 2026",
+   "date": "2026-09-01",
+   "raw": 1703.0,
+   "display": "−15.0k y/y",
+   "period": "Sep 2026",
    "flash": false
   },
   "contracts_total": {
-   "date": "2026-09-01",
-   "raw": 1597.612,
-   "display": "4.2% y/y",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1491.069,
+   "display": "−1.3% y/y",
+   "period": "Oct 2026",
    "flash": false
   },
   "contracts_permanent": {
-   "date": "2026-09-01",
-   "raw": 706.948,
-   "display": "6.5% y/y",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 645.173,
+   "display": "0.3% y/y",
+   "period": "Oct 2026",
    "flash": false
   },
   "contracts_fixed_discontinuous": {
-   "date": "2026-09-01",
-   "raw": 218.908,
-   "display": "0.8% y/y",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 208.811,
+   "display": "−2.3% y/y",
+   "period": "Oct 2026",
    "flash": false
   },
   "contracts_permanent_initial": {
-   "date": "2026-09-01",
-   "raw": 663.935,
-   "display": "6.6% y/y",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 604.522,
+   "display": "0.4% y/y",
+   "period": "Oct 2026",
    "flash": false
   },
   "contracts_conversions": {
-   "date": "2026-09-01",
-   "raw": 43.013,
-   "display": "4.5% y/y",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 40.651,
+   "display": "−1.0% y/y",
+   "period": "Oct 2026",
    "flash": false
   },
   "contracts_temporary": {
-   "date": "2026-09-01",
-   "raw": 890.664,
-   "display": "2.4% y/y",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 845.896,
+   "display": "−2.5% y/y",
+   "period": "Oct 2026",
    "flash": false
   },
   "contracts_full_time": {
-   "date": "2026-09-01",
-   "raw": 881.555,
-   "display": "3.8% y/y",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 811.696,
+   "display": "−3.0% y/y",
+   "period": "Oct 2026",
    "flash": false
   },
   "contracts_part_time": {
-   "date": "2026-09-01",
-   "raw": 497.149,
-   "display": "6.3% y/y",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 470.562,
+   "display": "2.2% y/y",
+   "period": "Oct 2026",
    "flash": false
   },
   "contracts_permanent_share": {
-   "date": "2026-09-01",
-   "raw": 44.250294,
-   "display": "41.7% 12-mo avg.",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 43.269158,
+   "display": "41.8% 12-mo avg.",
+   "period": "Oct 2026",
    "flash": false
   },
   "contracts_fd_share": {
-   "date": "2026-09-01",
-   "raw": 13.702201,
+   "date": "2026-10-01",
+   "raw": 14.004114,
    "display": "13.6% 12-mo avg.",
-   "period": "Sep 2026",
+   "period": "Oct 2026",
    "flash": false
   },
   "contracts_part_time_share": {
-   "date": "2026-09-01",
-   "raw": 31.118256,
-   "display": "30.1% 12-mo avg.",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 31.558701,
+   "display": "30.2% 12-mo avg.",
+   "period": "Oct 2026",
    "flash": false
   },
   "contracts_permanent_other": {
-   "date": "2026-09-01",
-   "raw": 488.04,
-   "display": "4,532.4k 12-mo total",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 436.362,
+   "display": "4,539.2k 12-mo total",
+   "period": "Oct 2026",
    "flash": false
   },
   "ind_total": {
@@ -6133,10 +6133,10 @@
    "flash": false
   },
   "policy_rate_pl": {
-   "date": "2026-10-27",
+   "date": "2026-11-03",
    "raw": 3.75,
    "display": "3.75%",
-   "period": "27 Oct 2026",
+   "period": "3 Nov 2026",
    "flash": false
   },
   "gdp_level_de": {
@@ -6203,45 +6203,45 @@
    "flash": false
   },
   "youth_unemp_es": {
-   "date": "2026-09-01",
-   "raw": 22.8,
-   "display": "22.8%",
-   "period": "Sep 2026",
+   "date": "2026-08-01",
+   "raw": 22.7,
+   "display": "22.7%",
+   "period": "Aug 2026",
    "flash": false
   },
   "youth_unemp_fr": {
-   "date": "2026-09-01",
-   "raw": 21.9,
-   "display": "21.9%",
-   "period": "Sep 2026",
+   "date": "2026-08-01",
+   "raw": 20.6,
+   "display": "20.6%",
+   "period": "Aug 2026",
    "flash": false
   },
   "youth_unemp_de": {
-   "date": "2026-09-01",
-   "raw": 7.5,
-   "display": "7.5%",
-   "period": "Sep 2026",
+   "date": "2026-08-01",
+   "raw": 7.4,
+   "display": "7.4%",
+   "period": "Aug 2026",
    "flash": false
   },
   "youth_unemp_it": {
-   "date": "2026-09-01",
-   "raw": 19.9,
-   "display": "19.9%",
-   "period": "Sep 2026",
+   "date": "2026-08-01",
+   "raw": 20.3,
+   "display": "20.3%",
+   "period": "Aug 2026",
    "flash": false
   },
   "youth_unemp_pt": {
-   "date": "2026-09-01",
-   "raw": 19.1,
-   "display": "19.1%",
-   "period": "Sep 2026",
+   "date": "2026-08-01",
+   "raw": 19.8,
+   "display": "19.8%",
+   "period": "Aug 2026",
    "flash": false
   },
   "youth_unemp_pl": {
-   "date": "2026-09-01",
+   "date": "2026-08-01",
    "raw": 11.3,
    "display": "11.3%",
-   "period": "Sep 2026",
+   "period": "Aug 2026",
    "flash": false
   },
   "youth_unemp_uk": {
@@ -6462,10 +6462,10 @@
    "flash": false
   },
   "policy_rate_jp": {
-   "date": "2026-10-27",
+   "date": "2026-11-03",
    "raw": 1.25,
    "display": "1.25%",
-   "period": "27 Oct 2026",
+   "period": "3 Nov 2026",
    "flash": false
   },
   "gdp_level_nl": {
@@ -7246,24 +7246,24 @@
    "flash": false
   },
   "unemployment_jp": {
-   "date": "2026-09-01",
-   "raw": 2.4,
-   "display": "2.4%",
-   "period": "Sep 2026",
+   "date": "2026-08-01",
+   "raw": 2.5,
+   "display": "2.5%",
+   "period": "Aug 2026",
    "flash": false
   },
   "youth_unemp_nl": {
-   "date": "2026-09-01",
+   "date": "2026-08-01",
    "raw": 8.8,
    "display": "8.8%",
-   "period": "Sep 2026",
+   "period": "Aug 2026",
    "flash": false
   },
   "youth_unemp_jp": {
-   "date": "2026-09-01",
+   "date": "2026-08-01",
    "raw": 3.5,
    "display": "3.5%",
-   "period": "Sep 2026",
+   "period": "Aug 2026",
    "flash": false
   },
   "emp_rate_nl": {
@@ -7274,10 +7274,10 @@
    "flash": false
   },
   "emp_rate_jp": {
-   "date": "2026-07-01",
-   "raw": 80.50503,
+   "date": "2026-04-01",
+   "raw": 80.49023,
    "display": "80.5%",
-   "period": "Q3 2026",
+   "period": "Q2 2026",
    "flash": false
   },
   "gdp_growth_jp": {
@@ -7380,7 +7380,7 @@
   },
   "real_hpi_fr": {
    "date": "2026-04-01",
-   "raw": 100.4871867,
+   "raw": 100.4975182,
    "display": "−3.0% y/y",
    "period": "Q2 2026",
    "flash": false
@@ -7401,7 +7401,7 @@
   },
   "real_hpi_nl": {
    "date": "2025-10-01",
-   "raw": 156.6042854,
+   "raw": 156.60322,
    "display": "2.9% y/y",
    "period": "Q4 2025",
    "flash": false
@@ -8968,73 +8968,73 @@
    "flash": false
   },
   "state_debt_outstanding": {
-   "date": "2026-11-04",
+   "date": "2026-11-05",
    "raw": 1522.8672,
    "display": "€1,522.9 bn",
-   "period": "4 Nov 2026",
+   "period": "5 Nov 2026",
    "flash": false
   },
   "state_debt_avg_coupon": {
-   "date": "2026-11-04",
+   "date": "2026-11-05",
    "raw": 2.36070911,
    "display": "2.36%",
-   "period": "4 Nov 2026",
+   "period": "5 Nov 2026",
    "flash": false
   },
   "state_debt_avg_life": {
-   "date": "2026-11-04",
-   "raw": 7.73751685,
-   "display": "7.74 years",
-   "period": "4 Nov 2026",
+   "date": "2026-11-05",
+   "raw": 7.734778999,
+   "display": "7.73 years",
+   "period": "5 Nov 2026",
    "flash": false
   },
   "madrid_general": {
-   "date": "2026-11-03",
-   "raw": 1859.0,
-   "display": "1,859.00",
-   "period": "3 Nov 2026",
+   "date": "2026-11-04",
+   "raw": 1915.0,
+   "display": "1,915.00",
+   "period": "4 Nov 2026",
    "flash": false
   },
   "madrid_financials": {
-   "date": "2026-11-03",
-   "raw": 1480.6,
-   "display": "1,480.6",
-   "period": "3 Nov 2026",
+   "date": "2026-11-04",
+   "raw": 1546.9,
+   "display": "1,546.9",
+   "period": "4 Nov 2026",
    "flash": false
   },
   "madrid_energy": {
-   "date": "2026-11-03",
-   "raw": 3203.1,
-   "display": "3,203.1",
-   "period": "3 Nov 2026",
+   "date": "2026-11-04",
+   "raw": 3253.9,
+   "display": "3,253.9",
+   "period": "4 Nov 2026",
    "flash": false
   },
   "madrid_consumer_goods": {
-   "date": "2026-11-03",
-   "raw": 7203.0,
-   "display": "7,203.0",
-   "period": "3 Nov 2026",
+   "date": "2026-11-04",
+   "raw": 7519.7,
+   "display": "7,519.7",
+   "period": "4 Nov 2026",
    "flash": false
   },
   "madrid_industry": {
-   "date": "2026-11-03",
-   "raw": 2626.3,
-   "display": "2,626.3",
-   "period": "3 Nov 2026",
+   "date": "2026-11-04",
+   "raw": 2616.7,
+   "display": "2,616.7",
+   "period": "4 Nov 2026",
    "flash": false
   },
   "madrid_consumer_services": {
-   "date": "2026-11-03",
-   "raw": 1884.0,
-   "display": "1,884.0",
-   "period": "3 Nov 2026",
+   "date": "2026-11-04",
+   "raw": 1939.1,
+   "display": "1,939.1",
+   "period": "4 Nov 2026",
    "flash": false
   },
   "madrid_tech": {
-   "date": "2026-11-03",
-   "raw": 684.8,
-   "display": "684.8",
-   "period": "3 Nov 2026",
+   "date": "2026-11-04",
+   "raw": 694.8,
+   "display": "694.8",
+   "period": "4 Nov 2026",
    "flash": false
   },
   "ms_nfa": {
@@ -10515,8 +10515,197 @@
    "page": "labour.html",
    "text": "Registrations, division 68 as published (real estate): 253.5k in Oct 2026, after 252.4k in Sep 2026.",
    "at": "2026-11-04T19:08:42+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "paro_registrado",
+   "page": "labour.html",
+   "text": "Registered unemployment: −21.1k y/y in Oct 2026, after −42.2k y/y in Sep 2026.",
+   "at": "2026-11-05T17:26:49+00:00"
+  },
+  {
+   "kind": "market",
+   "id": "electricity_price",
+   "page": "inflation.html",
+   "text": "Electricity price (day-ahead): −3.0% since the last update, to 239 €/MWh.",
+   "at": "2026-11-05T17:26:49+00:00"
+  },
+  {
+   "kind": "market",
+   "id": "electricity_demand",
+   "page": "activity.html",
+   "text": "Electricity demand: +5.9% since the last update, to 716.9 GWh.",
+   "at": "2026-11-05T17:26:49+00:00"
+  },
+  {
+   "kind": "market",
+   "id": "ibex35",
+   "page": "financial.html",
+   "text": "IBEX 35: +3.0% since the last update, to 19,371.",
+   "at": "2026-11-05T17:26:49+00:00"
+  },
+  {
+   "kind": "market",
+   "id": "madrid_general",
+   "page": "financial.html",
+   "text": "Madrid Stock Exchange general index: +3.0% since the last update, to 1,915.00.",
+   "at": "2026-11-05T17:26:49+00:00"
+  },
+  {
+   "kind": "market",
+   "id": "madrid_financials",
+   "page": "financial.html",
+   "text": "Madrid exchange: financial services and real estate: +4.5% since the last update, to 1,546.9.",
+   "at": "2026-11-05T17:26:49+00:00"
+  },
+  {
+   "kind": "market",
+   "id": "madrid_consumer_goods",
+   "page": "financial.html",
+   "text": "Madrid exchange: consumer goods: +4.4% since the last update, to 7,519.7.",
+   "at": "2026-11-05T17:26:49+00:00"
+  },
+  {
+   "kind": "market",
+   "id": "madrid_consumer_services",
+   "page": "financial.html",
+   "text": "Madrid exchange: consumer services: +2.9% since the last update, to 1,939.1.",
+   "at": "2026-11-05T17:26:49+00:00"
+  },
+  {
+   "kind": "market",
+   "id": "policy_rate_ca",
+   "page": "international.html",
+   "text": "Policy rate, Canada: +25 bp since the last update, to 2.50%.",
+   "at": "2026-11-05T17:26:49+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "paro_no_previous_job",
+   "page": "labour.html",
+   "text": "Registered unemployment, no previous job: +42.4k y/y in Oct 2026, after +33.0k y/y in Sep 2026.",
+   "at": "2026-11-05T17:26:49+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "paro_agriculture",
+   "page": "labour.html",
+   "text": "Registered unemployment, agriculture: −5.1k y/y in Oct 2026, after −5.4k y/y in Sep 2026.",
+   "at": "2026-11-05T17:26:49+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "paro_industry",
+   "page": "labour.html",
+   "text": "Registered unemployment, industry: −5.5k y/y in Oct 2026, after −6.3k y/y in Sep 2026.",
+   "at": "2026-11-05T17:26:49+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "paro_construction",
+   "page": "labour.html",
+   "text": "Registered unemployment, construction: −8.8k y/y in Oct 2026, after −11.1k y/y in Sep 2026.",
+   "at": "2026-11-05T17:26:49+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "paro_services",
+   "page": "labour.html",
+   "text": "Registered unemployment, services: −44.1k y/y in Oct 2026, after −52.4k y/y in Sep 2026.",
+   "at": "2026-11-05T17:26:49+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "benefit_recipients",
+   "page": "labour.html",
+   "text": "Unemployment benefit recipients: −15.0k y/y in Sep 2026, after −40.0k y/y in Aug 2026.",
+   "at": "2026-11-05T17:26:49+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "contracts_total",
+   "page": "labour.html",
+   "text": "Contracts registered: −1.3% y/y in Oct 2026, after 4.2% y/y in Sep 2026.",
+   "at": "2026-11-05T17:26:49+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "contracts_permanent",
+   "page": "labour.html",
+   "text": "Permanent contracts: 0.3% y/y in Oct 2026, after 6.5% y/y in Sep 2026.",
+   "at": "2026-11-05T17:26:49+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "contracts_fixed_discontinuous",
+   "page": "labour.html",
+   "text": "Fijo discontinuo contracts: −2.3% y/y in Oct 2026, after 0.8% y/y in Sep 2026.",
+   "at": "2026-11-05T17:26:49+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "contracts_permanent_initial",
+   "page": "labour.html",
+   "text": "Permanent contracts, initial: 0.4% y/y in Oct 2026, after 6.6% y/y in Sep 2026.",
+   "at": "2026-11-05T17:26:49+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "contracts_conversions",
+   "page": "labour.html",
+   "text": "Conversions to permanent: −1.0% y/y in Oct 2026, after 4.5% y/y in Sep 2026.",
+   "at": "2026-11-05T17:26:49+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "contracts_temporary",
+   "page": "labour.html",
+   "text": "Temporary contracts: −2.5% y/y in Oct 2026, after 2.4% y/y in Sep 2026.",
+   "at": "2026-11-05T17:26:49+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "contracts_full_time",
+   "page": "labour.html",
+   "text": "Full-time contracts: −3.0% y/y in Oct 2026, after 3.8% y/y in Sep 2026.",
+   "at": "2026-11-05T17:26:49+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "contracts_part_time",
+   "page": "labour.html",
+   "text": "Part-time contracts: 2.2% y/y in Oct 2026, after 6.3% y/y in Sep 2026.",
+   "at": "2026-11-05T17:26:49+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "contracts_permanent_share",
+   "page": "labour.html",
+   "text": "Permanent contracts, share of all contracts: 41.8% 12-mo avg. in Oct 2026, after 41.7% 12-mo avg. in Sep 2026.",
+   "at": "2026-11-05T17:26:49+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "contracts_fd_share",
+   "page": "labour.html",
+   "text": "Fijo discontinuo contracts, share of all contracts: 13.6% 12-mo avg. in Oct 2026, after 13.6% 12-mo avg. in Sep 2026.",
+   "at": "2026-11-05T17:26:49+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "contracts_part_time_share",
+   "page": "labour.html",
+   "text": "Part-time contracts, share of all contracts: 30.2% 12-mo avg. in Oct 2026, after 30.1% 12-mo avg. in Sep 2026.",
+   "at": "2026-11-05T17:26:49+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "contracts_permanent_other",
+   "page": "labour.html",
+   "text": "Permanent contracts other than fijo discontinuo: 4,539.2k 12-mo total in Oct 2026, after 4,532.4k 12-mo total in Sep 2026.",
+   "at": "2026-11-05T17:26:49+00:00"
   }
  ],
- "updated_at": "2026-11-04T19:08:42+00:00",
+ "updated_at": "2026-11-05T17:26:49+00:00",
  "started_at": "2026-10-31T23:31:49+00:00"
 }
