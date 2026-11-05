@@ -19,9 +19,15 @@ $/t: $/t
 '% change on a year earlier: bank loans to the private sector (adjusted for sales and write-offs) and nominal GDP': 'Variación interanual, %: préstamos bancarios al sector privado (corregidos de ventas y saneamientos) y PIB nominal'
 '% change on a year earlier: wage cost per worker (quarterly) and CPI (monthly)': 'Variación interanual, %: coste salarial por trabajador (trimestral) e IPC (mensual)'
 '% change on a year earlier; broad money growth is drawn two years after the month it was measured': Variación interanual, %; el crecimiento del dinero en sentido amplio se dibuja dos años después del mes en que se midió
+'% change on the previous day': Variación diaria, %
+'% change on the previous month': Variación mensual, %
+'% change on the previous quarter': Variación intertrimestral, %
 '% change on the previous quarter (bars) and on a year earlier (line)': Variación intertrimestral (barras) e interanual (línea), %
+'% change on the previous quarter, annualised': Variación intertrimestral anualizada, %
 '% change on the previous quarter; the last point is the nowcast for {q}': Variación intertrimestral, %; el último punto es la estimación adelantada de {q}
+'% change on the previous year': Variación anual, %
 '% change on the year before; actual to {year}, then the IMF''s projection': Variación interanual, %; datos observados hasta {year} y, después, proyección del FMI
+'% change over three months, annualised': Variación en tres meses, anualizada, %
 '% change to the close of {day}: rises in blue, falls in red': 'Variación hasta el cierre del {day}, %: subidas en azul, caídas en rojo'
 '% change · European Commission (AMECO), {year}': Variación, % · Comisión Europea (AMECO), {year}
 '% change; contributions in percentage points': Variación, %; aportaciones en puntos porcentuales
@@ -94,6 +100,8 @@ $/t: $/t
 ', {projections} from {year}': ', {projections} a partir de {year}'
 0.6 points of pay (employer 0.5, worker 0.1): 0.6 puntos de cotización (empresa 0.5, trabajador 0.1)
 0.92%, 1% and 1.17% in three bands (up to 10%, 10-50% and over 50% above the base): 0.92%, 1% y 1.17% en tres tramos (hasta un 10%, entre un 10% y un 50% y más de un 50% por encima de la base)
+1 key indicator: 1 indicador clave
+1 of the latest releases: 1 de las últimas publicaciones
 1 year ahead: A 1 año
 1-Year Loan Prime Rate (LPR): Tipo preferencial de los préstamos a un año (LPR)
 1-day: 1 día
@@ -443,6 +451,7 @@ Average life: Vida media
 Average mortgage: Hipoteca media
 Average of the forecasts above: Media de las previsiones anteriores
 Average of the past four quarters, % change on the four before: Media de los últimos cuatro trimestres, variación sobre los cuatro anteriores, %
+Average over the past year, {unit}: Media del último año, {unit}
 Average pension: Pensión media
 Average pension by class: Pensión media por clase
 Average pension by region: Pensión media por comunidades
@@ -634,7 +643,12 @@ Change in reserve assets: Variación de los activos de reserva
 ? Change in the past year's net new lending to firms and households, % of GDP (bars); real domestic demand, % change on a year earlier (line)
 : Variación del crédito nuevo neto a empresas y hogares del último año, % del PIB (barras); demanda nacional real, variación interanual, % (línea)
 Change on a year: Variación en un año
+Change on a year earlier, {unit}: Variación interanual, {unit}
 'Change on the month before, thousands, seasonally adjusted; line: 3-month average': 'Variación sobre el mes anterior, miles, desestacionalizada; línea: media de 3 meses'
+Change on the previous day, {unit}: Variación diaria, {unit}
+Change on the previous month, {unit}: Variación mensual, {unit}
+Change on the previous quarter, {unit}: Variación intertrimestral, {unit}
+Change on the previous year, {unit}: Variación anual, {unit}
 Change, %: Variación, %
 ? Changes compare the past 12 months with the 12 months before. All goods, by country of destination for exports and of origin for imports.
 : Las variaciones comparan los últimos 12 meses con los 12 anteriores. Todos los bienes, por país de destino de las exportaciones y de origen de las importaciones.
@@ -642,6 +656,7 @@ Change, %: Variación, %
 : Las variaciones comparan los últimos 12 meses con los 12 anteriores. Los grupos de productos reúnen capítulos del Sistema Armonizado (véase Sobre los datos).
 ? 'Changes compare the past four quarters with the four before. Other services are the total less the types shown: manufacturing and repair services, personal, cultural and government services, for which Eurostat publishes no separate Spanish figures.'
 : 'Las variaciones comparan los últimos cuatro trimestres con los cuatro anteriores. Otros servicios es el total menos los tipos que se muestran: servicios de transformación y de reparación, servicios personales, culturales y recreativos y servicios de las Administraciones públicas, de los que Eurostat no publica cifras separadas para España.'
+Chart of the week: Gráfico de la semana
 Charts: Gráficos
 ? Charts and detailed tables for this page arrive in Batch %(batch)s of the build plan. For now, here is every indicator tracked, with its latest reading.
 : Los gráficos y las tablas de esta página llegan en la fase %(batch)s del plan. Por ahora, estos son los indicadores que se siguen, con su último dato.
@@ -661,6 +676,7 @@ Coal mining: Minería del Carbón
 Coffee and coffee substitutes: Café y sucedáneos
 Collective dismissals: Despidos colectivos
 Collective dismissals and temporary layoffs: Despidos colectivos y ERTE
+Coming back? This page can mark what is new since each of your visits. Only this browser keeps the date.: ¿Va a volver? Esta página puede marcar lo nuevo desde cada una de sus visitas. Solo este navegador guarda la fecha.
 Coming up: Próximamente
 Commercial property: Inmuebles comerciales
 Commercial property prices: Precios de los inmuebles comerciales
@@ -1766,6 +1782,7 @@ Norway: Noruega
 : 'Sin desestacionalizar. Se dejan fuera las industrias extractivas, la energía, el agua y las actividades inmobiliarias: el INE no publica sus vacantes en muchos trimestres.'
 Notes on what each update changes start with the next data update after %(when)s.: Las notas sobre lo que cambia en cada actualización empiezan con la primera actualización de datos posterior al %(when)s.
 Notes on what each update changes start with the next data update.: Las notas sobre lo que cambia en cada actualización empiezan con la próxima actualización de datos.
+Nothing new since your last visit ({when}).: Nada nuevo desde su última visita ({when}).
 Nothing scheduled in the next three months.: No hay nada previsto en los próximos tres meses.
 Národná banka Slovenska: Národná banka Slovenska
 OECD: OCDE
@@ -1796,6 +1813,7 @@ On a year earlier: Interanual
 On hold (rule): Sin cambios (regla)
 On the day: En el día
 On this page: En esta página
+On. From your next visit, this page will mark the figures that are new since this one.: Activado. Desde su próxima visita, esta página marcará los datos nuevos desde esta.
 Ordinary: Ordinarios
 Orphans: Orfandad
 Other: Otros
@@ -1949,6 +1967,8 @@ Petrol, Spain: Gasolina, España
 Petrol, euro area: Gasolina, zona del euro
 Petroleum, chemicals and pharmaceuticals: Refino, química y farmacia
 Pharmaceuticals: Productos farmacéuticos
+? 'Picked from the past seven days'' releases: the figure at its highest or lowest in the longest time, or else the newest. The line across the chart marks the latest reading. This one is from %(release)s, out on %(day)s.'
+: 'Elegido entre las publicaciones de los últimos siete días: el dato que está en su máximo o su mínimo desde hace más tiempo o, si no hay ninguno, el más reciente. La línea que cruza el gráfico marca el último dato. Este es de %(release)s, publicado el %(day)s.'
 Plastics and rubber: Plástico y caucho
 Points of pay, employer and worker together; 1.2 from 2029 to 2050: Puntos porcentuales de cotización, empresa y trabajador juntos; 1.2 de 2029 a 2050
 Poland: Polonia
@@ -2272,6 +2292,8 @@ Signed before notaries, past 12 months, thousands: Firmadas ante notario, últim
 ? Since 2023 the model's typical (root mean square) error is {rmse} pp, against {naive} pp for repeating the previous quarter and {mean} pp for the post-2013 average. The inputs were chosen with this same test, and it uses complete quarters of data, so real-time errors, with months still missing, will be larger.
 : Desde 2023, el error típico del modelo (la raíz del error cuadrático medio) es de {rmse} pp, frente a {naive} pp si se repite el trimestre anterior y {mean} pp con la media desde 2013. Las variables se eligieron con esta misma prueba, que usa trimestres de datos completos, así que los errores en tiempo real, con meses aún por publicar, serán mayores.
 Since the last update: Desde la última actualización
+Since your last visit: Desde su última visita
+'Since your last visit ({when}): new or revised figures in {what}, marked below.': 'Desde su última visita ({when}): datos nuevos o revisados en {what}, marcados abajo.'
 Since {year}, after inflation: Desde {year}, descontada la inflación
 Since {year}, after inflation %: Desde {year}, descontada la inflación %
 Skip to content: Ir al contenido
@@ -2582,6 +2604,7 @@ Tools: Herramientas
 Total assets: Activo total
 Total domestic demand: Demanda interna total
 Total labour cost per worker: Coste laboral total por trabajador
+Total over the past year, {unit}: Total del último año, {unit}
 Total return on housing: Rentabilidad total de la vivienda
 Total revenue: Ingresos totales
 Total spending: Gasto total
@@ -2622,6 +2645,8 @@ Trimmed mean 30%: Media recortada 30%
 Trimmed mean, 10%: Media recortada, 10%
 Trimmed mean, 30%: Media recortada, 30%
 Tu: Ma
+Turn it on: Activar
+Turn off: Desactivar
 ? 'Two simple rules that say when a recession has probably started, from the job market alone. The Sahm rule watches unemployment rise above its recent low; the Michez rule, by Pascal Michaillat and Emmanuel Saez, also needs vacancies to fall from their recent high, which makes it less prone to false alarms. Both were built on US data: here they run on Spain''s, checked against the recessions dated by the Spanish Economic Association''s committee. Spain publishes vacancies quarterly, so the Michez rule runs on quarters, with thresholds set for Spain the way its authors set theirs. Macroscope calculation.'
 : 'Dos reglas sencillas que dicen cuándo ha empezado probablemente una recesión, solo con el mercado de trabajo. La regla de Sahm vigila que el paro suba por encima de su mínimo reciente; la de Michez, de Pascal Michaillat y Emmanuel Saez, exige además que las vacantes caigan desde su máximo reciente, lo que la hace menos propensa a las falsas alarmas. Ambas se crearon con datos de EE. UU.: aquí se aplican a los de España y se contrastan con las recesiones fechadas por el comité de la Asociación Española de Economía. España publica las vacantes cada trimestre, así que la regla de Michez se calcula por trimestres, con umbrales fijados para España como fijaron los suyos sus autores. Cálculo de Macroscope.'
 ? 'Two summary readings. Each indicator is compared with its own record since 2013 (a z-score: 0 is normal, +1 is one typical deviation above), then the scores are averaged, giving the newest data the most weight. Macroscope calculation, not an official statistic.'
@@ -2827,6 +2852,7 @@ additional provision 2 of the decree: disposición adicional 2.ª del decreto
 additional provision 53: disposición adicional 53.ª
 all pensions, {year} (Eurostat): todas las pensiones, {year} (Eurostat)
 all pensions, {year}; EU {eu} (Eurostat): todas las pensiones, {year}; UE {eu} (Eurostat)
+and: y
 and %(n)s more, under Show data: y %(n)s más, en «Ver los datos»
 annual avg., %: media anual, %
 ? average gross pension spending in 2022-2050 (Ageing Report) at most 15% of GDP, adjusted by the gap between the revenue measures' yield and 1.7% of GDP
@@ -3085,10 +3111,13 @@ z-score: Puntuación z
 '{n} hold': 'sin cambios: {n}'
 '{n} house': '{n} casa de análisis'
 '{n} houses': '{n} casas de análisis'
+'{n} key indicators': '{n} indicadores clave'
 '{n} million': '{n} millones'
+'{n} of the latest releases': '{n} de las últimas publicaciones'
 '{n} of {total}': '{n} de {total}'
 '{n} quarter ahead': '{n} trimestre después'
 '{n} quarters ahead': '{n} trimestres después'
+'{period}: {value}. {context}.': '{period}: {value}. {context}.'
 '{quarter}; {then} on average in 2019': '{quarter}; {then} de media en 2019'
 '{rank} fastest of {n}': el {rank}.º más rápido de los {n}
 '{rank} fastest of {n} · {when}': el {rank}.º más rápido de los {n} · {when}
@@ -3115,6 +3144,7 @@ z-score: Puntuación z
 '{unit} · quarterly data to {period}': '{unit} · datos trimestrales hasta {period}'
 '{value} at the {year} peak': '{value} en el máximo de {year}'
 '{verdict}, {month}; {above} of {total} recent figures above': '{verdict}, {month}; {above} de {total} datos recientes por encima'
+'{what}, seasonally adjusted by Macroscope': '{what}; datos desestacionalizados por Macroscope'
 '{years} years': '{years} años'
 '{year} census': censo de {year}
 '{year} census; {before} in {before_year}': censo de {year}; {before} en {before_year}

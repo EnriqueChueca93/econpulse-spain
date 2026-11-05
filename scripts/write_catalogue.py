@@ -316,6 +316,43 @@ add({
         "media y el punto azul la estimación propia de Macroscope (pase el cursor por encima para ver las cifras). La "
         "inflación es el IPCA para unos analistas y el IPC para otros.",
     "Every forecast on the Analysis page": "Todas las previsiones, en la página de Análisis",
+    # Chart of the week (batch H4)
+    "Chart of the week": "Gráfico de la semana",
+    "Picked from the past seven days' releases: the figure at its highest or lowest in the longest time, or else the newest. The line across the chart marks the latest reading. This one is from %(release)s, out on %(day)s.":
+        "Elegido entre las publicaciones de los últimos siete días: el dato que está en su máximo o su mínimo desde "
+        "hace más tiempo o, si no hay ninguno, el más reciente. La línea que cruza el gráfico marca el último dato. "
+        "Este es de %(release)s, publicado el %(day)s.",
+    "{period}: {value}. {context}.": "{period}: {value}. {context}.",
+    "% change on the previous month": "Variación mensual, %",
+    "% change on the previous quarter": "Variación intertrimestral, %",
+    "% change on the previous year": "Variación anual, %",
+    "% change on the previous day": "Variación diaria, %",
+    "Change on the previous month, {unit}": "Variación mensual, {unit}",
+    "Change on the previous quarter, {unit}": "Variación intertrimestral, {unit}",
+    "Change on the previous year, {unit}": "Variación anual, {unit}",
+    "Change on the previous day, {unit}": "Variación diaria, {unit}",
+    "Change on a year earlier, {unit}": "Variación interanual, {unit}",
+    "% change over three months, annualised": "Variación en tres meses, anualizada, %",
+    "% change on the previous quarter, annualised": "Variación intertrimestral anualizada, %",
+    "Total over the past year, {unit}": "Total del último año, {unit}",
+    "Average over the past year, {unit}": "Media del último año, {unit}",
+    "{what}, seasonally adjusted by Macroscope": "{what}; datos desestacionalizados por Macroscope",
+    # Since your last visit (batch H4)
+    "Coming back? This page can mark what is new since each of your visits. Only this browser keeps the date.":
+        "¿Va a volver? Esta página puede marcar lo nuevo desde cada una de sus visitas. Solo este navegador guarda la fecha.",
+    "On. From your next visit, this page will mark the figures that are new since this one.":
+        "Activado. Desde su próxima visita, esta página marcará los datos nuevos desde esta.",
+    "Since your last visit ({when}): new or revised figures in {what}, marked below.":
+        "Desde su última visita ({when}): datos nuevos o revisados en {what}, marcados abajo.",
+    "Nothing new since your last visit ({when}).": "Nada nuevo desde su última visita ({when}).",
+    "1 key indicator": "1 indicador clave",
+    "{n} key indicators": "{n} indicadores clave",
+    "1 of the latest releases": "1 de las últimas publicaciones",
+    "{n} of the latest releases": "{n} de las últimas publicaciones",
+    "and": "y",
+    "Since your last visit": "Desde su última visita",
+    "Turn it on": "Activar",
+    "Turn off": "Desactivar",
     "Our own calculations from the official data.": "Cálculos propios a partir de los datos oficiales.",
     "How they are made": "Cómo se hacen",
     "Since the last update": "Desde la última actualización",

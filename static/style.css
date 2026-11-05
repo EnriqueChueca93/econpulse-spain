@@ -204,6 +204,23 @@ code { font-size: 13px; background: var(--hover); padding: 1px 5px; border-radiu
 .badge-new::before { content: ""; display: inline-block; width: 6px; height: 6px; margin-right: 5px; border-radius: 50%;
   background: var(--accent); vertical-align: 1px; }
 
+/* Since your last visit (home page, static/app.js): a line under the lede, and a blue mark on the tiles and
+   cards whose figures came in since the reader's last visit (the red dot stays "out in the past week") */
+.since-visit { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 10px; max-width: 760px; margin: 0 0 6px;
+  font-size: 13px; color: var(--text-2); }
+.since-visit[hidden] { display: none; }
+.since-toggle { font: inherit; color: var(--text); background: none; border: 0; padding: 2px 0; cursor: pointer;
+  text-decoration: underline; text-decoration-color: var(--border); text-underline-offset: 3px; }
+.since-toggle:hover { text-decoration-color: currentColor; }
+.badge-unseen { background: none; color: var(--text); box-shadow: inset 0 0 0 1px var(--series-1); }
+.badge-unseen::before { content: ""; display: inline-block; width: 6px; height: 6px; margin-right: 5px; border-radius: 50%;
+  background: var(--series-1); vertical-align: 1px; }
+.tile.is-unseen, .latest-card.is-unseen { box-shadow: inset 3px 0 0 var(--series-1); }
+.latest-when .badge { margin: 0 0 0 2px; vertical-align: 1px; }
+
+/* Chart of the week (home page): one chart across the page, a little taller */
+.week-chart .chart { height: 320px; }
+
 /* Sparklines (econpulse/homepage.py): the past few years of a tile's or a card's headline figure */
 .spark { display: block; width: 100%; height: 30px; margin: 6px 0 2px; overflow: visible; }
 .spark-line { fill: none; stroke: var(--series-1); stroke-width: 1.5; stroke-linejoin: round; stroke-linecap: round; }

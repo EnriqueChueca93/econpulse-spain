@@ -37,6 +37,7 @@
 {% macro tile(item) -%}
   {%- set head = item.headline -%}
   <a class="tile"{% if item.source_url %} href="{{ item.source_url }}" target="_blank" rel="noopener"{% endif %}
+     {%- if item.changed %} data-changed="{{ item.changed }}"{% endif %}
      title="{{ item.label_es if item.label != item.label_es else item.label_en }}{% if item.notes %}. {{ _(item.notes) }}{% endif %}">
     <span class="tile-label">{{ item.label }}</span>
     <span class="tile-value">{% if head %}{{ split_value(head) }}{% else %}&ndash;{% endif %}</span>

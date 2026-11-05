@@ -16,7 +16,7 @@ ROOT = Path(__file__).resolve().parents[1]
 ABOUT = [ROOT / "templates" / "about.html", ROOT / "templates" / "es" / "about.html"]
 CONSENT = ROOT / "static" / "consent.js"
 # The keys the notice lists. "ep-sector-freq-" is a prefix: the table's id follows it.
-LISTED = {"ep-consent", "ep-theme", "ep-peers", "ep-sector-unit", "ep-sector-freq-"}
+LISTED = {"ep-consent", "ep-theme", "ep-peers", "ep-sector-unit", "ep-sector-freq-", "ep-visits"}
 
 
 def _front_end() -> list[Path]:

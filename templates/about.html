@@ -203,9 +203,10 @@
         <tbody>
           <tr><td><code>ep-consent</code> (local storage)</td><td>Macroscope</td>
             <td>Your answer to the cookie question, and its date, so you aren't asked on every page</td><td>A year</td></tr>
-          <tr><td><code>ep-theme</code>, <code>ep-peers</code>, <code>ep-sector-unit</code>, <code>ep-sector-freq-</code>… (local storage)</td>
+          <tr><td><code>ep-theme</code>, <code>ep-peers</code>, <code>ep-sector-unit</code>, <code>ep-sector-freq-</code>…, <code>ep-visits</code> (local storage)</td>
             <td>Macroscope</td><td>Choices you make: light or dark theme, the countries you compare Spain with, the
-              unit and frequency of the sector tables. Nothing is kept until you choose.</td><td>Until you clear them</td></tr>
+              unit and frequency of the sector tables; and, if you turn on "Since your last visit" on the home page,
+              when you last saw it and how old its data were. Nothing is kept until you choose.</td><td>Until you clear them</td></tr>
           <tr><td><code>_ga</code> (cookie)</td><td>Google Analytics</td>
             <td>A random number that tells one browser's visits from another's</td><td>A year</td></tr>
           <tr><td><code>_ga_</code>… (cookie)</td><td>Google Analytics</td>
@@ -263,7 +264,9 @@
         <li>light or dark theme, if you switch it (<code>ep-theme</code>);</li>
         <li>the countries you compare Spain with on the International page (<code>ep-peers</code>);</li>
         <li>the unit and the frequency you pick in the sector tables (<code>ep-sector-unit</code> and
-          <code>ep-sector-freq-</code> followed by the table's name).</li>
+          <code>ep-sector-freq-</code> followed by the table's name);</li>
+        <li>if you turn on "Since your last visit" on the home page, when you last saw it and how old its data were,
+          so it can mark what is new (<code>ep-visits</code>).</li>
       </ul>
       <p>Under the EU's ePrivacy rules (in Spain, article 22.2 of the LSSI), storage that only remembers a choice you
         asked the site to make needs no consent, which is why there is no cookie banner. You can clear these choices

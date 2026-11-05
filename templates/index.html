@@ -4,12 +4,25 @@
 {% block content %}
   <p class="lede">{{ _("A running read on the health of the Spanish economy.") }}</p>
 
+  {# Since your last visit: off until the reader turns it on (static/app.js), so it shows only with a script. #}
+  <div class="since-visit" id="since-visit" hidden data-build="{{ built_at }}"
+       data-first="{{ _("On. From your next visit, this page will mark the figures that are new since this one.") }}"
+       data-some="{{ _("Since your last visit ({when}): new or revised figures in {what}, marked below.") }}"
+       data-none="{{ _("Nothing new since your last visit ({when}).") }}"
+       data-tile-one="{{ _("1 key indicator") }}" data-tile-many="{{ _("{n} key indicators") }}"
+       data-card-one="{{ _("1 of the latest releases") }}" data-card-many="{{ _("{n} of the latest releases") }}"
+       data-and="{{ _("and") }}" data-badge="{{ _("Since your last visit") }}"
+       data-turn-on="{{ _("Turn it on") }}" data-turn-off="{{ _("Turn off") }}">
+    <span class="since-text" role="status">{{ _("Coming back? This page can mark what is new since each of your visits. Only this browser keeps the date.") }}</span>
+    <button type="button" class="since-toggle">{{ _("Turn it on") }}</button>
+  </div>
+
   {% if latest %}
   <section aria-labelledby="latest">
     <h2 id="latest">{{ _("Latest releases") }}</h2>
     <div class="latest">
       {% for r in latest %}
-      <a class="card latest-card" href="{{ r.page }}">
+      <a class="card latest-card" href="{{ r.page }}"{% if r.changed %} data-changed="{{ r.changed }}"{% endif %}>
         <span class="latest-when">{{ r.day }} &middot; {{ r.release }}</span>
         <span class="latest-label">{{ r.label }}, {{ r.period }}</span>
         <span class="latest-value">{{ r.value }}{% if r.unit %}<span class="tile-unit"> {{ r.unit }}</span>{% endif %}
@@ -32,6 +45,14 @@
     </div>
     <p class="note">{{ _("Each tile links to its source, and its line shows the past few years. Hover for the official Spanish name.") }}</p>
   </section>
+
+  {% if week %}
+  <section aria-labelledby="chart-of-the-week">
+    <h2 id="chart-of-the-week">{{ _("Chart of the week") }}</h2>
+    <div class="charts charts-single week-chart">{{ chart_card(week.spec) }}</div>
+    <p class="note">{{ _("Picked from the past seven days' releases: the figure at its highest or lowest in the longest time, or else the newest. The line across the chart marks the latest reading. This one is from %(release)s, out on %(day)s.", release=week.release, day=week.day) }}</p>
+  </section>
+  {% endif %}
 
   {% if readings %}
   <section aria-labelledby="readings">
@@ -202,7 +223,7 @@
 {% endblock %}
 
 {% block scripts %}
-  {% if charts %}
+  {% if charts or week %}
   <script src="{{ root }}assets/plotly-basic.min.js?v={{ build_id }}"></script>
   <script src="data/charts.js?v={{ build_id }}"></script>
   {% endif %}

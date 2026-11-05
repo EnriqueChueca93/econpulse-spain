@@ -1398,6 +1398,89 @@
   newestMonths();
   window.addEventListener("load", newestMonths);      // again once fonts and styles have settled the widths
 
+  // ---------------------------------------------------------------- since your last visit (home page)
+  // Off until the reader turns it on: a choice, like the theme, so it needs no consent. Once on, local storage
+  // keeps, under "ep-visits", when the page was last seen and when its data were built (data-build). Views less
+  // than 30 minutes apart are one visit; the tiles and cards whose figures came in (data-changed) after the data
+  // seen on the visit before are marked. Nothing leaves the browser.
+  (function () {
+    var bar = document.getElementById("since-visit");
+    if (!bar) return;
+    var KEY = "ep-visits", GAP = 30 * 60 * 1000;
+    var text = bar.querySelector(".since-text"), button = bar.querySelector(".since-toggle");
+    var offText = text.textContent, build = Date.parse(bar.getAttribute("data-build"));
+    function attr(name) { return bar.getAttribute("data-" + name) || ""; }
+    function load() {      // {saved: the stored visits, or null}, or null when storage is blocked
+      try { return { saved: JSON.parse(localStorage.getItem(KEY) || "null") }; } catch (e) { return null; }
+    }
+    function save(v) {
+      try { localStorage.setItem(KEY, JSON.stringify(v)); return true; } catch (e) { return false; }
+    }
+    function when(ms) {
+      return new Date(ms).toLocaleString(LANG === "es" ? "es-ES" : "en-GB",
+        { weekday: "short", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
+    }
+    function count(n, kind) { return n === 1 ? attr(kind + "-one") : attr(kind + "-many").replace("{n}", n); }
+    function unmark() {
+      Array.prototype.forEach.call(document.querySelectorAll(".badge-unseen"), function (b) { b.parentNode.removeChild(b); });
+      Array.prototype.forEach.call(document.querySelectorAll(".is-unseen"), function (el) { el.classList.remove("is-unseen"); });
+    }
+    function mark(since) {
+      var tiles = 0, cards = 0;
+      Array.prototype.forEach.call(document.querySelectorAll("[data-changed]"), function (el) {
+        if (!(Date.parse(el.getAttribute("data-changed")) > since)) return;
+        var badge = document.createElement("span");
+        badge.className = "badge badge-unseen";
+        badge.textContent = attr("badge");
+        el.classList.add("is-unseen");
+        if (el.classList.contains("tile")) {
+          var slot = el.querySelector(".tile-badges");
+          if (!slot) { slot = document.createElement("span"); slot.className = "tile-badges"; el.appendChild(slot); }
+          slot.insertBefore(badge, slot.firstChild);
+          tiles++;
+        } else {
+          var head = el.querySelector(".latest-when") || el;
+          head.appendChild(document.createTextNode(" "));
+          head.appendChild(badge);
+          cards++;
+        }
+      });
+      return [tiles, cards];
+    }
+    function show(v) {
+      unmark();
+      button.textContent = attr(v ? "turn-off" : "turn-on");
+      if (!v) { text.textContent = offText; return; }
+      if (!v.prev) { text.textContent = attr("first"); return; }
+      var n = mark(v.prev.build), parts = [];
+      if (n[0]) parts.push(count(n[0], "tile"));
+      if (n[1]) parts.push(count(n[1], "card"));
+      text.textContent = (parts.length ? attr("some").replace("{what}", parts.join(" " + attr("and") + " ")) : attr("none"))
+        .replace("{when}", when(v.prev.at));
+    }
+
+    var stored = load();
+    if (!stored) return;                                  // storage blocked: the line stays hidden
+    var visits = stored.saved && stored.saved.last ? stored.saved : null, now = Date.now();
+    if (visits) {
+      if (now - visits.last.at > GAP) visits.prev = visits.last;   // a new visit: mark what came after the last one
+      visits.last = { at: now, build: build };
+      save(visits);
+    }
+    show(visits);
+    bar.hidden = false;
+    button.addEventListener("click", function () {
+      var current = load();
+      if (current && current.saved && current.saved.last) {
+        try { localStorage.removeItem(KEY); } catch (e) { /* nothing was kept */ }
+        show(null);
+      } else {
+        var first = { last: { at: Date.now(), build: build } };
+        if (save(first)) show(first);
+      }
+    });
+  })();
+
   // Redraw after a resize settles: whether end labels fit depends on the chart's width.
   var resizeTimer;
   window.addEventListener("resize", function () {

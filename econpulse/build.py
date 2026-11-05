@@ -52,7 +52,8 @@ NAV = ([("index.html", "Home")] + [(f"{s}.html", t) for s, (t, _, _) in SECTION_
 COMMUNITIES_EXPLORER = ("budget-explorer.html#level=regions", "Budget explorer: the autonomous communities")
 # What each tab's dropdown lists besides the sections of a section page (anchors or other pages).
 NAV_EXTRA = {
-    "index.html": [("#latest", "Latest releases"), ("#key-indicators", "Key indicators"), ("#readings", "Macroscope readings"),
+    "index.html": [("#latest", "Latest releases"), ("#key-indicators", "Key indicators"),
+                   ("#chart-of-the-week", "Chart of the week"), ("#readings", "Macroscope readings"),
                    ("#glance", "The economy at a glance"), ("#peers", "Spain and its peers"),
                    ("#outlook", "What forecasters expect"), ("#whats-new", "What's new"),
                    ("#four-questions", "The economy in four questions"), ("#charts", "Charts")],
@@ -238,11 +239,19 @@ def _build_language(indicators: list[Indicator], store: Store, site_root: Path, 
     for r in recent:
         r["page"] = section_link(r["ids"], r["page"])
     registry = {i.id: i for i in indicators}
+    # When the site last got new or revised figures for each series: "Since your last visit" marks the tiles and
+    # cards whose figures came in after the data the reader last saw.
+    changed = homepage.changed_times(store)
     # The home page opens with the past fortnight's releases (which take the place of its list of the past week's).
-    latest = homepage.latest_releases(store, by_id, registry, events, today)
+    latest = homepage.latest_releases(store, by_id, registry, events, today, changed=changed)
     for card in latest:
         card["page"] = section_link(card["ids"], card["page"])
-    tiles = [homepage.tile_extras(store, by_id[t], registry[t], fresh) for t in snapshot["tiles"]]
+    tiles = [homepage.tile_extras(store, by_id[t], registry[t], fresh, changed) for t in snapshot["tiles"]]
+    week = homepage.chart_of_the_week(store, by_id, registry, events, today)
+    if week:
+        week["spec"]["link"] = section_link(week["ids"], week["spec"]["link"])
+        # Drawn from the home page's charts file, but kept out of the search index: it changes every week.
+        write_data_js(data_dir / "charts.js", "charts", charts + [week["spec"]])
     at_a_glance = {"heatmap": glance.heatmap(readings_data), "records": glance.records(readings_data, tiles)}
     for record in at_a_glance["records"]:
         record["page"] = section_link([record["id"]], record["page"])
@@ -252,7 +261,7 @@ def _build_language(indicators: list[Indicator], store: Store, site_root: Path, 
         note["text"] = changes.note_text(note, registry.get(note["id"]))
     for key in ("at", "updated_at", "started_at"):
         whats_new[key] = _madrid_time(whats_new[key], zone=False) if whats_new[key] else None
-    index = render("index.html", "index.html", tiles=tiles, latest=latest, glance=at_a_glance,
+    index = render("index.html", "index.html", tiles=tiles, latest=latest, week=week, built_at=snapshot["generated_at"], glance=at_a_glance,
                    peers=scoreboard.peer_table(readings_data), outlook=scoreboard.outlook(readings_data),
                    questions=snapshot["questions"], charts=charts, readings=snapshot["readings"],
                    whats_new=whats_new)
