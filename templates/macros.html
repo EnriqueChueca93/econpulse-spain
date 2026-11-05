@@ -14,6 +14,16 @@
   {{ parts[0] }}{% if suffix %}<span class="tile-unit"> {{ suffix }}</span>{% endif %}
 {%- endmacro %}
 
+{# A small line of the past few years (econpulse/homepage.py draws it); hovering over it gives its range. #}
+{% macro spark(s) -%}
+  <svg class="spark" viewBox="0 0 {{ s.w }} {{ s.h }}" preserveAspectRatio="none" role="img" aria-label="{{ s.title }}">
+    <title>{{ s.title }}</title>
+    {% if s.zero is not none %}<line class="spark-zero" x1="0" x2="{{ s.w }}" y1="{{ s.zero }}" y2="{{ s.zero }}" vector-effect="non-scaling-stroke"/>{% endif %}
+    <polyline class="spark-line" points="{{ s.points }}" vector-effect="non-scaling-stroke"/>
+    <path class="spark-dot" d="M{{ s.x }} {{ s.y }}h0" vector-effect="non-scaling-stroke"/>
+  </svg>
+{%- endmacro %}
+
 {% macro tile(item) -%}
   {%- set head = item.headline -%}
   <a class="tile"{% if item.source_url %} href="{{ item.source_url }}" target="_blank" rel="noopener"{% endif %}
@@ -24,7 +34,8 @@
       <span>{{ head.period if head else "" }}</span>
       {% if item.subline %}<span class="tile-sub">{{ item.subline }}</span>{% endif %}
     </span>
-    {% set b = badges(item) %}{% if b | trim %}<span class="tile-badges">{{ b }}</span>{% endif %}
+    {% if item.spark %}{{ spark(item.spark) }}{% endif %}
+    {% set b = badges(item) %}{% if b | trim or item.new %}<span class="tile-badges">{% if item.new %}<span class="badge badge-new">{{ item.new }}</span>{% endif %}{{ b }}</span>{% endif %}
   </a>
 {%- endmacro %}
 

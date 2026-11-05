@@ -242,6 +242,24 @@ add({
 add({
     "Each tile links to its source. Hover for the official Spanish name.":
         "Cada recuadro enlaza con su fuente. Pase el cursor por encima para ver el nombre en inglés.",
+    "Each tile links to its source, and its line shows the past few years. Hover for the official Spanish name.":
+        "Cada recuadro enlaza con su fuente, y su línea muestra los últimos años. Pase el cursor por encima para ver "
+        "el nombre en inglés.",
+    # The latest releases and the sparklines (econpulse/homepage.py)
+    "Latest releases": "Últimas publicaciones",
+    "Releases of the past two weeks, newest first. Each line shows the past few years: hover over it for the range.":
+        "Publicaciones de las dos últimas semanas, de la más reciente a la más antigua. Cada línea muestra los últimos "
+        "años: pase el cursor por encima para ver el rango.",
+    "The highest since {period}": "El dato más alto desde {period}",
+    "The lowest since {period}": "El dato más bajo desde {period}",
+    "The highest in the series, which starts in {year}": "El dato más alto de la serie, que empieza en {year}",
+    "The lowest in the series, which starts in {year}": "El dato más bajo de la serie, que empieza en {year}",
+    "After {value} in {period}": "Tras {value} en {period}",
+    "Past year": "Último año",
+    "Past {n} years": "Últimos {n} años",
+    "{span}: low {low} ({low_when}), high {high} ({high_when})":
+        "{span}: mínimo {low} ({low_when}), máximo {high} ({high_when})",
+    "New · {day}": "Nuevo · {day}",
     "Our own calculations from the official data.": "Cálculos propios a partir de los datos oficiales.",
     "How they are made": "Cómo se hacen",
     "Since the last update": "Desde la última actualización",

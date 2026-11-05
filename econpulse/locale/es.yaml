@@ -340,6 +340,7 @@ Adverse r − g: r − g adverso
 Affordability: Accesibilidad
 After inflation: Descontada la inflación
 After the {report}.: Con el formato del {report}.
+After {value} in {period}: Tras {value} en {period}
 Against end-2019 %: Frente a finales de 2019 %
 Against other countries: Frente a otros países
 Against the euro area: Frente a la zona del euro
@@ -887,6 +888,7 @@ Each meeting cycle, −100 dovish to +100 hawkish: Cada ciclo de reuniones, de �
 : 'Cada punto es la correlación en los 32 trimestres (8 años) hasta él, sin contar 2020 ni 2021. Las relaciones distan de ser fijas. {name}: de {lo} a {hi}, y {last} en la última ventana.'
 ? Each row is the latest close its source has published; a date next to a row means it differs from the rest. Monthly rows are monthly averages. For the euro, a rise means a stronger euro.
 : Cada fila es el último cierre que ha publicado su fuente; una fecha junto a una fila indica que difiere del resto. Las filas mensuales son medias mensuales. Para el euro, una subida significa un euro más fuerte.
+Each tile links to its source, and its line shows the past few years. Hover for the official Spanish name.: Cada recuadro enlaza con su fuente, y su línea muestra los últimos años. Pase el cursor por encima para ver el nombre en inglés.
 Each tile links to its source. Hover for the official Spanish name.: Cada recuadro enlaza con su fuente. Pase el cursor por encima para ver el nombre en inglés.
 Economic activity and external accounts: Actividad económica y sector exterior
 Economic sentiment: Sentimiento económico
@@ -1506,6 +1508,7 @@ Latest qtr y/y %: Último trim. a/a %
 Latest quarters: Últimos trimestres
 Latest reading and earlier values: Último dato y valores anteriores
 Latest readings and their z-scores · composite for {month}: Últimos datos y sus puntuaciones z · indicador compuesto de {month}
+Latest releases: Últimas publicaciones
 Latvijas Banka: Latvijas Banka
 Leader: Variable
 Leather, wood and paper: Cuero, madera y papel
@@ -1711,6 +1714,7 @@ New rates take effect a few days after the decision is announced (on the Wednesd
 ? New releases, revisions and big market moves in Spain's economic data, one item per change, as found by each Macroscope Spain update.
 : Nuevas publicaciones, revisiones y grandes movimientos de mercado en los datos económicos de España, una entrada por cambio, tal como los detecta cada actualización de Macroscope España.
 New retirement pensions: Pensiones de jubilación nuevas
+New · {day}: Nuevo · {day}
 New, ended and all retirement pensions: 'Pensiones de jubilación: nuevas, bajas y todas las vigentes'
 Next decision: Próxima decisión
 Next releases are on the: Las próximas publicaciones están en el
@@ -1856,6 +1860,8 @@ Past 12 months, € billion: Últimos 12 meses, miles de millones de €
 Past four quarters against 2019, deflated by the CPI, % change: Últimos cuatro trimestres frente a 2019, deflactados por el IPC, variación, %
 Past four quarters against {year}, deflated by the CPI, % change: Últimos cuatro trimestres frente a {year}, deflactados por el IPC, variación, %
 Past week: Última semana
+Past year: Último año
+Past {n} years: Últimos {n} años
 Paused: Pausa prolongada
 Pay: Remuneración
 'Pay and labour costs, how they compare with inflation, and pay by activity: a month, per hour, bonuses and growth.': 'Salarios y costes laborales, cómo se comparan con la inflación, y los salarios por actividad: al mes, por hora, pagas extraordinarias y crecimiento.'
@@ -2130,6 +2136,7 @@ Release calendar: Calendario de publicaciones
 Release map: Mapa de publicaciones
 Released in the past week: Publicado en la última semana
 Releases in a day: Publicaciones en un día
+'Releases of the past two weeks, newest first. Each line shows the past few years: hover over it for the range.': 'Publicaciones de las dos últimas semanas, de la más reciente a la más antigua. Cada línea muestra los últimos años: pase el cursor por encima para ver el rango.'
 Rent: De alquiler
 Rental yield: Rentabilidad del alquiler
 Rental yield and the 10-year bond: Rentabilidad del alquiler y bono a 10 años
@@ -2479,6 +2486,8 @@ The euro, per euro: El euro, por euro
 : Las Administraciones públicas (Estado, comunidades autónomas, corporaciones locales y Seguridad Social), según lo notificado a la Comisión Europea. Las reglas de la UE fijan valores de referencia de un 3% de déficit y un 60% de deuda.
 The government's deficit figures leave out the extraordinary spending after the DANA floods.: Las cifras de déficit del Gobierno no incluyen el gasto extraordinario tras las inundaciones de la DANA.
 The harmonised index is the measure the ECB targets, built the same way in every euro-area country.: El índice armonizado es la medida que sigue el objetivo del BCE, elaborada igual en todos los países de la zona del euro.
+The highest in the series, which starts in {year}: El dato más alto de la serie, que empieza en {year}
+The highest since {period}: El dato más alto desde {period}
 The inactive: Los inactivos
 The intergenerational equity contribution (MEI): El Mecanismo de Equidad Intergeneracional (MEI)
 ? The labour cost survey (ETCL) is not seasonally adjusted and bonuses move between quarters, so pay is compared with a year earlier. The collective-agreements figure is the average rise agreed for the current year in agreements registered so far, not a change on a year earlier.
@@ -2489,6 +2498,8 @@ The intergenerational equity contribution (MEI): El Mecanismo de Equidad Interge
 : El último cierre y cuánto se ha movido cada mercado. Las rentabilidades proceden del Banco de España, los tipos de cambio son los tipos de referencia diarios del BCE y el Brent es el precio al contado de la EIA estadounidense (a través de FRED).
 ? 'The latest forecasts for Spain this year and next, with Macroscope''s own figure for this year''s GDP. Each forecaster''s row shows when it was published: forecasts made months apart saw different data, so differences are partly about timing.'
 : 'Las últimas previsiones para España de este año y el próximo, con la cifra propia de Macroscope para el PIB de este año. La fila de cada institución indica cuándo se publicó: las previsiones hechas con meses de diferencia partían de datos distintos, así que las diferencias se deben en parte al momento en que se hicieron.'
+The lowest in the series, which starts in {year}: El dato más bajo de la serie, que empieza en {year}
+The lowest since {period}: El dato más bajo desde {period}
 ? The model also uses the previous quarter's GDP growth. Months not yet published are projected from each series' recent momentum (an AR(1) model), so early in a quarter the nowcast leans on those projections.
 : El modelo usa también el crecimiento del PIB del trimestre anterior. Los meses aún no publicados se proyectan a partir de la inercia reciente de cada serie (un modelo AR(1)), así que al principio de un trimestre la estimación adelantada se apoya en esas proyecciones.
 The mortgage rate is the ECB's average for new house-purchase loans to Spanish households.: El tipo hipotecario es la media del BCE para los préstamos nuevos para compra de vivienda a hogares españoles.
@@ -3050,6 +3061,7 @@ z-score: Puntuación z
 '{source}, Eurostat; Macroscope calculation': '{source}, Eurostat; cálculo de Macroscope'
 '{source}, INE; Macroscope calculation': '{source}, INE; cálculo de Macroscope'
 '{source}; Macroscope calculation': '{source}; cálculo de Macroscope'
+'{span}: low {low} ({low_when}), high {high} ({high_when})': '{span}: mínimo {low} ({low_when}), máximo {high} ({high_when})'
 '{spread} points over the ECB''s rate · {month}': '{spread} puntos sobre el tipo del BCE · {month}'
 '{tone} in the {n} cycle that ended in a cut': '{tone} en {n} ciclo que terminó con una bajada de tipos'
 '{tone} in the {n} cycle that ended in a rate rise': '{tone} en {n} ciclo que terminó con una subida de tipos'

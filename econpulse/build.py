@@ -16,7 +16,7 @@ from pathlib import Path
 import pandas as pd
 from jinja2 import ChoiceLoader, Environment, FileSystemLoader, select_autoescape
 
-from . import __version__, analytics, budget, changes, disclaimer, ecbspeak, feed, fiscal, i18n, industries, peers, schedule, search, sectortables, stance, surprises, tools, trade
+from . import __version__, analytics, budget, changes, disclaimer, ecbspeak, feed, fiscal, homepage, i18n, industries, peers, schedule, search, sectortables, stance, surprises, tools, trade
 from .i18n import _
 from .charts import build_home_charts
 from .config import GA_MEASUREMENT_ID, SITE_CONTACT, SITE_DIR, SITE_OWNER, SITE_URL, STATIC_DIR, TEMPLATES_DIR
@@ -52,7 +52,8 @@ NAV = ([("index.html", "Home")] + [(f"{s}.html", t) for s, (t, _, _) in SECTION_
 COMMUNITIES_EXPLORER = ("budget-explorer.html#level=regions", "Budget explorer: the autonomous communities")
 # What each tab's dropdown lists besides the sections of a section page (anchors or other pages).
 NAV_EXTRA = {
-    "index.html": [("#key-indicators", "Key indicators"), ("#readings", "Macroscope readings"), ("#whats-new", "What's new"),
+    "index.html": [("#latest", "Latest releases"), ("#key-indicators", "Key indicators"), ("#readings", "Macroscope readings"),
+                   ("#whats-new", "What's new"),
                    ("#four-questions", "The economy in four questions"), ("#charts", "Charts")],
     "tools.html": [("#trend", "Economy vs pre-COVID trend"), ("#taylor", "Taylor rule"), ("#rates", "Interest rate decomposer"),
                    ("fiscal-explorer.html", "Fiscal Explorer"), ("budget-explorer.html", "Budget explorer"),
@@ -235,14 +236,19 @@ def _build_language(indicators: list[Indicator], store: Store, site_root: Path, 
     recent = changes.recent_releases(store, by_id, events, today)
     for r in recent:
         r["page"] = section_link(r["ids"], r["page"])
-    whats_new = {**changes.latest_notes(store), "recent": recent}
     registry = {i.id: i for i in indicators}
+    # The home page opens with the past fortnight's releases (which take the place of its list of the past week's).
+    latest = homepage.latest_releases(store, by_id, registry, events, today)
+    for card in latest:
+        card["page"] = section_link(card["ids"], card["page"])
+    tiles = [homepage.tile_extras(store, by_id[t], registry[t], fresh) for t in snapshot["tiles"]]
+    whats_new = changes.latest_notes(store)
     for note in whats_new["notes"]:
         note["page"] = section_link([note["id"]], note["page"])
         note["text"] = changes.note_text(note, registry.get(note["id"]))
     for key in ("at", "updated_at", "started_at"):
         whats_new[key] = _madrid_time(whats_new[key], zone=False) if whats_new[key] else None
-    index = render("index.html", "index.html", tiles=[by_id[t] for t in snapshot["tiles"]],
+    index = render("index.html", "index.html", tiles=tiles, latest=latest,
                    questions=snapshot["questions"], charts=charts, readings=snapshot["readings"],
                    whats_new=whats_new)
     page_charts = [("index.html", _("Home"), charts)]      # (page, title, charts), for the site search

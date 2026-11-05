@@ -1,15 +1,36 @@
 {% extends "base.html" %}
-{% from "macros.html" import tile, chart_card %}
+{% from "macros.html" import tile, chart_card, spark %}
 
 {% block content %}
   <p class="lede">{{ _("A running read on the health of the Spanish economy.") }}</p>
+
+  {% if latest %}
+  <section aria-labelledby="latest">
+    <h2 id="latest">{{ _("Latest releases") }}</h2>
+    <div class="latest">
+      {% for r in latest %}
+      <a class="card latest-card" href="{{ r.page }}">
+        <span class="latest-when">{{ r.day }} &middot; {{ r.release }}</span>
+        <span class="latest-label">{{ r.label }}, {{ r.period }}</span>
+        <span class="latest-value">{{ r.value }}{% if r.unit %}<span class="tile-unit"> {{ r.unit }}</span>{% endif %}
+          {%- if r.flash %} <span class="badge badge-info">{{ _("flash estimate") }}</span>{% endif %}</span>
+        {% if r.spark %}{{ spark(r.spark) }}{% endif %}
+        {% if r.context %}<span class="latest-context">{{ r.context }}</span>{% endif %}
+        {% for o in r.others %}<span class="latest-other">{{ o }}</span>{% endfor %}
+      </a>
+      {% endfor %}
+    </div>
+    <p class="note">{{ _("Releases of the past two weeks, newest first. Each line shows the past few years: hover over it for the range.") }}
+      <a class="more" href="calendar.html">{{ _("Release calendar") }} <span aria-hidden="true">&rarr;</span></a></p>
+  </section>
+  {% endif %}
 
   <section aria-labelledby="key-indicators">
     <h2 id="key-indicators">{{ _("Key indicators") }}</h2>
     <div class="tiles">
       {% for item in tiles %}{{ tile(item) }}{% endfor %}
     </div>
-    <p class="note">{{ _("Each tile links to its source. Hover for the official Spanish name.") }}</p>
+    <p class="note">{{ _("Each tile links to its source, and its line shows the past few years. Hover for the official Spanish name.") }}</p>
   </section>
 
   {% if readings %}
@@ -28,7 +49,7 @@
   </section>
   {% endif %}
 
-  {% if whats_new and (whats_new.notes or whats_new.recent) %}
+  {% if whats_new and whats_new.notes %}
   <section aria-labelledby="whats-new">
     <h2 id="whats-new">{{ _("What's new") }}</h2>
     <div class="whats-new">
@@ -42,19 +63,7 @@
         <p class="note">{{ _("Follow every change in a feed reader:") }} <a href="feed.xml">{{ _("RSS feed") }}</a>.</p>
       </div>
       {% endif %}
-      {% if whats_new.recent %}
-      <div class="card news-card">
-        <h3>{{ _("Released in the past week") }}</h3>
-        <ul class="news-list">
-          {% for r in whats_new.recent %}
-          <li><span class="news-day">{{ r.day }}</span> <a href="{{ r.page }}">{{ r.label }}</a>{% if r.period %} · {{ r.period }}{% endif %}
-            {%- if r.figures %}: {{ r.figures | join("; ") }}{% endif %}</li>
-          {% endfor %}
-        </ul>
-      </div>
-      {% endif %}
     </div>
-    {% if not whats_new.notes %}<p class="note">{% if whats_new.updated_at %}{{ _("Notes on what each update changes start with the next data update after %(when)s.", when=whats_new.updated_at) }}{% else %}{{ _("Notes on what each update changes start with the next data update.") }}{% endif %}</p>{% endif %}
   </section>
   {% endif %}
 
