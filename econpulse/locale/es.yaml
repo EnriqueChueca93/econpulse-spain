@@ -79,6 +79,7 @@ $/t: $/t
 '%, monthly': '%, mensual'
 '%, monthly average': '%, media mensual'
 '%, monthly averages: the German yield plus the prima de riesgo': '%, medias mensuales: la rentabilidad alemana más la prima de riesgo'
+'%, monthly avg.': '%, media mensual'
 '%, unless stated': '%, salvo indicación'
 '%: 12-month Euribor (daily) and the average rate on new mortgages (monthly)': '%: euríbor a 12 meses (diario) y tipo medio de las hipotecas nuevas (mensual)'
 '%: AAA forward rate one year ahead and the deposit rate': '%: tipo a plazo AAA a un año y tipo de depósito'
@@ -460,6 +461,7 @@ Average term of new mortgages: Plazo medio de las hipotecas nuevas
 : 'El coste salarial medio por trabajador en cada actividad, de la encuesta de coste laboral del INE: salario bruto con pagas extraordinarias, antes de impuestos y cotizaciones del trabajador, para asalariados a tiempo completo y parcial juntos, al mes y por hora efectiva de trabajo, con la parte que procede de pagas extraordinarias y atrasos. Medias de cuatro trimestres, porque las pagas extraordinarias hacen estacional el salario.'
 Average {value}: Media {value}
 Average, € a month: Media, € al mes
+'Average: {value}': 'Media: {value}'
 BIS: BPI
 BIS; above 2 points calls for a capital buffer · {q}: BPI; por encima de 2 puntos pide un colchón de capital · {q}
 Bad loans: Morosidad
@@ -998,6 +1000,7 @@ Eurostat; IMF World Economic Outlook; Macroscope calculation: Eurostat; World Ec
 Eurostat; INE; AEE; Macroscope calculation: Eurostat; INE; AEE; cálculo de Macroscope
 Eurostat; INE; Macroscope calculation: Eurostat; INE; cálculo de Macroscope
 Eurostat; Macroscope calculation: Eurostat; cálculo de Macroscope
+Every forecast on the Analysis page: Todas las previsiones, en la página de Análisis
 Every industry: Todas las actividades
 Every series on Macroscope Spain, where it comes from, its latest value and whether it is up to date.: 'Todas las series de Macroscope España: de dónde proceden, su último valor y si están al día.'
 Every series on the site, where it comes from, and whether it is up to date.: Todas las series del sitio, de dónde proceden y si están al día.
@@ -1506,6 +1509,7 @@ Last trading day: Última sesión
 Latest: Último
 Latest and a year earlier: Último dato y un año antes
 Latest close; rates move in basis points (bp), prices in %: Último cierre; los tipos se mueven en puntos básicos (pb), los precios en %
+Latest figures: Últimos datos
 Latest figures against the statistical forecast · index for {month}: Últimos datos frente a la previsión estadística · índice de {month}
 Latest month: Último mes
 Latest month with every input · {month}: Último mes con todos los datos · {month}
@@ -1568,6 +1572,7 @@ Macroscope calculation from INE and Seguridad Social: cálculo de Macroscope con
 Macroscope calculation from INE, Eurostat, Seguridad Social, Red Eléctrica: cálculo de Macroscope con datos del INE, Eurostat, la Seguridad Social y Red Eléctrica
 Macroscope readings: Lecturas de Macroscope
 Macroscope seasonal adjustment: desestacionalización de Macroscope
+'Macroscope''s estimate: {value}': 'Estimación de Macroscope: {value}'
 ? 'Macroscope''s own readings and estimates: calculations from public data with simple, documented methods, not official statistics, forecasts of record or investment advice. Forecasters'' figures are theirs, as they published them.'
 : 'Lecturas y estimaciones propias de Macroscope: cálculos con datos públicos y métodos sencillos y documentados, no estadísticas oficiales, previsiones de referencia ni asesoramiento de inversión. Las cifras de los organismos de previsión son suyas, tal como las publicaron.'
 ? 'Macroscope''s own readings: the economy against its history, data surprises, a GDP nowcast, what forecasters expect, the 10-year yield split in two, and Taylor rules.'
@@ -1575,6 +1580,7 @@ Macroscope seasonal adjustment: desestacionalización de Macroscope
 'Macroscope''s text and charts:': 'Textos y gráficos de Macroscope:'
 Macroscope, {year} GDP: Macroscope, PIB de {year}
 'Macroscope: INE''s quarters + nowcast': 'Macroscope: trimestres del INE + estimación adelantada'
+'Macroscope: {value}, from INE to {quarter} and the nowcast': 'Macroscope: {value}, con el INE hasta el {quarter} y la estimación adelantada'
 Madrid: Madrid
 Madrid exchange sector indices, last close of 2019 = 100: Índices sectoriales de la Bolsa de Madrid, último cierre de 2019 = 100
 Madrid general index: Índice General de Madrid
@@ -1640,6 +1646,7 @@ Monthly pay by activity: Salario mensual por actividad
 Months from the start: Meses desde el inicio
 Months of {q}: Meses de {q}
 More: Más
+More on the International page: Más en la página Internacional
 Morocco: Marruecos
 ? 'Mortgage check: a €{principal}, {years}-year variable-rate mortgage at Euribor + {margin} pp, reset at {month}''s average 12-month Euribor ({now}%{so_far}), costs €{payment} a month: {change} a reset at the rate a year earlier ({then}%).'
 : 'Prueba hipotecaria: una hipoteca de {principal} € a {years} años a tipo variable, euríbor + {margin} pp, revisada al euríbor a 12 meses medio de {month} ({now}%{so_far}), cuesta {payment} € al mes: {change} una revisión al tipo de hace un año ({then}%).'
@@ -2297,6 +2304,7 @@ Spain = 100: España = 100
 Spain = 100, IMF figures for {year}: España = 100, cifras del FMI para {year}
 Spain = 100, current prices: España = 100, precios corrientes
 Spain and its comparators: España y sus comparables
+Spain and its peers: España y sus comparables
 Spain and the euro area: España y la zona del euro
 Spain and the safest euro-area bonds: España y los bonos más seguros de la zona del euro
 ? 'Spain has no monetary policy of its own: the European Central Bank sets rates for the whole euro area. The IMF-style monetary table shows what that means for the Banco de España and Spanish banks.'
@@ -2325,6 +2333,9 @@ Spain's gross public pension spending, 2022: Gasto público bruto en pensiones d
 : 'El principal índice bursátil de España y los seis índices sectoriales de la Bolsa de Madrid, tal como los publica el Banco de España: cierres diarios, con uno o dos días hábiles de retraso. No es un servicio en tiempo real: la página se actualiza dos veces al día. No se muestran las cotizaciones de cada empresa, porque ninguna fuente gratuita permite volver a publicarlas.'
 ? Spain's own consumer price index. Core inflation leaves out energy and unprocessed food, the most volatile prices; INE splits the rest into services, goods and processed food.
 : El índice de precios de consumo de España. La inflación subyacente deja fuera la energía y los alimentos no elaborados, los precios más volátiles; el INE divide el resto en servicios, bienes y alimentos elaborados.
+Spain's place: Puesto de España
+? Spain's place is among the five countries, from the top; in each strip Spain is the blue dot, the other countries grey and the euro area the dark tick (hover over them for the figures). A period under a figure means that country has not published the latest one yet. Government debt is the IMF's, %(edition)s.
+: El puesto de España es entre los cinco países, de mayor a menor; en cada franja España es el punto azul, los demás países los grises y la zona del euro la marca oscura (pase el cursor por encima para ver las cifras). Un periodo bajo una cifra indica que ese país aún no ha publicado el último dato. La deuda pública es la del FMI, %(edition)s.
 Spain's public debt and deficits, past and projected, with levers to try other paths.: La deuda y los déficits públicos de España, pasados y proyectados, con palancas para probar otras sendas.
 Spain's transactions with the rest of the world, and the investment position they build up.: Las transacciones de España con el resto del mundo y la posición de inversión que van acumulando.
 Spain's vacancy rate: La tasa de vacantes de España
@@ -2475,6 +2486,8 @@ The State and its agencies (Administración central), without the Social Securit
 The State's debt, security by security: La deuda del Estado, valor a valor
 'The State''s debt: what falls due each year': 'La deuda del Estado: lo que vence cada año'
 The autonomous communities: Las comunidades autónomas
+? The average of %(who)s, with AI-checked figures only. Each grey dot is a forecaster, the dark tick their average and the blue dot Macroscope's own estimate (hover over them for the figures). Inflation is the HICP for some forecasters and the CPI for others.
+: La media de %(who)s, solo con cifras comprobadas por IA. Cada punto gris es un analista, la marca oscura su media y el punto azul la estimación propia de Macroscope (pase el cursor por encima para ver las cifras). La inflación es el IPCA para unos analistas y el IPC para otros.
 The average pension and prices: La pensión media y los precios
 ? 'The baseline assumes no change in policy after the Commission''s forecast years: the structural primary balance then moves only with the cost of ageing.'
 : 'El escenario base supone que no hay cambios de política después de los años de previsión de la Comisión: a partir de entonces, el saldo primario estructural solo varía con el coste del envejecimiento.'
@@ -2744,6 +2757,7 @@ When each rule first signalled Spain's recessions since 1987, and how long after
 ? 'When the figures on Macroscope Spain are published: the release calendar of INE, the Banco de España, Eurostat and the other sources, in Madrid time.'
 : 'Cuándo se publican las cifras de Macroscope España: el calendario de publicaciones del INE, el Banco de España, Eurostat y las demás fuentes, en hora de Madrid.'
 When the figures on this site are published. Times are Madrid time.: Cuándo se publican las cifras de este sitio. Las horas son de Madrid.
+Where Spain stands: Dónde está España
 ? 'Where Spain''s goods go and where they come from: the EU and the largest partners, over the past 12 months. Most exports go to the EU; imports lean more on China and on energy suppliers.'
 : 'Adónde van los bienes de España y de dónde vienen: la UE y los principales socios, en los últimos 12 meses. La mayor parte de las exportaciones va a la UE; las importaciones dependen más de China y de los proveedores de energía.'
 Where broad money growth comes from: De dónde viene el crecimiento del dinero en sentido amplio
@@ -2983,11 +2997,14 @@ the Banco de España's PDF of chapter 2 of its 2023 Annual Report: el PDF del ca
 ? 'the Commission''s PDF (Institutional Paper 279, April 2024): Tables 1, I.1.6, I.1.9, II.1.64 and the country table for Spain'
 : 'el PDF de la Comisión (Institutional Paper 279, abril de 2024): cuadros 1, I.1.6, I.1.9 y II.1.64 y el cuadro de España'
 the Tesoro's page: la página del Tesoro
+the fastest of {n}: el más rápido de los {n}
 the fastest of {n} · {when}: el más rápido de los {n} · {when}
 the fifth highest of the {n} countries: la quinta más alta de los {n} países
 the fourth highest of the {n} countries: la cuarta más alta de los {n} países
 the highest of the {n} countries: la más alta de los {n} países
+the highest of {n}: la cifra más alta de los {n}
 the highest of {n} · {when}: la cifra más alta de los {n} · {when}
+the largest rise of {n}: la mayor subida de los {n}
 the largest rise of {n} · {when}: la mayor subida de los {n} · {when}
 the latest edition: la última edición
 the one-size-fits-all gap: la brecha del tipo único para todos
@@ -3056,6 +3073,7 @@ z-score: Puntuación z
 '{label}: {move} since the last update, to {now}.': '{label}: {move} desde la última actualización, hasta {now}.'
 '{label}: {now} in {period}{flash}, after {before} in {bperiod}.': '{label}: {now} en {period}{flash}, tras {before} en {bperiod}.'
 '{low} to {high}': '{low} a {high}'
+'{measure}, {year}': '{measure}, {year}'
 '{month} average': media de {month}
 '{names} and {last}': '{names} y {last}'
 '{names} figures are taken from the FUNCAS Panel''s reference table, which lists each with the month it was published.': Las cifras de {names} proceden de la tabla de referencia del Panel de FUNCAS, que indica el mes en que se publicó cada una.
@@ -3072,8 +3090,11 @@ z-score: Puntuación z
 '{n} quarter ahead': '{n} trimestre después'
 '{n} quarters ahead': '{n} trimestres después'
 '{quarter}; {then} on average in 2019': '{quarter}; {then} de media en 2019'
+'{rank} fastest of {n}': el {rank}.º más rápido de los {n}
 '{rank} fastest of {n} · {when}': el {rank}.º más rápido de los {n} · {when}
+'{rank} highest of {n}': la {rank}.ª cifra más alta de los {n}
 '{rank} highest of {n} · {when}': la {rank}.ª cifra más alta de los {n} · {when}
+'{rank} largest rise of {n}': la {rank}.ª mayor subida de los {n}
 '{rank} largest rise of {n} · {when}': la {rank}.ª mayor subida de los {n} · {when}
 '{share}% of services exports': el {share}% de las exportaciones de servicios
 '{share}% of services exports, {change} on a year earlier': el {share}% de las exportaciones de servicios, {change} interanual

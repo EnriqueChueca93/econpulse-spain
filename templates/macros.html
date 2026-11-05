@@ -24,6 +24,16 @@
   </svg>
 {%- endmacro %}
 
+{# Dots on a line (econpulse/scoreboard.py): grey for the others, blue for the one that matters, a dark tick for
+   the benchmark; hovering over a dot names it. #}
+{% macro dots(s) -%}
+  <svg class="dots" viewBox="0 0 {{ s.w }} {{ s.h }}" width="{{ s.w }}" height="{{ s.h }}" role="img" aria-label="{{ s.label }}">
+    <line class="dots-axis" x1="0" x2="{{ s.w }}" y1="{{ s.h / 2 }}" y2="{{ s.h / 2 }}"/>
+    {% for t in s.ticks %}<line class="dots-tick" x1="{{ t.x }}" x2="{{ t.x }}" y1="4" y2="{{ s.h - 4 }}"><title>{{ t.title }}</title></line>{% endfor %}
+    {% for d in s.dots %}<circle class="dot dot-{{ d.kind }}" cx="{{ d.x }}" cy="{{ d.y }}" r="{{ d.r }}"><title>{{ d.title }}</title></circle>{% endfor %}
+  </svg>
+{%- endmacro %}
+
 {% macro tile(item) -%}
   {%- set head = item.headline -%}
   <a class="tile"{% if item.source_url %} href="{{ item.source_url }}" target="_blank" rel="noopener"{% endif %}

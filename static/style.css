@@ -774,6 +774,31 @@ body.search-on { overflow: hidden; }
 .record-value .secondary { font-size: 12px; font-weight: 400; }
 .record-text { font-size: 13px; }
 
+/* Dot strips (econpulse/scoreboard.py): grey dots for the others, a blue one for Spain or Macroscope, a dark tick
+   for the benchmark; a ring in the surface colour keeps dots that touch apart. */
+.dots { display: block; overflow: visible; }
+.dots-axis { stroke: var(--grid); stroke-width: 1; }
+.dots-tick { stroke: var(--text); stroke-width: 2; stroke-linecap: round; }
+.dot { stroke: var(--surface); stroke-width: 1.5; }
+.dot-other { fill: var(--muted); }
+.dot-main { fill: var(--series-1); stroke-width: 2; }
+/* Spain and its peers */
+.peer-board .spain { background: var(--hover); font-weight: 600; }
+.peer-board tbody th { font-weight: 600; min-width: 12em; }
+.peer-board tbody th .col-note { font-weight: 400; }
+.peer-board td { vertical-align: middle; }
+.peer-board .dots-cell { padding-top: 4px; padding-bottom: 4px; }
+.peer-board .place-cell { min-width: 9em; font-size: 13px; }
+.peer-board tbody th { position: sticky; left: 0; z-index: 1; background: var(--surface); }
+@media (max-width: 640px) { .peer-board tbody th { min-width: 9em; max-width: 9em; } }
+/* What forecasters expect */
+.outlook { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 12px; }
+.outlook-box { display: flex; flex-direction: column; gap: 2px; padding: 12px 14px 14px; min-width: 0; }
+.outlook-box .dots { margin: 8px 0 2px; max-width: 100%; }
+.outlook-own { color: var(--text); }
+.outlook-own::before { content: ""; display: inline-block; width: 8px; height: 8px; margin-right: 6px; border-radius: 50%;
+  background: var(--series-1); vertical-align: 0; }
+
 /* About, Privacy: the button that clears the choices kept in local storage */
 .forget-choices {
   padding: 5px 14px; font: 14px var(--sans); color: var(--text);

@@ -288,6 +288,34 @@ add({
     "Key figures whose latest reading, as shown, is the highest or lowest in at least two years.":
         "Cifras clave cuyo último dato, tal como se muestra, es el más alto o el más bajo en al menos dos años.",
     "{n} million": "{n} millones",
+    # Spain and its peers, and what forecasters expect (econpulse/scoreboard.py)
+    "Spain and its peers": "España y sus comparables",
+    "Latest figures": "Últimos datos",
+    "Where Spain stands": "Dónde está España",
+    "Spain's place": "Puesto de España",
+    "the fastest of {n}": "el más rápido de los {n}",
+    "{rank} fastest of {n}": "el {rank}.º más rápido de los {n}",
+    "the highest of {n}": "la cifra más alta de los {n}",
+    "{rank} highest of {n}": "la {rank}.ª cifra más alta de los {n}",
+    "the largest rise of {n}": "la mayor subida de los {n}",
+    "{rank} largest rise of {n}": "la {rank}.ª mayor subida de los {n}",
+    "%, monthly avg.": "%, media mensual",
+    "Spain's place is among the five countries, from the top; in each strip Spain is the blue dot, the other countries grey and the euro area the dark tick (hover over them for the figures). A period under a figure means that country has not published the latest one yet. Government debt is the IMF's, %(edition)s.":
+        "El puesto de España es entre los cinco países, de mayor a menor; en cada franja España es el punto azul, los "
+        "demás países los grises y la zona del euro la marca oscura (pase el cursor por encima para ver las cifras). "
+        "Un periodo bajo una cifra indica que ese país aún no ha publicado el último dato. La deuda pública es la del "
+        "FMI, %(edition)s.",
+    "More on the International page": "Más en la página Internacional",
+    "{measure}, {year}": "{measure}, {year}",
+    "Macroscope: {value}, from INE to {quarter} and the nowcast":
+        "Macroscope: {value}, con el INE hasta el {quarter} y la estimación adelantada",
+    "Macroscope's estimate: {value}": "Estimación de Macroscope: {value}",
+    "Average: {value}": "Media: {value}",
+    "The average of %(who)s, with AI-checked figures only. Each grey dot is a forecaster, the dark tick their average and the blue dot Macroscope's own estimate (hover over them for the figures). Inflation is the HICP for some forecasters and the CPI for others.":
+        "La media de %(who)s, solo con cifras comprobadas por IA. Cada punto gris es un analista, la marca oscura su "
+        "media y el punto azul la estimación propia de Macroscope (pase el cursor por encima para ver las cifras). La "
+        "inflación es el IPCA para unos analistas y el IPC para otros.",
+    "Every forecast on the Analysis page": "Todas las previsiones, en la página de Análisis",
     "Our own calculations from the official data.": "Cálculos propios a partir de los datos oficiales.",
     "How they are made": "Cómo se hacen",
     "Since the last update": "Desde la última actualización",

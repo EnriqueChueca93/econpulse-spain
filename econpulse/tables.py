@@ -235,7 +235,7 @@ class _RowCalc:
         try:
             if isinstance(col, Change):
                 # A published rate keeps its own precision (e.g. agreed pay rises, 3.05%).
-                return _fmt_num(self.change(col), self.ind.decimals if self.row.is_rate else 1)
+                return _fmt_num(self.change(col), self.ind.decimals if self.row.is_rate and self.ind else 1)
             if isinstance(col, Level):
                 return self.level(col)
             if isinstance(col, AvgChange):

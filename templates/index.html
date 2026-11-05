@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% from "macros.html" import tile, chart_card, spark %}
+{% from "macros.html" import tile, chart_card, spark, dots %}
 
 {% block content %}
   <p class="lede">{{ _("A running read on the health of the Spanish economy.") }}</p>
@@ -105,6 +105,50 @@
     </ul>
     <p class="note">{{ _("Key figures whose latest reading, as shown, is the highest or lowest in at least two years.") }}</p>
     {% endif %}
+  </section>
+  {% endif %}
+
+  {% if peers %}
+  <section aria-labelledby="peers">
+    <h2 id="peers">{{ _("Spain and its peers") }}</h2>
+    <div class="table-scroll">
+      <table class="data-table peer-board">
+        <thead>
+          <tr><th scope="col">{{ _("Latest figures") }}</th>
+            {% for c in peers.countries %}<th scope="col" class="num{% if loop.first %} spain{% endif %}">{{ c }}</th>{% endfor %}
+            <th scope="col">{{ _("Where Spain stands") }}</th><th scope="col">{{ _("Spain's place") }}</th></tr>
+        </thead>
+        <tbody>
+          {% for r in peers.rows %}
+          <tr><th scope="row">{{ r.label }}<span class="col-note">{{ r.note }} &middot; {{ r.period }}</span></th>
+            {% for c in r.cells %}<td class="num{% if c.spain %} spain{% endif %}">{{ c.text }}{% if c.period %}<span class="col-note">{{ c.period }}</span>{% endif %}</td>{% endfor %}
+            <td class="dots-cell">{% if r.strip %}{{ dots(r.strip) }}{% endif %}</td>
+            <td class="secondary place-cell">{{ r.place or "" }}</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <p class="note">{{ _("Spain's place is among the five countries, from the top; in each strip Spain is the blue dot, the other countries grey and the euro area the dark tick (hover over them for the figures). A period under a figure means that country has not published the latest one yet. Government debt is the IMF's, %(edition)s.", edition=peers.edition) }}
+      <a class="more" href="international.html">{{ _("More on the International page") }} <span aria-hidden="true">&rarr;</span></a></p>
+  </section>
+  {% endif %}
+
+  {% if outlook %}
+  <section aria-labelledby="outlook">
+    <h2 id="outlook">{{ _("What forecasters expect") }}</h2>
+    <div class="outlook">
+      {% for b in outlook.boxes %}
+      <div class="card outlook-box">
+        <span class="fact-label">{{ b.label }}</span>
+        <span class="fact-value">{{ b.value }}</span>
+        <span class="fact-sub">{{ b.sub }}</span>
+        {% if b.strip %}{{ dots(b.strip) }}{% endif %}
+        {% if b.extra %}<span class="fact-sub outlook-own">{{ b.extra }}</span>{% endif %}
+      </div>
+      {% endfor %}
+    </div>
+    <p class="note">{{ _("The average of %(who)s, with AI-checked figures only. Each grey dot is a forecaster, the dark tick their average and the blue dot Macroscope's own estimate (hover over them for the figures). Inflation is the HICP for some forecasters and the CPI for others.", who=outlook.who) }}
+      <a class="more" href="analysis.html#forecasts">{{ _("Every forecast on the Analysis page") }} <span aria-hidden="true">&rarr;</span></a></p>
   </section>
   {% endif %}
 
