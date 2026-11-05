@@ -652,73 +652,73 @@
    "flash": false
   },
   "ecb_deposit_rate": {
-   "date": "2026-11-04",
+   "date": "2026-11-05",
    "raw": 2.5,
    "display": "2.50%",
-   "period": "4 Nov 2026",
+   "period": "5 Nov 2026",
    "flash": false
   },
   "ecb_mro_rate": {
-   "date": "2026-11-04",
+   "date": "2026-11-05",
    "raw": 2.65,
    "display": "2.65%",
-   "period": "4 Nov 2026",
+   "period": "5 Nov 2026",
    "flash": false
   },
   "ecb_mlf_rate": {
-   "date": "2026-11-04",
+   "date": "2026-11-05",
    "raw": 2.9,
    "display": "2.90%",
-   "period": "4 Nov 2026",
+   "period": "5 Nov 2026",
    "flash": false
   },
   "estr": {
-   "date": "2026-11-03",
-   "raw": 2.445,
-   "display": "2.445%",
-   "period": "3 Nov 2026",
+   "date": "2026-11-04",
+   "raw": 2.442,
+   "display": "2.442%",
+   "period": "4 Nov 2026",
    "flash": false
   },
   "aaa_fwd_3m": {
-   "date": "2026-11-03",
-   "raw": 2.748471743,
+   "date": "2026-11-04",
+   "raw": 2.752344446,
    "display": "2.75%",
-   "period": "3 Nov 2026",
+   "period": "4 Nov 2026",
    "flash": false
   },
   "aaa_fwd_6m": {
-   "date": "2026-11-03",
-   "raw": 2.945661831,
+   "date": "2026-11-04",
+   "raw": 2.953436753,
    "display": "2.95%",
-   "period": "3 Nov 2026",
+   "period": "4 Nov 2026",
    "flash": false
   },
   "aaa_fwd_9m": {
-   "date": "2026-11-03",
-   "raw": 3.048240141,
-   "display": "3.05%",
-   "period": "3 Nov 2026",
+   "date": "2026-11-04",
+   "raw": 3.059645965,
+   "display": "3.06%",
+   "period": "4 Nov 2026",
    "flash": false
   },
   "aaa_fwd_1y": {
-   "date": "2026-11-03",
-   "raw": 3.092609948,
-   "display": "3.09%",
-   "period": "3 Nov 2026",
+   "date": "2026-11-04",
+   "raw": 3.106692313,
+   "display": "3.11%",
+   "period": "4 Nov 2026",
    "flash": false
   },
   "aaa_fwd_2y": {
-   "date": "2026-11-03",
-   "raw": 3.070925164,
-   "display": "3.07%",
-   "period": "3 Nov 2026",
+   "date": "2026-11-04",
+   "raw": 3.084683356,
+   "display": "3.08%",
+   "period": "4 Nov 2026",
    "flash": false
   },
   "aaa_fwd_3y": {
-   "date": "2026-11-03",
-   "raw": 3.069475759,
+   "date": "2026-11-04",
+   "raw": 3.073347425,
    "display": "3.07%",
-   "period": "3 Nov 2026",
+   "period": "4 Nov 2026",
    "flash": false
   },
   "euribor_3m": {
@@ -785,45 +785,45 @@
    "flash": false
   },
   "aaa_1y": {
-   "date": "2026-11-03",
-   "raw": 2.881307795,
-   "display": "2.88%",
-   "period": "3 Nov 2026",
+   "date": "2026-11-04",
+   "raw": 2.888960329,
+   "display": "2.89%",
+   "period": "4 Nov 2026",
    "flash": false
   },
   "aaa_3y": {
-   "date": "2026-11-03",
-   "raw": 3.011860242,
-   "display": "3.01%",
-   "period": "3 Nov 2026",
+   "date": "2026-11-04",
+   "raw": 3.02252914,
+   "display": "3.02%",
+   "period": "4 Nov 2026",
    "flash": false
   },
   "aaa_5y": {
-   "date": "2026-11-03",
-   "raw": 3.073711501,
-   "display": "3.07%",
-   "period": "3 Nov 2026",
+   "date": "2026-11-04",
+   "raw": 3.07789069,
+   "display": "3.08%",
+   "period": "4 Nov 2026",
    "flash": false
   },
   "aaa_10y": {
-   "date": "2026-11-03",
-   "raw": 3.346605206,
-   "display": "3.35%",
-   "period": "3 Nov 2026",
+   "date": "2026-11-04",
+   "raw": 3.340351375,
+   "display": "3.34%",
+   "period": "4 Nov 2026",
    "flash": false
   },
   "aaa_15y": {
-   "date": "2026-11-03",
-   "raw": 3.549911961,
-   "display": "3.55%",
-   "period": "3 Nov 2026",
+   "date": "2026-11-04",
+   "raw": 3.542260146,
+   "display": "3.54%",
+   "period": "4 Nov 2026",
    "flash": false
   },
   "aaa_30y": {
-   "date": "2026-11-03",
-   "raw": 3.619711154,
+   "date": "2026-11-04",
+   "raw": 3.619424759,
    "display": "3.62%",
-   "period": "3 Nov 2026",
+   "period": "4 Nov 2026",
    "flash": false
   },
   "risk_premium": {
@@ -841,31 +841,31 @@
    "flash": false
   },
   "eurusd": {
-   "date": "2026-11-04",
-   "raw": 1.1267,
-   "display": "1.1267",
-   "period": "4 Nov 2026",
+   "date": "2026-11-05",
+   "raw": 1.1224,
+   "display": "1.1224",
+   "period": "5 Nov 2026",
    "flash": false
   },
   "eurgbp": {
-   "date": "2026-11-04",
-   "raw": 0.8346,
-   "display": "0.8346",
-   "period": "4 Nov 2026",
+   "date": "2026-11-05",
+   "raw": 0.83393,
+   "display": "0.8339",
+   "period": "5 Nov 2026",
    "flash": false
   },
   "eurchf": {
-   "date": "2026-11-04",
-   "raw": 0.9188,
-   "display": "0.9188",
-   "period": "4 Nov 2026",
+   "date": "2026-11-05",
+   "raw": 0.918,
+   "display": "0.9180",
+   "period": "5 Nov 2026",
    "flash": false
   },
   "eurjpy": {
-   "date": "2026-11-04",
-   "raw": 178.3,
-   "display": "178.30",
-   "period": "4 Nov 2026",
+   "date": "2026-11-05",
+   "raw": 177.85,
+   "display": "177.85",
+   "period": "5 Nov 2026",
    "flash": false
   },
   "brent_usd": {
@@ -1688,17 +1688,17 @@
    "flash": false
   },
   "ciss_es": {
-   "date": "2026-11-03",
-   "raw": 0.005761804629,
-   "display": "0.006",
-   "period": "3 Nov 2026",
+   "date": "2026-11-04",
+   "raw": 0.01296284332,
+   "display": "0.013",
+   "period": "4 Nov 2026",
    "flash": false
   },
   "ciss_ea": {
-   "date": "2026-11-03",
-   "raw": 0.007824543524,
+   "date": "2026-11-04",
+   "raw": 0.00831137627,
    "display": "0.008",
-   "period": "3 Nov 2026",
+   "period": "4 Nov 2026",
    "flash": false
   },
   "npl_ratio": {
@@ -7246,10 +7246,10 @@
    "flash": false
   },
   "unemployment_jp": {
-   "date": "2026-08-01",
-   "raw": 2.5,
-   "display": "2.5%",
-   "period": "Aug 2026",
+   "date": "2026-09-01",
+   "raw": 2.4,
+   "display": "2.4%",
+   "period": "Sep 2026",
    "flash": false
   },
   "youth_unemp_nl": {
@@ -10704,8 +10704,15 @@
    "page": "labour.html",
    "text": "Permanent contracts other than fijo discontinuo: 4,539.2k 12-mo total in Oct 2026, after 4,532.4k 12-mo total in Sep 2026.",
    "at": "2026-11-05T17:26:49+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "unemployment_jp",
+   "page": "international.html",
+   "text": "Unemployment rate, Japan: 2.4% in Sep 2026, after 2.5% in Aug 2026.",
+   "at": "2026-11-05T21:23:07+00:00"
   }
  ],
- "updated_at": "2026-11-05T17:26:49+00:00",
+ "updated_at": "2026-11-05T21:23:07+00:00",
  "started_at": "2026-10-31T23:31:49+00:00"
 }
