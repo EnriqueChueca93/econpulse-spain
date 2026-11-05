@@ -125,13 +125,20 @@ def _geo(geo: str) -> dict:
                 params = {"geo": geo, "format": "JSON", "lang": "EN"}
                 index_payload = http.get(f"{BASE}/prc_hicp_minr", params={**params, "unit": "I25"}).json()
                 weight_payload = http.get(f"{BASE}/prc_hicp_iw", params=params).json()
-                entry = compute(*tables(index_payload, weight_payload))
+                found = tables(index_payload, weight_payload)
+                entry = {**compute(*found), "tables": found}
             except Exception as e:
                 entry = e
             _cache[geo] = entry
         if isinstance(entry, Exception):
             raise entry
         return entry
+
+
+def basket(geo: str = "ES") -> tuple[pd.DataFrame, pd.DataFrame, dict[str, str]]:
+    """The detailed items' monthly indices, yearly weights and labels (every ECOICOP code's), downloaded once
+    a run and shared with the measures: the Inflation page's treemap of the basket (econpulse/basket.py)."""
+    return _geo(geo)["tables"]
 
 
 def clear_cache() -> None:

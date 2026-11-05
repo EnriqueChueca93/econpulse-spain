@@ -426,6 +426,213 @@
     el.appendChild(key_);
   }
 
+  // ---------------------------------------------------------------- treemap (the HICP basket, econpulse/basket.py)
+  // Rectangles whose areas are the values, as close to square as they can be (Bruls, Huizing and van Wijk's
+  // squarified layout), in the order given (largest first), filling the box x, y, w, h.
+  function squarify(values, x, y, w, h) {
+    var total = values.reduce(function (a, v) { return a + v; }, 0), rects = [], i = 0;
+    if (!(total > 0) || w <= 0 || h <= 0) return values.map(function () { return { x: x, y: y, w: 0, h: 0 }; });
+    var scale = w * h / total;
+    while (i < values.length) {
+      var side = Math.min(w, h), row = [], sum = 0, hi = 0, lo = Infinity, best = Infinity;
+      while (i < values.length) {
+        var a = values[i] * scale, s = sum + a, mx = Math.max(hi, a), mn = Math.min(lo, a);
+        var worst = Math.max(side * side * mx / (s * s), s * s / (side * side * mn));
+        if (row.length && worst > best) break;
+        row.push(a); sum = s; hi = mx; lo = mn; best = worst; i++;
+      }
+      var thick = sum / side, pos = 0;
+      row.forEach(function (a) {
+        var len = a / thick;
+        rects.push(w >= h ? { x: x, y: y + pos, w: thick, h: len } : { x: x + pos, y: y, w: len, h: thick });
+        pos += len;
+      });
+      if (w >= h) { x += thick; w -= thick; } else { y += thick; h -= thick; }
+    }
+    return rects;
+  }
+
+  function drawTreemap(el, spec) {
+    var W = spec.words, mode = el.getAttribute("data-mode") || "growth", open = el.getAttribute("data-open") || "";
+    var cat = open && spec.categories.filter(function (c) { return c.code === open; })[0];
+    if (!cat) open = "";
+    var pct = { unit: "%", decimals: 2 }, rate = { unit: "%", decimals: 1 }, pts = { unit: "", decimals: 2 };
+    function make(tag, cls, text) {
+      var n = document.createElement(tag);
+      if (cls) n.className = cls;
+      if (text !== undefined) n.textContent = text;
+      return n;
+    }
+    function shareText(n) { return W.share.replace("{share}", fmt(n.weight, pct)); }
+    function lines(n, parent) {        // the hover text: name, category, weight, rate, contribution
+      var out = [n.full || n.name];
+      if (parent) out.push(parent.name);
+      out.push(shareText(n));
+      if (n.rate === null || n.rate === undefined) { out.push(W.none); return out; }
+      out.push(W.rate.replace("{rate}", fmt(n.rate, rate, true)));
+      if (n.contribution !== null && Math.abs(n.contribution) >= 0.005) {
+        out.push((n.contribution > 0 ? W.adds : W.takes).replace("{pp}", fmt(Math.abs(n.contribution), pts)));
+      }
+      return out;
+    }
+    function label(n) { return mode === "weight" ? fmt(n.weight, pct) : (n.rate === null || n.rate === undefined ? "–" : fmt(n.rate, rate, true)); }
+    function paint(node, n) { node.className += mode === "weight" ? " heat-" + (n.wshade || 1) : " gl-" + n.shade; }
+
+    el.style.height = "auto";
+    el.textContent = "";
+    el.removeAttribute("role");        // the card marks charts as images; this one is text and buttons
+    el.removeAttribute("aria-label");
+    var bar = make("div", "tm-bar tool-controls");
+    bar.setAttribute("role", "group");
+    bar.setAttribute("aria-label", W.show);
+    [["growth", W.growth], ["weight", W.weight]].forEach(function (m) {
+      var b = make("button", "tool-button", m[1]);
+      b.type = "button";
+      b.setAttribute("data-tm-mode", m[0]);
+      b.setAttribute("data-chart", spec.id);
+      b.setAttribute("aria-pressed", String(m[0] === mode));
+      bar.appendChild(b);
+    });
+    el.appendChild(bar);
+    if (open) {
+      var crumb = make("div", "tm-crumb");
+      var back = make("button", "chart-link tm-back", W.back);
+      back.type = "button";
+      back.setAttribute("data-tm-open", "");
+      back.setAttribute("data-chart", spec.id);
+      crumb.appendChild(back);
+      crumb.appendChild(make("span", "tm-crumb-name", cat.full));
+      crumb.appendChild(make("span", "secondary", " · " + shareText(cat) + (cat.rate === null ? "" : " · " + W.rate.replace("{rate}", fmt(cat.rate, rate, true)))));
+      el.appendChild(crumb);
+    }
+
+    var width = el.clientWidth, height = Math.round(Math.max(420, Math.min(560, width * 0.56)));
+    var map = make("div", "tm-map");
+    map.style.height = height + "px";
+    var tip = make("div", "tm-tip");
+    tip.hidden = true;
+    var detail = make("p", "note tm-detail", open ? W.hint_open : W.hint);
+    detail.setAttribute("aria-live", "polite");
+
+    function place(node, r, gap) {        // whole pixels, so neighbours meet exactly; `gap` trims each side
+      var l = Math.round(r.x), tp = Math.round(r.y);
+      node.style.left = l + gap + "px";
+      node.style.top = tp + gap + "px";
+      node.style.width = Math.max(0, Math.round(r.x + r.w) - l - 2 * gap) + "px";
+      node.style.height = Math.max(0, Math.round(r.y + r.h) - tp - 2 * gap) + "px";
+    }
+    function tile(n, r, parent, holder) {
+      var node = make("div", "tm-tile");
+      paint(node, n);
+      place(node, r, 1);
+      node._tm = { node: n, parent: parent };
+      // A name where it has room (a long word in a narrow tile would be cut), else the figure alone.
+      if (r.w >= 84 && r.h >= 36) {
+        node.appendChild(make("span", "tm-name", n.name));
+        node.appendChild(make("span", "tm-value", label(n)));
+      } else if (r.w >= 52 && r.h >= 20) {
+        node.appendChild(make("span", "tm-value", label(n)));
+      }
+      if (open) node.tabIndex = 0;
+      node.setAttribute("aria-label", lines(n, parent).join(". "));
+      holder.appendChild(node);
+    }
+    if (open) {
+      var rects = squarify(cat.items.map(function (n) { return n.weight; }), 0, 0, width, height);
+      cat.items.forEach(function (n, i) { tile(n, rects[i], cat, map); });
+    } else {
+      var blocks = squarify(spec.categories.map(function (c) { return c.weight; }), 0, 0, width, height);
+      spec.categories.forEach(function (c, i) {
+        var r = blocks[i], box = make("div", "tm-cat");
+        place(box, r, 2);
+        var bw = Math.max(0, Math.round(r.x + r.w) - Math.round(r.x) - 4), bh = Math.max(0, Math.round(r.y + r.h) - Math.round(r.y) - 4);
+        var head = bw >= 56 && bh >= 44 ? 20 : 0;
+        var open_ = make("button", "tm-head" + (head ? "" : " tm-head-hidden"));
+        open_.type = "button";
+        open_.setAttribute("data-tm-open", c.code);
+        open_.setAttribute("data-chart", spec.id);
+        open_.setAttribute("aria-label", W.open.replace("{name}", c.full) + ": " + lines(c).slice(1).join(", "));
+        open_._tm = { node: c };
+        if (head) {
+          open_.appendChild(make("span", "tm-head-name", c.name));
+          open_.appendChild(make("span", "tm-head-value", label(c)));
+        }
+        box.appendChild(open_);
+        var inner = squarify(c.items.map(function (n) { return n.weight; }), 0, head, bw, bh - head);
+        c.items.forEach(function (n, k) { tile(n, inner[k], c, box); });
+        box._tm = { open: c.code };
+        map.appendChild(box);
+      });
+    }
+
+    function show(target, event) {
+      var found = target && target.closest && target.closest(".tm-tile, .tm-head");
+      if (!found || !found._tm) { tip.hidden = true; return; }
+      tip.textContent = "";
+      lines(found._tm.node, found._tm.parent).forEach(function (s, k) { tip.appendChild(make(k ? "span" : "strong", null, s)); });
+      tip.hidden = false;
+      var box = map.getBoundingClientRect(), at = found.getBoundingClientRect();
+      var x = event && event.clientX !== undefined ? event.clientX - box.left : at.left - box.left + at.width / 2;
+      var y = event && event.clientY !== undefined ? event.clientY - box.top : at.top - box.top + at.height / 2;
+      var tw = tip.offsetWidth, th = tip.offsetHeight;
+      tip.style.left = Math.max(0, Math.min(width - tw, x + 14 + tw > width ? x - tw - 14 : x + 14)) + "px";
+      tip.style.top = Math.max(0, Math.min(height - th, y + 14 + th > height ? y - th - 14 : y + 14)) + "px";
+      detail.textContent = lines(found._tm.node, found._tm.parent).join(" · ");
+    }
+    map.addEventListener("mousemove", function (e) { show(e.target, e); });
+    map.addEventListener("mouseleave", function () { tip.hidden = true; });
+    map.addEventListener("focusin", function (e) { show(e.target); });
+    map.addEventListener("focusout", function () { tip.hidden = true; });
+    map.addEventListener("click", function (e) {
+      if (open) { show(e.target, e); return; }     // an item's figures
+      var box = e.target.closest && e.target.closest(".tm-cat");   // the overview: open the category
+      if (box && box._tm) { el.setAttribute("data-open", box._tm.open); drawTreemap(el, spec); scrollToMap(el); }
+    });
+    map.appendChild(tip);
+    el.appendChild(map);
+    el.appendChild(detail);
+
+    var legend = make("div", "heat-legend tm-legend");
+    legend.appendChild(make("span", null, mode === "weight" ? W.legend_weight_title : W.legend_growth_title));
+    (mode === "weight" ? W.legend_weight : W.legend_growth).forEach(function (s) {
+      var item = make("span", "heat-key");
+      item.appendChild(make("span", "heat-swatch " + (mode === "weight" ? "heat-" + s[0] : "gl-" + s[0])));
+      item.appendChild(document.createTextNode(s[1]));
+      legend.appendChild(item);
+    });
+    el.appendChild(legend);
+  }
+
+  function scrollToMap(el) {
+    var top = el.getBoundingClientRect().top;
+    if (top < 0) el.scrollIntoView({ block: "start" });
+  }
+
+  document.addEventListener("click", function (event) {
+    var b = event.target.closest && event.target.closest("[data-tm-mode], [data-tm-open]");
+    if (!b) return;
+    var el = document.getElementById("chart-" + b.getAttribute("data-chart")), spec = byId(b.getAttribute("data-chart"));
+    if (!el || !spec) return;
+    if (b.hasAttribute("data-tm-mode")) el.setAttribute("data-mode", b.getAttribute("data-tm-mode"));
+    else el.setAttribute("data-open", b.getAttribute("data-tm-open"));
+    event.stopPropagation();
+    drawTreemap(el, spec);
+    if (b.hasAttribute("data-tm-open")) {
+      scrollToMap(el);
+      var first = el.querySelector(b.getAttribute("data-tm-open") ? ".tm-back" : ".tm-head");
+      if (first) first.focus({ preventScroll: true });
+    }
+  }, true);
+
+  // Every item of the basket, for its table and CSV: category, item, weight, rate, contribution.
+  function treemapRows(spec) {
+    var rows = [];
+    spec.categories.forEach(function (c) {
+      c.items.forEach(function (n) { rows.push([c.full, n.name, n.weight, n.rate, n.contribution]); });
+    });
+    return rows;
+  }
+
   document.addEventListener("click", function (event) {
     var b = event.target.closest && event.target.closest("[data-tile-period]");
     if (!b) return;
@@ -541,6 +748,7 @@
     if (spec.kind === "xy") return drawXY(el, spec);
     if (spec.kind === "bubble") return drawBubble(el, spec);
     if (spec.kind === "tiles") return drawTiles(el, spec);
+    if (spec.kind === "treemap") return drawTreemap(el, spec);
     if (spec.pick) spec = pickView(spec);
     // Fixed slot order, never cycled: a spec has at most six palette series (slots 4 to 6 come dashed, as some
     // of their colours sit close to the first three's). Slot 7 (violet) serves only a picked country's line.
@@ -677,7 +885,7 @@
   // The windows worth offering: a window must be clearly shorter than the data. Annual charts are short,
   // and often end in projections, so they keep their whole span.
   function rangeOptions(spec) {
-    if (spec.x_kind === "category" || ["hbar", "xy", "dots", "dumbbell", "bubble", "tiles"].indexOf(spec.kind) >= 0 || spec.freq === "A" ||
+    if (spec.x_kind === "category" || ["hbar", "xy", "dots", "dumbbell", "bubble", "tiles", "treemap"].indexOf(spec.kind) >= 0 || spec.freq === "A" ||
         !spec.series || !spec.series.length) return [];
     var span = dateSpan(spec);
     if (!span) return [];
@@ -807,6 +1015,23 @@
         spec.periods.forEach(function (p) {
           var v = r.values[p.key];
           tr.insertCell().textContent = v === null || v === undefined ? "–" : fmt(v, spec, true);
+        });
+      });
+      holder.appendChild(table);
+      return;
+    }
+    if (spec.kind === "treemap") {
+      var W = spec.words;
+      [W.category, W.item, W.weight_col, W.rate_col, W.contribution_col].forEach(function (h) {
+        var th = document.createElement("th"); th.scope = "col"; th.textContent = h; head.appendChild(th);
+      });
+      var mb = table.createTBody();
+      treemapRows(spec).forEach(function (r) {
+        var tr = mb.insertRow();
+        tr.insertCell().textContent = r[0];
+        tr.insertCell().textContent = r[1];
+        [[r[2], 2, false], [r[3], 1, true], [r[4], 2, true]].forEach(function (v) {
+          tr.insertCell().textContent = v[0] === null || v[0] === undefined ? "–" : fmt(v[0], { unit: "", decimals: v[1] }, v[2]);
         });
       });
       holder.appendChild(table);
@@ -999,6 +1224,12 @@
     if (spec.kind === "tiles") {
       return [[t("Index")].concat(spec.periods.map(function (p) { return p.label + unit; }))].concat(spec.rows.map(function (r) {
         return [r.label].concat(spec.periods.map(function (p) { return r.values[p.key] === null ? "" : r.values[p.key]; }));
+      }));
+    }
+    if (spec.kind === "treemap") {
+      var w = spec.words;
+      return [[w.category, w.item, w.weight_col, w.rate_col, w.contribution_col]].concat(treemapRows(spec).map(function (r) {
+        return r.map(function (v) { return v === null || v === undefined ? "" : v; });
       }));
     }
     if (spec.kind === "bubble") {

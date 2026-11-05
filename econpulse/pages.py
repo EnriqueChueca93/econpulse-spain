@@ -8,7 +8,7 @@ lists the indicators those functions read. Sections without blocks yet show thei
 (see build.SECTION_PAGES for the batch that fills them).
 """
 
-from . import (analytics, demography, equities, forecasts, fuel, gdpdetail, housing, monetary, peers, pensions,
+from . import (analytics, basket, demography, equities, forecasts, fuel, gdpdetail, housing, monetary, peers, pensions,
                policy, recession, sectortables, statedebt, surprises, underlying, workstats)
 from .charts import build_chart, build_curve, build_ranking, build_xy, localise
 from .i18n import _
@@ -841,6 +841,18 @@ PAGES: dict[str, list[dict]] = {
                  "kind": "line", "unit": "%", "decimals": 1, "start": "2019-01-01", "ref_lines": TARGET,
                  "series": [("hicp_core", "level", "Spain"), ("hicp_core_euro_area", "level", "Euro area")]},
             ],
+        },
+        {
+            "id": "basket",
+            "title": "The basket, item by item",
+            "intro": ("What households spend their money on, and how fast each price is rising: the items of the "
+                      "harmonised basket, each sized by its weight (its share of household spending this year) and "
+                      "grouped into the 13 categories of the European classification (ECOICOP). Price growth colours "
+                      "each item by its change on a year earlier, warm above the ECB's 2% target and cool below; Weight "
+                      "shades it by its share of the basket instead. Click a category to open it."),
+            "tables": [],
+            "uses": ["hicp_wmedian"],
+            "charts": [basket.treemap],
         },
         {
             "id": "underlying",

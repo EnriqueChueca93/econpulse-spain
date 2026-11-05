@@ -367,6 +367,7 @@ Agriculture: Agricultura
 Agriculture, forestry and fishing: Agricultura, ganadería, silvicultura y pesca
 Agriculture, livestock and fishing: Agricultura, ganadería y pesca
 Aircraft, ships and trains: Aviones, barcos y trenes
+Alcohol and tobacco: Bebidas alcohólicas y tabaco
 Algeria: Argelia
 All: Total
 All %(n)s series in this section, with their sources: Las %(n)s series de esta sección, con sus fuentes
@@ -414,6 +415,7 @@ Annual % change in December, adjusted for loan sales; firms are non-financial co
 Annual inflation, %: Inflación anual, %
 Annual inflation, % change on a year earlier: Inflación anual, variación interanual, %
 Annual rate: Tasa anual
+Annual rate, %: Tasa anual, %
 Appraisals: Tasaciones
 Appraisals (Ministry of Housing): Tasaciones (Ministerio de Vivienda)
 Aragón: Aragón
@@ -619,6 +621,7 @@ Cash Rate: Tipo oficial (cash rate)
 Castilla y León: Castilla y León
 Castilla-La Mancha: Castilla-La Mancha
 Cataluña: Cataluña
+Category: Categoría
 Central Bank of Brazil: Banco Central de Brasil
 Central Bank of Chile: Banco Central de Chile
 Central Bank of Colombia: Banco de la República (Colombia)
@@ -672,6 +675,7 @@ Claims on the private sector and other financial corporations: Activos frente al
 Class: Clase
 Clear all: Quitar todos
 Close; changes in %: Cierre; variaciones en %
+Clothing and footwear: Vestido y calzado
 Coal mining: Minería del Carbón
 Coffee and coffee substitutes: Café y sucedáneos
 Collective dismissals: Despidos colectivos
@@ -720,6 +724,7 @@ Contrib. y/y: Aport. a/a
 Contribution: Aportación
 Contribution of identified flows 1/: Contribución de los flujos generadores de deuda identificados 1/
 Contribution of residual 3/: Contribución del residuo 3/
+Contribution, points: Contribución, puntos
 ? 'Contributions are percentage points of GDP growth, as published by INE: domestic and external demand add up to GDP growth, give or take rounding.'
 : 'Las aportaciones son puntos porcentuales del crecimiento del PIB, tal como las publica el INE: la demanda nacional y la externa suman el crecimiento del PIB, salvo redondeo.'
 Contributions to GDP growth on a year earlier, percentage points: Aportaciones al crecimiento interanual del PIB, puntos porcentuales
@@ -996,6 +1001,7 @@ Euros: Euros
 Eurostat: Eurostat
 Eurostat (Comext): Eurostat (Comext)
 Eurostat (EUROPOP2023 projections): Eurostat (proyecciones EUROPOP2023)
+Eurostat (HICP); Macroscope calculation: Eurostat (IPCA); cálculo de Macroscope
 Eurostat (Macroscope calculation): Eurostat (cálculo de Macroscope)
 Eurostat (balance of payments): Eurostat (balanza de pagos)
 Eurostat (national accounts): Eurostat (contabilidad nacional)
@@ -1103,6 +1109,7 @@ Fixed investment: Inversión en capital fijo
 'Flash estimate for {period}: {figures} on a year earlier. The table follows when INE publishes the full index.': 'Indicador adelantado de {period}: {figures} interanual. La tabla se actualiza cuando el INE publica el índice completo.'
 'Follow every change in a feed reader:': 'Siga cada cambio en un lector de noticias:'
 Food and drink: Alimentos y bebidas
+Food and soft drinks: Alimentos y bebidas
 Food, beverages and tobacco: Alimentación, bebidas y tabaco
 ? 'For information only: not investment, financial or tax advice. Figures come from their sources and can be revised or contain errors, so check the source before relying on them. Macroscope Spain is independent and is not affiliated with or endorsed by any of them.'
 : 'Solo a título informativo: no es asesoramiento de inversión, financiero ni fiscal. Las cifras proceden de sus fuentes y pueden revisarse o contener errores, así que compruebe la fuente antes de basarse en ellas. Macroscope España es independiente y no está vinculado a ninguna de ellas ni cuenta con su respaldo.'
@@ -1225,6 +1232,7 @@ HICP inflation: Inflación del IPCA
 HICP inflation, % change on a year earlier: Inflación del IAPC, variación interanual, %
 HICP inflation, past 12 months: Inflación del IPCA, últimos 12 meses
 HICP, % change on a year earlier: IAPC, variación interanual, %
+'HICP, {month}: each tile is an item, sized by its share of household spending': 'IPCA, {month}: cada casilla es un artículo, con un tamaño según su peso en el gasto de los hogares'
 Harmonised index (HICP), % change on a year earlier: Índice armonizado (IPCA), variación interanual en %
 Harmonised index, the measure the ECB targets.: Índice armonizado, la medida que persigue el BCE.
 Harmonised prices (IPCA) and the euro area: Precios armonizados (IPCA) y la zona del euro
@@ -1245,6 +1253,7 @@ Headline inflation (end of period) 2/: Inflación general (fin de periodo) 2/
 Health: Actividades sanitarias
 Health (spending by function): Sanidad
 Health and social work: Sanidad y servicios sociales
+Health care: Sanidad
 Hike: Subida
 Hiking: Subiendo
 Historical structural primary balance: Saldo primario estructural histórico
@@ -1299,6 +1308,7 @@ Household debt: Deuda de los hogares
 Household debt, % of GDP: Deuda de los hogares, % del PIB
 Household debt, % of disposable income: Deuda de los hogares, % de la renta disponible
 Household finances and wealth: Finanzas y riqueza de los hogares
+Household goods: Menaje
 Household income per head, after inflation: Renta de los hogares per cápita, descontada la inflación
 Household saving rate: Tasa de ahorro de los hogares
 Household saving rate (percent of gross disposable income): Tasa de ahorro de los hogares (porcentaje del ingreso disponible bruto)
@@ -1312,6 +1322,7 @@ Households expecting faster price rises over the next 12 months, net balance: Ho
 Households renting: Hogares que viven de alquiler
 Households' housing loans: Crédito a los hogares para vivienda
 Housing: Vivienda
+Housing and energy: Vivienda y energía
 Housing loans: Crédito a la vivienda
 Housing loans and mortgage rates: Crédito para vivienda y tipos hipotecarios
 Housing loans gone bad: Morosidad del crédito a la vivienda
@@ -1319,6 +1330,8 @@ Housing loans, growth on a year earlier: Crédito para vivienda, variación inte
 Housing wealth: Riqueza inmobiliaria
 Housing wealth, % of disposable income: Riqueza inmobiliaria, % de la renta disponible
 Housing wealth, € bn: Riqueza inmobiliaria, mm €
+Hover over or tap a tile for its figures.: Pase el cursor por una casilla o tóquela para ver sus cifras.
+Hover over or tap a tile for its figures. Click a category to open it.: Pase el cursor por una casilla o tóquela para ver sus cifras. Pulse una categoría para abrirla.
 ? How fast each economy is growing, how far it has come since the end of 2019, the last quarter before the pandemic, and how rich it is per head at purchasing power.
 : A qué ritmo crece cada economía, cuánto ha avanzado desde finales de 2019, el último trimestre antes de la pandemia, y cuál es su PIB per cápita en paridad de poder adquisitivo.
 ? 'How fast pay is rising in each activity, and how it has done against prices since 2019. Growth compares averages of four quarters: the latest quarter alone can jump or fall when bonuses come at a different time of the year, above all in the activities that pay large ones.'
@@ -1454,6 +1467,7 @@ Information, finance and business services: Información, finanzas y servicios a
 'Informe Anual 2023, capítulo 2: Retos estructurales de la economía española (section 9.2, the public pension system)': 'Informe Anual 2023, capítulo 2: Retos estructurales de la economía española (apartado 9.2, el sistema público de pensiones)'
 Input: Variable
 Inside core inflation: Dentro de la inflación subyacente
+Insurance and finance: Seguros y servicios financieros
 Insurance and pensions: Seguros y pensiones
 Intellectual property: Propiedad intelectual
 'Interactive tools for the Spanish economy: change a setting and every number and chart recomputes in your browser.': 'Herramientas interactivas sobre la economía española: cambie un ajuste y todas las cifras y gráficos se recalculan en su navegador.'
@@ -1750,6 +1764,7 @@ New, ended and all retirement pensions: 'Pensiones de jubilación: nuevas, bajas
 Next decision: Próxima decisión
 Next releases are on the: Las próximas publicaciones están en el
 Nigeria: Nigeria
+'No annual rate yet: new in the classification': 'Aún sin tasa anual: nuevo en la clasificación'
 ? No contributory pension can exceed the maximum, whatever was paid in; pensioners with little other income are topped up to the minimum. Both are set every year in the budget.
 : Ninguna pensión contributiva puede superar la pensión máxima, se haya cotizado lo que se haya cotizado; a los pensionistas con pocos ingresos más se les complementa la pensión hasta la mínima. Ambas cuantías se fijan cada año en los Presupuestos Generales del Estado.
 No indicators in this section yet.: Todavía no hay indicadores en esta sección.
@@ -1814,6 +1829,7 @@ On hold (rule): Sin cambios (regla)
 On the day: En el día
 On this page: En esta página
 On. From your next visit, this page will mark the figures that are new since this one.: Activado. Desde su próxima visita, esta página marcará los datos nuevos desde esta.
+Open {name}: Abrir {name}
 Ordinary: Ordinarios
 Orphans: Orfandad
 Other: Otros
@@ -1958,6 +1974,7 @@ Permanent: Indefinidos
 Permanent contracts and the 2022 reform: Los contratos indefinidos y la reforma de 2022
 Permanent disability: Incapacidad permanente
 Permits: Visados
+Personal care and other: Cuidado personal y otros
 Petrol: Gasolina
 Petrol (Euro-super 95): Gasolina (Eurosúper 95)
 Petrol and diesel at the pump: Gasolina y gasóleo en el surtidor
@@ -1987,7 +2004,9 @@ Premium, growth: Prima, crecimiento
 President: Presidente
 President (woman): Presidenta
 Previous: Anterior
+'Price change on a year earlier:': 'Variación interanual de los precios:'
 Price expectations: Expectativas de precios
+Price growth: Variación de los precios
 Price per barrel, in dollars and in euros, daily: Precio por barril, en dólares y en euros, diario
 Price per m²: Precio por m²
 Price per m², appraisals: Precio por m², tasaciones
@@ -2143,6 +2162,7 @@ Recession probability (Michez): Probabilidad de recesión (Michez)
 'Recession signals: the Sahm and Michez rules': 'Señales de recesión: las reglas de Sahm y de Michez'
 ? Recessions as dated by the Spanish Economic Association's dating committee, from the quarter after the peak to the trough. A signal is the first month (or quarter) a rule reaches its threshold after a year below it; a negative number means before the recession began. A signal up to a year early counts as detecting the recession; one that no recession followed within a year is a false alarm. The Michez rule needs vacancy data, which start in 2001, and its Spanish thresholds are set so that it gives no false alarm over 2003-2021; from 2022 it is out of sample.
 : Recesiones fechadas por el comité de fechado de la Asociación Española de Economía, del trimestre siguiente al pico hasta el valle. Una señal es el primer mes (o trimestre) en que una regla alcanza su umbral tras un año por debajo; un número negativo indica que fue antes de que empezara la recesión. Una señal hasta un año antes cuenta como detección de la recesión; una que no va seguida de una recesión en el plazo de un año es una falsa alarma. La regla de Michez necesita datos de vacantes, que empiezan en 2001, y sus umbrales para España se fijan para que no dé ninguna falsa alarma en 2003-2021; desde 2022 está fuera de la muestra.
+Recreation and culture: Ocio y cultura
 Red Eléctrica: Red Eléctrica
 Region: Comunidad
 Regional GDP: PIB regional
@@ -2188,6 +2208,7 @@ Reserve Bank of India: Banco de la Reserva de la India
 Reserve Bank of New Zealand: Banco de la Reserva de Nueva Zelanda
 Residential care and social work: Asistencia en establecimientos residenciales y servicios sociales
 Restaurants and bars: Restaurantes y bares
+Restaurants and hotels: Restaurantes y hoteles
 Results: Resultados
 Retail: Locales
 Retail premises: Locales comerciales
@@ -2277,10 +2298,12 @@ Share of exports %: '% de las exportaciones'
 Share of the HICP basket, by weight, in each band of annual inflation (%): Parte de la cesta del IAPC, por ponderación, en cada tramo de inflación anual (%)
 Share of the HICP basket, by weight, with annual inflation above 2% and above 5%: Parte de la cesta del IAPC, por ponderación, con inflación anual por encima del 2% y del 5%
 Share of the basket: Parte de la cesta
+'Share of the basket:': 'Peso en la cesta:'
 Share of {n} central banks hiking minus share cutting, %, monthly: Porcentaje de los {n} bancos centrales que suben tipos menos el de los que los bajan, %, mensual
 Share over 80%: Más del 80%
 Shares: Porcentajes
 Shares and other equity: Acciones y otras participaciones de capital
+Show: Mostrar
 Show all: Mostrar todos
 Show data: Ver los datos
 Sick leave: Incapacidad temporal
@@ -2515,6 +2538,7 @@ The average pension and prices: La pensión media y los precios
 : 'El escenario base supone que no hay cambios de política después de los años de previsión de la Comisión: a partir de entonces, el saldo primario estructural solo varía con el coste del envejecimiento.'
 ? 'The baseline assumes no change in policy after the Commission''s forecast years: the structural primary balance then moves only with the cost of ageing. The stress tests are the Commission''s: a lower structural primary balance, a higher interest-growth differential, a temporary rise in market interest rates (financial stress) and a return of the structural primary balance to its historical average.'
 : 'El escenario base supone que no hay cambios de política después de los años de previsión de la Comisión: a partir de entonces, el saldo primario estructural solo varía con el coste del envejecimiento. Las pruebas de tensión son las de la Comisión: un menor saldo primario estructural, un diferencial tipo de interés-crecimiento más elevado, una subida temporal de los tipos de interés de mercado (tensión financiera) y la vuelta del saldo primario estructural a su media histórica.'
+The basket, item by item: La cesta, artículo a artículo
 The chapter prints no date; 2024 comes from the PDF's creation date (30 April 2024) and its latest references.: El capítulo no lleva fecha; 2024 sale de la fecha de creación del PDF (30 de abril de 2024) y de sus referencias más recientes.
 The credit impulse and domestic demand: El impulso crediticio y la demanda nacional
 The credit impulse with growth a quarter later: El impulso crediticio con el crecimiento un trimestre después
@@ -2732,6 +2756,7 @@ We: Mi
 Weak economy or rising unemployment: Economía débil o paro en aumento
 Wealth: Riqueza
 Weight: Peso
+Weight, % of the basket: Peso, % de la cesta
 Weighted average of z-scores, monthly; 0 = the 2013–present norm: Media ponderada de las puntuaciones z, mensual; 0 = la norma de 2013 hasta hoy
 Weighted median: Mediana ponderada
 'Weighted median: Spain and the euro area': 'Mediana ponderada: España y la zona del euro'
@@ -2765,6 +2790,8 @@ What drives growth: Qué impulsa el crecimiento
 What forecasters expect: Qué esperan los analistas
 What has moved with growth: Qué se ha movido con el crecimiento
 What has moved with inflation: Qué se ha movido con la inflación
+? 'What households spend their money on, and how fast each price is rising: the items of the harmonised basket, each sized by its weight (its share of household spending this year) and grouped into the 13 categories of the European classification (ECOICOP). Price growth colours each item by its change on a year earlier, warm above the ECB''s 2% target and cool below; Weight shades it by its share of the basket instead. Click a category to open it.'
+: 'En qué gastan los hogares y a qué ritmo sube cada precio: los artículos de la cesta armonizada, cada uno con un tamaño según su ponderación (su peso en el gasto de los hogares este año) y agrupados en las 13 categorías de la clasificación europea (ECOICOP). Variación de los precios colorea cada artículo según su variación interanual, en tonos cálidos por encima del objetivo del 2% del BCE y fríos por debajo; Peso lo sombrea según su peso en la cesta. Pulse una categoría para abrirla.'
 What markets expect: Qué esperan los mercados
 'What matters most: what has led growth and inflation': 'Qué importa más: qué se ha adelantado al crecimiento y a la inflación'
 What moves the 10-year yield: Qué mueve el bono a 10 años
@@ -2850,6 +2877,7 @@ above expectations: por encima de lo esperado
 additional measures will very probably be needed; relying only on higher contributions could harm jobs and competitiveness: muy probablemente harán falta medidas adicionales; confiar solo en cotizaciones más altas podría dañar el empleo y la competitividad
 additional provision 2 of the decree: disposición adicional 2.ª del decreto
 additional provision 53: disposición adicional 53.ª
+adds about {pp} points to inflation: suma unos {pp} puntos a la inflación
 all pensions, {year} (Eurostat): todas las pensiones, {year} (Eurostat)
 all pensions, {year}; EU {eu} (Eurostat): todas las pensiones, {year}; UE {eu} (Eurostat)
 and: y
@@ -2863,6 +2891,7 @@ average of {n}; range {low} to {high}: media de {n}; entre {low} y {high}
 average without the 15% extremes at each end: media sin el 15% de los extremos de cada lado
 awaiting AI check: pendiente de verificación por IA
 below expectations: por debajo de lo esperado
+below {x}: menos de {x}
 bn: mm
 bp: pb
 built %(when)s: generado el %(when)s
@@ -2920,6 +2949,7 @@ monthly readings; the rest is projected: datos mensuales; el resto se proyecta
 mortgages: hipotecas
 motor vehicle repair, from trade to other services: reparación de vehículos de motor, del comercio a otros servicios
 never: nunca
+no annual rate yet: aún sin tasa anual
 no data: sin datos
 nominal GDP per euro of broad money · {q}: PIB nominal por cada euro de dinero en sentido amplio · {q}
 non-performing · {period}; {peak}: créditos dudosos · {period}; {peak}
@@ -3018,6 +3048,7 @@ summary: resumen
 summary and conclusions: resumen y conclusiones
 summary and recommendations: resumen y recomendaciones
 summary and section on the revenue measures: resumen y apartado sobre las medidas de ingresos
+takes about {pp} points off inflation: resta unos {pp} puntos a la inflación
 the BOE text of Real Decreto-ley 2/2023 (BOE-A-2023-6967), read independently: el texto del Real Decreto-ley 2/2023 en el BOE (BOE-A-2023-6967), leído de forma independiente
 the Banco de España's PDF of chapter 2 of its 2023 Annual Report: el PDF del capítulo 2 del Informe Anual 2023 del Banco de España
 ? 'the Commission''s PDF (Institutional Paper 279, April 2024): Tables 1, I.1.6, I.1.9, II.1.64 and the country table for Spain'
@@ -3125,6 +3156,8 @@ z-score: Puntuación z
 '{rank} highest of {n} · {when}': la {rank}.ª cifra más alta de los {n} · {when}
 '{rank} largest rise of {n}': la {rank}.ª mayor subida de los {n}
 '{rank} largest rise of {n} · {when}': la {rank}.ª mayor subida de los {n} · {when}
+'{rate} on a year earlier': '{rate} interanual'
+'{share} of the basket': '{share} de la cesta'
 '{share}% of services exports': el {share}% de las exportaciones de servicios
 '{share}% of services exports, {change} on a year earlier': el {share}% de las exportaciones de servicios, {change} interanual
 '{source} · {period}, {change} on a year': '{source} · {period}, {change} en un año'
@@ -3145,6 +3178,8 @@ z-score: Puntuación z
 '{value} at the {year} peak': '{value} en el máximo de {year}'
 '{verdict}, {month}; {above} of {total} recent figures above': '{verdict}, {month}; {above} de {total} datos recientes por encima'
 '{what}, seasonally adjusted by Macroscope': '{what}; datos desestacionalizados por Macroscope'
+'{x} or less': '{x} o menos'
+'{x} or more': '{x} o más'
 '{years} years': '{years} años'
 '{year} census': censo de {year}
 '{year} census; {before} in {before_year}': censo de {year}; {before} en {before_year}
@@ -3187,4 +3222,5 @@ z-score: Puntuación z
 €{amount} more than: '{amount} € más que'
 €{amount} trillion: '{amount} billones de €'
 €{price} a litre: '{price} € el litro'
+← All categories: ← Todas las categorías
 −3.1% of GDP (contributions less spending): −3.1% del PIB (cotizaciones menos gasto)

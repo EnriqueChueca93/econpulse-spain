@@ -25,7 +25,7 @@ import argparse
 import sys
 import time
 
-from . import attention, budget, changes, ecbspeak, forecasts, i18n, pensions, schedule, serve, stance, statedebt
+from . import attention, basket, budget, changes, ecbspeak, forecasts, i18n, pensions, schedule, serve, stance, statedebt
 from .build import build_site
 from .fetch import fetch_all
 from .registry import load_registry
@@ -180,6 +180,7 @@ def main(argv: list[str] | None = None) -> int:
         print(f"Central bank stance (Econvitals): {stance.refresh(store)}")
         print(f"ECB-speak: {ecbspeak.refresh(store)}")
         print(f"Budget explorer (IGAE): {budget.refresh(store)}")
+        print(f"HICP basket (Eurostat): {basket.refresh(store)}")
         notes = changes.record(indicators, store)
         print(f"What changed: {len(notes)} new note(s)")
         for n in notes:
