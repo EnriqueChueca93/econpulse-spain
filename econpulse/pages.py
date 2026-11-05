@@ -846,10 +846,13 @@ PAGES: dict[str, list[dict]] = {
             "id": "basket",
             "title": "The basket, item by item",
             "intro": ("What households spend their money on, and how fast each price is rising: the items of the "
-                      "harmonised basket, each sized by its weight (its share of household spending this year) and "
+                      "harmonised basket, each sized by its weight (its share of household spending that year) and "
                       "grouped into the 13 categories of the European classification (ECOICOP). Price growth colours "
                       "each item by its change on a year earlier, warm above the ECB's 2% target and cool below; Weight "
-                      "shades it by its share of the basket instead. Click a category to open it."),
+                      "shades it by its share of the basket instead. Click a category to open it, or pick any month "
+                      "since 2016. Over time shows how much each category has added to annual inflation month by "
+                      "month (worked out as Eurostat does, so they add up to the headline rate), or how the basket's "
+                      "make-up has changed year by year."),
             "tables": [],
             "uses": ["hicp_wmedian"],
             "charts": [basket.treemap],

@@ -375,6 +375,7 @@ All %(total)s series were fetched successfully and are up to date.: Las %(total)
 All activities: Todas las actividades
 All ages: Todas las edades
 All autonomous communities: Todas las comunidades autónomas
+All categories: Todas las categorías
 All commercial property: Todos los inmuebles comerciales
 All consumer prices: IPC general
 All contracts: Todos los contratos
@@ -728,6 +729,7 @@ Contribution, points: Contribución, puntos
 ? 'Contributions are percentage points of GDP growth, as published by INE: domestic and external demand add up to GDP growth, give or take rounding.'
 : 'Las aportaciones son puntos porcentuales del crecimiento del PIB, tal como las publica el INE: la demanda nacional y la externa suman el crecimiento del PIB, salvo redondeo.'
 Contributions to GDP growth on a year earlier, percentage points: Aportaciones al crecimiento interanual del PIB, puntos porcentuales
+Contributions to annual HICP inflation by category, percentage points, and the headline rate, %: Contribuciones a la inflación interanual del IPCA por categoría, puntos porcentuales, y tasa general, %
 Contributions to broad money growth on a year earlier, percentage points: Aportaciones al crecimiento interanual del dinero en sentido amplio, puntos porcentuales
 'Contributions to growth: branches': 'Aportaciones al crecimiento: ramas de actividad'
 'Contributions to growth: demand': 'Aportaciones al crecimiento: demanda'
@@ -904,6 +906,7 @@ EU reference: Referencia de la UE
 EUR/USD: EUR/USD
 ? 'Each bubble is a Bono or Obligación: its maturity, its coupon and, by its size, the amount outstanding; Letras pay no coupon'
 : 'Cada burbuja es un Bono u Obligación: su vencimiento, su cupón y, por su tamaño, el saldo vivo; las Letras no pagan cupón'
+Each category's share of the basket, %, year by year: Peso de cada categoría en la cesta, %, año a año
 ? Each item's annual rate is weighted by its share of household spending that year. The 10% trimmed mean drops 5% of the basket at each end of the distribution, the 30% one drops 15%. Run on euro-area data, the trimmed means match the ECB's own within about 0.05 points on average (2018–2025) and the median within about 0.15; the ECB's series stopped in December 2025. Detailed items start in 2015 for Spain and 2017 for the euro area.
 : La tasa anual de cada partida se pondera por su peso en el gasto de los hogares de ese año. La media recortada al 10% quita el 5% de la cesta en cada extremo de la distribución; la del 30%, el 15%. Con datos de la zona del euro, las medias recortadas coinciden con las del propio BCE con una diferencia media de unos 0.05 puntos (2018–2025) y la mediana, de unos 0.15; las series del BCE se interrumpieron en diciembre de 2025. Las partidas detalladas empiezan en 2015 para España y en 2017 para la zona del euro.
 Each meeting cycle, −100 dovish to +100 hawkish: Cada ciclo de reuniones, de −100 (acomodaticio) a +100 (restrictivo)
@@ -1240,6 +1243,7 @@ Headline: General
 Headline HICP: IAPC general
 Headline HICP, {month}: IAPC general, {month}
 Headline and underlying inflation: Inflación general y subyacente
+Headline inflation: Inflación general
 Headline inflation (average) 1/: Inflación general (promedio) 1/
 Headline inflation (average) 2/: Inflación general (promedio) 2/
 Headline inflation (end of period) 1/: Inflación general (fin de periodo) 1/
@@ -1332,6 +1336,7 @@ Housing wealth, % of disposable income: Riqueza inmobiliaria, % de la renta disp
 Housing wealth, € bn: Riqueza inmobiliaria, mm €
 Hover over or tap a tile for its figures.: Pase el cursor por una casilla o tóquela para ver sus cifras.
 Hover over or tap a tile for its figures. Click a category to open it.: Pase el cursor por una casilla o tóquela para ver sus cifras. Pulse una categoría para abrirla.
+Hover over or tap the chart for each period's figures. Pick a category to see its items.: Pase el cursor por el gráfico o tóquelo para ver las cifras de cada periodo. Elija una categoría para ver sus artículos.
 ? How fast each economy is growing, how far it has come since the end of 2019, the last quarter before the pandemic, and how rich it is per head at purchasing power.
 : A qué ritmo crece cada economía, cuánto ha avanzado desde finales de 2019, el último trimestre antes de la pandemia, y cuál es su PIB per cápita en paridad de poder adquisitivo.
 ? 'How fast pay is rising in each activity, and how it has done against prices since 2019. Growth compares averages of four quarters: the latest quarter alone can jump or fall when bonuses come at a different time of the year, above all in the activities that pay large ones.'
@@ -1620,6 +1625,7 @@ Main refinancing: Operaciones principales de financiación
 Main refinancing operations: Operaciones principales de financiación
 Manufactures: Manufacturas
 Manufacturing: Industria manufacturera
+Map: Mapa
 Marginal lending facility: Facilidad marginal de crédito
 Market: Mercado
 Market move: Movimiento de mercado
@@ -1664,6 +1670,7 @@ Money growth peaked at {peak} in {month}; two years later inflation was {later}.
 ? 'Money has grown faster than nominal GDP since then: households and firms hold more money for each euro of output, so money growth alone is a poor guide to spending.'
 : 'Desde entonces el dinero ha crecido más que el PIB nominal: hogares y empresas mantienen más dinero por cada euro de producción, así que el crecimiento del dinero, por sí solo, orienta mal sobre el gasto.'
 Money, inflation: Dinero, inflación
+Month: Mes
 Monthly: Mensual
 Monthly (SA): Mensual (desest.)
 Monthly average, total system. The monthly change is seasonally adjusted by Macroscope; the y/y change is as published.: Media mensual, total del sistema. La variación mensual la desestacionaliza Macroscope; la interanual es la publicada.
@@ -1845,6 +1852,7 @@ Other food and feed: Otros alimentos y piensos
 Other goods: Otros bienes
 'Other identified flows: (minus) interest revenues 2/': 'Otros flujos identificados: (menos) ingresos por intereses 2/'
 Other investment: Otra inversión
+Other items: Otros artículos
 Other items (net): Otras partidas (neto)
 Other liabilities and items: Otros pasivos y partidas
 Other monetary financial institutions: Otras instituciones financieras monetarias
@@ -1875,6 +1883,7 @@ Over a week: En una semana
 Over a year: En un año
 Over deposit rate: Sobre el tipo de depósito
 Over the past decade: En la última década
+Over time: Evolución
 Overall balance: Saldo presupuestario
 Overnight Call Rate: Tipo de interés a un día (call rate)
 Overnight Rate: Tipo a un día (overnight rate)
@@ -2539,6 +2548,7 @@ The average pension and prices: La pensión media y los precios
 ? 'The baseline assumes no change in policy after the Commission''s forecast years: the structural primary balance then moves only with the cost of ageing. The stress tests are the Commission''s: a lower structural primary balance, a higher interest-growth differential, a temporary rise in market interest rates (financial stress) and a return of the structural primary balance to its historical average.'
 : 'El escenario base supone que no hay cambios de política después de los años de previsión de la Comisión: a partir de entonces, el saldo primario estructural solo varía con el coste del envejecimiento. Las pruebas de tensión son las de la Comisión: un menor saldo primario estructural, un diferencial tipo de interés-crecimiento más elevado, una subida temporal de los tipos de interés de mercado (tensión financiera) y la vuelta del saldo primario estructural a su media histórica.'
 The basket, item by item: La cesta, artículo a artículo
+The categories add up to the published rate to within {pp} points every month.: Cada mes, las categorías suman la tasa publicada con una diferencia máxima de {pp} puntos.
 The chapter prints no date; 2024 comes from the PDF's creation date (30 April 2024) and its latest references.: El capítulo no lleva fecha; 2024 sale de la fecha de creación del PDF (30 de abril de 2024) y de sus referencias más recientes.
 The credit impulse and domestic demand: El impulso crediticio y la demanda nacional
 The credit impulse with growth a quarter later: El impulso crediticio con el crecimiento un trimestre después
@@ -2740,6 +2750,7 @@ Velocity: Velocidad
 Velocity of money: Velocidad del dinero
 Vice-President: Vicepresidente
 Vice-President (woman): Vicepresidenta
+View: Vista
 Wage cost per hour: Coste salarial por hora
 Wage cost per hour actually worked, €, average of the past four quarters: Coste salarial por hora efectiva, €, media de los últimos cuatro trimestres
 Wage cost per worker: Coste salarial por trabajador
@@ -2790,8 +2801,8 @@ What drives growth: Qué impulsa el crecimiento
 What forecasters expect: Qué esperan los analistas
 What has moved with growth: Qué se ha movido con el crecimiento
 What has moved with inflation: Qué se ha movido con la inflación
-? 'What households spend their money on, and how fast each price is rising: the items of the harmonised basket, each sized by its weight (its share of household spending this year) and grouped into the 13 categories of the European classification (ECOICOP). Price growth colours each item by its change on a year earlier, warm above the ECB''s 2% target and cool below; Weight shades it by its share of the basket instead. Click a category to open it.'
-: 'En qué gastan los hogares y a qué ritmo sube cada precio: los artículos de la cesta armonizada, cada uno con un tamaño según su ponderación (su peso en el gasto de los hogares este año) y agrupados en las 13 categorías de la clasificación europea (ECOICOP). Variación de los precios colorea cada artículo según su variación interanual, en tonos cálidos por encima del objetivo del 2% del BCE y fríos por debajo; Peso lo sombrea según su peso en la cesta. Pulse una categoría para abrirla.'
+? 'What households spend their money on, and how fast each price is rising: the items of the harmonised basket, each sized by its weight (its share of household spending that year) and grouped into the 13 categories of the European classification (ECOICOP). Price growth colours each item by its change on a year earlier, warm above the ECB''s 2% target and cool below; Weight shades it by its share of the basket instead. Click a category to open it, or pick any month since 2016. Over time shows how much each category has added to annual inflation month by month (worked out as Eurostat does, so they add up to the headline rate), or how the basket''s make-up has changed year by year.'
+: 'En qué gastan los hogares y a qué ritmo sube cada precio: los artículos de la cesta armonizada, cada uno con un tamaño según su ponderación (su peso en el gasto de los hogares ese año) y agrupados en las 13 categorías de la clasificación europea (ECOICOP). Variación de los precios colorea cada artículo según su variación interanual, en tonos cálidos por encima del objetivo del 2% del BCE y fríos por debajo; Peso lo sombrea según su peso en la cesta. Pulse una categoría para abrirla o elija cualquier mes desde 2016. Evolución muestra cuánto ha sumado cada categoría a la inflación interanual mes a mes (calculado como lo hace Eurostat, de modo que suman la tasa general) o cómo ha cambiado la composición de la cesta año a año.'
 What markets expect: Qué esperan los mercados
 'What matters most: what has led growth and inflation': 'Qué importa más: qué se ha adelantado al crecimiento y a la inflación'
 What moves the 10-year yield: Qué mueve el bono a 10 años
@@ -2851,6 +2862,7 @@ World Economic Outlook database: Base de datos del World Economic Outlook
 World Economic Outlook, {edition}: World Economic Outlook, {edition}
 YTD: En el año
 YTD y/y: En el año, a/a
+Year: Año
 Year before: Año anterior
 Year to date: En lo que va de año
 Year to date sums the months since January and compares them with the same months a year earlier.: En lo que va de año suma los meses desde enero y los compara con los mismos meses del año anterior.
@@ -3135,6 +3147,9 @@ z-score: Puntuación z
 '{names} and {last}': '{names} y {last}'
 '{names} figures are taken from the FUNCAS Panel''s reference table, which lists each with the month it was published.': Las cifras de {names} proceden de la tabla de referencia del Panel de FUNCAS, que indica el mes en que se publicó cada una.
 '{name}, projected': '{name}, proyección'
+'{name}, total': '{name}, total'
+'{name}: each item''s share of the category''s spending, %, year by year': '{name}: peso de cada artículo en el gasto de la categoría, %, año a año'
+'{name}: its items'' contributions to annual HICP inflation, percentage points': '{name}: contribuciones de sus artículos a la inflación interanual del IPCA, puntos porcentuales'
 ? '{na} not available: the IMF''s database does not publish the line. After the {report}; past years differ where the data have been revised since.'
 : '{na} no disponible: la base de datos del FMI no publica la línea. Con el formato del {report}; los años anteriores difieren cuando los datos se han revisado desde entonces.'
 '{n} cut': 'bajada: {n}'

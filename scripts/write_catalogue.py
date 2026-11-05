@@ -355,12 +355,35 @@ add({
     "Turn off": "Desactivar",
     # The basket, item by item (Inflation page, batch I1)
     "The basket, item by item": "La cesta, artículo a artículo",
-    "What households spend their money on, and how fast each price is rising: the items of the harmonised basket, each sized by its weight (its share of household spending this year) and grouped into the 13 categories of the European classification (ECOICOP). Price growth colours each item by its change on a year earlier, warm above the ECB's 2% target and cool below; Weight shades it by its share of the basket instead. Click a category to open it.":
+    "What households spend their money on, and how fast each price is rising: the items of the harmonised basket, each sized by its weight (its share of household spending that year) and grouped into the 13 categories of the European classification (ECOICOP). Price growth colours each item by its change on a year earlier, warm above the ECB's 2% target and cool below; Weight shades it by its share of the basket instead. Click a category to open it, or pick any month since 2016. Over time shows how much each category has added to annual inflation month by month (worked out as Eurostat does, so they add up to the headline rate), or how the basket's make-up has changed year by year.":
         "En qué gastan los hogares y a qué ritmo sube cada precio: los artículos de la cesta armonizada, cada uno "
-        "con un tamaño según su ponderación (su peso en el gasto de los hogares este año) y agrupados en las 13 "
+        "con un tamaño según su ponderación (su peso en el gasto de los hogares ese año) y agrupados en las 13 "
         "categorías de la clasificación europea (ECOICOP). Variación de los precios colorea cada artículo según su "
         "variación interanual, en tonos cálidos por encima del objetivo del 2% del BCE y fríos por debajo; Peso lo "
-        "sombrea según su peso en la cesta. Pulse una categoría para abrirla.",
+        "sombrea según su peso en la cesta. Pulse una categoría para abrirla o elija cualquier mes desde 2016. "
+        "Evolución muestra cuánto ha sumado cada categoría a la inflación interanual mes a mes (calculado como lo "
+        "hace Eurostat, de modo que suman la tasa general) o cómo ha cambiado la composición de la cesta año a año.",
+    # The basket over time (batch I2)
+    "View": "Vista",
+    "Map": "Mapa",
+    "Over time": "Evolución",
+    "Month": "Mes",
+    "Year": "Año",
+    "All categories": "Todas las categorías",
+    "Hover over or tap the chart for each period's figures. Pick a category to see its items.":
+        "Pase el cursor por el gráfico o tóquelo para ver las cifras de cada periodo. Elija una categoría para ver sus artículos.",
+    "The categories add up to the published rate to within {pp} points every month.":
+        "Cada mes, las categorías suman la tasa publicada con una diferencia máxima de {pp} puntos.",
+    "Contributions to annual HICP inflation by category, percentage points, and the headline rate, %":
+        "Contribuciones a la inflación interanual del IPCA por categoría, puntos porcentuales, y tasa general, %",
+    "{name}: its items' contributions to annual HICP inflation, percentage points":
+        "{name}: contribuciones de sus artículos a la inflación interanual del IPCA, puntos porcentuales",
+    "Each category's share of the basket, %, year by year": "Peso de cada categoría en la cesta, %, año a año",
+    "{name}: each item's share of the category's spending, %, year by year":
+        "{name}: peso de cada artículo en el gasto de la categoría, %, año a año",
+    "Headline inflation": "Inflación general",
+    "{name}, total": "{name}, total",
+    "Other items": "Otros artículos",
     "HICP, {month}: each tile is an item, sized by its share of household spending":
         "IPCA, {month}: cada casilla es un artículo, con un tamaño según su peso en el gasto de los hogares",
     "Eurostat (HICP); Macroscope calculation": "Eurostat (IPCA); cálculo de Macroscope",

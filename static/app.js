@@ -426,7 +426,173 @@
     el.appendChild(key_);
   }
 
-  // ---------------------------------------------------------------- treemap (the HICP basket, econpulse/basket.py)
+  // ---------------------------------------------------------------- the HICP basket (econpulse/basket.py)
+  // One spec carries every item's annual rate and contribution by month since 2016 and its share of the basket
+  // by year. The chart's state lives on its element: data-view (map | time), data-mode (growth | weight),
+  // data-open (a category's code) and data-month (an index into spec.months; the latest when unset).
+  function basketState(el, spec) {
+    var k = parseInt(el.getAttribute("data-month"), 10), open = el.getAttribute("data-open") || "";
+    if (!spec.cats.some(function (c) { return c[0] === open; })) open = "";
+    return {
+      view: el.getAttribute("data-view") === "time" ? "time" : "map",
+      mode: el.getAttribute("data-mode") === "weight" ? "weight" : "growth",
+      open: open, month: k >= 0 && k < spec.months.length ? k : spec.months.length - 1
+    };
+  }
+
+  function basketYears(spec) { return Object.keys(spec.shares).sort(); }
+
+  // A year's shares of the basket, % by item; while a year's weights aren't out, the latest year's before it.
+  function basketShares(spec, year) {
+    var years = basketYears(spec), before = years.filter(function (y) { return y <= year; });
+    return spec.shares[before.length ? before[before.length - 1] : years[0]];
+  }
+
+  // Shades as on the heat maps: by the distance from the 2% target (spec.steps), or by share (spec.wsteps).
+  function basketShade(spec, rate) {
+    if (rate === null || rate === undefined) return "none";
+    var gap = rate - spec.target;
+    if (Math.abs(gap) < spec.steps[0]) return "mid";
+    return (gap > 0 ? "hot" : "cool") + spec.steps.filter(function (s) { return Math.abs(gap) >= s; }).length;
+  }
+
+  function basketWeightShade(spec, share) {
+    return 1 + spec.wsteps.filter(function (s) { return share >= s; }).length;
+  }
+
+  // Some items' contributions in month k, points; null when none has one.
+  function basketSum(spec, idx, k) {
+    var v = null;
+    idx.forEach(function (i) {
+      var c = spec.contribs[i][k];
+      if (c !== null && c !== undefined) v = (v || 0) + c;
+    });
+    return v === null ? null : Math.round(v * 1000) / 1000;
+  }
+
+  // The map for month k: the categories, largest first, each with the items in that year's basket. A
+  // category's contribution counts all its items, also any just out of the basket (they still add the rest of
+  // last year's price change); its rate is the average of its items' rates, by weight.
+  function basketMonth(spec, k) {
+    var shares = basketShares(spec, spec.months[k].slice(0, 4)), by = {};
+    var cats = spec.cats.map(function (c) {
+      return (by[c[0]] = { code: c[0], name: c[1], full: c[2], weight: 0, idx: [], items: [], rated: 0, sum: 0 });
+    });
+    spec.items.forEach(function (it, i) {
+      var g = by[it[0].slice(0, 4)], share = shares[i], rate = spec.rates[i][k], c = spec.contribs[i][k];
+      if (!g) return;
+      g.idx.push(i);
+      if (!(share > 0)) return;
+      if (rate === undefined) rate = null;
+      g.weight += share;
+      if (rate !== null) { g.rated += share; g.sum += share * rate; }
+      g.items.push({ code: it[0], name: it[1], weight: share, rate: rate, contribution: c === undefined ? null : c,
+                     shade: basketShade(spec, rate), wshade: basketWeightShade(spec, share) });
+    });
+    return cats.filter(function (g) { return g.items.length; }).map(function (g) {
+      g.items.sort(function (a, b) { return b.weight - a.weight; });
+      g.rate = g.rated ? Math.round(g.sum / g.rated * 10) / 10 : null;
+      g.contribution = basketSum(spec, g.idx, k);
+      g.shade = basketShade(spec, g.rate);
+      return g;
+    }).sort(function (a, b) { return b.weight - a.weight; });
+  }
+
+  // The parts stacked over time: the categories (or an open category's items) by their share of the latest
+  // basket, the six largest and the rest together, muted. Colours follow this order, the same in both modes.
+  function basketParts(spec, open) {
+    var W = spec.words, years = basketYears(spec), shares = spec.shares[years[years.length - 1]], parts = [], by = {};
+    spec.items.forEach(function (it, i) {
+      if (open && it[0].slice(0, 4) !== open) return;
+      var key = open ? it[0] : it[0].slice(0, 4);
+      if (!by[key]) {
+        var cat = !open && spec.cats.filter(function (c) { return c[0] === key; })[0];
+        parts.push(by[key] = { name: open ? it[1] : (cat ? cat[1] : key), idx: [], share: 0 });
+      }
+      by[key].idx.push(i);
+      by[key].share += shares[i] || 0;
+    });
+    parts.sort(function (a, b) { return b.share - a.share; });
+    if (parts.length > 7) {
+      var rest = { name: open ? W.rest_items : W.rest, idx: [] };
+      parts.slice(6).forEach(function (p) { rest.idx = rest.idx.concat(p.idx); });
+      parts = parts.slice(0, 6).concat([rest]);
+    }
+    if (parts.length === 7) parts[6].muted = true;
+    return parts;
+  }
+
+  // The basket over time, as a spec for draw(): with Growth, each part's contribution to annual inflation month
+  // by month, stacked, and the total as a line (the published headline rate, or the open category's sum); with
+  // Weight, each part's share year by year, stacked to 100 (of the basket, or of the open category).
+  function basketTime(spec, st) {
+    var W = spec.words, parts = basketParts(spec, st.open), series = [];
+    var cat = st.open && spec.cats.filter(function (c) { return c[0] === st.open; })[0];
+    function style(p) { return p.muted ? "muted" : null; }
+    // Items' names can be long ("Passenger transport by taxi and hired vehicle with driver"): the legend
+    // cuts them at a word, the hover keeps them whole.
+    function short(name) {
+      if (name.length <= 30) return name;
+      var cut = name.slice(0, 30), space = cut.lastIndexOf(" ");
+      return (space > 12 ? cut.slice(0, space) : cut).replace(/[,;:]$/, "") + "…";
+    }
+    if (st.mode === "growth") {
+      var x = spec.months.map(function (m) { return m + "-01"; }), all = [];
+      parts.forEach(function (p) {
+        all = all.concat(p.idx);
+        series.push({ name: p.name, legend: short(p.name), kind: "bar", color: style(p), x: x,
+                      y: spec.months.map(function (m, k) { return basketSum(spec, p.idx, k); }) });
+      });
+      series.push(cat ? { name: W.total_of.replace("{name}", cat[1]), kind: "line", color: "ink", x: x,
+                          y: spec.months.map(function (m, k) { return basketSum(spec, all, k); }) }
+                      : { name: W.headline, kind: "line", color: "ink", x: x, y: spec.headline, headline: true });
+      return { id: spec.id, kind: "bar", stack: true, freq: "M", unit: W.pp, decimals: 2, signed: true,
+               series: series, ref_lines: [] };
+    }
+    var years = basketYears(spec);
+    function total(idx, y) { return idx.reduce(function (a, i) { return a + (spec.shares[y][i] || 0); }, 0); }
+    var everything = [];
+    parts.forEach(function (p) { everything = everything.concat(p.idx); });
+    parts.forEach(function (p) {
+      series.push({ name: p.name, legend: short(p.name), kind: "bar", color: style(p), x: years, y: years.map(function (y) {
+        var whole = cat ? total(everything, y) : 100;
+        return whole ? Math.round(total(p.idx, y) / whole * 10000) / 100 : null;
+      }) });
+    });
+    return { id: spec.id, kind: "bar", stack: true, freq: "A", x_kind: "category", unit: "%", decimals: 1,
+             series: series, ref_lines: [] };
+  }
+
+  // The basket's data table and CSV follow the chart: the month's items on the map, every period over time
+  // (newest first). `raw` gives the CSV's plain dates and units in the headings.
+  function basketTable(spec, raw) {
+    var el = document.getElementById("chart-" + spec.id) || document.createElement("div");
+    var W = spec.words, st = basketState(el, spec);
+    if (st.view === "map") {
+      var rows = [];
+      basketMonth(spec, st.month).forEach(function (c) {
+        c.items.forEach(function (n) { rows.push([c.full, n.name, n.weight, n.rate, n.contribution]); });
+      });
+      return { head: [W.category, W.item, W.weight_col, W.rate_col, W.contribution_col], rows: rows,
+               formats: [null, null, [2, false], [1, true], [2, true]], note: W.month + ": " + spec.labels[st.month] };
+    }
+    var sub = basketTime(spec, st), growth = st.mode === "growth";
+    return {
+      head: [growth ? W.month : W.year].concat(sub.series.map(function (s) {
+        return raw ? s.name + " (" + (s.headline || !growth ? "%" : W.pp) + ")" : s.name;
+      })),
+      rows: sub.series[0].x.map(function (x, i) {
+        return [growth ? (raw ? spec.months[i] : spec.labels[i]) : x].concat(sub.series.map(function (s) { return s.y[i]; }));
+      }).reverse(),
+      formats: [null].concat(sub.series.map(function (s) { return [s.headline ? 1 : sub.decimals, growth]; }))
+    };
+  }
+
+  function refreshBasketTable(spec) {
+    var holder = document.querySelector('.chart-data[data-chart="' + spec.id + '"]');
+    if (holder && holder.open) fillTable(spec, false);
+  }
+
   // Rectangles whose areas are the values, as close to square as they can be (Bruls, Huizing and van Wijk's
   // squarified layout), in the order given (largest first), filling the box x, y, w, h.
   function squarify(values, x, y, w, h) {
@@ -453,9 +619,10 @@
   }
 
   function drawTreemap(el, spec) {
-    var W = spec.words, mode = el.getAttribute("data-mode") || "growth", open = el.getAttribute("data-open") || "";
-    var cat = open && spec.categories.filter(function (c) { return c.code === open; })[0];
-    if (!cat) open = "";
+    var W = spec.words, st = basketState(el, spec), mode = st.mode, open = st.open;
+    var categories = st.view === "map" ? basketMonth(spec, st.month) : null;
+    var cat = categories && open && categories.filter(function (c) { return c.code === open; })[0];
+    if (categories && !cat) open = "";
     var pct = { unit: "%", decimals: 2 }, rate = { unit: "%", decimals: 1 }, pts = { unit: "", decimals: 2 };
     function make(tag, cls, text) {
       var n = document.createElement(tag);
@@ -468,32 +635,87 @@
       var out = [n.full || n.name];
       if (parent) out.push(parent.name);
       out.push(shareText(n));
-      if (n.rate === null || n.rate === undefined) { out.push(W.none); return out; }
-      out.push(W.rate.replace("{rate}", fmt(n.rate, rate, true)));
-      if (n.contribution !== null && Math.abs(n.contribution) >= 0.005) {
+      out.push(n.rate === null || n.rate === undefined ? W.none : W.rate.replace("{rate}", fmt(n.rate, rate, true)));
+      if (n.contribution !== null && n.contribution !== undefined && Math.abs(n.contribution) >= 0.005) {
         out.push((n.contribution > 0 ? W.adds : W.takes).replace("{pp}", fmt(Math.abs(n.contribution), pts)));
       }
       return out;
     }
     function label(n) { return mode === "weight" ? fmt(n.weight, pct) : (n.rate === null || n.rate === undefined ? "–" : fmt(n.rate, rate, true)); }
     function paint(node, n) { node.className += mode === "weight" ? " heat-" + (n.wshade || 1) : " gl-" + n.shade; }
+    function buttons(name, attr, options, current) {     // a row of pressed / unpressed buttons
+      var g = make("span", "tool-presets");
+      g.setAttribute("role", "group");
+      g.setAttribute("aria-label", name);
+      options.forEach(function (o) {
+        var b = make("button", "tool-button", o[1]);
+        b.type = "button";
+        b.setAttribute(attr, o[0]);
+        b.setAttribute("data-chart", spec.id);
+        b.setAttribute("aria-pressed", String(o[0] === current));
+        g.appendChild(b);
+      });
+      return g;
+    }
+    function picker(name, pick, options, current) {      // a labelled drop-down (the month, the category)
+      var l = make("label");
+      l.appendChild(make("span", null, name));
+      var s = make("select");
+      s.setAttribute("data-tm-pick", pick);
+      s.setAttribute("data-chart", spec.id);
+      options.forEach(function (o) {
+        var opt = make("option", null, o[1]);
+        opt.value = o[0];
+        if (String(o[0]) === String(current)) opt.selected = true;
+        s.appendChild(opt);
+      });
+      l.appendChild(s);
+      return l;
+    }
 
+    if (window.Plotly) Array.prototype.forEach.call(el.querySelectorAll(".js-plotly-plot"), function (p) { window.Plotly.purge(p); });
     el.style.height = "auto";
     el.textContent = "";
     el.removeAttribute("role");        // the card marks charts as images; this one is text and buttons
     el.removeAttribute("aria-label");
     var bar = make("div", "tm-bar tool-controls");
-    bar.setAttribute("role", "group");
-    bar.setAttribute("aria-label", W.show);
-    [["growth", W.growth], ["weight", W.weight]].forEach(function (m) {
-      var b = make("button", "tool-button", m[1]);
-      b.type = "button";
-      b.setAttribute("data-tm-mode", m[0]);
-      b.setAttribute("data-chart", spec.id);
-      b.setAttribute("aria-pressed", String(m[0] === mode));
-      bar.appendChild(b);
-    });
+    bar.appendChild(buttons(W.view, "data-tm-view", [["map", W.map], ["time", W.time]], st.view));
+    bar.appendChild(buttons(W.show, "data-tm-mode", [["growth", W.growth], ["weight", W.weight]], mode));
+    if (categories) {
+      var months = [];
+      for (var k = spec.months.length - 1; k >= 0; k--) months.push([k, spec.labels[k]]);
+      bar.appendChild(picker(W.month, "month", months, st.month));
+    } else {
+      var latest = basketYears(spec).pop(), size = {};
+      spec.items.forEach(function (it, i) {
+        var c = it[0].slice(0, 4);
+        size[c] = (size[c] || 0) + (spec.shares[latest][i] || 0);
+      });
+      bar.appendChild(picker(W.category, "open", [["", W.all]].concat(spec.cats.slice().sort(function (a, b) {
+        return (size[b[0]] || 0) - (size[a[0]] || 0);
+      }).map(function (c) { return [c[0], c[1]]; })), open));
+    }
     el.appendChild(bar);
+    var subtitle = document.querySelector("#fig-" + spec.id + " .chart-subtitle");
+
+    if (!categories) {                 // over time
+      var c0 = open && spec.cats.filter(function (c) { return c[0] === open; })[0];
+      var text = mode === "growth" ? (c0 ? W.subtitle_growth_open.replace("{name}", c0[1]) : W.subtitle_growth)
+                                   : (c0 ? W.subtitle_weight_open.replace("{name}", c0[1]) : W.subtitle_weight);
+      if (subtitle) subtitle.textContent = text;
+      var holder = make("div", "tm-time");
+      // On a phone the legend takes a line per part: the chart gets taller to keep its plot.
+      holder.style.height = Math.round(Math.max(400, Math.min(480, el.clientWidth * 0.5)) + (el.clientWidth < 560 ? 140 : 0)) + "px";
+      holder.setAttribute("role", "img");
+      holder.setAttribute("aria-label", spec.title + ": " + text);
+      el.appendChild(holder);
+      el.appendChild(make("p", "note tm-detail", (mode === "growth" && !open && W.fit ? W.fit + " " : "") + W.hint_time));
+      draw(basketTime(spec, st), holder);
+      refreshBasketTable(spec);
+      return;
+    }
+
+    if (subtitle) subtitle.textContent = W.subtitle_map.replace("{month}", spec.labels[st.month]);
     if (open) {
       var crumb = make("div", "tm-crumb");
       var back = make("button", "chart-link tm-back", W.back);
@@ -541,8 +763,8 @@
       var rects = squarify(cat.items.map(function (n) { return n.weight; }), 0, 0, width, height);
       cat.items.forEach(function (n, i) { tile(n, rects[i], cat, map); });
     } else {
-      var blocks = squarify(spec.categories.map(function (c) { return c.weight; }), 0, 0, width, height);
-      spec.categories.forEach(function (c, i) {
+      var blocks = squarify(categories.map(function (c) { return c.weight; }), 0, 0, width, height);
+      categories.forEach(function (c, i) {
         var r = blocks[i], box = make("div", "tm-cat");
         place(box, r, 2);
         var bw = Math.max(0, Math.round(r.x + r.w) - Math.round(r.x) - 4), bh = Math.max(0, Math.round(r.y + r.h) - Math.round(r.y) - 4);
@@ -601,6 +823,7 @@
       legend.appendChild(item);
     });
     el.appendChild(legend);
+    refreshBasketTable(spec);
   }
 
   function scrollToMap(el) {
@@ -608,30 +831,39 @@
     if (top < 0) el.scrollIntoView({ block: "start" });
   }
 
+  // The switches (view, mode) and opening or closing a category; then the same control keeps the focus.
   document.addEventListener("click", function (event) {
-    var b = event.target.closest && event.target.closest("[data-tm-mode], [data-tm-open]");
+    var b = event.target.closest && event.target.closest("[data-tm-view], [data-tm-mode], [data-tm-open]");
     if (!b) return;
     var el = document.getElementById("chart-" + b.getAttribute("data-chart")), spec = byId(b.getAttribute("data-chart"));
     if (!el || !spec) return;
-    if (b.hasAttribute("data-tm-mode")) el.setAttribute("data-mode", b.getAttribute("data-tm-mode"));
-    else el.setAttribute("data-open", b.getAttribute("data-tm-open"));
+    var attr = ["data-tm-view", "data-tm-mode", "data-tm-open"].filter(function (a) { return b.hasAttribute(a); })[0];
+    var value = b.getAttribute(attr);
+    el.setAttribute(attr.replace("tm-", ""), value);
     event.stopPropagation();
     drawTreemap(el, spec);
-    if (b.hasAttribute("data-tm-open")) {
+    if (attr === "data-tm-open") {
       scrollToMap(el);
-      var first = el.querySelector(b.getAttribute("data-tm-open") ? ".tm-back" : ".tm-head");
+      var first = el.querySelector(value ? ".tm-back" : ".tm-head");
       if (first) first.focus({ preventScroll: true });
+    } else {
+      var same = el.querySelector("[" + attr + '="' + value + '"]');
+      if (same) same.focus({ preventScroll: true });
     }
   }, true);
 
-  // Every item of the basket, for its table and CSV: category, item, weight, rate, contribution.
-  function treemapRows(spec) {
-    var rows = [];
-    spec.categories.forEach(function (c) {
-      c.items.forEach(function (n) { rows.push([c.full, n.name, n.weight, n.rate, n.contribution]); });
-    });
-    return rows;
-  }
+  // The drop-downs: the map's month, the category over time.
+  document.addEventListener("change", function (event) {
+    var s = event.target.closest && event.target.closest("[data-tm-pick]");
+    if (!s) return;
+    var el = document.getElementById("chart-" + s.getAttribute("data-chart")), spec = byId(s.getAttribute("data-chart"));
+    if (!el || !spec) return;
+    var pick = s.getAttribute("data-tm-pick");
+    el.setAttribute("data-" + pick, s.value);
+    drawTreemap(el, spec);
+    var again = el.querySelector('[data-tm-pick="' + pick + '"]');
+    if (again) again.focus({ preventScroll: true });
+  });
 
   document.addEventListener("click", function (event) {
     var b = event.target.closest && event.target.closest("[data-tile-period]");
@@ -739,8 +971,9 @@
     window.Plotly.react(el, traces, layout, config);
   }
 
-  function draw(spec) {
-    var el = document.getElementById("chart-" + spec.id);
+  // `into` draws the spec in another element (the basket's chart over time, inside its card).
+  function draw(spec, into) {
+    var el = into || document.getElementById("chart-" + spec.id);
     if (!el || !window.Plotly) return;
     if (spec.kind === "hbar") return drawRanking(el, spec);
     if (spec.kind === "dumbbell") return drawDumbbell(el, spec);
@@ -776,14 +1009,15 @@
       var template = "<b>%{y" + valueFormat + "</b>  " + s.name + "<extra></extra>";
       if (kind === "bar") {
         traces.push({
-          type: "bar", x: s.x, y: s.y, name: s.name, hovertemplate: template,
-          // Stacked segments are separated by a thin gap in the surface colour.
-          marker: { color: color, line: { color: surface, width: spec.stack && !dense ? 1.5 : 0 } }
+          type: "bar", x: s.x, y: s.y, name: s.legend || s.name, hovertemplate: template,
+          // Stacked segments are separated by a thin gap in the surface colour; dense stacks get a hairline in
+          // their own colour instead, which closes the seams the background would show between narrow bars.
+          marker: { color: color, line: { color: dense ? color : surface, width: spec.stack ? (dense ? 1 : 1.5) : 0 } }
         });
         return;
       }
       traces.push({
-        type: "scatter", mode: category ? "lines+markers" : "lines", x: s.x, y: s.y, name: s.name,
+        type: "scatter", mode: category ? "lines+markers" : "lines", x: s.x, y: s.y, name: s.legend || s.name,
         line: { color: color, width: 2, shape: s.shape || "linear", dash: s.dash || "solid" }, hovertemplate: template,
         // A curve has few points: mark each one (with a surface ring), as on a line with sparse data.
         marker: { size: 7, color: color, line: { width: 1.5, color: surface } }
@@ -1021,20 +1255,25 @@
       return;
     }
     if (spec.kind === "treemap") {
-      var W = spec.words;
-      [W.category, W.item, W.weight_col, W.rate_col, W.contribution_col].forEach(function (h) {
+      var bt = basketTable(spec);
+      bt.head.forEach(function (h) {
         var th = document.createElement("th"); th.scope = "col"; th.textContent = h; head.appendChild(th);
       });
       var mb = table.createTBody();
-      treemapRows(spec).forEach(function (r) {
+      bt.rows.forEach(function (r) {
         var tr = mb.insertRow();
-        tr.insertCell().textContent = r[0];
-        tr.insertCell().textContent = r[1];
-        [[r[2], 2, false], [r[3], 1, true], [r[4], 2, true]].forEach(function (v) {
-          tr.insertCell().textContent = v[0] === null || v[0] === undefined ? "–" : fmt(v[0], { unit: "", decimals: v[1] }, v[2]);
+        r.forEach(function (v, j) {
+          var f = bt.formats[j];
+          tr.insertCell().textContent = !f ? v : v === null || v === undefined ? "–" : fmt(v, { unit: "", decimals: f[0] }, f[1]);
         });
       });
       holder.appendChild(table);
+      if (bt.note) {
+        var bn = document.createElement("p");
+        bn.className = "note";
+        bn.textContent = bt.note;
+        holder.appendChild(bn);
+      }
       return;
     }
     if (spec.kind === "bubble") {
@@ -1227,8 +1466,8 @@
       }));
     }
     if (spec.kind === "treemap") {
-      var w = spec.words;
-      return [[w.category, w.item, w.weight_col, w.rate_col, w.contribution_col]].concat(treemapRows(spec).map(function (r) {
+      var bc = basketTable(spec, true);
+      return [bc.head].concat(bc.rows.map(function (r) {
         return r.map(function (v) { return v === null || v === undefined ? "" : v; });
       }));
     }
