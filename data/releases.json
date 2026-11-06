@@ -421,17 +421,17 @@
    "flash": false
   },
   "electricity_price": {
-   "date": "2026-11-05",
-   "raw": 238.68625,
-   "display": "239 €/MWh",
-   "period": "5 Nov 2026",
+   "date": "2026-11-06",
+   "raw": 245.6263542,
+   "display": "246 €/MWh",
+   "period": "6 Nov 2026",
    "flash": false
   },
   "industrial_production": {
-   "date": "2026-08-01",
-   "raw": 103.987,
-   "display": "−0.7% m/m",
-   "period": "Aug 2026",
+   "date": "2026-09-01",
+   "raw": 104.682,
+   "display": "0.8% m/m",
+   "period": "Sep 2026",
    "flash": false
   },
   "retail_sales": {
@@ -449,10 +449,10 @@
    "flash": false
   },
   "electricity_demand": {
-   "date": "2026-11-04",
-   "raw": 716.89718,
-   "display": "716.9 GWh",
-   "period": "4 Nov 2026",
+   "date": "2026-11-05",
+   "raw": 726.06922,
+   "display": "726.1 GWh",
+   "period": "5 Nov 2026",
    "flash": false
   },
   "electricity_demand_monthly": {
@@ -652,220 +652,220 @@
    "flash": false
   },
   "ecb_deposit_rate": {
-   "date": "2026-11-05",
+   "date": "2026-11-06",
    "raw": 2.5,
    "display": "2.50%",
-   "period": "5 Nov 2026",
+   "period": "6 Nov 2026",
    "flash": false
   },
   "ecb_mro_rate": {
-   "date": "2026-11-05",
+   "date": "2026-11-06",
    "raw": 2.65,
    "display": "2.65%",
-   "period": "5 Nov 2026",
+   "period": "6 Nov 2026",
    "flash": false
   },
   "ecb_mlf_rate": {
-   "date": "2026-11-05",
+   "date": "2026-11-06",
    "raw": 2.9,
    "display": "2.90%",
-   "period": "5 Nov 2026",
+   "period": "6 Nov 2026",
    "flash": false
   },
   "estr": {
-   "date": "2026-11-04",
+   "date": "2026-11-05",
    "raw": 2.442,
    "display": "2.442%",
-   "period": "4 Nov 2026",
+   "period": "5 Nov 2026",
    "flash": false
   },
   "aaa_fwd_3m": {
-   "date": "2026-11-04",
-   "raw": 2.752344446,
+   "date": "2026-11-05",
+   "raw": 2.748281545,
    "display": "2.75%",
-   "period": "4 Nov 2026",
+   "period": "5 Nov 2026",
    "flash": false
   },
   "aaa_fwd_6m": {
-   "date": "2026-11-04",
-   "raw": 2.953436753,
-   "display": "2.95%",
-   "period": "4 Nov 2026",
+   "date": "2026-11-05",
+   "raw": 2.929990055,
+   "display": "2.93%",
+   "period": "5 Nov 2026",
    "flash": false
   },
   "aaa_fwd_9m": {
-   "date": "2026-11-04",
-   "raw": 3.059645965,
-   "display": "3.06%",
-   "period": "4 Nov 2026",
+   "date": "2026-11-05",
+   "raw": 3.021121838,
+   "display": "3.02%",
+   "period": "5 Nov 2026",
    "flash": false
   },
   "aaa_fwd_1y": {
-   "date": "2026-11-04",
-   "raw": 3.106692313,
-   "display": "3.11%",
-   "period": "4 Nov 2026",
+   "date": "2026-11-05",
+   "raw": 3.057297331,
+   "display": "3.06%",
+   "period": "5 Nov 2026",
    "flash": false
   },
   "aaa_fwd_2y": {
-   "date": "2026-11-04",
-   "raw": 3.084683356,
-   "display": "3.08%",
-   "period": "4 Nov 2026",
+   "date": "2026-11-05",
+   "raw": 3.022291053,
+   "display": "3.02%",
+   "period": "5 Nov 2026",
    "flash": false
   },
   "aaa_fwd_3y": {
+   "date": "2026-11-05",
+   "raw": 3.018976158,
+   "display": "3.02%",
+   "period": "5 Nov 2026",
+   "flash": false
+  },
+  "euribor_3m": {
+   "date": "2026-11-05",
+   "raw": 2.812,
+   "display": "2.812%",
+   "period": "5 Nov 2026",
+   "flash": false
+  },
+  "euribor_12m": {
+   "date": "2026-11-05",
+   "raw": 3.283,
+   "display": "3.283%",
+   "period": "5 Nov 2026",
+   "flash": false
+  },
+  "es_12m_bill": {
    "date": "2026-11-04",
-   "raw": 3.073347425,
+   "raw": 3.067,
    "display": "3.07%",
    "period": "4 Nov 2026",
    "flash": false
   },
-  "euribor_3m": {
-   "date": "2026-11-04",
-   "raw": 2.759,
-   "display": "2.759%",
-   "period": "4 Nov 2026",
-   "flash": false
-  },
-  "euribor_12m": {
-   "date": "2026-11-04",
-   "raw": 3.302,
-   "display": "3.302%",
-   "period": "4 Nov 2026",
-   "flash": false
-  },
-  "es_12m_bill": {
-   "date": "2026-11-03",
-   "raw": 3.078,
-   "display": "3.08%",
-   "period": "3 Nov 2026",
-   "flash": false
-  },
   "es_3y": {
-   "date": "2026-11-03",
-   "raw": 3.329,
+   "date": "2026-11-04",
+   "raw": 3.326,
    "display": "3.33%",
-   "period": "3 Nov 2026",
+   "period": "4 Nov 2026",
    "flash": false
   },
   "es_5y": {
-   "date": "2026-11-03",
-   "raw": 3.505,
-   "display": "3.50%",
-   "period": "3 Nov 2026",
+   "date": "2026-11-04",
+   "raw": 3.422,
+   "display": "3.42%",
+   "period": "4 Nov 2026",
    "flash": false
   },
   "es_10y": {
-   "date": "2026-11-03",
-   "raw": 3.917,
-   "display": "3.92%",
-   "period": "3 Nov 2026",
+   "date": "2026-11-04",
+   "raw": 3.904,
+   "display": "3.90%",
+   "period": "4 Nov 2026",
    "flash": false
   },
   "es_15y": {
-   "date": "2026-11-03",
-   "raw": 4.206,
-   "display": "4.21%",
-   "period": "3 Nov 2026",
+   "date": "2026-11-04",
+   "raw": 4.183,
+   "display": "4.18%",
+   "period": "4 Nov 2026",
    "flash": false
   },
   "es_30y": {
-   "date": "2026-11-03",
-   "raw": 4.426,
-   "display": "4.43%",
-   "period": "3 Nov 2026",
+   "date": "2026-11-04",
+   "raw": 4.424,
+   "display": "4.42%",
+   "period": "4 Nov 2026",
    "flash": false
   },
   "de_10y": {
-   "date": "2026-11-05",
-   "raw": 3.33,
-   "display": "3.33%",
-   "period": "5 Nov 2026",
+   "date": "2026-11-06",
+   "raw": 3.29,
+   "display": "3.29%",
+   "period": "6 Nov 2026",
    "flash": false
   },
   "aaa_1y": {
-   "date": "2026-11-04",
-   "raw": 2.888960329,
-   "display": "2.89%",
-   "period": "4 Nov 2026",
+   "date": "2026-11-05",
+   "raw": 2.868324416,
+   "display": "2.87%",
+   "period": "5 Nov 2026",
    "flash": false
   },
   "aaa_3y": {
-   "date": "2026-11-04",
-   "raw": 3.02252914,
-   "display": "3.02%",
-   "period": "4 Nov 2026",
+   "date": "2026-11-05",
+   "raw": 2.976306134,
+   "display": "2.98%",
+   "period": "5 Nov 2026",
    "flash": false
   },
   "aaa_5y": {
-   "date": "2026-11-04",
-   "raw": 3.07789069,
-   "display": "3.08%",
-   "period": "4 Nov 2026",
+   "date": "2026-11-05",
+   "raw": 3.031454171,
+   "display": "3.03%",
+   "period": "5 Nov 2026",
    "flash": false
   },
   "aaa_10y": {
-   "date": "2026-11-04",
-   "raw": 3.340351375,
-   "display": "3.34%",
-   "period": "4 Nov 2026",
+   "date": "2026-11-05",
+   "raw": 3.293844192,
+   "display": "3.29%",
+   "period": "5 Nov 2026",
    "flash": false
   },
   "aaa_15y": {
-   "date": "2026-11-04",
-   "raw": 3.542260146,
-   "display": "3.54%",
-   "period": "4 Nov 2026",
+   "date": "2026-11-05",
+   "raw": 3.493073053,
+   "display": "3.49%",
+   "period": "5 Nov 2026",
    "flash": false
   },
   "aaa_30y": {
-   "date": "2026-11-04",
-   "raw": 3.619424759,
-   "display": "3.62%",
-   "period": "4 Nov 2026",
+   "date": "2026-11-05",
+   "raw": 3.576735708,
+   "display": "3.58%",
+   "period": "5 Nov 2026",
    "flash": false
   },
   "risk_premium": {
-   "date": "2026-11-04",
-   "raw": 57.2,
-   "display": "57 bp",
-   "period": "4 Nov 2026",
+   "date": "2026-11-05",
+   "raw": 55.3,
+   "display": "55 bp",
+   "period": "5 Nov 2026",
    "flash": false
   },
   "ibex35": {
-   "date": "2026-11-04",
-   "raw": 19371.0,
-   "display": "19,371",
-   "period": "4 Nov 2026",
+   "date": "2026-11-05",
+   "raw": 19486.0,
+   "display": "19,486",
+   "period": "5 Nov 2026",
    "flash": false
   },
   "eurusd": {
-   "date": "2026-11-05",
-   "raw": 1.1224,
-   "display": "1.1224",
-   "period": "5 Nov 2026",
+   "date": "2026-11-06",
+   "raw": 1.1165,
+   "display": "1.1165",
+   "period": "6 Nov 2026",
    "flash": false
   },
   "eurgbp": {
-   "date": "2026-11-05",
-   "raw": 0.83393,
-   "display": "0.8339",
-   "period": "5 Nov 2026",
+   "date": "2026-11-06",
+   "raw": 0.83415,
+   "display": "0.8341",
+   "period": "6 Nov 2026",
    "flash": false
   },
   "eurchf": {
-   "date": "2026-11-05",
-   "raw": 0.918,
-   "display": "0.9180",
-   "period": "5 Nov 2026",
+   "date": "2026-11-06",
+   "raw": 0.9143,
+   "display": "0.9143",
+   "period": "6 Nov 2026",
    "flash": false
   },
   "eurjpy": {
-   "date": "2026-11-05",
-   "raw": 177.85,
-   "display": "177.85",
-   "period": "5 Nov 2026",
+   "date": "2026-11-06",
+   "raw": 176.77,
+   "display": "176.77",
+   "period": "6 Nov 2026",
    "flash": false
   },
   "brent_usd": {
@@ -1149,10 +1149,10 @@
    "flash": false
   },
   "us_unemployment": {
-   "date": "2026-09-01",
-   "raw": 4.2,
-   "display": "4.2%",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 4.1,
+   "display": "4.1%",
+   "period": "Oct 2026",
    "flash": false
   },
   "us_10y": {
@@ -6203,45 +6203,45 @@
    "flash": false
   },
   "youth_unemp_es": {
-   "date": "2026-09-01",
-   "raw": 22.8,
-   "display": "22.8%",
-   "period": "Sep 2026",
+   "date": "2026-08-01",
+   "raw": 22.7,
+   "display": "22.7%",
+   "period": "Aug 2026",
    "flash": false
   },
   "youth_unemp_fr": {
-   "date": "2026-09-01",
-   "raw": 21.9,
-   "display": "21.9%",
-   "period": "Sep 2026",
+   "date": "2026-08-01",
+   "raw": 20.6,
+   "display": "20.6%",
+   "period": "Aug 2026",
    "flash": false
   },
   "youth_unemp_de": {
-   "date": "2026-09-01",
-   "raw": 7.5,
-   "display": "7.5%",
-   "period": "Sep 2026",
+   "date": "2026-08-01",
+   "raw": 7.4,
+   "display": "7.4%",
+   "period": "Aug 2026",
    "flash": false
   },
   "youth_unemp_it": {
-   "date": "2026-09-01",
-   "raw": 19.9,
-   "display": "19.9%",
-   "period": "Sep 2026",
+   "date": "2026-08-01",
+   "raw": 20.3,
+   "display": "20.3%",
+   "period": "Aug 2026",
    "flash": false
   },
   "youth_unemp_pt": {
-   "date": "2026-09-01",
-   "raw": 19.1,
-   "display": "19.1%",
-   "period": "Sep 2026",
+   "date": "2026-08-01",
+   "raw": 19.8,
+   "display": "19.8%",
+   "period": "Aug 2026",
    "flash": false
   },
   "youth_unemp_pl": {
-   "date": "2026-09-01",
+   "date": "2026-08-01",
    "raw": 11.3,
    "display": "11.3%",
-   "period": "Sep 2026",
+   "period": "Aug 2026",
    "flash": false
   },
   "youth_unemp_uk": {
@@ -7253,17 +7253,17 @@
    "flash": false
   },
   "youth_unemp_nl": {
-   "date": "2026-09-01",
+   "date": "2026-08-01",
    "raw": 8.8,
    "display": "8.8%",
-   "period": "Sep 2026",
+   "period": "Aug 2026",
    "flash": false
   },
   "youth_unemp_jp": {
-   "date": "2026-09-01",
+   "date": "2026-08-01",
    "raw": 3.5,
    "display": "3.5%",
-   "period": "Sep 2026",
+   "period": "Aug 2026",
    "flash": false
   },
   "emp_rate_nl": {
@@ -7274,10 +7274,10 @@
    "flash": false
   },
   "emp_rate_jp": {
-   "date": "2026-07-01",
-   "raw": 80.50503,
+   "date": "2026-04-01",
+   "raw": 80.49023,
    "display": "80.5%",
-   "period": "Q3 2026",
+   "period": "Q2 2026",
    "flash": false
   },
   "gdp_growth_jp": {
@@ -7380,7 +7380,7 @@
   },
   "real_hpi_fr": {
    "date": "2026-04-01",
-   "raw": 100.4871867,
+   "raw": 100.4975182,
    "display": "−3.0% y/y",
    "period": "Q2 2026",
    "flash": false
@@ -7401,7 +7401,7 @@
   },
   "real_hpi_nl": {
    "date": "2025-10-01",
-   "raw": 156.6042854,
+   "raw": 156.60322,
    "display": "2.9% y/y",
    "period": "Q4 2025",
    "flash": false
@@ -7701,10 +7701,10 @@
    "flash": false
   },
   "housing_credit_gdp": {
-   "date": "2026-04-01",
-   "raw": 30.24,
-   "display": "30.2% of GDP",
-   "period": "Q2 2026",
+   "date": "2026-07-01",
+   "raw": 30.14,
+   "display": "30.1% of GDP",
+   "period": "Q3 2026",
    "flash": false
   },
   "property_credit_gdp": {
@@ -7806,73 +7806,73 @@
    "flash": false
   },
   "pensions_total": {
-   "date": "2026-09-01",
-   "raw": 10547.42,
-   "display": "10,547k",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 10565.78,
+   "display": "10,566k",
+   "period": "Oct 2026",
    "flash": false
   },
   "pensions_retirement": {
-   "date": "2026-09-01",
-   "raw": 6760.14,
-   "display": "6,760k",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 6777.93,
+   "display": "6,778k",
+   "period": "Oct 2026",
    "flash": false
   },
   "pensions_widowhood": {
-   "date": "2026-09-01",
-   "raw": 2343.84,
+   "date": "2026-10-01",
+   "raw": 2344.47,
    "display": "2,344k",
-   "period": "Sep 2026",
+   "period": "Oct 2026",
    "flash": false
   },
   "pensions_disability": {
-   "date": "2026-09-01",
-   "raw": 1060.55,
-   "display": "1,061k",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1062.51,
+   "display": "1,063k",
+   "period": "Oct 2026",
    "flash": false
   },
   "pensions_orphans": {
-   "date": "2026-09-01",
-   "raw": 335.9,
-   "display": "336k",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 333.84,
+   "display": "334k",
+   "period": "Oct 2026",
    "flash": false
   },
   "pension_avg_total": {
-   "date": "2026-09-01",
-   "raw": 1374.57,
-   "display": "€1,375",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1376.14,
+   "display": "€1,376",
+   "period": "Oct 2026",
    "flash": false
   },
   "pension_avg_retirement": {
-   "date": "2026-09-01",
-   "raw": 1576.1,
-   "display": "€1,576",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1577.61,
+   "display": "€1,578",
+   "period": "Oct 2026",
    "flash": false
   },
   "pension_avg_widowhood": {
-   "date": "2026-09-01",
-   "raw": 976.32,
-   "display": "€976",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 976.67,
+   "display": "€977",
+   "period": "Oct 2026",
    "flash": false
   },
   "pension_avg_disability": {
-   "date": "2026-09-01",
-   "raw": 1254.89,
+   "date": "2026-10-01",
+   "raw": 1255.34,
    "display": "€1,255",
-   "period": "Sep 2026",
+   "period": "Oct 2026",
    "flash": false
   },
   "pension_avg_orphans": {
-   "date": "2026-09-01",
-   "raw": 552.37,
-   "display": "€552",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 552.97,
+   "display": "€553",
+   "period": "Oct 2026",
    "flash": false
   },
   "pensions_total_annual": {
@@ -7946,129 +7946,129 @@
    "flash": false
   },
   "pensions_scheme_general": {
-   "date": "2026-09-01",
-   "raw": 7941.38,
-   "display": "7,941.4k",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 7959.49,
+   "display": "7,959.5k",
+   "period": "Oct 2026",
    "flash": false
   },
   "pensions_scheme_self_employed": {
-   "date": "2026-09-01",
-   "raw": 2025.15,
-   "display": "2,025.2k",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 2026.72,
+   "display": "2,026.7k",
+   "period": "Oct 2026",
    "flash": false
   },
   "pensions_scheme_sea": {
-   "date": "2026-09-01",
-   "raw": 113.83,
-   "display": "113.8k",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 113.73,
+   "display": "113.7k",
+   "period": "Oct 2026",
    "flash": false
   },
   "pensions_scheme_coal": {
-   "date": "2026-09-01",
-   "raw": 55.41,
-   "display": "55.4k",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 55.3,
+   "display": "55.3k",
+   "period": "Oct 2026",
    "flash": false
   },
   "pensions_scheme_accidents": {
-   "date": "2026-09-01",
-   "raw": 203.29,
+   "date": "2026-10-01",
+   "raw": 203.27,
    "display": "203.3k",
-   "period": "Sep 2026",
+   "period": "Oct 2026",
    "flash": false
   },
   "pensions_scheme_diseases": {
-   "date": "2026-09-01",
-   "raw": 31.05,
-   "display": "31.1k",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 31.03,
+   "display": "31.0k",
+   "period": "Oct 2026",
    "flash": false
   },
   "pensions_scheme_sovi": {
-   "date": "2026-09-01",
-   "raw": 177.29,
-   "display": "177.3k",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 176.24,
+   "display": "176.2k",
+   "period": "Oct 2026",
    "flash": false
   },
   "pension_avg_scheme_general": {
-   "date": "2026-09-01",
-   "raw": 1490.81,
-   "display": "€1,491",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1492.37,
+   "display": "€1,492",
+   "period": "Oct 2026",
    "flash": false
   },
   "pension_avg_scheme_self_employed": {
-   "date": "2026-09-01",
-   "raw": 958.41,
-   "display": "€958",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 959.17,
+   "display": "€959",
+   "period": "Oct 2026",
    "flash": false
   },
   "pension_avg_scheme_sea": {
-   "date": "2026-09-01",
-   "raw": 1404.53,
-   "display": "€1,405",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1405.67,
+   "display": "€1,406",
+   "period": "Oct 2026",
    "flash": false
   },
   "pension_avg_scheme_coal": {
-   "date": "2026-09-01",
-   "raw": 2382.04,
-   "display": "€2,382",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 2383.02,
+   "display": "€2,383",
+   "period": "Oct 2026",
    "flash": false
   },
   "pension_avg_scheme_accidents": {
-   "date": "2026-09-01",
-   "raw": 1378.31,
-   "display": "€1,378",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1379.63,
+   "display": "€1,380",
+   "period": "Oct 2026",
    "flash": false
   },
   "pension_avg_scheme_diseases": {
-   "date": "2026-09-01",
-   "raw": 1610.49,
-   "display": "€1,610",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1611.01,
+   "display": "€1,611",
+   "period": "Oct 2026",
    "flash": false
   },
   "pension_avg_scheme_sovi": {
-   "date": "2026-09-01",
-   "raw": 541.66,
-   "display": "€542",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 541.4,
+   "display": "€541",
+   "period": "Oct 2026",
    "flash": false
   },
   "new_pensions_total": {
-   "date": "2026-08-01",
-   "raw": 46.94,
-   "display": "46.9k",
-   "period": "Aug 2026",
+   "date": "2026-09-01",
+   "raw": 56.07,
+   "display": "56.1k",
+   "period": "Sep 2026",
    "flash": false
   },
   "new_pensions_retirement": {
-   "date": "2026-08-01",
-   "raw": 28.8,
-   "display": "28.8k",
-   "period": "Aug 2026",
+   "date": "2026-09-01",
+   "raw": 35.09,
+   "display": "35.1k",
+   "period": "Sep 2026",
    "flash": false
   },
   "new_pension_avg_total": {
-   "date": "2026-08-01",
-   "raw": 1445.76,
-   "display": "€1,446",
-   "period": "Aug 2026",
+   "date": "2026-09-01",
+   "raw": 1485.25,
+   "display": "€1,485",
+   "period": "Sep 2026",
    "flash": false
   },
   "new_pension_avg_retirement": {
-   "date": "2026-08-01",
-   "raw": 1711.41,
-   "display": "€1,711",
-   "period": "Aug 2026",
+   "date": "2026-09-01",
+   "raw": 1757.97,
+   "display": "€1,758",
+   "period": "Sep 2026",
    "flash": false
   },
   "new_pensions_total_annual": {
@@ -8100,10 +8100,10 @@
    "flash": false
   },
   "ended_pensions_total": {
-   "date": "2026-08-01",
-   "raw": 34.98,
-   "display": "35.0k",
-   "period": "Aug 2026",
+   "date": "2026-09-01",
+   "raw": 37.45,
+   "display": "37.5k",
+   "period": "Sep 2026",
    "flash": false
   },
   "ended_pensions_total_annual": {
@@ -8114,10 +8114,10 @@
    "flash": false
   },
   "ended_pension_avg_retirement": {
-   "date": "2026-08-01",
-   "raw": 1380.11,
-   "display": "€1,380",
-   "period": "Aug 2026",
+   "date": "2026-09-01",
+   "raw": 1403.65,
+   "display": "€1,404",
+   "period": "Sep 2026",
    "flash": false
   },
   "ended_pension_avg_retirement_annual": {
@@ -8128,381 +8128,381 @@
    "flash": false
   },
   "pensions_reg_andalucia": {
-   "date": "2026-09-01",
-   "raw": 1740.3,
-   "display": "1,740.3k",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1743.8,
+   "display": "1,743.8k",
+   "period": "Oct 2026",
    "flash": false
   },
   "pensions_reg_aragon": {
-   "date": "2026-09-01",
-   "raw": 322.2,
-   "display": "322.2k",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 322.8,
+   "display": "322.8k",
+   "period": "Oct 2026",
    "flash": false
   },
   "pensions_reg_asturias": {
-   "date": "2026-09-01",
-   "raw": 303.8,
-   "display": "303.8k",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 304.0,
+   "display": "304.0k",
+   "period": "Oct 2026",
    "flash": false
   },
   "pensions_reg_baleares": {
-   "date": "2026-09-01",
-   "raw": 217.2,
-   "display": "217.2k",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 217.6,
+   "display": "217.6k",
+   "period": "Oct 2026",
    "flash": false
   },
   "pensions_reg_canarias": {
-   "date": "2026-09-01",
-   "raw": 384.6,
-   "display": "384.6k",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 385.5,
+   "display": "385.5k",
+   "period": "Oct 2026",
    "flash": false
   },
   "pensions_reg_cantabria": {
-   "date": "2026-09-01",
-   "raw": 150.7,
-   "display": "150.7k",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 150.8,
+   "display": "150.8k",
+   "period": "Oct 2026",
    "flash": false
   },
   "pensions_reg_castilla_mancha": {
-   "date": "2026-09-01",
-   "raw": 412.5,
-   "display": "412.5k",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 413.6,
+   "display": "413.6k",
+   "period": "Oct 2026",
    "flash": false
   },
   "pensions_reg_castilla_leon": {
-   "date": "2026-09-01",
-   "raw": 641.1,
-   "display": "641.1k",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 641.9,
+   "display": "641.9k",
+   "period": "Oct 2026",
    "flash": false
   },
   "pensions_reg_cataluna": {
-   "date": "2026-09-01",
-   "raw": 1827.3,
-   "display": "1,827.3k",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1829.5,
+   "display": "1,829.5k",
+   "period": "Oct 2026",
    "flash": false
   },
   "pensions_reg_valenciana": {
-   "date": "2026-09-01",
-   "raw": 1086.0,
-   "display": "1,086.0k",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1088.2,
+   "display": "1,088.2k",
+   "period": "Oct 2026",
    "flash": false
   },
   "pensions_reg_extremadura": {
-   "date": "2026-09-01",
-   "raw": 250.1,
-   "display": "250.1k",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 250.5,
+   "display": "250.5k",
+   "period": "Oct 2026",
    "flash": false
   },
   "pensions_reg_galicia": {
-   "date": "2026-09-01",
-   "raw": 792.2,
-   "display": "792.2k",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 793.2,
+   "display": "793.2k",
+   "period": "Oct 2026",
    "flash": false
   },
   "pensions_reg_madrid": {
-   "date": "2026-09-01",
-   "raw": 1306.3,
-   "display": "1,306.3k",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1308.9,
+   "display": "1,308.9k",
+   "period": "Oct 2026",
    "flash": false
   },
   "pensions_reg_murcia": {
-   "date": "2026-09-01",
-   "raw": 274.0,
-   "display": "274.0k",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 274.7,
+   "display": "274.7k",
+   "period": "Oct 2026",
    "flash": false
   },
   "pensions_reg_navarra": {
-   "date": "2026-09-01",
-   "raw": 150.7,
-   "display": "150.7k",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 151.0,
+   "display": "151.0k",
+   "period": "Oct 2026",
    "flash": false
   },
   "pensions_reg_pais_vasco": {
-   "date": "2026-09-01",
-   "raw": 592.8,
-   "display": "592.8k",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 594.0,
+   "display": "594.0k",
+   "period": "Oct 2026",
    "flash": false
   },
   "pensions_reg_rioja": {
-   "date": "2026-09-01",
-   "raw": 76.5,
-   "display": "76.5k",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 76.7,
+   "display": "76.7k",
+   "period": "Oct 2026",
    "flash": false
   },
   "pensions_reg_ceuta_melilla": {
-   "date": "2026-09-01",
+   "date": "2026-10-01",
    "raw": 19.0,
    "display": "19.0k",
-   "period": "Sep 2026",
+   "period": "Oct 2026",
    "flash": false
   },
   "pension_avg_reg_andalucia": {
-   "date": "2026-09-01",
-   "raw": 1238.59,
-   "display": "€1,239",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1239.96,
+   "display": "€1,240",
+   "period": "Oct 2026",
    "flash": false
   },
   "pension_avg_reg_aragon": {
-   "date": "2026-09-01",
-   "raw": 1451.0,
-   "display": "€1,451",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1452.75,
+   "display": "€1,453",
+   "period": "Oct 2026",
    "flash": false
   },
   "pension_avg_reg_asturias": {
-   "date": "2026-09-01",
-   "raw": 1580.45,
-   "display": "€1,580",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1581.37,
+   "display": "€1,581",
+   "period": "Oct 2026",
    "flash": false
   },
   "pension_avg_reg_baleares": {
-   "date": "2026-09-01",
-   "raw": 1283.9,
-   "display": "€1,284",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1285.57,
+   "display": "€1,286",
+   "period": "Oct 2026",
    "flash": false
   },
   "pension_avg_reg_canarias": {
-   "date": "2026-09-01",
-   "raw": 1254.84,
-   "display": "€1,255",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1256.39,
+   "display": "€1,256",
+   "period": "Oct 2026",
    "flash": false
   },
   "pension_avg_reg_cantabria": {
-   "date": "2026-09-01",
-   "raw": 1444.12,
-   "display": "€1,444",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1445.82,
+   "display": "€1,446",
+   "period": "Oct 2026",
    "flash": false
   },
   "pension_avg_reg_castilla_mancha": {
-   "date": "2026-09-01",
-   "raw": 1291.98,
-   "display": "€1,292",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1293.35,
+   "display": "€1,293",
+   "period": "Oct 2026",
    "flash": false
   },
   "pension_avg_reg_castilla_leon": {
-   "date": "2026-09-01",
-   "raw": 1377.41,
-   "display": "€1,377",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1378.88,
+   "display": "€1,379",
+   "period": "Oct 2026",
    "flash": false
   },
   "pension_avg_reg_cataluna": {
-   "date": "2026-09-01",
-   "raw": 1427.66,
-   "display": "€1,428",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1429.29,
+   "display": "€1,429",
+   "period": "Oct 2026",
    "flash": false
   },
   "pension_avg_reg_valenciana": {
-   "date": "2026-09-01",
-   "raw": 1273.32,
-   "display": "€1,273",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1274.8,
+   "display": "€1,275",
+   "period": "Oct 2026",
    "flash": false
   },
   "pension_avg_reg_extremadura": {
-   "date": "2026-09-01",
-   "raw": 1174.87,
-   "display": "€1,175",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1176.49,
+   "display": "€1,176",
+   "period": "Oct 2026",
    "flash": false
   },
   "pension_avg_reg_galicia": {
-   "date": "2026-09-01",
-   "raw": 1186.25,
-   "display": "€1,186",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1187.93,
+   "display": "€1,188",
+   "period": "Oct 2026",
    "flash": false
   },
   "pension_avg_reg_madrid": {
-   "date": "2026-09-01",
-   "raw": 1585.18,
-   "display": "€1,585",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1586.84,
+   "display": "€1,587",
+   "period": "Oct 2026",
    "flash": false
   },
   "pension_avg_reg_murcia": {
-   "date": "2026-09-01",
-   "raw": 1231.89,
-   "display": "€1,232",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1233.6,
+   "display": "€1,234",
+   "period": "Oct 2026",
    "flash": false
   },
   "pension_avg_reg_navarra": {
-   "date": "2026-09-01",
-   "raw": 1568.58,
-   "display": "€1,569",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1570.43,
+   "display": "€1,570",
+   "period": "Oct 2026",
    "flash": false
   },
   "pension_avg_reg_pais_vasco": {
-   "date": "2026-09-01",
-   "raw": 1685.58,
-   "display": "€1,686",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1687.76,
+   "display": "€1,688",
+   "period": "Oct 2026",
    "flash": false
   },
   "pension_avg_reg_rioja": {
-   "date": "2026-09-01",
-   "raw": 1363.81,
-   "display": "€1,364",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1364.99,
+   "display": "€1,365",
+   "period": "Oct 2026",
    "flash": false
   },
   "pension_avg_reg_ceuta_melilla": {
-   "date": "2026-09-01",
-   "raw": 1388.23,
-   "display": "€1,388",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1390.83,
+   "display": "€1,391",
+   "period": "Oct 2026",
    "flash": false
   },
   "retirement_avg_reg_andalucia": {
-   "date": "2026-09-01",
-   "raw": 1432.99,
-   "display": "€1,433",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1434.19,
+   "display": "€1,434",
+   "period": "Oct 2026",
    "flash": false
   },
   "retirement_avg_reg_aragon": {
-   "date": "2026-09-01",
-   "raw": 1647.59,
-   "display": "€1,648",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1649.05,
+   "display": "€1,649",
+   "period": "Oct 2026",
    "flash": false
   },
   "retirement_avg_reg_asturias": {
-   "date": "2026-09-01",
-   "raw": 1839.2,
-   "display": "€1,839",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1839.53,
+   "display": "€1,840",
+   "period": "Oct 2026",
    "flash": false
   },
   "retirement_avg_reg_baleares": {
-   "date": "2026-09-01",
-   "raw": 1454.98,
-   "display": "€1,455",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1456.79,
+   "display": "€1,457",
+   "period": "Oct 2026",
    "flash": false
   },
   "retirement_avg_reg_canarias": {
-   "date": "2026-09-01",
-   "raw": 1458.85,
-   "display": "€1,459",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1460.42,
+   "display": "€1,460",
+   "period": "Oct 2026",
    "flash": false
   },
   "retirement_avg_reg_cantabria": {
-   "date": "2026-09-01",
-   "raw": 1662.31,
-   "display": "€1,662",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1663.91,
+   "display": "€1,664",
+   "period": "Oct 2026",
    "flash": false
   },
   "retirement_avg_reg_castilla_mancha": {
-   "date": "2026-09-01",
-   "raw": 1488.34,
-   "display": "€1,488",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1489.73,
+   "display": "€1,490",
+   "period": "Oct 2026",
    "flash": false
   },
   "retirement_avg_reg_castilla_leon": {
-   "date": "2026-09-01",
-   "raw": 1571.24,
-   "display": "€1,571",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1572.53,
+   "display": "€1,573",
+   "period": "Oct 2026",
    "flash": false
   },
   "retirement_avg_reg_cataluna": {
-   "date": "2026-09-01",
-   "raw": 1611.13,
-   "display": "€1,611",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1612.99,
+   "display": "€1,613",
+   "period": "Oct 2026",
    "flash": false
   },
   "retirement_avg_reg_valenciana": {
-   "date": "2026-09-01",
-   "raw": 1452.27,
-   "display": "€1,452",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1453.73,
+   "display": "€1,454",
+   "period": "Oct 2026",
    "flash": false
   },
   "retirement_avg_reg_extremadura": {
-   "date": "2026-09-01",
-   "raw": 1347.46,
-   "display": "€1,347",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1348.83,
+   "display": "€1,349",
+   "period": "Oct 2026",
    "flash": false
   },
   "retirement_avg_reg_galicia": {
-   "date": "2026-09-01",
-   "raw": 1358.84,
-   "display": "€1,359",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1360.69,
+   "display": "€1,361",
+   "period": "Oct 2026",
    "flash": false
   },
   "retirement_avg_reg_madrid": {
-   "date": "2026-09-01",
-   "raw": 1798.64,
-   "display": "€1,799",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1800.1,
+   "display": "€1,800",
+   "period": "Oct 2026",
    "flash": false
   },
   "retirement_avg_reg_murcia": {
-   "date": "2026-09-01",
-   "raw": 1430.04,
-   "display": "€1,430",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1431.56,
+   "display": "€1,432",
+   "period": "Oct 2026",
    "flash": false
   },
   "retirement_avg_reg_navarra": {
-   "date": "2026-09-01",
-   "raw": 1759.66,
-   "display": "€1,760",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1761.32,
+   "display": "€1,761",
+   "period": "Oct 2026",
    "flash": false
   },
   "retirement_avg_reg_pais_vasco": {
-   "date": "2026-09-01",
-   "raw": 1910.31,
-   "display": "€1,910",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1912.29,
+   "display": "€1,912",
+   "period": "Oct 2026",
    "flash": false
   },
   "retirement_avg_reg_rioja": {
-   "date": "2026-09-01",
-   "raw": 1524.51,
-   "display": "€1,525",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1525.78,
+   "display": "€1,526",
+   "period": "Oct 2026",
    "flash": false
   },
   "retirement_avg_reg_ceuta_melilla": {
-   "date": "2026-09-01",
-   "raw": 1713.25,
-   "display": "€1,713",
-   "period": "Sep 2026",
+   "date": "2026-10-01",
+   "raw": 1714.69,
+   "display": "€1,715",
+   "period": "Oct 2026",
    "flash": false
   },
   "pension_max": {
@@ -8968,73 +8968,73 @@
    "flash": false
   },
   "state_debt_outstanding": {
-   "date": "2026-11-05",
-   "raw": 1522.8672,
-   "display": "€1,522.9 bn",
-   "period": "5 Nov 2026",
+   "date": "2026-11-06",
+   "raw": 1521.3953,
+   "display": "€1,521.4 bn",
+   "period": "6 Nov 2026",
    "flash": false
   },
   "state_debt_avg_coupon": {
-   "date": "2026-11-05",
+   "date": "2026-11-06",
    "raw": 2.36070911,
    "display": "2.36%",
-   "period": "5 Nov 2026",
+   "period": "6 Nov 2026",
    "flash": false
   },
   "state_debt_avg_life": {
-   "date": "2026-11-05",
-   "raw": 7.734778999,
-   "display": "7.73 years",
-   "period": "5 Nov 2026",
+   "date": "2026-11-06",
+   "raw": 7.743558275,
+   "display": "7.74 years",
+   "period": "6 Nov 2026",
    "flash": false
   },
   "madrid_general": {
-   "date": "2026-11-04",
-   "raw": 1915.0,
-   "display": "1,915.00",
-   "period": "4 Nov 2026",
+   "date": "2026-11-05",
+   "raw": 1928.0,
+   "display": "1,928.00",
+   "period": "5 Nov 2026",
    "flash": false
   },
   "madrid_financials": {
-   "date": "2026-11-04",
-   "raw": 1546.9,
-   "display": "1,546.9",
-   "period": "4 Nov 2026",
+   "date": "2026-11-05",
+   "raw": 1564.7,
+   "display": "1,564.7",
+   "period": "5 Nov 2026",
    "flash": false
   },
   "madrid_energy": {
-   "date": "2026-11-04",
-   "raw": 3253.9,
-   "display": "3,253.9",
-   "period": "4 Nov 2026",
+   "date": "2026-11-05",
+   "raw": 3279.5,
+   "display": "3,279.5",
+   "period": "5 Nov 2026",
    "flash": false
   },
   "madrid_consumer_goods": {
-   "date": "2026-11-04",
-   "raw": 7519.7,
-   "display": "7,519.7",
-   "period": "4 Nov 2026",
+   "date": "2026-11-05",
+   "raw": 7633.5,
+   "display": "7,633.5",
+   "period": "5 Nov 2026",
    "flash": false
   },
   "madrid_industry": {
-   "date": "2026-11-04",
-   "raw": 2616.7,
-   "display": "2,616.7",
-   "period": "4 Nov 2026",
+   "date": "2026-11-05",
+   "raw": 2573.9,
+   "display": "2,573.9",
+   "period": "5 Nov 2026",
    "flash": false
   },
   "madrid_consumer_services": {
-   "date": "2026-11-04",
-   "raw": 1939.1,
-   "display": "1,939.1",
-   "period": "4 Nov 2026",
+   "date": "2026-11-05",
+   "raw": 1931.1,
+   "display": "1,931.1",
+   "period": "5 Nov 2026",
    "flash": false
   },
   "madrid_tech": {
-   "date": "2026-11-04",
-   "raw": 694.8,
-   "display": "694.8",
-   "period": "4 Nov 2026",
+   "date": "2026-11-05",
+   "raw": 692.9,
+   "display": "692.9",
+   "period": "5 Nov 2026",
    "flash": false
   },
   "ms_nfa": {
@@ -10774,8 +10774,624 @@
    "page": "international.html",
    "text": "Employment rate (15-64), Japan: 80.5% in Q3 2026, after 80.5% in Q2 2026.",
    "at": "2026-11-05T22:59:23+00:00"
+  },
+  {
+   "kind": "market",
+   "id": "electricity_price",
+   "page": "inflation.html",
+   "text": "Electricity price (day-ahead): +2.9% since the last update, to 246 €/MWh.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "industrial_production",
+   "page": "activity.html",
+   "text": "Industrial production (SA): 0.8% m/m in Sep 2026, after −0.7% m/m in Aug 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "us_unemployment",
+   "page": "international.html",
+   "text": "Unemployment rate, United States: 4.1% in Oct 2026, after 4.2% in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "housing_credit_gdp",
+   "page": "housing.html",
+   "text": "Housing loans to households, % of GDP: 30.1% of GDP in Q3 2026, after 30.2% of GDP in Q2 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pensions_total",
+   "page": "pensions.html",
+   "text": "Contributory pensions: 10,566k in Oct 2026, after 10,547k in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pensions_retirement",
+   "page": "pensions.html",
+   "text": "Contributory pensions, retirement: 6,778k in Oct 2026, after 6,760k in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pensions_widowhood",
+   "page": "pensions.html",
+   "text": "Contributory pensions, widowhood: 2,344k in Oct 2026, after 2,344k in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pensions_disability",
+   "page": "pensions.html",
+   "text": "Contributory pensions, permanent disability: 1,063k in Oct 2026, after 1,061k in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pensions_orphans",
+   "page": "pensions.html",
+   "text": "Contributory pensions, orphans: 334k in Oct 2026, after 336k in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pension_avg_total",
+   "page": "pensions.html",
+   "text": "Average pension: €1,376 in Oct 2026, after €1,375 in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pension_avg_retirement",
+   "page": "pensions.html",
+   "text": "Average pension, retirement: €1,578 in Oct 2026, after €1,576 in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pension_avg_widowhood",
+   "page": "pensions.html",
+   "text": "Average pension, widowhood: €977 in Oct 2026, after €976 in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pension_avg_disability",
+   "page": "pensions.html",
+   "text": "Average pension, permanent disability: €1,255 in Oct 2026, after €1,255 in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pension_avg_orphans",
+   "page": "pensions.html",
+   "text": "Average pension, orphans: €553 in Oct 2026, after €552 in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pensions_scheme_general",
+   "page": "pensions.html",
+   "text": "Contributory pensions, General scheme: 7,959.5k in Oct 2026, after 7,941.4k in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pensions_scheme_self_employed",
+   "page": "pensions.html",
+   "text": "Contributory pensions, Self-employed: 2,026.7k in Oct 2026, after 2,025.2k in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pensions_scheme_sea",
+   "page": "pensions.html",
+   "text": "Contributory pensions, Sea workers: 113.7k in Oct 2026, after 113.8k in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pensions_scheme_coal",
+   "page": "pensions.html",
+   "text": "Contributory pensions, Coal mining: 55.3k in Oct 2026, after 55.4k in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pensions_scheme_accidents",
+   "page": "pensions.html",
+   "text": "Contributory pensions, Work accidents: 203.3k in Oct 2026, after 203.3k in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pensions_scheme_diseases",
+   "page": "pensions.html",
+   "text": "Contributory pensions, Occupational diseases: 31.0k in Oct 2026, after 31.1k in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pensions_scheme_sovi",
+   "page": "pensions.html",
+   "text": "Contributory pensions, SOVI (pre-1967 old-age insurance): 176.2k in Oct 2026, after 177.3k in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pension_avg_scheme_general",
+   "page": "pensions.html",
+   "text": "Average pension, General scheme: €1,492 in Oct 2026, after €1,491 in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pension_avg_scheme_self_employed",
+   "page": "pensions.html",
+   "text": "Average pension, Self-employed: €959 in Oct 2026, after €958 in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pension_avg_scheme_sea",
+   "page": "pensions.html",
+   "text": "Average pension, Sea workers: €1,406 in Oct 2026, after €1,405 in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pension_avg_scheme_coal",
+   "page": "pensions.html",
+   "text": "Average pension, Coal mining: €2,383 in Oct 2026, after €2,382 in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pension_avg_scheme_accidents",
+   "page": "pensions.html",
+   "text": "Average pension, Work accidents: €1,380 in Oct 2026, after €1,378 in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pension_avg_scheme_diseases",
+   "page": "pensions.html",
+   "text": "Average pension, Occupational diseases: €1,611 in Oct 2026, after €1,610 in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pension_avg_scheme_sovi",
+   "page": "pensions.html",
+   "text": "Average pension, SOVI (pre-1967 old-age insurance): €541 in Oct 2026, after €542 in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "new_pensions_total",
+   "page": "pensions.html",
+   "text": "New pensions: 56.1k in Sep 2026, after 46.9k in Aug 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "new_pensions_retirement",
+   "page": "pensions.html",
+   "text": "New pensions, retirement: 35.1k in Sep 2026, after 28.8k in Aug 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "new_pension_avg_total",
+   "page": "pensions.html",
+   "text": "Average new pension: €1,485 in Sep 2026, after €1,446 in Aug 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "new_pension_avg_retirement",
+   "page": "pensions.html",
+   "text": "Average new pension, retirement: €1,758 in Sep 2026, after €1,711 in Aug 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "ended_pensions_total",
+   "page": "pensions.html",
+   "text": "Pensions ended: 37.5k in Sep 2026, after 35.0k in Aug 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "ended_pension_avg_retirement",
+   "page": "pensions.html",
+   "text": "Average ended retirement pension: €1,404 in Sep 2026, after €1,380 in Aug 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pensions_reg_andalucia",
+   "page": "pensions.html",
+   "text": "Contributory pensions, Andalucía: 1,743.8k in Oct 2026, after 1,740.3k in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pensions_reg_aragon",
+   "page": "pensions.html",
+   "text": "Contributory pensions, Aragón: 322.8k in Oct 2026, after 322.2k in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pensions_reg_asturias",
+   "page": "pensions.html",
+   "text": "Contributory pensions, Asturias: 304.0k in Oct 2026, after 303.8k in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pensions_reg_baleares",
+   "page": "pensions.html",
+   "text": "Contributory pensions, Illes Balears: 217.6k in Oct 2026, after 217.2k in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pensions_reg_canarias",
+   "page": "pensions.html",
+   "text": "Contributory pensions, Canarias: 385.5k in Oct 2026, after 384.6k in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pensions_reg_cantabria",
+   "page": "pensions.html",
+   "text": "Contributory pensions, Cantabria: 150.8k in Oct 2026, after 150.7k in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pensions_reg_castilla_mancha",
+   "page": "pensions.html",
+   "text": "Contributory pensions, Castilla-La Mancha: 413.6k in Oct 2026, after 412.5k in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pensions_reg_castilla_leon",
+   "page": "pensions.html",
+   "text": "Contributory pensions, Castilla y León: 641.9k in Oct 2026, after 641.1k in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pensions_reg_cataluna",
+   "page": "pensions.html",
+   "text": "Contributory pensions, Cataluña: 1,829.5k in Oct 2026, after 1,827.3k in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pensions_reg_valenciana",
+   "page": "pensions.html",
+   "text": "Contributory pensions, Comunitat Valenciana: 1,088.2k in Oct 2026, after 1,086.0k in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pensions_reg_extremadura",
+   "page": "pensions.html",
+   "text": "Contributory pensions, Extremadura: 250.5k in Oct 2026, after 250.1k in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pensions_reg_galicia",
+   "page": "pensions.html",
+   "text": "Contributory pensions, Galicia: 793.2k in Oct 2026, after 792.2k in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pensions_reg_madrid",
+   "page": "pensions.html",
+   "text": "Contributory pensions, Madrid: 1,308.9k in Oct 2026, after 1,306.3k in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pensions_reg_murcia",
+   "page": "pensions.html",
+   "text": "Contributory pensions, Murcia: 274.7k in Oct 2026, after 274.0k in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pensions_reg_navarra",
+   "page": "pensions.html",
+   "text": "Contributory pensions, Navarra: 151.0k in Oct 2026, after 150.7k in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pensions_reg_pais_vasco",
+   "page": "pensions.html",
+   "text": "Contributory pensions, País Vasco: 594.0k in Oct 2026, after 592.8k in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pensions_reg_rioja",
+   "page": "pensions.html",
+   "text": "Contributory pensions, La Rioja: 76.7k in Oct 2026, after 76.5k in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pensions_reg_ceuta_melilla",
+   "page": "pensions.html",
+   "text": "Contributory pensions, Ceuta y Melilla: 19.0k in Oct 2026, after 19.0k in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pension_avg_reg_andalucia",
+   "page": "pensions.html",
+   "text": "Average pension, Andalucía: €1,240 in Oct 2026, after €1,239 in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pension_avg_reg_aragon",
+   "page": "pensions.html",
+   "text": "Average pension, Aragón: €1,453 in Oct 2026, after €1,451 in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pension_avg_reg_asturias",
+   "page": "pensions.html",
+   "text": "Average pension, Asturias: €1,581 in Oct 2026, after €1,580 in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pension_avg_reg_baleares",
+   "page": "pensions.html",
+   "text": "Average pension, Illes Balears: €1,286 in Oct 2026, after €1,284 in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pension_avg_reg_canarias",
+   "page": "pensions.html",
+   "text": "Average pension, Canarias: €1,256 in Oct 2026, after €1,255 in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pension_avg_reg_cantabria",
+   "page": "pensions.html",
+   "text": "Average pension, Cantabria: €1,446 in Oct 2026, after €1,444 in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pension_avg_reg_castilla_mancha",
+   "page": "pensions.html",
+   "text": "Average pension, Castilla-La Mancha: €1,293 in Oct 2026, after €1,292 in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pension_avg_reg_castilla_leon",
+   "page": "pensions.html",
+   "text": "Average pension, Castilla y León: €1,379 in Oct 2026, after €1,377 in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pension_avg_reg_cataluna",
+   "page": "pensions.html",
+   "text": "Average pension, Cataluña: €1,429 in Oct 2026, after €1,428 in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pension_avg_reg_valenciana",
+   "page": "pensions.html",
+   "text": "Average pension, Comunitat Valenciana: €1,275 in Oct 2026, after €1,273 in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pension_avg_reg_extremadura",
+   "page": "pensions.html",
+   "text": "Average pension, Extremadura: €1,176 in Oct 2026, after €1,175 in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pension_avg_reg_galicia",
+   "page": "pensions.html",
+   "text": "Average pension, Galicia: €1,188 in Oct 2026, after €1,186 in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pension_avg_reg_madrid",
+   "page": "pensions.html",
+   "text": "Average pension, Madrid: €1,587 in Oct 2026, after €1,585 in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pension_avg_reg_murcia",
+   "page": "pensions.html",
+   "text": "Average pension, Murcia: €1,234 in Oct 2026, after €1,232 in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pension_avg_reg_navarra",
+   "page": "pensions.html",
+   "text": "Average pension, Navarra: €1,570 in Oct 2026, after €1,569 in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pension_avg_reg_pais_vasco",
+   "page": "pensions.html",
+   "text": "Average pension, País Vasco: €1,688 in Oct 2026, after €1,686 in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pension_avg_reg_rioja",
+   "page": "pensions.html",
+   "text": "Average pension, La Rioja: €1,365 in Oct 2026, after €1,364 in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "pension_avg_reg_ceuta_melilla",
+   "page": "pensions.html",
+   "text": "Average pension, Ceuta y Melilla: €1,391 in Oct 2026, after €1,388 in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "retirement_avg_reg_andalucia",
+   "page": "pensions.html",
+   "text": "Average retirement pension, Andalucía: €1,434 in Oct 2026, after €1,433 in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "retirement_avg_reg_aragon",
+   "page": "pensions.html",
+   "text": "Average retirement pension, Aragón: €1,649 in Oct 2026, after €1,648 in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "retirement_avg_reg_asturias",
+   "page": "pensions.html",
+   "text": "Average retirement pension, Asturias: €1,840 in Oct 2026, after €1,839 in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "retirement_avg_reg_baleares",
+   "page": "pensions.html",
+   "text": "Average retirement pension, Illes Balears: €1,457 in Oct 2026, after €1,455 in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "retirement_avg_reg_canarias",
+   "page": "pensions.html",
+   "text": "Average retirement pension, Canarias: €1,460 in Oct 2026, after €1,459 in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "retirement_avg_reg_cantabria",
+   "page": "pensions.html",
+   "text": "Average retirement pension, Cantabria: €1,664 in Oct 2026, after €1,662 in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "retirement_avg_reg_castilla_mancha",
+   "page": "pensions.html",
+   "text": "Average retirement pension, Castilla-La Mancha: €1,490 in Oct 2026, after €1,488 in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "retirement_avg_reg_castilla_leon",
+   "page": "pensions.html",
+   "text": "Average retirement pension, Castilla y León: €1,573 in Oct 2026, after €1,571 in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "retirement_avg_reg_cataluna",
+   "page": "pensions.html",
+   "text": "Average retirement pension, Cataluña: €1,613 in Oct 2026, after €1,611 in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "retirement_avg_reg_valenciana",
+   "page": "pensions.html",
+   "text": "Average retirement pension, Comunitat Valenciana: €1,454 in Oct 2026, after €1,452 in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "retirement_avg_reg_extremadura",
+   "page": "pensions.html",
+   "text": "Average retirement pension, Extremadura: €1,349 in Oct 2026, after €1,347 in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "retirement_avg_reg_galicia",
+   "page": "pensions.html",
+   "text": "Average retirement pension, Galicia: €1,361 in Oct 2026, after €1,359 in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "retirement_avg_reg_madrid",
+   "page": "pensions.html",
+   "text": "Average retirement pension, Madrid: €1,800 in Oct 2026, after €1,799 in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "retirement_avg_reg_murcia",
+   "page": "pensions.html",
+   "text": "Average retirement pension, Murcia: €1,432 in Oct 2026, after €1,430 in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "retirement_avg_reg_navarra",
+   "page": "pensions.html",
+   "text": "Average retirement pension, Navarra: €1,761 in Oct 2026, after €1,760 in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "retirement_avg_reg_pais_vasco",
+   "page": "pensions.html",
+   "text": "Average retirement pension, País Vasco: €1,912 in Oct 2026, after €1,910 in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "retirement_avg_reg_rioja",
+   "page": "pensions.html",
+   "text": "Average retirement pension, La Rioja: €1,526 in Oct 2026, after €1,525 in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
+  },
+  {
+   "kind": "release",
+   "id": "retirement_avg_reg_ceuta_melilla",
+   "page": "pensions.html",
+   "text": "Average retirement pension, Ceuta y Melilla: €1,715 in Oct 2026, after €1,713 in Sep 2026.",
+   "at": "2026-11-06T16:48:01+00:00"
   }
  ],
- "updated_at": "2026-11-05T22:59:23+00:00",
+ "updated_at": "2026-11-06T16:48:01+00:00",
  "started_at": "2026-10-31T23:31:49+00:00"
 }
