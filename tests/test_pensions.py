@@ -3,7 +3,7 @@
 import numpy as np
 import pandas as pd
 
-from econpulse import pensions
+from econpulse import i18n, pensions
 from econpulse.build import NAV, SECTION_PAGES
 from econpulse.pages import build_page, page_indicator_ids
 from econpulse.registry import load_registry
@@ -112,7 +112,16 @@ def test_facts(tmp_path):
     facts = {f["label"]: f for f in pensions.overview_facts(data)}
     assert facts["Contributory pensions"]["value"] == "10.55 million" and "Sep 2026" in facts["Contributory pensions"]["sub"]
     assert facts["Average pension"]["value"] == "€1,374.57" and facts["Average pension"]["sub"].endswith("retirement €1,576.10")
-    assert facts["What they cost"]["value"] == "€189 bn" and facts["What they cost"]["sub"].endswith("; 11.1% of GDP")
+    cost = facts["What they cost"]
+    assert cost["value"] == "€189 bn" and "; 11.1% of GDP. Social Security only; with civil servants' (Clases Pasivas)" in cost["sub"]
+    # beside it, what it leaves out: the Ageing Report's figure for all public pensions, with its check status
+    assert cost["sub"].endswith("pensions, 13.1% of GDP in 2022 (European Commission) · awaiting AI check")
+    pensions.confirm(data.store, "ageing_report_2024", by="AI check (Claude)")
+    checked = {f["label"]: f for f in pensions.overview_facts(Data(load_registry(), data.store))}
+    assert checked["What they cost"]["sub"].endswith("in 2022 (European Commission)")
+    with i18n.using("es"):
+        es = {f["label"]: f for f in pensions.overview_facts(Data(load_registry(), data.store))}
+    assert "Clases Pasivas" in es["Lo que cuestan"]["sub"] and es["Lo que cuestan"]["sub"].endswith("en 2022 (Comisión Europea)")
     assert facts["Workers per pension"]["value"] == "1.99" and facts["Workers per pension"]["sub"].endswith("2.23 in 2016")
     new = {f["label"]: f for f in pensions.new_facts(data)}
     assert new["A new retirement pension"]["sub"].endswith("+8.6% on the average retirement pension")

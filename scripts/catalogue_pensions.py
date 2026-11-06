@@ -39,6 +39,9 @@ PAIRS.update({
     "What they cost": "Lo que cuestan",
     "in {year}, an estimate: pensions × the average pension × {payments} payments":
         "en {year}, estimación: número de pensiones × pensión media × {payments} pagas",
+    "Social Security only; with civil servants' (Clases Pasivas) and non-contributory pensions, {share} of GDP in {year} ({source})":
+        "Solo la Seguridad Social; con las de los funcionarios (Clases Pasivas) y las no contributivas, {share} del "
+        "PIB en {year} ({source})",
     "Workers per pension": "Afiliados por pensión",
     "registered with the Social Security, {period}": "trabajadores en alta en la Seguridad Social, {period}",
     "; {ratio} in {year}": "; {ratio} en {year}",

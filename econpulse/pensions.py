@@ -137,10 +137,12 @@ def overview_facts(data: Data) -> list[dict]:
     if cost is not None and not cost.empty:
         year = cost.index[-1]
         share = cost["share"].iloc[-1]
+        everything = all_public_pensions(data)
         out.append({"label": _("What they cost"), "value": fmt_value(cost["cost"].iloc[-1] / 1000, "€ bn", 0),
                     "sub": _("in {year}, an estimate: pensions × the average pension × {payments} payments").format(
                                year=year, payments=PAYMENTS)
-                           + ("" if pd.isna(share) else f"; {fmt_value(share, '% of GDP', 1)}")})
+                           + ("" if pd.isna(share) else f"; {fmt_value(share, '% of GDP', 1)}")
+                           + (f". {everything}" if everything else "")})
     ratio = workers_per_pension(data)
     if ratio is not None:
         yearly, monthly = ratio
@@ -415,6 +417,19 @@ def assessment_documents(data: Data) -> list[dict]:
 
 def _status_note(doc: Document) -> str:
     return f" · {_(PENDING)}" if doc.status == PENDING else ""
+
+
+def all_public_pensions(data: Data) -> str:
+    """What the cost of the Social Security's contributory pensions leaves out, for the fact beside it: all public
+    pensions, with civil servants' (Clases Pasivas, 1.4% of GDP in 2022) and non-contributory ones (0.2%), in the
+    Ageing Report's base year. Readers compare the two (11.3% against 13.1%)."""
+    doc = _doc(data, "ageing_report_2024")
+    proj = (doc.raw.get("projection") if doc else None) or {}
+    if not proj.get("years") or not proj.get("es"):
+        return ""
+    return _("Social Security only; with civil servants' (Clases Pasivas) and non-contributory pensions, {share} of "
+             "GDP in {year} ({source})").format(
+        share=fmt_value(proj["es"][0], "%", 1), year=proj["years"][0], source=_(doc.publisher)) + _status_note(doc)
 
 
 # ---------------------------------------------------------------- comparisons
